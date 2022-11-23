@@ -35,7 +35,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     private void OnCollisionExit(Collision collision)
     {
-        //_playerData.isGround = false;
+        if (!collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || !collision.collider.CompareTag(SceneLoadController.Tags.Bridge.ToString()))
+        {
+            _playerData.isGround = false;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
