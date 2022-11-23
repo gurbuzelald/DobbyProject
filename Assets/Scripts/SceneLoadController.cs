@@ -10,4 +10,10 @@ public class SceneLoadController : MonoBehaviour
         Destroy(PlayerManager.GetInstance.gameObject);
         SceneManager.LoadScene(0);
     }
+    public enum Tags
+    {
+        Ground,
+        Bridge,
+        Ladder
+    }
 }

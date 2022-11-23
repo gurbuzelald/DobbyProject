@@ -6,12 +6,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 {
     public PlayerData _playerData;
 
-    private float _xValue;
-    private float _zValue;
+    public float _xValue;
+    public float _zValue;
     // Start is called before the first frame update
     void Start()
     {
         _playerData.isWalking = false;
+        _playerData.isClimbing = false;
         _playerData.isBackWalking = false;
         _playerData.isGround = true;
     }
@@ -23,7 +24,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Bridge"))
+        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Bridge.ToString()))
         {
             _playerData.isGround = true;
         }
@@ -35,6 +36,22 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private void OnCollisionExit(Collision collision)
     {
         //_playerData.isGround = false;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
+        {
+            GetInstance.GetComponent<Rigidbody>().isKinematic = true;
+            _playerData.isClimbing = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
+        {
+            GetInstance.GetComponent<Rigidbody>().isKinematic = false;
+            _playerData.isClimbing = false;
+        }
     }
 
     void Movement()
@@ -54,24 +71,34 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             _mousePosX = Mathf.Clamp(_mousePosX, -180, -90);
         }
-        if (_zValue > 0)
+        if (_zValue > 0 && !_playerData.isClimbing)
         {
+            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
             _playerData.isWalking = true;
             _playerData.isBackWalking = false;
         }
-        else if (_zValue < 0)
+        else if (_zValue < 0 && !_playerData.isClimbing)
         {
+            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
             _playerData.isBackWalking = true;
             _playerData.isWalking = false;
         }
         else if (_zValue == 0)
         {
+            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
             _playerData.isBackWalking = false;
             _playerData.isWalking = false;
         }
+        else if (_zValue > 0 && _playerData.isClimbing)
+        {
+            GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
+        }
+        else if (_zValue < 0 && _playerData.isClimbing)
+        {
+            GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
+        }
         //GetInstance.GetComponent<Transform>().localRotation = Quaternion.AngleAxis(_mousePosX, Vector3.right);
         //float _mousePosZ = Input.GetAxis("Mouse Z") * _rotateSpeed * -Time.deltaTime;
-        GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
         GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
         GetInstance.GetComponent<Transform>().Rotate(0f, _mousePosX, 0f);
         if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround)

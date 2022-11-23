@@ -13,12 +13,23 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void Update()
     {
+        AnimationStates();
+    }
+    public void AnimationStates()
+    {
+        WalkAnimation();
+        ClimbAnimation();
+    }
+    void WalkAnimation()
+    {
         if (_playerData.isWalking && !_playerData.isBackWalking)
         {
             _animator.SetBool("isWalking", true);
 
             _animator.SetBool("isBackWalking", false);
             _animator.SetBool("isIdling", false);
+            _animator.SetBool("isClimbing", false);
+
             _animator.SetLayerWeight(1, 1);
             _animator.SetLayerWeight(2, 0);
         }
@@ -28,17 +39,77 @@ public class PlayerAnimationController : MonoBehaviour
 
             _animator.SetBool("isWalking", false);
             _animator.SetBool("isIdling", false);
+            _animator.SetBool("isClimbing", false);
+
             _animator.SetLayerWeight(2, 1);
             _animator.SetLayerWeight(1, 0);
         }
-        else if (!_playerData.isBackWalking && !_playerData.isWalking)
+        else if (!_playerData.isBackWalking && !_playerData.isWalking && !_playerData.isClimbing)
         {
             _animator.SetBool("isIdling", true);
 
             _animator.SetBool("isBackWalking", false);
             _animator.SetBool("isWalking", false);
+            _animator.SetBool("isClimbing", false);
+
             _animator.SetLayerWeight(1, 0);
             _animator.SetLayerWeight(2, 0);
         }
+    }
+    void ClimbAnimation()
+    {
+        if (_playerData.isClimbing && PlayerManager.GetInstance._zValue > 0)
+        {
+            _animator.SetBool("isIdling", false);
+
+            _animator.SetBool("isBackWalking", false);
+            _animator.SetBool("isWalking", false);
+            _animator.SetBool("isClimbing", true);
+
+            _animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(2, 0);
+            _animator.SetLayerWeight(3, 1);
+        }
+        if (_playerData.isClimbing && PlayerManager.GetInstance._zValue < 0)
+        {
+            _animator.SetBool("isIdling", false);
+
+            _animator.SetBool("isBackWalking", false);
+            _animator.SetBool("isWalking", false);
+            _animator.SetBool("isClimbing", false);
+            _animator.SetBool("isBackClimbing", true);
+
+            _animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(2, 0);
+            _animator.SetLayerWeight(3, 0);
+            _animator.SetLayerWeight(4, 1);
+        }
+        else if (PlayerManager.GetInstance._zValue == 0)
+        {
+            _animator.SetBool("isIdling", false);
+
+            _animator.SetBool("isBackWalking", false);
+            _animator.SetBool("isWalking", false);
+            _animator.SetBool("isClimbing", false);
+            _animator.SetBool("isBackClimbing", true);
+
+            _animator.SetLayerWeight(1, 1);
+            _animator.SetLayerWeight(2, 0);
+            _animator.SetLayerWeight(3, 0);
+            _animator.SetLayerWeight(4, 0);
+        }
+        if ((_playerData.isClimbing || !_playerData.isClimbing) && PlayerManager.GetInstance._zValue == 0)
+        {
+            _animator.SetBool("isIdling", true);
+
+            _animator.SetBool("isBackWalking", false);
+            _animator.SetBool("isWalking", false);
+            _animator.SetBool("isClimbing", false);
+
+            _animator.SetLayerWeight(0, 1);
+            _animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(2, 0);
+            _animator.SetLayerWeight(3, 0);
+        }        
     }
 }
