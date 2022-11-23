@@ -93,10 +93,10 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: Base Layer
+    m_Name: Idle
     m_StateMachine: {fileID: 7217608157954493352}
     m_Mask: {fileID: 0}
     m_Motions: []
@@ -178,7 +178,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Base Layer
+  m_Name: Idle
   m_ChildStates: []
   m_ChildStateMachines: []
   m_AnyStateTransitions: []

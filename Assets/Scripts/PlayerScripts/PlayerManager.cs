@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
     public PlayerData _playerData;
+    [SerializeField] CinemachineExternalCamera _virtualCamera;
 
     public float _xValue;
     public float _zValue;
@@ -28,14 +30,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             _playerData.isGround = true;
         }
-        else
-        {
-            _playerData.isGround = false;
-        }
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (!collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || !collision.collider.CompareTag(SceneLoadController.Tags.Bridge.ToString()))
+        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Bridge.ToString()))
         {
             _playerData.isGround = false;
         }
@@ -61,19 +59,29 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         _xValue = Input.GetAxis("Horizontal") * Time.deltaTime * _playerData.playerSpeed / 2f;
         _zValue = Input.GetAxis("Vertical") * Time.deltaTime * _playerData.playerSpeed;
-        float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.deltaTime;
-        float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.deltaTime;
-        if (_mousePosX <= 0 && _mousePosX > 90)
-        {
-            //Debug.Log(_mousePosX);
-            _mousePosX = Mathf.Clamp(_mousePosY, -90, 0);
-        }
-        else if (_mousePosX <= -90 && _mousePosX > -180)
-        {
-            Debug.Log(_mousePosX);
 
-            _mousePosX = Mathf.Clamp(_mousePosX, -180, -90);
+        Rotation();
+
+        if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround)
+        {
+            Jump();
         }
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Fire();
+        }
+        Walk();
+    }
+    void Rotation()
+    {
+        float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
+        float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
+        GetInstance.GetComponent<Transform>().Rotate(0f, _mousePosX, 0f);
+        _virtualCamera.transform.Rotate(-_mousePosY * Time.timeScale, 0, 0);
+
+    }
+    void Walk()
+    {
         if (_zValue > 0 && !_playerData.isClimbing)
         {
             GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
@@ -100,20 +108,15 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
         }
-        //GetInstance.GetComponent<Transform>().localRotation = Quaternion.AngleAxis(_mousePosX, Vector3.right);
-        //float _mousePosZ = Input.GetAxis("Mouse Z") * _rotateSpeed * -Time.deltaTime;
-        GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
-        GetInstance.GetComponent<Transform>().Rotate(0f, _mousePosX, 0f);
-        if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround)
+        if (_xValue < 0)
         {
-            Jump();
+            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        else if (_xValue > 0)
         {
-            Fire();
+            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
         }
     }
-
     void Jump()
     {
         GetInstance.GetComponent<Rigidbody>().AddForce(transform.up*_playerData.jumpForce, ForceMode.Impulse);
