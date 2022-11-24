@@ -7,6 +7,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 {
     public PlayerData _playerData;
     [SerializeField] CinemachineExternalCamera _virtualCamera;
+    private BulletManager _bulletManager;
 
     public float _xValue;
     public float _zValue;
@@ -17,6 +18,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _playerData.isClimbing = false;
         _playerData.isBackWalking = false;
         _playerData.isGround = true;
+        _bulletManager = Object.FindObjectOfType<BulletManager>();
     }
 
     // Update is called once per frame
@@ -123,6 +125,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void Fire()
     {
-
+        _bulletManager.CreateBullet();
     }
 }
