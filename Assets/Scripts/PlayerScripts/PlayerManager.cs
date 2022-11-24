@@ -11,9 +11,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     public float _xValue;
     public float _zValue;
+    private int _jumpCount;
     // Start is called before the first frame update
     void Start()
     {
+        _jumpCount = 0;
+        _playerData.isFiring = false;
         _playerData.isWalking = false;
         _playerData.isClimbing = false;
         _playerData.isBackWalking = false;
@@ -31,11 +34,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Bridge.ToString()))
         {
             _playerData.isGround = true;
+            _jumpCount = 0;
         }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Bridge.ToString()))
+        else
         {
             _playerData.isGround = false;
         }
@@ -64,13 +65,18 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
         Rotation();
 
-        if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround)
+        if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround && _jumpCount <= 1)
         {
             Jump();
+            _jumpCount++;
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Fire();
+        }
+        else
+        {
+            _playerData.isFiring = false;
         }
         Walk();
     }
@@ -126,5 +132,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     void Fire()
     {
         _bulletManager.CreateBullet();
+        _playerData.isFiring = true;
     }
 }

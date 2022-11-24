@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyManager : MonoBehaviour
+public class CloneManager : MonoBehaviour
 {
     private NavMeshAgent _navmeshAgent;
     [SerializeField] Transform _targetObject;
@@ -17,7 +17,6 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.LookAt(_targetObject.position);
-        gameObject.transform.Translate(0f, 0f, _cloneSpeed * Time.deltaTime);
+        _navmeshAgent.SetDestination(_targetObject.position);
     }
 }
