@@ -14,16 +14,30 @@ public class BulletManager : MonoBehaviour
     }
     public void CreateBullet()
     {
-        StartCoroutine(DelaySpawn());
+        GameObject bulletObject = Instantiate(_bulletObject, gameObject.transform);
+        bulletObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.TransformDirection(Vector3.up * _bulletSpeed), ForceMode.Force);
+        StartCoroutine(DelayDestroy(bulletObject));
+
+        //StartCoroutine(DelaySpawn());
+    }
+    public IEnumerator DelayDestroy(GameObject value)
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(value);
     }
     public IEnumerator DelaySpawn()
     {
         GameObject bulletObject = _objectPool.GetPooledObject(0);
         bulletObject.transform.position = gameObject.transform.position;
         bulletObject.transform.rotation = gameObject.transform.rotation;
-        bulletObject.GetComponent<Rigidbody>().AddForce(transform.TransformDirection(Vector3.up * _bulletSpeed));
 
-        yield return new WaitForSeconds(5f);
+        bulletObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.TransformDirection(Vector3.up * _bulletSpeed), ForceMode.Force);
+
+        yield return new WaitForSeconds(4f);        
+
+        bulletObject.transform.position = gameObject.transform.position;
+        bulletObject.transform.rotation = gameObject.transform.rotation;
+
         bulletObject.SetActive(false);
 
     }

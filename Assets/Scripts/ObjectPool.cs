@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    [Serializable] public struct Pool
+    [Serializable]
+    public struct Pool
     {
         public Queue<GameObject> pooledObjects;
         public GameObject objectPrefab;
+        public Transform objectTransform;
         public int poolSize;
     }
 
@@ -22,7 +24,7 @@ public class ObjectPool : MonoBehaviour
 
             for (int i = 0; i < pools[j].poolSize; i++)
             {
-                GameObject obj = Instantiate(pools[j].objectPrefab);
+                GameObject obj = Instantiate(pools[j].objectPrefab, pools[j].objectTransform);
                 obj.SetActive(false);
 
                 pools[j].pooledObjects.Enqueue(obj);
@@ -40,6 +42,7 @@ public class ObjectPool : MonoBehaviour
         GameObject obj = pools[objectType].pooledObjects.Dequeue();
 
         obj.SetActive(true);
+
         pools[objectType].pooledObjects.Enqueue(obj);
 
         return obj;

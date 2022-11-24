@@ -14,6 +14,7 @@ public class SceneLoadController : MonoBehaviour
     {
         Ground,
         Bridge,
-        Ladder
+        Ladder,
+        Enemy
     }
 }
