@@ -8,7 +8,8 @@ public class BulletController : MonoBehaviour
     {
         if (other.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
+            //gameObject.SetActive(false);
         }
     }
 }

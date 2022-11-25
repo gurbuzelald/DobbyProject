@@ -30,8 +30,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     void Update()
     {
         Movement();
-        Debug.Log(_virtualCamera.transform.eulerAngles.x);
-
     }
     private void OnCollisionEnter(Collision collision)
     {

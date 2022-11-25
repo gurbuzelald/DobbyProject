@@ -19,7 +19,7 @@ public class BulletManager : MonoBehaviour
     }
     private void Update()
     {
-        _gunTransform.transform.eulerAngles = new Vector3(_virtualCamera.transform.eulerAngles.x - 10f, _gunTransform.transform.eulerAngles.y, _gunTransform.transform.eulerAngles.z);
+        _gunTransform.transform.eulerAngles = new Vector3(_virtualCamera.transform.eulerAngles.x - 20f, _gunTransform.transform.eulerAngles.y, _gunTransform.transform.eulerAngles.z);
     }
     public void CreateBullet()
     {
