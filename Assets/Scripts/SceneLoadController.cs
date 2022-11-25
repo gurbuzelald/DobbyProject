@@ -8,12 +8,20 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     public void PlayAgain()
     {
         Destroy(PlayerManager.GetInstance.gameObject);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Level1");
     }
     public string CheckSceneName()
     {
         string _sceneName = SceneManager.GetActiveScene().name;
         return _sceneName;
+    }
+    public void LoadMenuScene()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
     }
     public enum Tags
     {

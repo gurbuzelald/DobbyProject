@@ -64,7 +64,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                     _enemyManager._enemySpeed = 0;
                     //StartCoroutine(_enemyManager.DelayStopEnemy());
                     Destroy(_healthBar);
-                    Destroy(gameObject, 4f);
+                    StartCoroutine(DelayDestroy());
                 }
                 else
                 {
@@ -176,6 +176,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             _bulletManager.CreateBullet();
             _playerData.isFiring = true;
-        }
-    }        
+        }         
+    }
+    IEnumerator DelayDestroy()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
+        SceneLoadController.GetInstance.LoadMenuScene();
+    }
 }

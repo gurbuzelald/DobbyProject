@@ -44,7 +44,7 @@ public class EnemyManager : MonoBehaviour
                     Destroy(_healthBar);
                     ScoreController.GetInstance.SetScore(20);
                 }
-                Destroy(gameObject, 2f);
+                Destroy(gameObject);
             }
             else
             {
