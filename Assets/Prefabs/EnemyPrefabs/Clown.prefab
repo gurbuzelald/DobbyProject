@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552513370}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: b3fefcbf0df209048979fd2014312802, type: 3}
 --- !u!23 &1552513373
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 7f9a43163c944ea4f91f8257b525186f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 711838104}
   m_Layer: 0
   m_Name: Clown
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetObject: {fileID: 0}
-  _cloneSpeed: 0.5
+  _enemySpeed: 0.5
   _healthBar: {fileID: 1552513370}
 --- !u!54 &711838105
 Rigidbody:
@@ -218,6 +218,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 05682cd867ef28245829d773ad5b75cc, type: 3}
       propertyPath: m_Name
       value: Whiteclown N Hallin@Walking
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 05682cd867ef28245829d773ad5b75cc, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 05682cd867ef28245829d773ad5b75cc, type: 3}

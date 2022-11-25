@@ -8,7 +8,7 @@ public class BulletManager : MonoBehaviour
     public ObjectPool _objectPool;
     public GameObject _bulletObject;
     [SerializeField] float _bulletSpeed = 5f;
-    [SerializeField] Transform _gunTransform;
+    [SerializeField] Transform _bulletTransform;
     [SerializeField] CinemachineVirtualCamera _virtualCamera;
     private Transform _initTransform;
 
@@ -19,12 +19,12 @@ public class BulletManager : MonoBehaviour
     }
     private void Update()
     {
-        _gunTransform.transform.eulerAngles = new Vector3(_virtualCamera.transform.eulerAngles.x - 20f, _gunTransform.transform.eulerAngles.y, _gunTransform.transform.eulerAngles.z);
+        BulletRotation();
     }
     public void CreateBullet()
     {
         GameObject bulletObject = Instantiate(_bulletObject, gameObject.transform);
-        bulletObject.GetComponent<Rigidbody>().AddForce(_gunTransform.transform.TransformDirection(Vector3.forward * _bulletSpeed), ForceMode.Force);
+        bulletObject.GetComponent<Rigidbody>().AddForce(_bulletTransform.transform.TransformDirection(Vector3.forward * _bulletSpeed), ForceMode.Force);
 
         StartCoroutine(DelayDestroy(bulletObject));
 
@@ -48,6 +48,12 @@ public class BulletManager : MonoBehaviour
         bulletObject.transform.rotation = gameObject.transform.rotation;
 
         bulletObject.SetActive(false);
-
+    }
+    private void BulletRotation()
+    {
+        if (_virtualCamera != null)
+        {
+            _bulletTransform.transform.eulerAngles = new Vector3(_virtualCamera.transform.eulerAngles.x - 20f, _bulletTransform.transform.eulerAngles.y, _bulletTransform.transform.eulerAngles.z);
+        }
     }
 }

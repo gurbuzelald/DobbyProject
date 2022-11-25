@@ -5,31 +5,43 @@ using UnityEngine.AI;
 
 public class EnemyManager : MonoBehaviour
 {
-    private NavMeshAgent _navmeshAgent;
     [SerializeField] Transform _targetObject;
-    [SerializeField] float _cloneSpeed = 0.1f;
+    public float _enemySpeed = 0.1f;
+    private float _initSpeed;
     [SerializeField] GameObject _healthBar;
-    // Start is called before the first frame update
-    void Start()
-    {
-        _navmeshAgent = GetComponent<NavMeshAgent>();
-    }
 
-    // Update is called once per frame
+    private void Start()
+    {
+        _initSpeed = _enemySpeed;
+    }
     void Update()
     {
-        gameObject.transform.LookAt(_targetObject.position);
-        gameObject.transform.Translate(0f, 0f, _cloneSpeed * Time.deltaTime);
+        if (gameObject != null)
+        {
+            Movement();
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (PlayerManager.GetInstance._healthBar != null)
+        {
+            if (collision.collider.CompareTag(SceneLoadController.Tags.Player.ToString()) && PlayerManager.GetInstance._healthBar.transform.localScale.x <= 0.0625f)
+            {
+                EnemyAnimationController.isWalking = false;
+                _enemySpeed = 0;
+                StartCoroutine(DelayStopEnemy());
+            }
+        }        
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(SceneLoadController.Tags.Bullet.ToString()))
         {
-            if (_healthBar.transform.localScale.x < 0.125f)
+            if (_healthBar.transform.localScale.x <= 0.0625f)
             {
-                Destroy(_healthBar);
                 if (_healthBar != null)
                 {
+                    Destroy(_healthBar);
                     ScoreController.GetInstance.SetScore(20);
                 }
                 Destroy(gameObject, 2f);
@@ -39,6 +51,20 @@ public class EnemyManager : MonoBehaviour
                 _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
         }
+    }
+    private void Movement()
+    {
+        if (_targetObject != null)
+        {
+            gameObject.transform.LookAt(_targetObject.position);
+            gameObject.transform.Translate(0f, 0f, _enemySpeed * Time.deltaTime);
+        }
+    }
+    public IEnumerator DelayStopEnemy()
+    {
+        yield return new WaitForSeconds(3f);
+        EnemyAnimationController.isWalking = true;
+        _enemySpeed = _initSpeed;
     }
 
 }

@@ -7,8 +7,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 {
     public PlayerData _playerData;
     public int firingRotation;
+    public GameObject _healthBar;
     [SerializeField] CinemachineExternalCamera _virtualCamera;
     private BulletManager _bulletManager;
+    private EnemyManager _enemyManager;
+    public static bool isDestroyed;
 
     public float _xValue;
     public float _zValue;
@@ -16,32 +19,59 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     // Start is called before the first frame update
     void Start()
     {
+        isDestroyed = false;
         firingRotation = 0;
         _jumpCount = 0;
-        _playerData.isFiring = false;
-        _playerData.isWalking = false;
-        _playerData.isClimbing = false;
-        _playerData.isBackWalking = false;
-        _playerData.isGround = true;
+        if (_playerData != null)
+        {
+            _playerData.isFiring = false;
+            _playerData.isWalking = false;
+            _playerData.isClimbing = false;
+            _playerData.isBackWalking = false;
+            _playerData.isGround = true;
+        }        
         _bulletManager = Object.FindObjectOfType<BulletManager>();
+        _enemyManager = Object.FindObjectOfType<EnemyManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Movement();
+        if (gameObject != null)
+        {
+            Movement();
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Bridge.ToString()))
+        if (gameObject != null && _healthBar != null)
         {
-            _playerData.isGround = true;
-            _jumpCount = 0;
-        }
-        else
-        {
-            _playerData.isGround = false;
-        }
+            if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Bridge.ToString()))
+            {
+                _playerData.isGround = true;
+                _jumpCount = 0;
+            }
+            else
+            {
+                _playerData.isGround = false;
+            }
+            if (collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
+            {
+                if (_healthBar.transform.localScale.x <= 0.0625f)
+                {
+                    isDestroyed = true;
+                    EnemyAnimationController.isWalking = false;
+                    _enemyManager._enemySpeed = 0;
+                    //StartCoroutine(_enemyManager.DelayStopEnemy());
+                    Destroy(_healthBar);
+                    Destroy(gameObject, 4f);
+                }
+                else
+                {
+                    _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+                }
+            }
+        }        
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -62,87 +92,90 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     void Movement()
     {
-        _xValue = Input.GetAxis("Horizontal") * Time.deltaTime * _playerData.playerSpeed / 2f;
-        _zValue = Input.GetAxis("Vertical") * Time.deltaTime * _playerData.playerSpeed;
+        if (_playerData != null)
+        {
+            _xValue = Input.GetAxis("Horizontal") * Time.deltaTime * _playerData.playerSpeed / 2f;
+            _zValue = Input.GetAxis("Vertical") * Time.deltaTime * _playerData.playerSpeed;
+            Walk();
 
-        Rotation();
+            Rotation();
 
-        if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround && _jumpCount <= 1)
-        {
-            Jump();
-            _jumpCount++;
+            if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround && _jumpCount <= 1)
+            {
+                Jump();
+                _jumpCount++;
+            }
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Fire();
+            }
+            else
+            {
+                _playerData.isFiring = false;
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        void Rotation()
         {
-            Fire();
-        }
-        else
-        {
-            _playerData.isFiring = false;
-        }
-        Walk();
-    }
-    void Rotation()
-    {
-        float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
-        float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
+            float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
+            float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
 
-        GetInstance.GetComponent<Transform>().Rotate(0f, _mousePosX, 0f);
+            GetInstance.GetComponent<Transform>().Rotate(0f, _mousePosX, 0f);
 
-        _virtualCamera.transform.Rotate(-_mousePosY * Time.timeScale, 0, 0);
-        if (_virtualCamera.transform.eulerAngles.x > 60 && _virtualCamera.transform.eulerAngles.x <= 65)
-        {
-            _virtualCamera.transform.eulerAngles = new Vector3(60f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+            _virtualCamera.transform.Rotate(-_mousePosY * Time.timeScale, 0, 0);
+            if (_virtualCamera.transform.eulerAngles.x > 70 && _virtualCamera.transform.eulerAngles.x <= 75)
+            {
+                _virtualCamera.transform.eulerAngles = new Vector3(70f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+            }
+            else if (_virtualCamera.transform.eulerAngles.x > 75)
+            {
+                _virtualCamera.transform.eulerAngles = new Vector3(0f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+            }
         }
-        else if(_virtualCamera.transform.eulerAngles.x > 65)
+        void Walk()
         {
-            _virtualCamera.transform.eulerAngles = new Vector3(0f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+            if (_zValue > 0 && !_playerData.isClimbing)
+            {
+                GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+                _playerData.isWalking = true;
+                _playerData.isBackWalking = false;
+            }
+            else if (_zValue < 0 && !_playerData.isClimbing)
+            {
+                GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+                _playerData.isBackWalking = true;
+                _playerData.isWalking = false;
+            }
+            else if (_zValue == 0)
+            {
+                //GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+                _playerData.isBackWalking = false;
+                _playerData.isWalking = false;
+            }
+            else if (_zValue > 0 && _playerData.isClimbing)
+            {
+                GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
+            }
+            else if (_zValue < 0 && _playerData.isClimbing)
+            {
+                GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
+            }
+            if (_xValue < 0)
+            {
+                GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
+            }
+            else if (_xValue > 0)
+            {
+                GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
+            }
         }
-    }
-    void Walk()
-    {
-        if (_zValue > 0 && !_playerData.isClimbing)
+        void Jump()
         {
-            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
-            _playerData.isWalking = true;
-            _playerData.isBackWalking = false;
+            GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
         }
-        else if (_zValue < 0 && !_playerData.isClimbing)
+        void Fire()
         {
-            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
-            _playerData.isBackWalking = true;
-            _playerData.isWalking = false;
+            _bulletManager.CreateBullet();
+            _playerData.isFiring = true;
         }
-        else if (_zValue == 0)
-        {
-            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
-            _playerData.isBackWalking = false;
-            _playerData.isWalking = false;
-        }
-        else if (_zValue > 0 && _playerData.isClimbing)
-        {
-            GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
-        }
-        else if (_zValue < 0 && _playerData.isClimbing)
-        {
-            GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
-        }
-        if (_xValue < 0)
-        {
-            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
-        }
-        else if (_xValue > 0)
-        {
-            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
-        }
-    }
-    void Jump()
-    {
-        GetInstance.GetComponent<Rigidbody>().AddForce(transform.up*_playerData.jumpForce, ForceMode.Impulse);
-    }
-    void Fire()
-    {
-        _bulletManager.CreateBullet();
-        _playerData.isFiring = true;
-    }
+    }        
 }

@@ -6,10 +6,13 @@ public class BulletController : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
+        if (gameObject != null)
         {
-            Destroy(gameObject);
-            //gameObject.SetActive(false);
-        }
+            if (other.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
+            {
+                Destroy(gameObject);
+                //gameObject.SetActive(false);
+            }
+        }        
     }
 }
