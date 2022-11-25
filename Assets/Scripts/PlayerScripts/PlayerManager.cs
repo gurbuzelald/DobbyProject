@@ -6,6 +6,7 @@ using Cinemachine;
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
     public PlayerData _playerData;
+    public int firingRotation;
     [SerializeField] CinemachineExternalCamera _virtualCamera;
     private BulletManager _bulletManager;
 
@@ -15,6 +16,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     // Start is called before the first frame update
     void Start()
     {
+        firingRotation = 0;
         _jumpCount = 0;
         _playerData.isFiring = false;
         _playerData.isWalking = false;
@@ -28,6 +30,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     void Update()
     {
         Movement();
+        Debug.Log(_virtualCamera.transform.eulerAngles.x);
+
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -84,9 +88,18 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
         float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
-        GetInstance.GetComponent<Transform>().Rotate(0f, _mousePosX, 0f);
-        _virtualCamera.transform.Rotate(-_mousePosY * Time.timeScale, 0, 0);
 
+        GetInstance.GetComponent<Transform>().Rotate(0f, _mousePosX, 0f);
+
+        _virtualCamera.transform.Rotate(-_mousePosY * Time.timeScale, 0, 0);
+        if (_virtualCamera.transform.eulerAngles.x > 60 && _virtualCamera.transform.eulerAngles.x <= 65)
+        {
+            _virtualCamera.transform.eulerAngles = new Vector3(60f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+        }
+        else if(_virtualCamera.transform.eulerAngles.x > 65)
+        {
+            _virtualCamera.transform.eulerAngles = new Vector3(0f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+        }
     }
     void Walk()
     {

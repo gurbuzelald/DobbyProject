@@ -7,7 +7,6 @@ public class CloneManager : MonoBehaviour
 {
     private NavMeshAgent _navmeshAgent;
     [SerializeField] Transform _targetObject;
-    [SerializeField] float _cloneSpeed = 0.1f;
     // Start is called before the first frame update
     void Start()
     {

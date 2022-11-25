@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4436469792309547339}
-  - component: {fileID: 4436469792309547336}
+  - component: {fileID: 7404004148850230144}
   m_Layer: 0
   m_Name: Navmesh
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4436469792309547336
+--- !u!114 &7404004148850230144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 1.6666666
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 681a17ed67e844c44a254146f63ba68e, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a5dfd4b7bae93ee4db0abafbb183848a, type: 2}
   m_BuildHeightMesh: 0
