@@ -12,6 +12,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private BulletManager _bulletManager;
     private EnemyManager _enemyManager;
     public static bool isDestroyed;
+    [SerializeField] CanvasGroup _crosshairImage;
 
     public float _xValue;
     public float _zValue;
@@ -180,7 +181,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             _bulletManager.CreateBullet();
             _playerData.isFiring = true;
+            _crosshairImage.alpha = 1;
+            StartCoroutine(Delay(2f));
         }         
+    }
+    IEnumerator Delay(float value)
+    {
+        yield return new WaitForSeconds(value);
+        _crosshairImage.alpha = 0;
     }
     IEnumerator DelayDestroy(float delayDying)
     {

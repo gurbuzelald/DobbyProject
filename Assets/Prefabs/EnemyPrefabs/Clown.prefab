@@ -160,10 +160,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.4118723
-  m_Height: 2.2831118
+  m_Radius: 0.48241526
+  m_Height: 2.6753519
   m_Direction: 1
-  m_Center: {x: -8.935711e-16, y: 0.6415558, z: -0.08812777}
+  m_Center: {x: -0.09414706, y: 1.7892646, z: 0.011416151}
 --- !u!1001 &714285645999380968
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,6 +214,30 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 05682cd867ef28245829d773ad5b75cc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4277760611513043768, guid: 05682cd867ef28245829d773ad5b75cc, type: 3}
+      propertyPath: m_AABB.m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4277760611513043768, guid: 05682cd867ef28245829d773ad5b75cc, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4277760611513043768, guid: 05682cd867ef28245829d773ad5b75cc, type: 3}
+      propertyPath: m_AABB.m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4277760611513043768, guid: 05682cd867ef28245829d773ad5b75cc, type: 3}
+      propertyPath: m_AABB.m_Extent.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4277760611513043768, guid: 05682cd867ef28245829d773ad5b75cc, type: 3}
+      propertyPath: m_AABB.m_Extent.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4277760611513043768, guid: 05682cd867ef28245829d773ad5b75cc, type: 3}
+      propertyPath: m_AABB.m_Extent.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 05682cd867ef28245829d773ad5b75cc, type: 3}
       propertyPath: m_Name
