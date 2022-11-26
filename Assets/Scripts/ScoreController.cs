@@ -12,8 +12,9 @@ public class ScoreController : AbstractSingleton<ScoreController>
     // Start is called before the first frame update
     void Start()
     {
-        _scored = false;
-        _scoreText.text = "";
+        _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
+        //_scored = false;
+        //_scoreText.text = "";
     }
 
     // Update is called once per frame

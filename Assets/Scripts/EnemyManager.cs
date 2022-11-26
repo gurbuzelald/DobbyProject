@@ -31,11 +31,8 @@ public class EnemyManager : MonoBehaviour
                 _enemySpeed = 0;
                 StartCoroutine(DelayStopEnemy());
             }
-        }        
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag(SceneLoadController.Tags.Bullet.ToString()))
+        }
+        if (collision.collider.CompareTag(SceneLoadController.Tags.Bullet.ToString()))
         {
             if (_healthBar.transform.localScale.x <= 0.0625f)
             {
@@ -52,6 +49,11 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
+    
     private void Movement()
     {
         if (_targetObject != null)

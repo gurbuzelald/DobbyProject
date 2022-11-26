@@ -19,6 +19,11 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     {
         SceneManager.LoadScene("Menu");
     }
+    public void LoadEndScene()
+    {
+        Destroy(PlayerManager.GetInstance.gameObject);
+        SceneManager.LoadScene("End");
+    }
     public void QuitGame()
     {
         Application.Quit();

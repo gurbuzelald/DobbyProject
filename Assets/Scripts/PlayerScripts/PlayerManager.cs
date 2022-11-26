@@ -182,6 +182,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);
-        SceneLoadController.GetInstance.LoadMenuScene();
+        SceneLoadController.GetInstance.LoadEndScene();
     }
 }

@@ -30,10 +30,10 @@ public class BulletManager : MonoBehaviour
 
         //StartCoroutine(DelaySpawn());
     }
-    public IEnumerator DelayDestroy(GameObject value)
+    public IEnumerator DelayDestroy(GameObject gameobject)
     {
-        yield return new WaitForSeconds(2f);
-        Destroy(value);
+        yield return new WaitForSeconds(1f);
+        Destroy(gameobject);
     }
     public IEnumerator DelaySpawn()
     {
@@ -43,7 +43,7 @@ public class BulletManager : MonoBehaviour
 
         bulletObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.TransformDirection(Vector3.up * _bulletSpeed), ForceMode.Force);
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         bulletObject.transform.position = gameObject.transform.position;
         bulletObject.transform.rotation = gameObject.transform.rotation;
 
