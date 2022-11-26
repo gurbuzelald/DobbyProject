@@ -16,14 +16,14 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        GetTime(9);
+        GetTime(50);
     }
     private void GetTime(int timeValue)
     {
         _time += Time.deltaTime;
         //Debug.Log(_time);
         _timeText.text = ((int)_time).ToString();
-        if ((int)_time > timeValue)
+        if ((int)_time > timeValue - 1)
         {
             SceneLoadController.GetInstance.LoadEndScene();
         }

@@ -23,12 +23,12 @@ public class BulletManager : MonoBehaviour
     }
     public void CreateBullet()
     {
-        GameObject bulletObject = Instantiate(_bulletObject, gameObject.transform);
-        bulletObject.GetComponent<Rigidbody>().AddForce(_bulletTransform.transform.TransformDirection(Vector3.forward * _bulletSpeed), ForceMode.Force);
+        //GameObject bulletObject = Instantiate(_bulletObject, _bulletTransform.transform.position, _bulletTransform.transform.rotation);
+        //bulletObject.GetComponent<Rigidbody>().velocity = (_bulletTransform.transform.TransformDirection(Vector3.forward * _bulletSpeed));
 
-        StartCoroutine(DelayDestroy(bulletObject));
+        //StartCoroutine(DelayDestroy(bulletObject));
 
-        //StartCoroutine(DelaySpawn());
+        StartCoroutine(DelaySpawn());
     }
     public IEnumerator DelayDestroy(GameObject gameobject)
     {
@@ -39,13 +39,12 @@ public class BulletManager : MonoBehaviour
     {
         GameObject bulletObject = _objectPool.GetPooledObject(0);
         bulletObject.transform.position = gameObject.transform.position;
-        bulletObject.transform.rotation = gameObject.transform.rotation;
+        bulletObject.transform.rotation = _bulletTransform.transform.rotation;
 
-        bulletObject.GetComponent<Rigidbody>().AddForce(this.gameObject.transform.TransformDirection(Vector3.up * _bulletSpeed), ForceMode.Force);
+        bulletObject.GetComponent<Rigidbody>().velocity = (_bulletTransform.transform.TransformDirection(Vector3.forward * _bulletSpeed));
 
         yield return new WaitForSeconds(2f);
-        bulletObject.transform.position = gameObject.transform.position;
-        bulletObject.transform.rotation = gameObject.transform.rotation;
+        bulletObject.transform.rotation = _bulletTransform.transform.rotation;
 
         bulletObject.SetActive(false);
     }

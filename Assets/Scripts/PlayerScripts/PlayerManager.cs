@@ -64,7 +64,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                     _enemyManager._enemySpeed = 0;
                     //StartCoroutine(_enemyManager.DelayStopEnemy());
                     Destroy(_healthBar);
-                    StartCoroutine(DelayDestroy());
+                    StartCoroutine(DelayDestroy(3f));
                 }
                 else
                 {
@@ -79,6 +79,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             GetInstance.GetComponent<Rigidbody>().isKinematic = true;
             _playerData.isClimbing = true;
+        }
+        if (other.CompareTag(SceneLoadController.Tags.Water.ToString()))
+        {
+            StartCoroutine(DelayDestroy(5f));
         }
     }
     private void OnTriggerExit(Collider other)
@@ -178,9 +182,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isFiring = true;
         }         
     }
-    IEnumerator DelayDestroy()
+    IEnumerator DelayDestroy(float delayDying)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(delayDying);
         Destroy(gameObject);
         SceneLoadController.GetInstance.LoadEndScene();
     }
