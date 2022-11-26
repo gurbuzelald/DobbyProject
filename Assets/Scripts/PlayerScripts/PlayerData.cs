@@ -11,4 +11,6 @@ public class PlayerData : ScriptableObject
     public bool isBackWalking;
     public bool isClimbing;
     public bool isFiring;
+    public bool isJumping;
+    public bool isIdling;
 }

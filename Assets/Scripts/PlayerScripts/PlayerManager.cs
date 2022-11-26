@@ -74,6 +74,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
         }        
     }
+    //private void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Bridge.ToString()))
+    //    {
+    //        //_playerData.isGround = false;
+    //    }
+    //}
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
@@ -107,8 +114,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround && _jumpCount <= 1)
             {
+                _playerData.isJumping = true;
                 Jump();
                 _jumpCount++;
+            }
+            else
+            {
+                _playerData.isJumping = false;
             }
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
