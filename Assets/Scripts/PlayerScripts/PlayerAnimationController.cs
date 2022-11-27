@@ -10,6 +10,10 @@ public class PlayerAnimationController : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        if (_animator != null)
+        {
+            _animator.SetLayerWeight(8, 0);
+        }
     }
     void Update()
     {
@@ -256,6 +260,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetBool("isWinning", true);
             _animator.SetLayerWeight(8, 1);
             _animator.SetLayerWeight(0, 0);
+            //StartCoroutine(DelayAnimation(5f, 8, 0));
         }
     }
     IEnumerator DelayAnimation(float delayValue, int layerOrder, float weightAmount)

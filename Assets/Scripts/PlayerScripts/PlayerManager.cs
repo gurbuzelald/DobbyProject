@@ -90,9 +90,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (other.CompareTag(SceneLoadController.Tags.FinishArea.ToString()))
         {
-            _playerData.isPlayable = false;
-            _playerData.isWinning = true;
-            StartCoroutine(DelayLevelUp(2f));
+            
+            StartCoroutine(DelayLevelUp(2f, 5f));
         }
     }
     
@@ -133,36 +132,38 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     void Movement()
     {
-        if (_playerData != null && _playerData.isPlayable && !_playerData.isWinning)
+        if (_playerData != null)
         {
-            _xValue = Input.GetAxis("Horizontal") * Time.deltaTime * _playerData.playerSpeed / 2f;
-            _zValue = Input.GetAxis("Vertical") * Time.deltaTime * _playerData.playerSpeed;
-            Walk();
-
             Rotation();
+            if (_playerData.isPlayable && !_playerData.isWinning)
+            {
+                _xValue = Input.GetAxis("Horizontal") * Time.deltaTime * _playerData.playerSpeed / 2f;
+                _zValue = Input.GetAxis("Vertical") * Time.deltaTime * _playerData.playerSpeed;
+                Walk();
 
-            if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround && _jumpCount <= 1)
-            {
-                Jump();
+                if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround && _jumpCount <= 1)
+                {
+                    Jump();
+                }
+                else
+                {
+                    _playerData.isJumping = false;
+                }
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    Fire();
+                }
+                else
+                {
+                    _playerData.isFiring = false;
+                }
             }
-            else
+            else if (_playerData.isWinning)
             {
-                _playerData.isJumping = false;
+                //VirtualCameraEulerAngle
+                _virtualCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
             }
-            if (Input.GetKeyDown(KeyCode.Mouse0))
-            {
-                Fire();
-            }
-            else
-            {
-                _playerData.isFiring = false;
-            }
-        }
-        else if (_playerData.isWinning)
-        {
-            //VirtualCameraEulerAngle
-            _virtualCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
-        }
+        }        
     }
     void Jump()
     {
@@ -261,9 +262,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         yield return new WaitForSeconds(value);
         _crosshairImage.alpha = 0;
     }
-    IEnumerator DelayLevelUp(float delayValue)
+    IEnumerator DelayLevelUp(float delayWait, float delayDestroy)
     {
-        yield return new WaitForSeconds(delayValue);
+        yield return new WaitForSeconds(delayWait);
+        _playerData.isPlayable = false;
+        _playerData.isWinning = true;
+        yield return new WaitForSeconds(delayDestroy);
         Destroy(gameObject);
         SceneLoadController.GetInstance.LevelUp();
     }
