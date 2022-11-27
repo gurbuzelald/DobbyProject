@@ -19,6 +19,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private int _jumpCount;
     private float _initJumpForce;
     private float _initPlayerSpeed;
+
+    [SerializeField] GameObject _jolleenObject;
+    [SerializeField] Transform _jolleenTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -267,7 +270,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         yield return new WaitForSeconds(delayWait);
         _playerData.isPlayable = false;
         _playerData.isWinning = true;
+
+        //JolleenAnimation
+        GameObject jolleenObject = Instantiate(_jolleenObject, _jolleenTransform.transform);
+        jolleenObject.transform.position = _jolleenTransform.transform.position;
+
         yield return new WaitForSeconds(delayDestroy);
+        Destroy(jolleenObject);
         Destroy(gameObject);
         SceneLoadController.GetInstance.LevelUp();
     }
