@@ -53,7 +53,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(2, 0);
             _animator.SetLayerWeight(3, 0);
         }
-        else if (_playerData.isBackWalking && !_playerData.isWalking && !_playerData.isJumping)
+        else if (_playerData.isBackWalking && !_playerData.isWalking && !_playerData.isJumping && !_playerData.isBackClimbing)
         {
             _animator.SetBool("isBackWalking", true);
 
@@ -63,6 +63,7 @@ public class PlayerAnimationController : MonoBehaviour
 
             _animator.SetLayerWeight(2, 1);
             _animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(4, 0);
         }
         else if (!_playerData.isBackWalking && !_playerData.isWalking && !_playerData.isClimbing && !_playerData.isJumping)
         {
@@ -75,7 +76,6 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(1, 0);
             _animator.SetLayerWeight(2, 0);
         }
-        
         RightWalkAnimation();
         LeftWalkAnimation();
     }
@@ -124,7 +124,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     void ClimbAnimation()
     {
-        if (_playerData.isClimbing && PlayerManager.GetInstance._zValue > 0)
+        if (_playerData.isClimbing && !_playerData.isBackClimbing && PlayerManager.GetInstance._zValue > 0)
         {
             _animator.SetBool("isIdling", false);
 
@@ -136,7 +136,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(2, 0);
             _animator.SetLayerWeight(3, 1);
         }
-        if (_playerData.isClimbing && PlayerManager.GetInstance._zValue < 0)
+        if (!_playerData.isClimbing && _playerData.isBackClimbing && PlayerManager.GetInstance._zValue < 0)
         {
             _animator.SetBool("isIdling", false);
 
@@ -248,9 +248,9 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(0, 0);
         }
     }
-    IEnumerator DelayAnimation(float value)
+    IEnumerator DelayAnimation(float delayValue, int layerOrder, float weightAmount)
     {
-        yield return new WaitForSeconds(value);
-        _animator.SetLayerWeight(7, 0);
+        yield return new WaitForSeconds(delayValue);
+        _animator.SetLayerWeight(layerOrder, weightAmount);
     }
 }

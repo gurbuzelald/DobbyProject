@@ -61,21 +61,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
             if (collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
             {
-                if (_healthBar.transform.localScale.x <= 0.0625f)
-                {
-                    isDestroyed = true;
-                    EnemyAnimationController.isWalking = false;
-                    _playerData.isDying = true;
-                    _playerData.isIdling = false;
-                    _enemyManager._enemySpeed = 0;
-                    //StartCoroutine(_enemyManager.DelayStopEnemy());
-                    Destroy(_healthBar);
-                    StartCoroutine(DelayDestroy(3f));
-                }
-                else
-                {
-                    _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
-                }
+                TouchEnemy();                
             }
         }        
     }
@@ -90,20 +76,46 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (other.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
         {
-            GetInstance.GetComponent<Rigidbody>().isKinematic = true;
-            _playerData.isClimbing = true;
+            TriggerLadder(true, false);
         }
         if (other.CompareTag(SceneLoadController.Tags.Water.ToString()))
         {
             StartCoroutine(DelayDestroy(5f));
         }
     }
+    
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
         {
-            GetInstance.GetComponent<Rigidbody>().isKinematic = false;
-            _playerData.isClimbing = false;
+            TriggerLadder(false, true);
+        }
+    }
+    void TriggerLadder(bool isTouch, bool isTouchExit)
+    {
+        GetInstance.GetComponent<Rigidbody>().isKinematic = isTouch;
+        if (PlayerManager.GetInstance._zValue > 0 && !isTouchExit)
+        {
+            _playerData.isClimbing = isTouch;
+            _playerData.isBackClimbing = !isTouch;
+        }
+        else if (PlayerManager.GetInstance._zValue < 0 && !isTouchExit)
+        {
+            _playerData.isBackClimbing = isTouch;
+            _playerData.isClimbing = !isTouch;
+        }
+        else if (isTouchExit && PlayerManager.GetInstance._zValue != 0)
+        {
+            _playerData.isBackClimbing = isTouch;
+            _playerData.isClimbing = isTouch;
+            if (PlayerManager.GetInstance._zValue < 0)
+            {
+                _playerData.isBackWalking = !isTouch;
+            }
+            else if (PlayerManager.GetInstance._zValue > 0)
+            {
+                _playerData.isWalking = !isTouch;
+            }
         }
     }
 
@@ -119,20 +131,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround && _jumpCount <= 1)
             {
-                if (_jumpCount == 0)
-                {
-                    _playerData.jumpForce = initJumpForce;
-                    _playerData.isJumping = true;
-                    Jump();
-                }
-                else
-                {
-                    _playerData.jumpForce = initJumpForce / 1.5f;
-                    _playerData.isJumping = true;
-                    Jump();
-                }
-                _playerData.jumpForce = initJumpForce;
-                _jumpCount++;
+                Jump();
             }
             else
             {
@@ -146,6 +145,23 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             {
                 _playerData.isFiring = false;
             }
+        }
+        void Jump()
+        {
+            if (_jumpCount == 0)
+            {
+                _playerData.jumpForce = initJumpForce;
+                _playerData.isJumping = true;
+                GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
+            }
+            else
+            {
+                _playerData.jumpForce = initJumpForce / 1.5f;
+                _playerData.isJumping = true;
+                GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
+            }
+            _playerData.jumpForce = initJumpForce;
+            _jumpCount++;
         }
         void Rotation()
         {
@@ -170,13 +186,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         void Walk()
         {
-            if (_zValue > 0 && !_playerData.isClimbing)
+            if (_zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
             {
                 GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
                 _playerData.isWalking = true;
                 _playerData.isBackWalking = false;
             }
-            else if (_zValue < 0 && !_playerData.isClimbing)
+            else if (_zValue < 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
             {
                 GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
                 _playerData.isBackWalking = true;
@@ -188,11 +204,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 _playerData.isBackWalking = false;
                 _playerData.isWalking = false;
             }
-            else if (_zValue > 0 && _playerData.isClimbing)
+            else if (_zValue > 0 && _playerData.isClimbing && !_playerData.isBackClimbing)
             {
                 GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
             }
-            else if (_zValue < 0 && _playerData.isClimbing)
+            else if (_zValue < 0 && !_playerData.isClimbing && _playerData.isBackClimbing)
             {
                 GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
             }
@@ -205,10 +221,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
             }
         }
-        void Jump()
-        {
-            GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
-        }
+        
         void Fire()
         {
             _bulletManager.CreateBullet();
@@ -227,5 +240,24 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         yield return new WaitForSeconds(delayDying);
         Destroy(gameObject);
         SceneLoadController.GetInstance.LoadEndScene();
+    }
+    
+    void TouchEnemy()
+    {
+        if (_healthBar.transform.localScale.x <= 0.0625f)
+        {
+            isDestroyed = true;
+            EnemyAnimationController.isWalking = false;
+            _playerData.isDying = true;
+            _playerData.isIdling = false;
+            _enemyManager._enemySpeed = 0;
+            //StartCoroutine(_enemyManager.DelayStopEnemy());
+            Destroy(_healthBar);
+            StartCoroutine(DelayDestroy(3f));
+        }
+        else
+        {
+            _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+        }
     }
 }
