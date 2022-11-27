@@ -22,10 +22,11 @@ public class PlayerAnimationController : MonoBehaviour
         WalkAnimation();
         ClimbAnimation();
         FireAnimation();
+        DeathAnimation();
     }
     void IdleAnimation()
     {
-        if (_playerData.isIdling && PlayerManager.GetInstance._xValue == 0 && PlayerManager.GetInstance._zValue == 0 && !_playerData.isJumping)
+        if (_playerData.isIdling && PlayerManager.GetInstance._xValue == 0 && PlayerManager.GetInstance._zValue == 0 && !_playerData.isJumping && !_playerData.isDying)
         {
             _animator.SetBool("isIdling", true);
 
@@ -156,11 +157,13 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetBool("isBackWalking", false);
             _animator.SetBool("isWalking", false);
             _animator.SetBool("isClimbing", false);
+            _animator.SetBool("isBackClimbing", false);
 
             _animator.SetLayerWeight(0, 1);
             _animator.SetLayerWeight(1, 0);
             _animator.SetLayerWeight(2, 0);
             _animator.SetLayerWeight(3, 0);
+            _animator.SetLayerWeight(4, 0);
         }
     }
     void FireAnimation()
@@ -234,6 +237,15 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetBool("isWalking", false);
 
             _animator.SetLayerWeight(1, 0);
+        }
+    }
+    void DeathAnimation()
+    {
+        if (_playerData.isDying)
+        {
+            _animator.SetBool("isDying", true);
+            _animator.SetLayerWeight(7, 1);
+            _animator.SetLayerWeight(0, 0);
         }
     }
     IEnumerator DelayAnimation(float value)

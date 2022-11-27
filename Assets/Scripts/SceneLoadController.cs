@@ -36,7 +36,8 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
         Enemy,
         Bullet,
         Player,
-        Water
+        Water,
+        FanceWooden
     }
     public enum Scenes
     {

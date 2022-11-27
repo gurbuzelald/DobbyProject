@@ -13,4 +13,5 @@ public class PlayerData : ScriptableObject
     public bool isFiring;
     public bool isJumping;
     public bool isIdling;
+    public bool isDying;
 }
