@@ -147,6 +147,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             {
                 _virtualCamera.transform.eulerAngles = new Vector3(0f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
             }
+            else if (_virtualCamera.transform.eulerAngles.x < 0)
+            {
+                _virtualCamera.transform.eulerAngles = new Vector3(0f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+            }
         }
         void Walk()
         {
