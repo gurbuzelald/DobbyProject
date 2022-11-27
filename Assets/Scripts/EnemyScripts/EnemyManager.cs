@@ -25,7 +25,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (PlayerManager.GetInstance._healthBar != null)
         {
-            if (collision.collider.CompareTag(SceneLoadController.Tags.Player.ToString()) && PlayerManager.GetInstance._healthBar.transform.localScale.x <= 0.0625f)
+            if ((collision.collider.CompareTag(SceneLoadController.Tags.Player.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Bullet.ToString())) && PlayerManager.GetInstance._healthBar.transform.localScale.x <= 0.0625f)
             {
                 EnemyAnimationController.isWalking = false;
                 _enemySpeed = 0;

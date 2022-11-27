@@ -23,6 +23,7 @@ public class PlayerAnimationController : MonoBehaviour
         ClimbAnimation();
         FireAnimation();
         DeathAnimation();
+        VictoryAnimation();
     }
     void IdleAnimation()
     {
@@ -245,6 +246,15 @@ public class PlayerAnimationController : MonoBehaviour
         {
             _animator.SetBool("isDying", true);
             _animator.SetLayerWeight(7, 1);
+            _animator.SetLayerWeight(0, 0);
+        }
+    }
+    void VictoryAnimation()
+    {
+        if (_playerData.isWinning)
+        {
+            _animator.SetBool("isWinning", true);
+            _animator.SetLayerWeight(8, 1);
             _animator.SetLayerWeight(0, 0);
         }
     }

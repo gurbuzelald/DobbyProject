@@ -17,16 +17,22 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public float _xValue;
     public float _zValue;
     private int _jumpCount;
-    private float initJumpForce;
+    private float _initJumpForce;
+    private float _initPlayerSpeed;
     // Start is called before the first frame update
     void Start()
     {
-        initJumpForce = _playerData.jumpForce;
+        _virtualCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
         isDestroyed = false;
         firingRotation = 0;
         _jumpCount = 0;
         if (_playerData != null)
         {
+            _playerData.isWinning = false;
+            _playerData.isPlayable = true;
+            _playerData.playerSpeed = 2f;
+            _initPlayerSpeed = _playerData.playerSpeed;
+            _initJumpForce = _playerData.jumpForce;
             _playerData.isDying = false;
             _playerData.isFiring = false;
             _playerData.isWalking = false;
@@ -82,6 +88,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             StartCoroutine(DelayDestroy(5f));
         }
+        if (other.CompareTag(SceneLoadController.Tags.FinishArea.ToString()))
+        {
+            _playerData.isPlayable = false;
+            _playerData.isWinning = true;
+            StartCoroutine(DelayLevelUp(2f));
+        }
     }
     
     private void OnTriggerExit(Collider other)
@@ -121,7 +133,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     void Movement()
     {
-        if (_playerData != null)
+        if (_playerData != null && _playerData.isPlayable && !_playerData.isWinning)
         {
             _xValue = Input.GetAxis("Horizontal") * Time.deltaTime * _playerData.playerSpeed / 2f;
             _zValue = Input.GetAxis("Vertical") * Time.deltaTime * _playerData.playerSpeed;
@@ -146,94 +158,114 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 _playerData.isFiring = false;
             }
         }
-        void Jump()
+        else if (_playerData.isWinning)
         {
-            if (_jumpCount == 0)
-            {
-                _playerData.jumpForce = initJumpForce;
-                _playerData.isJumping = true;
-                GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
-            }
-            else
-            {
-                _playerData.jumpForce = initJumpForce / 1.5f;
-                _playerData.isJumping = true;
-                GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
-            }
-            _playerData.jumpForce = initJumpForce;
-            _jumpCount++;
+            //VirtualCameraEulerAngle
+            _virtualCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
         }
-        void Rotation()
-        {
-            float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
-            float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
-
-            GetInstance.GetComponent<Transform>().Rotate(0f, _mousePosX, 0f);
-
-            _virtualCamera.transform.Rotate(-_mousePosY * Time.timeScale, 0, 0);
-            if (_virtualCamera.transform.eulerAngles.x > 70 && _virtualCamera.transform.eulerAngles.x <= 75)
-            {
-                _virtualCamera.transform.eulerAngles = new Vector3(70f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
-            }
-            else if (_virtualCamera.transform.eulerAngles.x > 75)
-            {
-                _virtualCamera.transform.eulerAngles = new Vector3(0f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
-            }
-            else if (_virtualCamera.transform.eulerAngles.x < 0)
-            {
-                _virtualCamera.transform.eulerAngles = new Vector3(0f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
-            }
-        }
-        void Walk()
-        {
-            if (_zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
-            {
-                GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
-                _playerData.isWalking = true;
-                _playerData.isBackWalking = false;
-            }
-            else if (_zValue < 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
-            {
-                GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
-                _playerData.isBackWalking = true;
-                _playerData.isWalking = false;
-            }
-            else if (_zValue == 0)
-            {
-                //GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
-                _playerData.isBackWalking = false;
-                _playerData.isWalking = false;
-            }
-            else if (_zValue > 0 && _playerData.isClimbing && !_playerData.isBackClimbing)
-            {
-                GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
-            }
-            else if (_zValue < 0 && !_playerData.isClimbing && _playerData.isBackClimbing)
-            {
-                GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
-            }
-            if (_xValue < 0)
-            {
-                GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
-            }
-            else if (_xValue > 0)
-            {
-                GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
-            }
-        }
-        
-        void Fire()
-        {
-            _bulletManager.CreateBullet();
-            _playerData.isFiring = true;
-            _crosshairImage.alpha = 1;
-            StartCoroutine(Delay(2f));
-        }         
     }
+    void Jump()
+    {
+        if (_jumpCount == 0)
+        {
+            _playerData.jumpForce = _initJumpForce;
+            _playerData.isJumping = true;
+            GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
+        }
+        else
+        {
+            _playerData.jumpForce = _initJumpForce / 1.5f;
+            _playerData.isJumping = true;
+            GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
+        }
+        _playerData.jumpForce = _initJumpForce;
+        _jumpCount++;
+    }
+    void Rotation()
+    {
+        float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
+        float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
+
+        GetInstance.GetComponent<Transform>().Rotate(0f, _mousePosX, 0f);
+
+        _virtualCamera.transform.Rotate(-_mousePosY * Time.timeScale, 0, 0);
+        if (_virtualCamera.transform.eulerAngles.x > 70 && _virtualCamera.transform.eulerAngles.x <= 75)
+        {
+            _virtualCamera.transform.eulerAngles = new Vector3(70f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+        }
+        else if (_virtualCamera.transform.eulerAngles.x > 75)
+        {
+            _virtualCamera.transform.eulerAngles = new Vector3(0f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+        }
+        else if (_virtualCamera.transform.eulerAngles.x < 0)
+        {
+            _virtualCamera.transform.eulerAngles = new Vector3(0f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+        }
+    }
+    void Walk()
+    {
+        if (_zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
+        {
+            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+            _playerData.isWalking = true;
+            _playerData.isBackWalking = false;
+        }
+        else if (_zValue < 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
+        {
+            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+            _playerData.isBackWalking = true;
+            _playerData.isWalking = false;
+        }
+        else if (_zValue == 0)
+        {
+            //GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+            _playerData.isBackWalking = false;
+            _playerData.isWalking = false;
+        }
+        else if (_zValue > 0 && _playerData.isClimbing && !_playerData.isBackClimbing)
+        {
+            GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
+        }
+        else if (_zValue < 0 && !_playerData.isClimbing && _playerData.isBackClimbing)
+        {
+            GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
+        }
+        if (_xValue < 0)
+        {
+            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
+        }
+        else if (_xValue > 0)
+        {
+            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
+        }
+        if ((_xValue > 0 && _zValue > 0) || (_xValue < 0 && _zValue > 0) || (_xValue < 0 && _zValue < 0) || (_xValue > 0 && _zValue < 0) || _zValue < 0)
+        {
+            _playerData.playerSpeed = _initPlayerSpeed / 1.75f;
+        }
+        else
+        {
+            _playerData.playerSpeed = _initPlayerSpeed;
+        }
+    }
+
+    void Fire()
+    {
+        _bulletManager.CreateBullet();
+        _playerData.isFiring = true;
+        _crosshairImage.alpha = 1;
+        StartCoroutine(Delay(2f));
+    }
+
     IEnumerator Delay(float value)
     {
         yield return new WaitForSeconds(value);
         _crosshairImage.alpha = 0;
+    }
+    IEnumerator DelayLevelUp(float delayValue)
+    {
+        yield return new WaitForSeconds(delayValue);
+        Destroy(gameObject);
+        SceneLoadController.GetInstance.LevelUp();
     }
     IEnumerator DelayDestroy(float delayDying)
     {
@@ -246,12 +278,17 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (_healthBar.transform.localScale.x <= 0.0625f)
         {
-            isDestroyed = true;
+            isDestroyed = true;           
+
+            //EnemyAnimation
             EnemyAnimationController.isWalking = false;
+            _enemyManager._enemySpeed = 0;
+
+            //PlayerData
             _playerData.isDying = true;
             _playerData.isIdling = false;
-            _enemyManager._enemySpeed = 0;
-            //StartCoroutine(_enemyManager.DelayStopEnemy());
+            _playerData.isPlayable = false;
+
             Destroy(_healthBar);
             StartCoroutine(DelayDestroy(3f));
         }

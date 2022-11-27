@@ -24,6 +24,10 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
         Destroy(PlayerManager.GetInstance.gameObject);
         SceneManager.LoadScene("End");
     }
+    public void LevelUp()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
     public void QuitGame()
     {
         Application.Quit();
@@ -37,7 +41,8 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
         Bullet,
         Player,
         Water,
-        FanceWooden
+        FanceWooden,
+        FinishArea
     }
     public enum Scenes
     {
