@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
-    public Transform _finishArea;
+    [Header("Bools")]
     public float playerSpeed;
     public float rotateSpeed;
     public float jumpForce;
@@ -18,4 +18,14 @@ public class PlayerData : ScriptableObject
     public bool isDying;
     public bool isPlayable;
     public bool isWinning;
+
+    [Header("Sounds")]
+    public AudioClip shootClip;
+    public AudioClip getHitClip;
+    public AudioClip jumpingClip;
+    public AudioClip dyingClip;
+    public AudioClip pickupCoinClip;
+    public AudioClip trapClip;
+    public AudioClip levelUpClip;
+    public AudioClip jumpingSeaClip;
 }

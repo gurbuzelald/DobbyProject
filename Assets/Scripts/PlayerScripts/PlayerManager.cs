@@ -5,6 +5,9 @@ using Cinemachine;
 
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
+    [Header("Sound")]
+    private AudioSource _audioSource;
+
     public PlayerData _playerData;
     public int firingRotation;
     public GameObject _healthBar;
@@ -25,6 +28,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     // Start is called before the first frame update
     void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         _virtualCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
         isDestroyed = false;
         firingRotation = 0;
@@ -70,6 +74,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
             if (collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
             {
+                PlaySoundEffect(SoundEffectTypes.GetHit);
                 TouchEnemy();                
             }
         }        
@@ -89,15 +94,17 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (other.CompareTag(SceneLoadController.Tags.Water.ToString()))
         {
+            PlaySoundEffect(SoundEffectTypes.JumpToSea);
             StartCoroutine(DelayDestroy(5f));
         }
         if (other.CompareTag(SceneLoadController.Tags.FinishArea.ToString()))
         {
-            
+            PlaySoundEffect(SoundEffectTypes.LevelUp);
             StartCoroutine(DelayLevelUp(2f, 5f));
         }
         if (other.CompareTag(SceneLoadController.Tags.Coin.ToString()))
         {
+            PlaySoundEffect(SoundEffectTypes.PickUpCoin);
             other.gameObject.SetActive(false);
             ScoreController.GetInstance.SetScore(35);
         }
@@ -177,12 +184,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (_jumpCount == 0)
         {
+            PlaySoundEffect(SoundEffectTypes.Jump);
             _playerData.jumpForce = _initJumpForce;
             _playerData.isJumping = true;
             GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
         }
         else
         {
+            PlaySoundEffect(SoundEffectTypes.Jump);
             _playerData.jumpForce = _initJumpForce / 1.5f;
             _playerData.isJumping = true;
             GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
@@ -259,6 +268,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     void Fire()
     {
+        PlaySoundEffect(SoundEffectTypes.Shoot);
         _bulletManager.CreateBullet();
         _playerData.isFiring = true;
         _crosshairImage.alpha = 1;
@@ -314,5 +324,55 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
         }
+    }
+    public void PlaySoundEffect(SoundEffectTypes soundEffect)
+    {
+        if (soundEffect == SoundEffectTypes.Shoot)
+        {
+            _audioSource.PlayOneShot(_playerData.shootClip);
+        }
+        else if (soundEffect == SoundEffectTypes.GetHit)
+        {
+            _audioSource.PlayOneShot(_playerData.getHitClip);
+        }
+        else if (soundEffect == SoundEffectTypes.Jump)
+        {
+            _audioSource.PlayOneShot(_playerData.jumpingClip);
+        }
+        else if (soundEffect == SoundEffectTypes.Death)
+        {
+            _audioSource.PlayOneShot(_playerData.dyingClip);
+        }
+        else if (soundEffect == SoundEffectTypes.GetHit)
+        {
+            _audioSource.PlayOneShot(_playerData.getHitClip);
+        }
+        else if (soundEffect == SoundEffectTypes.PickUpCoin)
+        {
+            _audioSource.PlayOneShot(_playerData.pickupCoinClip);
+        }
+        else if (soundEffect == SoundEffectTypes.Trap)
+        {
+            _audioSource.PlayOneShot(_playerData.trapClip);
+        }
+        else if (soundEffect == SoundEffectTypes.LevelUp)
+        {
+            _audioSource.PlayOneShot(_playerData.levelUpClip);
+        }
+        else if (soundEffect == SoundEffectTypes.Jump)
+        {
+            _audioSource.PlayOneShot(_playerData.jumpingSeaClip);
+        }
+    }
+    public enum SoundEffectTypes
+    {
+        Shoot,
+        GetHit,
+        Jump,
+        JumpToSea,
+        Death,
+        PickUpCoin,
+        Trap,
+        LevelUp
     }
 }

@@ -614,7 +614,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &609939138
 GameObject:
@@ -708,7 +708,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &641566805
 GameObject:
@@ -917,7 +917,7 @@ RectTransform:
   m_Children:
   - {fileID: 1473388345}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1197,13 +1197,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2892904039195626456, guid: 7dcb5e5ed1a0fd14bb46815467972338, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 4956723174994459053}
     - target: {fileID: 2892904039195626457, guid: 7dcb5e5ed1a0fd14bb46815467972338, type: 3}
       propertyPath: m_Name
       value: SceneLoad
       objectReference: {fileID: 0}
     - target: {fileID: 2892904039195626459, guid: 7dcb5e5ed1a0fd14bb46815467972338, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2892904039195626459, guid: 7dcb5e5ed1a0fd14bb46815467972338, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2802,3 +2806,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e8b40f17a98cbd48ab45940e504be06, type: 3}
+--- !u!82 &4956723174994459053 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4956723174663386583, guid: 9e8b40f17a98cbd48ab45940e504be06, type: 3}
+  m_PrefabInstance: {fileID: 4956723174994459052}
+  m_PrefabAsset: {fileID: 0}

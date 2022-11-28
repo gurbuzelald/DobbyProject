@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadController : AbstractSingleton<SceneLoadController>
 {
+    [SerializeField] AudioSource _audioSource;
     public void PlayAgain()
     {
         Destroy(PlayerManager.GetInstance.gameObject);
@@ -17,15 +18,18 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     }
     public void LoadMenuScene()
     {
+        _audioSource.Stop();
         SceneManager.LoadScene("Menu");
     }
     public void LoadEndScene()
     {
+        _audioSource.Stop();
         Destroy(PlayerManager.GetInstance.gameObject);
         SceneManager.LoadScene("End");
     }
     public void LevelUp()
     {
+        //_audioSource.Stop();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void QuitGame()

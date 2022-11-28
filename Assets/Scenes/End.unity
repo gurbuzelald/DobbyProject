@@ -490,6 +490,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2892904039195626456, guid: 7dcb5e5ed1a0fd14bb46815467972338, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 1646657058}
     - target: {fileID: 2892904039195626457, guid: 7dcb5e5ed1a0fd14bb46815467972338, type: 3}
       propertyPath: m_Name
       value: SceneLoad
@@ -820,6 +824,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e8b40f17a98cbd48ab45940e504be06, type: 3}
+--- !u!82 &1646657058 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4956723174663386583, guid: 9e8b40f17a98cbd48ab45940e504be06, type: 3}
+  m_PrefabInstance: {fileID: 1646657057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1724788849
 GameObject:
   m_ObjectHideFlags: 0

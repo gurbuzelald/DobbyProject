@@ -25,6 +25,7 @@ public class AudioManager : AbstractSingleton<AudioManager>
             _audioSource.clip = _audioData.gameMusic;
         }
         _audioSource.Play();
+
         LoadVolume();   
     }
 
@@ -32,6 +33,7 @@ public class AudioManager : AbstractSingleton<AudioManager>
     void Update()
     {
         
+
     }
     public void GetPlayerSFX(AudioClip audioClip)
     {
