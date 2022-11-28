@@ -42,7 +42,8 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
         Player,
         Water,
         FanceWooden,
-        FinishArea
+        FinishArea,
+        Coin
     }
     public enum Scenes
     {

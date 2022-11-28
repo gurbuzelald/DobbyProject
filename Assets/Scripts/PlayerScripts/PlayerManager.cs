@@ -96,6 +96,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             
             StartCoroutine(DelayLevelUp(2f, 5f));
         }
+        if (other.CompareTag(SceneLoadController.Tags.Coin.ToString()))
+        {
+            other.gameObject.SetActive(false);
+            ScoreController.GetInstance.SetScore(35);
+        }
     }
     
     private void OnTriggerExit(Collider other)
