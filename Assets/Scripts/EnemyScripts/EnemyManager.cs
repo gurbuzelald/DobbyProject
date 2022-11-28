@@ -10,12 +10,16 @@ public class EnemyManager : MonoBehaviour
     private float _initSpeed;
     [SerializeField] GameObject _healthBar;
     private AudioSource _audioSource;
-    [SerializeField] EnemyData enemyData;
+    [SerializeField] EnemyData _enemyData;
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         _initSpeed = _enemySpeed;
+        if (_enemyData != null)
+        {
+            _enemyData.isGround = true;
+        }
     }
     void Update()
     {
@@ -59,6 +63,17 @@ public class EnemyManager : MonoBehaviour
                 _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
         }
+        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()))
+        {
+            _enemyData.isGround = true;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()))
+        {
+            _enemyData.isGround = false;
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -67,9 +82,13 @@ public class EnemyManager : MonoBehaviour
     
     private void Movement()
     {
-        if (_targetObject != null)
+        if (_targetObject != null && _enemyData.isGround)
         {
             gameObject.transform.LookAt(_targetObject.position);
+            gameObject.transform.Translate(0f, 0f, _enemySpeed * Time.deltaTime);
+        }
+        else if (_targetObject != null && !_enemyData.isGround)
+        {
             gameObject.transform.Translate(0f, 0f, _enemySpeed * Time.deltaTime);
         }
     }
@@ -83,15 +102,15 @@ public class EnemyManager : MonoBehaviour
     {
         if (soundEffect == SoundEffectTypes.GetHit)
         {
-            _audioSource.PlayOneShot(enemyData.getHitClip);
+            _audioSource.PlayOneShot(_enemyData.getHitClip);
         }
         else if (soundEffect == SoundEffectTypes.GiveHit)
         {
-            _audioSource.PlayOneShot(enemyData.giveHitClip);
+            _audioSource.PlayOneShot(_enemyData.giveHitClip);
         }
         else if (soundEffect == SoundEffectTypes.Death)
         {
-            _audioSource.PlayOneShot(enemyData.dyingClip);
+            _audioSource.PlayOneShot(_enemyData.dyingClip);
         }
     }
     public enum SoundEffectTypes

@@ -74,8 +74,15 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
             if (collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
             {
-                PlaySoundEffect(SoundEffectTypes.GetHit);
                 TouchEnemy();                
+            }
+            if (collision.collider.CompareTag(SceneLoadController.Tags.Coin.ToString()))
+            {
+                PlaySoundEffect(SoundEffectTypes.PickUpCoin);
+                PlaySoundEffect(SoundEffectTypes.PickUpCoin);
+                PlaySoundEffect(SoundEffectTypes.PickUpCoin);
+                collision.collider.gameObject.SetActive(false);
+                ScoreController.GetInstance.SetScore(230);
             }
         }        
     }
@@ -94,19 +101,17 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (other.CompareTag(SceneLoadController.Tags.Water.ToString()))
         {
-            PlaySoundEffect(SoundEffectTypes.JumpToSea);
             StartCoroutine(DelayDestroy(5f));
         }
         if (other.CompareTag(SceneLoadController.Tags.FinishArea.ToString()))
         {
-            PlaySoundEffect(SoundEffectTypes.LevelUp);
             StartCoroutine(DelayLevelUp(2f, 5f));
         }
         if (other.CompareTag(SceneLoadController.Tags.Coin.ToString()))
         {
             PlaySoundEffect(SoundEffectTypes.PickUpCoin);
             other.gameObject.SetActive(false);
-            ScoreController.GetInstance.SetScore(35);
+            ScoreController.GetInstance.SetScore(23);
         }
     }
     
@@ -282,6 +287,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     IEnumerator DelayLevelUp(float delayWait, float delayDestroy)
     {
+        PlaySoundEffect(SoundEffectTypes.LevelUp);
+
         yield return new WaitForSeconds(delayWait);
         _playerData.isPlayable = false;
         _playerData.isWinning = true;
@@ -297,6 +304,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     IEnumerator DelayDestroy(float delayDying)
     {
+        PlaySoundEffect(SoundEffectTypes.JumpToSea);
         yield return new WaitForSeconds(delayDying);
         Destroy(gameObject);
         SceneLoadController.GetInstance.LoadEndScene();
@@ -306,6 +314,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (_healthBar.transform.localScale.x <= 0.0625f)
         {
+            PlaySoundEffect(SoundEffectTypes.GetHit);
+
             isDestroyed = true;           
 
             //EnemyAnimation
@@ -322,6 +332,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else
         {
+            PlaySoundEffect(SoundEffectTypes.GetHit);
+
             _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
         }
     }

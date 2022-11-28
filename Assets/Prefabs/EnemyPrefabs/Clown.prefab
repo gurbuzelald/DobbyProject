@@ -135,7 +135,7 @@ MonoBehaviour:
   _targetObject: {fileID: 0}
   _enemySpeed: 0.5
   _healthBar: {fileID: 1552513370}
-  enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
+  _enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
 --- !u!54 &711838105
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!136 &711838104
 CapsuleCollider:

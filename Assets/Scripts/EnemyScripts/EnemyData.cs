@@ -10,4 +10,5 @@ public class EnemyData : ScriptableObject
     public AudioClip getHitClip;
     public AudioClip giveHitClip;
     public AudioClip dyingClip;
+    public bool isGround;
 }

@@ -22,6 +22,7 @@ public class ScoreController : AbstractSingleton<ScoreController>
     {
         if (SceneLoadController.GetInstance.CheckSceneName() == SceneLoadController.Scenes.Menu.ToString())
         {
+            _scoreAmount = 0;
             PlayerPrefs.SetInt("ScoreAmount", 0);
             _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
         }
