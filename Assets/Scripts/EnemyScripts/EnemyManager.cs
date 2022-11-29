@@ -63,16 +63,21 @@ public class EnemyManager : MonoBehaviour
                 _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
         }
-        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()))
-        {
+        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
+        {//Ground, Ladder, Enemy
             _enemyData.isGround = true;
+        }
+        else
+        {
+            gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, 180f, gameObject.transform.eulerAngles.z);
+            _enemyData.isGround = false;
         }
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()))
-        {
-            _enemyData.isGround = false;
+        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
+        {//Ground, Ladder, Enemy
+            //_enemyData.isGround = false;
         }
     }
     private void OnTriggerEnter(Collider other)

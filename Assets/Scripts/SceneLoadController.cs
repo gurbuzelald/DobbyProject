@@ -8,6 +8,7 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     [SerializeField] AudioSource _audioSource;
     public void PlayAgain()
     {
+        _audioSource.Stop();
         Destroy(PlayerManager.GetInstance.gameObject);
         SceneManager.LoadScene("Level1");
     }

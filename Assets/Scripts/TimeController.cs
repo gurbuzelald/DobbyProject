@@ -22,7 +22,7 @@ public class TimeController : MonoBehaviour
     {
         _time += Time.deltaTime;
         //Debug.Log(_time);
-        _timeText.text = ((int)_time).ToString();
+        _timeText.text = (((int)(timeValue - _time))).ToString();
         if ((int)_time > timeValue - 1)
         {
             SceneLoadController.GetInstance.LoadEndScene();
