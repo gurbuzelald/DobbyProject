@@ -16,7 +16,7 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        GetTime(50);
+        GetTime(90);
     }
     private void GetTime(int timeValue)
     {

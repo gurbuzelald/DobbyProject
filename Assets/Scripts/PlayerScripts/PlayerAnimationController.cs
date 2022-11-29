@@ -28,6 +28,7 @@ public class PlayerAnimationController : MonoBehaviour
         FireAnimation();
         DeathAnimation();
         VictoryAnimation();
+        SkateBoardAnimation();
     }
     void IdleAnimation()
     {
@@ -196,12 +197,12 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void JumpAnimation()
     {
-        if (_playerData.isJumping && _playerData.isGround && (PlayerManager.GetInstance._zValue > 0 || PlayerManager.GetInstance._xValue > 0))
+        if (_playerData.isJumping && _playerData.isGround && !_playerData.isSkateBoarding && (PlayerManager.GetInstance._zValue > 0 || PlayerManager.GetInstance._xValue > 0))
         {
             _animator.SetLayerWeight(1, 1);
 
             _animator.SetBool("isWalking", true);
-            _animator.SetBool("isJumping", false);
+            _animator.SetBool("isJumping", true);
         }
         if (_playerData.isJumping && PlayerManager.GetInstance._zValue == 0)
         {
@@ -214,7 +215,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetBool("isClimbing", false);
             _animator.SetBool("isBackClimbing", false);
         }
-        else if (_playerData.isJumping && PlayerManager.GetInstance._zValue > 0)
+        else if (_playerData.isJumping && PlayerManager.GetInstance._zValue > 0 && !_playerData.isSkateBoarding)
         {
             _animator.SetLayerWeight(1, 1);
 
@@ -229,6 +230,7 @@ public class PlayerAnimationController : MonoBehaviour
         {
             _animator.SetLayerWeight(1, 1);
 
+            _animator.SetBool("isWalking", true);
             _animator.SetBool("isJumping", false);
             _animator.SetBool("isIdling", false);
             _animator.SetBool("isFiring", false);
@@ -262,6 +264,34 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(0, 0);
             //StartCoroutine(DelayAnimation(5f, 8, 0));
         }
+    }
+    void SkateBoardAnimation()
+    {
+        if (_playerData.isSkateBoarding && PlayerManager.GetInstance._zValue > 0 && !_playerData.isJumping)
+        {
+            _animator.SetLayerWeight(9, 1);
+            _animator.SetBool("isSkating", true);
+        }
+        else if (_playerData.isSkateBoarding && PlayerManager.GetInstance._zValue == 0)
+        {
+            DisableSkateAnimation();
+        }
+        else if (!_playerData.isSkateBoarding && _playerData.isJumping)
+        {
+            _animator.SetLayerWeight(9, 1);
+            _animator.SetBool("isJumping", true);
+        }
+        else
+        {
+            DisableSkateAnimation();
+        }        
+    }
+    void DisableSkateAnimation()
+    {
+        PlayerManager.GetInstance._clickTabCount = 0;
+        _playerData.isSkateBoarding = false;
+        _animator.SetBool("isSkating", false);
+        _animator.SetLayerWeight(9, 0);
     }
     IEnumerator DelayAnimation(float delayValue, int layerOrder, float weightAmount)
     {

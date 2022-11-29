@@ -22,12 +22,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private int _jumpCount;
     private float _initJumpForce;
     private float _initPlayerSpeed;
+    public int _clickTabCount;
 
     [SerializeField] GameObject _jolleenObject;
     [SerializeField] Transform _jolleenTransform;
     // Start is called before the first frame update
     void Start()
     {
+        _clickTabCount = 0;
         _audioSource = GetComponent<AudioSource>();
         _virtualCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
         isDestroyed = false;
@@ -36,6 +38,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         if (_playerData != null)
         {
             _playerData.isWinning = false;
+            _playerData.isSkateBoarding = false;
             _playerData.isPlayable = true;
             _playerData.playerSpeed = 2f;
             _initPlayerSpeed = _playerData.playerSpeed;
@@ -160,6 +163,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 _xValue = Input.GetAxis("Horizontal") * Time.deltaTime * _playerData.playerSpeed / 2f;
                 _zValue = Input.GetAxis("Vertical") * Time.deltaTime * _playerData.playerSpeed;
                 Walk();
+                Climb();
+                SkateBoard();
 
                 if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround && _jumpCount <= 1)
                 {
@@ -177,6 +182,16 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 {
                     _playerData.isFiring = false;
                 }
+                if (Input.GetKeyDown(KeyCode.Tab) && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
+                {
+                    _clickTabCount++;
+                    _playerData.isSkateBoarding = true;
+                    if (_clickTabCount > 1)
+                    {
+                        _playerData.isSkateBoarding = false;
+                        _clickTabCount = 0;
+                    }
+                }
             }
             else if (_playerData.isWinning)
             {
@@ -184,6 +199,77 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 _virtualCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
             }
         }        
+    }
+    void SkateBoard()
+    {
+        if (_playerData.isSkateBoarding)
+        {
+            _playerData.isWalking = false;
+            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+        }        
+    }
+    void Walk()
+    {
+        if (_zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding)
+        {
+            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+            _playerData.isWalking = true;
+            _playerData.isBackWalking = false;
+        }
+        else if (_zValue < 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
+        {
+            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+            _playerData.isBackWalking = true;
+            _playerData.isWalking = false;
+        }
+        else if (_zValue == 0)
+        {
+            //GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+            _playerData.isBackWalking = false;
+            _playerData.isWalking = false;
+        }  
+        SideWalk();
+        SpeedController();
+        
+    }
+    void Climb()
+    {
+        if (_zValue > 0 && _playerData.isClimbing && !_playerData.isBackClimbing)
+        {
+            GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
+        }
+        else if (_zValue < 0 && !_playerData.isClimbing && _playerData.isBackClimbing)
+        {
+            GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
+        }
+    }
+    void SideWalk()
+    {
+        if (_xValue < 0)
+        {
+            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
+        }
+        else if (_xValue > 0)
+        {
+            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
+        }
+    }
+    void SpeedController()
+    {
+        if ((_xValue > 0 && _zValue > 0) || (_xValue < 0 && _zValue > 0) || (_xValue < 0 && _zValue < 0) || (_xValue > 0 && _zValue < 0) || _zValue < 0)
+        {
+            _playerData.playerSpeed = _initPlayerSpeed / 1.75f;
+        }
+        else if (_playerData.isSkateBoarding && _zValue > 0)
+        {
+
+            _playerData.playerSpeed = _initPlayerSpeed * 2f;
+
+        }
+        else
+        {
+            _playerData.playerSpeed = _initPlayerSpeed;
+        }
     }
     void Jump()
     {
@@ -225,51 +311,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _virtualCamera.transform.eulerAngles = new Vector3(0f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
         }
     }
-    void Walk()
-    {
-        if (_zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
-        {
-            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
-            _playerData.isWalking = true;
-            _playerData.isBackWalking = false;
-        }
-        else if (_zValue < 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
-        {
-            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
-            _playerData.isBackWalking = true;
-            _playerData.isWalking = false;
-        }
-        else if (_zValue == 0)
-        {
-            //GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
-            _playerData.isBackWalking = false;
-            _playerData.isWalking = false;
-        }
-        else if (_zValue > 0 && _playerData.isClimbing && !_playerData.isBackClimbing)
-        {
-            GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
-        }
-        else if (_zValue < 0 && !_playerData.isClimbing && _playerData.isBackClimbing)
-        {
-            GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
-        }
-        if (_xValue < 0)
-        {
-            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
-        }
-        else if (_xValue > 0)
-        {
-            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
-        }
-        if ((_xValue > 0 && _zValue > 0) || (_xValue < 0 && _zValue > 0) || (_xValue < 0 && _zValue < 0) || (_xValue > 0 && _zValue < 0) || _zValue < 0)
-        {
-            _playerData.playerSpeed = _initPlayerSpeed / 1.75f;
-        }
-        else
-        {
-            _playerData.playerSpeed = _initPlayerSpeed;
-        }
-    }
+    
 
     void Fire()
     {
