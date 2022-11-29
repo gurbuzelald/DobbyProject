@@ -8,7 +8,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [Header("Sound")]
     private AudioSource _audioSource;
 
+    [Header("Data")]
     public PlayerData _playerData;
+    public EnemyData _enemyData;
+
     public int firingRotation;
     public GameObject _healthBar;
     [SerializeField] CinemachineExternalCamera _virtualCamera;
@@ -181,32 +184,32 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 else
                 {
                     _playerData.isFiring = false;
-                }
-                if (Input.GetKeyDown(KeyCode.Tab) && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
-                {
-                    _clickTabCount++;
-                    _playerData.isSkateBoarding = true;
-                    if (_clickTabCount > 1)
-                    {
-                        _playerData.isSkateBoarding = false;
-                        _clickTabCount = 0;
-                    }
-                }
+                }                
             }
             else if (_playerData.isWinning)
             {
-                //VirtualCameraEulerAngle
+                //VirtualCameraEulerAngle for Victory Dance
                 _virtualCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
             }
         }        
     }
     void SkateBoard()
     {
+        if (Input.GetKeyDown(KeyCode.Tab) && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
+        {
+            _clickTabCount++;
+            _playerData.isSkateBoarding = true;
+            if (_clickTabCount > 1)
+            {
+                _playerData.isSkateBoarding = false;
+                _clickTabCount = 0;
+            }            
+        }
         if (_playerData.isSkateBoarding)
         {
-            _playerData.isWalking = false;
             GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
-        }        
+        }
+
     }
     void Walk()
     {
@@ -224,13 +227,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else if (_zValue == 0)
         {
-            //GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
             _playerData.isBackWalking = false;
             _playerData.isWalking = false;
         }  
         SideWalk();
-        SpeedController();
-        
+        SpeedController();       
     }
     void Climb()
     {
@@ -358,10 +359,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             PlaySoundEffect(SoundEffectTypes.GetHit);
 
-            isDestroyed = true;           
+            isDestroyed = true;
 
             //EnemyAnimation
-            EnemyAnimationController.isWalking = false;
+            _enemyData.isWalking = false;
             _enemyManager._enemySpeed = 0;
 
             //PlayerData

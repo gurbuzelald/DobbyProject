@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
     private float _initSpeed;
     [SerializeField] GameObject _healthBar;
     private AudioSource _audioSource;
-    [SerializeField] EnemyData _enemyData;
+    public EnemyData _enemyData;
 
     private void Start()
     {
@@ -30,48 +30,53 @@ public class EnemyManager : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (PlayerManager.GetInstance._healthBar != null)
+        if (_enemyData != null || gameObject != null)
         {
-            if (collision.collider.CompareTag(SceneLoadController.Tags.Player.ToString()) && PlayerManager.GetInstance._healthBar.transform.localScale.x <= 0.0625f)
+            if (PlayerManager.GetInstance._healthBar != null)
             {
-                PlaySoundEffect(SoundEffectTypes.GiveHit);
+                if (collision.collider.CompareTag(SceneLoadController.Tags.Player.ToString()) && PlayerManager.GetInstance._healthBar.transform.localScale.x <= 0.0625f)
+                {
+                    PlaySoundEffect(SoundEffectTypes.GiveHit);
 
-                EnemyAnimationController.isWalking = false;
+                    _enemyData.isWalking = false;
+                    _enemySpeed = 0;
+                    StartCoroutine(DelayStopEnemy());
+                }
+            }
+            if (collision.collider.CompareTag(SceneLoadController.Tags.Bullet.ToString()))
+            {
+                _enemyData.isWalking = false;
                 _enemySpeed = 0;
                 StartCoroutine(DelayStopEnemy());
-            }
-        }
-        if (collision.collider.CompareTag(SceneLoadController.Tags.Bullet.ToString()))
-        {
-            EnemyAnimationController.isWalking = false;
-            _enemySpeed = 0;
-            StartCoroutine(DelayStopEnemy());
-
-            if (_healthBar.transform.localScale.x <= 0.0625f)
-            {
                 if (_healthBar != null)
                 {
-                    Destroy(_healthBar);
-                    ScoreController.GetInstance.SetScore(20);
-                    PlaySoundEffect(SoundEffectTypes.Death);
+                    if (_healthBar.transform.localScale.x <= 0.0625f)
+                    {
+                        _enemyData.isDying = true;
+                        _enemyData.isWalking = false;
+                        Destroy(_healthBar);
+                        ScoreController.GetInstance.SetScore(20);
+                        PlaySoundEffect(SoundEffectTypes.Death);
+                        StartCoroutine(DelayDestroy(4f));
+
+                    }
+                    else
+                    {
+                        PlaySoundEffect(SoundEffectTypes.GetHit);
+                        _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+                    }
                 }
-                Destroy(gameObject);
+            }
+            if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
+            {//Ground, Ladder, Enemy
+                _enemyData.isGround = true;
             }
             else
             {
-                PlaySoundEffect(SoundEffectTypes.GetHit);
-                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+                gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, 180f, gameObject.transform.eulerAngles.z);
+                _enemyData.isGround = false;
             }
-        }
-        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
-        {//Ground, Ladder, Enemy
-            _enemyData.isGround = true;
-        }
-        else
-        {
-            gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, 180f, gameObject.transform.eulerAngles.z);
-            _enemyData.isGround = false;
-        }
+        }        
     }
     private void OnCollisionExit(Collision collision)
     {
@@ -100,8 +105,15 @@ public class EnemyManager : MonoBehaviour
     public IEnumerator DelayStopEnemy()
     {
         yield return new WaitForSeconds(3f);
-        EnemyAnimationController.isWalking = true;
+        _enemyData.isWalking = true;
         _enemySpeed = _initSpeed;
+    }
+    public IEnumerator DelayDestroy(float delayDestroy)
+    {
+        yield return new WaitForSeconds(delayDestroy);
+        Destroy(gameObject);
+        _enemyData.isWalking = true;
+        _enemyData.isDying = false;
     }
     public void PlaySoundEffect(SoundEffectTypes soundEffect)
     {

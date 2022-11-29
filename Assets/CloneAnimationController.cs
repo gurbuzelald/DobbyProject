@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAnimationController : MonoBehaviour
+public class CloneAnimationController : MonoBehaviour
 {
     private Animator _animator;
-    public EnemyData _enemyData;
-    //public static bool isWalking;
-    //public static bool isDying;
+    public static bool isWalking;
+    public static bool isDying;
     private int _animationCount;
     void Start()
     {
-        _enemyData.isDying = false;
-        _enemyData.isWalking = true;
+        isDying = false;
+        isWalking = true;
         _animationCount = 0;
         _animator = GetComponent<Animator>();
     }
@@ -26,22 +25,19 @@ public class EnemyAnimationController : MonoBehaviour
     {
         if (!PlayerManager.isDestroyed)
         {
-            if (_enemyData.isWalking)
+            if (isWalking)
             {
                 _animator.SetBool("isWalking", true);
                 //_animator.SetBool("isIdling", false);
 
                 _animator.SetLayerWeight(1, 1);
-                _animator.SetLayerWeight(2, 0);
             }
-            else if (_enemyData.isDying)
+            else if (isDying)
             {
                 _animator.SetBool("isDying", true);
                 //_animator.SetBool("isIdling", false);
 
                 _animator.SetLayerWeight(2, 1);
-                _animator.SetLayerWeight(1, 0);
-
             }
             else
             {
@@ -50,7 +46,6 @@ public class EnemyAnimationController : MonoBehaviour
 
                 _animator.SetLayerWeight(0, 1);
                 _animator.SetLayerWeight(1, 0);
-                _animator.SetLayerWeight(2, 0);
             }
         }
         else
@@ -64,7 +59,7 @@ public class EnemyAnimationController : MonoBehaviour
 
             _animator.SetLayerWeight(0, 1);
             _animator.SetLayerWeight(1, 0);
-            _animator.SetLayerWeight(2, 0);
         }
     }
 }
+

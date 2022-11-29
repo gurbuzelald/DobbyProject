@@ -152,8 +152,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7193906220286081299, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.13423176
+      value: 0.07364959
       objectReference: {fileID: 0}
+    - target: {fileID: 7193906221332498760, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
+      propertyPath: _enemyData
+      value: 
+      objectReference: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
     - target: {fileID: 7193906221332498760, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
       propertyPath: _crosshairImage
       value: 
@@ -959,7 +963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0.092296064, y: 0.70105743, z: -0.092296064, w: -0.7010573}
-  m_LocalPosition: {x: -0.6234236, y: -0.43087456, z: 6.0128465}
+  m_LocalPosition: {x: -0.6234236, y: -0.43087456, z: 6.00073}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1252,7 +1256,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1470434935
 Transform:
   m_ObjectHideFlags: 0
@@ -1456,14 +1460,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 472044126}
     m_Modifications:
-    - target: {fileID: 711838105, guid: 1399f73d969c5ee4fb0f9a1652079a18, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 711838105, guid: 1399f73d969c5ee4fb0f9a1652079a18, type: 3}
-      propertyPath: m_Constraints
-      value: 116
-      objectReference: {fileID: 0}
     - target: {fileID: 714285646258139489, guid: 1399f73d969c5ee4fb0f9a1652079a18, type: 3}
       propertyPath: m_Name
       value: Clown
@@ -1860,14 +1856,6 @@ PrefabInstance:
     - target: {fileID: 4481733563023685997, guid: 52a91642cb659624b9ab75f876e78794, type: 3}
       propertyPath: m_Name
       value: CloneDobby
-      objectReference: {fileID: 0}
-    - target: {fileID: 8869964954807118153, guid: 52a91642cb659624b9ab75f876e78794, type: 3}
-      propertyPath: m_Speed
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8869964954807118153, guid: 52a91642cb659624b9ab75f876e78794, type: 3}
-      propertyPath: m_AgentTypeID
-      value: -1372625422
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52a91642cb659624b9ab75f876e78794, type: 3}
