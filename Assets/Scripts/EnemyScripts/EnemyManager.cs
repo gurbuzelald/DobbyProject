@@ -6,19 +6,19 @@ using UnityEngine.AI;
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField] Transform _targetObject;
-    public float _enemySpeed = 0.1f;
     private float _initSpeed;
     [SerializeField] GameObject _healthBar;
     private AudioSource _audioSource;
-    public EnemyData _enemyData;
+    public EnemyData enemyData;
 
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        _initSpeed = _enemySpeed;
-        if (_enemyData != null)
+        if (enemyData != null)
         {
-            _enemyData.isGround = true;
+            enemyData.isActivateMagnet = false;
+            enemyData.isGround = true;
+            _initSpeed = enemyData.enemySpeed;
         }
     }
     void Update()
@@ -30,7 +30,7 @@ public class EnemyManager : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (_enemyData != null || gameObject != null)
+        if (enemyData != null || gameObject != null)
         {
             if (PlayerManager.GetInstance._healthBar != null)
             {
@@ -38,22 +38,22 @@ public class EnemyManager : MonoBehaviour
                 {
                     PlaySoundEffect(SoundEffectTypes.GiveHit);
 
-                    _enemyData.isWalking = false;
-                    _enemySpeed = 0;
+                    enemyData.isWalking = false;
+                    enemyData.enemySpeed = 0;
                     StartCoroutine(DelayStopEnemy());
                 }
             }
             if (collision.collider.CompareTag(SceneLoadController.Tags.Bullet.ToString()))
             {
-                _enemyData.isWalking = false;
-                _enemySpeed = 0;
+                enemyData.isWalking = false;
+                enemyData.enemySpeed = 0;
                 StartCoroutine(DelayStopEnemy());
                 if (_healthBar != null)
                 {
                     if (_healthBar.transform.localScale.x <= 0.0625f)
                     {
-                        _enemyData.isDying = true;
-                        _enemyData.isWalking = false;
+                        enemyData.isDying = true;
+                        enemyData.isWalking = false;
                         Destroy(_healthBar);
                         ScoreController.GetInstance.SetScore(20);
                         PlaySoundEffect(SoundEffectTypes.Death);
@@ -69,12 +69,12 @@ public class EnemyManager : MonoBehaviour
             }
             if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
             {//Ground, Ladder, Enemy
-                _enemyData.isGround = true;
+                enemyData.isGround = true;
             }
             else
             {
-                gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, 180f, gameObject.transform.eulerAngles.z);
-                _enemyData.isGround = false;
+                //gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, 180f, gameObject.transform.eulerAngles.z);
+                //_enemyData.isGround = false;
             }
         }        
     }
@@ -82,52 +82,63 @@ public class EnemyManager : MonoBehaviour
     {
         if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
         {//Ground, Ladder, Enemy
-            //_enemyData.isGround = false;
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag(SceneLoadController.Tags.Magnet.ToString()))
+        {
+            enemyData.isActivateMagnet = true;
+            enemyData.isWalking = true;
+        }
     }
-    
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(SceneLoadController.Tags.Magnet.ToString()))
+        {
+            enemyData.isActivateMagnet = false;
+            enemyData.isWalking = false;
+        }
+    }
+
     private void Movement()
     {
-        if (_targetObject != null && _enemyData.isGround)
+        if (_targetObject != null && enemyData.isActivateMagnet)
         {
             gameObject.transform.LookAt(_targetObject.position);
-            gameObject.transform.Translate(0f, 0f, _enemySpeed * Time.deltaTime);
+            gameObject.transform.Translate(0f, 0f, enemyData.enemySpeed * Time.deltaTime);
         }
-        else if (_targetObject != null && !_enemyData.isGround)
+        else if (_targetObject != null && !enemyData.isActivateMagnet)
         {
-            gameObject.transform.Translate(0f, 0f, _enemySpeed * Time.deltaTime);
+           
         }
     }
     public IEnumerator DelayStopEnemy()
     {
         yield return new WaitForSeconds(3f);
-        _enemyData.isWalking = true;
-        _enemySpeed = _initSpeed;
+        enemyData.isWalking = true;
+        enemyData.enemySpeed = _initSpeed;
     }
     public IEnumerator DelayDestroy(float delayDestroy)
     {
         yield return new WaitForSeconds(delayDestroy);
         Destroy(gameObject);
-        _enemyData.isWalking = true;
-        _enemyData.isDying = false;
+        enemyData.isWalking = true;
+        enemyData.isDying = false;
     }
     public void PlaySoundEffect(SoundEffectTypes soundEffect)
     {
         if (soundEffect == SoundEffectTypes.GetHit)
         {
-            _audioSource.PlayOneShot(_enemyData.getHitClip);
+            _audioSource.PlayOneShot(enemyData.getHitClip);
         }
         else if (soundEffect == SoundEffectTypes.GiveHit)
         {
-            _audioSource.PlayOneShot(_enemyData.giveHitClip);
+            _audioSource.PlayOneShot(enemyData.giveHitClip);
         }
         else if (soundEffect == SoundEffectTypes.Death)
         {
-            _audioSource.PlayOneShot(_enemyData.dyingClip);
+            _audioSource.PlayOneShot(enemyData.dyingClip);
         }
     }
     public enum SoundEffectTypes
