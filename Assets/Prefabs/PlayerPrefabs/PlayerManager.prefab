@@ -236,7 +236,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7193906221332498774}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1090069695
 GameObject:
@@ -727,7 +727,6 @@ Transform:
   - {fileID: 158271325}
   - {fileID: 1090069696}
   - {fileID: 1295474340}
-  - {fileID: 1328806870116880385}
   - {fileID: 476721150}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -816,18 +815,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd168fcb912dfe94baf314053d344219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skateboardParticle: {fileID: 1198514866778701855}
+  _skateboardParticle: {fileID: 4302228992980891979, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
+  _touchParticle: {fileID: 2098394851902305992, guid: 9bd5863dac0a07144a968a375408214b, type: 3}
+  _birthParticle: {fileID: 1705621348223521887, guid: cd7d4ea18b432ef44b8f8ed281ea60c7, type: 3}
+  _deathParticle: {fileID: 5597880929392322992, guid: c3d186f24e85b9549b8b845c134e0d97, type: 3}
+  _particleTransform: {fileID: 476721150}
   _playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   _enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
-  firingRotation: 0
   _healthBar: {fileID: 158271324}
-  _virtualCamera: {fileID: 7193906220286081298}
+  _jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}
+  _jolleenTransform: {fileID: 1090069696}
+  firingRotation: 0
+  _virtualCamera: {fileID: 1891548372}
   _crosshairImage: {fileID: 0}
   _xValue: 0
   _zValue: 0
   _clickTabCount: 0
-  _jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}
-  _jolleenTransform: {fileID: 1090069696}
 --- !u!82 &1494319917
 AudioSource:
   m_ObjectHideFlags: 0
@@ -924,73 +927,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1001 &3104506893693729108
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7193906221332498774}
-    m_Modifications:
-    - target: {fileID: 4135907943519873365, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135907943519873365, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135907943519873365, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135907943519873365, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135907943519873365, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135907943519873365, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135907943519873365, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135907943519873365, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135907943519873365, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135907943519873365, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4135907943519873365, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4139822608683825549, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-      propertyPath: m_Name
-      value: SkateBoardParticle
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
---- !u!198 &1198514866778701855 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4302228992980891979, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-  m_PrefabInstance: {fileID: 3104506893693729108}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1328806870116880385 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4135907943519873365, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
-  m_PrefabInstance: {fileID: 3104506893693729108}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4529110288414701650
 PrefabInstance:
   m_ObjectHideFlags: 0
