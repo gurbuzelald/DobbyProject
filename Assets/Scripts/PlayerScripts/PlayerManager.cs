@@ -35,7 +35,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private BulletManager _bulletManager;
 
     [Header("Camera")]
-    [SerializeField] CinemachineVirtualCamera _virtualCamera;
+    [SerializeField] CinemachineVirtualCamera _currentCamera;
+    [SerializeField] CinemachineVirtualCamera _upCamera;
+    [SerializeField] CinemachineVirtualCamera _downCamera;
     //[SerializeField] CinemachineExternalCamera _virtualCamera;
 
     [Header("Crosshair")]
@@ -56,12 +58,17 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         CreateParticle(ParticleNames.Birth);
         _clickTabCount = 0;
         _audioSource = GetComponent<AudioSource>();
-        _virtualCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
+
+        //Camera
+        _currentCamera = _downCamera;
+        _currentCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
+
         isDestroyed = false;
         firingRotation = 0;
         _jumpCount = 0;
         if (_playerData != null)
         {
+            _playerData.isLookingUp = false;
             _playerData.isWinning = false;
             _playerData.isSkateBoarding = false;
             _playerData.isPlayable = true;
@@ -231,7 +238,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             else if (_playerData.isWinning)
             {
                 //VirtualCameraEulerAngle for Victory Dance
-                _virtualCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
+                _currentCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
             }
         }        
     }
@@ -345,18 +352,44 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
         GetInstance.GetComponent<Transform>().Rotate(0f, _mousePosX, 0f);
 
-        _virtualCamera.transform.Rotate(-_mousePosY * Time.timeScale, 0, 0);
-        if (_virtualCamera.transform.eulerAngles.x > 70 && _virtualCamera.transform.eulerAngles.x <= 75)
+        _currentCamera.transform.Rotate(-_mousePosY * Time.timeScale, 0, 0);        
+
+        if (_currentCamera.transform.eulerAngles.x > 70 && _currentCamera.transform.eulerAngles.x <= 75)
         {
-            _virtualCamera.transform.eulerAngles = new Vector3(70f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+            _playerData.isLookingUp = false;
+            _currentCamera.transform.eulerAngles = new Vector3(70f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
-        else if (_virtualCamera.transform.eulerAngles.x > 75)
+        else if (_currentCamera.transform.eulerAngles.x > 75 && _currentCamera.transform.eulerAngles.x <= 300)
         {
-            _virtualCamera.transform.eulerAngles = new Vector3(0f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+            _playerData.isLookingUp = false;
+            _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
-        else if (_virtualCamera.transform.eulerAngles.x < 0)
+        else if (_currentCamera.transform.eulerAngles.x < 0)
         {
-            _virtualCamera.transform.eulerAngles = new Vector3(0f, _virtualCamera.transform.eulerAngles.y, _virtualCamera.transform.eulerAngles.z);
+            _playerData.isLookingUp = false;
+            _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
+        }
+        else if (_currentCamera.transform.eulerAngles.x > 300 && _currentCamera.transform.eulerAngles.x <= 360)
+        {
+            _playerData.isLookingUp = true;
+            _currentCamera = _upCamera;
+        }
+        else
+        {
+            _playerData.isLookingUp = false;
+        }
+
+        if (_playerData.isLookingUp)
+        {
+            _upCamera.gameObject.SetActive(true);
+            _downCamera.gameObject.SetActive(false);
+            _currentCamera = _upCamera;
+        }
+        else
+        {
+            _downCamera.gameObject.SetActive(true);
+            _upCamera.gameObject.SetActive(false);
+            _currentCamera = _downCamera;
         }
     }
     

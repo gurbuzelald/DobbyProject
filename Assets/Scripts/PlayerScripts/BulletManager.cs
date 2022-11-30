@@ -9,7 +9,10 @@ public class BulletManager : MonoBehaviour
     public GameObject _bulletObject;
     [SerializeField] float _bulletSpeed = 5f;
     [SerializeField] Transform _bulletTransform;
-    [SerializeField] CinemachineVirtualCamera _virtualCamera;
+    [SerializeField] CinemachineVirtualCamera _currentCamera;
+    [SerializeField] CinemachineVirtualCamera _upCamera;
+    [SerializeField] CinemachineVirtualCamera _downCamera;
+    public PlayerData _playerData;
     private Transform _initTransform;
 
     private void Start()
@@ -50,9 +53,21 @@ public class BulletManager : MonoBehaviour
     }
     private void BulletRotation()
     {
-        if (_virtualCamera != null)
+        if (_playerData.isLookingUp)
         {
-            _bulletTransform.transform.eulerAngles = new Vector3(_virtualCamera.transform.eulerAngles.x - 20f, _bulletTransform.transform.eulerAngles.y, _bulletTransform.transform.eulerAngles.z);
+            _upCamera.gameObject.SetActive(true);
+            _downCamera.gameObject.SetActive(false);
+            _currentCamera = _upCamera;
+        }
+        else
+        {
+            _downCamera.gameObject.SetActive(true);
+            _upCamera.gameObject.SetActive(false);
+            _currentCamera = _downCamera;
+        }
+        if (_currentCamera != null)
+        {
+            _bulletTransform.transform.eulerAngles = new Vector3(_currentCamera.transform.eulerAngles.x - 20f, _bulletTransform.transform.eulerAngles.y, _bulletTransform.transform.eulerAngles.z);
         }
     }
 }

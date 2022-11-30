@@ -19,6 +19,7 @@ public class PlayerData : ScriptableObject
     public bool isPlayable;
     public bool isWinning;
     public bool isSkateBoarding;
+    public bool isLookingUp;
 
     [Header("Sounds")]
     public AudioClip shootClip;
