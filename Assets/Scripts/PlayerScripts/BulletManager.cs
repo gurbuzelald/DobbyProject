@@ -5,14 +5,21 @@ using Cinemachine;
 
 public class BulletManager : MonoBehaviour
 {
+    [Header("Object Pool")]
     public ObjectPool _objectPool;
-    public GameObject _bulletObject;
-    [SerializeField] float _bulletSpeed = 5f;
-    [SerializeField] Transform _bulletTransform;
+
+    [Header("Bullet Transform")]
+    [SerializeField] Transform _bulletSpawnTransform;
+
+    [Header("Rotation of Bullet from Camera")]
     [SerializeField] CinemachineVirtualCamera _currentCamera;
     [SerializeField] CinemachineVirtualCamera _upCamera;
     [SerializeField] CinemachineVirtualCamera _downCamera;
+
+    [Header("Data")]
     public PlayerData _playerData;
+
+    [Header("Initial Transform of This")]
     private Transform _initTransform;
 
     private void Start()
@@ -42,12 +49,12 @@ public class BulletManager : MonoBehaviour
     {
         GameObject bulletObject = _objectPool.GetPooledObject(0);
         bulletObject.transform.position = gameObject.transform.position;
-        bulletObject.transform.rotation = _bulletTransform.transform.rotation;
+        bulletObject.transform.rotation = _bulletSpawnTransform.transform.rotation;
 
-        bulletObject.GetComponent<Rigidbody>().velocity = (_bulletTransform.transform.TransformDirection(Vector3.forward * _bulletSpeed));
+        bulletObject.GetComponent<Rigidbody>().velocity = (_bulletSpawnTransform.transform.TransformDirection(Vector3.forward * _playerData.bulletSpeed));
 
         yield return new WaitForSeconds(2f);
-        bulletObject.transform.rotation = _bulletTransform.transform.rotation;
+        bulletObject.transform.rotation = _bulletSpawnTransform.transform.rotation;
 
         bulletObject.SetActive(false);
     }
@@ -67,7 +74,7 @@ public class BulletManager : MonoBehaviour
         }
         if (_currentCamera != null)
         {
-            _bulletTransform.transform.eulerAngles = new Vector3(_currentCamera.transform.eulerAngles.x - 20f, _bulletTransform.transform.eulerAngles.y, _bulletTransform.transform.eulerAngles.z);
+            _bulletSpawnTransform.transform.eulerAngles = new Vector3(_currentCamera.transform.eulerAngles.x - 20f, _bulletSpawnTransform.transform.eulerAngles.y, _bulletSpawnTransform.transform.eulerAngles.z);
         }
     }
 }

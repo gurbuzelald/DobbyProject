@@ -8,13 +8,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [Header("Sound")]
     private AudioSource _audioSource;
 
-    [Header("Particle")]
-    [SerializeField] ParticleSystem _skateboardParticle;
-    [SerializeField] ParticleSystem _touchParticle;
-    [SerializeField] ParticleSystem _birthParticle;
-    [SerializeField] ParticleSystem _deathParticle;
-    [SerializeField] ParticleSystem _firingParticle;
-    [SerializeField] Transform _particleTransform;
+    [Header("Particle Transform")]
+    public Transform _particleTransform;
 
     [Header("Data")]
     public PlayerData _playerData;
@@ -23,12 +18,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [Header("Health")]
     public GameObject _healthBar;
 
-    [Header("JolleenAnimation")]
-    [SerializeField] GameObject _jolleenObject;
+    [Header("JolleenAnimation Transform")]
     [SerializeField] Transform _jolleenTransform;
-
-    [Header("Bools")]
-    public static bool isDestroyed;
 
     [Header("Fire")]
     public int firingRotation;
@@ -41,31 +32,29 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     //[SerializeField] CinemachineExternalCamera _virtualCamera;
 
     [Header("Crosshair")]
-    [SerializeField] CanvasGroup _crosshairImage;
+    public CanvasGroup crosshairImage;
 
+    [Header("Input Movement")]
     public float _xValue;
     public float _zValue;
 
-    private int _jumpCount;
+    [Header("Initial Situations")]
     private float _initJumpForce;
-
     private float _initPlayerSpeed;
-
-    public int _clickTabCount;
 
     void Start()
     {
         CreateParticle(ParticleNames.Birth);
-        _clickTabCount = 0;
+        _playerData.clickTabCount = 0;
         _audioSource = GetComponent<AudioSource>();
 
         //Camera
         _currentCamera = _downCamera;
         _currentCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
 
-        isDestroyed = false;
+        _playerData.isDestroyed = false;
         firingRotation = 0;
-        _jumpCount = 0;
+        _playerData.jumpCount = 0;
         if (_playerData != null)
         {
             _playerData.isLookingUp = false;
@@ -100,7 +89,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Bridge.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.FanceWooden.ToString()))
             {
                 _playerData.isGround = true;
-                _jumpCount = 0;
+                _playerData.jumpCount = 0;
             }
             else
             {
@@ -133,7 +122,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }        
         if (other.CompareTag(SceneLoadController.Tags.FinishArea.ToString()))
         {
-            StartCoroutine(DelayLevelUp(2f, 5f));
+            StartCoroutine(DelayLevelUp(2f, _playerData.danceTime));
         }
         if (other.CompareTag(SceneLoadController.Tags.Coin.ToString()))
         {
@@ -143,7 +132,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (other.CompareTag(SceneLoadController.Tags.Lava.ToString()))
         {
-            isDestroyed = true;
+            _playerData.isDestroyed = true;
 
             //collision.collider.gameObject._enemyData.isWalking = false;
             //collision.collider._enemyData.enemySpeed = 0;
@@ -157,7 +146,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (other.CompareTag(SceneLoadController.Tags.Water.ToString()))
         {
-            isDestroyed = true;
+            _playerData.isDestroyed = true;
             //collision.collider.gameObject._enemyData.isWalking = false;
             //collision.collider._enemyData.enemySpeed = 0;
 
@@ -218,7 +207,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 Climb();
                 SkateBoard();
 
-                if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround && _jumpCount <= 1)
+                if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround && _playerData.jumpCount <= 1)
                 {
                     Jump();
                 }
@@ -246,14 +235,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (Input.GetKeyDown(KeyCode.Tab) && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
         {
-            _clickTabCount++;
+            _playerData.clickTabCount++;
             _playerData.isSkateBoarding = true;
-            if (_clickTabCount > 1)
+            if (_playerData.clickTabCount > 1)
             {
                 //CreateParticle(ParticleNames.Skateboard);
-                _skateboardParticle.Stop();
+                _playerData.skateboardParticle.Stop();
                 _playerData.isSkateBoarding = false;
-                _clickTabCount = 0;
+                _playerData.clickTabCount = 0;
             }            
         }
         if (_playerData.isSkateBoarding)
@@ -322,13 +311,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else
         {
-            _skateboardParticle.Stop();
+            _playerData.skateboardParticle.Stop();
             _playerData.playerSpeed = _initPlayerSpeed;
         }
     }
     void Jump()
     {
-        if (_jumpCount == 0)
+        if (_playerData.jumpCount == 0)
         {
             PlaySoundEffect(SoundEffectTypes.Jump);
             _playerData.jumpForce = _initJumpForce;
@@ -343,7 +332,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
         }
         _playerData.jumpForce = _initJumpForce;
-        _jumpCount++;
+        _playerData.jumpCount++;
     }
     void Rotation()
     {
@@ -359,7 +348,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isLookingUp = false;
             _currentCamera.transform.eulerAngles = new Vector3(70f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
-        else if (_currentCamera.transform.eulerAngles.x > 75 && _currentCamera.transform.eulerAngles.x <= 300)
+        else if (_currentCamera.transform.eulerAngles.x > 75 && _currentCamera.transform.eulerAngles.x <= 270)
         {
             _playerData.isLookingUp = false;
             _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
@@ -367,9 +356,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         else if (_currentCamera.transform.eulerAngles.x < 0)
         {
             _playerData.isLookingUp = false;
-            _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
+            //_currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
-        else if (_currentCamera.transform.eulerAngles.x > 300 && _currentCamera.transform.eulerAngles.x <= 360)
+        else if (_currentCamera.transform.eulerAngles.x > 270 && _currentCamera.transform.eulerAngles.x <= 360)
         {
             _playerData.isLookingUp = true;
             _currentCamera = _upCamera;
@@ -381,25 +370,35 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
         if (_playerData.isLookingUp)
         {
-            _upCamera.gameObject.SetActive(true);
-            _downCamera.gameObject.SetActive(false);
+            if (_downCamera.enabled == false)
+            {
+                _upCamera.gameObject.SetActive(true);
+            }
+            if (_upCamera.enabled == true )
+            {
+                _downCamera.gameObject.SetActive(false);
+            }
             _currentCamera = _upCamera;
         }
         else
         {
-            _downCamera.gameObject.SetActive(true);
-            _upCamera.gameObject.SetActive(false);
+            if (_downCamera.enabled == true)
+            {
+                _upCamera.gameObject.SetActive(false);
+            }
+            if (_upCamera.enabled == false)
+            {
+                _downCamera.gameObject.SetActive(true);
+            }
             _currentCamera = _downCamera;
         }
     }
-    
-
     void Fire()
     {
         PlaySoundEffect(SoundEffectTypes.Shoot);
         _bulletManager.CreateBullet();
         _playerData.isFiring = true;
-        _crosshairImage.alpha = 1;
+        crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
         StartCoroutine(Delay(2f));
     }
 
@@ -409,7 +408,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             PlaySoundEffect(SoundEffectTypes.GetHit);
 
-            isDestroyed = true;
+            _playerData.isDestroyed = true;
 
             //EnemyAnimation
             collision.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
@@ -436,43 +435,43 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void CreateVictoryAnimation()
     {
-        GameObject jolleenObject = Instantiate(_jolleenObject, _jolleenTransform.transform);
+        GameObject jolleenObject = Instantiate(_playerData.jolleenObject, _jolleenTransform.transform);
         jolleenObject.transform.position = _jolleenTransform.transform.position;
-        Destroy(jolleenObject, 3f);
+        Destroy(jolleenObject, _playerData.danceTime);
     }
     void CreateParticle(ParticleNames particleName)
     {
         if (particleName == ParticleNames.Skateboard)
         {            
-            GameObject particleObject = Instantiate(_skateboardParticle.gameObject, _particleTransform.transform);
+            GameObject particleObject = Instantiate(_playerData.skateboardParticle.gameObject, _particleTransform.transform);
             particleObject.transform.position = _particleTransform.transform.position;
             particleObject.GetComponent<ParticleSystem>().Play();
             Destroy(particleObject, 0.5f);
         }
         if (particleName == ParticleNames.Death)
         {
-            GameObject particleObject = Instantiate(_deathParticle.gameObject, _particleTransform.transform);
+            GameObject particleObject = Instantiate(_playerData.deathParticle.gameObject, _particleTransform.transform);
             particleObject.transform.position = _particleTransform.transform.position;
             particleObject.GetComponent<ParticleSystem>().Play();
             Destroy(particleObject, 5f);
         }
         if (particleName == ParticleNames.Touch)
         {
-            GameObject particleObject = Instantiate(_touchParticle.gameObject, _particleTransform.transform);
+            GameObject particleObject = Instantiate(_playerData.touchParticle.gameObject, _particleTransform.transform);
             particleObject.transform.position = _particleTransform.transform.position;
             particleObject.GetComponent<ParticleSystem>().Play();
             Destroy(particleObject, 0.5f);
         }
         if (particleName == ParticleNames.Birth)
         {
-            GameObject particleObject = Instantiate(_birthParticle.gameObject, _particleTransform.transform);
+            GameObject particleObject = Instantiate(_playerData.birthParticle.gameObject, _particleTransform.transform);
             particleObject.transform.position = _particleTransform.transform.position;
             particleObject.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DelayStopParticle(2f, particleObject));
         }
         if (particleName == ParticleNames.Fire)
         {
-            GameObject particleObject = Instantiate(_firingParticle.gameObject, _particleTransform.transform);
+            GameObject particleObject = Instantiate(_playerData.firingParticle.gameObject, _particleTransform.transform);
             particleObject.transform.position = _particleTransform.transform.position;
             particleObject.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DelayStopParticle(3f, particleObject));
@@ -521,7 +520,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     IEnumerator Delay(float value)
     {
         yield return new WaitForSeconds(value);
-        _crosshairImage.alpha = 0;
+        crosshairImage.GetComponent<CanvasGroup>().alpha = 0;
     }
     IEnumerator DelayLevelUp(float delayWait, float delayDestroy)
     {

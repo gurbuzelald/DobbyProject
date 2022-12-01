@@ -6,7 +6,10 @@ using UnityEngine.Audio;
 
 public class VolumeSetting : MonoBehaviour
 {
+    [Header("Audio Components")]
     [SerializeField] AudioMixer _audioMixer;
+
+    [Header("Sliders")]
     [SerializeField] Slider _playerSFXSlider;
     [SerializeField] Slider _musicSlider;
     [SerializeField] Slider _enemySFXVolume;

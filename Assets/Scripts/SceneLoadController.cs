@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoadController : AbstractSingleton<SceneLoadController>
 {
+    [Header("Audio Components")]
     [SerializeField] AudioSource _audioSource;
     public void PlayAgain()
     {

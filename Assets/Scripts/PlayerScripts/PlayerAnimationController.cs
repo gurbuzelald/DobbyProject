@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    public PlayerData _playerData;
+    [Header("Animator")]
     private Animator _animator;
+
+    [Header("Data")]
+    public PlayerData _playerData;
 
     private void Start()
     {
@@ -288,7 +291,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void DisableSkateAnimation()
     {
-        PlayerManager.GetInstance._clickTabCount = 0;
+        _playerData.clickTabCount = 0;
         _playerData.isSkateBoarding = false;
         _animator.SetBool("isSkating", false);
         _animator.SetLayerWeight(9, 0);

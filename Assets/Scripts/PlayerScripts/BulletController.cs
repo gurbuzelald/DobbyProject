@@ -15,7 +15,7 @@ public class BulletController : MonoBehaviour
             if (collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
             {
                 //Destroy(gameObject);
-                //gameObject.SetActive(false);
+                gameObject.SetActive(false);
             }
         }
     }

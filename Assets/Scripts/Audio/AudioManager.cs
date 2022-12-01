@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class AudioManager : AbstractSingleton<AudioManager>
 {
+    [Header("Data")]
     public AudioData _audioData;
+
+    [Header("Audio Components")]
     public AudioMixer _audiomixer;
     private AudioSource _audioSource;
     // Start is called before the first frame update

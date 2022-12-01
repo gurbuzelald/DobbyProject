@@ -1,15 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyManager : MonoBehaviour
 {
+    [Header("Destination Transform")]
     [SerializeField] Transform _targetObject;
-    private float _initSpeed;
+
+    [Header("Health")]
     [SerializeField] GameObject _healthBar;
+
+    [Header("Output Sound")]
     private AudioSource _audioSource;
+
+    [Header("Data")]
     public EnemyData enemyData;
+
+    [Header("Initial Situations")]
+    private float _initSpeed;
 
     private void Start()
     {
@@ -32,40 +40,13 @@ public class EnemyManager : MonoBehaviour
     {
         if (enemyData != null || gameObject != null)
         {
-            if (PlayerManager.GetInstance._healthBar != null)
+            if (collision.collider.CompareTag(SceneLoadController.Tags.Player.ToString()))
             {
-                if (collision.collider.CompareTag(SceneLoadController.Tags.Player.ToString()) && PlayerManager.GetInstance._healthBar.transform.localScale.x <= 0.0625f)
-                {
-                    PlaySoundEffect(SoundEffectTypes.GiveHit);
-
-                    enemyData.isWalking = false;
-                    enemyData.enemySpeed = 0;
-                    StartCoroutine(DelayStopEnemy());
-                }
+                TouchPlayer();
             }
             if (collision.collider.CompareTag(SceneLoadController.Tags.Bullet.ToString()))
             {
-                enemyData.isWalking = false;
-                enemyData.enemySpeed = 0;
-                StartCoroutine(DelayStopEnemy());
-                if (_healthBar != null)
-                {
-                    if (_healthBar.transform.localScale.x <= 0.0625f)
-                    {
-                        enemyData.isDying = true;
-                        enemyData.isWalking = false;
-                        Destroy(_healthBar);
-                        ScoreController.GetInstance.SetScore(20);
-                        PlaySoundEffect(SoundEffectTypes.Death);
-                        StartCoroutine(DelayDestroy(4f));
-
-                    }
-                    else
-                    {
-                        PlaySoundEffect(SoundEffectTypes.GetHit);
-                        _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
-                    }
-                }
+                TouchBullet();
             }
             if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
             {//Ground, Ladder, Enemy
@@ -98,6 +79,41 @@ public class EnemyManager : MonoBehaviour
         {
             enemyData.isActivateMagnet = false;
             enemyData.isWalking = false;
+        }
+    }
+    public void TouchPlayer()
+    {
+        if (PlayerManager.GetInstance._healthBar != null && PlayerManager.GetInstance._healthBar.transform.localScale.x <= 0.0625f)
+        {
+            PlaySoundEffect(SoundEffectTypes.GiveHit);
+
+            enemyData.isWalking = false;
+            enemyData.enemySpeed = 0;
+            StartCoroutine(DelayStopEnemy());
+        }        
+    }
+    public void TouchBullet()
+    {
+        enemyData.isWalking = false;
+        enemyData.enemySpeed = 0;
+        StartCoroutine(DelayStopEnemy());
+        if (_healthBar != null)
+        {
+            if (_healthBar.transform.localScale.x <= 0.0625f)
+            {
+                enemyData.isDying = true;
+                enemyData.isWalking = false;
+                Destroy(_healthBar);
+                ScoreController.GetInstance.SetScore(20);
+                PlaySoundEffect(SoundEffectTypes.Death);
+                StartCoroutine(DelayDestroy(4f));
+
+            }
+            else
+            {
+                PlaySoundEffect(SoundEffectTypes.GetHit);
+                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+            }
         }
     }
 
