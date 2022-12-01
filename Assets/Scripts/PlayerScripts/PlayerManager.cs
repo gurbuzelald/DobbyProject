@@ -38,6 +38,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public float _xValue;
     public float _zValue;
 
+    [Header("Coin")]
+    public GameObject _coinObject;
+
     [Header("Initial Situations")]
     private float _initJumpForce;
     private float _initPlayerSpeed;
@@ -51,6 +54,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //Camera
         _currentCamera = _downCamera;
         _currentCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
+
+        _coinObject.SetActive(false);
 
         _playerData.isDestroyed = false;
         firingRotation = 0;
@@ -127,6 +132,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (other.CompareTag(SceneLoadController.Tags.Coin.ToString()))
         {
+            _coinObject.SetActive(true);
             _playerData.isPicking = true;
             PlaySoundEffect(SoundEffectTypes.PickUpCoin);
             other.gameObject.SetActive(false);

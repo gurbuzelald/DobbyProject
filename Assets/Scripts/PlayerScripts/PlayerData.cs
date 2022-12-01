@@ -66,5 +66,6 @@ public class PlayerData : ScriptableObject
     [Header("Clone Data")]
     public bool isCloneWalking;
     public bool isCloneDying;
+    public bool isDancing;
     public int idlingCount;
 }

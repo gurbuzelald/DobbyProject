@@ -304,7 +304,7 @@ public class PlayerAnimationController : MonoBehaviour
         {
             _animator.SetLayerWeight(10, 1);
             _animator.SetBool("isPickup", true);
-            StartCoroutine(DelayAnimation(1.5f, 10, 0));
+            StartCoroutine(DelayAnimation(0.5f, 10, 0));
         }
     }
     IEnumerator DelayAnimation(float delayValue, int layerOrder, float weightAmount)
@@ -313,5 +313,6 @@ public class PlayerAnimationController : MonoBehaviour
         _animator.SetBool("isPickup", false);
         _animator.SetLayerWeight(layerOrder, weightAmount);
         _playerData.isPicking = false;
+        PlayerManager.GetInstance._coinObject.SetActive(false);
     }
 }

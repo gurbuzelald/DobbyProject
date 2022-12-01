@@ -32,18 +32,24 @@ public class CloneAnimationController : MonoBehaviour
 
                 _animator.SetLayerWeight(1, 1);
             }
-            else if (_cloneData.isCloneDying)
+            if (_cloneData.isCloneDying)
             {
-                _animator.SetBool("isDying", true);
+                //_animator.SetBool("isDying", true);
 
+                //_animator.SetLayerWeight(2, 1);
+            }
+            if (_cloneData.isDancing)
+            {
                 _animator.SetLayerWeight(2, 1);
+
+                _animator.SetBool("isDancing", true);
             }
             else
             {
-                _animator.SetBool("isIdling", true);
+                //_animator.SetBool("isIdling", true);
 
-                _animator.SetLayerWeight(0, 1);
-                _animator.SetLayerWeight(1, 0);
+                //_animator.SetLayerWeight(0, 1);
+                //_animator.SetLayerWeight(1, 0);
             }
         }
         else
