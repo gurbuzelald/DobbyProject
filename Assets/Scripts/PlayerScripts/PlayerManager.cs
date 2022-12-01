@@ -57,6 +57,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _playerData.jumpCount = 0;
         if (_playerData != null)
         {
+            _playerData.isPicking = false;
             _playerData.isLookingUp = false;
             _playerData.isWinning = false;
             _playerData.isSkateBoarding = false;
@@ -126,6 +127,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (other.CompareTag(SceneLoadController.Tags.Coin.ToString()))
         {
+            _playerData.isPicking = true;
             PlaySoundEffect(SoundEffectTypes.PickUpCoin);
             other.gameObject.SetActive(false);
             ScoreController.GetInstance.SetScore(23);
@@ -164,6 +166,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         if (other.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
         {
             TriggerLadder(false, true);
+        }
+        if (other.CompareTag(SceneLoadController.Tags.Coin.ToString()))
+        {
+            //_playerData.isPicking = false;
         }
     }
     void TriggerLadder(bool isTouch, bool isTouchExit)
@@ -343,10 +349,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
         _currentCamera.transform.Rotate(-_mousePosY * Time.timeScale, 0, 0);        
 
-        if (_currentCamera.transform.eulerAngles.x > 70 && _currentCamera.transform.eulerAngles.x <= 75)
+        if (_currentCamera.transform.eulerAngles.x > 74 && _currentCamera.transform.eulerAngles.x <= 75)
         {
             _playerData.isLookingUp = false;
-            _currentCamera.transform.eulerAngles = new Vector3(70f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
+            _currentCamera.transform.eulerAngles = new Vector3(73f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
         else if (_currentCamera.transform.eulerAngles.x > 75 && _currentCamera.transform.eulerAngles.x <= 270)
         {
@@ -355,7 +361,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else if (_currentCamera.transform.eulerAngles.x < 0)
         {
-            _playerData.isLookingUp = false;
+            _playerData.isLookingUp = true;
             //_currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
         else if (_currentCamera.transform.eulerAngles.x > 270 && _currentCamera.transform.eulerAngles.x <= 360)

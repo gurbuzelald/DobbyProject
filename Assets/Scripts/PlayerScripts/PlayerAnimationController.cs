@@ -24,6 +24,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     public void AnimationStates()
     {
+        PickupAnimation();
         IdleAnimation();
         JumpAnimation();
         WalkAnimation();
@@ -296,9 +297,21 @@ public class PlayerAnimationController : MonoBehaviour
         _animator.SetBool("isSkating", false);
         _animator.SetLayerWeight(9, 0);
     }
+
+    void PickupAnimation()
+    {
+        if (_playerData.isPicking)
+        {
+            _animator.SetLayerWeight(10, 1);
+            _animator.SetBool("isPickup", true);
+            StartCoroutine(DelayAnimation(1.5f, 10, 0));
+        }
+    }
     IEnumerator DelayAnimation(float delayValue, int layerOrder, float weightAmount)
     {
         yield return new WaitForSeconds(delayValue);
+        _animator.SetBool("isPickup", false);
         _animator.SetLayerWeight(layerOrder, weightAmount);
+        _playerData.isPicking = false;
     }
 }
