@@ -24,6 +24,7 @@ public class PlayerData : ScriptableObject
     public bool isDying;
     public bool isWinning;
     public bool isSkateBoarding;
+    public bool isRunning;
     public bool isPicking;
     public bool isPickRotateCoin;
 
@@ -41,6 +42,7 @@ public class PlayerData : ScriptableObject
     public bool isJumping;
     public int jumpCount;
     public int clickTabCount;
+    public int clickShiftCount;
 
     [Header("Dance")]
     public float danceTime = 5f;

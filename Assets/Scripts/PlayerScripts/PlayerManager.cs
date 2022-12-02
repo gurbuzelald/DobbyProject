@@ -50,6 +50,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
         _playerData.clickTabCount = 0;
+        _playerData.clickShiftCount = 0;
         audioSource = GetComponent<AudioSource>();
 
         //Camera
@@ -69,6 +70,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isLookingUp = false;
             _playerData.isWinning = false;
             _playerData.isSkateBoarding = false;
+            _playerData.isRunning = false;
             _playerData.isPlayable = true;
             _playerData.playerSpeed = 2f;
             _initPlayerSpeed = _playerData.playerSpeed;
@@ -231,6 +233,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 Walk();
                 Climb();
                 SkateBoard();
+                Run();
 
                 if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround && _playerData.jumpCount <= 1)
                 {
@@ -264,13 +267,32 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isSkateBoarding = true;
             if (_playerData.clickTabCount > 1)
             {
-                //CreateParticle(ParticleNames.Skateboard);
                 _playerData.skateboardParticle.Stop();
                 _playerData.isSkateBoarding = false;
                 _playerData.clickTabCount = 0;
-            }            
-        }
+            }
+        }        
         if (_playerData.isSkateBoarding)
+        {
+            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Skateboard, _particleTransform.transform);
+            //_skateboardParticle.Play();
+            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+        }
+    }
+    void Run()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding)
+        {
+            _playerData.clickShiftCount++;
+            _playerData.isRunning = true;
+            if (_playerData.clickShiftCount > 1)
+            {
+                _playerData.skateboardParticle.Stop();
+                _playerData.isRunning = false;
+                _playerData.clickShiftCount = 0;
+            }
+        }
+        if (_playerData.isRunning)
         {
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Skateboard, _particleTransform.transform);
             //_skateboardParticle.Play();
@@ -278,9 +300,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
 
     }
+
     void Walk()
     {
-        if (_zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding)
+        if (_zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isRunning)
         {
             GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
             _playerData.isWalking = true;
@@ -330,9 +353,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else if (_playerData.isSkateBoarding && _zValue > 0)
         {
+            _playerData.playerSpeed = _initPlayerSpeed * 1.6f;
 
+        }
+        else if (_playerData.isRunning && _zValue > 0)
+        {
             _playerData.playerSpeed = _initPlayerSpeed * 1.3f;
-
         }
         else
         {
@@ -461,9 +487,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         GameObject jolleenObject = Instantiate(_playerData.jolleenObject, _jolleenTransform.transform);
         jolleenObject.transform.position = _jolleenTransform.transform.position;
         Destroy(jolleenObject, _playerData.danceTime);
-    }
-    
-    
+    }  
    
     IEnumerator Delay(float value)
     {
@@ -494,8 +518,5 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         yield return new WaitForSeconds(delayDying);
         Destroy(gameObject);
         SceneLoadController.GetInstance.LoadEndScene();
-    }
-    
-    
-   
+    }   
 }

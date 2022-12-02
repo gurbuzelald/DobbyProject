@@ -34,6 +34,7 @@ public class PlayerAnimationController : MonoBehaviour
         DeathAnimation();
         VictoryAnimation();
         SkateBoardAnimation();
+        RunAnimation();
         PickRotateAnimation();
     }
     void IdleAnimation()
@@ -273,7 +274,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void SkateBoardAnimation()
     {
-        if (playerData.isSkateBoarding && PlayerManager.GetInstance._zValue > 0 && !playerData.isJumping)
+        if (playerData.isSkateBoarding && PlayerManager.GetInstance._zValue > 0 && !playerData.isJumping && !playerData.isRunning)
         {
             _animator.SetLayerWeight(9, 1);
             _animator.SetBool("isSkating", true);
@@ -298,6 +299,34 @@ public class PlayerAnimationController : MonoBehaviour
         playerData.isSkateBoarding = false;
         _animator.SetBool("isSkating", false);
         _animator.SetLayerWeight(9, 0);
+    }
+    void RunAnimation()
+    {
+        if (playerData.isRunning && PlayerManager.GetInstance._zValue > 0 && !playerData.isJumping)
+        {
+            _animator.SetLayerWeight(12, 1);
+            _animator.SetBool("isRunning", true);
+        }
+        else if (playerData.isRunning && PlayerManager.GetInstance._zValue == 0)
+        {
+            DisableRunAnimation();
+        }
+        else if (!playerData.isRunning && playerData.isJumping)
+        {
+            _animator.SetLayerWeight(12, 1);
+            _animator.SetBool("isJumping", true);
+        }
+        else
+        {
+            DisableRunAnimation();
+        }
+    }
+    void DisableRunAnimation()
+    {
+        playerData.clickShiftCount = 0;
+        playerData.isRunning = false;
+        _animator.SetBool("isRunning", false);
+        _animator.SetLayerWeight(12, 0);
     }
 
     void PickupAnimation()
