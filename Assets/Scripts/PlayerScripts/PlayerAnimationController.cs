@@ -321,6 +321,7 @@ public class PlayerAnimationController : MonoBehaviour
     IEnumerator DelayAnimation(float delayValue, int layerOrder, float weightAmount)
     {
         yield return new WaitForSeconds(delayValue);
+        playerData.playerSpeed = 2f;
         _animator.SetBool("isPickup", false);
         _animator.SetBool("isPickRotateCoin", false);
         _animator.SetLayerWeight(layerOrder, weightAmount);

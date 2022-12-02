@@ -65,10 +65,11 @@ public class PlayerData : ScriptableObject
     public AudioClip levelUpClip;
     public AudioClip jumpingSeaClip;
 
-
     [Header("BulletManager Data")]
     public GameObject _bulletObject;//If ObjectPool is not using in project, this'll use
     public float bulletSpeed = 5f;
+
+
 
     [Header("Clone Data")]
     public bool isCloneWalking;
@@ -78,4 +79,6 @@ public class PlayerData : ScriptableObject
     [Header("Destination Touch Control")]
     public bool isTouchFirst;
     public bool isTouchMain;
+
+    public float cloneSpeed;
 }

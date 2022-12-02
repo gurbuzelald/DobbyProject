@@ -31,7 +31,7 @@ public class CloneManager : MonoBehaviour
         _navmeshAgent = GetComponent<NavMeshAgent>();
         if (_navmeshAgent != null)
         {
-            _navmeshAgent.speed = 2f;
+            _navmeshAgent.speed = cloneData.cloneSpeed;
         }
     }
     void Update()
@@ -65,12 +65,12 @@ public class CloneManager : MonoBehaviour
             _navmeshAgent.speed = 0;
             cloneData.isCloneDying = true;
             cloneData.isCloneWalking = false;
-            PlayerManager.GetInstance.CreateParticle(PlayerManager.ParticleNames.Death, gameObject.transform);
+            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Death, gameObject.transform);
             Destroy(gameObject, 3f);
         }
         else if(!playerData.isTouchFinish && cloneData.particleCount == 0)
         {
-            _navmeshAgent.speed = 2;
+            _navmeshAgent.speed = cloneData.cloneSpeed;
         }
     }
     void OnTarget()
@@ -99,7 +99,7 @@ public class CloneManager : MonoBehaviour
         if (cloneData.particleCount == 0)
         {
             cloneData.particleCount++;
-            PlayerManager.GetInstance.CreateParticle(PlayerManager.ParticleNames.Death, PlayerManager.GetInstance.gameObject.transform);
+            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Death, PlayerManager.GetInstance.gameObject.transform);
         }
         yield return new WaitForSeconds(4f);
         SceneLoadController.GetInstance.LoadMenuScene();

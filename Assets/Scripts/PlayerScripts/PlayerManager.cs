@@ -6,7 +6,8 @@ using Cinemachine;
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
     [Header("Sound")]
-    private AudioSource _audioSource;
+    [HideInInspector] public AudioSource audioSource;
+    //public PlayerSoundEffect playerSFX;
 
     [Header("Particle Transform")]
     public Transform _particleTransform;
@@ -18,7 +19,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [Header("Health")]
     public GameObject _healthBar;
 
-    [Header("JolleenAnimation Transform")]
+    [Header("Jolleen Animation Transform")]
     [SerializeField] Transform _jolleenTransform;
 
     [Header("Fire")]
@@ -38,7 +39,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public float _xValue;
     public float _zValue;
 
-    [Header("Coin")]
+    [Header("Coin In The Right Hand")]
     public GameObject _coinObject;
 
     [Header("Initial Situations")]
@@ -47,9 +48,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     void Start()
     {
-        CreateParticle(ParticleNames.Birth, _particleTransform.transform);
+        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
         _playerData.clickTabCount = 0;
-        _audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
         //Camera
         _currentCamera = _downCamera;
@@ -109,7 +110,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
             if (collision.collider.CompareTag(SceneLoadController.Tags.Coin.ToString()))
             {
-                PlaySoundEffect(SoundEffectTypes.PickUpCoin);
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
                 collision.collider.gameObject.SetActive(false);
                 ScoreController.GetInstance.SetScore(230);
             }
@@ -134,17 +135,19 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (other.CompareTag(SceneLoadController.Tags.Coin.ToString()))
         {
+            _playerData.playerSpeed = 0.5f;
             _coinObject.SetActive(true);
             _playerData.isPicking = true;
-            PlaySoundEffect(SoundEffectTypes.PickUpCoin);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
             other.gameObject.SetActive(false);
             ScoreController.GetInstance.SetScore(23);
         }
         if (other.CompareTag(SceneLoadController.Tags.RotateCoin.ToString()))
         {
+            _playerData.playerSpeed = 0.5f;
             _coinObject.SetActive(true);
             _playerData.isPickRotateCoin = true;
-            PlaySoundEffect(SoundEffectTypes.PickUpCoin);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
             other.gameObject.SetActive(false);
             ScoreController.GetInstance.SetScore(23);
         }
@@ -159,7 +162,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isDying = true;
             _playerData.isIdling = false;
             _playerData.isPlayable = false;
-            CreateParticle(ParticleNames.Fire, _particleTransform.transform);
+            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Fire, _particleTransform.transform);
             StartCoroutine(DelayDestroy(3f));
         }
         if (other.CompareTag(SceneLoadController.Tags.Water.ToString()))
@@ -172,7 +175,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isDying = true;
             _playerData.isIdling = false;
             _playerData.isPlayable = false;
-            PlaySoundEffect(SoundEffectTypes.JumpToSea);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
             StartCoroutine(DelayDestroy(5f));
         }
     }
@@ -269,7 +272,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (_playerData.isSkateBoarding)
         {
-            CreateParticle(ParticleNames.Skateboard, _particleTransform.transform);
+            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Skateboard, _particleTransform.transform);
             //_skateboardParticle.Play();
             GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
         }
@@ -341,14 +344,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (_playerData.jumpCount == 0)
         {
-            PlaySoundEffect(SoundEffectTypes.Jump);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
             _playerData.jumpForce = _initJumpForce;
             _playerData.isJumping = true;
             GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
         }
         else
         {
-            PlaySoundEffect(SoundEffectTypes.Jump);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
             _playerData.jumpForce = _initJumpForce / 1.5f;
             _playerData.isJumping = true;
             GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
@@ -417,7 +420,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void Fire()
     {
-        PlaySoundEffect(SoundEffectTypes.Shoot);
+        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
         _bulletManager.CreateBullet();
         _playerData.isFiring = true;
         crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
@@ -428,15 +431,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (_healthBar.transform.localScale.x <= 0.0625f)
         {
-            PlaySoundEffect(SoundEffectTypes.GetHit);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
             _playerData.isDestroyed = true;
 
             //EnemyAnimation
             collision.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
             collision.gameObject.GetComponent<EnemyManager>().enemyData.enemySpeed = 0;
-            //collision.collider.gameObject._enemyData.isWalking = false;
-            //collision.collider._enemyData.enemySpeed = 0;
 
             //PlayerData
             _playerData.isDying = true;
@@ -448,9 +449,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else
         {
-            CreateParticle(ParticleNames.Touch, _particleTransform.transform);
+            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
 
-            PlaySoundEffect(SoundEffectTypes.GetHit);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
             _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
         }
@@ -461,85 +462,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         jolleenObject.transform.position = _jolleenTransform.transform.position;
         Destroy(jolleenObject, _playerData.danceTime);
     }
-    public void CreateParticle(ParticleNames particleName, Transform particleTransform)
-    {
-        if (particleName == ParticleNames.Skateboard)
-        {            
-            GameObject particleObject = Instantiate(_playerData.skateboardParticle.gameObject, particleTransform);
-            particleObject.transform.position = particleTransform.position;
-            particleObject.GetComponent<ParticleSystem>().Play();
-            Destroy(particleObject, 0.5f);
-        }
-        if (particleName == ParticleNames.Death)
-        {
-            GameObject particleObject = Instantiate(_playerData.deathParticle.gameObject, particleTransform);
-            particleObject.transform.position = particleTransform.position;
-            particleObject.GetComponent<ParticleSystem>().Play();
-            Destroy(particleObject, 5f);
-        }
-        if (particleName == ParticleNames.Touch)
-        {
-            GameObject particleObject = Instantiate(_playerData.touchParticle.gameObject, particleTransform);
-            particleObject.transform.position = particleTransform.position;
-            particleObject.GetComponent<ParticleSystem>().Play();
-            Destroy(particleObject, 0.5f);
-        }
-        if (particleName == ParticleNames.Birth)
-        {
-            GameObject particleObject = Instantiate(_playerData.birthParticle.gameObject, particleTransform);
-            particleObject.transform.position = particleTransform.position;
-            particleObject.GetComponent<ParticleSystem>().Play();
-            StartCoroutine(DelayStopParticle(2f, particleObject));
-        }
-        if (particleName == ParticleNames.Fire)
-        {
-            GameObject particleObject = Instantiate(_playerData.firingParticle.gameObject, particleTransform);
-            particleObject.transform.position = particleTransform.position;
-            particleObject.GetComponent<ParticleSystem>().Play();
-            StartCoroutine(DelayStopParticle(3f, particleObject));
-        }
-        
-    }   
     
-    public void PlaySoundEffect(SoundEffectTypes soundEffect)
-    {
-        if (soundEffect == SoundEffectTypes.Shoot)
-        {
-            _audioSource.PlayOneShot(_playerData.shootClip);
-        }
-        else if (soundEffect == SoundEffectTypes.GetHit)
-        {
-            _audioSource.PlayOneShot(_playerData.getHitClip);
-        }
-        else if (soundEffect == SoundEffectTypes.Jump)
-        {
-            _audioSource.PlayOneShot(_playerData.jumpingClip);
-        }
-        else if (soundEffect == SoundEffectTypes.Death)
-        {
-            _audioSource.PlayOneShot(_playerData.dyingClip);
-        }
-        else if (soundEffect == SoundEffectTypes.GetHit)
-        {
-            _audioSource.PlayOneShot(_playerData.getHitClip);
-        }
-        else if (soundEffect == SoundEffectTypes.PickUpCoin)
-        {
-            _audioSource.PlayOneShot(_playerData.pickupCoinClip);
-        }
-        else if (soundEffect == SoundEffectTypes.Trap)
-        {
-            _audioSource.PlayOneShot(_playerData.trapClip);
-        }
-        else if (soundEffect == SoundEffectTypes.LevelUp)
-        {
-            _audioSource.PlayOneShot(_playerData.levelUpClip);
-        }
-        else if (soundEffect == SoundEffectTypes.Jump)
-        {
-            _audioSource.PlayOneShot(_playerData.jumpingSeaClip);
-        }
-    }
+    
+   
     IEnumerator Delay(float value)
     {
         yield return new WaitForSeconds(value);
@@ -547,7 +472,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     IEnumerator DelayLevelUp(float delayWait, float delayDestroy)
     {
-        PlaySoundEffect(SoundEffectTypes.LevelUp);
+        Destroy(_healthBar);
+        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
         _playerData.isTouchFinish = true;
 
         yield return new WaitForSeconds(delayWait);
@@ -558,40 +484,18 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         CreateVictoryAnimation();
 
         yield return new WaitForSeconds(delayDestroy);
-        Destroy(gameObject);
+        //Destroy(gameObject);
         SceneLoadController.GetInstance.LevelUp();
     }
     IEnumerator DelayDestroy(float delayDying)
     {
-        CreateParticle(ParticleNames.Death, _particleTransform.transform);
+        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Death, _particleTransform.transform);
 
         yield return new WaitForSeconds(delayDying);
         Destroy(gameObject);
         SceneLoadController.GetInstance.LoadEndScene();
     }
-    IEnumerator DelayStopParticle(float value, GameObject particleObject)
-    {
-        yield return new WaitForSeconds(value);
-
-        Destroy(particleObject);
-    }
-    public enum SoundEffectTypes
-    {
-        Shoot,
-        GetHit,
-        Jump,
-        JumpToSea,
-        Death,
-        PickUpCoin,
-        Trap,
-        LevelUp
-    }
-    public enum ParticleNames
-    {
-        Skateboard,
-        Death,
-        Touch,
-        Birth,
-        Fire
-    }
+    
+    
+   
 }

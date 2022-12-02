@@ -32,7 +32,11 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     }
     public void LevelUp()
     {
-        //_audioSource.Stop();
+        if (SceneManager.sceneCountInBuildSettings - 2 == SceneManager.GetActiveScene().buildIndex)
+        {
+            _audioSource.Stop();
+        }
+        Destroy(PlayerManager.GetInstance.gameObject);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void QuitGame()

@@ -12,24 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: CloneData
   m_EditorClassIdentifier: 
+  isTouchFinish: 0
   playerSpeed: 0
   rotateSpeed: 0
   jumpForce: 0
-  danceTime: 5
   isGround: 0
   isWalking: 0
   isBackWalking: 0
   isClimbing: 0
   isBackClimbing: 0
-  isFiring: 0
-  isJumping: 0
   isIdling: 0
   isDying: 0
-  isPlayable: 0
   isWinning: 0
   isSkateBoarding: 0
+  isPicking: 0
+  isPickRotateCoin: 0
   isLookingUp: 0
   isDestroyed: 0
+  isPlayable: 0
+  isFiring: 0
+  isJumping: 0
+  jumpCount: 0
+  clickTabCount: 0
+  danceTime: 5
+  jolleenObject: {fileID: 0}
+  skateboardParticle: {fileID: 0}
+  touchParticle: {fileID: 0}
+  birthParticle: {fileID: 0}
+  deathParticle: {fileID: 0}
+  firingParticle: {fileID: 0}
+  particleCount: 0
   shootClip: {fileID: 0}
   getHitClip: {fileID: 0}
   jumpingClip: {fileID: 0}
@@ -38,3 +50,12 @@ MonoBehaviour:
   trapClip: {fileID: 0}
   levelUpClip: {fileID: 0}
   jumpingSeaClip: {fileID: 0}
+  _bulletObject: {fileID: 0}
+  bulletSpeed: 5
+  isCloneWalking: 0
+  isCloneDying: 0
+  isCloneDancing: 0
+  idlingCount: 0
+  isTouchFirst: 0
+  isTouchMain: 0
+  cloneSpeed: 0.2

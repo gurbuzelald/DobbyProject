@@ -15,6 +15,7 @@ public class EnemyManager : MonoBehaviour
 
     [Header("Data")]
     public EnemyData enemyData;
+    public PlayerData playerData;
 
     [Header("Initial Situations")]
     private float _initSpeed;
@@ -33,7 +34,14 @@ public class EnemyManager : MonoBehaviour
     {
         if (gameObject != null)
         {
-            Movement();
+            if (playerData.isPlayable)
+            {
+                Movement();
+            }
+            else
+            {
+                enemyData.isWalking = false;
+            }
         }
     }
     private void OnCollisionEnter(Collision collision)
