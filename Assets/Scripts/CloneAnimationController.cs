@@ -38,7 +38,7 @@ public class CloneAnimationController : MonoBehaviour
 
                 //_animator.SetLayerWeight(2, 1);
             }
-            if (_cloneData.isDancing)
+            if (_cloneData.isCloneDancing)
             {
                 _animator.SetLayerWeight(2, 1);
 

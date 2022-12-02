@@ -21,6 +21,7 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     public void LoadMenuScene()
     {
         _audioSource.Stop();
+        Destroy(PlayerManager.GetInstance.gameObject);
         SceneManager.LoadScene("Menu");
     }
     public void LoadEndScene()

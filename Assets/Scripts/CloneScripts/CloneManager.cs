@@ -9,48 +9,47 @@ public class CloneManager : MonoBehaviour
     public PlayerData cloneData;
     public PlayerData playerData;
 
+    [Header("Navmesh")]
     private NavMeshAgent _navmeshAgent;
-    public GameObject _nameshSurface;
-    [SerializeField] Transform _secondTarget;
+
+    [Header("Destination Transform")]
     [SerializeField] Transform _firstTarget;
-    [SerializeField] Transform _currentTarget;
-    private bool _isTouchFirst;
-    private bool _isTouchMain;
-    // Start is called before the first frame update
+    [SerializeField] Transform _secondTarget;
+    [SerializeField] Transform _currentTarget;   
+
     void Start()
     {
+        if (cloneData != null)
+        {
+            cloneData.particleCount = 0;
+            cloneData.isCloneDancing = false;
+            cloneData.isTouchFirst = true;
+            cloneData.isTouchMain = false;
+        }        
         _currentTarget.position = _firstTarget.position;
-        cloneData.isDancing = false;
-        _isTouchFirst = true;
-        _isTouchMain = false;
-        _navmeshAgent = GetComponent<NavMeshAgent>();
-        _navmeshAgent.speed = 2f;
-    }
 
-    // Update is called once per frame
+        _navmeshAgent = GetComponent<NavMeshAgent>();
+        if (_navmeshAgent != null)
+        {
+            _navmeshAgent.speed = 2f;
+        }
+    }
     void Update()
     {
         //Debug.Log(Vector3.Distance(gameObject.transform.position, _firstTarget.position));
 
         OnTarget();
-        if (playerData.isTouchFinish)
-        {
-            _navmeshAgent.speed = 0;
-            cloneData.isCloneDying = true;
-            cloneData.isCloneWalking = false;
-            PlayerManager.GetInstance.CreateParticle(PlayerManager.ParticleNames.Death, gameObject.transform);
-            Destroy(gameObject, 3f);
-        }
-        else
-        {
-            _navmeshAgent.speed = 2;
-        }
-        //Debug.Log(Vector3.Distance(gameObject.transform.position, _firstTarget.position));
-        if (_isTouchFirst)
+        DeadManage();
+        DestinationStates();
+
+    }
+    void DestinationStates()
+    {
+        if (cloneData.isTouchFirst)
         {
             _currentTarget.position = _firstTarget.position;
         }
-        if (_isTouchMain)
+        if (cloneData.isTouchMain)
         {
             _currentTarget.position = _secondTarget.position;
 
@@ -58,21 +57,37 @@ public class CloneManager : MonoBehaviour
         }
         _navmeshAgent.destination = _currentTarget.position;
     }
+    void DeadManage()
+    {
+        if (playerData.isTouchFinish && cloneData.particleCount == 0)
+        {
+            cloneData.particleCount++;
+            _navmeshAgent.speed = 0;
+            cloneData.isCloneDying = true;
+            cloneData.isCloneWalking = false;
+            PlayerManager.GetInstance.CreateParticle(PlayerManager.ParticleNames.Death, gameObject.transform);
+            Destroy(gameObject, 3f);
+        }
+        else if(!playerData.isTouchFinish && cloneData.particleCount == 0)
+        {
+            _navmeshAgent.speed = 2;
+        }
+    }
     void OnTarget()
     {
         if (Vector3.Distance(gameObject.transform.position, _firstTarget.position) < 0.6f)
         {
-            _isTouchFirst = false;
-            _isTouchMain = true;
+            cloneData.isTouchFirst = false;
+            cloneData.isTouchMain = true;
         }
         if (Vector3.Distance(gameObject.transform.position, _secondTarget.position) < 0.6f)
         {
-            _isTouchFirst = false;
-            _isTouchMain = false;
+            cloneData.isTouchFirst = false;
+            cloneData.isTouchMain = false;
 
             _navmeshAgent.speed = 0;
 
-            cloneData.isDancing = true;
+            cloneData.isCloneDancing = true;
             cloneData.isCloneWalking = false;
 
             playerData.isPlayable = false;
@@ -81,7 +96,12 @@ public class CloneManager : MonoBehaviour
     }
     IEnumerator DelayLevelup()
     {
-        yield return new WaitForSeconds(5f);
+        if (cloneData.particleCount == 0)
+        {
+            cloneData.particleCount++;
+            PlayerManager.GetInstance.CreateParticle(PlayerManager.ParticleNames.Death, PlayerManager.GetInstance.gameObject.transform);
+        }
+        yield return new WaitForSeconds(4f);
         SceneLoadController.GetInstance.LoadMenuScene();
     }
 }

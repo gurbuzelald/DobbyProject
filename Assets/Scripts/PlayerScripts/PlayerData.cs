@@ -46,12 +46,14 @@ public class PlayerData : ScriptableObject
     public float danceTime = 5f;
     public GameObject jolleenObject;
 
-    [Header("PlayerParticle")]
+    [Header("Particle")]
     public ParticleSystem skateboardParticle;
     public ParticleSystem touchParticle;
     public ParticleSystem birthParticle;
     public ParticleSystem deathParticle;
     public ParticleSystem firingParticle;
+    [Header("Particle Count Control")]
+    public int particleCount;
 
     [Header("Sounds")]
     public AudioClip shootClip;
@@ -71,6 +73,9 @@ public class PlayerData : ScriptableObject
     [Header("Clone Data")]
     public bool isCloneWalking;
     public bool isCloneDying;
-    public bool isDancing;
+    public bool isCloneDancing;
     public int idlingCount;
+    [Header("Destination Touch Control")]
+    public bool isTouchFirst;
+    public bool isTouchMain;
 }

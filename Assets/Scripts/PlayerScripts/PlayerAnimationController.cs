@@ -8,7 +8,8 @@ public class PlayerAnimationController : MonoBehaviour
     private Animator _animator;
 
     [Header("Data")]
-    public PlayerData _playerData;
+    public PlayerData playerData;
+    public PlayerData cloneData;
 
     private void Start()
     {
@@ -36,8 +37,8 @@ public class PlayerAnimationController : MonoBehaviour
         PickRotateAnimation();
     }
     void IdleAnimation()
-    {
-        if (_playerData.isIdling && PlayerManager.GetInstance._xValue == 0 && PlayerManager.GetInstance._zValue == 0 && !_playerData.isJumping && !_playerData.isDying)
+    {        
+        if (playerData.isIdling && PlayerManager.GetInstance._xValue == 0 && PlayerManager.GetInstance._zValue == 0 && !playerData.isJumping && !playerData.isDying)
         {
             _animator.SetBool("isIdling", true);
 
@@ -52,7 +53,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void WalkAnimation()
     {
-        if (_playerData.isWalking && !_playerData.isBackWalking && !_playerData.isJumping && !_playerData.isClimbing)
+        if (playerData.isWalking && !playerData.isBackWalking && !playerData.isJumping && !playerData.isClimbing)
         {
             _animator.SetBool("isWalking", true);
 
@@ -64,7 +65,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(2, 0);
             _animator.SetLayerWeight(3, 0);
         }
-        else if (_playerData.isBackWalking && !_playerData.isWalking && !_playerData.isJumping && !_playerData.isBackClimbing)
+        else if (playerData.isBackWalking && !playerData.isWalking && !playerData.isJumping && !playerData.isBackClimbing)
         {
             _animator.SetBool("isBackWalking", true);
 
@@ -76,7 +77,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(1, 0);
             _animator.SetLayerWeight(4, 0);
         }
-        else if (!_playerData.isBackWalking && !_playerData.isWalking && !_playerData.isClimbing && !_playerData.isJumping)
+        else if (!playerData.isBackWalking && !playerData.isWalking && !playerData.isClimbing && !playerData.isJumping)
         {
             _animator.SetBool("isIdling", true);
 
@@ -105,7 +106,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(5, 1);
 
         }
-        else if (PlayerManager.GetInstance._xValue == 0 && !_playerData.isJumping)
+        else if (PlayerManager.GetInstance._xValue == 0 && !playerData.isJumping)
         {
             _animator.SetLayerWeight(5, 0);
             _animator.SetLayerWeight(0, 1);
@@ -126,7 +127,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(6, 1);
             _animator.SetLayerWeight(0, 0);
         }
-        else if (PlayerManager.GetInstance._xValue == 0 && !_playerData.isJumping)
+        else if (PlayerManager.GetInstance._xValue == 0 && !playerData.isJumping)
         {
             _animator.SetLayerWeight(6, 0);
             _animator.SetLayerWeight(0, 1);
@@ -135,7 +136,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     void ClimbAnimation()
     {
-        if (_playerData.isClimbing && !_playerData.isBackClimbing && PlayerManager.GetInstance._zValue > 0)
+        if (playerData.isClimbing && !playerData.isBackClimbing && PlayerManager.GetInstance._zValue > 0)
         {
             _animator.SetBool("isIdling", false);
 
@@ -147,7 +148,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(2, 0);
             _animator.SetLayerWeight(3, 1);
         }
-        if (!_playerData.isClimbing && _playerData.isBackClimbing && PlayerManager.GetInstance._zValue < 0)
+        if (!playerData.isClimbing && playerData.isBackClimbing && PlayerManager.GetInstance._zValue < 0)
         {
             _animator.SetBool("isIdling", false);
 
@@ -161,7 +162,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(3, 0);
             _animator.SetLayerWeight(4, 1);
         }
-        if ((_playerData.isClimbing || !_playerData.isClimbing) && PlayerManager.GetInstance._zValue == 0 && !_playerData.isFiring && !_playerData.isJumping)
+        if ((playerData.isClimbing || !playerData.isClimbing) && PlayerManager.GetInstance._zValue == 0 && !playerData.isFiring && !playerData.isJumping)
         {
             _animator.SetBool("isIdling", true);
 
@@ -179,7 +180,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void FireAnimation()
     {
-        if (_playerData.isFiring)
+        if (playerData.isFiring)
         {
             _animator.SetBool("isFiring", true);
 
@@ -189,7 +190,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetBool("isClimbing", false);
             _animator.SetBool("isBackClimbing", false);
         }
-        else if (!_playerData.isFiring && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 && !_playerData.isClimbing)
+        else if (!playerData.isFiring && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 && !playerData.isClimbing)
         {
             _animator.SetBool("isIdling", true);
 
@@ -202,14 +203,14 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void JumpAnimation()
     {
-        if (_playerData.isJumping && _playerData.isGround && !_playerData.isSkateBoarding && (PlayerManager.GetInstance._zValue > 0 || PlayerManager.GetInstance._xValue > 0))
+        if (playerData.isJumping && playerData.isGround && !playerData.isSkateBoarding && (PlayerManager.GetInstance._zValue > 0 || PlayerManager.GetInstance._xValue > 0))
         {
             _animator.SetLayerWeight(1, 1);
 
             _animator.SetBool("isWalking", true);
             _animator.SetBool("isJumping", true);
         }
-        if (_playerData.isJumping && PlayerManager.GetInstance._zValue == 0)
+        if (playerData.isJumping && PlayerManager.GetInstance._zValue == 0)
         {
             _animator.SetBool("isJumping", true);
 
@@ -220,7 +221,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetBool("isClimbing", false);
             _animator.SetBool("isBackClimbing", false);
         }
-        else if (_playerData.isJumping && PlayerManager.GetInstance._zValue > 0 && !_playerData.isSkateBoarding)
+        else if (playerData.isJumping && PlayerManager.GetInstance._zValue > 0 && !playerData.isSkateBoarding)
         {
             _animator.SetLayerWeight(1, 1);
 
@@ -231,7 +232,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetBool("isClimbing", false);
             _animator.SetBool("isBackClimbing", false);
         }
-        else if (!_playerData.isJumping && PlayerManager.GetInstance._zValue > 0)
+        else if (!playerData.isJumping && PlayerManager.GetInstance._zValue > 0)
         {
             _animator.SetLayerWeight(1, 1);
 
@@ -243,7 +244,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetBool("isClimbing", false);
             _animator.SetBool("isBackClimbing", false);
         }
-        else if (!_playerData.isJumping && !_playerData.isWalking && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0)
+        else if (!playerData.isJumping && !playerData.isWalking && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0)
         {
             _animator.SetBool("isJumping", false);
             _animator.SetBool("isWalking", false);
@@ -253,7 +254,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void DeathAnimation()
     {
-        if (_playerData.isDying)
+        if (playerData.isDying || !cloneData.isTouchMain && !cloneData.isTouchFirst)
         {
             _animator.SetBool("isDying", true);
             _animator.SetLayerWeight(7, 1);
@@ -262,7 +263,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void VictoryAnimation()
     {
-        if (_playerData.isWinning)
+        if (playerData.isWinning)
         {
             _animator.SetBool("isWinning", true);
             _animator.SetLayerWeight(8, 1);
@@ -272,16 +273,16 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void SkateBoardAnimation()
     {
-        if (_playerData.isSkateBoarding && PlayerManager.GetInstance._zValue > 0 && !_playerData.isJumping)
+        if (playerData.isSkateBoarding && PlayerManager.GetInstance._zValue > 0 && !playerData.isJumping)
         {
             _animator.SetLayerWeight(9, 1);
             _animator.SetBool("isSkating", true);
         }
-        else if (_playerData.isSkateBoarding && PlayerManager.GetInstance._zValue == 0)
+        else if (playerData.isSkateBoarding && PlayerManager.GetInstance._zValue == 0)
         {
             DisableSkateAnimation();
         }
-        else if (!_playerData.isSkateBoarding && _playerData.isJumping)
+        else if (!playerData.isSkateBoarding && playerData.isJumping)
         {
             _animator.SetLayerWeight(9, 1);
             _animator.SetBool("isJumping", true);
@@ -293,15 +294,15 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void DisableSkateAnimation()
     {
-        _playerData.clickTabCount = 0;
-        _playerData.isSkateBoarding = false;
+        playerData.clickTabCount = 0;
+        playerData.isSkateBoarding = false;
         _animator.SetBool("isSkating", false);
         _animator.SetLayerWeight(9, 0);
     }
 
     void PickupAnimation()
     {
-        if (_playerData.isPicking)
+        if (playerData.isPicking)
         {
             _animator.SetLayerWeight(10, 1);
             _animator.SetBool("isPickup", true);
@@ -310,7 +311,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void PickRotateAnimation()
     {
-        if (_playerData.isPickRotateCoin)
+        if (playerData.isPickRotateCoin)
         {
             _animator.SetLayerWeight(11, 1);
             _animator.SetBool("isPickRotateCoin", true);
@@ -323,8 +324,8 @@ public class PlayerAnimationController : MonoBehaviour
         _animator.SetBool("isPickup", false);
         _animator.SetBool("isPickRotateCoin", false);
         _animator.SetLayerWeight(layerOrder, weightAmount);
-        _playerData.isPicking = false;
-        _playerData.isPickRotateCoin = false;
+        playerData.isPicking = false;
+        playerData.isPickRotateCoin = false;
         PlayerManager.GetInstance._coinObject.SetActive(false);
     }
 }
