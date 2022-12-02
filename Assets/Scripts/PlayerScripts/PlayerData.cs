@@ -3,6 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+
+    [Header("FinishCheck")]
+    public bool isTouchFinish;
+
     [Header("Speed")]
     public float playerSpeed;
     public float rotateSpeed;

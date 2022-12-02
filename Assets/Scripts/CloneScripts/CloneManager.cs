@@ -7,6 +7,7 @@ public class CloneManager : MonoBehaviour
 {
     [Header("Data")]
     public PlayerData cloneData;
+    public PlayerData playerData;
 
     private NavMeshAgent _navmeshAgent;
     public GameObject _nameshSurface;
@@ -23,6 +24,7 @@ public class CloneManager : MonoBehaviour
         _isTouchFirst = true;
         _isTouchMain = false;
         _navmeshAgent = GetComponent<NavMeshAgent>();
+        _navmeshAgent.speed = 2f;
     }
 
     // Update is called once per frame
@@ -30,19 +32,18 @@ public class CloneManager : MonoBehaviour
     {
         //Debug.Log(Vector3.Distance(gameObject.transform.position, _firstTarget.position));
 
-        if (Vector3.Distance(gameObject.transform.position, _firstTarget.position) < 0.6f)
+        OnTarget();
+        if (playerData.isTouchFinish)
         {
-            _isTouchFirst = false;
-            _isTouchMain = true;
-        }
-        if (Vector3.Distance(gameObject.transform.position, _secondTarget.position) < 0.6f)
-        {
-            _isTouchFirst = false;
-            _isTouchMain = false;
-
-            cloneData.isDancing = true;
+            _navmeshAgent.speed = 0;
+            cloneData.isCloneDying = true;
             cloneData.isCloneWalking = false;
-            StartCoroutine(DelayLevelup());
+            PlayerManager.GetInstance.CreateParticle(PlayerManager.ParticleNames.Death, gameObject.transform);
+            Destroy(gameObject, 3f);
+        }
+        else
+        {
+            _navmeshAgent.speed = 2;
         }
         //Debug.Log(Vector3.Distance(gameObject.transform.position, _firstTarget.position));
         if (_isTouchFirst)
@@ -57,22 +58,30 @@ public class CloneManager : MonoBehaviour
         }
         _navmeshAgent.destination = _currentTarget.position;
     }
-    private void OnTriggerEnter(Collider other)
+    void OnTarget()
     {
-        if (other.CompareTag(SceneLoadController.Tags.FirstTarget.ToString()))
+        if (Vector3.Distance(gameObject.transform.position, _firstTarget.position) < 0.6f)
         {
-            //gameObject.transform.eulerAngles = new Vector3(270, gameObject.transform.eulerAngles.y, gameObject.transform.eulerAngles.z);
-            //_isTouchFirst = false;
-            //_isTouchMain = true;
+            _isTouchFirst = false;
+            _isTouchMain = true;
         }
-        if (other.CompareTag(SceneLoadController.Tags.MainTarget.ToString()))
+        if (Vector3.Distance(gameObject.transform.position, _secondTarget.position) < 0.6f)
         {
+            _isTouchFirst = false;
+            _isTouchMain = false;
+
+            _navmeshAgent.speed = 0;
+
+            cloneData.isDancing = true;
+            cloneData.isCloneWalking = false;
+
+            playerData.isPlayable = false;
+            StartCoroutine(DelayLevelup());
         }
     }
     IEnumerator DelayLevelup()
     {
         yield return new WaitForSeconds(5f);
         SceneLoadController.GetInstance.LoadMenuScene();
-
     }
 }

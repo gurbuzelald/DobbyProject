@@ -47,7 +47,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     void Start()
     {
-        CreateParticle(ParticleNames.Birth);
+        CreateParticle(ParticleNames.Birth, _particleTransform.transform);
         _playerData.clickTabCount = 0;
         _audioSource = GetComponent<AudioSource>();
 
@@ -62,6 +62,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _playerData.jumpCount = 0;
         if (_playerData != null)
         {
+            _playerData.isTouchFinish = false;
             _playerData.isPicking = false;
             _playerData.isPickRotateCoin = false;
             _playerData.isLookingUp = false;
@@ -158,7 +159,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isDying = true;
             _playerData.isIdling = false;
             _playerData.isPlayable = false;
-            CreateParticle(ParticleNames.Fire);
+            CreateParticle(ParticleNames.Fire, _particleTransform.transform);
             StartCoroutine(DelayDestroy(3f));
         }
         if (other.CompareTag(SceneLoadController.Tags.Water.ToString()))
@@ -248,7 +249,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             else if (_playerData.isWinning)
             {
                 //VirtualCameraEulerAngle for Victory Dance
-                _currentCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
+                _currentCamera.transform.eulerAngles = new Vector3(_currentCamera.transform.eulerAngles.x, 180f, _currentCamera.transform.eulerAngles.z);
             }
         }        
     }
@@ -268,7 +269,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (_playerData.isSkateBoarding)
         {
-            CreateParticle(ParticleNames.Skateboard);
+            CreateParticle(ParticleNames.Skateboard, _particleTransform.transform);
             //_skateboardParticle.Play();
             GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
         }
@@ -447,7 +448,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else
         {
-            CreateParticle(ParticleNames.Touch);
+            CreateParticle(ParticleNames.Touch, _particleTransform.transform);
 
             PlaySoundEffect(SoundEffectTypes.GetHit);
 
@@ -460,43 +461,44 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         jolleenObject.transform.position = _jolleenTransform.transform.position;
         Destroy(jolleenObject, _playerData.danceTime);
     }
-    void CreateParticle(ParticleNames particleName)
+    public void CreateParticle(ParticleNames particleName, Transform particleTransform)
     {
         if (particleName == ParticleNames.Skateboard)
         {            
-            GameObject particleObject = Instantiate(_playerData.skateboardParticle.gameObject, _particleTransform.transform);
-            particleObject.transform.position = _particleTransform.transform.position;
+            GameObject particleObject = Instantiate(_playerData.skateboardParticle.gameObject, particleTransform);
+            particleObject.transform.position = particleTransform.position;
             particleObject.GetComponent<ParticleSystem>().Play();
             Destroy(particleObject, 0.5f);
         }
         if (particleName == ParticleNames.Death)
         {
-            GameObject particleObject = Instantiate(_playerData.deathParticle.gameObject, _particleTransform.transform);
-            particleObject.transform.position = _particleTransform.transform.position;
+            GameObject particleObject = Instantiate(_playerData.deathParticle.gameObject, particleTransform);
+            particleObject.transform.position = particleTransform.position;
             particleObject.GetComponent<ParticleSystem>().Play();
             Destroy(particleObject, 5f);
         }
         if (particleName == ParticleNames.Touch)
         {
-            GameObject particleObject = Instantiate(_playerData.touchParticle.gameObject, _particleTransform.transform);
-            particleObject.transform.position = _particleTransform.transform.position;
+            GameObject particleObject = Instantiate(_playerData.touchParticle.gameObject, particleTransform);
+            particleObject.transform.position = particleTransform.position;
             particleObject.GetComponent<ParticleSystem>().Play();
             Destroy(particleObject, 0.5f);
         }
         if (particleName == ParticleNames.Birth)
         {
-            GameObject particleObject = Instantiate(_playerData.birthParticle.gameObject, _particleTransform.transform);
-            particleObject.transform.position = _particleTransform.transform.position;
+            GameObject particleObject = Instantiate(_playerData.birthParticle.gameObject, particleTransform);
+            particleObject.transform.position = particleTransform.position;
             particleObject.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DelayStopParticle(2f, particleObject));
         }
         if (particleName == ParticleNames.Fire)
         {
-            GameObject particleObject = Instantiate(_playerData.firingParticle.gameObject, _particleTransform.transform);
-            particleObject.transform.position = _particleTransform.transform.position;
+            GameObject particleObject = Instantiate(_playerData.firingParticle.gameObject, particleTransform);
+            particleObject.transform.position = particleTransform.position;
             particleObject.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DelayStopParticle(3f, particleObject));
         }
+        
     }   
     
     public void PlaySoundEffect(SoundEffectTypes soundEffect)
@@ -546,6 +548,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     IEnumerator DelayLevelUp(float delayWait, float delayDestroy)
     {
         PlaySoundEffect(SoundEffectTypes.LevelUp);
+        _playerData.isTouchFinish = true;
 
         yield return new WaitForSeconds(delayWait);
         _playerData.isPlayable = false;
@@ -560,7 +563,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     IEnumerator DelayDestroy(float delayDying)
     {
-        CreateParticle(ParticleNames.Death);
+        CreateParticle(ParticleNames.Death, _particleTransform.transform);
 
         yield return new WaitForSeconds(delayDying);
         Destroy(gameObject);
