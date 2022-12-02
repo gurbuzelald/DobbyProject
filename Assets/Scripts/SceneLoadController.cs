@@ -53,7 +53,8 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
         Magnet,
         Lava,
         FirstTarget,
-        MainTarget
+        MainTarget,
+        RotateCoin
     }
     public enum Scenes
     {

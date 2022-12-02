@@ -63,6 +63,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         if (_playerData != null)
         {
             _playerData.isPicking = false;
+            _playerData.isPickRotateCoin = false;
             _playerData.isLookingUp = false;
             _playerData.isWinning = false;
             _playerData.isSkateBoarding = false;
@@ -134,6 +135,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             _coinObject.SetActive(true);
             _playerData.isPicking = true;
+            PlaySoundEffect(SoundEffectTypes.PickUpCoin);
+            other.gameObject.SetActive(false);
+            ScoreController.GetInstance.SetScore(23);
+        }
+        if (other.CompareTag(SceneLoadController.Tags.RotateCoin.ToString()))
+        {
+            _coinObject.SetActive(true);
+            _playerData.isPickRotateCoin = true;
             PlaySoundEffect(SoundEffectTypes.PickUpCoin);
             other.gameObject.SetActive(false);
             ScoreController.GetInstance.SetScore(23);

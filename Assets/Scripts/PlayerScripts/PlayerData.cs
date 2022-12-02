@@ -21,6 +21,7 @@ public class PlayerData : ScriptableObject
     public bool isWinning;
     public bool isSkateBoarding;
     public bool isPicking;
+    public bool isPickRotateCoin;
 
     [Header("CameraRotation Info")]
     public bool isLookingUp;

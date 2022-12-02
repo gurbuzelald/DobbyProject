@@ -33,6 +33,7 @@ public class PlayerAnimationController : MonoBehaviour
         DeathAnimation();
         VictoryAnimation();
         SkateBoardAnimation();
+        PickRotateAnimation();
     }
     void IdleAnimation()
     {
@@ -307,12 +308,23 @@ public class PlayerAnimationController : MonoBehaviour
             StartCoroutine(DelayAnimation(0.5f, 10, 0));
         }
     }
+    void PickRotateAnimation()
+    {
+        if (_playerData.isPickRotateCoin)
+        {
+            _animator.SetLayerWeight(11, 1);
+            _animator.SetBool("isPickRotateCoin", true);
+            StartCoroutine(DelayAnimation(0.5f, 11, 0));
+        }
+    }
     IEnumerator DelayAnimation(float delayValue, int layerOrder, float weightAmount)
     {
         yield return new WaitForSeconds(delayValue);
         _animator.SetBool("isPickup", false);
+        _animator.SetBool("isPickRotateCoin", false);
         _animator.SetLayerWeight(layerOrder, weightAmount);
         _playerData.isPicking = false;
+        _playerData.isPickRotateCoin = false;
         PlayerManager.GetInstance._coinObject.SetActive(false);
     }
 }
