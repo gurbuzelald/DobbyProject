@@ -15,6 +15,7 @@ public class EnemyData : ScriptableObject
     public bool isGround;
     public bool isDying;
     public bool isWalking;
+    public bool isFiring;
     public bool isActivateMagnet;
 
     public float enemySpeed;

@@ -14,7 +14,12 @@ public class EnemyBulletManager : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
-            StartCoroutine(Delay());
+            enemyData.isFiring = true;
+            StartCoroutine(DelaySpawn(gameObject.transform, enemyData.enemyBulletSpeed, 1));
+        }
+        if (enemyData.isFiring)
+        {
+            StartCoroutine(DelayFiring());
         }
     }
 
@@ -33,7 +38,13 @@ public class EnemyBulletManager : MonoBehaviour
     }
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.01f);
         StartCoroutine(DelaySpawn(gameObject.transform, enemyData.enemyBulletSpeed, 1));
     }
+    IEnumerator DelayFiring()
+    {
+        yield return new WaitForSeconds(2f);
+        enemyData.isFiring = false;
+    }
+
 }
