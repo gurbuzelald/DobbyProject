@@ -44,6 +44,7 @@ public class EnemyManager : MonoBehaviour
             else
             {
                 enemyData.isWalking = false;
+                enemyData.isFiring = false;
             }
         }
         if (gameObject.transform.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
@@ -85,7 +86,10 @@ public class EnemyManager : MonoBehaviour
         if (other.CompareTag(SceneLoadController.Tags.Magnet.ToString()))
         {
             enemyData.isActivateMagnet = true;
-            enemyData.isWalking = true;
+            if (!enemyData.isFiring)
+            {
+                enemyData.isWalking = true;
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -103,6 +107,7 @@ public class EnemyManager : MonoBehaviour
             PlaySoundEffect(SoundEffectTypes.GiveHit);
 
             enemyData.isWalking = false;
+            enemyData.isFiring = false;
             enemyData.enemySpeed = 0;
             StartCoroutine(DelayStopEnemy());
         }        
@@ -119,6 +124,7 @@ public class EnemyManager : MonoBehaviour
             {
                 enemyData.isDying = true;
                 enemyData.isWalking = false;
+                enemyData.isFiring = false;
                 Destroy(_healthBar);
                 ScoreController.GetInstance.SetScore(20);
                 PlaySoundEffect(SoundEffectTypes.Death);
@@ -127,6 +133,8 @@ public class EnemyManager : MonoBehaviour
             }
             else
             {
+                enemyData.isWalking = false;
+                enemyData.isFiring = false;
                 PlaySoundEffect(SoundEffectTypes.GetHit);
                 _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
@@ -148,7 +156,10 @@ public class EnemyManager : MonoBehaviour
     public IEnumerator DelayStopEnemy()
     {
         yield return new WaitForSeconds(3f);
-        enemyData.isWalking = true;
+        if (!enemyData.isFiring)
+        {
+            enemyData.isWalking = true;
+        }
         enemyData.enemySpeed = _initSpeed;
     }
     public IEnumerator DelayDestroy(float delayDestroy)

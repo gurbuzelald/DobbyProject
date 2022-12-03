@@ -5,6 +5,10 @@ using Cinemachine;
 
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
+    [Header("Joystick")]
+    [SerializeField] Joystick _joystick;
+
+
     [SerializeField] CloneManager _cloneManager;
 
     [Header("Sound")]
@@ -237,6 +241,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             {
                 _xValue = Input.GetAxis("Horizontal") * Time.deltaTime * _playerData.playerSpeed / 2f;
                 _zValue = Input.GetAxis("Vertical") * Time.deltaTime * _playerData.playerSpeed;
+
+                //_xValue = _joystick.Horizontal * Time.deltaTime * _playerData.playerSpeed / 2f;
+                //_zValue = _joystick.Vertical * Time.deltaTime * _playerData.playerSpeed;
                 Walk();
                 Climb();
                 SkateBoard();
@@ -393,13 +400,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _playerData.jumpCount++;
     }
     void Rotation()
-    {
+    {        
         float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
         float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
-
         GetInstance.GetComponent<Transform>().Rotate(0f, _mousePosX, 0f);
 
-        _currentCamera.transform.Rotate(-_mousePosY * Time.timeScale, 0, 0);        
+        _currentCamera.transform.Rotate(-_mousePosY * Time.timeScale, 0, 0);
 
         if (_currentCamera.transform.eulerAngles.x > 74 && _currentCamera.transform.eulerAngles.x <= 75)
         {
@@ -432,7 +438,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             {
                 _upCamera.gameObject.SetActive(true);
             }
-            if (_upCamera.enabled == true )
+            if (_upCamera.enabled == true)
             {
                 _downCamera.gameObject.SetActive(false);
             }
@@ -450,6 +456,21 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
             _currentCamera = _downCamera;
         }
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                //Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.touches[i].position);
+                //float _mousePosX = Input.GetTouch(i).deltaPosition.x;
+                //float _mousePosY = Input.GetTouch(i).deltaPosition.y;
+
+                
+            }          
+
+            
+        }        
+
+        
     }
     void Fire()
     {

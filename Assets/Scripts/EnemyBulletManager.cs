@@ -7,16 +7,22 @@ public class EnemyBulletManager : MonoBehaviour
     [SerializeField] ObjectPool _objectPool;
     public LayerMask layerMask;
     public EnemyData enemyData;
+    private int counter = 0;
     //[SerializeField] ObjectPool _objectPool;
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+        if (counter == 0)
         {
-            enemyData.isFiring = true;
-            StartCoroutine(DelaySpawn(gameObject.transform, enemyData.enemyBulletSpeed, 1));
-        }
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+            {
+                counter++;
+                enemyData.isFiring = true;
+                enemyData.isWalking = false;
+                StartCoroutine(DelaySpawn(gameObject.transform, enemyData.enemyBulletSpeed, 1));
+            }
+        }        
         if (enemyData.isFiring)
         {
             StartCoroutine(DelayFiring());
@@ -44,7 +50,12 @@ public class EnemyBulletManager : MonoBehaviour
     IEnumerator DelayFiring()
     {
         yield return new WaitForSeconds(2f);
-        enemyData.isFiring = false;
+        if (counter >= 1)
+        {
+            counter = 0;
+            enemyData.isFiring = false;
+            enemyData.isWalking = true;
+        }        
     }
 
 }

@@ -43,14 +43,8 @@ public class EnemyAnimationController : MonoBehaviour
                 _animator.SetLayerWeight(1, 0);
                 _animator.SetLayerWeight(3, 0);
             }
-            else if (_enemyData.isFiring)
-            {
-                _animator.SetBool("isFiring", true);
-
-                _animator.SetLayerWeight(3, 1);
-                _animator.SetLayerWeight(1, 0);
-            }
-            else if(!_enemyData.isFiring)
+            
+            else if(!_enemyData.isFiring && !_enemyData.isDying && !_enemyData.isWalking)
             {
                 _animator.SetBool("isIdling", true);
 
@@ -58,6 +52,15 @@ public class EnemyAnimationController : MonoBehaviour
                 _animator.SetLayerWeight(1, 0);
                 _animator.SetLayerWeight(2, 0);
                 _animator.SetLayerWeight(3, 0);
+            }
+            else if (_enemyData.isFiring)
+            {
+                _animator.SetBool("isFiring", true);
+
+                _animator.SetLayerWeight(3, 1);
+                _animator.SetLayerWeight(1, 0);
+
+                _enemyData.isWalking = false;
             }
         }
         else
