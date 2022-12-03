@@ -55,14 +55,19 @@ public class CloneAnimationController : MonoBehaviour
         }
         else
         {
-            _cloneData.idlingCount++;
-
-            if (_cloneData.idlingCount == 0)
+            if (_cloneData.isCloneDancing)
             {
-                _animator.SetBool("isIdling", true);
+                _animator.SetLayerWeight(2, 1);
+
+                _animator.SetBool("isDancing", true);
             }
-            _animator.SetLayerWeight(0, 1);
-            _animator.SetLayerWeight(1, 0);
+            //if (_cloneData.idlingCount == 0)
+            //{
+            //    _animator.SetBool("isIdling", true);
+            //    _cloneData.idlingCount++;
+            //}
+            //_animator.SetLayerWeight(0, 1);
+            //_animator.SetLayerWeight(1, 0);
         }
     }
 }

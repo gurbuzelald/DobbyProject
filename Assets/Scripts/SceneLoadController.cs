@@ -59,7 +59,9 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
         Lava,
         FirstTarget,
         MainTarget,
-        RotateCoin
+        RotateCoin,
+        EnemyBullet, 
+        CloneDobby
     }
     public enum Scenes
     {

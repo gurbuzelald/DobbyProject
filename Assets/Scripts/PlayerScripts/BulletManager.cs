@@ -29,7 +29,10 @@ public class BulletManager : MonoBehaviour
     }
     private void Update()
     {
-        BulletRotation();
+        if (gameObject.transform.name == "Bullets")
+        {
+            BulletRotation();
+        }
     }
     public void CreateBullet()
     {
@@ -38,23 +41,23 @@ public class BulletManager : MonoBehaviour
 
         //StartCoroutine(DelayDestroy(bulletObject));
 
-        StartCoroutine(DelaySpawn());
+        StartCoroutine(DelaySpawn(_bulletSpawnTransform, _playerData.bulletSpeed, 0));
     }
     public IEnumerator DelayDestroy(GameObject gameobject)
     {
         yield return new WaitForSeconds(1f);
         Destroy(gameobject);
     }
-    public IEnumerator DelaySpawn()
+    public IEnumerator DelaySpawn(Transform bulletSpawn, float bulletSpeed, int objectpoolCount)
     {
-        GameObject bulletObject = _objectPool.GetPooledObject(0);
+        GameObject bulletObject = _objectPool.GetPooledObject(objectpoolCount);
         bulletObject.transform.position = gameObject.transform.position;
-        bulletObject.transform.rotation = _bulletSpawnTransform.transform.rotation;
+        bulletObject.transform.rotation = bulletSpawn.rotation;
 
-        bulletObject.GetComponent<Rigidbody>().velocity = (_bulletSpawnTransform.transform.TransformDirection(Vector3.forward * _playerData.bulletSpeed));
+        bulletObject.GetComponent<Rigidbody>().velocity = (bulletSpawn.TransformDirection(Vector3.forward * bulletSpeed));
 
         yield return new WaitForSeconds(2f);
-        bulletObject.transform.rotation = _bulletSpawnTransform.transform.rotation;
+        bulletObject.transform.rotation = bulletSpawn.rotation;
 
         bulletObject.SetActive(false);
     }

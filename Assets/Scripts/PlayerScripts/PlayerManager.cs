@@ -5,6 +5,8 @@ using Cinemachine;
 
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
+    [SerializeField] CloneManager _cloneManager;
+
     [Header("Sound")]
     [HideInInspector] public AudioSource audioSource;
     //public PlayerSoundEffect playerSFX;
@@ -64,6 +66,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _playerData.jumpCount = 0;
         if (_playerData != null)
         {
+            _playerData.isLose = false;
             _playerData.isTouchFinish = false;
             _playerData.isPicking = false;
             _playerData.isPickRotateCoin = false;
@@ -106,7 +109,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             {
                 _playerData.isGround = false;
             }
-            if (collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
+            if (collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.CloneDobby.ToString()))
             {
                 TouchEnemy(collision);                
             }
@@ -127,6 +130,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag(SceneLoadController.Tags.EnemyBullet.ToString()))
+        {
+            TriggerBullet(other);
+        }
         if (other.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
         {
             TriggerLadder(true, false);
@@ -462,8 +469,16 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isDestroyed = true;
 
             //EnemyAnimation
-            collision.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
-            collision.gameObject.GetComponent<EnemyManager>().enemyData.enemySpeed = 0;
+            if (collision.gameObject.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
+            {
+                collision.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
+                collision.gameObject.GetComponent<EnemyManager>().enemyData.enemySpeed = 0;
+            }
+            if (collision.gameObject.CompareTag(SceneLoadController.Tags.CloneDobby.ToString()))
+            {
+                collision.gameObject.GetComponent<CloneManager>().cloneData.isCloneDancing = true;
+                collision.gameObject.GetComponent<CloneManager>().cloneData.isCloneWalking = false;
+            }
 
             //PlayerData
             _playerData.isDying = true;
@@ -481,6 +496,47 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
         }
+    }
+    void TriggerBullet(Collider other)
+    {
+        if (_healthBar != null)
+        {
+            if (_healthBar.transform.localScale.x <= 0.0625f)
+            {
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
+
+                _playerData.isDestroyed = true;
+
+                //EnemyAnimation
+                if (other.gameObject.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
+                {
+                    other.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
+                    other.gameObject.GetComponent<EnemyManager>().enemyData.enemySpeed = 0;
+                }
+                if (other.gameObject.CompareTag(SceneLoadController.Tags.CloneDobby.ToString()))
+                {
+                    other.gameObject.GetComponent<CloneManager>().cloneData.isCloneDancing = true;
+                    other.gameObject.GetComponent<CloneManager>().cloneData.isCloneWalking = false;
+                }
+
+
+                //PlayerData
+                _playerData.isDying = true;
+                _playerData.isIdling = false;
+                _playerData.isPlayable = false;
+
+                Destroy(_healthBar);
+                StartCoroutine(DelayDestroy(3f));
+            }
+            else
+            {
+                ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
+
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
+
+                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+            }
+        }        
     }
     void CreateVictoryAnimation()
     {

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: CloneData
   m_EditorClassIdentifier: 
   isTouchFinish: 0
+  isLose: 0
   playerSpeed: 0
   rotateSpeed: 0
   jumpForce: 0
@@ -25,6 +26,7 @@ MonoBehaviour:
   isDying: 0
   isWinning: 0
   isSkateBoarding: 0
+  isRunning: 0
   isPicking: 0
   isPickRotateCoin: 0
   isLookingUp: 0
@@ -34,6 +36,7 @@ MonoBehaviour:
   isJumping: 0
   jumpCount: 0
   clickTabCount: 0
+  clickShiftCount: 0
   danceTime: 5
   jolleenObject: {fileID: 0}
   skateboardParticle: {fileID: 0}
@@ -54,8 +57,8 @@ MonoBehaviour:
   bulletSpeed: 5
   isCloneWalking: 0
   isCloneDying: 0
-  isCloneDancing: 0
+  isCloneDancing: 1
   idlingCount: 0
-  isTouchFirst: 0
+  isTouchFirst: 1
   isTouchMain: 0
   cloneSpeed: 0.2

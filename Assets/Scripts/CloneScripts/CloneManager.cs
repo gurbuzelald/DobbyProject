@@ -73,14 +73,14 @@ public class CloneManager : MonoBehaviour
             _navmeshAgent.speed = cloneData.cloneSpeed;
         }
     }
-    void OnTarget()
+    public void OnTarget()
     {
         if (Vector3.Distance(gameObject.transform.position, _firstTarget.position) < 0.6f)
         {
             cloneData.isTouchFirst = false;
             cloneData.isTouchMain = true;
         }
-        if (Vector3.Distance(gameObject.transform.position, _secondTarget.position) < 0.6f)
+        if (Vector3.Distance(gameObject.transform.position, _secondTarget.position) < 0.6f || playerData.isLose)
         {
             cloneData.isTouchFirst = false;
             cloneData.isTouchMain = false;
@@ -91,10 +91,10 @@ public class CloneManager : MonoBehaviour
             cloneData.isCloneWalking = false;
 
             playerData.isPlayable = false;
-            StartCoroutine(DelayLevelup());
+            StartCoroutine(DelayLoadMenu());
         }
     }
-    IEnumerator DelayLevelup()
+    IEnumerator DelayLoadMenu()
     {
         if (cloneData.particleCount == 0)
         {

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    [Header("Bullet")]
+    public EnemyBulletManager enemyBullet;
+
     [Header("Destination Transform")]
     [SerializeField] Transform _targetObject;
 
@@ -42,6 +45,10 @@ public class EnemyManager : MonoBehaviour
             {
                 enemyData.isWalking = false;
             }
+        }
+        if (gameObject.transform.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
+        {
+            //StartCoroutine(enemyBullet.DelaySpawn(gameObject.transform, 5, 1));
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -102,6 +109,7 @@ public class EnemyManager : MonoBehaviour
     }
     public void TouchBullet()
     {
+        gameObject.transform.LookAt(_targetObject.position);
         enemyData.isWalking = false;
         enemyData.enemySpeed = 0;
         StartCoroutine(DelayStopEnemy());

@@ -6,6 +6,7 @@ public class PlayerData : ScriptableObject
 
     [Header("FinishCheck")]
     public bool isTouchFinish;
+    public bool isLose;
 
     [Header("Speed")]
     public float playerSpeed;
@@ -70,7 +71,6 @@ public class PlayerData : ScriptableObject
     [Header("BulletManager Data")]
     public GameObject _bulletObject;//If ObjectPool is not using in project, this'll use
     public float bulletSpeed = 5f;
-
 
 
     [Header("Clone Data")]
