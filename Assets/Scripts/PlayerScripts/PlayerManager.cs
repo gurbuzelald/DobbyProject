@@ -469,7 +469,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     void Fire()
     {
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
-        _bulletManager.CreateBullet();
+        //_bulletManager.CreateBullet();
 
         _playerData.isFiring = true;
         crosshairImage.GetComponent<CanvasGroup>().alpha = 1;

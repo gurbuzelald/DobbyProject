@@ -31,42 +31,18 @@ public class BulletManager : AbstractBullet<BulletManager>
     }
     private void Update()
     {
-        if (gameObject.transform.name == "Bullets")
+        BulletRotation(_playerData.isLookingUp, _upCamera, _downCamera, _currentCamera, _bulletSpawnTransform);
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            BulletRotation();
+            CreateBullet(_bulletSpawnTransform, _playerData.bulletSpeed, 0, _objectPool);
         }
     }
-    public void CreateBullet()
-    {
-        //GameObject bulletObject = Instantiate(_bulletObject, _bulletSpawnTransform.transform.position, _bulletSpawnTransform.transform.rotation);
-        //bulletObject.GetComponent<Rigidbody>().velocity = (_bulletSpawnTransform.transform.TransformDirection(Vector3.forward * _playerData.bulletSpeed));
 
-        //StartCoroutine(DelayDestroy(bulletObject));
-
-        StartCoroutine(DelaySpawn(_bulletSpawnTransform, _playerData.bulletSpeed, 0, _objectPool));
-    }
     public IEnumerator DelayDestroy(GameObject gameobject)
     {
         yield return new WaitForSeconds(1f);
         Destroy(gameobject);
-    }
-    public override void BulletRotation()
-    {
-        if (_playerData.isLookingUp)
-        {
-            _upCamera.gameObject.SetActive(true);
-            _downCamera.gameObject.SetActive(false);
-            _currentCamera = _upCamera;
-        }
-        else
-        {
-            _downCamera.gameObject.SetActive(true);
-            _upCamera.gameObject.SetActive(false);
-            _currentCamera = _downCamera;
-        }
-        if (_currentCamera != null)
-        {
-            _bulletSpawnTransform.transform.eulerAngles = new Vector3(_currentCamera.transform.eulerAngles.x - 20f, _bulletSpawnTransform.transform.eulerAngles.y, _bulletSpawnTransform.transform.eulerAngles.z);
-        }
-    }
+    } 
+    
 }

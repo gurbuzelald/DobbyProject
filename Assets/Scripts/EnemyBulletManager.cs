@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBulletManager : MonoBehaviour
+public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
 {
     [SerializeField] ObjectPool _objectPool;
     public LayerMask layerMask;
@@ -12,6 +11,10 @@ public class EnemyBulletManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        RayBullet();
+    }
+    void RayBullet()
+    {
         RaycastHit hit;
         if (counter == 0)
         {
@@ -20,34 +23,12 @@ public class EnemyBulletManager : MonoBehaviour
                 counter++;
                 enemyData.isFiring = true;
                 enemyData.isWalking = false;
-                StartCoroutine(DelaySpawn(gameObject.transform, enemyData.enemyBulletSpeed, 1));
+                CreateBullet(gameObject.transform, enemyData.enemyBulletSpeed, 1, _objectPool);
+                StartCoroutine(FiringFalse());
             }
-        }        
-        if (enemyData.isFiring)
-        {
-            StartCoroutine(DelayFiring());
         }
     }
-
-    public IEnumerator DelaySpawn(Transform bulletSpawn, float bulletSpeed, int objectpoolCount)
-    {
-        GameObject bulletObject = _objectPool.GetPooledObject(objectpoolCount);
-        bulletObject.transform.position = gameObject.transform.position;
-        bulletObject.transform.rotation = bulletSpawn.rotation;
-
-        bulletObject.GetComponent<Rigidbody>().velocity = (bulletSpawn.TransformDirection(Vector3.forward * bulletSpeed));
-
-        yield return new WaitForSeconds(2f);
-        bulletObject.transform.rotation = bulletSpawn.rotation;
-
-        bulletObject.SetActive(false);
-    }
-    IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(0.01f);
-        StartCoroutine(DelaySpawn(gameObject.transform, enemyData.enemyBulletSpeed, 1));
-    }
-    IEnumerator DelayFiring()
+    IEnumerator FiringFalse()
     {
         yield return new WaitForSeconds(2f);
         if (counter >= 1)
