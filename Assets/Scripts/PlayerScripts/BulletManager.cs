@@ -22,6 +22,8 @@ public class BulletManager : AbstractBullet<BulletManager>
     [Header("Initial Transform of This")]
     private Transform _initTransform;
 
+
+
     //[SerializeField] GameObject _bulletObject;
 
     private void Start()
@@ -36,7 +38,7 @@ public class BulletManager : AbstractBullet<BulletManager>
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             CreateBullet(_bulletSpawnTransform, _playerData.bulletSpeed, 0, _objectPool);
-        }
+        }        
     }
 
     public IEnumerator DelayDestroy(GameObject gameobject)
