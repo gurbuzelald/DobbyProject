@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : AbstractEnemy<EnemyManager>
 {
     [Header("Bullet")]
     public EnemyBulletManager enemyBullet;
 
     [Header("Destination Transform")]
-    [SerializeField] Transform _targetObject;
+    [SerializeField] Transform _targetTransform;
 
     [Header("Health")]
     [SerializeField] GameObject _healthBar;
@@ -39,7 +39,7 @@ public class EnemyManager : MonoBehaviour
         {
             if (playerData.isPlayable)
             {
-                Movement();
+                Movement(_targetTransform, gameObject.transform, enemyData.isActivateMagnet, enemyData.enemySpeed);
             }
             else
             {
@@ -47,11 +47,7 @@ public class EnemyManager : MonoBehaviour
                 enemyData.isFiring = false;
             }
         }
-        if (gameObject.transform.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
-        {
-            //StartCoroutine(enemyBullet.DelaySpawn(gameObject.transform, 5, 1));
-        }
-    }
+    }    
     private void OnCollisionEnter(Collision collision)
     {
         if (enemyData != null || gameObject != null)
@@ -68,18 +64,7 @@ public class EnemyManager : MonoBehaviour
             {//Ground, Ladder, Enemy
                 enemyData.isGround = true;
             }
-            else
-            {
-                //gameObject.transform.eulerAngles = new Vector3(gameObject.transform.eulerAngles.x, 180f, gameObject.transform.eulerAngles.z);
-                //_enemyData.isGround = false;
-            }
         }        
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
-        {//Ground, Ladder, Enemy
-        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -104,19 +89,19 @@ public class EnemyManager : MonoBehaviour
     {
         if (PlayerManager.GetInstance._healthBar != null && PlayerManager.GetInstance._healthBar.transform.localScale.x <= 0.0625f)
         {
-            PlaySoundEffect(SoundEffectTypes.GiveHit);
+            PlaySoundEffect(SoundEffectTypes.GiveHit, _audioSource);
 
             enemyData.isWalking = false;
             enemyData.isFiring = false;
-            enemyData.enemySpeed = 0;
+            enemyData.enemySpeed = _initSpeed * 0f;
             StartCoroutine(DelayStopEnemy());
         }        
     }
     public void TouchBullet()
     {
-        gameObject.transform.LookAt(_targetObject.position);
+        gameObject.transform.LookAt(_targetTransform.position);
         enemyData.isWalking = false;
-        enemyData.enemySpeed = 0;
+        enemyData.enemySpeed = _initSpeed * 0f;
         StartCoroutine(DelayStopEnemy());
         if (_healthBar != null)
         {
@@ -127,39 +112,22 @@ public class EnemyManager : MonoBehaviour
                 enemyData.isFiring = false;
                 Destroy(_healthBar);
                 ScoreController.GetInstance.SetScore(20);
-                PlaySoundEffect(SoundEffectTypes.Death);
+                PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
                 StartCoroutine(DelayDestroy(4f));
-
             }
             else
             {
                 enemyData.isWalking = false;
                 enemyData.isFiring = false;
-                PlaySoundEffect(SoundEffectTypes.GetHit);
+                PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
                 _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
         }
-    }
-
-    private void Movement()
-    {
-        if (_targetObject != null && enemyData.isActivateMagnet)
-        {
-            gameObject.transform.LookAt(_targetObject.position);
-            gameObject.transform.Translate(0f, 0f, enemyData.enemySpeed * Time.deltaTime);
-        }
-        else if (_targetObject != null && !enemyData.isActivateMagnet)
-        {
-           
-        }
-    }
+    }   
     public IEnumerator DelayStopEnemy()
     {
         yield return new WaitForSeconds(3f);
-        if (!enemyData.isFiring)
-        {
-            enemyData.isWalking = true;
-        }
+        enemyData.isWalking = true;
         enemyData.enemySpeed = _initSpeed;
     }
     public IEnumerator DelayDestroy(float delayDestroy)
@@ -169,19 +137,19 @@ public class EnemyManager : MonoBehaviour
         enemyData.isWalking = true;
         enemyData.isDying = false;
     }
-    public void PlaySoundEffect(SoundEffectTypes soundEffect)
+    public void PlaySoundEffect(SoundEffectTypes soundEffect, AudioSource audioSource)
     {
         if (soundEffect == SoundEffectTypes.GetHit)
         {
-            _audioSource.PlayOneShot(enemyData.getHitClip);
+            audioSource.PlayOneShot(enemyData.getHitClip);
         }
         else if (soundEffect == SoundEffectTypes.GiveHit)
         {
-            _audioSource.PlayOneShot(enemyData.giveHitClip);
+            audioSource.PlayOneShot(enemyData.giveHitClip);
         }
         else if (soundEffect == SoundEffectTypes.Death)
         {
-            _audioSource.PlayOneShot(enemyData.dyingClip);
+            audioSource.PlayOneShot(enemyData.dyingClip);
         }
     }
     public enum SoundEffectTypes

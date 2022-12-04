@@ -29,4 +29,5 @@ public abstract class AbstractSingleton<T> : MonoBehaviour where T : MonoBehavio
             DontDestroyOnLoad(gameObject);
         }
     }
+    //public virtual
 }
