@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class BulletManager : MonoBehaviour
+public class BulletManager : AbstractBullet<BulletManager>
 {
     [Header("Object Pool")]
     public ObjectPool _objectPool;
@@ -22,6 +22,8 @@ public class BulletManager : MonoBehaviour
     [Header("Initial Transform of This")]
     private Transform _initTransform;
 
+    //[SerializeField] GameObject _bulletObject;
+
     private void Start()
     {
         _initTransform = gameObject.transform;
@@ -36,32 +38,19 @@ public class BulletManager : MonoBehaviour
     }
     public void CreateBullet()
     {
-        //GameObject bulletObject = Instantiate(_bulletObject, _bulletTransform.transform.position, _bulletTransform.transform.rotation);
-        //bulletObject.GetComponent<Rigidbody>().velocity = (_bulletTransform.transform.TransformDirection(Vector3.forward * _bulletSpeed));
+        //GameObject bulletObject = Instantiate(_bulletObject, _bulletSpawnTransform.transform.position, _bulletSpawnTransform.transform.rotation);
+        //bulletObject.GetComponent<Rigidbody>().velocity = (_bulletSpawnTransform.transform.TransformDirection(Vector3.forward * _playerData.bulletSpeed));
 
         //StartCoroutine(DelayDestroy(bulletObject));
 
-        StartCoroutine(DelaySpawn(_bulletSpawnTransform, _playerData.bulletSpeed, 0));
+        StartCoroutine(DelaySpawn(_bulletSpawnTransform, _playerData.bulletSpeed, 0, _objectPool));
     }
     public IEnumerator DelayDestroy(GameObject gameobject)
     {
         yield return new WaitForSeconds(1f);
         Destroy(gameobject);
     }
-    public IEnumerator DelaySpawn(Transform bulletSpawn, float bulletSpeed, int objectpoolCount)
-    {
-        GameObject bulletObject = _objectPool.GetPooledObject(objectpoolCount);
-        bulletObject.transform.position = gameObject.transform.position;
-        bulletObject.transform.rotation = bulletSpawn.rotation;
-
-        bulletObject.GetComponent<Rigidbody>().velocity = (bulletSpawn.TransformDirection(Vector3.forward * bulletSpeed));
-
-        yield return new WaitForSeconds(2f);
-        bulletObject.transform.rotation = bulletSpawn.rotation;
-
-        bulletObject.SetActive(false);
-    }
-    private void BulletRotation()
+    public override void BulletRotation()
     {
         if (_playerData.isLookingUp)
         {

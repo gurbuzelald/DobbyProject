@@ -462,20 +462,15 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             {
                 //Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.touches[i].position);
                 //float _mousePosX = Input.GetTouch(i).deltaPosition.x;
-                //float _mousePosY = Input.GetTouch(i).deltaPosition.y;
-
-                
-            }          
-
-            
+                //float _mousePosY = Input.GetTouch(i).deltaPosition.y;                
+            }
         }        
-
-        
     }
     void Fire()
     {
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
         _bulletManager.CreateBullet();
+
         _playerData.isFiring = true;
         crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
         StartCoroutine(Delay(2f));

@@ -10,7 +10,10 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     public void PlayAgain()
     {
         _audioSource.Stop();
-        Destroy(PlayerManager.GetInstance.gameObject);
+        if (PlayerManager.GetInstance.gameObject != null)
+        {
+            Destroy(PlayerManager.GetInstance.gameObject);
+        }
         SceneManager.LoadScene("Level1");
     }
     public string CheckSceneName()
@@ -21,13 +24,19 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     public void LoadMenuScene()
     {
         _audioSource.Stop();
-        Destroy(PlayerManager.GetInstance.gameObject);
+        if (PlayerManager.GetInstance.gameObject != null)
+        {
+            Destroy(PlayerManager.GetInstance.gameObject);
+        }
         SceneManager.LoadScene("Menu");
     }
     public void LoadEndScene()
     {
         _audioSource.Stop();
-        Destroy(PlayerManager.GetInstance.gameObject);
+        if (PlayerManager.GetInstance.gameObject != null)
+        {
+            Destroy(PlayerManager.GetInstance.gameObject);
+        }
         SceneManager.LoadScene("End");
     }
     public void LevelUp()
