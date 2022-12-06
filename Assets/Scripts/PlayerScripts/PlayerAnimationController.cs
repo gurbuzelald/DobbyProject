@@ -10,14 +10,19 @@ public class PlayerAnimationController : MonoBehaviour
     [Header("Data")]
     public PlayerData playerData;
     public PlayerData cloneData;
+    private PlayerController _playerController;
+
+    //private PlayerController _playerController;
 
     private void Start()
     {
+        _playerController = FindObjectOfType<PlayerController>();
         _animator = GetComponent<Animator>();
         if (_animator != null)
         {
             _animator.SetLayerWeight(8, 0);
         }
+        //_playerController = FindObjectOfType<PlayerController>();
     }
     void Update()
     {
@@ -94,7 +99,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void LeftWalkAnimation()
     {
-        if (PlayerManager.GetInstance._xValue < 0)
+        if (PlayerManager.GetInstance._xValue < -0.03f && PlayerManager.GetInstance._zValue < -0.02f)
         {
             _animator.SetBool("isLeftWalk", true);
 
@@ -115,7 +120,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void RightWalkAnimation()
     {
-        if (PlayerManager.GetInstance._xValue > 0)
+        if (PlayerManager.GetInstance._xValue > 0.03f && PlayerManager.GetInstance._zValue < 0.02f)
         {
             _animator.SetBool("isRightWalk", true);
 

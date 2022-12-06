@@ -6,20 +6,8 @@ using Cinemachine;
 
 public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
 {
-    public virtual void BulletRotation(bool isLookingUp, CinemachineVirtualCamera UpCamera, CinemachineVirtualCamera DownCamera, CinemachineVirtualCamera CurrentCamera, Transform bulletSpawnTransform)
+    public virtual void BulletRotation(bool isLookingUp, CinemachineVirtualCamera CurrentCamera, Transform bulletSpawnTransform)
     {
-        if (isLookingUp)
-        {
-            UpCamera.gameObject.SetActive(true);
-            DownCamera.gameObject.SetActive(false);
-            CurrentCamera = UpCamera;
-        }
-        else
-        {
-            DownCamera.gameObject.SetActive(true);
-            UpCamera.gameObject.SetActive(false);
-            CurrentCamera = DownCamera;
-        }
         if (CurrentCamera != null)
         {
             bulletSpawnTransform.transform.eulerAngles = new Vector3(CurrentCamera.transform.eulerAngles.x - 20f, bulletSpawnTransform.transform.eulerAngles.y, bulletSpawnTransform.transform.eulerAngles.z);

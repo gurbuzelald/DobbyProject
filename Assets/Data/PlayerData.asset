@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  isTouchFinish: 0
+  isLose: 0
   playerSpeed: 2
   rotateSpeed: 6
   jumpForce: 4
@@ -21,16 +23,20 @@ MonoBehaviour:
   isClimbing: 0
   isBackClimbing: 0
   isIdling: 0
-  isDying: 1
+  isDying: 0
   isWinning: 0
   isSkateBoarding: 0
+  isRunning: 0
+  isPicking: 0
+  isPickRotateCoin: 0
   isLookingUp: 0
-  isDestroyed: 1
-  isPlayable: 0
+  isDestroyed: 0
+  isPlayable: 1
   isFiring: 0
   isJumping: 0
   jumpCount: 0
   clickTabCount: 0
+  clickShiftCount: 0
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}
   skateboardParticle: {fileID: 4302228992980891979, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
@@ -38,6 +44,7 @@ MonoBehaviour:
   birthParticle: {fileID: 1705621348223521887, guid: cd7d4ea18b432ef44b8f8ed281ea60c7, type: 3}
   deathParticle: {fileID: 5597880929392322992, guid: c3d186f24e85b9549b8b845c134e0d97, type: 3}
   firingParticle: {fileID: 4795760450652133736, guid: beadd3d20fee2ac4aa43188ab1f50adc, type: 3}
+  particleCount: 0
   shootClip: {fileID: 8300000, guid: e4d1e9a1be4831542961bcd5a6c97f7a, type: 3}
   getHitClip: {fileID: 8300000, guid: 0daa4bd7ccf721c4faa7a61d8fe58390, type: 3}
   jumpingClip: {fileID: 8300000, guid: a6c98811cc43c2646bf2c7baf175b185, type: 3}
@@ -50,4 +57,8 @@ MonoBehaviour:
   bulletSpeed: 5
   isCloneWalking: 0
   isCloneDying: 0
+  isCloneDancing: 0
   idlingCount: 0
+  isTouchFirst: 0
+  isTouchMain: 0
+  cloneSpeed: 0

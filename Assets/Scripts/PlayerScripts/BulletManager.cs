@@ -13,8 +13,6 @@ public class BulletManager : AbstractBullet<BulletManager>
 
     [Header("Rotation of Bullet from Camera")]
     [SerializeField] CinemachineVirtualCamera _currentCamera;
-    [SerializeField] CinemachineVirtualCamera _upCamera;
-    [SerializeField] CinemachineVirtualCamera _downCamera;
 
     [Header("Data")]
     public PlayerData _playerData;
@@ -33,9 +31,9 @@ public class BulletManager : AbstractBullet<BulletManager>
     }
     private void Update()
     {
-        BulletRotation(_playerData.isLookingUp, _upCamera, _downCamera, _currentCamera, _bulletSpawnTransform);
+        BulletRotation(_playerData.isLookingUp, _currentCamera, _bulletSpawnTransform);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (_playerData.isFiring)
         {
             CreateBullet(_bulletSpawnTransform, _playerData.bulletSpeed, 0, _objectPool);
         }        
