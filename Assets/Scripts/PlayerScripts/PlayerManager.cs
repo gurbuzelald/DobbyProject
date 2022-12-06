@@ -5,10 +5,6 @@ using Cinemachine;
 
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
-    [Header("Joystick")]
-    [SerializeField] Joystick _joystick;
-
-
     [SerializeField] CloneManager _cloneManager;
 
     [Header("Sound")]
@@ -253,15 +249,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 Climb();
                 SkateBoard();
                 Run();
-
-                if (Input.GetKeyDown(KeyCode.Space) && _playerData.isGround && _playerData.jumpCount <= 1)
-                {
-                    Jump();
-                }
-                else
-                {
-                    _playerData.isJumping = false;
-                }
+                Jump();
                 Fire();
             }
             else if (_playerData.isWinning)
@@ -273,7 +261,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void SkateBoard()
     {
-        if (Input.GetKeyDown(KeyCode.Tab) && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
+        if (_playerController.skateBoard && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
         {
             _playerData.clickTabCount++;
             _playerData.isSkateBoarding = true;
@@ -293,7 +281,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void Run()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding)
+        if (_playerController.run && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding)
         {
             _playerData.clickShiftCount++;
             _playerData.isRunning = true;
@@ -315,13 +303,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     void Walk()
     {
-        if ((_zValue > 0 || _xValue > 0 || _xValue < 0) && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isRunning)
+        if (_zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isRunning)
         {
             GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
             _playerData.isWalking = true;
             _playerData.isBackWalking = false;
         }
-        else if ((_zValue < 0 || _xValue > 0 || _xValue < 0) && !_playerData.isClimbing && !_playerData.isBackClimbing)
+        else if (_zValue < 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
         {
             GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
             _playerData.isBackWalking = true;
@@ -337,11 +325,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void SideWalk()
     {
-        if (_xValue < -0.02f)
-        {
-            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
-        }
-        else if (_xValue > 0.02f)
+        if (_xValue < -0.02f || _xValue > 0.02f)
         {
             GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
         }
@@ -381,47 +365,54 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void Jump()
     {
-        if (_playerData.jumpCount == 0)
+        if (_playerController.jump && _playerData.isGround && _playerData.jumpCount <= 1)
         {
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
+            if (_playerData.jumpCount == 0)
+            {
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
+                _playerData.jumpForce = _initJumpForce;
+                _playerData.isJumping = true;
+                GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
+            }
+            else
+            {
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
+                _playerData.jumpForce = _initJumpForce / 1.5f;
+                _playerData.isJumping = true;
+                GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
+            }
             _playerData.jumpForce = _initJumpForce;
-            _playerData.isJumping = true;
-            GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
+            _playerData.jumpCount++;
         }
         else
         {
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
-            _playerData.jumpForce = _initJumpForce / 1.5f;
-            _playerData.isJumping = true;
-            GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
-        }
-        _playerData.jumpForce = _initJumpForce;
-        _playerData.jumpCount++;
+            _playerData.isJumping = false;
+        }        
     }
     void Rotation()
     {
-        float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
-        float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
+        //float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
+        //float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
 
-        float _touchX = _playerController.delta.x * 100f * Time.deltaTime;
-        float _touchY = _playerController.delta.y * 100f * Time.deltaTime;
+        float _touchX = _playerController.delta.x * 180f * Time.deltaTime;
+        float _touchY = _playerController.delta.y * 80f * Time.deltaTime;
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
         _currentCamera.transform.Rotate(-_touchY * Time.timeScale, 0, 0);
 
-        if (_currentCamera.transform.eulerAngles.x > 74 && _currentCamera.transform.eulerAngles.x <= 75)
-        {
-            _playerData.isLookingUp = false;
-            _currentCamera.transform.eulerAngles = new Vector3(73f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
-        }
-        else if (_currentCamera.transform.eulerAngles.x > 75 && _currentCamera.transform.eulerAngles.x <= 270)
+        if (_currentCamera.transform.eulerAngles.x > 74 && _currentCamera.transform.eulerAngles.x <= 80)
         {
             _playerData.isLookingUp = false;
             _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
+        else if (_currentCamera.transform.eulerAngles.x > 330 && _currentCamera.transform.eulerAngles.x < 335)
+        {
+            _playerData.isLookingUp = false;
+            //_currentCamera.transform.eulerAngles = new Vector3(329, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
+        }
         else if (_currentCamera.transform.eulerAngles.x < 0)
         {
             _playerData.isLookingUp = true;
-            //_currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
+            _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
         else if (_currentCamera.transform.eulerAngles.x > 270 && _currentCamera.transform.eulerAngles.x <= 360)
         {
@@ -432,6 +423,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             _playerData.isLookingUp = false;
         }
+        //Debug.Log(_currentCamera.transform.eulerAngles.x);
 
         //if (_playerData.isLookingUp)
         //{
@@ -505,11 +497,18 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else
         {
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
+            if (collision.gameObject.CompareTag(SceneLoadController.Tags.Enemy.ToString()) && collision.gameObject.GetComponent<EnemyManager>()._healthBar == null)
+            {
+                collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable = false;
+            }
+            if (collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable)
+            {
+                ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
 
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
-            _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+            }
         }
     }
     void TriggerBullet(Collider other)

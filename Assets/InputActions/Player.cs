@@ -53,6 +53,33 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""88def06b-4cad-4557-b060-86b1bfc81cf9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Skate"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3148858-2a79-45c4-b95e-6b1f8dcbb389"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""cc2cafc0-a32e-4d88-bff5-2e2f6cb81139"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -143,6 +170,39 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83ce46ec-d759-4d97-bd9f-1fe167f9c6e5"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6aff67f9-f22e-466d-8ce1-8cf987063c91"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7f3f2b3d-df24-483d-8836-e14a7d5e234c"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -154,6 +214,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_PlayerMain_Move = m_PlayerMain.FindAction("Move", throwIfNotFound: true);
         m_PlayerMain_Look = m_PlayerMain.FindAction("Look", throwIfNotFound: true);
         m_PlayerMain_Fire = m_PlayerMain.FindAction("Fire", throwIfNotFound: true);
+        m_PlayerMain_Jump = m_PlayerMain.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerMain_Skate = m_PlayerMain.FindAction("Skate", throwIfNotFound: true);
+        m_PlayerMain_Run = m_PlayerMain.FindAction("Run", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -216,6 +279,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMain_Move;
     private readonly InputAction m_PlayerMain_Look;
     private readonly InputAction m_PlayerMain_Fire;
+    private readonly InputAction m_PlayerMain_Jump;
+    private readonly InputAction m_PlayerMain_Skate;
+    private readonly InputAction m_PlayerMain_Run;
     public struct PlayerMainActions
     {
         private @Player m_Wrapper;
@@ -223,6 +289,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_PlayerMain_Move;
         public InputAction @Look => m_Wrapper.m_PlayerMain_Look;
         public InputAction @Fire => m_Wrapper.m_PlayerMain_Fire;
+        public InputAction @Jump => m_Wrapper.m_PlayerMain_Jump;
+        public InputAction @Skate => m_Wrapper.m_PlayerMain_Skate;
+        public InputAction @Run => m_Wrapper.m_PlayerMain_Run;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMain; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -241,6 +310,15 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnFire;
+                @Jump.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnJump;
+                @Skate.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnSkate;
+                @Skate.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnSkate;
+                @Skate.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnSkate;
+                @Run.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnRun;
+                @Run.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnRun;
+                @Run.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnRun;
             }
             m_Wrapper.m_PlayerMainActionsCallbackInterface = instance;
             if (instance != null)
@@ -254,6 +332,15 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Skate.started += instance.OnSkate;
+                @Skate.performed += instance.OnSkate;
+                @Skate.canceled += instance.OnSkate;
+                @Run.started += instance.OnRun;
+                @Run.performed += instance.OnRun;
+                @Run.canceled += instance.OnRun;
             }
         }
     }
@@ -263,5 +350,8 @@ public partial class @Player : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnSkate(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
     }
 }

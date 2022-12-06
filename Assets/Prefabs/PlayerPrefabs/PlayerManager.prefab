@@ -615,7 +615,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1314507946
 Transform:
   m_ObjectHideFlags: 0
@@ -757,7 +757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1890426497
 Transform:
   m_ObjectHideFlags: 0
@@ -1319,6 +1319,7 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   delta: {x: 0, y: 0}
   fire: 0
+  jump: 0
 --- !u!114 &1763449507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1356,6 +1357,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 45016885-d51f-4e64-b6b0-6c10772b0fef
     m_ActionName: PlayerMain/Fire
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 88def06b-4cad-4557-b060-86b1bfc81cf9
+    m_ActionName: PlayerMain/Jump
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerMain

@@ -11,7 +11,10 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     // Update is called once per frame
     void Update()
     {
-        RayBullet();
+        if (!enemyData.isDying)
+        {
+            RayBullet();
+        }
     }
     void RayBullet()
     {

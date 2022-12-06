@@ -11,7 +11,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     [SerializeField] Transform _targetTransform;
 
     [Header("Health")]
-    [SerializeField] GameObject _healthBar;
+    public GameObject _healthBar;
 
     [Header("Output Sound")]
     private AudioSource _audioSource;
@@ -28,6 +28,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         _audioSource = GetComponent<AudioSource>();
         if (enemyData != null)
         {
+            enemyData.isTouchable = true;
             enemyData.isActivateMagnet = false;
             enemyData.isGround = true;
             _initSpeed = enemyData.enemySpeed;
@@ -52,14 +53,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (enemyData != null || gameObject != null)
         {
-            if (collision.collider.CompareTag(SceneLoadController.Tags.Player.ToString()))
+            if (collision.collider.CompareTag(SceneLoadController.Tags.Player.ToString()) && enemyData.isTouchable)
             {
                 TouchPlayer();
-            }
-            if (collision.collider.CompareTag(SceneLoadController.Tags.Bullet.ToString()))
-            {
-                TouchBullet();
-            }
+            }            
             if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
             {//Ground, Ladder, Enemy
                 enemyData.isGround = true;
@@ -75,6 +72,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.isWalking = true;
             }
+        }
+        if (other.CompareTag(SceneLoadController.Tags.Bullet.ToString()))
+        {
+            TriggerBullet();
         }
     }
     private void OnTriggerExit(Collider other)
@@ -97,7 +98,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             StartCoroutine(DelayStopEnemy());
         }        
     }
-    public void TouchBullet()
+    public void TriggerBullet()
     {
         gameObject.transform.LookAt(_targetTransform.position);
         enemyData.isWalking = false;
@@ -107,6 +108,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (_healthBar.transform.localScale.x <= 0.0625f)
             {
+                enemyData.isTouchable = false;
                 enemyData.isDying = true;
                 enemyData.isWalking = false;
                 enemyData.isFiring = false;

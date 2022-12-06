@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     public Vector2 movement;
     public Vector2 delta;
     public bool fire;
+    public bool jump;
+    public bool skateBoard;
+    public bool run;
 
     private void Awake()
     {
@@ -25,9 +28,16 @@ public class PlayerController : MonoBehaviour
     }  
     void Update()
     {
+        ControlStates();
+    }
+    public void ControlStates()
+    {
         movement = playerInput.PlayerMain.Move.ReadValue<Vector2>();
         delta = playerInput.PlayerMain.Look.ReadValue<Vector2>();
         fire = playerInput.PlayerMain.Fire.IsPressed();
+        jump = playerInput.PlayerMain.Jump.IsPressed();
+        skateBoard = playerInput.PlayerMain.Skate.IsPressed();
+        run = playerInput.PlayerMain.Run.IsPressed();
     }
 }
 
