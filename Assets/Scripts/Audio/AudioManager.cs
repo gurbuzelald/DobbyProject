@@ -55,9 +55,10 @@ public class AudioManager : AbstractSingleton<AudioManager>
     }
     void LoadVolume()
     {
-        float _musicVolume = PlayerPrefs.GetFloat(ExposedParameters.MusicVolume.ToString(), 1f);
+        float _musicVolume = PlayerPrefs.GetFloat(ExposedParameters.MusicVolume.ToString(), 0f);
         float _playerSfxVolume = PlayerPrefs.GetFloat(ExposedParameters.PlayerSFXVolume.ToString(), 1f);
         float _enemySFXVolume = PlayerPrefs.GetFloat(ExposedParameters.EnemySFXVolume.ToString(), 1f);
+
         _audiomixer.SetFloat(VolumeSetting.ExposedParameters.MusicVolume.ToString(), Mathf.Log10(_musicVolume)*20f);
         _audiomixer.SetFloat(VolumeSetting.ExposedParameters.PlayerSFXVolume.ToString(), Mathf.Log10(_playerSfxVolume)*20);
         _audiomixer.SetFloat(VolumeSetting.ExposedParameters.EnemySFXVolume.ToString(), Mathf.Log10(_enemySFXVolume)*20f);

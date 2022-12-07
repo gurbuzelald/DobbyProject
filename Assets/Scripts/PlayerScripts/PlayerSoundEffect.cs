@@ -53,6 +53,7 @@ public class PlayerSoundEffect : AbstractSingleton<PlayerSoundEffect>
         Death,
         PickUpCoin,
         Trap,
-        LevelUp
+        LevelUp, 
+        ShootOf
     }
 }

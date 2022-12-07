@@ -5,7 +5,9 @@ using Cinemachine;
 
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
+    [Header("Scripts")]
     [SerializeField] CloneManager _cloneManager;
+    private PlayerController _playerController;
 
     [Header("Sound")]
     [HideInInspector] public AudioSource audioSource;
@@ -26,7 +28,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     [Header("Fire")]
     public int firingRotation;
-    private BulletManager _bulletManager;
 
     [Header("Camera")]
     [SerializeField] CinemachineVirtualCamera _currentCamera;
@@ -48,7 +49,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private float _initJumpForce;
     private float _initPlayerSpeed;
 
-    private PlayerController _playerController;
     private CameraLook _cameraLook;
 
     void Start()
@@ -60,12 +60,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
         //Camera
         _currentCamera = _downCamera;
-        //_currentCamera.transform.eulerAngles = new Vector3(0f, 270f, 0f);
+        firingRotation = 0;
 
         _coinObject.SetActive(false);
 
         _playerData.isDestroyed = false;
-        firingRotation = 0;
         _playerData.jumpCount = 0;
         if (_playerData != null)
         {
@@ -88,7 +87,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isBackWalking = false;
             _playerData.isGround = true;
         }
-        _bulletManager = Object.FindObjectOfType<BulletManager>();
         _playerController = Object.FindObjectOfType<PlayerController>();
         _cameraLook = Object.FindObjectOfType<CameraLook>();
     }
@@ -199,10 +197,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         if (other.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
         {
             TriggerLadder(false, true);
-        }
-        if (other.CompareTag(SceneLoadController.Tags.Coin.ToString()))
-        {
-            //_playerData.isPicking = false;
         }
     }
     void TriggerLadder(bool isTouch, bool isTouchExit)
@@ -389,13 +383,28 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isJumping = false;
         }        
     }
+    public void Fire()
+    {
+        if (_playerController.fire)
+        {
+
+            _playerData.isFiring = true;
+            crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
+            StartCoroutine(Delay(2f));
+        }
+        else
+        {
+            _playerData.isFiring = false;
+        }
+
+    }
     void Rotation()
     {
         //float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
         //float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
 
-        float _touchX = _playerController.delta.x * 180f * Time.deltaTime;
-        float _touchY = _playerController.delta.y * 80f * Time.deltaTime;
+        float _touchX = _playerController.lookRotation.x * 250f * Time.deltaTime;
+        float _touchY = _playerController.lookRotation.y * 80f * Time.deltaTime;
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
         _currentCamera.transform.Rotate(-_touchY * Time.timeScale, 0, 0);
 
@@ -404,10 +413,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isLookingUp = false;
             _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
-        else if (_currentCamera.transform.eulerAngles.x > 330 && _currentCamera.transform.eulerAngles.x < 335)
+        else if (_currentCamera.transform.eulerAngles.x > 355)
         {
             _playerData.isLookingUp = false;
-            //_currentCamera.transform.eulerAngles = new Vector3(329, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
+            _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
         else if (_currentCamera.transform.eulerAngles.x < 0)
         {
@@ -450,22 +459,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //    _currentCamera = _downCamera;
         //}
     }
-    public void Fire()
-    {
-        if (_playerController.fire)
-        {
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
-
-            _playerData.isFiring = true;
-            crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
-            StartCoroutine(Delay(2f));
-        }
-        else
-        {
-            _playerData.isFiring = false;
-        }
-        
-    }
+    
 
     void TouchEnemy(Collision collision)
     {
@@ -507,7 +501,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
-                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.1f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
         }
     }
@@ -548,7 +542,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
-                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.05f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
         }
     }
@@ -560,7 +554,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
 
     IEnumerator Delay(float value)
-    {
+    {        
         yield return new WaitForSeconds(value);
         crosshairImage.GetComponent<CanvasGroup>().alpha = 0;
     }

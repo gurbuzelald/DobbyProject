@@ -8,14 +8,16 @@ public class PlayerController : MonoBehaviour
     [Header("Input")]
     private Player playerInput;
     public Vector2 movement;
-    public Vector2 delta;
+    public Vector2 lookRotation;
     public bool fire;
     public bool jump;
     public bool skateBoard;
     public bool run;
+    private float count;
 
     private void Awake()
     {
+        count = 0;
         playerInput = new Player();
     }
     private void OnEnable()
@@ -32,12 +34,18 @@ public class PlayerController : MonoBehaviour
     }
     public void ControlStates()
     {
+        
         movement = playerInput.PlayerMain.Move.ReadValue<Vector2>();
-        delta = playerInput.PlayerMain.Look.ReadValue<Vector2>();
+        lookRotation = playerInput.PlayerMain.Look.ReadValue<Vector2>();
         fire = playerInput.PlayerMain.Fire.IsPressed();
         jump = playerInput.PlayerMain.Jump.IsPressed();
         skateBoard = playerInput.PlayerMain.Skate.IsPressed();
         run = playerInput.PlayerMain.Run.IsPressed();
+    }
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(10f);
+        count = 0;
     }
 }
 
