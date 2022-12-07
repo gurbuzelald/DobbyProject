@@ -49,25 +49,35 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private float _initJumpForce;
     private float _initPlayerSpeed;
 
-    private CameraLook _cameraLook;
-
     void Start()
     {
+        DataStatesOnInitial();
+
+        //Particle
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
-        _playerData.clickTabCount = 0;
-        _playerData.clickShiftCount = 0;
-        audioSource = GetComponent<AudioSource>();
+
+        //Audio
+        audioSource = GetComponent<AudioSource>();       
+
+
+        //GameObjects
+        _coinObject.SetActive(false);
 
         //Camera
         _currentCamera = _downCamera;
         firingRotation = 0;
 
-        _coinObject.SetActive(false);
-
-        _playerData.isDestroyed = false;
-        _playerData.jumpCount = 0;
+        //Scripts
+        _playerController = Object.FindObjectOfType<PlayerController>();
+    }
+    void DataStatesOnInitial()
+    {
         if (_playerData != null)
         {
+            _playerData.clickTabCount = 0;
+            _playerData.clickShiftCount = 0;
+            _playerData.isDestroyed = false;
+            _playerData.jumpCount = 0;
             _playerData.isLose = false;
             _playerData.isTouchFinish = false;
             _playerData.isPicking = false;
@@ -87,8 +97,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isBackWalking = false;
             _playerData.isGround = true;
         }
-        _playerController = Object.FindObjectOfType<PlayerController>();
-        _cameraLook = Object.FindObjectOfType<CameraLook>();
     }
 
     // Update is called once per frame
@@ -117,7 +125,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 TouchEnemy(collision);
             }
             if (collision.collider.CompareTag(SceneLoadController.Tags.Coin.ToString()))
-            {
+            {//For Big Coins
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
                 collision.collider.gameObject.SetActive(false);
                 ScoreController.GetInstance.SetScore(230);
@@ -147,83 +155,26 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (other.CompareTag(SceneLoadController.Tags.Coin.ToString()))
         {
-            _playerData.playerSpeed = 0.5f;
-            _coinObject.SetActive(true);
-            _playerData.isPicking = true;
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
-            other.gameObject.SetActive(false);
-            ScoreController.GetInstance.SetScore(23);
+            PickUpCoin(SceneLoadController.Tags.Coin, other);
         }
         if (other.CompareTag(SceneLoadController.Tags.RotateCoin.ToString()))
         {
-            _playerData.playerSpeed = 0.5f;
-            _coinObject.SetActive(true);
-            _playerData.isPickRotateCoin = true;
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
-            other.gameObject.SetActive(false);
-            ScoreController.GetInstance.SetScore(23);
+            PickUpCoin(SceneLoadController.Tags.RotateCoin, other);
         }
         if (other.CompareTag(SceneLoadController.Tags.Lava.ToString()))
         {
-            _playerData.isDestroyed = true;
-
-            //collision.collider.gameObject._enemyData.isWalking = false;
-            //collision.collider._enemyData.enemySpeed = 0;
-
-            //PlayerData
-            _playerData.isDying = true;
-            _playerData.isIdling = false;
-            _playerData.isPlayable = false;
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Fire, _particleTransform.transform);
-            StartCoroutine(DelayDestroy(3f));
+            DestroyByLava();
         }
         if (other.CompareTag(SceneLoadController.Tags.Water.ToString()))
         {
-            _playerData.isDestroyed = true;
-            //collision.collider.gameObject._enemyData.isWalking = false;
-            //collision.collider._enemyData.enemySpeed = 0;
-
-            //PlayerData
-            _playerData.isDying = true;
-            _playerData.isIdling = false;
-            _playerData.isPlayable = false;
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
-            StartCoroutine(DelayDestroy(5f));
+            DestroyByWater();
         }
-    }
-
+    }    
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
         {
             TriggerLadder(false, true);
-        }
-    }
-    void TriggerLadder(bool isTouch, bool isTouchExit)
-    {
-        GetInstance.GetComponent<Rigidbody>().isKinematic = isTouch;
-        if (PlayerManager.GetInstance._zValue > 0 && !isTouchExit)
-        {
-            _playerData.isClimbing = isTouch;
-            _playerData.isBackClimbing = !isTouch;
-        }
-        else if (PlayerManager.GetInstance._zValue < 0 && !isTouchExit)
-        {
-            _playerData.isBackClimbing = isTouch;
-            _playerData.isClimbing = !isTouch;
-        }
-        else if (isTouchExit && PlayerManager.GetInstance._zValue != 0)
-        {
-            _playerData.isBackClimbing = isTouch;
-            _playerData.isClimbing = isTouch;
-            if (PlayerManager.GetInstance._zValue < 0)
-            {
-                _playerData.isBackWalking = !isTouch;
-            }
-            else if (PlayerManager.GetInstance._zValue > 0)
-            {
-                _playerData.isWalking = !isTouch;
-            }
         }
     }
 
@@ -234,11 +185,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             Rotation();
             if (_playerData.isPlayable && !_playerData.isWinning)
             {
+                //Getting left stick values
                 _xValue = _playerController.movement.x*Time.deltaTime*2f;
                 _zValue = _playerController.movement.y*Time.deltaTime*2f;
 
-                //_xValue = _joystick.Horizontal * Time.deltaTime * _playerData.playerSpeed / 2f;
-                //_zValue = _joystick.Vertical * Time.deltaTime * _playerData.playerSpeed;
+                //float xValue = Input.GetAxis("Horizontal") * Time.deltaTime * _playerData.playerSpeed / 2f;
+                //float zValue = Input.GetAxis("Vertical") * Time.deltaTime * _playerData.playerSpeed;
+
+                //Moves
                 Walk();
                 Climb();
                 SkateBoard();
@@ -248,7 +202,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
             else if (_playerData.isWinning)
             {
-                //VirtualCameraEulerAngle for Victory Dance
+                //VirtualCameraEulerAngle for Salsa Dance
                 _currentCamera.transform.eulerAngles = new Vector3(_currentCamera.transform.eulerAngles.x, 180f, _currentCamera.transform.eulerAngles.z);
             }
         }
@@ -396,18 +350,27 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             _playerData.isFiring = false;
         }
-
     }
     void Rotation()
     {
+        //Mouse Rotation Controller
         //float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
         //float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
 
+        //Touch Rotation Controller
         float _touchX = _playerController.lookRotation.x * _playerData.sensivityX * Time.deltaTime;
         float _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime;
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
         _currentCamera.transform.Rotate(-_touchY * Time.timeScale, 0, 0);
 
+        //Debug.Log(_playerController.lookRotation.x);
+        CheckCameraEulerX();
+
+        //Debug.Log(_currentCamera.transform.eulerAngles.x);
+        ChooseCamera();
+    }
+    void CheckCameraEulerX()
+    {
         if (_currentCamera.transform.eulerAngles.x > 74 && _currentCamera.transform.eulerAngles.x <= 80)
         {
             _playerData.isLookingUp = false;
@@ -432,8 +395,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             _playerData.isLookingUp = false;
         }
-        //Debug.Log(_currentCamera.transform.eulerAngles.x);
-
+    }
+    void ChooseCamera()
+    {
         //if (_playerData.isLookingUp)
         //{
         //    if (_downCamera.enabled == false)
@@ -459,7 +423,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //    _currentCamera = _downCamera;
         //}
     }
-    
 
     void TouchEnemy(Collision collision)
     {
@@ -505,6 +468,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
         }
     }
+
+    //Triggers
     void TriggerBullet(Collider other)
     {
         if (_healthBar != null)
@@ -546,6 +511,83 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
         }
     }
+    void PickUpCoin(SceneLoadController.Tags value, Collider other)
+    {
+        if (value == SceneLoadController.Tags.Coin)
+        {
+            _playerData.playerSpeed = 0.5f;
+            _coinObject.SetActive(true);
+            _playerData.isPicking = true;
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+            other.gameObject.SetActive(false);
+            ScoreController.GetInstance.SetScore(23);
+        }
+        else if (value == SceneLoadController.Tags.RotateCoin)
+        {
+            _playerData.playerSpeed = 0.5f;
+            _coinObject.SetActive(true);
+            _playerData.isPickRotateCoin = true;
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+            other.gameObject.SetActive(false);
+            ScoreController.GetInstance.SetScore(23);
+        }
+    }
+    void DestroyByWater()
+    {
+        _playerData.isDestroyed = true;
+        //collision.collider.gameObject._enemyData.isWalking = false;
+        //collision.collider._enemyData.enemySpeed = 0;
+
+        //PlayerData
+        _playerData.isDying = true;
+        _playerData.isIdling = false;
+        _playerData.isPlayable = false;
+        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
+        StartCoroutine(DelayDestroy(5f));
+    }
+    void DestroyByLava()
+    {
+        _playerData.isDestroyed = true;
+
+        //collision.collider.gameObject._enemyData.isWalking = false;
+        //collision.collider._enemyData.enemySpeed = 0;
+
+        //PlayerData
+        _playerData.isDying = true;
+        _playerData.isIdling = false;
+        _playerData.isPlayable = false;
+        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Fire, _particleTransform.transform);
+        StartCoroutine(DelayDestroy(3f));
+    }
+    void TriggerLadder(bool isTouch, bool isTouchExit)
+    {
+        GetInstance.GetComponent<Rigidbody>().isKinematic = isTouch;
+        if (PlayerManager.GetInstance._zValue > 0 && !isTouchExit)
+        {
+            _playerData.isClimbing = isTouch;
+            _playerData.isBackClimbing = !isTouch;
+        }
+        else if (PlayerManager.GetInstance._zValue < 0 && !isTouchExit)
+        {
+            _playerData.isBackClimbing = isTouch;
+            _playerData.isClimbing = !isTouch;
+        }
+        else if (isTouchExit && PlayerManager.GetInstance._zValue != 0)
+        {
+            _playerData.isBackClimbing = isTouch;
+            _playerData.isClimbing = isTouch;
+            if (PlayerManager.GetInstance._zValue < 0)
+            {
+                _playerData.isBackWalking = !isTouch;
+            }
+            else if (PlayerManager.GetInstance._zValue > 0)
+            {
+                _playerData.isWalking = !isTouch;
+            }
+        }
+    }
+
+
     void CreateVictoryAnimation()
     {
         GameObject jolleenObject = Instantiate(_playerData.jolleenObject, _jolleenTransform.transform);

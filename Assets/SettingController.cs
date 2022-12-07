@@ -21,21 +21,25 @@ public class SettingController : MonoBehaviour
 
     private void Awake()
     {
+        //Sensivity Datas are transforming to preferences on awake
         PlayerPrefs.SetFloat("SensivityX", playerData.sensivityX);
         PlayerPrefs.SetFloat("SensivityY", playerData.sensivityY);        
     }
     private void OnEnable()
     {
+        //Sensivity preferences are transforming to sliders on enable
         _sensivityX.value = PlayerPrefs.GetFloat("SensivityX");
         _sensivityY.value = PlayerPrefs.GetFloat("SensivityY");
     }
     private void Start()
     {
+        //Settings initial scales are zero
         _soundSettingsPanel.localScale = Vector3.zero;
         _sensivitySettingsPanel.localScale = Vector3.zero;
     }
     private void Update()
     {
+        //Sensivity values are transforming to sensivity datas
         TransformSensivityValueToData();
     }
     void TransformSensivityValueToData()
@@ -46,7 +50,7 @@ public class SettingController : MonoBehaviour
         _sensivityXText.text = playerData.sensivityX.ToString();
         _sensivityYText.text = playerData.sensivityY.ToString();
     }
-    public void OpenSettings()
+    public void ClickSettingButon()
     {
         if (_soundSettingsPanel.localScale.x == 0)
         {
