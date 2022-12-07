@@ -12,26 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  sensivityX: 50
+  sensivityY: 50
   isTouchFinish: 0
   isLose: 0
   playerSpeed: 2
   rotateSpeed: 6
   jumpForce: 3
-  isGround: 0
+  isGround: 1
   isWalking: 0
   isBackWalking: 0
   isClimbing: 0
   isBackClimbing: 0
   isIdling: 0
-  isDying: 1
+  isDying: 0
   isWinning: 0
   isSkateBoarding: 0
   isRunning: 0
   isPicking: 0
   isPickRotateCoin: 0
   isLookingUp: 0
-  isDestroyed: 1
-  isPlayable: 0
+  isDestroyed: 0
+  isPlayable: 1
   isFiring: 0
   isJumping: 0
   jumpCount: 0

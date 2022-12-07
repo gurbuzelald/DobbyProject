@@ -4,6 +4,10 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
 
+    [Header("Sensivity")]
+    public float sensivityX = 250f;
+    public float sensivityY = 80f;
+
     [Header("FinishCheck")]
     public bool isTouchFinish;
     public bool isLose;

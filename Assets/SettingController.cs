@@ -1,32 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class SettingController : MonoBehaviour
 {
-    [SerializeField] RectTransform _musicSlader;
-    [SerializeField] RectTransform _playerSFX;
-    [SerializeField] RectTransform _enemySFX;
+    [Header("Panel")]
+    [SerializeField] RectTransform _soundSettingsPanel;
+    [SerializeField] RectTransform _sensivitySettingsPanel;
 
+    [Header("Sensivity")]
+    [SerializeField] Slider _sensivityX;
+    [SerializeField] Slider _sensivityY;
+    [SerializeField] TextMeshProUGUI _sensivityXText;
+    [SerializeField] TextMeshProUGUI _sensivityYText;
+
+    [Header("Data")]
+    public PlayerData playerData;
+
+    private void Awake()
+    {
+        PlayerPrefs.SetFloat("SensivityX", playerData.sensivityX);
+        PlayerPrefs.SetFloat("SensivityY", playerData.sensivityY);        
+    }
+    private void OnEnable()
+    {
+        _sensivityX.value = PlayerPrefs.GetFloat("SensivityX");
+        _sensivityY.value = PlayerPrefs.GetFloat("SensivityY");
+    }
     private void Start()
     {
-        _musicSlader.localScale = Vector3.zero;
-        _playerSFX.localScale = Vector3.zero;
-        _enemySFX.localScale = Vector3.zero;
+        _soundSettingsPanel.localScale = Vector3.zero;
+        _sensivitySettingsPanel.localScale = Vector3.zero;
+    }
+    private void Update()
+    {
+        TransformSensivityValueToData();
+    }
+    void TransformSensivityValueToData()
+    {
+        playerData.sensivityX = _sensivityX.value;
+        playerData.sensivityY = _sensivityY.value;
+
+        _sensivityXText.text = playerData.sensivityX.ToString();
+        _sensivityYText.text = playerData.sensivityY.ToString();
     }
     public void OpenSettings()
     {
-        if (_musicSlader.localScale.x == 0)
+        if (_soundSettingsPanel.localScale.x == 0)
         {
-            _musicSlader.localScale = Vector3.one;
-            _playerSFX.localScale = Vector3.one;
-            _enemySFX.localScale = Vector3.one;
+            _soundSettingsPanel.localScale = Vector3.one;
+            _sensivitySettingsPanel.localScale = Vector3.one;
         }
         else
         {
-            _musicSlader.localScale = Vector3.zero;
-            _playerSFX.localScale = Vector3.zero;
-            _enemySFX.localScale = Vector3.zero;
+            _soundSettingsPanel.localScale = Vector3.zero;
+            _sensivitySettingsPanel.localScale = Vector3.zero;
         }
         
     }

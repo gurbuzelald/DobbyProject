@@ -403,8 +403,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
         //float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
 
-        float _touchX = _playerController.lookRotation.x * 250f * Time.deltaTime;
-        float _touchY = _playerController.lookRotation.y * 80f * Time.deltaTime;
+        float _touchX = _playerController.lookRotation.x * _playerData.sensivityX * Time.deltaTime;
+        float _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime;
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
         _currentCamera.transform.Rotate(-_touchY * Time.timeScale, 0, 0);
 
