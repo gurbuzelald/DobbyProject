@@ -25,14 +25,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     private void Start()
     {
+        DataStatesOnInitial();
         _audioSource = GetComponent<AudioSource>();
-        if (enemyData != null)
-        {
-            enemyData.isTouchable = true;
-            enemyData.isActivateMagnet = false;
-            enemyData.isGround = true;
-            _initSpeed = enemyData.enemySpeed;
-        }
+        
     }
     void Update()
     {
@@ -40,12 +35,15 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (playerData.isPlayable)
             {
+                enemyData.enemySpeed = _initSpeed;
+
                 Movement(_targetTransform, gameObject.transform, enemyData.isActivateMagnet, enemyData.enemySpeed);
             }
             else
             {
                 enemyData.isWalking = false;
                 enemyData.isFiring = false;
+                enemyData.enemySpeed = 0f;
             }
         }
     }    
@@ -86,6 +84,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             enemyData.isWalking = false;
         }
     }
+
+    //Collider and Collision
     public void TouchPlayer()
     {
         if (PlayerManager.GetInstance._healthBar != null && PlayerManager.GetInstance._healthBar.transform.localScale.x <= 0.0625f)
@@ -126,6 +126,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
         }
     }   
+
+
     public IEnumerator DelayStopEnemy()
     {
         yield return new WaitForSeconds(3f);
@@ -139,6 +141,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         enemyData.isWalking = true;
         enemyData.isDying = false;
     }
+
+    //SFX States
     public void PlaySoundEffect(SoundEffectTypes soundEffect, AudioSource audioSource)
     {
         if (soundEffect == SoundEffectTypes.GetHit)
@@ -161,4 +165,14 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         Death,
     }
 
+    private void DataStatesOnInitial()
+    {
+        if (enemyData != null)
+        {
+            enemyData.isTouchable = true;
+            enemyData.isActivateMagnet = false;
+            enemyData.isGround = true;
+            _initSpeed = enemyData.enemySpeed;
+        }
+    }
 }

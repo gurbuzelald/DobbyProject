@@ -34,8 +34,12 @@ public class SettingController : MonoBehaviour
     private void Start()
     {
         //Settings initial scales are zero
-        _soundSettingsPanel.localScale = Vector3.zero;
-        _sensivitySettingsPanel.localScale = Vector3.zero;
+        if(SceneLoadController.GetInstance.CheckSceneName() == SceneLoadController.Scenes.End.ToString() || SceneLoadController.GetInstance.CheckSceneName() == SceneLoadController.Scenes.Menu.ToString())
+        {
+            _soundSettingsPanel.localScale = Vector3.zero;
+            _sensivitySettingsPanel.localScale = Vector3.zero;
+        }
+        
     }
     private void Update()
     {
@@ -61,7 +65,11 @@ public class SettingController : MonoBehaviour
         {
             _soundSettingsPanel.localScale = Vector3.zero;
             _sensivitySettingsPanel.localScale = Vector3.zero;
-        }
-        
+        }        
+    }
+    public void SetDefaulth()
+    {
+        _sensivityX.value = 240f;
+        _sensivityY.value = 120f;
     }
 }

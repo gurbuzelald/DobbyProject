@@ -7,6 +7,30 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
 {
     [Header("Audio Components")]
     [SerializeField] AudioSource _audioSource;
+
+    [SerializeField] GameObject pausePanel;
+    public PlayerData _playerData;
+    private bool pauseGame = false;
+    private void Start()
+    {
+        pauseGame = false;
+        pausePanel.SetActive(false);
+        
+    }
+    private void OnEnable()
+    {
+        if (pauseGame)
+        {
+            Time.timeScale = 0;
+        }
+    }
+    private void OnDisable()
+    {
+        if (!pauseGame)
+        {
+            Time.timeScale = 1;
+        }
+    }
     public void PlayAgain()
     {
         _audioSource.Stop();
@@ -14,7 +38,7 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
         {
             Destroy(PlayerManager.GetInstance.gameObject);
         }
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(Scenes.Level1.ToString());
     }
     public string CheckSceneName()
     {
@@ -28,7 +52,7 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
         {
             Destroy(PlayerManager.GetInstance.gameObject);
         }
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene(Scenes.Menu.ToString());
     }
     public void LoadEndScene()
     {
@@ -37,7 +61,20 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
         {
             Destroy(PlayerManager.GetInstance.gameObject);
         }
-        SceneManager.LoadScene("End");
+        SceneManager.LoadScene(Scenes.End.ToString());
+    }
+    public void PauseGame()
+    {
+        if (pauseGame) {
+            pauseGame = false;
+            pausePanel.SetActive(false);
+            _playerData.isPlayable = true;
+        }
+        else if (!pauseGame) {
+            pauseGame = true;
+            pausePanel.SetActive(true);
+            _playerData.isPlayable = false;
+        }
     }
     public void LevelUp()
     {
@@ -75,6 +112,7 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     public enum Scenes
     {
         Menu,
-        End
+        End,
+        Level1
     }
 }

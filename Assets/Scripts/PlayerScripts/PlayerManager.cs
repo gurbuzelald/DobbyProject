@@ -57,7 +57,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
 
         //Audio
-        audioSource = GetComponent<AudioSource>();       
+        audioSource = GetComponent<AudioSource>();    
 
 
         //GameObjects
@@ -339,17 +339,20 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     public void Fire()
     {
-        if (_playerController.fire)
+        if (_playerData.isPlayable)
         {
+            if (_playerController.fire)
+            {
 
-            _playerData.isFiring = true;
-            crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
-            StartCoroutine(Delay(2f));
-        }
-        else
-        {
-            _playerData.isFiring = false;
-        }
+                _playerData.isFiring = true;
+                crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
+                StartCoroutine(Delay(2f));
+            }
+            else
+            {
+                _playerData.isFiring = false;
+            }
+        }        
     }
     void Rotation()
     {
@@ -424,6 +427,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //}
     }
 
+    //Collision
     void TouchEnemy(Collision collision)
     {
         if (_healthBar.transform.localScale.x <= 0.0625f)

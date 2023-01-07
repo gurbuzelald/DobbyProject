@@ -13,11 +13,9 @@ public class PlayerController : MonoBehaviour
     public bool jump;
     public bool skateBoard;
     public bool run;
-    private float count;
 
     private void Awake()
     {
-        count = 0;
         playerInput = new Player();
     }
     private void OnEnable()
@@ -45,7 +43,6 @@ public class PlayerController : MonoBehaviour
     private IEnumerator Delay()
     {
         yield return new WaitForSeconds(10f);
-        count = 0;
     }
 }
 
