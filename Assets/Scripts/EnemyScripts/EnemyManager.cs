@@ -23,8 +23,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     [Header("Initial Situations")]
     private float _initSpeed;
 
+    private Transform _initTransform;
+
     private void Start()
     {
+
+        _initTransform = gameObject.transform;
         DataStatesOnInitial();
         _audioSource = GetComponent<AudioSource>();
         
@@ -37,7 +41,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.enemySpeed = _initSpeed;
 
-                Movement(_targetTransform, gameObject.transform, enemyData.isActivateMagnet, enemyData.enemySpeed);
+                Movement(_targetTransform, _initTransform, gameObject.transform, enemyData.isActivateMagnet, enemyData.enemySpeed);
             }
             else
             {
@@ -54,7 +58,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             if (collision.collider.CompareTag(SceneLoadController.Tags.Player.ToString()) && enemyData.isTouchable)
             {
                 TouchPlayer();
-            }            
+            }
+            if (collision.collider.CompareTag(SceneLoadController.Tags.FanceWooden.ToString()) && enemyData.isTouchable)
+            {
+                TouchWall();
+            }
             if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
             {//Ground, Ladder, Enemy
                 enemyData.isGround = true;
@@ -97,6 +105,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             enemyData.enemySpeed = _initSpeed * 0f;
             StartCoroutine(DelayStopEnemy());
         }        
+    }
+    public void TouchWall()
+    {
+        if (!enemyData.isActivateMagnet)
+        {
+            gameObject.transform.Rotate(0f, 180f, 0f);
+        }
     }
     public void TriggerBullet()
     {

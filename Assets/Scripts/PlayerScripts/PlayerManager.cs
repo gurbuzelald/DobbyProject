@@ -205,6 +205,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 //VirtualCameraEulerAngle for Salsa Dance
                 _currentCamera.transform.eulerAngles = new Vector3(_currentCamera.transform.eulerAngles.x, 180f, _currentCamera.transform.eulerAngles.z);
             }
+            else
+            {
+                _playerData.isFiring = false;
+            }
         }
     }
     void SkateBoard()
@@ -352,7 +356,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             {
                 _playerData.isFiring = false;
             }
-        }        
+        }
+        else
+        {
+            _playerData.isFiring = false;
+        }
     }
     void Rotation()
     {

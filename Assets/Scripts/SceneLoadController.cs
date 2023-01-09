@@ -15,6 +15,8 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     [SerializeField] GameObject pausePanel;
     private bool pauseGame = false;
     public bool playAgain;
+
+    [Header("RotationControl")]
     public static bool rotateControl = false;
 
     private void Start()

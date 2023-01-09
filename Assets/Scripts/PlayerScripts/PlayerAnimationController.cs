@@ -196,7 +196,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void FireAnimation()
     {
-        if (playerData.isFiring && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing)
+        if (playerData.isFiring && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
         {
             _animator.SetBool("isFiring", true);
 
