@@ -8,14 +8,20 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     [Header("Audio Components")]
     [SerializeField] AudioSource _audioSource;
 
-    [SerializeField] GameObject pausePanel;
+    [Header("Data")]
     public PlayerData _playerData;
+
+    [Header("Buttons")]
+    [SerializeField] GameObject pausePanel;
     private bool pauseGame = false;
+    public bool playAgain;
+    public bool rotateControl = false;
+
     private void Start()
     {
+        rotateControl = false;
+        playAgain = false;
         pauseGame = false;
-        pausePanel.SetActive(false);
-        
     }
     private void OnEnable()
     {
@@ -33,6 +39,7 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     }
     public void PlayAgain()
     {
+        playAgain = true;
         _audioSource.Stop();
         if (PlayerManager.GetInstance.gameObject != null)
         {
@@ -67,14 +74,19 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     {
         if (pauseGame) {
             pauseGame = false;
-            pausePanel.SetActive(false);
+            pausePanel.transform.localScale = Vector3.zero;
             _playerData.isPlayable = true;
         }
         else if (!pauseGame) {
             pauseGame = true;
-            pausePanel.SetActive(true);
+            pausePanel.transform.localScale = Vector3.one;
             _playerData.isPlayable = false;
         }
+    }
+    public void ControlRotate()
+    {
+        if (rotateControl == true) rotateControl = false;
+        else if (rotateControl == false) rotateControl = true;
     }
     public void LevelUp()
     {

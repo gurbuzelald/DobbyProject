@@ -206,8 +206,8 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6aff67f9-f22e-466d-8ce1-8cf987063c91"",
-                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""id"": ""30de3681-65a9-4486-bd5a-45b08727aa64"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

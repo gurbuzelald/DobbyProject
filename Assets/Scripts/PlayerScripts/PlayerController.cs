@@ -40,9 +40,5 @@ public class PlayerController : MonoBehaviour
         skateBoard = playerInput.PlayerMain.Skate.IsPressed();
         run = playerInput.PlayerMain.Run.IsPressed();
     }
-    private IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(10f);
-    }
 }
 

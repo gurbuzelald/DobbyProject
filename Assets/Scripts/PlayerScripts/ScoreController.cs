@@ -26,6 +26,12 @@ public class ScoreController : AbstractSingleton<ScoreController>
             PlayerPrefs.SetInt("ScoreAmount", 0);
             _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
         }
+        else if (SceneLoadController.GetInstance.playAgain)
+        {
+            _scoreAmount = 0;
+            PlayerPrefs.SetInt("ScoreAmount", 0);
+            _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
+        }
         else
         {
             if (_scored)

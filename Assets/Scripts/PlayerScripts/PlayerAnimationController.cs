@@ -70,6 +70,8 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(1, 1);
             _animator.SetLayerWeight(2, 0);
             _animator.SetLayerWeight(3, 0);
+            _animator.SetLayerWeight(5, 0);
+            _animator.SetLayerWeight(6, 0);
         }
         else if (playerData.isBackWalking && !playerData.isWalking && !playerData.isJumping && !playerData.isBackClimbing)
         {
@@ -82,6 +84,8 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(2, 1);
             _animator.SetLayerWeight(1, 0);
             _animator.SetLayerWeight(4, 0);
+            _animator.SetLayerWeight(5, 0);
+            _animator.SetLayerWeight(6, 0);
         }
         else if (!playerData.isBackWalking && !playerData.isWalking && !playerData.isClimbing && !playerData.isJumping)
         {
@@ -99,7 +103,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void LeftWalkAnimation()
     {
-        if (PlayerManager.GetInstance._xValue < -0.02f && PlayerManager.GetInstance._zValue > -0.02f && PlayerManager.GetInstance._zValue < 0.02f)
+        if (PlayerManager.GetInstance._xValue < -0.03f && PlayerManager.GetInstance._zValue > -0.05f && PlayerManager.GetInstance._zValue < 0.05f)
         {
             _animator.SetBool("isLeftWalk", true);
 
@@ -110,6 +114,7 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetBool("isRightWalk", false);
 
             _animator.SetLayerWeight(5, 1);
+            _animator.SetLayerWeight(6, 0);
 
         }
         else if (PlayerManager.GetInstance._xValue == 0 && !playerData.isJumping)
@@ -119,10 +124,11 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetLayerWeight(0, 1);
         }
         
+
     }
     void RightWalkAnimation()
     {
-        if (PlayerManager.GetInstance._xValue > 0.03f && PlayerManager.GetInstance._zValue < 0.02f && PlayerManager.GetInstance._zValue > -0.02f)
+        if (PlayerManager.GetInstance._xValue > 0.03f && PlayerManager.GetInstance._zValue < 0.05f && PlayerManager.GetInstance._zValue > -0.05f)
         {
             _animator.SetBool("isRightWalk", true);
 
@@ -133,6 +139,8 @@ public class PlayerAnimationController : MonoBehaviour
             _animator.SetBool("isClimbing", false);
 
             _animator.SetLayerWeight(6, 1);
+            _animator.SetLayerWeight(5, 0);
+
         }
         else if (PlayerManager.GetInstance._xValue == 0 && !playerData.isJumping)
         {
@@ -188,7 +196,7 @@ public class PlayerAnimationController : MonoBehaviour
     }
     void FireAnimation()
     {
-        if (playerData.isFiring)
+        if (playerData.isFiring && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing)
         {
             _animator.SetBool("isFiring", true);
 

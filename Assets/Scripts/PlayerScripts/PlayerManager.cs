@@ -356,15 +356,23 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void Rotation()
     {
-        //Mouse Rotation Controller
-        //float _mousePosX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
-        //float _mousePosY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
-
-        //Touch Rotation Controller
-        float _touchX = _playerController.lookRotation.x * _playerData.sensivityX * Time.deltaTime;
-        float _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime;
+        float _touchX;
+        float _touchY;
+        if (SceneLoadController.GetInstance.rotateControl == true)
+        {
+            //Mouse Rotation Controller
+            _touchX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
+            _touchY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale;
+        }
+        else
+        {
+            //Touch Rotation Controller
+            _touchX = _playerController.lookRotation.x * _playerData.sensivityX * Time.deltaTime;
+            _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime;
+        }    
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
         _currentCamera.transform.Rotate(-_touchY * Time.timeScale, 0, 0);
+
 
         //Debug.Log(_playerController.lookRotation.x);
         CheckCameraEulerX();
@@ -372,6 +380,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //Debug.Log(_currentCamera.transform.eulerAngles.x);
         ChooseCamera();
     }
+    
     void CheckCameraEulerX()
     {
         if (_currentCamera.transform.eulerAngles.x > 74 && _currentCamera.transform.eulerAngles.x <= 80)
