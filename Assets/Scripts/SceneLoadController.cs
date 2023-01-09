@@ -15,7 +15,7 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     [SerializeField] GameObject pausePanel;
     private bool pauseGame = false;
     public bool playAgain;
-    public bool rotateControl = false;
+    public static bool rotateControl = false;
 
     private void Start()
     {
@@ -85,8 +85,14 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     }
     public void ControlRotate()
     {
-        if (rotateControl == true) rotateControl = false;
-        else if (rotateControl == false) rotateControl = true;
+        if (rotateControl == true)
+        {
+            rotateControl = false;
+        }
+        else
+        {
+            rotateControl = true;
+        }
     }
     public void LevelUp()
     {

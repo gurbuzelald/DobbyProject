@@ -209,7 +209,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void SkateBoard()
     {
-        if (_playerController.skateBoard && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
+        if (PlayerController.skateBoard && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
         {
             _playerData.clickTabCount++;
             _playerData.isSkateBoarding = true;
@@ -229,7 +229,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void Run()
     {
-        if (_playerController.run && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding)
+        if (PlayerController.run && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding)
         {
             _playerData.clickShiftCount++;
             _playerData.isRunning = true;
@@ -358,7 +358,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         float _touchX;
         float _touchY;
-        if (SceneLoadController.GetInstance.rotateControl == true)
+        if (SceneLoadController.rotateControl == true)
         {
             //Mouse Rotation Controller
             _touchX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;

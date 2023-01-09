@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     public Vector2 lookRotation;
     public bool fire;
     public bool jump;
-    public bool skateBoard;
-    public bool run;
+    public static bool skateBoard;
+    public static bool run;
 
     private void Awake()
     {
