@@ -55,15 +55,15 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (enemyData != null || gameObject != null)
         {
-            if (collision.collider.CompareTag(SceneLoadController.Tags.Player.ToString()) && enemyData.isTouchable)
+            if (collision.collider.CompareTag(SceneController.Tags.Player.ToString()) && enemyData.isTouchable)
             {
                 TouchPlayer();
             }
-            if (collision.collider.CompareTag(SceneLoadController.Tags.FanceWooden.ToString()) && enemyData.isTouchable)
+            if (collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()) && enemyData.isTouchable)
             {
                 TouchWall();
             }
-            if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
+            if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneController.Tags.Ladder.ToString()))
             {//Ground, Ladder, Enemy
                 enemyData.isGround = true;
             }
@@ -71,7 +71,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(SceneLoadController.Tags.Magnet.ToString()))
+        if (other.CompareTag(SceneController.Tags.Magnet.ToString()))
         {
             enemyData.isActivateMagnet = true;
             if (!enemyData.isFiring)
@@ -79,14 +79,14 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isWalking = true;
             }
         }
-        if (other.CompareTag(SceneLoadController.Tags.Bullet.ToString()))
+        if (other.CompareTag(SceneController.Tags.Bullet.ToString()))
         {
             TriggerBullet();
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(SceneLoadController.Tags.Magnet.ToString()))
+        if (other.CompareTag(SceneController.Tags.Magnet.ToString()))
         {
             enemyData.isActivateMagnet = false;
             enemyData.isWalking = false;

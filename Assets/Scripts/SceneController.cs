@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoadController : AbstractSingleton<SceneLoadController>
+public class SceneController : AbstractSingleton<SceneController>
 {
     [Header("Audio Components")]
     [SerializeField] AudioSource _audioSource;
@@ -19,20 +19,20 @@ public class SceneLoadController : AbstractSingleton<SceneLoadController>
     [Header("RotationControl")]
     public static bool rotateControl = false;
 
-    private void Start()
+    void Start()
     {
         rotateControl = false;
         playAgain = false;
         pauseGame = false;
     }
-    private void OnEnable()
+    void OnEnable()
     {
         if (pauseGame)
         {
             Time.timeScale = 0;
         }
     }
-    private void OnDisable()
+    void OnDisable()
     {
         if (!pauseGame)
         {

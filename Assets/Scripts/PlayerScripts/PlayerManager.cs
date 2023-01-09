@@ -111,7 +111,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (gameObject != null && _healthBar != null)
         {
-            if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Bridge.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.FanceWooden.ToString()))
+            if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()) || collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()))
             {
                 _playerData.isGround = true;
                 _playerData.jumpCount = 0;
@@ -120,11 +120,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             {
                 _playerData.isGround = false;
             }
-            if (collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.CloneDobby.ToString()))
+            if (collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneController.Tags.CloneDobby.ToString()))
             {
                 TouchEnemy(collision);
             }
-            if (collision.collider.CompareTag(SceneLoadController.Tags.Coin.ToString()))
+            if (collision.collider.CompareTag(SceneController.Tags.Coin.ToString()))
             {//For Big Coins
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
                 collision.collider.gameObject.SetActive(false);
@@ -134,45 +134,45 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.CompareTag(SceneLoadController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneLoadController.Tags.Bridge.ToString()))
+        if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()))
         {
             //_playerData.isGround = false;
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(SceneLoadController.Tags.EnemyBullet.ToString()))
+        if (other.CompareTag(SceneController.Tags.EnemyBullet.ToString()))
         {
             TriggerBullet(other);
         }
-        if (other.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
+        if (other.CompareTag(SceneController.Tags.Ladder.ToString()))
         {
             TriggerLadder(true, false);
         }
-        if (other.CompareTag(SceneLoadController.Tags.FinishArea.ToString()))
+        if (other.CompareTag(SceneController.Tags.FinishArea.ToString()))
         {
             StartCoroutine(DelayLevelUp(2f, _playerData.danceTime));
         }
-        if (other.CompareTag(SceneLoadController.Tags.Coin.ToString()))
+        if (other.CompareTag(SceneController.Tags.Coin.ToString()))
         {
-            PickUpCoin(SceneLoadController.Tags.Coin, other);
+            PickUpCoin(SceneController.Tags.Coin, other);
         }
-        if (other.CompareTag(SceneLoadController.Tags.RotateCoin.ToString()))
+        if (other.CompareTag(SceneController.Tags.RotateCoin.ToString()))
         {
-            PickUpCoin(SceneLoadController.Tags.RotateCoin, other);
+            PickUpCoin(SceneController.Tags.RotateCoin, other);
         }
-        if (other.CompareTag(SceneLoadController.Tags.Lava.ToString()))
+        if (other.CompareTag(SceneController.Tags.Lava.ToString()))
         {
             DestroyByLava();
         }
-        if (other.CompareTag(SceneLoadController.Tags.Water.ToString()))
+        if (other.CompareTag(SceneController.Tags.Water.ToString()))
         {
             DestroyByWater();
         }
     }    
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(SceneLoadController.Tags.Ladder.ToString()))
+        if (other.CompareTag(SceneController.Tags.Ladder.ToString()))
         {
             TriggerLadder(false, true);
         }
@@ -366,7 +366,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         float _touchX;
         float _touchY;
-        if (SceneLoadController.rotateControl == true)
+        if (SceneController.rotateControl == true)
         {
             //Mouse Rotation Controller
             _touchX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
@@ -454,12 +454,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isDestroyed = true;
 
             //EnemyAnimation
-            if (collision.gameObject.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
+            if (collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
             {
                 collision.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
                 collision.gameObject.GetComponent<EnemyManager>().enemyData.enemySpeed = 0;
             }
-            if (collision.gameObject.CompareTag(SceneLoadController.Tags.CloneDobby.ToString()))
+            if (collision.gameObject.CompareTag(SceneController.Tags.CloneDobby.ToString()))
             {
                 collision.gameObject.GetComponent<CloneManager>().cloneData.isCloneDancing = true;
                 collision.gameObject.GetComponent<CloneManager>().cloneData.isCloneWalking = false;
@@ -475,7 +475,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else
         {
-            if (collision.gameObject.CompareTag(SceneLoadController.Tags.Enemy.ToString()) && collision.gameObject.GetComponent<EnemyManager>()._healthBar == null)
+            if (collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) && collision.gameObject.GetComponent<EnemyManager>()._healthBar == null)
             {
                 collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable = false;
             }
@@ -502,12 +502,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 _playerData.isDestroyed = true;
 
                 //EnemyAnimation
-                if (other.gameObject.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
+                if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
                 {
                     other.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
                     other.gameObject.GetComponent<EnemyManager>().enemyData.enemySpeed = 0;
                 }
-                if (other.gameObject.CompareTag(SceneLoadController.Tags.CloneDobby.ToString()))
+                if (other.gameObject.CompareTag(SceneController.Tags.CloneDobby.ToString()))
                 {
                     other.gameObject.GetComponent<CloneManager>().cloneData.isCloneDancing = true;
                     other.gameObject.GetComponent<CloneManager>().cloneData.isCloneWalking = false;
@@ -532,9 +532,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
         }
     }
-    void PickUpCoin(SceneLoadController.Tags value, Collider other)
+    void PickUpCoin(SceneController.Tags value, Collider other)
     {
-        if (value == SceneLoadController.Tags.Coin)
+        if (value == SceneController.Tags.Coin)
         {
             _playerData.playerSpeed = 0.5f;
             _coinObject.SetActive(true);
@@ -543,7 +543,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             other.gameObject.SetActive(false);
             ScoreController.GetInstance.SetScore(23);
         }
-        else if (value == SceneLoadController.Tags.RotateCoin)
+        else if (value == SceneController.Tags.RotateCoin)
         {
             _playerData.playerSpeed = 0.5f;
             _coinObject.SetActive(true);
@@ -636,7 +636,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
         yield return new WaitForSeconds(delayDestroy);
         //Destroy(gameObject);
-        SceneLoadController.GetInstance.LevelUp();
+        SceneController.GetInstance.LevelUp();
     }
     IEnumerator DelayDestroy(float delayDying)
     {
@@ -644,6 +644,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
         yield return new WaitForSeconds(delayDying);
         Destroy(gameObject);
-        SceneLoadController.GetInstance.LoadEndScene();
+        SceneController.GetInstance.LoadEndScene();
     }
 }

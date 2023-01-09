@@ -20,13 +20,13 @@ public class ScoreController : AbstractSingleton<ScoreController>
     // Update is called once per frame
     void Update()
     {
-        if (SceneLoadController.GetInstance.CheckSceneName() == SceneLoadController.Scenes.Menu.ToString())
+        if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())
         {
             _scoreAmount = 0;
             PlayerPrefs.SetInt("ScoreAmount", 0);
             _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
         }
-        else if (SceneLoadController.GetInstance.playAgain)
+        else if (SceneController.GetInstance.playAgain)
         {
             _scoreAmount = 0;
             PlayerPrefs.SetInt("ScoreAmount", 0);

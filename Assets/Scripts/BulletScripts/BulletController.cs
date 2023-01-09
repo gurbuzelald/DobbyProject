@@ -20,7 +20,7 @@ public class BulletController : MonoBehaviour
     {
         if (gameObject != null)
         {
-            if (collision.collider.CompareTag(SceneLoadController.Tags.Enemy.ToString()))
+            if (collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()))
             {
                 gameObject.SetActive(false);
             }

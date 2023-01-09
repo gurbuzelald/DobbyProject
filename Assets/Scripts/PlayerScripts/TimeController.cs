@@ -25,7 +25,7 @@ public class TimeController : MonoBehaviour
         _timeText.text = (((int)(timeValue - _time))).ToString();
         if ((int)_time > timeValue - 1)
         {
-            SceneLoadController.GetInstance.LoadEndScene();
+            SceneController.GetInstance.LoadEndScene();
         }
     }
 }

@@ -15,11 +15,11 @@ public class AudioManager : AbstractSingleton<AudioManager>
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
-        if (SceneLoadController.GetInstance.CheckSceneName() == SceneLoadController.Scenes.Menu.ToString())
+        if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())
         {
             _audioSource.clip = _audioData.menuMusic;
         }
-        else if (SceneLoadController.GetInstance.CheckSceneName() == SceneLoadController.Scenes.End.ToString())
+        else if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.End.ToString())
         {
             _audioSource.clip = _audioData.endMusic;
         }

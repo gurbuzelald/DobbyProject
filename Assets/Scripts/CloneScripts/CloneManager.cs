@@ -102,6 +102,6 @@ public class CloneManager : MonoBehaviour
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Death, PlayerManager.GetInstance.gameObject.transform);
         }
         yield return new WaitForSeconds(4f);
-        SceneLoadController.GetInstance.LoadMenuScene();
+        SceneController.GetInstance.LoadMenuScene();
     }
 }
