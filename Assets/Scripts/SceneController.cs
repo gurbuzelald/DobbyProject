@@ -14,7 +14,7 @@ public class SceneController : AbstractSingleton<SceneController>
     [Header("Buttons")]
     [SerializeField] GameObject pausePanel;
     private bool pauseGame = false;
-    public bool playAgain;
+    public static bool playAgain;
 
     [Header("RotationControl")]
     public static bool rotateControl = false;
@@ -42,6 +42,7 @@ public class SceneController : AbstractSingleton<SceneController>
     public void PlayAgain()
     {
         playAgain = true;
+        
         _audioSource.Stop();
         if (PlayerManager.GetInstance.gameObject != null)
         {

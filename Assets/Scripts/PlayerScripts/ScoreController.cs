@@ -8,16 +8,10 @@ public class ScoreController : AbstractSingleton<ScoreController>
     public TextMeshProUGUI _scoreText;
     public static int _scoreAmount;
     private bool _scored;
-
-    // Start is called before the first frame update
     void Start()
     {
         _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
-        //_scored = false;
-        //_scoreText.text = "";
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())
@@ -26,11 +20,12 @@ public class ScoreController : AbstractSingleton<ScoreController>
             PlayerPrefs.SetInt("ScoreAmount", 0);
             _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
         }
-        else if (SceneController.GetInstance.playAgain)
+        else if (SceneController.playAgain)
         {
             _scoreAmount = 0;
             PlayerPrefs.SetInt("ScoreAmount", 0);
             _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
+            SceneController.playAgain = false;
         }
         else
         {
