@@ -8,4 +8,5 @@ public class AudioData : ScriptableObject
     public AudioClip gameMusic;
     public AudioClip menuMusic;
     public AudioClip endMusic;    
+    public AudioClip winMusic;    
 }

@@ -23,6 +23,10 @@ public class AudioManager : AbstractSingleton<AudioManager>
         {
             _audioSource.clip = _audioData.endMusic;
         }
+        else if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Win.ToString())
+        {            
+            _audioSource.clip = _audioData.winMusic;
+        }
         else
         {
             _audioSource.clip = _audioData.gameMusic;
@@ -30,13 +34,6 @@ public class AudioManager : AbstractSingleton<AudioManager>
         _audioSource.Play();
 
         LoadVolume();   
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-
     }
     public void GetPlayerSFX(AudioClip audioClip)
     {

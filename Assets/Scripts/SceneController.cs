@@ -47,6 +47,7 @@ public class SceneController : AbstractSingleton<SceneController>
         if (PlayerManager.GetInstance.gameObject != null)
         {
             Destroy(PlayerManager.GetInstance.gameObject);
+            Destroy(AudioManager.GetInstance.gameObject);
         }
         SceneManager.LoadScene(Scenes.Level1.ToString());
     }
@@ -64,11 +65,21 @@ public class SceneController : AbstractSingleton<SceneController>
         }
         SceneManager.LoadScene(Scenes.Menu.ToString());
     }
+    public void LoadWinScene()
+    {
+        if (PlayerManager.GetInstance.gameObject != null)
+        {
+            Destroy(AudioManager.GetInstance.gameObject);
+            Destroy(PlayerManager.GetInstance.gameObject);
+        }
+        SceneManager.LoadScene(Scenes.Win.ToString());
+    }
     public void LoadEndScene()
     {
         _audioSource.Stop();
         if (PlayerManager.GetInstance.gameObject != null)
         {
+            Destroy(AudioManager.GetInstance.gameObject);
             Destroy(PlayerManager.GetInstance.gameObject);
         }
         SceneManager.LoadScene(Scenes.End.ToString());
@@ -99,12 +110,19 @@ public class SceneController : AbstractSingleton<SceneController>
     }
     public void LevelUp()
     {
-        if (SceneManager.sceneCountInBuildSettings - 2 == SceneManager.GetActiveScene().buildIndex)
+        //Debug.Log(SceneManager.sceneCountInBuildSettings - 3);
+        //Debug.Log(SceneManager.GetActiveScene().buildIndex);
+        if (SceneManager.sceneCountInBuildSettings - 3 == SceneManager.GetActiveScene().buildIndex)
         {
-            _audioSource.Stop();
+            LoadWinScene();
         }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+
         Destroy(PlayerManager.GetInstance.gameObject);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        
     }
     public void QuitGame()
     {
@@ -134,6 +152,7 @@ public class SceneController : AbstractSingleton<SceneController>
     {
         Menu,
         End,
+        Win,
         Level1
     }
 }

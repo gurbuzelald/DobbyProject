@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 104202802, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.027665498
+      value: 0.023573043
       objectReference: {fileID: 0}
     - target: {fileID: 1278696494, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
       propertyPath: _objectPool
@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 631341823}
     - target: {fileID: 1652565089332185738, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.027665498
+      value: 0.023573043
       objectReference: {fileID: 0}
     - target: {fileID: 7193906221332498760, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
       propertyPath: _cloneManager
@@ -292,7 +292,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1444393326}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4956723174663386580, guid: 9e8b40f17a98cbd48ab45940e504be06, type: 3}
       propertyPath: m_Name
@@ -300,7 +300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4956723174663386581, guid: 9e8b40f17a98cbd48ab45940e504be06, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4956723174663386581, guid: 9e8b40f17a98cbd48ab45940e504be06, type: 3}
       propertyPath: m_LocalPosition.x
@@ -603,7 +603,6 @@ Transform:
   - {fileID: 1178729612}
   - {fileID: 1450936332}
   - {fileID: 1949935790}
-  - {fileID: 1471922023}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -683,11 +682,6 @@ Transform:
 --- !u!82 &1471922021 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 4956723174663386583, guid: 9e8b40f17a98cbd48ab45940e504be06, type: 3}
-  m_PrefabInstance: {fileID: 580626172}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1471922023 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4956723174663386581, guid: 9e8b40f17a98cbd48ab45940e504be06, type: 3}
   m_PrefabInstance: {fileID: 580626172}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1494319916 stripped
