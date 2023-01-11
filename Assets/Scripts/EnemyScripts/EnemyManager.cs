@@ -23,6 +23,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     [Header("Initial Situations")]
     private float _initSpeed;
 
+    [Header("Particle Burning Effect")]
+    public ParticleSystem bottomParticle;
+    public ParticleSystem middleParticle;
+    public ParticleSystem topParticle;
+
     private Transform _initTransform;
 
     private void Start()
@@ -123,6 +128,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (_healthBar.transform.localScale.x <= 0.0625f)
             {
+                bottomParticle.Play();
+                middleParticle.Play();
+                topParticle.Play();
                 enemyData.isTouchable = false;
                 enemyData.isDying = true;
                 enemyData.isWalking = false;
@@ -134,6 +142,15 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
             else
             {
+                if(_healthBar.transform.localScale.x <= 0.125f && _healthBar.transform.localScale.x > 0.0625f)
+                {
+                    bottomParticle.Play();
+                    middleParticle.Play();
+                }
+                if (_healthBar.transform.localScale.x > 0.125f)
+                {
+                    middleParticle.Play();
+                }
                 enemyData.isWalking = false;
                 enemyData.isFiring = false;
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);

@@ -76,7 +76,6 @@ public class SceneController : AbstractSingleton<SceneController>
     }
     public void LoadEndScene()
     {
-        _audioSource.Stop();
         if (PlayerManager.GetInstance.gameObject != null)
         {
             Destroy(AudioManager.GetInstance.gameObject);
@@ -150,9 +149,6 @@ public class SceneController : AbstractSingleton<SceneController>
     }
     public enum Scenes
     {
-        Menu,
-        End,
-        Win,
-        Level1
+        Menu, End, Win, Level1
     }
 }
