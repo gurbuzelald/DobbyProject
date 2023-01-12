@@ -49,8 +49,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private float _initJumpForce;
     private float _initPlayerSpeed;
 
+    [SerializeField] GameObject playerIcon;
+
     void Start()
     {
+        TriggerLadder(false, true); 
+        playerIcon.GetComponent<MeshRenderer>().enabled = true;
         DataStatesOnInitial();
 
         //Particle

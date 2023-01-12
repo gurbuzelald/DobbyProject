@@ -15,10 +15,11 @@ public class CloneManager : MonoBehaviour
     [Header("Destination Transform")]
     [SerializeField] Transform _firstTarget;
     [SerializeField] Transform _secondTarget;
-    [SerializeField] Transform _currentTarget;   
+    [SerializeField] Transform _currentTarget;
 
     void Start()
     {
+        
         if (cloneData != null)
         {
             cloneData.particleCount = 0;

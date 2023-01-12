@@ -19,7 +19,6 @@ public abstract class AbstractParticleController<T> : MonoBehaviour where T : Mo
             }
             return _instance;
         }
-
     }
 
     protected virtual void Awake()
@@ -85,7 +84,7 @@ public abstract class AbstractParticleController<T> : MonoBehaviour where T : Mo
         Birth,
         Burn
     }
-    public IEnumerator DelayStopParticle(float value, GameObject particleObject)
+    IEnumerator DelayStopParticle(float value, GameObject particleObject)
     {
         yield return new WaitForSeconds(value);
 
