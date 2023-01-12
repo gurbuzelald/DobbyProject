@@ -25,6 +25,7 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
         {
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
             {
+                
                 bulletData.enemyBulletDelayCounter++;
                 enemyData.isFiring = true;
                 enemyData.isWalking = false;

@@ -28,6 +28,13 @@ public class ParticleController : AbstractSingleton<ParticleController>
             particleObject.GetComponent<ParticleSystem>().Play();
             Destroy(particleObject, 0.5f);
         }
+        if (particleName == ParticleNames.TouchBurning)
+        {
+            GameObject particleObject = Instantiate(playerData.burningTouchParticle.gameObject, particleTransform);
+            particleObject.transform.position = particleTransform.position;
+            particleObject.GetComponent<ParticleSystem>().Play();
+            StartCoroutine(DelayStopParticle(3f, particleObject));
+        }
         if (particleName == ParticleNames.Birth)
         {
             GameObject particleObject = Instantiate(playerData.birthParticle.gameObject, particleTransform);
@@ -35,9 +42,9 @@ public class ParticleController : AbstractSingleton<ParticleController>
             particleObject.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DelayStopParticle(2f, particleObject));
         }
-        if (particleName == ParticleNames.Fire)
+        if (particleName == ParticleNames.Burn)
         {
-            GameObject particleObject = Instantiate(playerData.firingParticle.gameObject, particleTransform);
+            GameObject particleObject = Instantiate(playerData.burningParticle.gameObject, particleTransform);
             particleObject.transform.position = particleTransform.position;
             particleObject.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DelayStopParticle(3f, particleObject));
@@ -48,8 +55,9 @@ public class ParticleController : AbstractSingleton<ParticleController>
         Skateboard,
         Death,
         Touch,
+        TouchBurning,
         Birth,
-        Fire
+        Burn
     }
     public IEnumerator DelayStopParticle(float value, GameObject particleObject)
     {

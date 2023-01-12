@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class SceneController : AbstractSingleton<SceneController>
@@ -17,11 +18,13 @@ public class SceneController : AbstractSingleton<SceneController>
     public static bool playAgain;
 
     [Header("RotationControl")]
-    public static bool rotateControl = false;
+    public static bool RotateTouchOrMousePos = false;
+    [SerializeField] TextMeshProUGUI mouseOrTouchText;
 
     void Start()
     {
-        rotateControl = false;
+        //mouseOrTouchText.text = "Touch";
+        RotateTouchOrMousePos = false;
         playAgain = false;
         pauseGame = false;
     }
@@ -98,13 +101,17 @@ public class SceneController : AbstractSingleton<SceneController>
     }
     public void ControlRotate()
     {
-        if (rotateControl == true)
+        if (RotateTouchOrMousePos == true)
         {
-            rotateControl = false;
+            mouseOrTouchText.text = "Touch";
+
+            RotateTouchOrMousePos = false;
         }
         else
         {
-            rotateControl = true;
+            mouseOrTouchText.text = "Mouse";
+
+            RotateTouchOrMousePos = true;
         }
     }
     public void LevelUp()

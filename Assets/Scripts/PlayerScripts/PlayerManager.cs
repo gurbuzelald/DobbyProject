@@ -366,7 +366,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         float _touchX;
         float _touchY;
-        if (SceneController.rotateControl == true)
+        if (SceneController.RotateTouchOrMousePos == true)
         {
             //Mouse Rotation Controller
             _touchX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
@@ -525,6 +525,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             else
             {
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
+                ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.TouchBurning, _particleTransform.transform);
 
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
@@ -577,7 +578,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _playerData.isDying = true;
         _playerData.isIdling = false;
         _playerData.isPlayable = false;
-        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Fire, _particleTransform.transform);
+        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform.transform);
         StartCoroutine(DelayDestroy(3f));
     }
     void TriggerLadder(bool isTouch, bool isTouchExit)

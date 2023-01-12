@@ -58,7 +58,8 @@ public class PlayerData : ScriptableObject
     public ParticleSystem touchParticle;
     public ParticleSystem birthParticle;
     public ParticleSystem deathParticle;
-    public ParticleSystem firingParticle;
+    public ParticleSystem burningParticle;
+    public ParticleSystem burningTouchParticle;
     [Header("Particle Count Control")]
     public int particleCount;
 
