@@ -13,21 +13,19 @@ public class CloneManager : MonoBehaviour
     private NavMeshAgent _navmeshAgent;
 
     [Header("Destination Transform")]
-    [SerializeField] Transform _firstTarget;
-    [SerializeField] Transform _secondTarget;
-    [SerializeField] Transform _currentTarget;
+    private CloneSpawner cloneSpawner;
 
     void Start()
     {
-        
+        cloneSpawner = FindObjectOfType<CloneSpawner>();
         if (cloneData != null)
         {
             cloneData.particleCount = 0;
             cloneData.isCloneDancing = false;
             cloneData.isTouchFirst = true;
             cloneData.isTouchMain = false;
-        }        
-        _currentTarget.position = _firstTarget.position;
+        }
+        cloneSpawner._currentTarget.position = cloneSpawner._firstTarget.position;
 
         _navmeshAgent = GetComponent<NavMeshAgent>();
         if (_navmeshAgent != null)
@@ -48,15 +46,15 @@ public class CloneManager : MonoBehaviour
     {
         if (cloneData.isTouchFirst)
         {
-            _currentTarget.position = _firstTarget.position;
+            cloneSpawner._currentTarget.position = cloneSpawner._firstTarget.position;
         }
         if (cloneData.isTouchMain)
         {
-            _currentTarget.position = _secondTarget.position;
+            cloneSpawner._currentTarget.position = cloneSpawner._secondTarget.position;
 
-            _navmeshAgent.destination = new Vector3(_currentTarget.position.x, _currentTarget.position.y, _currentTarget.position.z);
+            _navmeshAgent.destination = new Vector3(cloneSpawner._currentTarget.position.x, cloneSpawner._currentTarget.position.y, cloneSpawner._currentTarget.position.z);
         }
-        _navmeshAgent.destination = _currentTarget.position;
+        _navmeshAgent.destination = cloneSpawner._currentTarget.position;
     }
     void DeadManage()
     {
@@ -76,12 +74,12 @@ public class CloneManager : MonoBehaviour
     }
     public void OnTarget()
     {
-        if (Vector3.Distance(gameObject.transform.position, _firstTarget.position) < 0.6f)
+        if (Vector3.Distance(gameObject.transform.position, cloneSpawner._firstTarget.position) < 0.6f)
         {
             cloneData.isTouchFirst = false;
             cloneData.isTouchMain = true;
         }
-        if (Vector3.Distance(gameObject.transform.position, _secondTarget.position) < 0.6f || playerData.isLose)
+        if (Vector3.Distance(gameObject.transform.position, cloneSpawner._secondTarget.position) < 0.6f || playerData.isLose)
         {
             cloneData.isTouchFirst = false;
             cloneData.isTouchMain = false;
