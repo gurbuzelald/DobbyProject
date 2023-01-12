@@ -7,9 +7,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     [Header("Bullet")]
     public EnemyBulletManager enemyBullet;
 
-    [Header("Destination Transform")]
-    [SerializeField] Transform _targetTransform;
-
     [Header("Health")]
     public GameObject _healthBar;
 
@@ -29,10 +26,14 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     public ParticleSystem topParticle;
 
     private Transform _initTransform;
+    [SerializeField] GameObject _enemyIcon;
 
-    private void Start()
+    private ClownSpawner clownSpawner;
+
+    void Start()
     {
-
+        clownSpawner = FindObjectOfType<ClownSpawner>();
+        _enemyIcon.GetComponent<MeshRenderer>().enabled = true;
         _initTransform = gameObject.transform;
         DataStatesOnInitial();
         _audioSource = GetComponent<AudioSource>();
@@ -46,7 +47,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.enemySpeed = _initSpeed;
 
-                Movement(_targetTransform, _initTransform, gameObject.transform, enemyData.isActivateMagnet, enemyData.enemySpeed);
+                Movement(clownSpawner.targetTransform, _initTransform, gameObject.transform, enemyData.isActivateMagnet, enemyData.enemySpeed);
             }
             else
             {
@@ -120,7 +121,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     public void TriggerBullet()
     {
-        gameObject.transform.LookAt(_targetTransform.position);
+        gameObject.transform.LookAt(clownSpawner.targetTransform.position);
         enemyData.isWalking = false;
         enemyData.enemySpeed = _initSpeed * 0f;
         StartCoroutine(DelayStopEnemy());

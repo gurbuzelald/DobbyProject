@@ -3,14 +3,15 @@ using UnityEngine;
 
 public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
 {
-    [SerializeField] ObjectPool _objectPool;
     public LayerMask layerMask;
     public EnemyData enemyData;
     public BulletData bulletData;
+    private ClownSpawner _clownSpawner;
 
-    
-    //[SerializeField] ObjectPool _objectPool;
-    // Update is called once per frame
+    private void Awake()
+    {
+        _clownSpawner = FindObjectOfType<ClownSpawner>();
+    }
     void Update()
     {
         if (!enemyData.isDying)
@@ -37,7 +38,7 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     IEnumerator Delay(float delayValue)
     {
         yield return new WaitForSeconds(delayValue);
-        CreateBullet(gameObject.transform, bulletData.enemyBulletSpeed, 1, _objectPool);
+        CreateBullet(gameObject.transform, bulletData.enemyBulletSpeed, 1, _clownSpawner._objectPool);
     }
     IEnumerator FiringFalse()
     {

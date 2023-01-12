@@ -46,7 +46,7 @@ public class SceneController : AbstractSingleton<SceneController>
     {
         playAgain = true;
         
-        _audioSource.Stop();
+        //_audioSource.Stop();
         if (PlayerManager.GetInstance.gameObject != null)
         {
             Destroy(PlayerManager.GetInstance.gameObject);
@@ -61,9 +61,10 @@ public class SceneController : AbstractSingleton<SceneController>
     }
     public void LoadMenuScene()
     {
-        _audioSource.Stop();
+        //_audioSource.Stop();
         if (PlayerManager.GetInstance.gameObject != null)
         {
+            Destroy(AudioManager.GetInstance.gameObject);
             Destroy(PlayerManager.GetInstance.gameObject);
         }
         SceneManager.LoadScene(Scenes.Menu.ToString());

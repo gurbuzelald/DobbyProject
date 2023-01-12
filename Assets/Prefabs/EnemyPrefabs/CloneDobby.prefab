@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8869964954807118153}
   m_Layer: 0
   m_Name: CloneDobby
-  m_TagString: Enemy
+  m_TagString: CloneDobby
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -121,7 +121,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19ec3c677ff0bc47aa62232e1707c10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetObject: {fileID: 0}
+  cloneData: {fileID: 11400000, guid: 0e1d9c4eaf80763478d175de10154293, type: 2}
+  playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
+  _firstTarget: {fileID: 0}
+  _secondTarget: {fileID: 0}
+  _currentTarget: {fileID: 0}
 --- !u!195 &8869964954807118153
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -132,7 +136,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: -1372625422
   m_Radius: 0.5
-  m_Speed: 0.5
+  m_Speed: 0.3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -199,6 +203,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ch14_nonPBR@Pistol Walk
       objectReference: {fileID: 0}
+    - target: {fileID: 4315648579854482848, guid: 501ae6d434cd0ad41bdcb3ca20f11dd4, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d265a6dd7bcb1034bbf2ec6dc9327413, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 501ae6d434cd0ad41bdcb3ca20f11dd4, type: 3}
 --- !u!4 &6035096659387255884 stripped
@@ -243,3 +251,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a196eea3ed72f348ad93617e9f0812b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
+  _cloneData: {fileID: 11400000, guid: 0e1d9c4eaf80763478d175de10154293, type: 2}

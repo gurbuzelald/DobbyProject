@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: CloneData
   m_EditorClassIdentifier: 
+  sensivityX: 250
+  sensivityY: 80
   isTouchFinish: 0
   isLose: 0
   playerSpeed: 0
@@ -43,7 +45,8 @@ MonoBehaviour:
   touchParticle: {fileID: 0}
   birthParticle: {fileID: 0}
   deathParticle: {fileID: 0}
-  firingParticle: {fileID: 0}
+  burningParticle: {fileID: 0}
+  burningTouchParticle: {fileID: 0}
   particleCount: 0
   shootClip: {fileID: 0}
   getHitClip: {fileID: 0}
@@ -59,6 +62,6 @@ MonoBehaviour:
   isCloneDying: 0
   isCloneDancing: 0
   idlingCount: 0
-  isTouchFirst: 0
-  isTouchMain: 1
-  cloneSpeed: 2
+  isTouchFirst: 1
+  isTouchMain: 0
+  cloneSpeed: 0.8
