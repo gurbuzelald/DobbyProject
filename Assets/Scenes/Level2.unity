@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 104202802, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.024145842
+      value: 0.020256042
       objectReference: {fileID: 0}
     - target: {fileID: 473161001, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
       propertyPath: m_IsTrigger
@@ -144,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 631341823}
     - target: {fileID: 1652565089332185738, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.024145842
+      value: 0.020256042
       objectReference: {fileID: 0}
     - target: {fileID: 7193906221332498760, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
       propertyPath: _cloneManager
@@ -885,7 +885,6 @@ Transform:
   m_Children:
   - {fileID: 1178729612}
   - {fileID: 1450936332}
-  - {fileID: 1949935790}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1183,11 +1182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7461e0d263a22c149aee5c8838c733a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1949935790 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2892904039195626459, guid: 7dcb5e5ed1a0fd14bb46815467972338, type: 3}
-  m_PrefabInstance: {fileID: 2892904037386412917}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2082773709 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4481733563023685993, guid: 52a91642cb659624b9ab75f876e78794, type: 3}
@@ -1301,7 +1295,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1444393326}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2892904039195626456, guid: 7dcb5e5ed1a0fd14bb46815467972338, type: 3}
       propertyPath: pausePanel
@@ -1319,9 +1313,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneLoad
       objectReference: {fileID: 0}
+    - target: {fileID: 2892904039195626457, guid: 7dcb5e5ed1a0fd14bb46815467972338, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2892904039195626459, guid: 7dcb5e5ed1a0fd14bb46815467972338, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2892904039195626459, guid: 7dcb5e5ed1a0fd14bb46815467972338, type: 3}
       propertyPath: m_LocalPosition.x

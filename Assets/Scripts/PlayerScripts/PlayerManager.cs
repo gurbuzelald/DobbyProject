@@ -6,7 +6,6 @@ using Cinemachine;
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
     [Header("Scripts")]
-    [SerializeField] CloneManager _cloneManager;
     private PlayerController _playerController;
 
     [Header("Sound")]
@@ -370,7 +369,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         float _touchX;
         float _touchY;
-        if (SceneController.RotateTouchOrMousePos == true)
+        if (SceneController.rotateTouchOrMousePos == true)
         {
             //Mouse Rotation Controller
             _touchX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
@@ -378,8 +377,24 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else
         {
+            if ((_playerController.lookRotation.x >= -0.25f && _playerController.lookRotation.x < 0f) || (_playerController.lookRotation.x <= 0.25f && _playerController.lookRotation.x > 0f))
+            {
+                _touchX = (_playerController.lookRotation.x * 2f) / 10f * _playerData.sensivityX * Time.deltaTime;
+            }
+            else if ((_playerController.lookRotation.x >= -0.5f && _playerController.lookRotation.x < -0.25f) || (_playerController.lookRotation.x <= 0.5f && _playerController.lookRotation.x > 0.25f))
+            {
+                _touchX = (_playerController.lookRotation.x * 2f) / 8f * _playerData.sensivityX * Time.deltaTime;
+            }
+            else if ((_playerController.lookRotation.x >= -0.75f && _playerController.lookRotation.x < -0.5f) || (_playerController.lookRotation.x <= 0.75f && _playerController.lookRotation.x > 0.5f))
+            {
+                _touchX = (_playerController.lookRotation.x * 2f) / 6f * _playerData.sensivityX * Time.deltaTime;
+            }
+            else
+            {
+                _touchX = (_playerController.lookRotation.x * 2f) / 4f * _playerData.sensivityX * Time.deltaTime;
+            }
             //Touch Rotation Controller
-            _touchX = _playerController.lookRotation.x * _playerData.sensivityX * Time.deltaTime;
+
             _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime;
         }    
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
@@ -465,8 +480,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
             if (collision.gameObject.CompareTag(SceneController.Tags.CloneDobby.ToString()))
             {
-                collision.gameObject.GetComponent<CloneManager>().cloneData.isCloneDancing = true;
-                collision.gameObject.GetComponent<CloneManager>().cloneData.isCloneWalking = false;
+                collision.gameObject.GetComponent<CloneSpawner>().cloneData.isCloneDancing = true;
+                collision.gameObject.GetComponent<CloneSpawner>().cloneData.isCloneWalking = false;
             }
 
             //PlayerData
@@ -513,8 +528,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 }
                 if (other.gameObject.CompareTag(SceneController.Tags.CloneDobby.ToString()))
                 {
-                    other.gameObject.GetComponent<CloneManager>().cloneData.isCloneDancing = true;
-                    other.gameObject.GetComponent<CloneManager>().cloneData.isCloneWalking = false;
+                    other.gameObject.GetComponent<CloneSpawner>().cloneData.isCloneDancing = true;
+                    other.gameObject.GetComponent<CloneSpawner>().cloneData.isCloneWalking = false;
                 }
 
 

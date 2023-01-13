@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour
     }
     public void ControlStates()
     {
-        
+        Debug.Log(lookRotation.x);
         movement = playerInput.PlayerMain.Move.ReadValue<Vector2>();
         lookRotation = playerInput.PlayerMain.Look.ReadValue<Vector2>();
         fire = playerInput.PlayerMain.Fire.IsPressed();

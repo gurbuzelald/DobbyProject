@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class SceneController : AbstractSingleton<SceneController>
+public class SceneController : AbstractSceneController<SceneController>
 {
     [Header("Audio Components")]
     [SerializeField] AudioSource _audioSource;
@@ -18,13 +18,13 @@ public class SceneController : AbstractSingleton<SceneController>
     public static bool playAgain;
 
     [Header("RotationControl")]
-    public static bool RotateTouchOrMousePos = false;
+    public static bool rotateTouchOrMousePos = false;
     [SerializeField] TextMeshProUGUI mouseOrTouchText;
 
     void Start()
     {
         //mouseOrTouchText.text = "Touch";
-        RotateTouchOrMousePos = false;
+        rotateTouchOrMousePos = false;
         playAgain = false;
         pauseGame = false;
     }
@@ -102,17 +102,17 @@ public class SceneController : AbstractSingleton<SceneController>
     }
     public void ControlRotate()
     {
-        if (RotateTouchOrMousePos == true)
+        if (rotateTouchOrMousePos == true)
         {
             mouseOrTouchText.text = "Touch";
 
-            RotateTouchOrMousePos = false;
+            rotateTouchOrMousePos = false;
         }
         else
         {
             mouseOrTouchText.text = "Mouse";
 
-            RotateTouchOrMousePos = true;
+            rotateTouchOrMousePos = true;
         }
     }
     public void LevelUp()

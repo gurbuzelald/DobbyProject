@@ -10,6 +10,9 @@ public class CloneSpawner : MonoBehaviour
     public Transform _secondTarget;
     public Transform _currentTarget;
 
+    public PlayerData cloneData;
+    public PlayerData playerData;
+
     private void Awake()
     {
         for (int i = 0; i < cloneTransform.Length; i++)
