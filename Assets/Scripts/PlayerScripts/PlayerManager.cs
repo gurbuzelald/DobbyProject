@@ -79,6 +79,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (_playerData != null)
         {
+            _playerData.isLockedWalking = false;
             _playerData.clickTabCount = 0;
             _playerData.clickShiftCount = 0;
             _playerData.isDestroyed = false;
@@ -260,22 +261,30 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     void Walk()
     {
-        if (_zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isRunning)
+        if (!_playerData.isLockedWalking)
         {
-            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
-            _playerData.isWalking = true;
-            _playerData.isBackWalking = false;
+            if (_zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isRunning)
+            {
+                GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+                _playerData.isWalking = true;
+                _playerData.isBackWalking = false;
+            }
+            else if (_zValue < 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
+            {
+                GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+                _playerData.isBackWalking = true;
+                _playerData.isWalking = false;
+            }
+            else if (_zValue == 0)
+            {
+                _playerData.isBackWalking = false;
+                _playerData.isWalking = false;
+            }
+            
         }
-        else if (_zValue < 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
+        else
         {
-            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
-            _playerData.isBackWalking = true;
-            _playerData.isWalking = false;
-        }
-        else if (_zValue == 0)
-        {
-            _playerData.isBackWalking = false;
-            _playerData.isWalking = false;
+            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _playerData.playerSpeed*Time.deltaTime/2f);
         }
         SideWalk();
         SpeedController();
@@ -301,24 +310,27 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     
     void SpeedController()
     {
-        if ((_xValue > 0 && _zValue > 0) || (_xValue < 0 && _zValue > 0) || (_xValue < 0 && _zValue < 0) || (_xValue > 0 && _zValue < 0) || _zValue < 0)
+        if (!_playerData.isLockedWalking)
         {
-            _playerData.playerSpeed = _initPlayerSpeed;
-        }
-        else if (_playerData.isSkateBoarding && _zValue > 0)
-        {
-            _playerData.playerSpeed = _initPlayerSpeed * 1.6f;
+            if ((_xValue > 0 && _zValue > 0) || (_xValue < 0 && _zValue > 0) || (_xValue < 0 && _zValue < 0) || (_xValue > 0 && _zValue < 0) || _zValue < 0)
+            {
+                _playerData.playerSpeed = _initPlayerSpeed;
+            }
+            else if (_playerData.isSkateBoarding && _zValue > 0)
+            {
+                _playerData.playerSpeed = _initPlayerSpeed * 1.6f;
 
-        }
-        else if (_playerData.isRunning && _zValue > 0)
-        {
-            _playerData.playerSpeed = _initPlayerSpeed * 1.3f;
-        }
-        else
-        {
-            _playerData.skateboardParticle.Stop();
-            _playerData.playerSpeed = _initPlayerSpeed;
-        }
+            }
+            else if (_playerData.isRunning && _zValue > 0)
+            {
+                _playerData.playerSpeed = _initPlayerSpeed * 1.3f;
+            }
+            else
+            {
+                _playerData.skateboardParticle.Stop();
+                _playerData.playerSpeed = _initPlayerSpeed;
+            }
+        }        
     }
     void Jump()
     {
@@ -368,8 +380,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
     }
     void Rotation()
-    {
-        
+    {        
         if (SceneController.rotateTouchOrMousePos == true)
         {
             //Mouse Rotation Controller

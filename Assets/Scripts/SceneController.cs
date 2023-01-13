@@ -20,11 +20,20 @@ public class SceneController : AbstractSceneController<SceneController>
     [Header("RotationControl")]
     public static bool rotateTouchOrMousePos = false;
     [SerializeField] TextMeshProUGUI mouseOrTouchText;
+    [SerializeField] TextMeshProUGUI lockedWalking;
 
     void Start()
     {
-        //mouseOrTouchText.text = "Touch";
-        rotateTouchOrMousePos = false;
+        if (mouseOrTouchText != null && lockedWalking != null && _playerData != null)
+        {
+            lockedWalking.text = "Not Locked";
+            mouseOrTouchText.text = "Touch";
+            rotateTouchOrMousePos = false;
+            _playerData.isLockedWalking = false;
+        }
+        
+
+
         playAgain = false;
         pauseGame = false;
     }
@@ -40,6 +49,19 @@ public class SceneController : AbstractSceneController<SceneController>
         if (!pauseGame)
         {
             Time.timeScale = 1;
+        }
+    }
+    public void LockWalking()
+    {
+        if (_playerData.isLockedWalking)
+        {
+            _playerData.isLockedWalking = false;
+            lockedWalking.text = "Not Locked";
+        }
+        else
+        {
+            _playerData.isLockedWalking = true;
+            lockedWalking.text = "Locked";
         }
     }
     public void PlayAgain()

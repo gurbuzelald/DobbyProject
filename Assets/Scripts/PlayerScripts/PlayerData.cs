@@ -22,6 +22,7 @@ public class PlayerData : ScriptableObject
     [Header("Animation Bools")]
     public bool isGround;
     public bool isWalking;
+    public bool isLockedWalking;
     public bool isBackWalking;
     public bool isClimbing;
     public bool isBackClimbing;    

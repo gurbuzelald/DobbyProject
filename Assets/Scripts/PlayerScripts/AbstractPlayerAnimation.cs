@@ -21,7 +21,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public void WalkAnimation(PlayerData playerData, Animator _animator)
     {
-        if (playerData.isWalking && !playerData.isBackWalking && !playerData.isJumping && !playerData.isClimbing)
+        if ((playerData.isLockedWalking) || (playerData.isWalking && !playerData.isBackWalking && !playerData.isJumping && !playerData.isClimbing))
         {
             _animator.SetBool("isWalking", true);
 
@@ -35,7 +35,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(5, 0);
             _animator.SetLayerWeight(6, 0);
         }
-        else if (playerData.isBackWalking && !playerData.isWalking && !playerData.isJumping && !playerData.isBackClimbing)
+        else if (playerData.isBackWalking && !playerData.isWalking && !playerData.isJumping && !playerData.isBackClimbing && !playerData.isLockedWalking)
         {
             _animator.SetBool("isBackWalking", true);
 

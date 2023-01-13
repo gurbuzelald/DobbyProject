@@ -10,11 +10,9 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
     [Header("Data")]
     public PlayerData playerData;
     public PlayerData cloneData;
-    private PlayerController _playerController;
 
     private void Start()
     {
-        _playerController = FindObjectOfType<PlayerController>();
         _animator = GetComponent<Animator>();
         if (_animator != null)
         {
