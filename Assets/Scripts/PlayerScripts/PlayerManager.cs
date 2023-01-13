@@ -40,6 +40,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [Header("Input Movement")]
     public float _xValue;
     public float _zValue;
+    private float _touchX;
+    private float _touchY;
 
     [Header("Coin In The Right Hand")]
     public GameObject _coinObject;
@@ -367,8 +369,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void Rotation()
     {
-        float _touchX;
-        float _touchY;
+        
         if (SceneController.rotateTouchOrMousePos == true)
         {
             //Mouse Rotation Controller
@@ -377,25 +378,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else
         {
-            if ((_playerController.lookRotation.x >= -0.25f && _playerController.lookRotation.x < 0f) || (_playerController.lookRotation.x <= 0.25f && _playerController.lookRotation.x > 0f))
-            {
-                _touchX = (_playerController.lookRotation.x * 2f) / 10f * _playerData.sensivityX * Time.deltaTime;
-            }
-            else if ((_playerController.lookRotation.x >= -0.5f && _playerController.lookRotation.x < -0.25f) || (_playerController.lookRotation.x <= 0.5f && _playerController.lookRotation.x > 0.25f))
-            {
-                _touchX = (_playerController.lookRotation.x * 2f) / 8f * _playerData.sensivityX * Time.deltaTime;
-            }
-            else if ((_playerController.lookRotation.x >= -0.75f && _playerController.lookRotation.x < -0.5f) || (_playerController.lookRotation.x <= 0.75f && _playerController.lookRotation.x > 0.5f))
-            {
-                _touchX = (_playerController.lookRotation.x * 2f) / 6f * _playerData.sensivityX * Time.deltaTime;
-            }
-            else
-            {
-                _touchX = (_playerController.lookRotation.x * 2f) / 4f * _playerData.sensivityX * Time.deltaTime;
-            }
-            //Touch Rotation Controller
 
-            _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime;
+            //Touch Rotation Controller
+            SensivityXSetting(100);
+            _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime * 40;
         }    
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
         _currentCamera.transform.Rotate(-_touchY * Time.timeScale, 0, 0);
@@ -406,6 +392,29 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
         //Debug.Log(_currentCamera.transform.eulerAngles.x);
         ChooseCamera();
+    }
+    void SensivityXSetting(int touchXValue)
+    {
+        if ((_playerController.lookRotation.x >= -0.2f && _playerController.lookRotation.x < 0f) || (_playerController.lookRotation.x <= 0.2f && _playerController.lookRotation.x > 0f))
+        {
+            _touchX = (_playerController.lookRotation.x * 2f) / 8f * _playerData.sensivityX * Time.deltaTime * touchXValue;
+        }
+        else if ((_playerController.lookRotation.x >= -0.4f && _playerController.lookRotation.x < -0.2f) || (_playerController.lookRotation.x <= 0.4f && _playerController.lookRotation.x > 0.2f))
+        {
+            _touchX = (_playerController.lookRotation.x * 2f) / 7f * _playerData.sensivityX * Time.deltaTime * touchXValue;
+        }
+        else if ((_playerController.lookRotation.x >= -0.6f && _playerController.lookRotation.x < -0.4f) || (_playerController.lookRotation.x <= 0.6f && _playerController.lookRotation.x > 0.4f))
+        {
+            _touchX = (_playerController.lookRotation.x * 2f) / 6f * _playerData.sensivityX * Time.deltaTime * touchXValue;
+        }
+        else if ((_playerController.lookRotation.x >= -0.8f && _playerController.lookRotation.x < -0.6f) || (_playerController.lookRotation.x <= 0.8f && _playerController.lookRotation.x > 0.6f))
+        {
+            _touchX = (_playerController.lookRotation.x * 2f) / 5f * _playerData.sensivityX * Time.deltaTime * touchXValue;
+        }
+        else
+        {
+            _touchX = (_playerController.lookRotation.x * 2f) / 4f * _playerData.sensivityX * Time.deltaTime * touchXValue;
+        }
     }
     
     void CheckCameraEulerX()

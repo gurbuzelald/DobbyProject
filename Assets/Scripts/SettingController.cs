@@ -69,7 +69,7 @@ public class SettingController : MonoBehaviour
     }
     public void SetDefaulth()
     {
-        _sensivityX.value = 240f;
-        _sensivityY.value = 120f;
+        _sensivityX.value = 5f;
+        _sensivityY.value = 1f;
     }
 }
