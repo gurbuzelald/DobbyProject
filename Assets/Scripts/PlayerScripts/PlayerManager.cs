@@ -663,6 +663,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     IEnumerator DelayLevelUp(float delayWait, float delayDestroy)
     {
+        _playerData.isLockedWalking = false;
         Destroy(_healthBar);
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
         _playerData.isTouchFinish = true;

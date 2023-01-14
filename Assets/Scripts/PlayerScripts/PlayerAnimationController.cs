@@ -21,8 +21,8 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
         //_playerController = FindObjectOfType<PlayerController>();
     }
     void Update()
-    {
-        AnimationStates();
+    {       
+        AnimationStates();        
     }
     public void AnimationStates()
     {

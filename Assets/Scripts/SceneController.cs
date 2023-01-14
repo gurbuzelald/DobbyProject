@@ -31,9 +31,6 @@ public class SceneController : AbstractSceneController<SceneController>
             rotateTouchOrMousePos = false;
             _playerData.isLockedWalking = false;
         }
-        
-
-
         playAgain = false;
         pauseGame = false;
     }
@@ -149,7 +146,7 @@ public class SceneController : AbstractSceneController<SceneController>
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-
+        
         Destroy(PlayerManager.GetInstance.gameObject);
         
     }
