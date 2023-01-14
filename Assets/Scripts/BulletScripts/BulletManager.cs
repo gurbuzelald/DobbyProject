@@ -11,9 +11,6 @@ public class BulletManager : AbstractBullet<BulletManager>
     [Header("Bullet Transform")]
     [SerializeField] Transform _bulletSpawnTransform;
 
-    [Header("Rotation of Bullet from Camera")]
-    [SerializeField] CinemachineVirtualCamera _currentCamera;
-
     [Header("Data")]
     public BulletData bulletData;
     public PlayerData _playerData;
@@ -33,7 +30,7 @@ public class BulletManager : AbstractBullet<BulletManager>
     }
     void FixedUpdate()
     {
-        BulletRotation(_playerData.isLookingUp, _currentCamera, _bulletSpawnTransform);
+        BulletRotation(_playerData.isLookingUp, PlayerManager.GetInstance._currentCamera.transform.GetComponent<CinemachineVirtualCamera>(), _bulletSpawnTransform);
 
         if (_playerData.isFiring && bulletData.bulletDelayCounter == 0)
         {
@@ -47,7 +44,7 @@ public class BulletManager : AbstractBullet<BulletManager>
         _pistolObject.SetActive(true);
         yield return new WaitForSeconds(delayValue);
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
-        _bulletSpawnTransform.position = new Vector3(_currentCamera.transform.position.x, _bulletSpawnTransform.transform.position.y, _bulletSpawnTransform.transform.position.z);
+        _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._currentCamera.transform.position.x, _bulletSpawnTransform.transform.position.y, _bulletSpawnTransform.transform.position.z);
         CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, 0, _objectPool);
         bulletData.bulletDelayCounter = 0;
         yield return new WaitForSeconds(delayValue*50f);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,28 +11,21 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     [Header("Sound")]
     [HideInInspector] public AudioSource audioSource;
-    //public PlayerSoundEffect playerSFX;
-
-    [Header("Particle Transform")]
-    public Transform _particleTransform;
 
     [Header("Data")]
     public PlayerData _playerData;
     public EnemyData _enemyData;
-
-    [Header("Health")]
-    public GameObject _healthBar;
-
-    [Header("Jolleen Animation Transform")]
+    [Header("Current Spawn Transforms")]
     [SerializeField] Transform _jolleenTransform;
-
-    [Header("Fire")]
-    public int firingRotation;
+    [SerializeField] Transform playerIconTransform;
+    [SerializeField] Transform healthBarTransform;
+    //[SerializeField] Transform animatorTransform;
+    public Transform _particleTransform;
 
     [Header("Camera")]
-    [SerializeField] CinemachineVirtualCamera _currentCamera;
-    [SerializeField] CinemachineVirtualCamera _upCamera;
-    [SerializeField] CinemachineVirtualCamera _downCamera;
+    public CinemachineVirtualCamera _currentCamera;
+    public CinemachineVirtualCamera _upCamera;
+    public CinemachineVirtualCamera _downCamera;
     //[SerializeField] CinemachineExternalCamera _virtualCamera;
 
     [Header("Crosshair")]
@@ -50,13 +44,15 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private float _initJumpForce;
     private float _initPlayerSpeed;
 
-    [SerializeField] GameObject playerIcon;
+    public event Action CreatePlayerStaff;
 
     void Start()
     {
-        TriggerLadder(false, true); 
-        playerIcon.GetComponent<MeshRenderer>().enabled = true;
         DataStatesOnInitial();
+
+        CreateStartPlayerStaff();
+        TriggerLadder(false, true); 
+        
 
         //Particle
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
@@ -68,17 +64,42 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //GameObjects
         _coinObject.SetActive(false);
 
-        //Camera
-        _currentCamera = _downCamera;
-        firingRotation = 0;
-
         //Scripts
-        _playerController = Object.FindObjectOfType<PlayerController>();
+        _playerController = FindObjectOfType<PlayerController>();
+    }
+
+    //Create Player Objects On Start
+    void CreateStartPlayerStaff()
+    {
+        CreatePlayerStaff = CreateMagnet;
+        //CreatePlayerStaff = CreatePlayerSFXStatement;//IDK why didnt work!!!
+        Instantiate(_playerData.playerSFXObject, gameObject.transform);
+        CreatePlayerStaff = CreatePlayerIcon;
+        CreatePlayerStaff = CreateHealthBar;
+        CreatePlayerStaff();
+    }
+    void CreatePlayerIcon()
+    {
+        Instantiate(_playerData.playerIcon, playerIconTransform.transform.position, Quaternion.identity, gameObject.transform);
+    }
+    void CreatePlayerSFXStatement()
+    {
+        Instantiate(_playerData.playerSFXObject, gameObject.transform);
+    }
+    void CreateMagnet()
+    {
+        Instantiate(_playerData.magnetObject, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+    }
+    void CreateHealthBar()
+    {
+        Instantiate(_playerData.healthBarObject, healthBarTransform.transform.position, Quaternion.identity, gameObject.transform);
     }
     void DataStatesOnInitial()
     {
         if (_playerData != null)
         {
+            _playerData.playerIcon.GetComponent<MeshRenderer>().enabled = true;
+            _playerData.healthBarObject.transform.localScale = new Vector3(1f, 0.1f, 0.1f); 
             _playerData.isLockedWalking = false;
             _playerData.clickTabCount = 0;
             _playerData.clickShiftCount = 0;
@@ -115,7 +136,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (gameObject != null && _healthBar != null)
+        if (gameObject != null && _playerData.healthBarObject != null)
         {
             if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()) || collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()))
             {
@@ -486,7 +507,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     //Collision
     void TouchEnemy(Collision collision)
     {
-        if (_healthBar.transform.localScale.x <= 0.0625f)
+        if (_playerData.healthBarObject.transform.localScale.x <= 0.0625f)
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
@@ -509,7 +530,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isIdling = false;
             _playerData.isPlayable = false;
 
-            Destroy(_healthBar);
+            //Destroy(_playerData.healthBarObject);
+            _playerData.healthBarObject.transform.localScale = Vector3.zero;
             StartCoroutine(DelayDestroy(3f));
         }
         else
@@ -524,7 +546,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
-                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.1f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+                _playerData.healthBarObject.transform.localScale = new Vector3(_playerData.healthBarObject.transform.localScale.x / 1.1f,
+                                                                               _playerData.healthBarObject.transform.localScale.y, 
+                                                                               _playerData.healthBarObject.transform.localScale.z);
             }
         }
     }
@@ -532,9 +556,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     //Triggers
     void TriggerBullet(Collider other)
     {
-        if (_healthBar != null)
+        if (_playerData.healthBarObject != null)
         {
-            if (_healthBar.transform.localScale.x <= 0.0625f)
+            if (_playerData.healthBarObject.transform.localScale.x <= 0.0625f)
             {
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
@@ -558,7 +582,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 _playerData.isIdling = false;
                 _playerData.isPlayable = false;
 
-                Destroy(_healthBar);
+                Destroy(_playerData.healthBarObject);
                 StartCoroutine(DelayDestroy(3f));
             }
             else
@@ -568,7 +592,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
-                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 1.05f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+                _playerData.healthBarObject.transform.localScale = new Vector3(_playerData.healthBarObject.transform.localScale.x / 1.05f,
+                                                                               _playerData.healthBarObject.transform.localScale.y,
+                                                                               _playerData.healthBarObject.transform.localScale.z);
             }
         }
     }
@@ -664,7 +690,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     IEnumerator DelayLevelUp(float delayWait, float delayDestroy)
     {
         _playerData.isLockedWalking = false;
-        Destroy(_healthBar);
+        _playerData.healthBarObject.transform.localScale = Vector3.zero;
+        //DestroyImmediate(_playerData.healthBarObject, true);
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
         _playerData.isTouchFinish = true;
 

@@ -3,12 +3,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Prefab Game Objects")]
+    public GameObject magnetObject;
+    public GameObject playerSFXObject;
+    public GameObject playerIcon;
+    public GameObject healthBarObject;
 
     [Header("Sensivity")]
     public float sensivityX = 250f;
     public float sensivityY = 80f;
 
-    [Header("FinishCheck")]
+    [Header("Finish Check")]
     public bool isTouchFinish;
     public bool isLose;
 

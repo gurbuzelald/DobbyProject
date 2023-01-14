@@ -130,26 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 104202802, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.029952526
-      objectReference: {fileID: 0}
-    - target: {fileID: 473161002, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 473161002, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 8c30c330229c72f49b8efa40e4436adb, type: 2}
     - target: {fileID: 1278696494, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
       propertyPath: _objectPool
       value: 
       objectReference: {fileID: 631341823}
-    - target: {fileID: 1652565089332185738, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.029952526
-      objectReference: {fileID: 0}
     - target: {fileID: 7193906221332498760, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
       propertyPath: crosshairImage
       value: 
@@ -677,7 +661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1470434935
 Transform:
   m_ObjectHideFlags: 0
@@ -948,6 +932,10 @@ PrefabInstance:
     - target: {fileID: 3249117407913429291, guid: 3bde34160dc9ffe43a4ff37053102bd3, type: 3}
       propertyPath: m_Name
       value: CloneSpawner
+      objectReference: {fileID: 0}
+    - target: {fileID: 3249117407913429291, guid: 3bde34160dc9ffe43a4ff37053102bd3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3249117407913429332, guid: 3bde34160dc9ffe43a4ff37053102bd3, type: 3}
       propertyPath: m_RootOrder
