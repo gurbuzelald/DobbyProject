@@ -47,13 +47,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.enemySpeed = _initSpeed;
 
-                Movement(clownSpawner.targetTransform, _initTransform, gameObject.transform, enemyData.isActivateMagnet, enemyData.enemySpeed);
+                Movement(clownSpawner.targetTransform, _initTransform, gameObject.transform, enemyData.isActivateMagnet, enemyData.enemySpeed, playerData, enemyData);
             }
             else
             {
-                enemyData.isWalking = false;
+                EnemyBulletManager.isFirable = false;
                 enemyData.isFiring = false;
-                enemyData.enemySpeed = 0f;
             }
         }
     }    
@@ -108,8 +107,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
             enemyData.isWalking = false;
             enemyData.isFiring = false;
-            enemyData.enemySpeed = _initSpeed * 0f;
-            StartCoroutine(DelayStopEnemy());
+            StartCoroutine(DelayStopEnemy(3f));
         }        
     }
     public void TouchWall()
@@ -123,8 +121,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
         enemyData.isWalking = false;
-        enemyData.enemySpeed = _initSpeed * 0f;
-        StartCoroutine(DelayStopEnemy());
+        enemyData.isSpeedZero = true;
+        StartCoroutine(DelayStopEnemy(3f));
         if (_healthBar != null)
         {
             if (_healthBar.transform.localScale.x <= 0.0625f)
@@ -136,6 +134,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isDying = true;
                 enemyData.isWalking = false;
                 enemyData.isFiring = false;
+                enemyData.isSpeedZero = true;
+                StartCoroutine(DelayStopEnemy(3f));
                 Destroy(_healthBar);
                 ScoreController.GetInstance.SetScore(20);
                 PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
@@ -154,6 +154,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 }
                 enemyData.isWalking = false;
                 enemyData.isFiring = false;
+                enemyData.isSpeedZero = true;
+                StartCoroutine(DelayStopEnemy(3f));
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
                 _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
@@ -161,11 +163,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }   
 
 
-    public IEnumerator DelayStopEnemy()
+    public IEnumerator DelayStopEnemy(float value)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(value);
         enemyData.isWalking = true;
-        enemyData.enemySpeed = _initSpeed;
+        enemyData.isSpeedZero = false;
+
     }
     public IEnumerator DelayDestroy(float delayDestroy)
     {

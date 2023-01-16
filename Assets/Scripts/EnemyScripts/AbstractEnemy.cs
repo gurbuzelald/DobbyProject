@@ -4,21 +4,29 @@ using UnityEngine;
 
 public abstract class AbstractEnemy<T> : MonoBehaviour where T : MonoBehaviour
 {
-    public virtual void Movement(Transform targetObject, Transform initTransform, Transform currentTransform, bool isActivateMagnet, float speed)
+    public virtual void Movement(Transform targetObject, Transform initTransform, Transform currentTransform, bool isActivateMagnet, float speed, PlayerData playerData, EnemyData enemyData)
     {
-        if (targetObject != null && isActivateMagnet)
+        if (!enemyData.isSpeedZero)
         {
-            currentTransform.LookAt(targetObject.position);
-            currentTransform.Translate(0f, 0f, speed * Time.deltaTime);
+            if (targetObject != null && isActivateMagnet && playerData.isPlayable)
+            {
+                currentTransform.LookAt(targetObject.position);
+                currentTransform.Translate(0f, 0f, speed * Time.deltaTime);
+            }
+            else if (targetObject != null && !isActivateMagnet && playerData.isPlayable)
+            {
+                currentTransform.Translate(0f, 0f, (speed * Time.deltaTime) / 2f);
+                //if (Vector3.Distance(initTransform.position, currentTransform.position) > 1f)
+                //{
+                //    speed *= -1;
+                //}
+                //currentTransform.Translate(0f, 0f, speed * Time.deltaTime);
+            }
         }
-        else if (targetObject != null && !isActivateMagnet)
+        
+        else if (!playerData.isPlayable || enemyData.isSpeedZero)
         {
-            currentTransform.Translate(0f, 0f, (speed * Time.deltaTime)/2f);
-            //if (Vector3.Distance(initTransform.position, currentTransform.position) > 1f)
-            //{
-            //    speed *= -1;
-            //}
-            //currentTransform.Translate(0f, 0f, speed * Time.deltaTime);
+            currentTransform.Translate(0f, 0f, 0f);
         }
     }
 

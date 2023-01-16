@@ -575,7 +575,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 _playerData.isIdling = false;
                 _playerData.isPlayable = false;
 
-                Destroy(_playerData.healthBarObject);
+                _playerData.healthBarObject.transform.localScale = Vector3.zero;
                 StartCoroutine(DelayDestroy(3f));
             }
             else

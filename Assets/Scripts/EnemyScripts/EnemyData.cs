@@ -20,4 +20,5 @@ public class EnemyData : ScriptableObject
     public bool isActivateMagnet;
 
     public float enemySpeed;
+    public bool isSpeedZero;
 }
