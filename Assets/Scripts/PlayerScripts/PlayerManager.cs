@@ -51,14 +51,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         DataStatesOnInitial();
 
         CreateStartPlayerStaff();
-        TriggerLadder(false, true); 
-        
+        TriggerLadder(false, true);
+
 
         //Particle
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
 
         //Audio
-        audioSource = GetComponent<AudioSource>();    
+        audioSource = GetComponent<AudioSource>();
 
 
         //GameObjects
@@ -71,24 +71,17 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     //Create Player Objects On Start
     void CreateStartPlayerStaff()
     {
-        CreatePlayerStaff = CreateMagnet;
         //CreatePlayerStaff = CreatePlayerSFXStatement;//IDK why didnt work!!!
         Instantiate(_playerData.playerSFXObject, gameObject.transform);
-        CreatePlayerStaff = CreatePlayerIcon;
+        Instantiate(_playerData.magnetObject, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+        Instantiate(_playerData.playerIcon, playerIconTransform.transform.position, Quaternion.identity, gameObject.transform);
+
         CreatePlayerStaff = CreateHealthBar;
         CreatePlayerStaff();
-    }
-    void CreatePlayerIcon()
-    {
-        Instantiate(_playerData.playerIcon, playerIconTransform.transform.position, Quaternion.identity, gameObject.transform);
     }
     void CreatePlayerSFXStatement()
     {
         Instantiate(_playerData.playerSFXObject, gameObject.transform);
-    }
-    void CreateMagnet()
-    {
-        Instantiate(_playerData.magnetObject, gameObject.transform.position, Quaternion.identity, gameObject.transform);
     }
     void CreateHealthBar()
     {
@@ -99,7 +92,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         if (_playerData != null)
         {
             _playerData.playerIcon.GetComponent<MeshRenderer>().enabled = true;
-            _playerData.healthBarObject.transform.localScale = new Vector3(1f, 0.1f, 0.1f); 
+            _playerData.healthBarObject.transform.localScale = new Vector3(1f, 0.1f, 0.1f);
             _playerData.isLockedWalking = false;
             _playerData.clickTabCount = 0;
             _playerData.clickShiftCount = 0;
@@ -196,7 +189,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             DestroyByWater();
         }
-    }    
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(SceneController.Tags.Ladder.ToString()))
@@ -213,8 +206,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             if (_playerData.isPlayable && !_playerData.isWinning)
             {
                 //Getting left stick values
-                _xValue = _playerController.movement.x*Time.deltaTime*2f;
-                _zValue = _playerController.movement.y*Time.deltaTime*2f;
+                _xValue = _playerController.movement.x * Time.deltaTime * 2f;
+                _zValue = _playerController.movement.y * Time.deltaTime * 2f;
 
                 //float xValue = Input.GetAxis("Horizontal") * Time.deltaTime * _playerData.playerSpeed / 2f;
                 //float zValue = Input.GetAxis("Vertical") * Time.deltaTime * _playerData.playerSpeed;
@@ -301,11 +294,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 _playerData.isBackWalking = false;
                 _playerData.isWalking = false;
             }
-            
+
         }
         else
         {
-            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _playerData.playerSpeed*Time.deltaTime/2f);
+            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _playerData.playerSpeed * Time.deltaTime / 2f);
         }
         SideWalk();
         SpeedController();
@@ -328,7 +321,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
         }
     }
-    
+
     void SpeedController()
     {
         if (!_playerData.isLockedWalking)
@@ -351,7 +344,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 _playerData.skateboardParticle.Stop();
                 _playerData.playerSpeed = _initPlayerSpeed;
             }
-        }        
+        }
     }
     void Jump()
     {
@@ -377,7 +370,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         else
         {
             _playerData.isJumping = false;
-        }        
+        }
     }
     public void Fire()
     {
@@ -401,7 +394,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
     }
     void Rotation()
-    {        
+    {
         if (SceneController.rotateTouchOrMousePos == true)
         {
             //Mouse Rotation Controller
@@ -412,9 +405,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
 
             //Touch Rotation Controller
-            SensivityXSetting(100);
+            SensivityXSetting(100, _playerController, _playerData);
             _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime * 40;
-        }    
+        }
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
         _currentCamera.transform.Rotate(-_touchY * Time.timeScale, 0, 0);
 
@@ -425,7 +418,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //Debug.Log(_currentCamera.transform.eulerAngles.x);
         ChooseCamera();
     }
-    void SensivityXSetting(int touchXValue)
+    void SensivityXSetting(int touchXValue,  PlayerController _playerController, PlayerData _playerData)
     {
         if ((_playerController.lookRotation.x >= -0.2f && _playerController.lookRotation.x < 0f) || (_playerController.lookRotation.x <= 0.2f && _playerController.lookRotation.x > 0f))
         {
@@ -448,7 +441,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _touchX = (_playerController.lookRotation.x * 2f) / 4f * _playerData.sensivityX * Time.deltaTime * touchXValue;
         }
     }
-    
+
     void CheckCameraEulerX()
     {
         if (_currentCamera.transform.eulerAngles.x > 74 && _currentCamera.transform.eulerAngles.x <= 80)
@@ -547,7 +540,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
                 _playerData.healthBarObject.transform.localScale = new Vector3(_playerData.healthBarObject.transform.localScale.x / 1.1f,
-                                                                               _playerData.healthBarObject.transform.localScale.y, 
+                                                                               _playerData.healthBarObject.transform.localScale.y,
                                                                                _playerData.healthBarObject.transform.localScale.z);
             }
         }
@@ -683,7 +676,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
 
     IEnumerator Delay(float value)
-    {        
+    {
         yield return new WaitForSeconds(value);
         crosshairImage.GetComponent<CanvasGroup>().alpha = 0;
     }

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df28307b15eed744a58827ea4f595cc, type: 3}
+  m_Name: PrisonerZombieData
+  m_EditorClassIdentifier: 
+  getHitClip: {fileID: 8300000, guid: a6519293710bb5749a4734619dd06379, type: 3}
+  giveHitClip: {fileID: 8300000, guid: cf10e1f403c454c47a380a649fc10e7d, type: 3}
+  dyingClip: {fileID: 8300000, guid: 9ee0f2065657ee84189d13e8741d7409, type: 3}
+  isGround: 1
+  isDying: 0
+  isWalking: 1
+  isFiring: 0
+  isTouchable: 1
+  isActivateMagnet: 0
+  enemySpeed: 0.2

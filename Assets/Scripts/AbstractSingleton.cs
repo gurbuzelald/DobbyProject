@@ -1,4 +1,6 @@
 using UnityEngine;
+using Cinemachine;
+
 
 public abstract class AbstractSingleton<T> : MonoBehaviour where T : MonoBehaviour
 {
