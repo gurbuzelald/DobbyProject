@@ -79,16 +79,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         CreatePlayerStaff = CreateHealthBar;
         CreatePlayerStaff();
     }
-    void CreatePlayerSFXStatement()
-    {
-        Instantiate(_playerData.playerSFXObject, gameObject.transform);
-    }
     void CreateHealthBar()
     {
         Instantiate(_playerData.healthBarObject, healthBarTransform.transform.position, Quaternion.identity, gameObject.transform);
     }
     void DataStatesOnInitial()
-    {
+    {//PlayerData
         if (_playerData != null)
         {
             _playerData.playerIcon.GetComponent<MeshRenderer>().enabled = true;
@@ -124,7 +120,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (gameObject != null)
         {
-            Movement();
+            Movement();//PlayerStatements
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -133,11 +129,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()) || collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()))
             {
+                //PlayerData
                 _playerData.isGround = true;
                 _playerData.jumpCount = 0;
             }
             else
             {
+                //PlayerData
                 _playerData.isGround = false;
             }
             if (collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneController.Tags.CloneDobby.ToString()))
@@ -146,8 +144,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
             if (collision.collider.CompareTag(SceneController.Tags.Coin.ToString()))
             {//For Big Coins
+                //SoundEffect
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+
+                //HitCoinBigObject
                 collision.collider.gameObject.SetActive(false);
+
+                //SettingScore
                 ScoreController.GetInstance.SetScore(230);
             }
         }
@@ -171,30 +174,30 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (other.CompareTag(SceneController.Tags.FinishArea.ToString()))
         {
-            StartCoroutine(DelayLevelUp(2f, _playerData.danceTime));
+            StartCoroutine(DelayLevelUp(2f, _playerData.danceTime));//LevelUpWithCoroutine
         }
         if (other.CompareTag(SceneController.Tags.Coin.ToString()))
         {
-            PickUpCoin(SceneController.Tags.Coin, other);
+            PickUpCoin(SceneController.Tags.Coin, other);//GetScore
         }
         if (other.CompareTag(SceneController.Tags.RotateCoin.ToString()))
         {
-            PickUpCoin(SceneController.Tags.RotateCoin, other);
+            PickUpCoin(SceneController.Tags.RotateCoin, other);//GetScore
         }
         if (other.CompareTag(SceneController.Tags.Lava.ToString()))
         {
-            DestroyByLava();
+            DestroyByLava();//DeathByLava
         }
         if (other.CompareTag(SceneController.Tags.Water.ToString()))
         {
-            DestroyByWater();
+            DestroyByWater();//DeathByLadder
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(SceneController.Tags.Ladder.ToString()))
         {
-            TriggerLadder(false, true);
+            TriggerLadder(false, true);//ExitLadder
         }
     }
 
@@ -227,14 +230,16 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
             else
             {
+                //PlayerData
                 _playerData.isFiring = false;
             }
         }
     }
     void SkateBoard()
-    {
+    {//StyleWalking
         if (PlayerController.skateBoard && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
         {
+            //PlayerData
             _playerData.clickTabCount++;
             _playerData.isSkateBoarding = true;
             if (_playerData.clickTabCount > 1)
@@ -246,15 +251,18 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (_playerData.isSkateBoarding)
         {
+            //ParticleEffect
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Skateboard, _particleTransform.transform);
+
             //_skateboardParticle.Play();
             GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
         }
     }
     void Run()
-    {
+    {//FasterWalking
         if (PlayerController.run && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding)
         {
+            //PlayerData
             _playerData.clickShiftCount++;
             _playerData.isRunning = true;
             if (_playerData.clickShiftCount > 1)
@@ -266,7 +274,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         if (_playerData.isRunning)
         {
+            //ParticleEffect
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Skateboard, _particleTransform.transform);
+
             //_skateboardParticle.Play();
             GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
         }
@@ -274,23 +284,26 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
 
     void Walk()
-    {
+    {//ForwardAndBackWalking
         if (!_playerData.isLockedWalking)
         {
             if (_zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isRunning)
             {
                 GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
+                //PlayerData
                 _playerData.isWalking = true;
                 _playerData.isBackWalking = false;
             }
             else if (_zValue < 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
             {
+                //PlayerData
                 GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
                 _playerData.isBackWalking = true;
                 _playerData.isWalking = false;
             }
             else if (_zValue == 0)
             {
+                //PlayerData
                 _playerData.isBackWalking = false;
                 _playerData.isWalking = false;
             }
@@ -304,14 +317,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         SpeedController();
     }
     void SideWalk()
-    {
+    {//LeftAndRightWalking
         if (_xValue < -0.02f || _xValue > 0.02f)
         {
             GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
         }
     }
     void Climb()
-    {
+    {//WhenEnterToTheLadderGoToClimb
         if (_zValue > 0 && _playerData.isClimbing && !_playerData.isBackClimbing)
         {
             GetInstance.GetComponent<Transform>().Translate(0f, _zValue, 0f);
@@ -328,19 +341,23 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             if ((_xValue > 0 && _zValue > 0) || (_xValue < 0 && _zValue > 0) || (_xValue < 0 && _zValue < 0) || (_xValue > 0 && _zValue < 0) || _zValue < 0)
             {
+                //PlayerData
                 _playerData.playerSpeed = _initPlayerSpeed;
             }
             else if (_playerData.isSkateBoarding && _zValue > 0)
             {
+                //PlayerData
                 _playerData.playerSpeed = _initPlayerSpeed * 1.6f;
 
             }
             else if (_playerData.isRunning && _zValue > 0)
             {
+                //PlayerData
                 _playerData.playerSpeed = _initPlayerSpeed * 1.3f;
             }
             else
             {
+                //PlayerData
                 _playerData.skateboardParticle.Stop();
                 _playerData.playerSpeed = _initPlayerSpeed;
             }
@@ -352,23 +369,35 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             if (_playerData.jumpCount == 0)
             {
+                //SoundEffect
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
+                
+                //PlayerData
                 _playerData.jumpForce = _initJumpForce;
                 _playerData.isJumping = true;
+
+                //AddForceForJump
                 GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
             }
             else
             {
+                //SoundEffect
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
+
+                //PlayerData
                 _playerData.jumpForce = _initJumpForce / 1.5f;
                 _playerData.isJumping = true;
+                
+                //AddForceForJumping
                 GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
             }
+            //PlayerData
             _playerData.jumpForce = _initJumpForce;
             _playerData.jumpCount++;
         }
         else
         {
+            //PlayerData
             _playerData.isJumping = false;
         }
     }
@@ -378,9 +407,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             if (_playerController.fire)
             {
-
+                //PlayerData
                 _playerData.isFiring = true;
+
+                //Crosshair
                 crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
+
+                //SetFalseBullet
                 StartCoroutine(Delay(2f));
             }
             else
@@ -408,7 +441,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             SensivityXSetting(100, _playerController, _playerData);
             _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime * 40;
         }
+        //Rotating With Camera On X Axis
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
+
+        //Rotating Just Camera On Y Axis
         _currentCamera.transform.Rotate(-_touchY * Time.timeScale, 0, 0);
 
 
@@ -419,7 +455,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         ChooseCamera();
     }
     void SensivityXSetting(int touchXValue,  PlayerController _playerController, PlayerData _playerData)
-    {
+    {//ControllerSmoothForXAxis
         if ((_playerController.lookRotation.x >= -0.2f && _playerController.lookRotation.x < 0f) || (_playerController.lookRotation.x <= 0.2f && _playerController.lookRotation.x > 0f))
         {
             _touchX = (_playerController.lookRotation.x * 2f) / 8f * _playerData.sensivityX * Time.deltaTime * touchXValue;
@@ -446,21 +482,31 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (_currentCamera.transform.eulerAngles.x > 74 && _currentCamera.transform.eulerAngles.x <= 80)
         {
+            //PlayerData
             _playerData.isLookingUp = false;
+
+            //CinemachineVirtualCamera
             _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
         else if (_currentCamera.transform.eulerAngles.x > 355)
         {
+            //PlayerData
             _playerData.isLookingUp = false;
+
+            //CinemachineVirtualCamera
             _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
         else if (_currentCamera.transform.eulerAngles.x < 0)
         {
+            //PlayerData
             _playerData.isLookingUp = true;
+
+            //CinemachineVirtualCamera
             _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
         }
         else if (_currentCamera.transform.eulerAngles.x > 270 && _currentCamera.transform.eulerAngles.x <= 360)
         {
+            //PlayerData
             _playerData.isLookingUp = true;
             //_currentCamera = _upCamera;
         }
@@ -502,11 +548,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (_playerData.healthBarObject.transform.localScale.x <= 0.0625f)
         {
+            //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
-            _playerData.isDestroyed = true;
-
-            //EnemyAnimation
+            //EnemyAnimation--Collision
             if (collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
             {
                 collision.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
@@ -519,26 +564,30 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
 
             //PlayerData
+            _playerData.isDestroyed = true;
             _playerData.isDying = true;
             _playerData.isIdling = false;
             _playerData.isPlayable = false;
-
-            //Destroy(_playerData.healthBarObject);
             _playerData.healthBarObject.transform.localScale = Vector3.zero;
+
             StartCoroutine(DelayDestroy(3f));
         }
         else
         {
             if (collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) && collision.gameObject.GetComponent<EnemyManager>()._healthBar == null)
             {
+                //Hit
                 collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable = false;
             }
             if (collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable)
             {
+                //ParticleEffect
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
 
+                //SoundEffect
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
+                //PlayerData
                 _playerData.healthBarObject.transform.localScale = new Vector3(_playerData.healthBarObject.transform.localScale.x / 1.1f,
                                                                                _playerData.healthBarObject.transform.localScale.y,
                                                                                _playerData.healthBarObject.transform.localScale.z);
@@ -583,8 +632,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.TouchBurning, _particleTransform.transform);
 
+                //SoundEffect
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
+                //PlayerData
                 _playerData.healthBarObject.transform.localScale = new Vector3(_playerData.healthBarObject.transform.localScale.x / 1.05f,
                                                                                _playerData.healthBarObject.transform.localScale.y,
                                                                                _playerData.healthBarObject.transform.localScale.z);
@@ -595,48 +646,65 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (value == SceneController.Tags.Coin)
         {
+            //Data
             _playerData.playerSpeed = 0.5f;
-            _coinObject.SetActive(true);
             _playerData.isPicking = true;
+
+            _coinObject.SetActive(true);
+
+            //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+
+            //Trigger
             other.gameObject.SetActive(false);
+
+            //Score
             ScoreController.GetInstance.SetScore(23);
         }
         else if (value == SceneController.Tags.RotateCoin)
         {
-            _playerData.playerSpeed = 0.5f;
-            _coinObject.SetActive(true);
+            //PlayerData
             _playerData.isPickRotateCoin = true;
+            _playerData.playerSpeed = 0.5f;
+
+            _coinObject.SetActive(true);
+
+            //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+
+            //Trigger CoinObject
             other.gameObject.SetActive(false);
+
+            //SettingScore
             ScoreController.GetInstance.SetScore(23);
         }
     }
     void DestroyByWater()
     {
-        _playerData.isDestroyed = true;
-        //collision.collider.gameObject._enemyData.isWalking = false;
-        //collision.collider._enemyData.enemySpeed = 0;
-
         //PlayerData
+        _playerData.isDestroyed = true;
         _playerData.isDying = true;
         _playerData.isIdling = false;
         _playerData.isPlayable = false;
+
+        //SoundEffect
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
+
+        //DestroyingWithDelay
         StartCoroutine(DelayDestroy(5f));
     }
     void DestroyByLava()
     {
-        _playerData.isDestroyed = true;
-
-        //collision.collider.gameObject._enemyData.isWalking = false;
-        //collision.collider._enemyData.enemySpeed = 0;
-
         //PlayerData
+        _playerData.isDestroyed = true;
         _playerData.isDying = true;
         _playerData.isIdling = false;
         _playerData.isPlayable = false;
+
+        //SoundEffect
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform.transform);
+
+        //DestroyingWithDelay
         StartCoroutine(DelayDestroy(3f));
     }
     void TriggerLadder(bool isTouch, bool isTouchExit)
@@ -644,18 +712,22 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         GetInstance.GetComponent<Rigidbody>().isKinematic = isTouch;
         if (PlayerManager.GetInstance._zValue > 0 && !isTouchExit)
         {
+            //PlayerData
             _playerData.isClimbing = isTouch;
             _playerData.isBackClimbing = !isTouch;
         }
         else if (PlayerManager.GetInstance._zValue < 0 && !isTouchExit)
         {
+            //PlayerData
             _playerData.isBackClimbing = isTouch;
             _playerData.isClimbing = !isTouch;
         }
         else if (isTouchExit && PlayerManager.GetInstance._zValue != 0)
         {
+            //PlayerData
             _playerData.isBackClimbing = isTouch;
             _playerData.isClimbing = isTouch;
+
             if (PlayerManager.GetInstance._zValue < 0)
             {
                 _playerData.isBackWalking = !isTouch;
@@ -670,6 +742,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     void CreateVictoryAnimation()
     {
+        //InstantiatingDancerObject
         GameObject jolleenObject = Instantiate(_playerData.jolleenObject, _jolleenTransform.transform);
         jolleenObject.transform.position = _jolleenTransform.transform.position;
         Destroy(jolleenObject, _playerData.danceTime);
@@ -678,10 +751,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     IEnumerator Delay(float value)
     {
         yield return new WaitForSeconds(value);
+
+        //CrosshairImage
         crosshairImage.GetComponent<CanvasGroup>().alpha = 0;
     }
     IEnumerator DelayLevelUp(float delayWait, float delayDestroy)
     {
+        //PlayerData
         _playerData.isLockedWalking = false;
         _playerData.healthBarObject.transform.localScale = Vector3.zero;
         //DestroyImmediate(_playerData.healthBarObject, true);
@@ -689,6 +765,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _playerData.isTouchFinish = true;
 
         yield return new WaitForSeconds(delayWait);
+        //PlayerData
         _playerData.isPlayable = false;
         _playerData.isWinning = true;
 
@@ -701,6 +778,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     IEnumerator DelayDestroy(float delayDying)
     {
+        //ParticleEffect
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Death, _particleTransform.transform);
 
         yield return new WaitForSeconds(delayDying);
