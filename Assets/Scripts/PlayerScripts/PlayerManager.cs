@@ -19,11 +19,16 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [SerializeField] Transform _jolleenTransform;
     [SerializeField] Transform playerIconTransform;
     [SerializeField] Transform healthBarTransform;
+    [SerializeField] Transform _finishArrowTransform;
+    [SerializeField] Transform _camerasTransform;
+    public Transform _finishArea;
+
     //[SerializeField] Transform animatorTransform;
     public Transform _particleTransform;
 
     [Header("Camera")]
     public CinemachineVirtualCamera _currentCamera;
+    public Transform _currentCameraTransform;
     public CinemachineVirtualCamera _upCamera;
     public CinemachineVirtualCamera _downCamera;
     //[SerializeField] CinemachineExternalCamera _virtualCamera;
@@ -45,9 +50,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private float _initPlayerSpeed;
 
     public event Action CreatePlayerStaff;
-
-    [SerializeField] GameObject _arrowObject;
-    [SerializeField] Transform _finishArea;
 
     void Start()
     {
@@ -77,7 +79,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //CreatePlayerStaff = CreatePlayerSFXStatement;//IDK why didnt work!!!
         Instantiate(_playerData.playerSFXObject, gameObject.transform);
         Instantiate(_playerData.magnetObject, gameObject.transform.position, Quaternion.identity, gameObject.transform);
-        Instantiate(_playerData.playerIcon, playerIconTransform.transform.position, Quaternion.identity, gameObject.transform);
+        Instantiate(_playerData.playerIcon, playerIconTransform.transform.position, Quaternion.identity, playerIconTransform.transform);
+        
         playerIconTransform.transform.rotation = gameObject.transform.rotation;
         CreatePlayerStaff = CreateHealthBar;
         CreatePlayerStaff();
@@ -121,16 +124,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     // Update is called once per frame
     void Update()
     {
-        ArrowRotation();
         if (gameObject != null)
         {
             Movement();//PlayerStatements
         }
     }
-    void ArrowRotation()
-    {
-        _arrowObject.transform.LookAt(_finishArea);
-    }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (gameObject != null && _playerData.healthBarObject != null)
@@ -451,9 +450,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         //Rotating With Camera On X Axis
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
+        //_currentCameraTransform.transform.Rotate(0f, _touchX * Time.timeScale, 0f);
 
         //Rotating Just Camera On Y Axis
-        _currentCamera.transform.Rotate(-_touchY * Time.timeScale, 0, 0);
+        _currentCameraTransform.transform.Rotate(-_touchY * Time.timeScale, 0f, 0f);
 
 
         //Debug.Log(_playerController.lookRotation.x);
