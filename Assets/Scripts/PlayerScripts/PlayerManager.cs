@@ -46,6 +46,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     public event Action CreatePlayerStaff;
 
+    [SerializeField] GameObject _arrowObject;
+    [SerializeField] Transform _finishArea;
+
     void Start()
     {
         DataStatesOnInitial();
@@ -75,7 +78,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         Instantiate(_playerData.playerSFXObject, gameObject.transform);
         Instantiate(_playerData.magnetObject, gameObject.transform.position, Quaternion.identity, gameObject.transform);
         Instantiate(_playerData.playerIcon, playerIconTransform.transform.position, Quaternion.identity, gameObject.transform);
-
+        playerIconTransform.transform.rotation = gameObject.transform.rotation;
         CreatePlayerStaff = CreateHealthBar;
         CreatePlayerStaff();
     }
@@ -118,10 +121,15 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     // Update is called once per frame
     void Update()
     {
+        ArrowRotation();
         if (gameObject != null)
         {
             Movement();//PlayerStatements
         }
+    }
+    void ArrowRotation()
+    {
+        _arrowObject.transform.LookAt(_finishArea);
     }
     private void OnCollisionEnter(Collision collision)
     {
