@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1868c7cd3d74059489101668855dfd21, type: 3}
   m_Name: PlayerBulletData
   m_EditorClassIdentifier: 
+  bulletDelay: 0.05
+  bulletSpeed: 5
+  bulletDelayCounter: 0
+  _pistolObject: {fileID: 4568481270464940624, guid: 98dbc9cb5ce9f68458cb04a08252b6ac, type: 3}
+  enemyBulletDelayCounter: 0
+  enemyBulletDelay: 0.05
+  enemyBulletSpeed: 3

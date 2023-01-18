@@ -21,14 +21,17 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [SerializeField] Transform healthBarTransform;
     [SerializeField] Transform _finishArrowTransform;
     [SerializeField] Transform _camerasTransform;
+    [SerializeField] Transform _bulletsTransform;
     public Transform _finishArea;
 
     //[SerializeField] Transform animatorTransform;
     public Transform _particleTransform;
 
     [Header("Camera")]
-    public CinemachineVirtualCamera _currentCamera;
+    //public CinemachineVirtualCamera _currentCamera;
     public Transform _currentCameraTransform;
+    public Transform _miniMapTransform;
+    public CinemachineVirtualCamera _currentCamera;
     public CinemachineVirtualCamera _upCamera;
     public CinemachineVirtualCamera _downCamera;
     //[SerializeField] CinemachineExternalCamera _virtualCamera;
@@ -50,6 +53,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private float _initPlayerSpeed;
 
     public event Action CreatePlayerStaff;
+
+    public ObjectPool _objectPool;
 
     void Start()
     {
@@ -79,7 +84,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //CreatePlayerStaff = CreatePlayerSFXStatement;//IDK why didnt work!!!
         Instantiate(_playerData.playerSFXObject, gameObject.transform);
         Instantiate(_playerData.magnetObject, gameObject.transform.position, Quaternion.identity, gameObject.transform);
-        Instantiate(_playerData.playerIcon, playerIconTransform.transform.position, Quaternion.identity, playerIconTransform.transform);
+        Instantiate(_playerData.magnetObject, gameObject.transform.position, Quaternion.identity, gameObject.transform);
+        Instantiate(_playerData.bulletsObject, _bulletsTransform.transform.position, Quaternion.identity, _bulletsTransform.transform);
         
         playerIconTransform.transform.rotation = gameObject.transform.rotation;
         CreatePlayerStaff = CreateHealthBar;
@@ -124,6 +130,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     // Update is called once per frame
     void Update()
     {
+        _miniMapTransform.position = new Vector3(_currentCameraTransform.transform.position.x, _miniMapTransform.position.y, _currentCameraTransform.transform.position.z);
         if (gameObject != null)
         {
             Movement();//PlayerStatements
@@ -233,7 +240,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             else if (_playerData.isWinning)
             {
                 //VirtualCameraEulerAngle for Salsa Dance
-                _currentCamera.transform.eulerAngles = new Vector3(_currentCamera.transform.eulerAngles.x, 180f, _currentCamera.transform.eulerAngles.z);
+                _currentCameraTransform.transform.eulerAngles = new Vector3(_currentCameraTransform.transform.eulerAngles.x, 180f, _currentCameraTransform.transform.eulerAngles.z);
             }
             else
             {
@@ -450,7 +457,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         //Rotating With Camera On X Axis
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
-        //_currentCameraTransform.transform.Rotate(0f, _touchX * Time.timeScale, 0f);
 
         //Rotating Just Camera On Y Axis
         _currentCameraTransform.transform.Rotate(-_touchY * Time.timeScale, 0f, 0f);
@@ -488,31 +494,31 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     void CheckCameraEulerX()
     {
-        if (_currentCamera.transform.eulerAngles.x > 74 && _currentCamera.transform.eulerAngles.x <= 80)
+        if (_currentCameraTransform.transform.eulerAngles.x > 74 && _currentCameraTransform.transform.eulerAngles.x <= 80)
         {
             //PlayerData
             _playerData.isLookingUp = false;
 
             //CinemachineVirtualCamera
-            _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
+            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, _currentCameraTransform.transform.eulerAngles.y, _currentCameraTransform.transform.eulerAngles.z);
         }
-        else if (_currentCamera.transform.eulerAngles.x > 355)
+        else if (_currentCameraTransform.transform.eulerAngles.x > 355)
         {
             //PlayerData
             _playerData.isLookingUp = false;
 
             //CinemachineVirtualCamera
-            _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
+            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, _currentCameraTransform.transform.eulerAngles.y, _currentCameraTransform.transform.eulerAngles.z);
         }
-        else if (_currentCamera.transform.eulerAngles.x < 0)
+        else if (_currentCameraTransform.transform.eulerAngles.x < 0)
         {
             //PlayerData
             _playerData.isLookingUp = true;
 
             //CinemachineVirtualCamera
-            _currentCamera.transform.eulerAngles = new Vector3(0f, _currentCamera.transform.eulerAngles.y, _currentCamera.transform.eulerAngles.z);
+            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, _currentCameraTransform.transform.eulerAngles.y, _currentCameraTransform.transform.eulerAngles.z);
         }
-        else if (_currentCamera.transform.eulerAngles.x > 270 && _currentCamera.transform.eulerAngles.x <= 360)
+        else if (_currentCameraTransform.transform.eulerAngles.x > 270 && _currentCameraTransform.transform.eulerAngles.x <= 360)
         {
             //PlayerData
             _playerData.isLookingUp = true;

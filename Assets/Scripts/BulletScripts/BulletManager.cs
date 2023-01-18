@@ -5,9 +5,6 @@ using Cinemachine;
 
 public class BulletManager : AbstractBullet<BulletManager>
 {
-    [Header("Object Pool")]
-    public ObjectPool _objectPool;
-
     [Header("Bullet Transform")]
     [SerializeField] Transform _bulletSpawnTransform;
 
@@ -16,14 +13,11 @@ public class BulletManager : AbstractBullet<BulletManager>
     public PlayerData _playerData;
 
     [Header("Initial Transform of This")]
-    private Transform _initTransform;
-    [SerializeField] GameObject _pistolObject;
-
-    
+    private Transform _initTransform;    
 
     void Start()
     {
-        _pistolObject.SetActive(false);
+        bulletData._pistolObject.SetActive(false);
         bulletData.bulletDelayCounter = 0;
         _initTransform = gameObject.transform;
         _initTransform.eulerAngles = gameObject.transform.eulerAngles;
@@ -41,14 +35,14 @@ public class BulletManager : AbstractBullet<BulletManager>
 
     IEnumerator Delay(float delayValue)
     {
-        _pistolObject.SetActive(true);
+        bulletData._pistolObject.SetActive(true);
         yield return new WaitForSeconds(delayValue);
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
         _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._currentCamera.transform.position.x, _bulletSpawnTransform.transform.position.y, _bulletSpawnTransform.transform.position.z);
-        CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, 0, _objectPool);
+        CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, 0, PlayerManager.GetInstance._objectPool);
         bulletData.bulletDelayCounter = 0;
         yield return new WaitForSeconds(delayValue*50f);
-        _pistolObject.SetActive(false);
+        bulletData._pistolObject.SetActive(false);
     }
 
 }
