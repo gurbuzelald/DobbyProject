@@ -19,7 +19,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [SerializeField] Transform _jolleenTransform;
     [SerializeField] Transform playerIconTransform;
     [SerializeField] Transform healthBarTransform;
-    [SerializeField] Transform _finishArrowTransform;
     [SerializeField] Transform _camerasTransform;
     [SerializeField] Transform _bulletsTransform;
     public Transform _finishArea;
