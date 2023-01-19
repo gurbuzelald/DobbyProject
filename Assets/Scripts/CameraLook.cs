@@ -2,44 +2,70 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 //[RequireComponent(typeof(CinemachineFreeLook))]
 public class CameraLook : MonoBehaviour
 {
     public PlayerData _playerData;
     public Transform _finishArrowTransform;
-    private Player playerInput;
     [SerializeField] float lookSpeed = 1;
-    //public Vector2 delta;
-    private CinemachineVirtualCamera cinemachine;
 
     private void Awake()
     {
-        Instantiate(_playerData.arrowObject, _finishArrowTransform.transform.position, Quaternion.identity, _finishArrowTransform.transform);
-        playerInput = new Player();
-        //cinemachine = FindObjectOfType<CinemachineFreeLook>();  
-        cinemachine = GetComponent<CinemachineVirtualCamera>();
+        Instantiate(_playerData.arrowObject,
+                    _finishArrowTransform.transform);
+        if (Screen.width > 825)
+        {
+            _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x,
+                                                    _finishArrowTransform.position.y,
+                                                    _finishArrowTransform.position.z);
+        }
+        else if (Screen.width > 625)
+        {
+            _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x + 0.1f,
+                                                    _finishArrowTransform.position.y,
+                                                    _finishArrowTransform.position.z);
+
+        }
+        else if (Screen.width > 525)
+        {
+            _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x + 0.2f,
+                                                    _finishArrowTransform.position.y,
+                                                    _finishArrowTransform.position.z);
+
+        }
+        else if (Screen.width > 425)
+        {
+            _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x + 0.3f,
+                                                    _finishArrowTransform.position.y,
+                                                    _finishArrowTransform.position.z);
+
+        }
+        else if (Screen.width > 325)
+        {
+            _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x + 0.4f,
+                                                    _finishArrowTransform.position.y,
+                                                    _finishArrowTransform.position.z);
+
+        }
+        else if (Screen.width > 225)
+        {
+            _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x + 0.5f,
+                                                    _finishArrowTransform.position.y,
+                                                    _finishArrowTransform.position.z);
+
+        }
+        //Debug.Log(Camera.main.ScreenToWorldPoint(new Vector3(gameObject.transform.position.x, Camera.main.transform.position.x)));
+
+
+        //_playerData.arrowObject.transform.localScale = new Vector3(_playerData.arrowObject.transform.localScale.x * 1000, _playerData.arrowObject.transform.localScale.y * 1000, _playerData.arrowObject.transform.localScale.z * 1000);
+
     }
     private void Update()
     {
-        gameObject.transform.rotation = PlayerManager.GetInstance._currentCameraTransform.rotation;
+        Debug.Log(Screen.width);
+        gameObject.transform.rotation = PlayerManager.GetInstance._currentCameraTransform.rotation;        
     }
 
 }
-
-/*
-  Vector2 delta = playerInput.PlayerMain.Look.ReadValue<Vector2>();
-        //PlayerManager.GetInstance.gameObject.transform.eulerAngles = new Vector3(PlayerManager.GetInstance.gameObject.transform.eulerAngles.x, cinemachine.transform.eulerAngles.y, PlayerManager.GetInstance.gameObject.transform.eulerAngles.z);
-        //if (delta.x > 0f)
-        //{
-        //    PlayerManager.GetInstance.gameObject.transform.eulerAngles = new Vector3(0f, PlayerManager.GetInstance.gameObject.transform.eulerAngles.y + 100f *Time.deltaTime, 0f);
-
-        //}
-        //else if (delta.x < 0f)
-        //{
-        //    PlayerManager.GetInstance.gameObject.transform.eulerAngles = new Vector3(0f, PlayerManager.GetInstance.gameObject.transform.eulerAngles.y - 100f * Time.deltaTime, 0f);           
-        //}
-        //PlayerManager.GetInstance._currentCamera.transform.eulerAngles = new Vector3(delta.y*_playerData.rotateSpeed*10f, delta.x * _playerData.rotateSpeed * 10f, 0f);
-        //PlayerManager.GetInstance.gameObject.GetComponent<Transform>().Rotate(new Vector3(0f, delta.x*_playerData.rotateSpeed * Time.deltaTime, 0f));
- 
- */

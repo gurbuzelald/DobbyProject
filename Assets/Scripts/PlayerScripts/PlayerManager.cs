@@ -58,6 +58,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     void Start()
     {
+        
         DataStatesOnInitial();
 
         CreateStartPlayerStaff();
@@ -84,8 +85,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //CreatePlayerStaff = CreatePlayerSFXStatement;//IDK why didnt work!!!
         Instantiate(_playerData.playerSFXObject, gameObject.transform);
         Instantiate(_playerData.magnetObject, gameObject.transform.position, Quaternion.identity, gameObject.transform);
-        Instantiate(_playerData.magnetObject, gameObject.transform.position, Quaternion.identity, gameObject.transform);
         Instantiate(_playerData.bulletsObject, _bulletsTransform.transform.position, Quaternion.identity, _bulletsTransform.transform);
+        Instantiate(_playerData.playerIcon, playerIconTransform.transform.position, Quaternion.identity, playerIconTransform.transform);
         
         playerIconTransform.transform.rotation = gameObject.transform.rotation;
         CreatePlayerStaff = CreateHealthBar;
@@ -130,6 +131,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     // Update is called once per frame
     void Update()
     {
+        
         _miniMapTransform.position = new Vector3(_currentCameraTransform.transform.position.x, _miniMapTransform.position.y, _currentCameraTransform.transform.position.z);
         if (gameObject != null)
         {
