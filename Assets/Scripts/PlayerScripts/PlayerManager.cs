@@ -55,9 +55,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     public ObjectPool _objectPool;
 
+    [SerializeField] Transform[] _playerSpawns;
+
     void Start()
     {
-        
+        PlayerRandomSpawn();
         DataStatesOnInitial();
 
         CreateStartPlayerStaff();
@@ -78,6 +80,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _playerController = FindObjectOfType<PlayerController>();
     }
 
+    void PlayerRandomSpawn()
+    {
+        int value = UnityEngine.Random.Range(0, 8);
+        gameObject.transform.position = _playerSpawns[value].position;
+    }
     //Create Player Objects On Start
     void CreateStartPlayerStaff()
     {
@@ -615,7 +622,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (_playerData.healthBarObject != null)
         {
-            if (_playerData.healthBarObject.transform.localScale.x <= 0.0625f)
+            if (_playerData.healthBarObject.transform.localScale.x <= 0.0625f && !_playerData.isWinning)
             {
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 

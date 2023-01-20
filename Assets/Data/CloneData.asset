@@ -16,6 +16,8 @@ MonoBehaviour:
   playerSFXObject: {fileID: 0}
   playerIcon: {fileID: 0}
   healthBarObject: {fileID: 0}
+  arrowObject: {fileID: 0}
+  bulletsObject: {fileID: 0}
   sensivityX: 250
   sensivityY: 80
   isTouchFinish: 0
@@ -69,4 +71,4 @@ MonoBehaviour:
   idlingCount: 0
   isTouchFirst: 1
   isTouchMain: 0
-  cloneSpeed: 1
+  cloneSpeed: 0.1

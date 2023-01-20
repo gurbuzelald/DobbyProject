@@ -10,6 +10,7 @@ public class PlayerData : ScriptableObject
     public GameObject healthBarObject;
     public GameObject arrowObject;
     public GameObject bulletsObject;
+    public GameObject playerObject;
 
     [Header("Sensivity")]
     public float sensivityX = 250f;

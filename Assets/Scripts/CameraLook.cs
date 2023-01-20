@@ -15,7 +15,37 @@ public class CameraLook : MonoBehaviour
     {
         Instantiate(_playerData.arrowObject,
                     _finishArrowTransform.transform);
-        if (Screen.width > 1200)
+        if (Screen.width > 1700)
+        {
+            _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x - 0.8f,
+                                                    _finishArrowTransform.position.y,
+                                                    _finishArrowTransform.position.z);
+        }
+        else if (Screen.width > 1600)
+        {
+            _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x - 0.7f,
+                                                    _finishArrowTransform.position.y,
+                                                    _finishArrowTransform.position.z);
+        }
+        else if (Screen.width > 1500)
+        {
+            _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x - 0.6f,
+                                                    _finishArrowTransform.position.y,
+                                                    _finishArrowTransform.position.z);
+        }
+        else if (Screen.width > 1400)
+        {
+            _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x - 0.5f,
+                                                    _finishArrowTransform.position.y,
+                                                    _finishArrowTransform.position.z);
+        }
+        else if (Screen.width > 1300)
+        {
+            _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x - 0.4f,
+                                                    _finishArrowTransform.position.y,
+                                                    _finishArrowTransform.position.z);
+        }
+        else if (Screen.width > 1200)
         {
             _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x - 0.3f,
                                                     _finishArrowTransform.position.y,
@@ -83,8 +113,8 @@ public class CameraLook : MonoBehaviour
         else
         {
             _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x + 0.4f,
-                                                    _finishArrowTransform.position.y,
-                                                    _finishArrowTransform.position.z);
+                                                         _finishArrowTransform.position.y,
+                                                         _finishArrowTransform.position.z);
         }
         //Debug.Log(Camera.main.ScreenToWorldPoint(new Vector3(gameObject.transform.position.x, Camera.main.transform.position.x)));
 
@@ -94,7 +124,7 @@ public class CameraLook : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(Screen.width);
+        //Debug.Log(Screen.width);
         gameObject.transform.rotation = PlayerManager.GetInstance._currentCameraTransform.rotation;        
     }
 

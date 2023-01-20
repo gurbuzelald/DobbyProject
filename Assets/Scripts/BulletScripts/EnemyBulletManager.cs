@@ -51,7 +51,7 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
         yield return new WaitForSeconds(4f);
         if (bulletData.enemyBulletDelayCounter >= 1)
         {
-            Debug.Log(bulletData.enemyBulletDelayCounter);
+            //Debug.Log(bulletData.enemyBulletDelayCounter);
             bulletData.enemyBulletDelayCounter = 0;
             enemyData.isFiring = false;
             enemyData.isWalking = true;
