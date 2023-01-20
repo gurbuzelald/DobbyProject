@@ -55,6 +55,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     public ObjectPool _objectPool;
 
+    [SerializeField] GameObject _warmArrow;
+
     [SerializeField] Transform[] _playerSpawns;
 
     void Start()
@@ -137,14 +139,23 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     // Update is called once per frame
     void Update()
     {
-        
+        if (_warmArrow.transform.localScale == Vector3.one)
+        {
+            StartCoroutine(Delay());
+        }
         _miniMapTransform.position = new Vector3(_currentCameraTransform.transform.position.x, _miniMapTransform.position.y, _currentCameraTransform.transform.position.z);
         if (gameObject != null)
         {
             Movement();//PlayerStatements
         }
     }
-    
+    IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(1f);
+        _warmArrow.transform.localScale = Vector3.zero;
+    }
+
+
     private void OnCollisionEnter(Collision collision)
     {
         if (gameObject != null && _playerData.healthBarObject != null)
@@ -620,6 +631,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     //Triggers
     void TriggerBullet(Collider other)
     {
+        
         if (_playerData.healthBarObject != null)
         {
             if (_playerData.healthBarObject.transform.localScale.x <= 0.0625f && !_playerData.isWinning)
@@ -627,7 +639,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
                 _playerData.isDestroyed = true;
-
+                
                 //EnemyAnimation
                 if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
                 {
@@ -663,6 +675,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                                                                                _playerData.healthBarObject.transform.localScale.z);
             }
         }
+        _warmArrow.transform.localScale = Vector3.one;
+        _warmArrow.transform.LookAt(other.gameObject.transform);
     }
     void PickUpCoin(SceneController.Tags value, Collider other)
     {
