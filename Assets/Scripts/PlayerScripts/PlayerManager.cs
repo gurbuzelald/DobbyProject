@@ -151,7 +151,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         _warmArrow.transform.localScale = Vector3.zero;
     }
 
@@ -675,6 +675,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                                                                                _playerData.healthBarObject.transform.localScale.z);
             }
         }
+        StartCoroutine(LookAtTouchEnemyBullet(other));
+    }
+    IEnumerator LookAtTouchEnemyBullet(Collider other)
+    {
+        yield return new WaitForSeconds(0.2f);
         _warmArrow.transform.localScale = Vector3.one;
         _warmArrow.transform.LookAt(other.gameObject.transform);
     }

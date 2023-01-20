@@ -135,11 +135,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isWalking = false;
                 enemyData.isFiring = false;
                 enemyData.isSpeedZero = true;
-                StartCoroutine(DelayStopEnemy(3f));
+                StartCoroutine(DelayStopEnemy(5f));
                 Destroy(_healthBar);
                 ScoreController.GetInstance.SetScore(20);
                 PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
-                StartCoroutine(DelayDestroy(4f));
+                StartCoroutine(DelayDestroy(2f));
             }
             else
             {
