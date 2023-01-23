@@ -11,6 +11,6 @@ public class HealthBarController : MonoBehaviour
     }
     void Update()
     {
-        gameObject.transform.localScale = playerData.healthBarObject.transform.localScale;
+        gameObject.transform.localScale = playerData.objects[3].transform.localScale;
     }
 }

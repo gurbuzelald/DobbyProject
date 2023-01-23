@@ -101,7 +101,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     //Collider and Collision
     public void TouchPlayer()
     {
-        if (playerData.healthBarObject != null && playerData.healthBarObject.transform.localScale.x <= 0.0625f)
+        if (playerData.objects[3] != null && playerData.objects[3].transform.localScale.x <= 0.0625f)
         {
             PlaySoundEffect(SoundEffectTypes.GiveHit, _audioSource);
 

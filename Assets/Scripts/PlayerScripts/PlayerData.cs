@@ -3,14 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
-    [Header("Prefab Game Objects")]
-    public GameObject magnetObject;
-    public GameObject playerSFXObject;
-    public GameObject playerIcon;
-    public GameObject healthBarObject;
-    public GameObject arrowObject;
-    public GameObject bulletsObject;
-    public GameObject playerObject;
+    [Header("Prefab Game Objects For Player")]
+    public GameObject[] objects;
+    public Transform spawns;
 
     [Header("Sensivity")]
     public float sensivityX = 250f;

@@ -26,4 +26,11 @@ public class BulletController : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }

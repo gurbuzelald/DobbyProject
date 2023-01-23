@@ -15,25 +15,23 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [Header("Data")]
     public PlayerData _playerData;
     public EnemyData _enemyData;
+
     [Header("Current Spawn Transforms")]
+    public Transform _finishArea;
+    public Transform _particleTransform;
+    public Transform _currentCameraTransform;
+    public Transform _miniMapTransform;
     [SerializeField] Transform _jolleenTransform;
     [SerializeField] Transform playerIconTransform;
     [SerializeField] Transform healthBarTransform;
     [SerializeField] Transform _camerasTransform;
-    [SerializeField] Transform _bulletsTransform;
-    public Transform _finishArea;
+    [SerializeField] Transform _bulletsTransform;    
+    [SerializeField] Transform _cameraWasherTransform;    
 
-    //[SerializeField] Transform animatorTransform;
-    public Transform _particleTransform;
-
-    [Header("Camera")]
-    //public CinemachineVirtualCamera _currentCamera;
-    public Transform _currentCameraTransform;
-    public Transform _miniMapTransform;
+    [Header("CinemachineVirtualCamera")]    
     public CinemachineVirtualCamera _currentCamera;
     public CinemachineVirtualCamera _upCamera;
     public CinemachineVirtualCamera _downCamera;
-    //[SerializeField] CinemachineExternalCamera _virtualCamera;
 
     [Header("Crosshair")]
     public CanvasGroup crosshairImage;
@@ -51,29 +49,24 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private float _initJumpForce;
     private float _initPlayerSpeed;
 
-    public event Action CreatePlayerStaff;
-
     public ObjectPool _objectPool;
 
     [SerializeField] GameObject _warmArrow;
-
-    [SerializeField] Transform[] _playerSpawns;
-
     void Start()
     {
-        PlayerRandomSpawn();
         DataStatesOnInitial();
 
-        CreateStartPlayerStaff();
+        CreateStartPlayerStaff(_playerData);
+
         TriggerLadder(false, true);
 
+        PlayerRandomSpawn();
 
         //Particle
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
 
         //Audio
         audioSource = GetComponent<AudioSource>();
-
 
         //GameObjects
         _coinObject.SetActive(false);
@@ -82,83 +75,30 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _playerController = FindObjectOfType<PlayerController>();
     }
 
-    void PlayerRandomSpawn()
-    {
-        int value = UnityEngine.Random.Range(0, 8);
-        gameObject.transform.position = _playerSpawns[value].position;
-    }
-    //Create Player Objects On Start
-    void CreateStartPlayerStaff()
-    {
-        //CreatePlayerStaff = CreatePlayerSFXStatement;//IDK why didnt work!!!
-        Instantiate(_playerData.playerSFXObject, gameObject.transform);
-        Instantiate(_playerData.magnetObject, gameObject.transform.position, Quaternion.identity, gameObject.transform);
-        Instantiate(_playerData.bulletsObject, _bulletsTransform.transform.position, Quaternion.identity, _bulletsTransform.transform);
-        Instantiate(_playerData.playerIcon, playerIconTransform.transform.position, Quaternion.identity, playerIconTransform.transform);
-        
-        playerIconTransform.transform.rotation = gameObject.transform.rotation;
-        CreatePlayerStaff = CreateHealthBar;
-        CreatePlayerStaff();
-    }
-    void CreateHealthBar()
-    {
-        Instantiate(_playerData.healthBarObject, healthBarTransform.transform.position, Quaternion.identity, gameObject.transform);
-    }
-    void DataStatesOnInitial()
-    {//PlayerData
-        if (_playerData != null)
-        {
-            _playerData.playerIcon.GetComponent<MeshRenderer>().enabled = true;
-            _playerData.healthBarObject.transform.localScale = new Vector3(1f, 0.1f, 0.1f);
-            _playerData.isLockedWalking = false;
-            _playerData.clickTabCount = 0;
-            _playerData.clickShiftCount = 0;
-            _playerData.isDestroyed = false;
-            _playerData.jumpCount = 0;
-            _playerData.isLose = false;
-            _playerData.isTouchFinish = false;
-            _playerData.isPicking = false;
-            _playerData.isPickRotateCoin = false;
-            _playerData.isLookingUp = false;
-            _playerData.isWinning = false;
-            _playerData.isSkateBoarding = false;
-            _playerData.isRunning = false;
-            _playerData.isPlayable = true;
-            _playerData.playerSpeed = 2f;
-            _initPlayerSpeed = _playerData.playerSpeed;
-            _initJumpForce = _playerData.jumpForce;
-            _playerData.isDying = false;
-            _playerData.isFiring = false;
-            _playerData.isWalking = false;
-            _playerData.isClimbing = false;
-            _playerData.isBackWalking = false;
-            _playerData.isGround = true;
-        }
-    }
-
+   
     // Update is called once per frame
     void Update()
     {
-        if (_warmArrow.transform.localScale == Vector3.one)
+        if (_warmArrow != null)
         {
-            StartCoroutine(Delay());
+            if (_warmArrow.transform.localScale == Vector3.one)
+            {
+                StartCoroutine(DelayWarmArrowDirection());
+            }
+            _miniMapTransform.position = new Vector3(_currentCameraTransform.transform.position.x, 
+                                                     _miniMapTransform.position.y, 
+                                                     _currentCameraTransform.transform.position.z);
         }
-        _miniMapTransform.position = new Vector3(_currentCameraTransform.transform.position.x, _miniMapTransform.position.y, _currentCameraTransform.transform.position.z);
+        
+        
         if (gameObject != null)
         {
             Movement();//PlayerStatements
         }
-    }
-    IEnumerator Delay()
-    {
-        yield return new WaitForSeconds(0.5f);
-        _warmArrow.transform.localScale = Vector3.zero;
-    }
-
-
+    }  
     private void OnCollisionEnter(Collision collision)
     {
-        if (gameObject != null && _playerData.healthBarObject != null)
+        if (gameObject != null && _playerData.objects[3] != null)
         {
             if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()) || collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()))
             {
@@ -579,7 +519,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     //Collision
     void TouchEnemy(Collision collision)
     {
-        if (_playerData.healthBarObject.transform.localScale.x <= 0.0625f)
+        if (_playerData.objects[3].transform.localScale.x <= 0.0625f)
         {
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
@@ -601,7 +541,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isDying = true;
             _playerData.isIdling = false;
             _playerData.isPlayable = false;
-            _playerData.healthBarObject.transform.localScale = Vector3.zero;
+            _playerData.objects[3].transform.localScale = Vector3.zero;
 
             StartCoroutine(DelayDestroy(3f));
         }
@@ -621,9 +561,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
                 //PlayerData
-                _playerData.healthBarObject.transform.localScale = new Vector3(_playerData.healthBarObject.transform.localScale.x / 1.1f,
-                                                                               _playerData.healthBarObject.transform.localScale.y,
-                                                                               _playerData.healthBarObject.transform.localScale.z);
+                _playerData.objects[3].transform.localScale = new Vector3(_playerData.objects[3].transform.localScale.x / 1.1f,
+                                                                               _playerData.objects[3].transform.localScale.y,
+                                                                               _playerData.objects[3].transform.localScale.z);
             }
         }
     }
@@ -632,9 +572,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     void TriggerBullet(Collider other)
     {
         
-        if (_playerData.healthBarObject != null)
+        if (_playerData.objects[3] != null)
         {
-            if (_playerData.healthBarObject.transform.localScale.x <= 0.0625f && !_playerData.isWinning)
+            if (_playerData.objects[3].transform.localScale.x <= 0.0625f && !_playerData.isWinning)
             {
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
@@ -658,7 +598,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 _playerData.isIdling = false;
                 _playerData.isPlayable = false;
 
-                _playerData.healthBarObject.transform.localScale = Vector3.zero;
+                _playerData.objects[3].transform.localScale = Vector3.zero;
                 StartCoroutine(DelayDestroy(3f));
             }
             else
@@ -670,16 +610,16 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
                 //PlayerData
-                _playerData.healthBarObject.transform.localScale = new Vector3(_playerData.healthBarObject.transform.localScale.x / 1.05f,
-                                                                               _playerData.healthBarObject.transform.localScale.y,
-                                                                               _playerData.healthBarObject.transform.localScale.z);
+                _playerData.objects[3].transform.localScale = new Vector3(_playerData.objects[3].transform.localScale.x / 1.05f,
+                                                                               _playerData.objects[3].transform.localScale.y,
+                                                                               _playerData.objects[3].transform.localScale.z);
             }
         }
         StartCoroutine(LookAtTouchEnemyBullet(other));
     }
     IEnumerator LookAtTouchEnemyBullet(Collider other)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
         _warmArrow.transform.localScale = Vector3.one;
         _warmArrow.transform.LookAt(other.gameObject.transform);
     }
@@ -782,13 +722,63 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
 
     void CreateVictoryAnimation()
-    {
-        //InstantiatingDancerObject
+    {//InstantiatingDancerObject
         GameObject jolleenObject = Instantiate(_playerData.jolleenObject, _jolleenTransform.transform);
         jolleenObject.transform.position = _jolleenTransform.transform.position;
         Destroy(jolleenObject, _playerData.danceTime);
     }
+    void PlayerRandomSpawn()
+    {//Random Spawn Control Function
+        int value = UnityEngine.Random.Range(0, 8);
+        gameObject.transform.position = _playerData.spawns.GetChild(value).position;
+    }
+    public void CreateStartPlayerStaff(PlayerData _playerData)
+    { //Create Player Objects On Start
 
+        Instantiate(_playerData.objects[6], gameObject.transform);//PlayerSFXPrefab
+        Instantiate(_playerData.objects[4], gameObject.transform.position, Quaternion.identity, gameObject.transform);//MagnetPrefab
+        Instantiate(_playerData.objects[1], _bulletsTransform.transform.position, Quaternion.identity, _bulletsTransform.transform);//BulletsPrefab
+        Instantiate(_playerData.objects[5], playerIconTransform.transform.position, Quaternion.identity, playerIconTransform.transform);//PlayerIconPrefab
+        Instantiate(_playerData.objects[3], healthBarTransform.transform.position, Quaternion.identity, gameObject.transform);//HealthBarPrefab
+        Instantiate(_playerData.objects[2], _cameraWasherTransform.transform.position, Quaternion.identity, _cameraWasherTransform.transform);//CameraWasherPrefab
+        playerIconTransform.transform.rotation = gameObject.transform.rotation;
+    }
+    void DataStatesOnInitial()
+    {//PlayerData
+        if (_playerData != null)
+        {
+            _playerData.objects[5].GetComponent<MeshRenderer>().enabled = true;
+            _playerData.objects[3].transform.localScale = new Vector3(1f, 0.1f, 0.1f);
+            _playerData.isLockedWalking = false;
+            _playerData.clickTabCount = 0;
+            _playerData.clickShiftCount = 0;
+            _playerData.isDestroyed = false;
+            _playerData.jumpCount = 0;
+            _playerData.isLose = false;
+            _playerData.isTouchFinish = false;
+            _playerData.isPicking = false;
+            _playerData.isPickRotateCoin = false;
+            _playerData.isLookingUp = false;
+            _playerData.isWinning = false;
+            _playerData.isSkateBoarding = false;
+            _playerData.isRunning = false;
+            _playerData.isPlayable = true;
+            _playerData.playerSpeed = 2f;
+            _initPlayerSpeed = _playerData.playerSpeed;
+            _initJumpForce = _playerData.jumpForce;
+            _playerData.isDying = false;
+            _playerData.isFiring = false;
+            _playerData.isWalking = false;
+            _playerData.isClimbing = false;
+            _playerData.isBackWalking = false;
+            _playerData.isGround = true;
+        }
+    }
+    IEnumerator DelayWarmArrowDirection()
+    {
+        yield return new WaitForSeconds(0.5f);
+        _warmArrow.transform.localScale = Vector3.zero;
+    }
     IEnumerator Delay(float value)
     {
         yield return new WaitForSeconds(value);
@@ -800,7 +790,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         //PlayerData
         _playerData.isLockedWalking = false;
-        _playerData.healthBarObject.transform.localScale = Vector3.zero;
+        _playerData.objects[3].transform.localScale = Vector3.zero;
         //DestroyImmediate(_playerData.healthBarObject, true);
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
         _playerData.isTouchFinish = true;

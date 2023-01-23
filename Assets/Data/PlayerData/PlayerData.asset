@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  magnetObject: {fileID: 7964753639937622105, guid: 0980400cd9322f648aa9a0d60c767b0c, type: 3}
-  playerSFXObject: {fileID: 3102288607414887448, guid: 291ccd016fce448479fcd5813069629a, type: 3}
-  playerIcon: {fileID: 2613066168305214933, guid: 26cc8ebb945008b409049e7880d85d78, type: 3}
-  healthBarObject: {fileID: 4029139522869570636, guid: 0b81f70c3b5360e4f9187d63b7617c13, type: 3}
-  arrowObject: {fileID: 6582287944818323382, guid: 5d67c0fa01c514a469d241126046c4cb, type: 3}
-  bulletsObject: {fileID: 4529110289692566654, guid: ece28a22070f44540a834a2a3abbfcfb, type: 3}
-  playerObject: {fileID: 7193906221332498770, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
+  objects:
+  - {fileID: 6582287944818323382, guid: 5d67c0fa01c514a469d241126046c4cb, type: 3}
+  - {fileID: 4529110289692566654, guid: ece28a22070f44540a834a2a3abbfcfb, type: 3}
+  - {fileID: 2390697041342691216, guid: b9e602427f47be44eb620c354070bca0, type: 3}
+  - {fileID: 4029139522869570636, guid: 0b81f70c3b5360e4f9187d63b7617c13, type: 3}
+  - {fileID: 7964753639937622105, guid: 0980400cd9322f648aa9a0d60c767b0c, type: 3}
+  - {fileID: 2613066168305214933, guid: 26cc8ebb945008b409049e7880d85d78, type: 3}
+  - {fileID: 3102288607414887448, guid: 291ccd016fce448479fcd5813069629a, type: 3}
+  spawns: {fileID: 2359986759738939504, guid: aabf96d4f82bfd84cadaf35e1afe1e4b, type: 3}
   sensivityX: 10
   sensivityY: 10
   isTouchFinish: 0

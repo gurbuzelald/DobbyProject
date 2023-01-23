@@ -6,14 +6,15 @@ public class CameraWasher : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag(SceneController.Tags.Player.ToString()) && !other.CompareTag(SceneController.Tags.Enemy.ToString()) && !other.CompareTag(SceneController.Tags.EnemyBullet.ToString()))
+        //Debug.Log(other.gameObject.transform.tag);
+        if (!other.gameObject.transform.CompareTag(SceneController.Tags.Player.ToString()) && !other.gameObject.transform.CompareTag(SceneController.Tags.Enemy.ToString()))
         {
             other.gameObject.transform.GetComponent<MeshRenderer>().enabled = false;
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag(SceneController.Tags.Player.ToString()) && !other.CompareTag(SceneController.Tags.Enemy.ToString()) && !other.CompareTag(SceneController.Tags.EnemyBullet.ToString()))
+        if (!other.gameObject.transform.CompareTag(SceneController.Tags.Player.ToString()) && !other.gameObject.transform.CompareTag(SceneController.Tags.Enemy.ToString()))
         {
             other.gameObject.transform.GetComponent<MeshRenderer>().enabled = true;
         }

@@ -64,7 +64,7 @@ public class SceneController : AbstractSceneController<SceneController>
     public void PlayAgain()
     {
         playAgain = true;
-        
+
         //_audioSource.Stop();
         if (PlayerManager.GetInstance.gameObject != null)
         {
