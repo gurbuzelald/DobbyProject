@@ -573,6 +573,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             if (_playerData.objects[3].transform.localScale.x <= 0.0625f && !_playerData.isWinning)
             {
+                //Particle Effect
+                ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform.transform);
+
+                //Sound Effect
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
                 _playerData.isDestroyed = true;
@@ -679,7 +683,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _playerData.isIdling = false;
         _playerData.isPlayable = false;
 
-        //SoundEffect
+        //ParticleEffect
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform.transform);
 
         //DestroyingWithDelay
