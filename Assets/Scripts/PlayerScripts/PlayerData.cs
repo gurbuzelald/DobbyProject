@@ -17,10 +17,7 @@ public class PlayerData : ScriptableObject
 
     [Header("Speed")]
     public float playerSpeed;
-    public float rotateSpeed;
-
-    [Header("Force")]
-    public float jumpForce;   
+    public float rotateSpeed;     
 
     [Header("Animation Bools")]
     public bool isGround;
@@ -47,6 +44,7 @@ public class PlayerData : ScriptableObject
     public bool isPlayable;
 
     [Header("Input")]
+    public float jumpForce;
     public bool isFiring;
     public bool isJumping;
     public int jumpCount;
@@ -92,4 +90,8 @@ public class PlayerData : ScriptableObject
     public bool isTouchMain;
 
     public float cloneSpeed;
+
+    [Header("Clone Transform")]
+    public Transform[] cloneTransforms;
+    public GameObject[] cloneObjects;
 }

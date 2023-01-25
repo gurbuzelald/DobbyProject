@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class ClownSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject[] clownsObjects;
-    [SerializeField] Transform[] clownsTransform;
     public Transform targetTransform;
     public ObjectPool _objectPool;
+    public EnemyData enemyData;
 
     private void Awake()
     {
-        for (int i = 0; i < clownsTransform.Length; i++)
+        for (int i = 0; i < enemyData.clownsTransform.Length; i++)
         {
-            GameObject obj = Instantiate(clownsObjects[i], clownsTransform[i].position, Quaternion.identity, clownsTransform[i]);
-            obj.transform.position = clownsTransform[i].position;
+            GameObject obj = Instantiate(enemyData.clownsObjects[i],
+                                         enemyData.clownsTransform[i].position, 
+                                         Quaternion.identity,
+                                         gameObject.transform);
+            obj.transform.position = enemyData.clownsTransform[i].position;
         }
     }
 }

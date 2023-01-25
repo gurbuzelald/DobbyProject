@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class CreateCubeMesh : MonoBehaviour
-{
+{//CreatingLandScape
     public int width;
     public int depth;
     public GameObject cube;

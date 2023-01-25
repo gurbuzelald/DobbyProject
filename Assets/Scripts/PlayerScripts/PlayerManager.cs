@@ -101,7 +101,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         if (gameObject != null && _playerData.objects[3] != null)
         {
             if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()) || collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()))
-            {
+            {//Ground, Bridge, FanceWooden
                 //PlayerData
                 _playerData.isGround = true;
                 _playerData.jumpCount = 0;
@@ -337,35 +337,31 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
     }
     void Jump()
-    {
-        if (_playerController.jump && _playerData.isGround && _playerData.jumpCount <= 1)
+    {      
+        if (_playerController.jump  && _playerData.jumpCount == 0)
         {
-            if (_playerData.jumpCount == 0)
-            {
-                //SoundEffect
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
-                
-                //PlayerData
-                _playerData.jumpForce = _initJumpForce;
-                _playerData.isJumping = true;
 
-                //AddForceForJump
-                GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
-            }
-            else
-            {
-                //SoundEffect
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
+            //SoundEffect
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
 
-                //PlayerData
-                _playerData.jumpForce = _initJumpForce / 1.5f;
-                _playerData.isJumping = true;
-                
-                //AddForceForJumping
-                GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
-            }
             //PlayerData
-            _playerData.jumpForce = _initJumpForce;
+            _playerData.isJumping = true;
+
+            //AddForceForJump
+            GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
+            _playerData.jumpCount++;
+        }
+        else if (_playerController.jump && _playerData.jumpCount == 1)
+        {
+            
+            //SoundEffect
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
+
+            //PlayerData
+            _playerData.isJumping = true;
+
+            //AddForceForJump
+            GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
             _playerData.jumpCount++;
         }
         else
@@ -373,6 +369,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             //PlayerData
             _playerData.isJumping = false;
         }
+        
     }
     public void Fire()
     {
@@ -543,7 +540,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isPlayable = false;
             _playerData.objects[3].transform.localScale = Vector3.zero;
 
-            StartCoroutine(DelayDestroy(3f));
+            StartCoroutine(DelayDestroy(7f));
         }
         else
         {
@@ -601,7 +598,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 _playerData.objects[3].transform.localScale = Vector3.zero;
                 StartCoroutine(DelayDestroy(3f));
             }
-            else
+            else if(!_playerData.isWinning)
             {
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.TouchBurning, _particleTransform.transform);

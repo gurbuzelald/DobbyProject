@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: CloneData
   m_EditorClassIdentifier: 
-  magnetObject: {fileID: 0}
-  playerSFXObject: {fileID: 0}
-  playerIcon: {fileID: 0}
-  healthBarObject: {fileID: 0}
-  arrowObject: {fileID: 0}
-  bulletsObject: {fileID: 0}
+  objects: []
+  spawns: {fileID: 0}
   sensivityX: 250
   sensivityY: 80
   isTouchFinish: 0
@@ -72,3 +68,7 @@ MonoBehaviour:
   isTouchFirst: 1
   isTouchMain: 0
   cloneSpeed: 0.1
+  cloneTransforms:
+  - {fileID: 7049254313567198192, guid: b30a033881dfab04198a5f2771eabc25, type: 3}
+  cloneObjects:
+  - {fileID: 4481733563023685997, guid: 52a91642cb659624b9ab75f876e78794, type: 3}

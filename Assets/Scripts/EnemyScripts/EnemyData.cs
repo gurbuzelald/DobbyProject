@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewEnemyData", menuName = "EnemyData")]
 public class EnemyData : ScriptableObject
 {
+    [Header("Objects")]
+    public GameObject[] clownsObjects;
+    public Transform[] clownsTransform;
+
     [Header("Sounds")]
     //public AudioClip shootClip;
     public AudioClip getHitClip;
