@@ -97,11 +97,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
     }  
     private void OnCollisionEnter(Collision collision)
-    {
+    {        
         if (gameObject != null && _playerData.objects[3] != null)
         {
-            if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()) || collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()))
-            {//Ground, Bridge, FanceWooden
+            if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()) || collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()) || collision.collider.CompareTag(SceneController.Tags.Magma.ToString()))
+            {//Ground, Bridge, FanceWooden, Magma
                 //PlayerData
                 _playerData.isGround = true;
                 _playerData.jumpCount = 0;
@@ -130,6 +130,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     private void OnCollisionExit(Collision collision)
     {
+        if (collision.collider.CompareTag(SceneController.Tags.Magma.ToString()))
+        {
+            Destroy(collision.collider.gameObject);
+        }
         if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()))
         {
             //_playerData.isGround = false;

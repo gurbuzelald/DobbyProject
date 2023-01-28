@@ -167,6 +167,7 @@ public class SceneController : AbstractSceneController<SceneController>
         FinishArea,
         Coin,
         Magnet,
+        Magma,
         Lava,
         FirstTarget,
         MainTarget,
