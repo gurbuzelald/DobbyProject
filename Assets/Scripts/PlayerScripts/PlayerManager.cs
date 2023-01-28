@@ -408,14 +408,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
 
             //Touch Rotation Controller
-            SensivityXSetting(100, _playerController, _playerData);
+            SensivityXSetting(1, _playerController, _playerData);
             _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime * 40;
         }
         //Rotating With Camera On X Axis
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
 
         //Rotating Just Camera On Y Axis
-        _currentCameraTransform.transform.Rotate(-_touchY * Time.timeScale, 0f, 0f);
+        _currentCameraTransform.transform.Rotate(-_touchY * Time.timeScale / 10, 0f, 0f);
 
 
         //Debug.Log(_playerController.lookRotation.x);
@@ -428,23 +428,23 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {//ControllerSmoothForXAxis
         if ((_playerController.lookRotation.x >= -0.2f && _playerController.lookRotation.x < 0f) || (_playerController.lookRotation.x <= 0.2f && _playerController.lookRotation.x > 0f))
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 8f * _playerData.sensivityX * Time.deltaTime * touchXValue;
+            _touchX = (_playerController.lookRotation.x * 2f) / 8f * _playerData.sensivityX * Time.timeScale * touchXValue;
         }
         else if ((_playerController.lookRotation.x >= -0.4f && _playerController.lookRotation.x < -0.2f) || (_playerController.lookRotation.x <= 0.4f && _playerController.lookRotation.x > 0.2f))
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 7f * _playerData.sensivityX * Time.deltaTime * touchXValue;
+            _touchX = (_playerController.lookRotation.x * 2f) / 7f * _playerData.sensivityX * Time.timeScale * touchXValue;
         }
         else if ((_playerController.lookRotation.x >= -0.6f && _playerController.lookRotation.x < -0.4f) || (_playerController.lookRotation.x <= 0.6f && _playerController.lookRotation.x > 0.4f))
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 6f * _playerData.sensivityX * Time.deltaTime * touchXValue;
+            _touchX = (_playerController.lookRotation.x * 2f) / 6f * _playerData.sensivityX * Time.timeScale * touchXValue;
         }
         else if ((_playerController.lookRotation.x >= -0.8f && _playerController.lookRotation.x < -0.6f) || (_playerController.lookRotation.x <= 0.8f && _playerController.lookRotation.x > 0.6f))
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 5f * _playerData.sensivityX * Time.deltaTime * touchXValue;
+            _touchX = (_playerController.lookRotation.x * 2f) / 5f * _playerData.sensivityX * Time.timeScale * touchXValue;
         }
         else
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 4f * _playerData.sensivityX * Time.deltaTime * touchXValue;
+            _touchX = (_playerController.lookRotation.x * 2f) / 4f * _playerData.sensivityX * Time.timeScale * touchXValue;
         }
     }
 

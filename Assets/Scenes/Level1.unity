@@ -828,6 +828,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5727687878102657880, guid: 1aa4767c1e27e69419cf27296222a971, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.066582
+      objectReference: {fileID: 0}
+    - target: {fileID: 6454717053398148064, guid: 1aa4767c1e27e69419cf27296222a971, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.066582
+      objectReference: {fileID: 0}
     - target: {fileID: 6454717053398148065, guid: 1aa4767c1e27e69419cf27296222a971, type: 3}
       propertyPath: m_Follow
       value: 
@@ -1101,6 +1109,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 844188062}
     m_Modifications:
+    - target: {fileID: 2364733909394992672, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3003887011127807532, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1279,6 +1291,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1484659335}
+    - target: {fileID: 6110126742501178175, guid: 57a8c6dd37ce5c94aa440d57ae97bc20, type: 3}
+      propertyPath: m_MovementRange
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 6682709555612667720, guid: 57a8c6dd37ce5c94aa440d57ae97bc20, type: 3}
       propertyPath: m_Name
       value: JoystickCanvas
@@ -1469,6 +1485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6598008876498813710, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7043038348813236266, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1540,6 +1560,18 @@ PrefabInstance:
     - target: {fileID: 7043038349999868331, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043038350229093202, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043038350229093202, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043038350229093202, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -72.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
