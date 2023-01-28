@@ -95,14 +95,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             Movement();//PlayerStatements
         }
-    }  
+    }
     private void OnCollisionEnter(Collision collision)
     {        
         if (gameObject != null && _playerData.objects[3] != null)
         {
             if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()) || collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()) || collision.collider.CompareTag(SceneController.Tags.Magma.ToString()))
             {//Ground, Bridge, FanceWooden, Magma
-                //PlayerData
+             //PlayerData
                 _playerData.isGround = true;
                 _playerData.jumpCount = 0;
             }
@@ -295,10 +295,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void SideWalk()
     {//LeftAndRightWalking
-        if (_xValue < -0.02f || _xValue > 0.02f)
+        if (!_playerData.isClimbing && !_playerData.isBackClimbing)
         {
-            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
+            if (_xValue < -0.02f || _xValue > 0.02f)
+            {
+                GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
+            }
         }
+
     }
     void Climb()
     {//WhenEnterToTheLadderGoToClimb
@@ -342,22 +346,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void Jump()
     {      
-        if (_playerController.jump  && _playerData.jumpCount == 0)
+        if (_playerController.jump  && _playerData.jumpCount == 0 && _playerData.isGround)
         {
 
-            //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
-
-            //PlayerData
-            _playerData.isJumping = true;
-
-            //AddForceForJump
-            GetInstance.GetComponent<Rigidbody>().AddForce(transform.up * _playerData.jumpForce, ForceMode.Impulse);
-            _playerData.jumpCount++;
-        }
-        else if (_playerController.jump && _playerData.jumpCount == 1)
-        {
-            
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
 
@@ -677,7 +668,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
 
         //DestroyingWithDelay
-        StartCoroutine(DelayDestroy(5f));
+        StartCoroutine(DelayDestroy(4f));
     }
     void DestroyByLava()
     {
@@ -691,7 +682,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform.transform);
 
         //DestroyingWithDelay
-        StartCoroutine(DelayDestroy(3f));
+        StartCoroutine(DelayDestroy(4f));
     }
     void TriggerLadder(bool isTouch, bool isTouchExit)
     {
@@ -821,4 +812,5 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         Destroy(gameObject);
         SceneController.GetInstance.LoadEndScene();
     }
+    
 }

@@ -22,12 +22,11 @@ MonoBehaviour:
   - {fileID: 3102288607414887448, guid: 291ccd016fce448479fcd5813069629a, type: 3}
   spawns: {fileID: 2359986759738939504, guid: aabf96d4f82bfd84cadaf35e1afe1e4b, type: 3}
   sensivityX: 10
-  sensivityY: 10
+  sensivityY: 20
   isTouchFinish: 0
   isLose: 0
   playerSpeed: 2
   rotateSpeed: 6
-  jumpForce: 2
   isGround: 1
   isWalking: 0
   isLockedWalking: 0
@@ -44,6 +43,7 @@ MonoBehaviour:
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 1
+  jumpForce: 3
   isFiring: 0
   isJumping: 0
   jumpCount: 0
@@ -75,3 +75,5 @@ MonoBehaviour:
   isTouchFirst: 0
   isTouchMain: 0
   cloneSpeed: 0
+  cloneTransforms: []
+  cloneObjects: []
