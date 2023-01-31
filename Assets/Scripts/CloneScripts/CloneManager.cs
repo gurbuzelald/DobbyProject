@@ -15,6 +15,7 @@ public class CloneManager : MonoBehaviour
     {
 
         cloneSpawner = FindObjectOfType<CloneSpawner>();
+        cloneSpawner.currentTarget.position = cloneSpawner.firstTarget.position;
         if (cloneSpawner.cloneData != null)
         {
             cloneSpawner.cloneData.particleCount = 0;
