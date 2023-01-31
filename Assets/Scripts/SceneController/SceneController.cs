@@ -21,6 +21,7 @@ public class SceneController : AbstractSceneController<SceneController>
     public static bool rotateTouchOrMousePos = false;
     [SerializeField] TextMeshProUGUI mouseOrTouchText;
     [SerializeField] TextMeshProUGUI lockedWalking;
+    [SerializeField] GameObject _lookStick;
 
     void Start()
     {
@@ -109,11 +110,13 @@ public class SceneController : AbstractSceneController<SceneController>
     public void PauseGame()
     {
         if (pauseGame) {
+            _lookStick.transform.localScale = Vector3.one;
             pauseGame = false;
             pausePanel.transform.localScale = Vector3.zero;
             _playerData.isPlayable = true;
         }
         else if (!pauseGame) {
+            _lookStick.transform.localScale = Vector3.zero;
             pauseGame = true;
             pausePanel.transform.localScale = Vector3.one;
             _playerData.isPlayable = false;

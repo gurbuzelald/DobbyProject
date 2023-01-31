@@ -28,11 +28,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     private Transform _initTransform;
     [SerializeField] GameObject _enemyIcon;
 
-    private ClownSpawner clownSpawner;
+    private EnemySpawner clownSpawner;
 
     void Start()
     {
-        clownSpawner = FindObjectOfType<ClownSpawner>();
+        clownSpawner = FindObjectOfType<EnemySpawner>();
         _enemyIcon.GetComponent<MeshRenderer>().enabled = true;
         _initTransform = gameObject.transform;
         DataStatesOnInitial();

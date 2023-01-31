@@ -87,7 +87,8 @@ public class PlayerData : ScriptableObject
     public int idlingCount;
     [Header("Destination Touch Control")]
     public bool isTouchFirst;
-    public bool isTouchMain;
+    public bool isTouchSecond;
+    public bool isTouchThird;
 
     public float cloneSpeed;
 

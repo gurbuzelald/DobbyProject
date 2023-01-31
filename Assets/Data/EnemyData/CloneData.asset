@@ -20,7 +20,6 @@ MonoBehaviour:
   isLose: 0
   playerSpeed: 0
   rotateSpeed: 0
-  jumpForce: 0
   isGround: 0
   isWalking: 0
   isLockedWalking: 0
@@ -37,6 +36,7 @@ MonoBehaviour:
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 0
+  jumpForce: 0
   isFiring: 0
   isJumping: 0
   jumpCount: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   idlingCount: 0
   isTouchFirst: 1
   isTouchMain: 0
-  cloneSpeed: 0.1
+  cloneSpeed: 1
   cloneTransforms:
   - {fileID: 7049254313567198192, guid: b30a033881dfab04198a5f2771eabc25, type: 3}
   cloneObjects:

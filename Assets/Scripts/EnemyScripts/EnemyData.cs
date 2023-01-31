@@ -6,8 +6,8 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     [Header("Objects")]
-    public GameObject[] clownsObjects;
-    public Transform[] clownsTransform;
+    public GameObject[] enemiesObjects;
+    public Transform[] enemiesTransform;
 
     [Header("Sounds")]
     //public AudioClip shootClip;

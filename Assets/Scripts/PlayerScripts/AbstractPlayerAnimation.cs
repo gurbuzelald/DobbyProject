@@ -251,7 +251,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public void DeathAnimation(PlayerData playerData, Animator _animator, PlayerData cloneData)
     {
-        if (playerData.isDying || !cloneData.isTouchMain && !cloneData.isTouchFirst)
+        if (playerData.isDying)
         {
             _animator.SetBool("isDying", true);
             _animator.SetLayerWeight(7, 1);
@@ -265,7 +265,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetBool("isWinning", true);
             _animator.SetLayerWeight(8, 1);
             _animator.SetLayerWeight(0, 0);
-            //StartCoroutine(DelayAnimation(5f, 8, 0));
+            //StartCoroutine(DelayAnimation(playerData, _animator, 3f, 8, 0));
         }
     }
     public void SkateBoardAnimation(PlayerData playerData, Animator _animator)

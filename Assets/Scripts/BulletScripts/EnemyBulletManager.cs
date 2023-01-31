@@ -6,13 +6,13 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     public LayerMask layerMask;
     public EnemyData enemyData;
     public BulletData bulletData;
-    private ClownSpawner _clownSpawner;
+    private EnemySpawner _clownSpawner;
     public static bool isFirable;
 
     private void Awake()
     {
         isFirable = true;
-        _clownSpawner = FindObjectOfType<ClownSpawner>();
+        _clownSpawner = FindObjectOfType<EnemySpawner>();
     }
     void Update()
     {

@@ -46,7 +46,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public GameObject _coinObject;
 
     [Header("Initial Situations")]
-    private float _initJumpForce;
     private float _initPlayerSpeed;
 
     public ObjectPool _objectPool;
@@ -54,13 +53,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [SerializeField] GameObject _warmArrow;
     void Start()
     {
-        DataStatesOnInitial();
+        DataStatesOnInitial(_playerData);
 
         CreateStartPlayerStaff(_playerData);
 
-        TriggerLadder(false, true);
+        TriggerLadder(false, true, _playerData);
 
-        PlayerRandomSpawn();
+        PlayerRandomSpawn(_playerData);
 
         //Particle
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
@@ -89,11 +88,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                                                      _miniMapTransform.position.y, 
                                                      _currentCameraTransform.transform.position.z);
         }
-        
-        
         if (gameObject != null)
         {
-            Movement();//PlayerStatements
+            Movement(_playerData);//PlayerStatements
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -113,7 +110,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
             if (collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneController.Tags.CloneDobby.ToString()))
             {
-                TouchEnemy(collision);
+                TouchEnemy(collision, _playerData);
             }
             if (collision.collider.CompareTag(SceneController.Tags.Coin.ToString()))
             {//For Big Coins
@@ -143,46 +140,46 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (other.CompareTag(SceneController.Tags.EnemyBullet.ToString()))
         {
-            TriggerBullet(other);
+            TriggerBullet(other, _playerData);
         }
         if (other.CompareTag(SceneController.Tags.Ladder.ToString()))
         {
-            TriggerLadder(true, false);
+            TriggerLadder(true, false, _playerData);
         }
         if (other.CompareTag(SceneController.Tags.FinishArea.ToString()))
         {
-            StartCoroutine(DelayLevelUp(2f, _playerData.danceTime));//LevelUpWithCoroutine
+            StartCoroutine(DelayLevelUp(2f, _playerData.danceTime, _playerData));//LevelUpWithCoroutine
         }
         if (other.CompareTag(SceneController.Tags.Coin.ToString()))
         {
-            PickUpCoin(SceneController.Tags.Coin, other);//GetScore
+            PickUpCoin(SceneController.Tags.Coin, other, _playerData);//GetScore
         }
         if (other.CompareTag(SceneController.Tags.RotateCoin.ToString()))
         {
-            PickUpCoin(SceneController.Tags.RotateCoin, other);//GetScore
+            PickUpCoin(SceneController.Tags.RotateCoin, other, _playerData);//GetScore
         }
         if (other.CompareTag(SceneController.Tags.Lava.ToString()))
         {
-            DestroyByLava();//DeathByLava
+            DestroyByLava(_playerData);//DeathByLava
         }
         if (other.CompareTag(SceneController.Tags.Water.ToString()))
         {
-            DestroyByWater();//DeathByLadder
+            DestroyByWater(_playerData);//DeathByLadder
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(SceneController.Tags.Ladder.ToString()))
         {
-            TriggerLadder(false, true);//ExitLadder
+            TriggerLadder(false, true, _playerData);//ExitLadder
         }
     }
 
-    void Movement()
+    void Movement(PlayerData _playerData)
     {
         if (_playerData != null)
         {
-            Rotation();
+            Rotation(_playerData);
             if (_playerData.isPlayable && !_playerData.isWinning)
             {
                 //Getting left stick values
@@ -193,12 +190,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 //float zValue = Input.GetAxis("Vertical") * Time.deltaTime * _playerData.playerSpeed;
 
                 //Moves
-                Walk();
-                Climb();
-                SkateBoard();
-                Run();
-                Jump();
-                Fire();
+                Walk(_playerData);
+                Climb(_playerData);
+                SkateBoard(_playerData);
+                Run(_playerData);
+                Jump(_playerData);
+                Fire(_playerData);
             }
             else if (_playerData.isWinning)
             {
@@ -212,7 +209,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
         }
     }
-    void SkateBoard()
+    void SkateBoard(PlayerData _playerData)
     {//StyleWalking
         if (PlayerController.skateBoard && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing)
         {
@@ -235,7 +232,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
         }
     }
-    void Run()
+    void Run(PlayerData _playerData)
     {//FasterWalking
         if (PlayerController.run && _zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding)
         {
@@ -260,7 +257,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     }
 
-    void Walk()
+    void Walk(PlayerData _playerData)
     {//ForwardAndBackWalking
         if (!_playerData.isLockedWalking)
         {
@@ -290,21 +287,18 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             GetInstance.GetComponent<Transform>().Translate(0f, 0f, _playerData.playerSpeed * Time.deltaTime / 2f);
         }
-        SideWalk();
-        SpeedController();
+        SideWalk(_playerData);
+        SpeedController(_playerData);
     }
-    void SideWalk()
+    void SideWalk(PlayerData _playerData)
     {//LeftAndRightWalking
-        if (!_playerData.isClimbing && !_playerData.isBackClimbing)
+        if ((!_playerData.isClimbing && !_playerData.isBackClimbing) && (_xValue < -0.02f || _xValue > 0.02f))
         {
-            if (_xValue < -0.02f || _xValue > 0.02f)
-            {
-                GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
-            }
+            GetInstance.GetComponent<Transform>().Translate(_xValue, 0f, 0f);
         }
 
     }
-    void Climb()
+    void Climb(PlayerData _playerData)
     {//WhenEnterToTheLadderGoToClimb
         if (_zValue > 0 && _playerData.isClimbing && !_playerData.isBackClimbing)
         {
@@ -316,7 +310,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
     }
 
-    void SpeedController()
+    void SpeedController(PlayerData _playerData)
     {
         if (!_playerData.isLockedWalking)
         {
@@ -344,7 +338,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
         }
     }
-    void Jump()
+    void Jump(PlayerData _playerData)
     {      
         if (_playerController.jump  && _playerData.jumpCount == 0 && _playerData.isGround)
         {
@@ -366,7 +360,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         
     }
-    public void Fire()
+    public void Fire(PlayerData _playerData)
     {
         if (_playerData.isPlayable)
         {
@@ -391,7 +385,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isFiring = false;
         }
     }
-    void Rotation()
+    void Rotation(PlayerData _playerData)
     {
         if (SceneController.rotateTouchOrMousePos == true)
         {
@@ -414,7 +408,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
 
         //Debug.Log(_playerController.lookRotation.x);
-        CheckCameraEulerX();
+        CheckCameraEulerX(_playerData);
 
         //Debug.Log(_currentCamera.transform.eulerAngles.x);
         ChooseCamera();
@@ -443,7 +437,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
     }
 
-    void CheckCameraEulerX()
+    void CheckCameraEulerX(PlayerData _playerData)
     {
         if (_currentCameraTransform.transform.eulerAngles.x > 74 && _currentCameraTransform.transform.eulerAngles.x <= 80)
         {
@@ -509,7 +503,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
 
     //Collision
-    void TouchEnemy(Collision collision)
+    void TouchEnemy(Collision collision, PlayerData _playerData)
     {
         if (_playerData.objects[3].transform.localScale.x <= 0.0625f)
         {
@@ -561,7 +555,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
 
     //Triggers
-    void TriggerBullet(Collider other)
+    void TriggerBullet(Collider other, PlayerData _playerData)
     {
         
         if (_playerData.objects[3] != null)
@@ -613,13 +607,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         StartCoroutine(LookAtTouchEnemyBullet(other));
     }
-    IEnumerator LookAtTouchEnemyBullet(Collider other)
-    {
-        yield return new WaitForSeconds(0.3f);
-        _warmArrow.transform.localScale = Vector3.one;
-        _warmArrow.transform.LookAt(other.gameObject.transform);
-    }
-    void PickUpCoin(SceneController.Tags value, Collider other)
+    void PickUpCoin(SceneController.Tags value, Collider other, PlayerData _playerData)
     {
         if (value == SceneController.Tags.Coin)
         {
@@ -656,7 +644,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             ScoreController.GetInstance.SetScore(23);
         }
     }
-    void DestroyByWater()
+    void DestroyByWater(PlayerData _playerData)
     {
         //PlayerData
         _playerData.isDestroyed = true;
@@ -668,9 +656,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
 
         //DestroyingWithDelay
-        StartCoroutine(DelayDestroy(4f));
+        StartCoroutine(DelayDestroy(3f));
     }
-    void DestroyByLava()
+    void DestroyByLava(PlayerData _playerData)
     {
         //PlayerData
         _playerData.isDestroyed = true;
@@ -682,9 +670,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform.transform);
 
         //DestroyingWithDelay
-        StartCoroutine(DelayDestroy(4f));
+        StartCoroutine(DelayDestroy(3f));
     }
-    void TriggerLadder(bool isTouch, bool isTouchExit)
+    void TriggerLadder(bool isTouch, bool isTouchExit, PlayerData _playerData)
     {
         GetInstance.GetComponent<Rigidbody>().isKinematic = isTouch;
         if (PlayerManager.GetInstance._zValue > 0 && !isTouchExit)
@@ -715,18 +703,18 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
         }
     }
-
-
-    void CreateVictoryAnimation()
+    void CreateVictoryAnimation(PlayerData _playerData)
     {//InstantiatingDancerObject
+        EnemyBulletManager.isFirable = false;
         GameObject jolleenObject = Instantiate(_playerData.jolleenObject, _jolleenTransform.transform);
         jolleenObject.transform.position = _jolleenTransform.transform.position;
         Destroy(jolleenObject, _playerData.danceTime);
     }
-    void PlayerRandomSpawn()
+    public Transform PlayerRandomSpawn(PlayerData _playerData)
     {//Random Spawn Control Function
         int value = UnityEngine.Random.Range(0, 8);
         gameObject.transform.position = _playerData.spawns.GetChild(value).position;
+        return _playerData.spawns.GetChild(value);
     }
     public void CreateStartPlayerStaff(PlayerData _playerData)
     { //Create Player Objects On Start
@@ -739,7 +727,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         Instantiate(_playerData.objects[2], _cameraWasherTransform.transform.position, Quaternion.identity, _cameraWasherTransform.transform);//CameraWasherPrefab
         playerIconTransform.transform.rotation = gameObject.transform.rotation;
     }
-    void DataStatesOnInitial()
+    void DataStatesOnInitial(PlayerData _playerData)
     {//PlayerData
         if (_playerData != null)
         {
@@ -761,7 +749,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isPlayable = true;
             _playerData.playerSpeed = 2f;
             _initPlayerSpeed = _playerData.playerSpeed;
-            _initJumpForce = _playerData.jumpForce;
             _playerData.isDying = false;
             _playerData.isFiring = false;
             _playerData.isWalking = false;
@@ -769,6 +756,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isBackWalking = false;
             _playerData.isGround = true;
         }
+    }
+    IEnumerator LookAtTouchEnemyBullet(Collider other)
+    {
+        yield return new WaitForSeconds(0.3f);
+        _warmArrow.transform.localScale = Vector3.one;
+        _warmArrow.transform.LookAt(other.gameObject.transform);
     }
     IEnumerator DelayWarmArrowDirection()
     {
@@ -782,7 +775,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //CrosshairImage
         crosshairImage.GetComponent<CanvasGroup>().alpha = 0;
     }
-    IEnumerator DelayLevelUp(float delayWait, float delayDestroy)
+    IEnumerator DelayLevelUp(float delayWait, float delayDestroy, PlayerData _playerData)
     {
         //PlayerData
         _playerData.isLockedWalking = false;
@@ -797,7 +790,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _playerData.isWinning = true;
 
         //JolleenAnimation
-        CreateVictoryAnimation();
+        CreateVictoryAnimation(_playerData);
 
         yield return new WaitForSeconds(delayDestroy);
         //Destroy(gameObject);

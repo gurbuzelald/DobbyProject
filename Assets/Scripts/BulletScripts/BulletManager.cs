@@ -24,7 +24,9 @@ public class BulletManager : AbstractBullet<BulletManager>
     }
     void FixedUpdate()
     {
-        BulletRotation(_playerData.isLookingUp, PlayerManager.GetInstance._currentCamera.transform.GetComponent<CinemachineVirtualCamera>(), _bulletSpawnTransform);
+        BulletRotation(_playerData.isLookingUp, 
+                       PlayerManager.GetInstance._currentCamera.transform.GetComponent<CinemachineVirtualCamera>(), 
+                       _bulletSpawnTransform);
 
         if (_playerData.isFiring && bulletData.bulletDelayCounter == 0)
         {
