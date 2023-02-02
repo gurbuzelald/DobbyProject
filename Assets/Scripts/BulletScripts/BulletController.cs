@@ -28,7 +28,7 @@ public class BulletController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
+        if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) || other.CompareTag(SceneController.Tags.FanceWooden.ToString()) || other.CompareTag(SceneController.Tags.Ground.ToString()))
         {
             gameObject.SetActive(false);
         }

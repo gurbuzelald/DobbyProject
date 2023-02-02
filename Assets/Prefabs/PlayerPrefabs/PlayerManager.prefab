@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 195741390}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: BulletsTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 467556423}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: CameraWasherTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 467556422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -2.4499989}
+  m_LocalPosition: {x: 0, y: 1, z: -2.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 476721150}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: ParticleTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 867063623}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: HealthBarTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,7 +133,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 990706305}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: PlayerIconTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1391162830}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: CameraTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -555,6 +555,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WarmArrow
       objectReference: {fileID: 0}
+    - target: {fileID: 3522872604169548057, guid: 17454f421d3aee2499123f81d934a815, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3522872604169548057, guid: 17454f421d3aee2499123f81d934a815, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3522872604169548058, guid: 17454f421d3aee2499123f81d934a815, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -597,6 +605,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3522872604169548058, guid: 17454f421d3aee2499123f81d934a815, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7577155076656880913, guid: 17454f421d3aee2499123f81d934a815, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5727687878102657885}
   m_LocalRotation: {x: 0.14349262, y: -0, z: -0, w: 0.9896514}
-  m_LocalPosition: {x: 2.0651789, y: 1.5486519, z: -9.099296}
+  m_LocalPosition: {x: 2.0678415, y: 1.5486519, z: -9.099296}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 81619304982749925}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -210,6 +210,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DownCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 993186083922505034, guid: 3fca2ccdea818c1488c3a60616015a43, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 993186083922505039, guid: 3fca2ccdea818c1488c3a60616015a43, type: 3}
       propertyPath: m_Follow
       value: 
@@ -280,6 +284,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniMapCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 4014003854215809505, guid: 9e9a1efa449e2a049873dc37d6079f84, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e9a1efa449e2a049873dc37d6079f84, type: 3}
 --- !u!4 &6454717052934300177 stripped
@@ -342,6 +350,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpCamera
       objectReference: {fileID: 0}
+    - target: {fileID: 3055669837138426297, guid: d5065d3b136dd6e41bd28d36d0e3d63c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3055669837138426298, guid: d5065d3b136dd6e41bd28d36d0e3d63c, type: 3}
       propertyPath: m_Follow
       value: 
@@ -364,13 +376,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 81619304982749925}
     m_Modifications:
+    - target: {fileID: 326331247, guid: f4027728faa8c7145a47503b2520f2ba, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2397551769593710033, guid: f4027728faa8c7145a47503b2520f2ba, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2397551769593710033, guid: f4027728faa8c7145a47503b2520f2ba, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.0651789
+      value: 2.06654
       objectReference: {fileID: 0}
     - target: {fileID: 2397551769593710033, guid: f4027728faa8c7145a47503b2520f2ba, type: 3}
       propertyPath: m_LocalPosition.y
@@ -411,6 +427,14 @@ PrefabInstance:
     - target: {fileID: 2397551769593710034, guid: f4027728faa8c7145a47503b2520f2ba, type: 3}
       propertyPath: m_Name
       value: CurrentCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 2397551769593710034, guid: f4027728faa8c7145a47503b2520f2ba, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2397551770228840805, guid: f4027728faa8c7145a47503b2520f2ba, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4027728faa8c7145a47503b2520f2ba, type: 3}

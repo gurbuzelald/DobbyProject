@@ -66,9 +66,19 @@ MonoBehaviour:
   isCloneDancing: 0
   idlingCount: 0
   isTouchFirst: 1
-  isTouchMain: 0
+  isTouchSecond: 0
+  isTouchThird: 1
   cloneSpeed: 1
   cloneTransforms:
   - {fileID: 7049254313567198192, guid: b30a033881dfab04198a5f2771eabc25, type: 3}
   cloneObjects:
   - {fileID: 4481733563023685997, guid: 52a91642cb659624b9ab75f876e78794, type: 3}
+  firstTarget: {fileID: 6007350495768433631, guid: d6910131b8681a442bf839a03d45014e, type: 3}
+  secondTarget: {fileID: 8224663066192316472, guid: 12f978631735d474ebe252bf98e592d8, type: 3}
+  thirdTarget: {fileID: 1521471710407401217, guid: 2a8662eeb8628844798ce732cb14b765, type: 3}
+  finishTarget: {fileID: 1057260447989824029, guid: 43651b0f5359bf548b0166fa479e881d, type: 3}
+  currentTarget: {fileID: 6007350495768433631, guid: d6910131b8681a442bf839a03d45014e, type: 3}
+  firstTargetCanvas: {fileID: 0}
+  secondTargetCanvas: {fileID: 0}
+  thirdTargetCanvas: {fileID: 0}
+  finishTargetCanvas: {fileID: 0}

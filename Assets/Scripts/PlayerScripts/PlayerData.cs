@@ -95,4 +95,10 @@ public class PlayerData : ScriptableObject
     [Header("Clone Transform")]
     public Transform[] cloneTransforms;
     public GameObject[] cloneObjects;
+
+    public Transform firstTarget;
+    public Transform secondTarget;
+    public Transform thirdTarget;
+    public Transform finishTarget;
+    public Transform currentTarget;
 }

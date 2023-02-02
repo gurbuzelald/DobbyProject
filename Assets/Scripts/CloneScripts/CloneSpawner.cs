@@ -3,20 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CloneSpawner : MonoBehaviour
-{
-    public Transform firstTarget;
-    public Transform secondTarget;
-    public Transform thirdTarget;
-    public Transform finishTarget;
-    public Transform currentTarget;
+{ 
+    public PlayerData cloneData;
+    public PlayerData playerData;
 
     public CanvasGroup firstTargetCanvas;
     public CanvasGroup secondTargetCanvas;
     public CanvasGroup thirdTargetCanvas;
     public CanvasGroup finishTargetCanvas;
-
-    public PlayerData cloneData;
-    public PlayerData playerData;
 
     private void Awake()
     {
@@ -40,7 +34,7 @@ public class CloneSpawner : MonoBehaviour
                                          gameObject.transform);
             obj.transform.position = cloneData.cloneTransforms[0].position;
 
-            Debug.Log(obj.transform.position);
+            //Debug.Log(obj.transform.position);
         }
     }
 }
