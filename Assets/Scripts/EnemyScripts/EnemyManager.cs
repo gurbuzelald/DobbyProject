@@ -86,7 +86,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         if (other.CompareTag(SceneController.Tags.Bullet.ToString()))
         {
-            TriggerBullet();
+            TriggerBullet(2f);
+        }
+        if (other.CompareTag(SceneController.Tags.Sword.ToString()))
+        {
+            TriggerBullet(3f);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -117,7 +121,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             gameObject.transform.Rotate(0f, 180f, 0f);
         }
     }
-    public void TriggerBullet()
+    public void TriggerBullet(float bulletPower)
     {
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
         enemyData.isWalking = false;
@@ -157,7 +161,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isSpeedZero = true;
                 StartCoroutine(DelayStopEnemy(3f));
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
-                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / 2f, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / bulletPower, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
         }
     }   

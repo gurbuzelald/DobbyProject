@@ -164,6 +164,7 @@ public class SceneController : AbstractSceneController<SceneController>
         Ladder,
         Enemy,
         Bullet,
+        Sword,
         Player,
         Water,
         FanceWooden,

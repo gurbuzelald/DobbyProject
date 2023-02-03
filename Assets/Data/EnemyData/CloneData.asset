@@ -50,7 +50,7 @@ MonoBehaviour:
   deathParticle: {fileID: 0}
   burningParticle: {fileID: 0}
   burningTouchParticle: {fileID: 0}
-  particleCount: 0
+  particleCount: 1
   shootClip: {fileID: 0}
   getHitClip: {fileID: 0}
   jumpingClip: {fileID: 0}
@@ -61,13 +61,13 @@ MonoBehaviour:
   jumpingSeaClip: {fileID: 0}
   _bulletObject: {fileID: 0}
   bulletSpeed: 5
-  isCloneWalking: 1
+  isCloneWalking: 0
   isCloneDying: 0
-  isCloneDancing: 0
+  isCloneDancing: 1
   idlingCount: 0
-  isTouchFirst: 1
+  isTouchFirst: 0
   isTouchSecond: 0
-  isTouchThird: 1
+  isTouchThird: 0
   cloneSpeed: 1
   cloneTransforms:
   - {fileID: 7049254313567198192, guid: b30a033881dfab04198a5f2771eabc25, type: 3}
@@ -78,7 +78,3 @@ MonoBehaviour:
   thirdTarget: {fileID: 1521471710407401217, guid: 2a8662eeb8628844798ce732cb14b765, type: 3}
   finishTarget: {fileID: 1057260447989824029, guid: 43651b0f5359bf548b0166fa479e881d, type: 3}
   currentTarget: {fileID: 6007350495768433631, guid: d6910131b8681a442bf839a03d45014e, type: 3}
-  firstTargetCanvas: {fileID: 0}
-  secondTargetCanvas: {fileID: 0}
-  thirdTargetCanvas: {fileID: 0}
-  finishTargetCanvas: {fileID: 0}

@@ -16,7 +16,7 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    public virtual void CreateBullet(Transform bulletSpawn, float bulletSpeed, int objectpoolCount, ObjectPool objectPool)
+    public virtual void CreateBullet(Transform bulletSpawn, float bulletSpeed, int objectpoolCount, ObjectPool objectPool, float delayDestroy)
     {
         //GameObject bulletObject = Instantiate(_bulletObject, _bulletSpawnTransform.transform.position, _bulletSpawnTransform.transform.rotation);
         //bulletObject.GetComponent<Rigidbody>().velocity = (_bulletSpawnTransform.transform.TransformDirection(Vector3.forward * _playerData.bulletSpeed));
@@ -27,11 +27,11 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
         bulletObject.transform.rotation = bulletSpawn.rotation;
 
         bulletObject.GetComponent<Rigidbody>().velocity = (bulletSpawn.TransformDirection(Vector3.forward * bulletSpeed));
-        StartCoroutine(DelaySpawn(bulletObject, bulletSpawn));
+        StartCoroutine(DelaySpawn(bulletObject, bulletSpawn, delayDestroy));
     }
-    public IEnumerator DelaySpawn(GameObject bulletObject, Transform bulletSpawn)
+    public IEnumerator DelaySpawn(GameObject bulletObject, Transform bulletSpawn, float delayDestroy)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(delayDestroy);
         bulletObject.transform.rotation = bulletSpawn.rotation;
 
         bulletObject.SetActive(false);

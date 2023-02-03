@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 movement;
     public Vector2 lookRotation;
     public bool fire;
+    public bool sword;
     public bool jump;
     public static bool skateBoard;
     public static bool run;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
         movement = playerInput.PlayerMain.Move.ReadValue<Vector2>();
         lookRotation = playerInput.PlayerMain.Look.ReadValue<Vector2>();
         fire = playerInput.PlayerMain.Fire.IsPressed();
+        sword = playerInput.PlayerMain.Sword.IsPressed();
         jump = playerInput.PlayerMain.Jump.IsPressed();
         skateBoard = playerInput.PlayerMain.Skate.IsPressed();
         run = playerInput.PlayerMain.Run.IsPressed();

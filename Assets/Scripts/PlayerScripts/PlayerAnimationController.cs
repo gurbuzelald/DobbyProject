@@ -32,6 +32,7 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
         WalkAnimation(playerData, _animator);
         ClimbAnimation(playerData, _animator);
         FireAnimation(playerData, _animator);
+        SwordAnimation(playerData, _animator);
         DeathAnimation(playerData, _animator, cloneData);
         VictoryAnimation(playerData, _animator);
         SkateBoardAnimation(playerData, _animator);

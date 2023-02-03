@@ -217,6 +217,37 @@ Transform:
   m_Father: {fileID: 6779619092415629145}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1829361893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1829361894}
+  m_Layer: 0
+  m_Name: GunTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1829361894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1829361893}
+  m_LocalRotation: {x: 0.65536773, y: -0.72209793, z: 0.20263952, w: 0.08947033}
+  m_LocalPosition: {x: 0.016, y: 0.02, z: 0.008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5798984726820640924}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 121.4, y: -56.2, z: 31.4}
 --- !u!1 &5479558127718543440
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,6 +433,7 @@ MonoBehaviour:
   _coinObject: {fileID: 7591573347280939688}
   _objectPool: {fileID: 0}
   _warmArrow: {fileID: 3522872604140518913}
+  _gunTransform: {fileID: 1829361894}
 --- !u!82 &1494319917
 AudioSource:
   m_ObjectHideFlags: 0
@@ -513,6 +545,7 @@ MonoBehaviour:
   movement: {x: 0, y: 0}
   lookRotation: {x: 0, y: 0}
   fire: 0
+  sword: 0
   jump: 0
 --- !u!114 &1979988653
 MonoBehaviour:
@@ -683,6 +716,11 @@ PrefabInstance:
 --- !u!4 &4178584653185572522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5728715396564245343, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
+  m_PrefabInstance: {fileID: 8538029771744052725}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5798984726820640924 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2740173420477865321, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
   m_PrefabInstance: {fileID: 8538029771744052725}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &7591573347280939688 stripped

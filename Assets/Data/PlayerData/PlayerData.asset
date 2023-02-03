@@ -40,6 +40,7 @@ MonoBehaviour:
   isRunning: 0
   isPicking: 0
   isPickRotateCoin: 0
+  isSword: 0
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 1
@@ -59,6 +60,7 @@ MonoBehaviour:
   burningTouchParticle: {fileID: 2998880394958268818, guid: d1da0b7ce7a5e4e4a9ed42ef14329904, type: 3}
   particleCount: 0
   shootClip: {fileID: 8300000, guid: e4d1e9a1be4831542961bcd5a6c97f7a, type: 3}
+  swordClip: {fileID: 8300000, guid: bd848664b9b7ce5428da3b4880aebac2, type: 3}
   getHitClip: {fileID: 8300000, guid: 0daa4bd7ccf721c4faa7a61d8fe58390, type: 3}
   jumpingClip: {fileID: 8300000, guid: a6c98811cc43c2646bf2c7baf175b185, type: 3}
   dyingClip: {fileID: 8300000, guid: b28d6b87881543d4f8ab153b9c5aa5c7, type: 3}
@@ -73,7 +75,13 @@ MonoBehaviour:
   isCloneDancing: 0
   idlingCount: 0
   isTouchFirst: 0
-  isTouchMain: 0
+  isTouchSecond: 0
+  isTouchThird: 0
   cloneSpeed: 0
   cloneTransforms: []
   cloneObjects: []
+  firstTarget: {fileID: 0}
+  secondTarget: {fileID: 0}
+  thirdTarget: {fileID: 0}
+  finishTarget: {fileID: 0}
+  currentTarget: {fileID: 0}

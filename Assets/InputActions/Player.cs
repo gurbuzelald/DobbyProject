@@ -80,6 +80,15 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sword"",
+                    ""type"": ""Button"",
+                    ""id"": ""1c735aec-7860-4e33-a44d-8f76a5df9d0a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +256,28 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc792c93-82f8-4e39-8643-a1b4729637eb"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sword"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e5534e6d-8a3f-4b9d-b866-0faf7fdd74b3"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sword"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -261,6 +292,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_PlayerMain_Jump = m_PlayerMain.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMain_Skate = m_PlayerMain.FindAction("Skate", throwIfNotFound: true);
         m_PlayerMain_Run = m_PlayerMain.FindAction("Run", throwIfNotFound: true);
+        m_PlayerMain_Sword = m_PlayerMain.FindAction("Sword", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -326,6 +358,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMain_Jump;
     private readonly InputAction m_PlayerMain_Skate;
     private readonly InputAction m_PlayerMain_Run;
+    private readonly InputAction m_PlayerMain_Sword;
     public struct PlayerMainActions
     {
         private @Player m_Wrapper;
@@ -336,6 +369,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerMain_Jump;
         public InputAction @Skate => m_Wrapper.m_PlayerMain_Skate;
         public InputAction @Run => m_Wrapper.m_PlayerMain_Run;
+        public InputAction @Sword => m_Wrapper.m_PlayerMain_Sword;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMain; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -363,6 +397,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Run.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnRun;
+                @Sword.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnSword;
+                @Sword.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnSword;
+                @Sword.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnSword;
             }
             m_Wrapper.m_PlayerMainActionsCallbackInterface = instance;
             if (instance != null)
@@ -385,6 +422,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
+                @Sword.started += instance.OnSword;
+                @Sword.performed += instance.OnSword;
+                @Sword.canceled += instance.OnSword;
             }
         }
     }
@@ -397,5 +437,6 @@ public partial class @Player : IInputActionCollection2, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnSkate(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
+        void OnSword(InputAction.CallbackContext context);
     }
 }

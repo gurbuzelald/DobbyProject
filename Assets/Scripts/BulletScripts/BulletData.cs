@@ -8,7 +8,11 @@ public class BulletData : ScriptableObject
     public float bulletDelay = 0.05f;
     public float bulletSpeed = 5f;
     public int bulletDelayCounter;
+    public GameObject _bulletObject;
+    public GameObject _swordingObject;
+
     public GameObject _pistolObject;
+    public GameObject _swordObject;
 
     [Header("Enemy")]
     [Header("Bullet Transform")]

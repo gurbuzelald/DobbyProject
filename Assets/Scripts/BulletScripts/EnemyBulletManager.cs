@@ -32,15 +32,15 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
                 bulletData.enemyBulletDelayCounter++;
                 enemyData.isFiring = true;
                 enemyData.isWalking = false;
-                StartCoroutine(Delay(bulletData.enemyBulletDelay));
+                StartCoroutine(Delay(bulletData.enemyBulletDelay, 2f));
                 StartCoroutine(FiringFalse());
             }
         }
     }
-    IEnumerator Delay(float delayValue)
+    IEnumerator Delay(float delayValue, float delayDestroy)
     {
         yield return new WaitForSeconds(delayValue);
-        CreateBullet(gameObject.transform, bulletData.enemyBulletSpeed, 1, _clownSpawner._objectPool);
+        CreateBullet(gameObject.transform, bulletData.enemyBulletSpeed, 1, _clownSpawner._objectPool, delayDestroy);
     }
     IEnumerator FiringFalse()
     {

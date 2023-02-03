@@ -174,7 +174,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public void FireAnimation(PlayerData playerData, Animator _animator)
     {
-        if (playerData.isFiring && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
+        if (playerData.isFiring && !playerData.isSword && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
         {
             _animator.SetBool("isFiring", true);
 
@@ -184,7 +184,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetBool("isClimbing", false);
             _animator.SetBool("isBackClimbing", false);
         }
-        else if (!playerData.isFiring && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 && !playerData.isClimbing)
+        else if (!playerData.isFiring && !playerData.isSword && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 && !playerData.isClimbing)
         {
             if (!playerData.isLockedWalking)
             {
@@ -196,6 +196,34 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
                 _animator.SetBool("isClimbing", false);
                 _animator.SetBool("isBackClimbing", false);
             }            
+        }
+    }
+    public void SwordAnimation(PlayerData playerData, Animator _animator)
+    {
+        if (playerData.isSword && !playerData.isFiring && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
+        {
+            _animator.SetBool("isSword", true);
+
+            _animator.SetBool("isFiring", false);
+            _animator.SetBool("isIdling", false);
+            _animator.SetBool("isBackWalking", false);
+            _animator.SetBool("isWalking", false);
+            _animator.SetBool("isClimbing", false);
+            _animator.SetBool("isBackClimbing", false);
+        }
+        else if (!playerData.isSword && !playerData.isFiring && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 && !playerData.isClimbing)
+        {
+            if (!playerData.isLockedWalking)
+            {
+                _animator.SetBool("isIdling", true);
+
+                _animator.SetBool("isFiring", false);
+                _animator.SetBool("isSword", false);
+                _animator.SetBool("isBackWalking", false);
+                _animator.SetBool("isWalking", false);
+                _animator.SetBool("isClimbing", false);
+                _animator.SetBool("isBackClimbing", false);
+            }
         }
     }
     public void JumpAnimation(PlayerData playerData, Animator _animator)

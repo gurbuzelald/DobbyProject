@@ -6,13 +6,18 @@ using TMPro;
 public class TimeController : MonoBehaviour
 {
     private float _time;
+    private float _swordTime;
     [SerializeField] TextMeshProUGUI _timeText;
     [SerializeField] TextMeshProUGUI _warmTimeText;
+    //[SerializeField] TextMeshProUGUI _swordTimeText;
     void Start()
     {
         _warmTimeText.transform.localScale = Vector3.zero;
+        //_swordTimeText.transform.localScale = Vector3.zero;
         _timeText.text = "0";
         _time = 0;
+        _swordTime = 0;
+
     }
 
     // Update is called once per frame
@@ -35,6 +40,18 @@ public class TimeController : MonoBehaviour
         if ((((int)(timeValue - _time))) <= 10)
         {
             _warmTimeText.transform.localScale = Vector3.one;
+        }
+    }
+    public void SwordTimer()
+    {
+        _swordTime += Time.deltaTime;
+        if (_swordTime == 3)
+        {
+            //_swordTimeText.transform.localScale = Vector3.zero;
+        }
+        if (true)
+        {
+
         }
     }
 }

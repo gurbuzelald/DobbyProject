@@ -12,6 +12,7 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
     public enum SoundEffectTypes
     {
         Shoot,
+        Sword,
         GetHit,
         Jump,
         JumpToSea,

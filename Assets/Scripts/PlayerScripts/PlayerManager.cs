@@ -51,6 +51,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public ObjectPool _objectPool;
 
     [SerializeField] GameObject _warmArrow;
+
+    public Transform _gunTransform;
+
+    public delegate void Move();    
     void Start()
     {
         DataStatesOnInitial(_playerData);
@@ -196,6 +200,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 Run(_playerData);
                 Jump(_playerData);
                 Fire(_playerData);
+                Sword(_playerData);
             }
             else if (_playerData.isWinning)
             {
@@ -378,6 +383,31 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             else
             {
                 _playerData.isFiring = false;
+            }
+        }
+        else
+        {
+            _playerData.isFiring = false;
+        }
+    }
+    public void Sword(PlayerData _playerData)
+    {
+        if (_playerData.isPlayable)
+        {
+            if (_playerController.sword)
+            {
+                //PlayerData
+                _playerData.isSword = true;
+
+                //Crosshair
+                crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
+
+                //SetFalseBullet
+                StartCoroutine(Delay(2f));
+            }
+            else
+            {
+                _playerData.isSword = false;
             }
         }
         else

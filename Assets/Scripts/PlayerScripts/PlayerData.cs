@@ -33,6 +33,7 @@ public class PlayerData : ScriptableObject
     public bool isRunning;
     public bool isPicking;
     public bool isPickRotateCoin;
+    public bool isSword;
 
     [Header("CameraRotation Info")]
     public bool isLookingUp;
@@ -67,6 +68,7 @@ public class PlayerData : ScriptableObject
 
     [Header("Sounds")]
     public AudioClip shootClip;
+    public AudioClip swordClip;
     public AudioClip getHitClip;
     public AudioClip jumpingClip;
     public AudioClip dyingClip;
