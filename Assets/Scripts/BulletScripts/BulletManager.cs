@@ -21,13 +21,13 @@ public class BulletManager : AbstractBullet<BulletManager>
     void Start()
     {
         _pistolObject = Instantiate(bulletData._pistolObject, _bulletSpawnTransform.position, Quaternion.identity, PlayerManager.GetInstance._gunTransform);//Bullet
-        _swordObject = Instantiate(bulletData._swordObject, _bulletSpawnTransform.position, Quaternion.identity, PlayerManager.GetInstance._gunTransform);//Bullet
+        _swordObject = Instantiate(bulletData._swordObject, _bulletSpawnTransform.position, Quaternion.identity, PlayerManager.GetInstance._swordTransform);//Bullet
         _swordObject.SetActive(false);
         _pistolObject.SetActive(false);
-        _swordObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
+        _swordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
         _pistolObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
 
-        _swordObject.transform.rotation = PlayerManager.GetInstance._gunTransform.rotation;
+        _swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
         _pistolObject.transform.rotation = PlayerManager.GetInstance._gunTransform.rotation;
 
         bulletData.bulletDelayCounter = 0;

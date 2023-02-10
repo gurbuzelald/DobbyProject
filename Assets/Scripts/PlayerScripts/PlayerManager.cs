@@ -53,6 +53,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [SerializeField] GameObject _warmArrow;
 
     public Transform _gunTransform;
+    public Transform _swordTransform;
 
     public delegate void Move();    
     void Start()

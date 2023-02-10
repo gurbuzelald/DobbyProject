@@ -186,6 +186,37 @@ Transform:
   m_Father: {fileID: 6779619092415629145}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1133759005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1133759006}
+  m_Layer: 0
+  m_Name: SwordTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1133759006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133759005}
+  m_LocalRotation: {x: 0.8583767, y: -0.033634633, z: 0.49256676, w: -0.13941358}
+  m_LocalPosition: {x: -0.248, y: -0.07, z: 0.174}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5798984726820640924}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 191.9, y: -60.9, z: 11.5}
 --- !u!1 &1391162829
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,6 +465,7 @@ MonoBehaviour:
   _objectPool: {fileID: 0}
   _warmArrow: {fileID: 3522872604140518913}
   _gunTransform: {fileID: 1829361894}
+  _swordTransform: {fileID: 1133759006}
 --- !u!82 &1494319917
 AudioSource:
   m_ObjectHideFlags: 0
