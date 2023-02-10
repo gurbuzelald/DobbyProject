@@ -6,6 +6,7 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
 {
     [Header("Animator")]
     private Animator _animator;
+    [SerializeField] Animator[] _slaveAnimator;
 
     [Header("Data")]
     public PlayerData playerData;
@@ -30,6 +31,10 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
         IdleAnimation(playerData, _animator);
         JumpAnimation(playerData, _animator);
         WalkAnimation(playerData, _animator);
+
+        WalkAnimation(playerData, _slaveAnimator[0]);
+        WalkAnimation(playerData, _slaveAnimator[1]);
+
         ClimbAnimation(playerData, _animator);
         FireAnimation(playerData, _animator);
         SwordAnimation(playerData, _animator);

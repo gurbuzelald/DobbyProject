@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoBehaviour
 {
-    public void IdleAnimation(PlayerData playerData, Animator _animator)
+    public virtual void IdleAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isIdling && PlayerManager.GetInstance._xValue == 0 && PlayerManager.GetInstance._zValue == 0 && !playerData.isJumping && !playerData.isDying)
         {
@@ -22,7 +22,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             }            
         }
     }
-    public void WalkAnimation(PlayerData playerData, Animator _animator)
+    public virtual void WalkAnimation(PlayerData playerData, Animator _animator)
     {
         if ((playerData.isLockedWalking) || (playerData.isWalking && !playerData.isBackWalking && !playerData.isJumping && !playerData.isClimbing))
         {
@@ -70,7 +70,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         RightWalkAnimation(playerData, _animator);
         LeftWalkAnimation(playerData, _animator);
     }
-    public void LeftWalkAnimation(PlayerData playerData, Animator _animator)
+    public virtual void LeftWalkAnimation(PlayerData playerData, Animator _animator)
     {
         if (PlayerManager.GetInstance._xValue < -0.03f && PlayerManager.GetInstance._zValue > -0.05f && PlayerManager.GetInstance._zValue < 0.05f)
         {
@@ -98,7 +98,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
 
 
     }
-    public void RightWalkAnimation(PlayerData playerData, Animator _animator)
+    public virtual void RightWalkAnimation(PlayerData playerData, Animator _animator)
     {
         if (PlayerManager.GetInstance._xValue > 0.03f && PlayerManager.GetInstance._zValue < 0.05f && PlayerManager.GetInstance._zValue > -0.05f)
         {
@@ -125,7 +125,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         }
     }
 
-    public void ClimbAnimation(PlayerData playerData, Animator _animator)
+    public virtual void ClimbAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isClimbing && !playerData.isBackClimbing && PlayerManager.GetInstance._zValue > 0)
         {
@@ -172,7 +172,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             }            
         }
     }
-    public void FireAnimation(PlayerData playerData, Animator _animator)
+    public virtual void FireAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isFiring && !playerData.isSword && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
         {
@@ -198,7 +198,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             }            
         }
     }
-    public void SwordAnimation(PlayerData playerData, Animator _animator)
+    public virtual void SwordAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isSword && !playerData.isFiring && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
         {
@@ -226,7 +226,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             }
         }
     }
-    public void JumpAnimation(PlayerData playerData, Animator _animator)
+    public virtual void JumpAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isJumping && playerData.isGround && !playerData.isSkateBoarding && (PlayerManager.GetInstance._zValue > 0 || PlayerManager.GetInstance._xValue > 0))
         {
@@ -277,7 +277,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(1, 0);
         }
     }
-    public void DeathAnimation(PlayerData playerData, Animator _animator, PlayerData cloneData)
+    public virtual void DeathAnimation(PlayerData playerData, Animator _animator, PlayerData cloneData)
     {
         if (playerData.isDying)
         {
@@ -286,7 +286,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(0, 0);
         }
     }
-    public void VictoryAnimation(PlayerData playerData, Animator _animator)
+    public virtual void VictoryAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isWinning)
         {
@@ -296,7 +296,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             //StartCoroutine(DelayAnimation(playerData, _animator, 3f, 8, 0));
         }
     }
-    public void SkateBoardAnimation(PlayerData playerData, Animator _animator)
+    public virtual void SkateBoardAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isSkateBoarding && PlayerManager.GetInstance._zValue > 0 && !playerData.isJumping && !playerData.isRunning)
         {
@@ -317,14 +317,14 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             DisableSkateAnimation(playerData, _animator);
         }
     }
-    public void DisableSkateAnimation(PlayerData playerData, Animator _animator)
+    public virtual void DisableSkateAnimation(PlayerData playerData, Animator _animator)
     {
         playerData.clickTabCount = 0;
         playerData.isSkateBoarding = false;
         _animator.SetBool("isSkating", false);
         _animator.SetLayerWeight(9, 0);
     }
-    public void RunAnimation(PlayerData playerData, Animator _animator)
+    public virtual void RunAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isRunning && PlayerManager.GetInstance._zValue > 0 && !playerData.isJumping)
         {
@@ -345,7 +345,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             DisableRunAnimation(playerData, _animator);
         }
     }
-    public void DisableRunAnimation(PlayerData playerData, Animator _animator)
+    public virtual void DisableRunAnimation(PlayerData playerData, Animator _animator)
     {
         playerData.clickShiftCount = 0;
         playerData.isRunning = false;
@@ -353,7 +353,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         _animator.SetLayerWeight(12, 0);
     }
 
-    public void PickupAnimation(PlayerData playerData, Animator _animator)
+    public virtual void PickupAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isPicking)
         {
@@ -362,7 +362,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             StartCoroutine(DelayAnimation(playerData, _animator, 0.5f, 10, 0));
         }
     }
-    public void PickRotateAnimation(PlayerData playerData, Animator _animator)
+    public virtual void PickRotateAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isPickRotateCoin)
         {
@@ -371,7 +371,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             StartCoroutine(DelayAnimation(playerData, _animator, 0.5f, 11, 0));
         }
     }
-    public  IEnumerator DelayAnimation(PlayerData playerData, Animator _animator, float delayValue, int layerOrder, float weightAmount)
+    public virtual IEnumerator DelayAnimation(PlayerData playerData, Animator _animator, float delayValue, int layerOrder, float weightAmount)
     {
         yield return new WaitForSeconds(delayValue);
         playerData.playerSpeed = 2f;
