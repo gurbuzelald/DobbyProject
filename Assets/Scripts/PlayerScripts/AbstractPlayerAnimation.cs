@@ -21,6 +21,17 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
                 _animator.SetLayerWeight(2, 0);
             }            
         }
+        if (!playerData.isBackWalking && !playerData.isWalking && !playerData.isClimbing && !playerData.isJumping)
+        {
+            _animator.SetBool("isIdling", true);
+
+            _animator.SetBool("isBackWalking", false);
+            _animator.SetBool("isWalking", false);
+            _animator.SetBool("isClimbing", false);
+
+            _animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(2, 0);
+        }
     }
     public virtual void WalkAnimation(PlayerData playerData, Animator _animator)
     {
@@ -42,7 +53,14 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(5, 0);
             _animator.SetLayerWeight(6, 0);
         }
-        else if (playerData.isBackWalking && !playerData.isWalking && !playerData.isJumping && !playerData.isBackClimbing && !playerData.isLockedWalking)
+        BackWalkAnimation(playerData, _animator);
+        IdleAnimation(playerData, _animator);
+        RightWalkAnimation(playerData, _animator);
+        LeftWalkAnimation(playerData, _animator);
+    }
+    public virtual void BackWalkAnimation(PlayerData playerData, Animator _animator)
+    {
+        if (playerData.isBackWalking && !playerData.isWalking && !playerData.isJumping && !playerData.isBackClimbing && !playerData.isLockedWalking)
         {
             _animator.SetBool("isBackWalking", true);
 
@@ -56,19 +74,6 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(5, 0);
             _animator.SetLayerWeight(6, 0);
         }
-        else if (!playerData.isBackWalking && !playerData.isWalking && !playerData.isClimbing && !playerData.isJumping)
-        {
-            _animator.SetBool("isIdling", true);
-
-            _animator.SetBool("isBackWalking", false);
-            _animator.SetBool("isWalking", false);
-            _animator.SetBool("isClimbing", false);
-
-            _animator.SetLayerWeight(1, 0);
-            _animator.SetLayerWeight(2, 0);
-        }
-        RightWalkAnimation(playerData, _animator);
-        LeftWalkAnimation(playerData, _animator);
     }
     public virtual void LeftWalkAnimation(PlayerData playerData, Animator _animator)
     {
@@ -197,6 +202,10 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
                 _animator.SetBool("isBackClimbing", false);
             }            
         }
+    }
+    public virtual void SlaveFireAnimation(Animator _animator)
+    {
+        _animator.SetLayerWeight(3, 1);
     }
     public virtual void SwordAnimation(PlayerData playerData, Animator _animator)
     {

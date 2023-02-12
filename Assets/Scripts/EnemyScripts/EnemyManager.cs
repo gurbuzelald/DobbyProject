@@ -84,6 +84,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isWalking = true;
             }
         }
+
         if (other.CompareTag(SceneController.Tags.Bullet.ToString()))
         {
             TriggerBullet(2f);
@@ -91,6 +92,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         if (other.CompareTag(SceneController.Tags.Sword.ToString()))
         {
             TriggerBullet(3f);
+        }if (other.CompareTag(SceneController.Tags.SlaveSword.ToString()))
+        {
+            TriggerSlaveSword(1.5f);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -121,6 +125,50 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             gameObject.transform.Rotate(0f, 180f, 0f);
         }
     }
+    public void TriggerSlaveSword(float bulletPower)
+    {
+        gameObject.transform.LookAt(clownSpawner.targetTransform.position);
+        StartCoroutine(DelayStopEnemy(3f));
+        if (_healthBar != null)
+        {
+            if (_healthBar.transform.localScale.x <= 0.0625f)
+            {
+                PlayerManager.GetInstance.CreateSlaveObject();
+
+                bottomParticle.Play();
+                middleParticle.Play();
+                topParticle.Play();
+                enemyData.isTouchable = false;
+                enemyData.isDying = true;
+                enemyData.isWalking = false;
+                enemyData.isFiring = false;
+                enemyData.isSpeedZero = true;
+                StartCoroutine(DelayStopEnemy(5f));
+                Destroy(_healthBar);
+                ScoreController.GetInstance.SetScore(20);
+                PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
+                StartCoroutine(DelayDestroy(2f));
+            }
+            else
+            {
+                if (_healthBar.transform.localScale.x <= 0.125f && _healthBar.transform.localScale.x > 0.0625f)
+                {
+                    bottomParticle.Play();
+                    middleParticle.Play();
+                }
+                if (_healthBar.transform.localScale.x > 0.125f)
+                {
+                    middleParticle.Play();
+                }
+                enemyData.isWalking = false;
+                enemyData.isFiring = false;
+                enemyData.isSpeedZero = true;
+                StartCoroutine(DelayStopEnemy(3f));
+                PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
+                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / bulletPower, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+            }
+        }
+    }
     public void TriggerBullet(float bulletPower)
     {
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
@@ -131,6 +179,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (_healthBar.transform.localScale.x <= 0.0625f)
             {
+                PlayerManager.GetInstance.CreateSlaveObject();
+
                 bottomParticle.Play();
                 middleParticle.Play();
                 topParticle.Play();

@@ -165,6 +165,7 @@ public class SceneController : AbstractSceneController<SceneController>
         Enemy,
         Bullet,
         Sword,
+        Slave,
         Player,
         Water,
         FanceWooden,
@@ -177,7 +178,8 @@ public class SceneController : AbstractSceneController<SceneController>
         MainTarget,
         RotateCoin,
         EnemyBullet, 
-        CloneDobby
+        CloneDobby,
+        SlaveSword
     }
     public enum Scenes
     {

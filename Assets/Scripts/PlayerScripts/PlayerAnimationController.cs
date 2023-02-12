@@ -6,15 +6,21 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
 {
     [Header("Animator")]
     private Animator _animator;
-    [SerializeField] Animator[] _slaveAnimator;
+    private Animator _slaveAnimator;
 
     [Header("Data")]
     public PlayerData playerData;
+    public SlaveData slaveData;
     public PlayerData cloneData;
 
     private void Start()
     {
+        if (gameObject.transform.CompareTag(SceneController.Tags.Slave.ToString()))
+        {
+            _slaveAnimator = GetComponent<Animator>();
+        }
         _animator = GetComponent<Animator>();
+
         if (_animator != null)
         {
             _animator.SetLayerWeight(8, 0);
@@ -23,25 +29,46 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
     }
     void Update()
     {       
-        AnimationStates();        
+        AnimationStates();
+
     }
     public void AnimationStates()
     {
-        PickupAnimation(playerData, _animator);
-        IdleAnimation(playerData, _animator);
-        JumpAnimation(playerData, _animator);
-        WalkAnimation(playerData, _animator);
+        if (gameObject.transform.CompareTag(SceneController.Tags.Slave.ToString()) && slaveData != null)
+        {
+            if (slaveData.isFiring == true)
+            {
+                Debug.Log("Fire");
 
-        WalkAnimation(playerData, _slaveAnimator[0]);
-        WalkAnimation(playerData, _slaveAnimator[1]);
+                SlaveFireAnimation(_slaveAnimator);
+            }
+            else
+            {
+                Debug.Log("Walk");
+                WalkAnimation(playerData, _slaveAnimator);
+            }
 
-        ClimbAnimation(playerData, _animator);
-        FireAnimation(playerData, _animator);
-        SwordAnimation(playerData, _animator);
-        DeathAnimation(playerData, _animator, cloneData);
-        VictoryAnimation(playerData, _animator);
-        SkateBoardAnimation(playerData, _animator);
-        RunAnimation(playerData, _animator);
-        PickRotateAnimation(playerData, _animator);
+        }
+        else
+        {
+            PickupAnimation(playerData, _animator);
+            //IdleAnimation(playerData, _animator);
+            JumpAnimation(playerData, _animator);
+            WalkAnimation(playerData, _animator);
+
+            ClimbAnimation(playerData, _animator);
+            FireAnimation(playerData, _animator);
+            SwordAnimation(playerData, _animator);
+            DeathAnimation(playerData, _animator, cloneData);
+            VictoryAnimation(playerData, _animator);
+            SkateBoardAnimation(playerData, _animator);
+            RunAnimation(playerData, _animator);
+            PickRotateAnimation(playerData, _animator);
+        }
+        
+    }
+    public void SlaveFireAnimation(Animator _slaveAnimator)
+    {
+        base.SlaveFireAnimation(_slaveAnimator);
     }
 }

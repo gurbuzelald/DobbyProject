@@ -28,6 +28,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [SerializeField] Transform _bulletsTransform;    
     [SerializeField] Transform _cameraWasherTransform;    
 
+    public Transform[] _slaveTransforms;     
+    public Transform slaves;
+
     [Header("CinemachineVirtualCamera")]    
     public CinemachineVirtualCamera _currentCamera;
     public CinemachineVirtualCamera _upCamera;
@@ -127,6 +130,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
                 //SettingScore
                 ScoreController.GetInstance.SetScore(230);
+                CreateSlaveObject();
             }
         }
     }
@@ -656,6 +660,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             //Score
             ScoreController.GetInstance.SetScore(23);
+            CreateSlaveObject();
         }
         else if (value == SceneController.Tags.RotateCoin)
         {
@@ -673,6 +678,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             //SettingScore
             ScoreController.GetInstance.SetScore(23);
+            CreateSlaveObject();
         }
     }
     void DestroyByWater(PlayerData _playerData)
@@ -702,6 +708,24 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
         //DestroyingWithDelay
         StartCoroutine(DelayDestroy(3f));
+    }
+
+    public void CreateSlaveObject()
+    {
+        if (PlayerData.slaveCounter > 7)
+        {
+            PlayerData.slaveCounter = 0;
+        }
+        Instantiate(_playerData.slaveObjects[PlayerData.slaveCounter],
+                    PlayerManager.GetInstance.gameObject.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).position,
+                    Quaternion.identity,
+                    slaves);
+        if (PlayerData.slaveCounter < 8)
+        {
+            PlayerData.slaveCounter++;
+        }
+        
+        
     }
     void TriggerLadder(bool isTouch, bool isTouchExit, PlayerData _playerData)
     {
@@ -744,24 +768,45 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public Transform PlayerRandomSpawn(PlayerData _playerData)
     {//Random Spawn Control Function
         int value = UnityEngine.Random.Range(0, 8);
-        gameObject.transform.position = _playerData.spawns.GetChild(value).position;
+        gameObject.transform.position = _playerData.spawns.GetChild(2).position;
         return _playerData.spawns.GetChild(value);
     }
     public void CreateStartPlayerStaff(PlayerData _playerData)
     { //Create Player Objects On Start
+        Instantiate(_playerData.objects[1],
+                    _bulletsTransform.transform.position,
+                    Quaternion.identity,
+                    _bulletsTransform.transform);//BulletsPrefab
+        Instantiate(_playerData.objects[2], 
+                    _cameraWasherTransform.transform.position, 
+                    Quaternion.identity, 
+                    _cameraWasherTransform.transform);//CameraWasherPrefab
+        Instantiate(_playerData.objects[3],
+                    healthBarTransform.transform.position,
+                    Quaternion.identity,
+                    gameObject.transform);//HealthBarPrefab
+
+        Instantiate(_playerData.objects[4], gameObject.transform.position,
+                    Quaternion.identity,
+                    gameObject.transform);//MagnetPrefab
+
+        Instantiate(_playerData.objects[5],
+                    playerIconTransform.transform.position,
+                    Quaternion.identity,
+                    playerIconTransform.transform);//PlayerIconPrefab
 
         Instantiate(_playerData.objects[6], gameObject.transform);//PlayerSFXPrefab
-        Instantiate(_playerData.objects[4], gameObject.transform.position, Quaternion.identity, gameObject.transform);//MagnetPrefab
-        Instantiate(_playerData.objects[1], _bulletsTransform.transform.position, Quaternion.identity, _bulletsTransform.transform);//BulletsPrefab
-        Instantiate(_playerData.objects[5], playerIconTransform.transform.position, Quaternion.identity, playerIconTransform.transform);//PlayerIconPrefab
-        Instantiate(_playerData.objects[3], healthBarTransform.transform.position, Quaternion.identity, gameObject.transform);//HealthBarPrefab
-        Instantiate(_playerData.objects[2], _cameraWasherTransform.transform.position, Quaternion.identity, _cameraWasherTransform.transform);//CameraWasherPrefab
+        CreateSlaveObject();
+
+
+
         playerIconTransform.transform.rotation = gameObject.transform.rotation;
     }
     void DataStatesOnInitial(PlayerData _playerData)
     {//PlayerData
         if (_playerData != null)
         {
+            PlayerData.slaveCounter = 0;
             _playerData.objects[5].GetComponent<MeshRenderer>().enabled = true;
             _playerData.objects[3].transform.localScale = new Vector3(1f, 0.1f, 0.1f);
             _playerData.isLockedWalking = false;
