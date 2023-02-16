@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   randomTarget: {fileID: 0}
   slaveData: {fileID: 11400000, guid: ef1863792222cfb449c6a0efbf92bfc5, type: 2}
+  playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   slaveTransformValue: 0
 --- !u!54 &7971067666596210353
 Rigidbody:
@@ -343,6 +344,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 100122, guid: 1b4d655a5998c3446a4d46bebc199006, type: 3}
+      propertyPath: m_TagString
+      value: SlaveSword
+      objectReference: {fileID: 0}
     - target: {fileID: 400116, guid: 1b4d655a5998c3446a4d46bebc199006, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -457,7 +462,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7971067665647105662}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.5926583, y: 5.0798984, z: 128.10008}

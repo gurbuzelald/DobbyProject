@@ -170,16 +170,21 @@ public class SceneController : AbstractSceneController<SceneController>
         Water,
         FanceWooden,
         FinishArea,
+
+        //Coins
         Coin,
+        CheeseCoin,
+        RotateCoin,
+        MushroomCoin,
+
         Magnet,
         Magma,
         Lava,
         FirstTarget,
         MainTarget,
-        RotateCoin,
         EnemyBullet, 
         CloneDobby,
-        SlaveSword
+        SlaveSword,
     }
     public enum Scenes
     {

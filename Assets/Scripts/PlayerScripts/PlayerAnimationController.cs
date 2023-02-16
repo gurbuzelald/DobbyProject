@@ -38,21 +38,17 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
         {
             if (slaveData.isFiring == true)
             {
-                Debug.Log("Fire");
-
                 SlaveFireAnimation(_slaveAnimator);
             }
             else
             {
-                Debug.Log("Walk");
-                WalkAnimation(playerData, _slaveAnimator);
+                SlaveWalkAnimation(playerData, _slaveAnimator);
             }
-
         }
         else
         {
             PickupAnimation(playerData, _animator);
-            //IdleAnimation(playerData, _animator);
+            IdleAnimation(playerData, _animator);
             JumpAnimation(playerData, _animator);
             WalkAnimation(playerData, _animator);
 

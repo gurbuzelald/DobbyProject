@@ -43,7 +43,9 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetBool("isClimbing", false);
             if (playerData.isLockedWalking)
             {
-                //_animator.SetLayerWeight(1, 1);
+                _animator.SetLayerWeight(1, 1);
+                _animator.SetBool("isSword", false);
+                _animator.SetBool("isFiring", false);
             }
             //Debug.Log(_animator.GetLayerWeight(1));
             _animator.SetLayerWeight(0, 0);
@@ -57,6 +59,23 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         IdleAnimation(playerData, _animator);
         RightWalkAnimation(playerData, _animator);
         LeftWalkAnimation(playerData, _animator);
+    }
+    public virtual void SlaveWalkAnimation(PlayerData playerData, Animator _animator)
+    {
+        if ((playerData.isLockedWalking || playerData.isWalking) && playerData.isPlayable)
+        {
+            _animator.SetLayerWeight(0, 0);
+            _animator.SetLayerWeight(1, 1);
+            _animator.SetLayerWeight(2, 0);
+            _animator.SetLayerWeight(3, 0);
+
+        }
+        else
+        {
+            _animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(2, 0);
+            _animator.SetLayerWeight(3, 0);
+        }
     }
     public virtual void BackWalkAnimation(PlayerData playerData, Animator _animator)
     {
@@ -100,8 +119,6 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
                 _animator.SetLayerWeight(0, 1);
             }            
         }
-
-
     }
     public virtual void RightWalkAnimation(PlayerData playerData, Animator _animator)
     {
@@ -390,5 +407,6 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         playerData.isPicking = false;
         playerData.isPickRotateCoin = false;
         PlayerManager.GetInstance._coinObject.SetActive(false);
+        PlayerManager.GetInstance._cheeseObject.SetActive(false);
     }
 }

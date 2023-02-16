@@ -47,6 +47,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     [Header("Coin In The Right Hand")]
     public GameObject _coinObject;
+    public GameObject _cheeseObject;
 
     [Header("Initial Situations")]
     private float _initPlayerSpeed;
@@ -77,6 +78,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
         //GameObjects
         _coinObject.SetActive(false);
+        _cheeseObject.SetActive(false);
 
         //Scripts
         _playerController = FindObjectOfType<PlayerController>();
@@ -163,9 +165,17 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             PickUpCoin(SceneController.Tags.Coin, other, _playerData);//GetScore
         }
+        if (other.CompareTag(SceneController.Tags.CheeseCoin.ToString()))
+        {
+            PickUpCoin(SceneController.Tags.CheeseCoin, other, _playerData);//GetScore
+        }
         if (other.CompareTag(SceneController.Tags.RotateCoin.ToString()))
         {
             PickUpCoin(SceneController.Tags.RotateCoin, other, _playerData);//GetScore
+        }
+        if (other.CompareTag(SceneController.Tags.MushroomCoin.ToString()))
+        {
+            PickUpCoin(SceneController.Tags.MushroomCoin, other, _playerData);//GetScore
         }
         if (other.CompareTag(SceneController.Tags.Lava.ToString()))
         {
@@ -271,7 +281,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {//ForwardAndBackWalking
         if (!_playerData.isLockedWalking)
         {
-            if (_zValue > 0 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isRunning)
+            if (_zValue > 0.01f && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isRunning)
             {
                 GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
                 //PlayerData
@@ -679,6 +689,41 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             //SettingScore
             ScoreController.GetInstance.SetScore(23);
             CreateSlaveObject();
+        }
+        else if (value == SceneController.Tags.CheeseCoin)
+        {
+            //PlayerData
+            _playerData.isPickRotateCoin = true;
+            _playerData.playerSpeed = 0.5f;
+
+            _cheeseObject.SetActive(true);
+
+            //SoundEffect
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+
+            //Trigger CoinObject
+            other.gameObject.SetActive(false);
+
+            //SettingScore
+            ScoreController.GetInstance.SetScore(23);
+            CreateSlaveObject();
+        }
+        else if (value == SceneController.Tags.MushroomCoin)
+        {
+            //PlayerData
+            _playerData.isPickRotateCoin = true;
+            _playerData.playerSpeed = 0.5f;
+
+            _coinObject.SetActive(true);
+
+            //SoundEffect
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+
+            //Trigger CoinObject
+            other.gameObject.SetActive(false);
+
+            //SettingScore
+            ScoreController.GetInstance.SetScore(-23);
         }
     }
     void DestroyByWater(PlayerData _playerData)

@@ -9,7 +9,7 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
     {
         if (CurrentCamera != null)
         {
-            bulletSpawnTransform.transform.eulerAngles = new Vector3(CurrentCamera.transform.eulerAngles.x - 10f, 
+            bulletSpawnTransform.transform.eulerAngles = new Vector3(CurrentCamera.transform.eulerAngles.x - 13f, 
                                                                      bulletSpawnTransform.transform.eulerAngles.y, 
                                                                      bulletSpawnTransform.transform.eulerAngles.z);
 

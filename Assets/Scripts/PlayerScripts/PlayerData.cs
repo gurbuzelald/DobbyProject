@@ -35,7 +35,6 @@ public class PlayerData : ScriptableObject
     public bool isRunning;
     public bool isPicking;
     public bool isPickRotateCoin;
-    public bool isSword;
 
     [Header("CameraRotation Info")]
     public bool isLookingUp;
@@ -49,6 +48,8 @@ public class PlayerData : ScriptableObject
     [Header("Input")]
     public float jumpForce;
     public bool isFiring;
+    public bool isSword;
+    public bool isTime;
     public bool isJumping;
     public int jumpCount;
     public int clickTabCount;

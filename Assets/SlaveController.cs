@@ -6,6 +6,7 @@ public class SlaveController : AbstractSlaveController<SlaveController>
 {
     public Transform randomTarget;
     public SlaveData slaveData;
+    public PlayerData playerData;
     public int slaveTransformValue;
 
     private void Start()
@@ -33,27 +34,47 @@ public class SlaveController : AbstractSlaveController<SlaveController>
         }
         if (other.CompareTag(SceneController.Tags.Enemy.ToString())) 
         {
+            randomTarget.position = other.gameObject.transform.position;
             slaveData.isFiring = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag(SceneController.Tags.Enemy.ToString()))
+        {
+            randomTarget = PlayerManager.GetInstance._slaveTransforms[slaveTransformValue];
+            slaveData.isFiring = false;
         }
     }
     void Update()
     {
-        if (PlayerManager.GetInstance._zValue < 0 || PlayerManager.GetInstance._zValue > 0)
+        if (playerData.isWalking || playerData.isLockedWalking)
         {
-            gameObject.transform.Translate(0f, 0f, slaveData.slaveSpeed * Time.deltaTime);
-            gameObject.transform.LookAt(randomTarget.position);
-            slaveData.isFiring = false;
+            SlaveWalking();
+            StartCoroutine(DelayLookAt(gameObject, 1f));
         }
-        if (slaveData.isFiring)
+        else if (slaveData.isFiring)
         {
-            StartCoroutine(DelayFiring());
-        }
+            StartCoroutine(DelaySwording(gameObject, slaveData, 2f, 3f));
+        }   
 
     }
-    IEnumerator DelayFiring()
+    void SlaveWalking()
     {
-        yield return new WaitForSeconds(2f);
+        gameObject.transform.Translate(0f, 0f, slaveData.slaveSpeed * Time.deltaTime);
+        slaveData.isFiring = false;//If player is walking, slave can not able fire
+    }
+    IEnumerator DelaySwording(GameObject destroyObject,SlaveData slaveData ,float delaySwordFalse, float delayDestroying)
+    {
+        yield return new WaitForSeconds(delaySwordFalse);
         slaveData.isFiring = false;
+        yield return new WaitForSeconds(delayDestroying);
+        Destroy(destroyObject);
+    }
+    IEnumerator DelayLookAt(GameObject lookObject, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        lookObject.transform.LookAt(randomTarget.position);
     }
 
 }

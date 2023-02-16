@@ -7,9 +7,10 @@ public class TimeController : MonoBehaviour
 {
     private float _time;
     private float _swordTime;
+    public PlayerData playerData;
     [SerializeField] TextMeshProUGUI _timeText;
     [SerializeField] TextMeshProUGUI _warmTimeText;
-    //[SerializeField] TextMeshProUGUI _swordTimeText;
+    [SerializeField] TextMeshProUGUI _swordTimeText;
     void Start()
     {
         _warmTimeText.transform.localScale = Vector3.zero;
@@ -24,7 +25,7 @@ public class TimeController : MonoBehaviour
     void FixedUpdate()
     {
         GetTime(900);
-        
+        SwordTimer();
     }
     private void GetTime(int timeValue)
     {
@@ -45,13 +46,23 @@ public class TimeController : MonoBehaviour
     public void SwordTimer()
     {
         _swordTime += Time.deltaTime;
+
+        if (_swordTime <= 3)
+        {
+            _swordTimeText.text = _swordTime.ToString();
+        }
+        else
+        {
+            _swordTimeText.text = "";
+        }
         if (_swordTime == 3)
         {
-            //_swordTimeText.transform.localScale = Vector3.zero;
-        }
-        if (true)
-        {
+            playerData.isTime = true;
+            _swordTime = 0;
+            if (playerData.isSword)
+            {
 
+            }
         }
     }
 }
