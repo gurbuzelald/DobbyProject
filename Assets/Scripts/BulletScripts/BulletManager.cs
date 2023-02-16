@@ -23,12 +23,12 @@ public class BulletManager : AbstractBullet<BulletManager>
         _pistolObject = Instantiate(bulletData._pistolObject, 
                                     _bulletSpawnTransform.position, 
                                     Quaternion.identity, 
-                                    PlayerManager.GetInstance._gunTransform);//Bullet
+                                    PlayerManager.GetInstance._gunTransform);//Create Bullet
 
         _swordObject = Instantiate(bulletData._swordObject, 
                                    _bulletSpawnTransform.position, 
                                    Quaternion.identity, 
-                                   PlayerManager.GetInstance._swordTransform);//Bullet
+                                   PlayerManager.GetInstance._swordTransform);//Create Sword
 
         _swordObject.SetActive(false);
         _pistolObject.SetActive(false);
@@ -45,16 +45,17 @@ public class BulletManager : AbstractBullet<BulletManager>
     void FixedUpdate()
     {//Bullet Sound Opening With Fix Because Of This Method
 
+
         BulletRotation(_playerData.isLookingUp, 
                        PlayerManager.GetInstance._currentCamera.transform.GetComponent<CinemachineVirtualCamera>(), 
                        _bulletSpawnTransform);
 
-        if (_playerData.isFiring && !_playerData.isSword && bulletData.bulletDelayCounter == 0)
+        if (_playerData.isFiring && !_playerData.isSwording && bulletData.bulletDelayCounter == 0)
         {
             bulletData.bulletDelayCounter++;            
             StartCoroutine(Delay(bulletData.bulletDelay, 0));
         }
-        if (_playerData.isSword && !_playerData.isFiring && bulletData.bulletDelayCounter == 0 && _playerData.isSwordTime)
+        if (_playerData.isSwording && !_playerData.isFiring && bulletData.bulletDelayCounter == 0 && _playerData.isSwordTime)
         {
             bulletData.bulletDelayCounter++;
             StartCoroutine(Delay(bulletData.bulletDelay, 2));
@@ -63,7 +64,7 @@ public class BulletManager : AbstractBullet<BulletManager>
 
     IEnumerator Delay(float delayValue, int objectPoolCount)
     {
-        if (objectPoolCount == 2 && !_pistolObject.active)
+        if (objectPoolCount == 2)
         {
             yield return new WaitForSeconds(1);
             _swordObject.SetActive(true);
@@ -75,7 +76,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             yield return new WaitForSeconds(delayValue * 50f);
             _swordObject.SetActive(false);
         }
-        else if(!_swordObject.active)
+        else
         {
             _pistolObject.SetActive(true);
             yield return new WaitForSeconds(delayValue);

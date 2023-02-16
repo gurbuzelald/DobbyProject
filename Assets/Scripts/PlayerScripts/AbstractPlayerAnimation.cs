@@ -94,6 +94,17 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(6, 0);
         }
     }
+    public virtual void SlaveBackWalkAnimation(PlayerData playerData, Animator _animator)
+    {
+        if (playerData.isBackWalking && !playerData.isWalking && !playerData.isJumping && !playerData.isBackClimbing && !playerData.isLockedWalking)
+        {
+            _animator.SetLayerWeight(2, 1);
+            _animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(4, 0);
+            _animator.SetLayerWeight(5, 0);
+            _animator.SetLayerWeight(6, 0);
+        }
+    }
     public virtual void LeftWalkAnimation(PlayerData playerData, Animator _animator)
     {
         if (PlayerManager.GetInstance._xValue < -0.03f && PlayerManager.GetInstance._zValue > -0.05f && PlayerManager.GetInstance._zValue < 0.05f)
@@ -196,7 +207,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public virtual void FireAnimation(PlayerData playerData, Animator _animator)
     {
-        if (playerData.isFiring && !playerData.isSword && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
+        if (playerData.isFiring && !playerData.isSwording && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
         {
             _animator.SetBool("isFiring", true);
 
@@ -206,7 +217,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetBool("isClimbing", false);
             _animator.SetBool("isBackClimbing", false);
         }
-        else if (!playerData.isFiring && !playerData.isSword && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 && !playerData.isClimbing)
+        else if (!playerData.isFiring && !playerData.isSwording && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 && !playerData.isClimbing)
         {
             if (!playerData.isLockedWalking)
             {
@@ -226,7 +237,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public virtual void SwordAnimation(PlayerData playerData, Animator _animator)
     {
-        if (playerData.isSword && !playerData.isFiring && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
+        if (playerData.isSwording && !playerData.isFiring && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
         {
             _animator.SetBool("isSword", true);
 
@@ -237,7 +248,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetBool("isClimbing", false);
             _animator.SetBool("isBackClimbing", false);
         }
-        else if (!playerData.isSword && !playerData.isFiring && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 && !playerData.isClimbing)
+        else if (!playerData.isSwording && !playerData.isFiring && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 && !playerData.isClimbing)
         {
             if (!playerData.isLockedWalking)
             {

@@ -412,7 +412,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             if (_playerController.sword && _playerData.isSwordTime)
             {
                 //PlayerData
-                _playerData.isSword = true;
+                _playerData.isSwording = true;
 
                 //Crosshair
                 crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
@@ -422,7 +422,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
             else
             {
-                _playerData.isSword = false;
+                _playerData.isSwording = false;
             }
         }
         else

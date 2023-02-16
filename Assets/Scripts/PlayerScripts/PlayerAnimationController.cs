@@ -43,6 +43,7 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
             else
             {
                 SlaveWalkAnimation(playerData, _slaveAnimator);
+                SlaveBackWalkAnimation(playerData, _slaveAnimator);
             }
         }
         else

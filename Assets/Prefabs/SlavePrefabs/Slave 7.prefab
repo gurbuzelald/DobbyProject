@@ -65,7 +65,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!136 &7971067666596210352
 CapsuleCollider:
@@ -404,6 +404,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300002, guid: 1b4d655a5998c3446a4d46bebc199006, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2b27a09a3a8c6c349bcf84e3afe8e35c, type: 2}
     - target: {fileID: 9500000, guid: 1b4d655a5998c3446a4d46bebc199006, type: 3}
       propertyPath: m_Controller
       value: 

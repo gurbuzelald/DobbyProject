@@ -24,6 +24,15 @@ public class SlaveController : AbstractSlaveController<SlaveController>
     }
     private void OnTriggerEnter(Collider other)
     {
+        //Gameobject is going too down some times, this code solve that stuation.
+        if (playerData.isGround)
+        {
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x,
+                                                    PlayerManager.GetInstance.gameObject.transform.position.y,
+                                                    gameObject.transform.position.z);
+        }        
+
+
         if (other.CompareTag(SceneController.Tags.EnemyBullet.ToString()) || other.CompareTag(SceneController.Tags.Enemy.ToString()))
         {
            // Destroy(gameObject);
@@ -48,7 +57,7 @@ public class SlaveController : AbstractSlaveController<SlaveController>
     }
     void Update()
     {
-        if (playerData.isWalking || playerData.isLockedWalking)
+        if (playerData.isWalking ||playerData.isBackWalking || playerData.isLockedWalking)
         {
             SlaveWalking();
             StartCoroutine(DelayLookAt(gameObject, 1f));
