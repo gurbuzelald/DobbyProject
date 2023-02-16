@@ -54,7 +54,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             bulletData.bulletDelayCounter++;            
             StartCoroutine(Delay(bulletData.bulletDelay, 0));
         }
-        if (_playerData.isSword && !_playerData.isFiring && bulletData.bulletDelayCounter == 0 && _playerData.isTime)
+        if (_playerData.isSword && !_playerData.isFiring && bulletData.bulletDelayCounter == 0 && _playerData.isSwordTime)
         {
             bulletData.bulletDelayCounter++;
             StartCoroutine(Delay(bulletData.bulletDelay, 2));

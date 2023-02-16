@@ -45,24 +45,31 @@ public class TimeController : MonoBehaviour
     }
     public void SwordTimer()
     {
-        _swordTime += Time.deltaTime;
+        bool isActiveTime =  true;
+        
+        
 
-        if (_swordTime <= 3)
+        if (_swordTime <= 4)
         {
-            _swordTimeText.text = _swordTime.ToString();
+            _swordTimeText.text = ((int)_swordTime).ToString();
         }
         else
         {
             _swordTimeText.text = "";
         }
-        if (_swordTime == 3)
+        playerData.isSwordTime = false;
+        if (_swordTimeText.text == "")
         {
-            playerData.isTime = true;
-            _swordTime = 0;
-            if (playerData.isSword)
+            isActiveTime = true;
+            playerData.isSwordTime = true;
+            if (playerData.isSword && playerData.isPlayable)
             {
-
+                _swordTime = 0;
             }
+        }
+        if (isActiveTime)
+        {
+            _swordTime += Time.deltaTime;
         }
     }
 }

@@ -409,7 +409,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (_playerData.isPlayable)
         {
-            if (_playerController.sword)
+            if (_playerController.sword && _playerData.isSwordTime)
             {
                 //PlayerData
                 _playerData.isSword = true;

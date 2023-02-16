@@ -49,7 +49,7 @@ public class PlayerData : ScriptableObject
     public float jumpForce;
     public bool isFiring;
     public bool isSword;
-    public bool isTime;
+    public bool isSwordTime;
     public bool isJumping;
     public int jumpCount;
     public int clickTabCount;
