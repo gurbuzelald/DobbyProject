@@ -98,6 +98,15 @@ public class SceneController : AbstractSceneController<SceneController>
         }
         SceneManager.LoadScene(Scenes.Win.ToString());
     }
+    public void LoadCharacterChoosingScene()
+    {
+        if (PlayerManager.GetInstance.gameObject != null)
+        {
+            Destroy(AudioManager.GetInstance.gameObject);
+            Destroy(PlayerManager.GetInstance.gameObject);
+        }
+        SceneManager.LoadScene(Scenes.CharacterChoose.ToString());
+    }
     public void LoadEndScene()
     {
         if (PlayerManager.GetInstance.gameObject != null)
@@ -188,6 +197,6 @@ public class SceneController : AbstractSceneController<SceneController>
     }
     public enum Scenes
     {
-        Menu, End, Win, Level1
+        Menu, End, Win, Level1, CharacterChoose
     }
 }

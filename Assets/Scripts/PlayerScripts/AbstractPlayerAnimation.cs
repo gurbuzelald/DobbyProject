@@ -10,24 +10,24 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         {
             if (!playerData.isLockedWalking)
             {
-                _animator.SetBool("isIdling", true);
+                _animator.SetBool(AnimatorParameters.isIdling.ToString(), true);
 
-                _animator.SetBool("isWalking", false);
-                _animator.SetBool("isBackWalking", false);
-                _animator.SetBool("isClimbing", false);
+                _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
 
                 _animator.SetLayerWeight(0, 1);
                 _animator.SetLayerWeight(1, 0);
                 _animator.SetLayerWeight(2, 0);
             }            
         }
-        if (!playerData.isBackWalking && !playerData.isWalking && !playerData.isClimbing && !playerData.isJumping)
+        if (!playerData.isBackWalking && !playerData.isWalking && !playerData.isClimbing && !playerData.isJumping && !playerData.isLockedWalking)
         {
-            _animator.SetBool("isIdling", true);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), true);
 
-            _animator.SetBool("isBackWalking", false);
-            _animator.SetBool("isWalking", false);
-            _animator.SetBool("isClimbing", false);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
 
             _animator.SetLayerWeight(1, 0);
             _animator.SetLayerWeight(2, 0);
@@ -37,23 +37,22 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         if ((playerData.isLockedWalking) || (playerData.isWalking && !playerData.isBackWalking && !playerData.isJumping && !playerData.isClimbing))
         {
-            _animator.SetBool("isWalking", true);
-            _animator.SetBool("isBackWalking", false);
-            _animator.SetBool("isIdling", false);
-            _animator.SetBool("isClimbing", false);
-            if (playerData.isLockedWalking)
-            {
-                _animator.SetLayerWeight(1, 1);
-                _animator.SetBool("isSword", false);
-                _animator.SetBool("isFiring", false);
-            }
-            //Debug.Log(_animator.GetLayerWeight(1));
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), true);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isSword.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
+
+
             _animator.SetLayerWeight(0, 0);
             _animator.SetLayerWeight(1, 1);
             _animator.SetLayerWeight(2, 0);
             _animator.SetLayerWeight(3, 0);
             _animator.SetLayerWeight(5, 0);
             _animator.SetLayerWeight(6, 0);
+
+            //Debug.Log(_animator.GetLayerIndex("Walking"));
         }
         BackWalkAnimation(playerData, _animator);
         IdleAnimation(playerData, _animator);
@@ -81,11 +80,11 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         if (playerData.isBackWalking && !playerData.isWalking && !playerData.isJumping && !playerData.isBackClimbing && !playerData.isLockedWalking)
         {
-            _animator.SetBool("isBackWalking", true);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), true);
 
-            _animator.SetBool("isWalking", false);
-            _animator.SetBool("isIdling", false);
-            _animator.SetBool("isClimbing", false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
 
             _animator.SetLayerWeight(2, 1);
             _animator.SetLayerWeight(1, 0);
@@ -109,13 +108,13 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         if (PlayerManager.GetInstance._xValue < -0.03f && PlayerManager.GetInstance._zValue > -0.05f && PlayerManager.GetInstance._zValue < 0.05f)
         {
-            _animator.SetBool("isLeftWalk", true);
+            _animator.SetBool(AnimatorParameters.isLeftWalk.ToString(), true);
 
-            _animator.SetBool("isIdling", false);
-            _animator.SetBool("isBackWalking", false);
-            _animator.SetBool("isWalking", false);
-            _animator.SetBool("isClimbing", false);
-            _animator.SetBool("isRightWalk", false);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isRightWalk.ToString(), false);
 
             _animator.SetLayerWeight(5, 1);
             _animator.SetLayerWeight(6, 0);
@@ -123,7 +122,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         }
         else if (PlayerManager.GetInstance._xValue == 0 && !playerData.isJumping)
         {
-            if (playerData.isLockedWalking)
+            if (!playerData.isLockedWalking)
             {
                 _animator.SetLayerWeight(5, 0);
                 _animator.SetLayerWeight(6, 0);
@@ -135,13 +134,13 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         if (PlayerManager.GetInstance._xValue > 0.03f && PlayerManager.GetInstance._zValue < 0.05f && PlayerManager.GetInstance._zValue > -0.05f)
         {
-            _animator.SetBool("isRightWalk", true);
+            _animator.SetBool(AnimatorParameters.isRightWalk.ToString(), true);
 
-            _animator.SetBool("isLeftWalk", false);
-            _animator.SetBool("isIdling", false);
-            _animator.SetBool("isBackWalking", false);
-            _animator.SetBool("isWalking", false);
-            _animator.SetBool("isClimbing", false);
+            _animator.SetBool(AnimatorParameters.isLeftWalk.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
 
             _animator.SetLayerWeight(6, 1);
             _animator.SetLayerWeight(5, 0);
@@ -162,11 +161,11 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         if (playerData.isClimbing && !playerData.isBackClimbing && PlayerManager.GetInstance._zValue > 0)
         {
-            _animator.SetBool("isIdling", false);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
 
-            _animator.SetBool("isBackWalking", false);
-            _animator.SetBool("isWalking", false);
-            _animator.SetBool("isClimbing", true);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), true);
 
             _animator.SetLayerWeight(1, 0);
             _animator.SetLayerWeight(2, 0);
@@ -174,12 +173,12 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         }
         if (!playerData.isClimbing && playerData.isBackClimbing && PlayerManager.GetInstance._zValue < 0)
         {
-            _animator.SetBool("isIdling", false);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
 
-            _animator.SetBool("isBackWalking", false);
-            _animator.SetBool("isWalking", false);
-            _animator.SetBool("isClimbing", false);
-            _animator.SetBool("isBackClimbing", true);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), true);
 
             _animator.SetLayerWeight(1, 0);
             _animator.SetLayerWeight(2, 0);
@@ -190,12 +189,12 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         {
             if (!playerData.isLockedWalking)
             {
-                _animator.SetBool("isIdling", true);
+                _animator.SetBool(AnimatorParameters.isIdling.ToString(), true);
 
-                _animator.SetBool("isBackWalking", false);
-                _animator.SetBool("isWalking", false);
-                _animator.SetBool("isClimbing", false);
-                _animator.SetBool("isBackClimbing", false);
+                _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
 
                 _animator.SetLayerWeight(0, 1);
                 _animator.SetLayerWeight(1, 0);
@@ -209,25 +208,25 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         if (playerData.isFiring && !playerData.isSwording && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
         {
-            _animator.SetBool("isFiring", true);
+            _animator.SetBool(AnimatorParameters.isFiring.ToString(), true);
 
-            _animator.SetBool("isIdling", false);
-            _animator.SetBool("isBackWalking", false);
-            _animator.SetBool("isWalking", false);
-            _animator.SetBool("isClimbing", false);
-            _animator.SetBool("isBackClimbing", false);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
         }
         else if (!playerData.isFiring && !playerData.isSwording && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 && !playerData.isClimbing)
         {
             if (!playerData.isLockedWalking)
             {
-                _animator.SetBool("isIdling", true);
+                _animator.SetBool(AnimatorParameters.isIdling.ToString(), true);
 
-                _animator.SetBool("isFiring", false);
-                _animator.SetBool("isBackWalking", false);
-                _animator.SetBool("isWalking", false);
-                _animator.SetBool("isClimbing", false);
-                _animator.SetBool("isBackClimbing", false);
+                _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
             }            
         }
     }
@@ -239,27 +238,27 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         if (playerData.isSwording && !playerData.isFiring && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
         {
-            _animator.SetBool("isSword", true);
+            _animator.SetBool(AnimatorParameters.isSword.ToString(), true);
 
-            _animator.SetBool("isFiring", false);
-            _animator.SetBool("isIdling", false);
-            _animator.SetBool("isBackWalking", false);
-            _animator.SetBool("isWalking", false);
-            _animator.SetBool("isClimbing", false);
-            _animator.SetBool("isBackClimbing", false);
+            _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
         }
         else if (!playerData.isSwording && !playerData.isFiring && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 && !playerData.isClimbing)
         {
             if (!playerData.isLockedWalking)
             {
-                _animator.SetBool("isIdling", true);
+                _animator.SetBool(AnimatorParameters.isIdling.ToString(), true);
 
-                _animator.SetBool("isFiring", false);
-                _animator.SetBool("isSword", false);
-                _animator.SetBool("isBackWalking", false);
-                _animator.SetBool("isWalking", false);
-                _animator.SetBool("isClimbing", false);
-                _animator.SetBool("isBackClimbing", false);
+                _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isSword.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+                _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
             }
         }
     }
@@ -269,47 +268,47 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         {
             _animator.SetLayerWeight(1, 1);
 
-            _animator.SetBool("isWalking", true);
-            _animator.SetBool("isJumping", true);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), true);
+            _animator.SetBool(AnimatorParameters.isJumping.ToString(), true);
         }
         if (playerData.isJumping && PlayerManager.GetInstance._zValue == 0)
         {
-            _animator.SetBool("isJumping", true);
+            _animator.SetBool(AnimatorParameters.isJumping.ToString(), true);
 
-            _animator.SetBool("isIdling", false);
-            _animator.SetBool("isFiring", false);
-            _animator.SetBool("isBackWalking", false);
-            _animator.SetBool("isWalking", false);
-            _animator.SetBool("isClimbing", false);
-            _animator.SetBool("isBackClimbing", false);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
         }
         else if (playerData.isJumping && PlayerManager.GetInstance._zValue > 0 && !playerData.isSkateBoarding)
         {
             _animator.SetLayerWeight(1, 1);
 
-            _animator.SetBool("isJumping", true);
-            _animator.SetBool("isIdling", false);
-            _animator.SetBool("isFiring", false);
-            _animator.SetBool("isBackWalking", false);
-            _animator.SetBool("isClimbing", false);
-            _animator.SetBool("isBackClimbing", false);
+            _animator.SetBool(AnimatorParameters.isJumping.ToString(), true);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
         }
         else if (!playerData.isJumping && PlayerManager.GetInstance._zValue > 0)
         {
             _animator.SetLayerWeight(1, 1);
 
-            _animator.SetBool("isWalking", true);
-            _animator.SetBool("isJumping", false);
-            _animator.SetBool("isIdling", false);
-            _animator.SetBool("isFiring", false);
-            _animator.SetBool("isBackWalking", false);
-            _animator.SetBool("isClimbing", false);
-            _animator.SetBool("isBackClimbing", false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), true);
+            _animator.SetBool(AnimatorParameters.isJumping.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
         }
         else if (!playerData.isJumping && !playerData.isWalking && PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0)
         {
-            _animator.SetBool("isJumping", false);
-            _animator.SetBool("isWalking", false);
+            _animator.SetBool(AnimatorParameters.isJumping.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
 
             _animator.SetLayerWeight(1, 0);
         }
@@ -318,7 +317,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         if (playerData.isDying)
         {
-            _animator.SetBool("isDying", true);
+            _animator.SetBool(AnimatorParameters.isDying.ToString(), true);
             _animator.SetLayerWeight(7, 1);
             _animator.SetLayerWeight(0, 0);
         }
@@ -327,7 +326,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         if (playerData.isWinning)
         {
-            _animator.SetBool("isWinning", true);
+            _animator.SetBool(AnimatorParameters.isWinning.ToString(), true);
             _animator.SetLayerWeight(8, 1);
             _animator.SetLayerWeight(0, 0);
             //StartCoroutine(DelayAnimation(playerData, _animator, 3f, 8, 0));
@@ -338,7 +337,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         if (playerData.isSkateBoarding && PlayerManager.GetInstance._zValue > 0 && !playerData.isJumping && !playerData.isRunning)
         {
             _animator.SetLayerWeight(9, 1);
-            _animator.SetBool("isSkating", true);
+            _animator.SetBool(AnimatorParameters.isSkating.ToString(), true);
         }
         else if (playerData.isSkateBoarding && PlayerManager.GetInstance._zValue == 0)
         {
@@ -347,7 +346,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         else if (!playerData.isSkateBoarding && playerData.isJumping)
         {
             _animator.SetLayerWeight(9, 1);
-            _animator.SetBool("isJumping", true);
+            _animator.SetBool(AnimatorParameters.isJumping.ToString(), true);
         }
         else
         {
@@ -358,7 +357,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         playerData.clickTabCount = 0;
         playerData.isSkateBoarding = false;
-        _animator.SetBool("isSkating", false);
+        _animator.SetBool(AnimatorParameters.isSkating.ToString(), false);
         _animator.SetLayerWeight(9, 0);
     }
     public virtual void RunAnimation(PlayerData playerData, Animator _animator)
@@ -366,7 +365,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         if (playerData.isRunning && PlayerManager.GetInstance._zValue > 0 && !playerData.isJumping)
         {
             _animator.SetLayerWeight(12, 1);
-            _animator.SetBool("isRunning", true);
+            _animator.SetBool(AnimatorParameters.isRunning.ToString(), true);
         }
         else if (playerData.isRunning && PlayerManager.GetInstance._zValue == 0)
         {
@@ -375,7 +374,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         else if (!playerData.isRunning && playerData.isJumping)
         {
             _animator.SetLayerWeight(12, 1);
-            _animator.SetBool("isJumping", true);
+            _animator.SetBool(AnimatorParameters.isJumping.ToString(), true);
         }
         else
         {
@@ -386,7 +385,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         playerData.clickShiftCount = 0;
         playerData.isRunning = false;
-        _animator.SetBool("isRunning", false);
+        _animator.SetBool(AnimatorParameters.isRunning.ToString(), false);
         _animator.SetLayerWeight(12, 0);
     }
 
@@ -395,7 +394,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         if (playerData.isPicking)
         {
             _animator.SetLayerWeight(10, 1);
-            _animator.SetBool("isPickup", true);
+            _animator.SetBool(AnimatorParameters.isPickup.ToString(), true);
             StartCoroutine(DelayAnimation(playerData, _animator, 0.5f, 10, 0));
         }
     }
@@ -404,7 +403,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         if (playerData.isPickRotateCoin)
         {
             _animator.SetLayerWeight(11, 1);
-            _animator.SetBool("isPickRotateCoin", true);
+            _animator.SetBool(AnimatorParameters.isPickRotateCoin.ToString(), true);
             StartCoroutine(DelayAnimation(playerData, _animator, 0.5f, 11, 0));
         }
     }
@@ -412,12 +411,33 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         yield return new WaitForSeconds(delayValue);
         playerData.playerSpeed = 2f;
-        _animator.SetBool("isPickup", false);
-        _animator.SetBool("isPickRotateCoin", false);
+        _animator.SetBool(AnimatorParameters.isPickup.ToString(), false);
+        _animator.SetBool(AnimatorParameters.isPickRotateCoin.ToString(), false);
         _animator.SetLayerWeight(layerOrder, weightAmount);
         playerData.isPicking = false;
         playerData.isPickRotateCoin = false;
         PlayerManager.GetInstance._coinObject.SetActive(false);
         PlayerManager.GetInstance._cheeseObject.SetActive(false);
+    }
+    public enum AnimatorParameters
+    {
+        isIdling,
+        isWalking,
+        isBackWalking,
+        isLeftWalk,
+        isRightWalk,
+        isClimbing,
+        isBackClimbing,
+        isLeftWalking,
+        isRightWalking,
+        isFiring,
+        isJumping,
+        isDying,
+        isWinning,
+        isSkating,
+        isPickup,
+        isPickRotateCoin,
+        isRunning,
+        isSword
     }
 }

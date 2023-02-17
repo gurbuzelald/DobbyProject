@@ -25,7 +25,7 @@ public class TimeController : MonoBehaviour
     void FixedUpdate()
     {
         GetTime(900);
-        SwordTimer();
+        SwordTimer(playerData, _swordTimeText);
     }
     private void GetTime(int timeValue)
     {
@@ -43,7 +43,7 @@ public class TimeController : MonoBehaviour
             _warmTimeText.transform.localScale = Vector3.one;
         }
     }
-    public void SwordTimer()
+    public void SwordTimer(PlayerData playerData, TextMeshProUGUI _swordTimeText)
     {
         if (_swordTime <= 4)
         {
@@ -54,7 +54,11 @@ public class TimeController : MonoBehaviour
             _swordTimeText.text = SwordTexts.Active.ToString();
         }
         playerData.isSwordTime = false;
-        if (_swordTimeText.text == SwordTexts.Active.ToString())
+        if (_swordTimeText.text == SwordTexts.Active.ToString() && 
+            !playerData.isWalking && !playerData.isBackWalking && 
+            !playerData.isClimbing && !playerData.isBackClimbing && 
+            !playerData.isJumping && !playerData.isRunning && 
+            !playerData.isSkateBoarding && PlayerManager.GetInstance._xValue == 0)
         {
             playerData.isSwordTime = true;
             if (playerData.isSwording && playerData.isPlayable)

@@ -74,11 +74,12 @@ public class BulletManager : AbstractBullet<BulletManager>
             CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 1f);
             bulletData.bulletDelayCounter = 0;
             yield return new WaitForSeconds(delayValue * 50f);
-            _swordObject.SetActive(false);
+            //_swordObject.SetActive(false);
         }
         else
         {
             _pistolObject.SetActive(true);
+            _swordObject.SetActive(false);
             yield return new WaitForSeconds(delayValue);
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
             _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._currentCamera.transform.position.x, _bulletSpawnTransform.transform.position.y, _bulletSpawnTransform.transform.position.z);
@@ -86,6 +87,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             bulletData.bulletDelayCounter = 0;
             yield return new WaitForSeconds(delayValue * 50f);
             _pistolObject.SetActive(false);
+            _swordObject.SetActive(true);
         }
         
     }

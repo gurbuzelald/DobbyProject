@@ -59,9 +59,16 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public Transform _gunTransform;
     public Transform _swordTransform;
 
+    [Header("Choose Character Objects")]
+    [SerializeField] GameObject _spartacusObject;
+    [SerializeField] GameObject _glassyObject;
+    [SerializeField] GameObject _dobbyObject;
+
+
     public delegate void Move();    
     void Start()
     {
+        ChooseCharacterStates();
         DataStatesOnInitial(_playerData);
 
         CreateStartPlayerStaff(_playerData);
@@ -83,7 +90,31 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //Scripts
         _playerController = FindObjectOfType<PlayerController>();
     }
-
+    void ChooseCharacterStates()
+    {
+        if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
+        {
+            _dobbyObject.SetActive(true);
+            _glassyObject.SetActive(false);
+            _spartacusObject.SetActive(false);
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
+        {
+            _dobbyObject.SetActive(false);
+            _glassyObject.SetActive(true);
+            _spartacusObject.SetActive(false);
+        }
+        else if(_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
+        {
+            _dobbyObject.SetActive(false);
+            _glassyObject.SetActive(false);
+            _spartacusObject.SetActive(true);
+        }
+        else
+        {
+            _dobbyObject.SetActive(true);
+        }
+    }
    
     // Update is called once per frame
     void Update()
@@ -281,7 +312,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {//ForwardAndBackWalking
         if (!_playerData.isLockedWalking)
         {
-            if (_zValue > 0.01f && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isRunning)
+            if ((_zValue > 0.01f && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isRunning) || _playerData.isLockedWalking)
             {
                 GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
                 //PlayerData
@@ -926,5 +957,4 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         Destroy(gameObject);
         SceneController.GetInstance.LoadEndScene();
     }
-    
 }

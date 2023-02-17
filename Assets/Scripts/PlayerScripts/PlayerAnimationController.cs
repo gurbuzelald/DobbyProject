@@ -30,15 +30,14 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
     void Update()
     {       
         AnimationStates();
-
     }
     public void AnimationStates()
     {
         if (gameObject.transform.CompareTag(SceneController.Tags.Slave.ToString()) && slaveData != null)
         {
-            if (slaveData.isFiring == true)
+            if (slaveData.isSwording == true)
             {
-                SlaveFireAnimation(_slaveAnimator);
+                SlaveSwordingAnimation(_slaveAnimator);
             }
             else
             {
@@ -52,7 +51,6 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
             IdleAnimation(playerData, _animator);
             JumpAnimation(playerData, _animator);
             WalkAnimation(playerData, _animator);
-
             ClimbAnimation(playerData, _animator);
             FireAnimation(playerData, _animator);
             SwordAnimation(playerData, _animator);
@@ -64,7 +62,7 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
         }
         
     }
-    public void SlaveFireAnimation(Animator _slaveAnimator)
+    public void SlaveSwordingAnimation(Animator _slaveAnimator)
     {
         base.SlaveFireAnimation(_slaveAnimator);
     }

@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("ChooseCharacter")]
+    public CharacterNames currentCharacterName;
+
     [Header("Prefab Game Objects For Player")]
     public GameObject[] objects;
     public GameObject[] slaveObjects;
@@ -106,4 +109,12 @@ public class PlayerData : ScriptableObject
     public Transform thirdTarget;
     public Transform finishTarget;
     public Transform currentTarget;
+
+
+    public enum CharacterNames
+    {
+        Glassy,
+        Dobby,
+        Spartacus
+    }
 }
