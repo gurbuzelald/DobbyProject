@@ -22,7 +22,6 @@ public class SceneController : AbstractSceneController<SceneController>
     [SerializeField] TextMeshProUGUI mouseOrTouchText;
     [SerializeField] TextMeshProUGUI lockedWalking;
     [SerializeField] GameObject _lookStick;
-
     void Start()
     {
         if (mouseOrTouchText != null && lockedWalking != null && _playerData != null)

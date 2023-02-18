@@ -4,6 +4,24 @@ using UnityEngine;
 
 public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoBehaviour
 {
+
+    private static T _instance;
+
+    public static T GetInstance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<T>();
+                GameObject objectOfGame = new GameObject();
+                objectOfGame.name = typeof(T).Name;
+                _instance = objectOfGame.AddComponent<T>();
+            }
+            return _instance;
+        }
+
+    }
     public virtual void IdleAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isIdling && PlayerManager.GetInstance._xValue == 0 && PlayerManager.GetInstance._zValue == 0 && !playerData.isJumping && !playerData.isDying)

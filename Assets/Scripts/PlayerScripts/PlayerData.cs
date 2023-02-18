@@ -115,6 +115,8 @@ public class PlayerData : ScriptableObject
     {
         Glassy,
         Dobby,
-        Spartacus
+        Spartacus,
+        Lusth,
+        Guard
     }
 }

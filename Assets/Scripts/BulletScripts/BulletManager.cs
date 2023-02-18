@@ -22,12 +22,12 @@ public class BulletManager : AbstractBullet<BulletManager>
     {
         _pistolObject = Instantiate(bulletData._pistolObject, 
                                     _bulletSpawnTransform.position, 
-                                    Quaternion.identity, 
+                                    Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform);//Create Bullet
 
         _swordObject = Instantiate(bulletData._swordObject, 
                                    _bulletSpawnTransform.position, 
-                                   Quaternion.identity, 
+                                   Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform);//Create Sword
 
         _swordObject.SetActive(false);
@@ -87,6 +87,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             bulletData.bulletDelayCounter = 0;
             yield return new WaitForSeconds(delayValue * 50f);
             _pistolObject.SetActive(false);
+            yield return new WaitForSeconds(3f);
             _swordObject.SetActive(true);
         }
         

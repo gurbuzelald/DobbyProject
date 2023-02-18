@@ -20,7 +20,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public Transform _finishArea;
     public Transform _particleTransform;
     public Transform _currentCameraTransform;
-    public Transform _miniMapTransform;
     [SerializeField] Transform _jolleenTransform;
     [SerializeField] Transform playerIconTransform;
     [SerializeField] Transform healthBarTransform;
@@ -28,7 +27,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [SerializeField] Transform _bulletsTransform;    
     [SerializeField] Transform _cameraWasherTransform;    
 
-    public Transform[] _slaveTransforms;     
+    public Transform[] _slaveTransforms;
+    [HideInInspector]
     public Transform slaves;
 
     [Header("CinemachineVirtualCamera")]    
@@ -43,11 +43,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public float _xValue;
     public float _zValue;
     private float _touchX;
-    private float _touchY;
-
-    [Header("Coin In The Right Hand")]
-    public GameObject _coinObject;
-    public GameObject _cheeseObject;
+    private float _touchY;        
 
     [Header("Initial Situations")]
     private float _initPlayerSpeed;
@@ -56,19 +52,39 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     [SerializeField] GameObject _warmArrow;
 
-    public Transform _gunTransform;
-    public Transform _swordTransform;
 
     [Header("Choose Character Objects")]
     [SerializeField] GameObject _spartacusObject;
     [SerializeField] GameObject _glassyObject;
     [SerializeField] GameObject _dobbyObject;
+    [SerializeField] GameObject _lusthObject;
+    [SerializeField] GameObject _guardObject;
+
+    [HideInInspector]
+    public Transform _gunTransform;
+    [HideInInspector]
+    public Transform _swordTransform;
+    [HideInInspector]
+    public GameObject _coinObject;
+    [HideInInspector]
+    public GameObject _cheeseObject;
+
+    [Header("Character Hands")]
+    [SerializeField] GameObject _pinkyGlassy;
+    [SerializeField] GameObject _pinkySpartacus;
+    [SerializeField] GameObject _pinkyDobby;
+    [SerializeField] GameObject _pinkyLusth;
+    [SerializeField] GameObject _pinkyGuard;
+    private GameObject _characterObject;
+
 
 
     public delegate void Move();    
     void Start()
     {
+        CharacterStateControl();
         ChooseCharacterStates();
+
         DataStatesOnInitial(_playerData);
 
         CreateStartPlayerStaff(_playerData);
@@ -83,39 +99,133 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //Audio
         audioSource = GetComponent<AudioSource>();
 
-        //GameObjects
-        _coinObject.SetActive(false);
-        _cheeseObject.SetActive(false);
+        
 
         //Scripts
         _playerController = FindObjectOfType<PlayerController>();
     }
-    void ChooseCharacterStates()
+    public void CharacterStateControl()
     {
         if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
         {
-            _dobbyObject.SetActive(true);
-            _glassyObject.SetActive(false);
-            _spartacusObject.SetActive(false);
+            _characterObject = _dobbyObject;
+            _characterObject.SetActive(true);
         }
         else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
         {
-            _dobbyObject.SetActive(false);
-            _glassyObject.SetActive(true);
-            _spartacusObject.SetActive(false);
+            _characterObject = _glassyObject;
+            _characterObject.SetActive(true);
         }
-        else if(_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
         {
-            _dobbyObject.SetActive(false);
-            _glassyObject.SetActive(false);
-            _spartacusObject.SetActive(true);
+            _characterObject = _spartacusObject;
+            _characterObject.SetActive(true);
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
+        {
+            _characterObject = _lusthObject;
+            _characterObject.SetActive(true);
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
+        {
+            _characterObject = _guardObject;
+            _characterObject.SetActive(true);
         }
         else
         {
-            _dobbyObject.SetActive(true);
+            _characterObject = _dobbyObject;
+            _characterObject.SetActive(true);
         }
     }
-   
+    public void ChooseCharacterStates()
+    {
+        if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
+        {
+            //characterObject.SetActive(true);
+            //_glassyObject.SetActive(false);
+            //_spartacusObject.SetActive(false);
+
+            //GameObjects
+            _coinObject = _pinkyDobby.transform.GetChild(0).gameObject;
+            _gunTransform = _pinkyDobby.transform.GetChild(1);
+            _swordTransform = _pinkyDobby.transform.GetChild(2);
+            _cheeseObject = _pinkyDobby.transform.GetChild(3).gameObject;
+            _coinObject.SetActive(false);
+            _cheeseObject.SetActive(false);
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
+        {
+            //_dobbyObject.SetActive(false);
+            //characterObject.SetActive(true);
+            //_spartacusObject.SetActive(false);
+
+            //GameObjects
+            _coinObject = _pinkyGlassy.transform.GetChild(0).gameObject;
+            _gunTransform = _pinkyGlassy.transform.GetChild(1);
+            _swordTransform = _pinkyGlassy.transform.GetChild(2);
+            _cheeseObject = _pinkyGlassy.transform.GetChild(3).gameObject;
+            _coinObject.SetActive(false);
+            _cheeseObject.SetActive(false);
+
+
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
+        {
+            //_dobbyObject.SetActive(false);
+            //_glassyObject.SetActive(false);
+            //characterObject.SetActive(true);
+
+            //GameObjects
+            _coinObject = _pinkySpartacus.transform.GetChild(0).gameObject;
+            _gunTransform = _pinkySpartacus.transform.GetChild(1);
+            _swordTransform = _pinkySpartacus.transform.GetChild(2);
+            _cheeseObject = _pinkySpartacus.transform.GetChild(3).gameObject;
+            _coinObject.SetActive(false);
+            _cheeseObject.SetActive(false);
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
+        {
+            //_dobbyObject.SetActive(false);
+            //_glassyObject.SetActive(false);
+            //characterObject.SetActive(true);
+
+            //GameObjects
+            _coinObject = _pinkyGuard.transform.GetChild(0).gameObject;
+            _gunTransform = _pinkyGuard.transform.GetChild(1);
+            _swordTransform = _pinkyGuard.transform.GetChild(2);
+            _cheeseObject = _pinkyGuard.transform.GetChild(3).gameObject;
+            _coinObject.SetActive(false);
+            _cheeseObject.SetActive(false);
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
+        {
+            //_dobbyObject.SetActive(false);
+            //_glassyObject.SetActive(false);
+            //characterObject.SetActive(true);
+
+            //GameObjects
+            _coinObject = _pinkyLusth.transform.GetChild(0).gameObject;
+            _gunTransform = _pinkyLusth.transform.GetChild(1);
+            _swordTransform = _pinkyLusth.transform.GetChild(2);
+            _cheeseObject = _pinkyLusth.transform.GetChild(3).gameObject;
+            _coinObject.SetActive(false);
+            _cheeseObject.SetActive(false);
+        }
+        else
+        {
+            //characterObject.SetActive(true);
+
+            //GameObjects
+            _coinObject = _pinkyDobby.transform.GetChild(0).gameObject;
+            _gunTransform = _pinkyDobby.transform.GetChild(1);
+            _swordTransform = _pinkyDobby.transform.GetChild(2);
+            _cheeseObject = _pinkyDobby.transform.GetChild(3).gameObject;
+            _coinObject.SetActive(false);
+            _cheeseObject.SetActive(false);
+        }
+    }
+
+
     // Update is called once per frame
     void Update()
     {
@@ -125,14 +235,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             {
                 StartCoroutine(DelayWarmArrowDirection());
             }
-            _miniMapTransform.position = new Vector3(_currentCameraTransform.transform.position.x, 
-                                                     _miniMapTransform.position.y, 
-                                                     _currentCameraTransform.transform.position.z);
+
         }
         if (gameObject != null)
         {
             Movement(_playerData);//PlayerStatements
         }
+        
     }
     private void OnCollisionEnter(Collision collision)
     {        

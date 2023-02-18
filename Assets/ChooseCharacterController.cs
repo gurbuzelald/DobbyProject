@@ -29,6 +29,16 @@ public class ChooseCharacterController : MonoBehaviour
         playerData.currentCharacterName = PlayerData.CharacterNames.Glassy;
         SceneController.GetInstance.LoadMenuScene();
     }
+    public void ChoosedLusth()
+    {
+        playerData.currentCharacterName = PlayerData.CharacterNames.Lusth;
+        SceneController.GetInstance.LoadMenuScene();
+    }
+    public void ChoosedGuard()
+    {
+        playerData.currentCharacterName = PlayerData.CharacterNames.Guard;
+        SceneController.GetInstance.LoadMenuScene();
+    }
     public void GoLeft(int value)
     {
         for (int i = 0; i < _objects.Length; i++)

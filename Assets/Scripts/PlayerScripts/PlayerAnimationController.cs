@@ -25,8 +25,8 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
         {
             _animator.SetLayerWeight(8, 0);
         }
-        //_playerController = FindObjectOfType<PlayerController>();
     }
+    
     void Update()
     {       
         AnimationStates();
