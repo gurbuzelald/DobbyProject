@@ -1482,7 +1482,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBullet: {fileID: 6937427610016114697}
-  _targetTransform: {fileID: 0}
   _healthBar: {fileID: 3633119490486451533}
   enemyData: {fileID: 11400000, guid: 155f026fb07d8404fa5132fe5eb6679d, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
@@ -1490,6 +1489,8 @@ MonoBehaviour:
   middleParticle: {fileID: 2476103728051396203}
   topParticle: {fileID: 879876880432511034}
   _enemyIcon: {fileID: 5030145031045287170}
+  _bulletCoin: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
+  bulletCoinTransform: {fileID: 5086157593347472604, guid: 2a1af19d40076b84ea058c6b157f1651, type: 3}
 --- !u!54 &3633119488693144974
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6701,7 +6702,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60d5b47d7aaf24449d132e00a7c1ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectPool: {fileID: 4371192747629300294, guid: 8c41a3ade5a4f16468dd22b6887e2acf, type: 3}
   layerMask:
     serializedVersion: 2
     m_Bits: 26432

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  currentCharacterName: 0
   objects:
   - {fileID: 6582287944818323382, guid: 5d67c0fa01c514a469d241126046c4cb, type: 3}
   - {fileID: 4529110289692566654, guid: ece28a22070f44540a834a2a3abbfcfb, type: 3}
@@ -49,16 +50,18 @@ MonoBehaviour:
   isRunning: 0
   isPicking: 0
   isPickRotateCoin: 0
-  isSword: 0
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 1
   jumpForce: 3
   isFiring: 0
+  isSwording: 0
+  isSwordTime: 1
   isJumping: 0
   jumpCount: 0
   clickTabCount: 0
   clickShiftCount: 0
+  fireCounter: -1
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}
   skateboardParticle: {fileID: 4302228992980891979, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
@@ -69,6 +72,7 @@ MonoBehaviour:
   burningTouchParticle: {fileID: 2998880394958268818, guid: d1da0b7ce7a5e4e4a9ed42ef14329904, type: 3}
   particleCount: 0
   shootClip: {fileID: 8300000, guid: e4d1e9a1be4831542961bcd5a6c97f7a, type: 3}
+  nonShootClip: {fileID: 8300000, guid: 71240ac1db2547a4ca916d3438c80177, type: 3}
   swordClip: {fileID: 8300000, guid: bd848664b9b7ce5428da3b4880aebac2, type: 3}
   getHitClip: {fileID: 8300000, guid: 0daa4bd7ccf721c4faa7a61d8fe58390, type: 3}
   jumpingClip: {fileID: 8300000, guid: a6c98811cc43c2646bf2c7baf175b185, type: 3}

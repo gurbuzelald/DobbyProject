@@ -344,6 +344,8 @@ MonoBehaviour:
   middleParticle: {fileID: 8663122777169559917}
   topParticle: {fileID: 8663122777952017208}
   _enemyIcon: {fileID: 8663122777073410716}
+  _bulletCoin: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
+  bulletCoinTransform: {fileID: 5086157593347472604, guid: 2a1af19d40076b84ea058c6b157f1651, type: 3}
 --- !u!54 &465555122176071958
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12539,7 +12541,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60d5b47d7aaf24449d132e00a7c1ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _objectPool: {fileID: 4371192747629300294, guid: 8c41a3ade5a4f16468dd22b6887e2acf, type: 3}
   layerMask:
     serializedVersion: 2
     m_Bits: 26432

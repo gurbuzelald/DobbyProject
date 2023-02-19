@@ -225,7 +225,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     public virtual void FireAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isFiring && !playerData.isSwording && !playerData.isWalking && !playerData.isBackWalking && !playerData.isClimbing && playerData.isPlayable)
-        {
+        {            
             _animator.SetBool(AnimatorParameters.isFiring.ToString(), true);
 
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);

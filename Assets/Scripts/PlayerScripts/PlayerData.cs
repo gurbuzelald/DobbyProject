@@ -57,6 +57,7 @@ public class PlayerData : ScriptableObject
     public int jumpCount;
     public int clickTabCount;
     public int clickShiftCount;
+    public int fireCounter = 90;
 
     [Header("Dance")]
     public float danceTime = 5f;
@@ -74,6 +75,7 @@ public class PlayerData : ScriptableObject
 
     [Header("Sounds")]
     public AudioClip shootClip;
+    public AudioClip nonShootClip;
     public AudioClip swordClip;
     public AudioClip getHitClip;
     public AudioClip jumpingClip;

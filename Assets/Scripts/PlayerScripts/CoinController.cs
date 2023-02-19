@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoinController : MonoBehaviour
 {
-    [SerializeField] GameObject[] _coinList;
+    public GameObject[] _coinList;
     void Update()
     {
         for (int i = 0; i < _coinList.Length; i++)

@@ -60,6 +60,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             bulletData.bulletDelayCounter++;
             StartCoroutine(Delay(bulletData.bulletDelay, 2));
         }
+        
     }
 
     IEnumerator Delay(float delayValue, int objectPoolCount)
@@ -81,9 +82,22 @@ public class BulletManager : AbstractBullet<BulletManager>
             _pistolObject.SetActive(true);
             _swordObject.SetActive(false);
             yield return new WaitForSeconds(delayValue);
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
-            _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._currentCamera.transform.position.x, _bulletSpawnTransform.transform.position.y, _bulletSpawnTransform.transform.position.z);
-            CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 2f);
+            if (_playerData.fireCounter <= 0)
+            {
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
+                Debug.Log("Test");
+            }
+            else
+            {
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
+            }
+            _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._currentCamera.transform.position.x, 
+                                                         _bulletSpawnTransform.transform.position.y, 
+                                                         _bulletSpawnTransform.transform.position.z);
+            if (_playerData.fireCounter >= 0)
+            {
+                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 2f);
+            }
             bulletData.bulletDelayCounter = 0;
             yield return new WaitForSeconds(delayValue * 50f);
             _pistolObject.SetActive(false);

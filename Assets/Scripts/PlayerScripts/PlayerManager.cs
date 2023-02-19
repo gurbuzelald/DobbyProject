@@ -20,12 +20,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public Transform _finishArea;
     public Transform _particleTransform;
     public Transform _currentCameraTransform;
+    public Transform bulletCoinTransform;
     [SerializeField] Transform _jolleenTransform;
     [SerializeField] Transform playerIconTransform;
     [SerializeField] Transform healthBarTransform;
     [SerializeField] Transform _camerasTransform;
     [SerializeField] Transform _bulletsTransform;    
-    [SerializeField] Transform _cameraWasherTransform;    
+    [SerializeField] Transform _cameraWasherTransform;
 
     public Transform[] _slaveTransforms;
     [HideInInspector]
@@ -141,9 +142,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
         {
-            //characterObject.SetActive(true);
-            //_glassyObject.SetActive(false);
-            //_spartacusObject.SetActive(false);
+            //Characters
+            _glassyObject.SetActive(false);
+            _spartacusObject.SetActive(false);
+            _lusthObject.SetActive(false);
+            _guardObject.SetActive(false);
 
             //GameObjects
             _coinObject = _pinkyDobby.transform.GetChild(0).gameObject;
@@ -155,9 +158,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
         {
-            //_dobbyObject.SetActive(false);
-            //characterObject.SetActive(true);
-            //_spartacusObject.SetActive(false);
+            //Characters
+            _dobbyObject.SetActive(false);
+            _spartacusObject.SetActive(false);
+            _lusthObject.SetActive(false);
+            _guardObject.SetActive(false);
 
             //GameObjects
             _coinObject = _pinkyGlassy.transform.GetChild(0).gameObject;
@@ -171,9 +176,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
         {
-            //_dobbyObject.SetActive(false);
-            //_glassyObject.SetActive(false);
-            //characterObject.SetActive(true);
+            //Characters
+            _dobbyObject.SetActive(false);
+            _glassyObject.SetActive(false);
+            _lusthObject.SetActive(false);
+            _guardObject.SetActive(false);
 
             //GameObjects
             _coinObject = _pinkySpartacus.transform.GetChild(0).gameObject;
@@ -185,9 +192,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
         {
-            //_dobbyObject.SetActive(false);
-            //_glassyObject.SetActive(false);
-            //characterObject.SetActive(true);
+            //Characters
+            _dobbyObject.SetActive(false);
+            _glassyObject.SetActive(false);
+            _lusthObject.SetActive(false);
+            _spartacusObject.SetActive(false);
 
             //GameObjects
             _coinObject = _pinkyGuard.transform.GetChild(0).gameObject;
@@ -199,9 +208,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
         {
-            //_dobbyObject.SetActive(false);
-            //_glassyObject.SetActive(false);
-            //characterObject.SetActive(true);
+            //Characters
+            _dobbyObject.SetActive(false);
+            _glassyObject.SetActive(false);
+            _spartacusObject.SetActive(false);
+            _lusthObject.SetActive(false);
 
             //GameObjects
             _coinObject = _pinkyLusth.transform.GetChild(0).gameObject;
@@ -213,7 +224,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else
         {
-            //characterObject.SetActive(true);
+            //Characters
+            _glassyObject.SetActive(false);
+            _spartacusObject.SetActive(false);
+            _lusthObject.SetActive(false);
+            _guardObject.SetActive(false);
 
             //GameObjects
             _coinObject = _pinkyDobby.transform.GetChild(0).gameObject;
@@ -317,6 +332,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             PickUpCoin(SceneController.Tags.MushroomCoin, other, _playerData);//GetScore
         }
+        if (other.CompareTag(SceneController.Tags.BulletCoin.ToString()))
+        {
+            PickUpCoin(SceneController.Tags.BulletCoin, other, _playerData);//FreshBulletAmount
+        }
         if (other.CompareTag(SceneController.Tags.Lava.ToString()))
         {
             DestroyByLava(_playerData);//DeathByLava
@@ -324,7 +343,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         if (other.CompareTag(SceneController.Tags.Water.ToString()))
         {
             DestroyByWater(_playerData);//DeathByLadder
-        }
+        }        
     }
     private void OnTriggerExit(Collider other)
     {
@@ -360,7 +379,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             else if (_playerData.isWinning)
             {
                 //VirtualCameraEulerAngle for Salsa Dance
-                _currentCameraTransform.transform.eulerAngles = new Vector3(_currentCameraTransform.transform.eulerAngles.x, 180f, _currentCameraTransform.transform.eulerAngles.z);
+                _currentCameraTransform.transform.eulerAngles = new Vector3(_currentCameraTransform.transform.eulerAngles.x, 
+                                                                            180f, 
+                                                                            _currentCameraTransform.transform.eulerAngles.z);
             }
             else
             {
@@ -522,23 +543,17 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     public void Fire(PlayerData _playerData)
     {
-        if (_playerData.isPlayable)
+        if (_playerData.isPlayable && _playerController.fire)
         {
-            if (_playerController.fire)
-            {
-                //PlayerData
-                _playerData.isFiring = true;
+            //PlayerData
+            _playerData.isFiring = true;
+            _playerData.fireCounter--;
 
-                //Crosshair
-                crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
+            //Crosshair
+            crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
 
-                //SetFalseBullet
-                StartCoroutine(Delay(2f));
-            }
-            else
-            {
-                _playerData.isFiring = false;
-            }
+            //SetFalseBullet
+            StartCoroutine(Delay(2f));
         }
         else
         {
@@ -865,6 +880,23 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             //SettingScore
             ScoreController.GetInstance.SetScore(-23);
         }
+        else if (value == SceneController.Tags.BulletCoin)
+        {
+            //PlayerData
+            _playerData.isPickRotateCoin = true;
+            _playerData.playerSpeed = 0.5f;
+
+            _coinObject.SetActive(true);
+
+            //SoundEffect
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+
+            //Trigger CoinObject
+            other.gameObject.SetActive(false);
+
+            //SettingScore
+            _playerData.fireCounter = 90;
+        }
     }
     void DestroyByWater(PlayerData _playerData)
     {
@@ -991,6 +1023,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {//PlayerData
         if (_playerData != null)
         {
+            _playerData.fireCounter = 90;
             PlayerData.slaveCounter = 0;
             _playerData.objects[5].GetComponent<MeshRenderer>().enabled = true;
             _playerData.objects[3].transform.localScale = new Vector3(1f, 0.1f, 0.1f);

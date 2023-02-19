@@ -132,10 +132,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db62934cb5ed554cace8c6de7a58c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetObject: {fileID: 0}
-  _enemySpeed: 0.5
+  enemyBullet: {fileID: 0}
   _healthBar: {fileID: 1552513370}
-  _enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
+  enemyData: {fileID: 0}
+  playerData: {fileID: 0}
+  bottomParticle: {fileID: 0}
+  middleParticle: {fileID: 0}
+  topParticle: {fileID: 0}
+  _enemyIcon: {fileID: 0}
+  _bulletCoin: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
+  bulletCoinTransform: {fileID: 5086157593347472604, guid: 2a1af19d40076b84ea058c6b157f1651, type: 3}
 --- !u!54 &711838105
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -661,6 +667,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
+  _playerData: {fileID: 0}
 --- !u!4 &1036705873445617155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 05682cd867ef28245829d773ad5b75cc, type: 3}

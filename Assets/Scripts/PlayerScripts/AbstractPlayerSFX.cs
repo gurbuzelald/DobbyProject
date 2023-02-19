@@ -37,6 +37,10 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(playerData.shootClip);
         }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.NonShoot)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(playerData.nonShootClip);
+        }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Sword)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(playerData.swordClip);

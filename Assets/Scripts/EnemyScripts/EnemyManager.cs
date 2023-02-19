@@ -29,6 +29,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     [SerializeField] GameObject _enemyIcon;
 
     private EnemySpawner clownSpawner;
+    [SerializeField] GameObject _bulletCoin;
+    private CoinController _coinController;
 
     void Start()
     {
@@ -37,7 +39,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         _initTransform = gameObject.transform;
         DataStatesOnInitial();
         _audioSource = GetComponent<AudioSource>();
-        
+
+        _coinController = FindObjectOfType<CoinController>();
+
+
     }
     void Update()
     {
@@ -193,7 +198,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 Destroy(_healthBar);
                 ScoreController.GetInstance.SetScore(20);
                 PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
-                StartCoroutine(DelayDestroy(2f));
+                StartCoroutine(DelayDestroy(2f));                
             }
             else
             {
@@ -230,8 +235,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         Destroy(gameObject);
         enemyData.isWalking = true;
         enemyData.isDying = false;
+        CreateBulletCoin();
     }
-
+    void CreateBulletCoin()
+    {
+        Instantiate(_bulletCoin, gameObject.transform.position, Quaternion.identity, PlayerManager.GetInstance.bulletCoinTransform);
+    }
     //SFX States
     public void PlaySoundEffect(SoundEffectTypes soundEffect, AudioSource audioSource)
     {

@@ -184,6 +184,7 @@ public class SceneController : AbstractSceneController<SceneController>
         CheeseCoin,
         RotateCoin,
         MushroomCoin,
+        BulletCoin,
 
         Magnet,
         Magma,
