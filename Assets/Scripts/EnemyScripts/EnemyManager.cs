@@ -239,7 +239,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     void CreateBulletCoin()
     {
-        Instantiate(_bulletCoin, gameObject.transform.position, Quaternion.identity, PlayerManager.GetInstance.bulletCoinTransform);
+        GameObject bulletCoin = Instantiate(_bulletCoin,
+                                            new Vector3(gameObject.transform.position.x, 
+                                                        gameObject.transform.position.y + 0.5f, 
+                                                        gameObject.transform.position.z), 
+                                            Quaternion.identity, 
+                                            PlayerManager.GetInstance.bulletCoinTransform);
+        bulletCoin.transform.eulerAngles = new Vector3(0f, gameObject.transform.eulerAngles.y + 90f, 90f);
     }
     //SFX States
     public void PlaySoundEffect(SoundEffectTypes soundEffect, AudioSource audioSource)

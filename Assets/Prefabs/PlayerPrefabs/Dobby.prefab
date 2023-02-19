@@ -363,7 +363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476721149}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1394,6 +1394,7 @@ MonoBehaviour:
   _finishArea: {fileID: 0}
   _particleTransform: {fileID: 476721150}
   _currentCameraTransform: {fileID: 1391162830}
+  bulletCoinTransform: {fileID: 0}
   _jolleenTransform: {fileID: 1090069696}
   playerIconTransform: {fileID: 990706305}
   healthBarTransform: {fileID: 867063623}
@@ -1747,7 +1748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5728715396564245343, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5728715396564245343, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1805,6 +1806,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 796082343}
     m_Modifications:
+    - target: {fileID: 1689455037246917657, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4031596613277215887, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4084811500743132822, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
+      propertyPath: m_AABB.m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4952105695521308768, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1855,6 +1868,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6700931324431473400, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7514572610015174428, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
+      propertyPath: m_AABB.m_Center.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -19,6 +19,7 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         JumpToSea,
         Death,
         PickUpCoin,
+        PickUpBulletCoin,
         Trap,
         LevelUp, 
         ShootOf

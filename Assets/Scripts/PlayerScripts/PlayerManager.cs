@@ -212,7 +212,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _dobbyObject.SetActive(false);
             _glassyObject.SetActive(false);
             _spartacusObject.SetActive(false);
-            _lusthObject.SetActive(false);
+            _guardObject.SetActive(false);
 
             //GameObjects
             _coinObject = _pinkyLusth.transform.GetChild(0).gameObject;
@@ -889,13 +889,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _coinObject.SetActive(true);
 
             //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
 
             //Trigger CoinObject
             other.gameObject.SetActive(false);
 
             //SettingScore
-            _playerData.fireCounter = 90;
+            _playerData.fireCounter = _playerData.bulletAmount;
         }
     }
     void DestroyByWater(PlayerData _playerData)
@@ -1023,7 +1023,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {//PlayerData
         if (_playerData != null)
         {
-            _playerData.fireCounter = 90;
+            _playerData.fireCounter = _playerData.bulletAmount;
             PlayerData.slaveCounter = 0;
             _playerData.objects[5].GetComponent<MeshRenderer>().enabled = true;
             _playerData.objects[3].transform.localScale = new Vector3(1f, 0.1f, 0.1f);

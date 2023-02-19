@@ -20,27 +20,68 @@ public class BulletManager : AbstractBullet<BulletManager>
 
     void Start()
     {
-        _pistolObject = Instantiate(bulletData._pistolObject, 
-                                    _bulletSpawnTransform.position, 
-                                    Quaternion.identity,
-                                    PlayerManager.GetInstance._gunTransform);//Create Bullet
+        CreatePistolObject();
 
-        _swordObject = Instantiate(bulletData._swordObject, 
-                                   _bulletSpawnTransform.position, 
-                                   Quaternion.identity,
-                                   PlayerManager.GetInstance._swordTransform);//Create Sword
-
-        _swordObject.SetActive(false);
-        _pistolObject.SetActive(false);
-        _swordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
-        _pistolObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
-
-        _swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
-        _pistolObject.transform.rotation = PlayerManager.GetInstance._gunTransform.rotation;
+        CreateSwordObject();
 
         bulletData.bulletDelayCounter = 0;
         _initTransform = gameObject.transform;
         _initTransform.eulerAngles = gameObject.transform.eulerAngles;
+    }
+    void CreateSwordObject()
+    {
+        if (BulletData.SwordNames.lowSword == bulletData.currentSwordName)
+        {
+            _swordObject = Instantiate(bulletData._lowSword,
+                                   _bulletSpawnTransform.position,
+                                   Quaternion.identity,
+                                   PlayerManager.GetInstance._swordTransform);
+
+            _swordObject.SetActive(false);
+
+            _swordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
+
+            _swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
+        }
+        else if (BulletData.SwordNames.warriorSword == bulletData.currentSwordName)
+        {
+            _swordObject = Instantiate(bulletData._warriorSwordObject,
+                                   _bulletSpawnTransform.position,
+                                   Quaternion.identity,
+                                   PlayerManager.GetInstance._swordTransform);
+
+            _swordObject.SetActive(false);
+
+            _swordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
+
+            //_swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
+        }
+        else if (BulletData.SwordNames.hummer == bulletData.currentSwordName)
+        {
+            _swordObject = Instantiate(bulletData._hummer,
+                                   _bulletSpawnTransform.position,
+                                   Quaternion.identity,
+                                   PlayerManager.GetInstance._swordTransform);
+
+            _swordObject.SetActive(false);
+
+            _swordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
+
+            //_swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
+        }
+    }
+    void CreatePistolObject()
+    {
+        _pistolObject = Instantiate(bulletData._pistolObject,
+                                    _bulletSpawnTransform.position,
+                                    Quaternion.identity,
+                                    PlayerManager.GetInstance._gunTransform);
+
+        _pistolObject.SetActive(false);
+
+        _pistolObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
+
+        _pistolObject.transform.rotation = PlayerManager.GetInstance._gunTransform.rotation;
     }
     void FixedUpdate()
     {//Bullet Sound Opening With Fix Because Of This Method
@@ -85,7 +126,6 @@ public class BulletManager : AbstractBullet<BulletManager>
             if (_playerData.fireCounter <= 0)
             {
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
-                Debug.Log("Test");
             }
             else
             {

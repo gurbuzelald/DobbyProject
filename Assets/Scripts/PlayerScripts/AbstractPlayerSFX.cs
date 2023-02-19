@@ -65,6 +65,10 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(playerData.pickupCoinClip);
         }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(playerData.pickupBulletCoinClip);
+        }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(playerData.trapClip);

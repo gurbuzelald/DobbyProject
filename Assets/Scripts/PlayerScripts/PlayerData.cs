@@ -58,6 +58,7 @@ public class PlayerData : ScriptableObject
     public int clickTabCount;
     public int clickShiftCount;
     public int fireCounter = 90;
+    public int bulletAmount = 90;
 
     [Header("Dance")]
     public float danceTime = 5f;
@@ -81,6 +82,7 @@ public class PlayerData : ScriptableObject
     public AudioClip jumpingClip;
     public AudioClip dyingClip;
     public AudioClip pickupCoinClip;
+    public AudioClip pickupBulletCoinClip;
     public AudioClip trapClip;
     public AudioClip levelUpClip;
     public AudioClip jumpingSeaClip;
