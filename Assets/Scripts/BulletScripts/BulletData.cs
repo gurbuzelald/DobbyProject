@@ -69,6 +69,18 @@ public class BulletData : ScriptableObject
     public const string longHummer = "longHummer";
     public const string club = "club";
 
+    public bool isLowSword;
+    public bool isWarriorSword;
+    public bool isHummer;
+    public bool isOrcSword;
+    public bool isAxeSword;
+    public bool isAxeKnight;
+    public bool isBarbarianSword;
+    public bool isDemonSword;
+    public bool isMagicSword;
+    public bool isLongHummer;
+    public bool isClub;
+
 
 
     [Header("ChooseSword")]

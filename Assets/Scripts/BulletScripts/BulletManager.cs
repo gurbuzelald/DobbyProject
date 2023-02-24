@@ -25,8 +25,6 @@ public class BulletManager : AbstractBullet<BulletManager>
 
         CreateSwordObject();
 
-
-
         bulletData.bulletDelayCounter = 0;
         _initTransform = gameObject.transform;
         _initTransform.eulerAngles = gameObject.transform.eulerAngles;
@@ -39,12 +37,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                    _bulletSpawnTransform.position,
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform);
-
-            _currentSwordObject.SetActive(false);
-
-            _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
-
-            _currentSwordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
         }
         else if (BulletData.warriorSword == bulletData.currentSwordName)
         {
@@ -52,12 +44,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                    _bulletSpawnTransform.position,
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform);
-
-            _currentSwordObject.SetActive(false);
-
-            _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
-
-            //_swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
         }
         else if (BulletData.hummer == bulletData.currentSwordName)
         {
@@ -65,12 +51,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                    _bulletSpawnTransform.position,
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform);
-
-            _currentSwordObject.SetActive(false);
-
-            _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
-
-            //_swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
         }
         else if (BulletData.orcSword == bulletData.currentSwordName)
         {
@@ -78,12 +58,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                    _bulletSpawnTransform.position,
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform);
-
-            _currentSwordObject.SetActive(false);
-
-            _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
-
-            //_swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
         }
         else if (BulletData.axeSword == bulletData.currentSwordName)
         {
@@ -91,12 +65,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                    _bulletSpawnTransform.position,
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform);
-
-            _currentSwordObject.SetActive(false);
-
-            _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
-
-            //_swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
         }
         else if (BulletData.axeKnight == bulletData.currentSwordName)
         {
@@ -104,12 +72,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                    _bulletSpawnTransform.position,
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform);
-
-            _currentSwordObject.SetActive(false);
-
-            _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
-
-            //_swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
         }
         else if (BulletData.barbarianSword == bulletData.currentSwordName)
         {
@@ -117,12 +79,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                    _bulletSpawnTransform.position,
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform);
-
-            _currentSwordObject.SetActive(false);
-
-            _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
-
-            //_swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
         }
         else if (BulletData.demonSword == bulletData.currentSwordName)
         {
@@ -131,11 +87,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform);
 
-            _currentSwordObject.SetActive(false);
-
-            _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
-
-            //_swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
         }
         else if (BulletData.magicSword == bulletData.currentSwordName)
         {
@@ -143,12 +94,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                    _bulletSpawnTransform.position,
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform);
-
-            _currentSwordObject.SetActive(false);
-
-            _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
-
-            //_swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
         }
         else if (BulletData.longHummer == bulletData.currentSwordName)
         {
@@ -156,12 +101,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                    _bulletSpawnTransform.position,
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform);
-
-            _currentSwordObject.SetActive(false);
-
-            _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
-
-            //_swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
         }
         else if (BulletData.club == bulletData.currentSwordName)
         {
@@ -169,13 +108,12 @@ public class BulletManager : AbstractBullet<BulletManager>
                                    _bulletSpawnTransform.position,
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform);
-
-            _currentSwordObject.SetActive(false);
-
-            _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
-
-            //_swordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
         }
+        _currentSwordObject.SetActive(false);
+
+        _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.position;
+
+        _currentSwordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.rotation;
     }
     public void CreateWeaponObject()
     {
@@ -185,13 +123,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                                _bulletSpawnTransform.position,
                                                Quaternion.identity,
                                                PlayerManager.GetInstance._gunTransform);
-
-            //Debug.Log(PlayerManager.GetInstance._gunTransform);
-            _currentWeaponObject.SetActive(false);
-
-            _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
-
-            _currentWeaponObject.transform.rotation = PlayerManager.GetInstance._gunTransform.rotation;
         }
         else if (bulletData.currentWeaponName == BulletData.rifle)
         {
@@ -199,11 +130,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform);
-            //Debug.Log(PlayerManager.GetInstance._gunTransform);
-            _currentWeaponObject.SetActive(false);
-
-            _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
-            _currentWeaponObject.transform.rotation = bulletData.rifleObject.transform.rotation;
         }
         else if (bulletData.currentWeaponName == BulletData.bulldog)
         {
@@ -211,11 +137,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform);
-
-            _currentWeaponObject.SetActive(false);
-
-            _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
-            _currentWeaponObject.transform.rotation = bulletData.bullDogObject.transform.rotation;
         }
         else if (bulletData.currentWeaponName == BulletData.cowgun)
         {
@@ -223,11 +144,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform);
-
-            _currentWeaponObject.SetActive(false);
-
-            _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
-            _currentWeaponObject.transform.rotation = bulletData.cowgunObject.transform.rotation;
         }
         else if (bulletData.currentWeaponName == BulletData.crystalgun)
         {
@@ -235,11 +151,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform);
-
-            _currentWeaponObject.SetActive(false);
-
-            _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
-            _currentWeaponObject.transform.rotation = bulletData.crsytalgunObject.transform.rotation;
         }
         else if (bulletData.currentWeaponName == BulletData.demongun)
         {
@@ -247,11 +158,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform);
-
-            _currentWeaponObject.SetActive(false);
-
-            _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
-            _currentWeaponObject.transform.rotation = bulletData.demongunObject.transform.rotation;
         }
         else if (bulletData.currentWeaponName == BulletData.icegun)
         {
@@ -259,11 +165,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform);
-
-            _currentWeaponObject.SetActive(false);
-
-            _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
-            _currentWeaponObject.transform.rotation = bulletData.icegunObject.transform.rotation;
         }
         else if (bulletData.currentWeaponName == BulletData.negev)
         {
@@ -271,11 +172,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform);
-
-            _currentWeaponObject.SetActive(false);
-
-            _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
-            _currentWeaponObject.transform.rotation = bulletData.negevObject.transform.rotation;
         }
         else if (bulletData.currentWeaponName == BulletData.axegun)
         {
@@ -283,12 +179,11 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform);
-
-            _currentWeaponObject.SetActive(false);
-
-            _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
-            _currentWeaponObject.transform.rotation = bulletData.axegunObject.transform.rotation;
         }
+        _currentWeaponObject.SetActive(false);
+
+        _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
+        _currentWeaponObject.transform.rotation = bulletData.rifleObject.transform.rotation;
     }
 
     public GameObject GetPinky()
@@ -358,14 +253,57 @@ public class BulletManager : AbstractBullet<BulletManager>
             PlayerManager.GetInstance._gunTransform = pinky.transform.GetChild(1).GetChild(8);
         }
     }
+    public void ChooseSwordTransform(GameObject pinky)//Getting finger transform parameter
+    {
+        if (bulletData.currentWeaponName == BulletData.lowSword)
+        {
+            PlayerManager.GetInstance._gunTransform = pinky.transform.GetChild(2).GetChild(0);
+        }
+        else if (bulletData.currentWeaponName == BulletData.warriorSword)
+        {
+            PlayerManager.GetInstance._gunTransform = pinky.transform.GetChild(2).GetChild(1);
+        }
+        else if (bulletData.currentWeaponName == BulletData.hummer)
+        {
+            PlayerManager.GetInstance._gunTransform = pinky.transform.GetChild(2).GetChild(2);
+        }
+        else if (bulletData.currentWeaponName == BulletData.orcSword)
+        {
+            PlayerManager.GetInstance._gunTransform = pinky.transform.GetChild(2).GetChild(3);
+        }
+        else if (bulletData.currentWeaponName == BulletData.axeSword)
+        {
+            PlayerManager.GetInstance._gunTransform = pinky.transform.GetChild(2).GetChild(4);
+        }
+        else if (bulletData.currentWeaponName == BulletData.axeKnight)
+        {
+            PlayerManager.GetInstance._gunTransform = pinky.transform.GetChild(2).GetChild(5);
+        }
+        else if (bulletData.currentWeaponName == BulletData.barbarianSword)
+        {
+            PlayerManager.GetInstance._gunTransform = pinky.transform.GetChild(2).GetChild(6);
+        }
+        else if (bulletData.currentWeaponName == BulletData.demonSword)
+        {
+            PlayerManager.GetInstance._gunTransform = pinky.transform.GetChild(2).GetChild(7);
+        }
+        else if (bulletData.currentWeaponName == BulletData.magicSword)
+        {
+            PlayerManager.GetInstance._gunTransform = pinky.transform.GetChild(2).GetChild(8);
+        }
+        else if (bulletData.currentWeaponName == BulletData.longHummer)
+        {
+            PlayerManager.GetInstance._gunTransform = pinky.transform.GetChild(2).GetChild(9);
+        }
+        else if (bulletData.currentWeaponName == BulletData.club)
+        {
+            PlayerManager.GetInstance._gunTransform = pinky.transform.GetChild(2).GetChild(10);
+        }
+    }
     public void DestroyWeaponObject()
-    {//**************
-
-        
+    {   
         if (bulletData.isRifle)
         {
-            //Debug.Log("Test");
-           
             if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.axegun
                 || bulletData.currentWeaponName == BulletData.crystalgun || bulletData.currentWeaponName == BulletData.demongun || 
                 bulletData.currentWeaponName == BulletData.icegun || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cowgun)
@@ -482,10 +420,168 @@ public class BulletManager : AbstractBullet<BulletManager>
             bulletData.isCowgun = false;
         }
     }
+    public void DestroySwordObject()
+    {
+        if (bulletData.isLowSword)
+        {
+            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
+                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
+                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
+                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
+            {
+                Destroy(_currentSwordObject);
+                bulletData.currentWeaponName = BulletData.lowSword;
+                ChooseSwordTransform(GetPinky());
+                CreateSwordObject();
+            }
+            bulletData.isLowSword = false;
+        }
+        else if (bulletData.isWarriorSword)
+        {
+            if (bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
+                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
+                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
+                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
+            {
+                Destroy(_currentSwordObject);
+                bulletData.currentWeaponName = BulletData.warriorSword;
+                ChooseSwordTransform(GetPinky());
+                CreateSwordObject();
+            }
+            bulletData.isWarriorSword = false;
+        }
+        else if (bulletData.isHummer)
+        {
+            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.orcSword
+                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
+                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
+                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
+            {
+                Destroy(_currentSwordObject);
+                bulletData.currentWeaponName = BulletData.hummer;
+                ChooseSwordTransform(GetPinky());
+                CreateSwordObject();
+            }
+            bulletData.isHummer = false;
+        }
+        else if (bulletData.isOrcSword)
+        {
+            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.lowSword
+                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
+                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
+                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
+            {
+                Destroy(_currentSwordObject);
+                bulletData.currentWeaponName = BulletData.orcSword;
+                ChooseSwordTransform(GetPinky());
+                CreateSwordObject();
+            }
+            bulletData.isOrcSword = false;
+        }
+        else if (bulletData.isAxeSword)
+        {
+            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
+                || bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.axeKnight ||
+                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
+                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
+            {
+                Destroy(_currentSwordObject);
+                bulletData.currentWeaponName = BulletData.axeSword;
+                ChooseSwordTransform(GetPinky());
+                CreateSwordObject();
+            }
+            bulletData.isAxeSword = false;
+        }
+        else if (bulletData.isAxeKnight)
+        {
+            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
+                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.lowSword ||
+                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
+                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
+            {
+                Destroy(_currentSwordObject);
+                bulletData.currentWeaponName = BulletData.axeKnight;
+                ChooseSwordTransform(GetPinky());
+                CreateSwordObject();
+            }
+            bulletData.isAxeKnight = false;
+        }
+        else if (bulletData.isBarbarianSword)
+        {
+            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
+                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
+                bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
+                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
+            {
+                Destroy(_currentSwordObject);
+                bulletData.currentWeaponName = BulletData.barbarianSword;
+                ChooseSwordTransform(GetPinky());
+                CreateSwordObject();
+            }
+            bulletData.isBarbarianSword = false;
+        }
+        else if (bulletData.isDemonSword)
+        {
+            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
+                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
+                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.magicSword
+                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
+            {
+                Destroy(_currentSwordObject);
+                bulletData.currentWeaponName = BulletData.demonSword;
+                ChooseSwordTransform(GetPinky());
+                CreateSwordObject();
+            }
+            bulletData.isDemonSword = false;
+        }
+        else if (bulletData.isMagicSword)
+        {
+            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
+                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
+                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.lowSword
+                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
+            {
+                Destroy(_currentSwordObject);
+                bulletData.currentWeaponName = BulletData.magicSword;
+                ChooseSwordTransform(GetPinky());
+                CreateSwordObject();
+            }
+            bulletData.isMagicSword = false;
+        }
+        else if (bulletData.isLongHummer)
+        {
+            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
+                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
+                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
+                || bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.club)
+            {
+                Destroy(_currentSwordObject);
+                bulletData.currentWeaponName = BulletData.longHummer;
+                ChooseSwordTransform(GetPinky());
+                CreateSwordObject();
+            }
+            bulletData.isLongHummer = false;
+        }
+        else if (bulletData.isClub)
+        {
+            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
+                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
+                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
+                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.lowSword)
+            {
+                Destroy(_currentSwordObject);
+                bulletData.currentWeaponName = BulletData.club;
+                ChooseSwordTransform(GetPinky());
+                CreateSwordObject();
+            }
+            bulletData.isClub = false;
+        }
+    }
     void FixedUpdate()
     {//Bullet Sound Opening With Fix Because Of This Method
 
         DestroyWeaponObject();
+        DestroySwordObject();
 
         BulletRotation(_playerData.isLookingUp, 
                        PlayerManager.GetInstance._currentCamera.transform.GetComponent<CinemachineVirtualCamera>(), 
@@ -493,15 +589,16 @@ public class BulletManager : AbstractBullet<BulletManager>
 
         if (_playerData.isFiring && !_playerData.isSwording && bulletData.bulletDelayCounter == 0)
         {
-            bulletData.bulletDelayCounter++;            
+            bulletData.bulletDelayCounter++;       
+            
             StartCoroutine(Delay(bulletData.bulletDelay, 0));
         }
         if (_playerData.isSwording && !_playerData.isFiring && bulletData.bulletDelayCounter == 0 && _playerData.isSwordTime)
         {
             bulletData.bulletDelayCounter++;
+
             StartCoroutine(Delay(bulletData.bulletDelay, 2));
         }
-        
     }
 
     IEnumerator Delay(float delayValue, int objectPoolCount)
