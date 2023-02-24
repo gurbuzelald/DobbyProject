@@ -32,5 +32,6 @@ public class BulletController : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+        
     }
 }

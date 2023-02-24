@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EnemyManager : AbstractEnemy<EnemyManager>
 {
@@ -30,20 +31,20 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     private EnemySpawner clownSpawner;
     [SerializeField] GameObject _bulletCoin;
-    private CoinController _coinController;
+
+    [SerializeField] TextMeshProUGUI _damageText;
 
     void Start()
     {
+        _damageText.text = "";
+        _damageText.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
         clownSpawner = FindObjectOfType<EnemySpawner>();
         _enemyIcon.GetComponent<MeshRenderer>().enabled = true;
         _initTransform = gameObject.transform;
         DataStatesOnInitial();
         _audioSource = GetComponent<AudioSource>();
-
-        _coinController = FindObjectOfType<CoinController>();
-
-
-    }
+    }   
     void Update()
     {
         if (gameObject != null)
@@ -96,10 +97,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         if (other.CompareTag(SceneController.Tags.Sword.ToString()))
         {
-            TriggerBullet(3f);
-        }if (other.CompareTag(SceneController.Tags.SlaveSword.ToString()))
+            TriggerSlaveSword(32f);
+        }
+        if (other.CompareTag(SceneController.Tags.SlaveSword.ToString()))
         {
-            TriggerSlaveSword(1.5f);
+            TriggerSlaveSword(2f);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -109,6 +111,34 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             enemyData.isActivateMagnet = false;
             enemyData.isWalking = false;
         }
+    }
+
+    public IEnumerator ShowDamage(int damageValue, float damageTextGrow, float delayDestroy)
+    {
+
+        _damageText.text = "-" + damageValue.ToString();
+        yield return new WaitForSeconds(damageTextGrow);
+
+        _damageText.gameObject.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+        yield return new WaitForSeconds(damageTextGrow);
+
+        _damageText.gameObject.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+        yield return new WaitForSeconds(damageTextGrow);
+
+        _damageText.gameObject.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        yield return new WaitForSeconds(damageTextGrow);
+
+        _damageText.gameObject.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
+        yield return new WaitForSeconds(damageTextGrow);
+
+        _damageText.gameObject.transform.localScale = Vector3.one;
+        yield return new WaitForSeconds(damageTextGrow);
+        _damageText.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+
+
+        yield return new WaitForSeconds(3f);
+
+        _damageText.text = "";
     }
 
     //Collider and Collision
@@ -172,6 +202,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
                 _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / bulletPower, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
+            StartCoroutine(ShowDamage(100, 0.1f, 3f));
         }
     }
     public void TriggerBullet(float bulletPower)
@@ -218,6 +249,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
                 _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / bulletPower, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
+            StartCoroutine(ShowDamage(20, 0.1f, 3f));
         }
     }   
 
@@ -240,8 +272,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     void CreateBulletCoin()
     {
         GameObject bulletCoin = Instantiate(_bulletCoin,
-                                            new Vector3(gameObject.transform.position.x, 
-                                                        gameObject.transform.position.y + 0.5f, 
+                                            new Vector3(gameObject.transform.position.x,
+                                                        _bulletCoin.transform.position.y, 
                                                         gameObject.transform.position.z), 
                                             Quaternion.identity, 
                                             PlayerManager.GetInstance.bulletCoinTransform);

@@ -57,8 +57,8 @@ public class PlayerData : ScriptableObject
     public int jumpCount;
     public int clickTabCount;
     public int clickShiftCount;
-    public int fireCounter = 90;
     public int bulletAmount = 90;
+    public int bulletPack = 90;
 
     [Header("Dance")]
     public float danceTime = 5f;

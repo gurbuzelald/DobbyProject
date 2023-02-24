@@ -115,6 +115,15 @@ public class SceneController : AbstractSceneController<SceneController>
         }
         SceneManager.LoadScene(Scenes.SwordChoose.ToString());
     }
+    public void LoadWeaponChoosingScene()
+    {
+        if (PlayerManager.GetInstance.gameObject != null)
+        {
+            Destroy(AudioManager.GetInstance.gameObject);
+            Destroy(PlayerManager.GetInstance.gameObject);
+        }
+        SceneManager.LoadScene(Scenes.WeaponChoose.ToString());
+    }
     public void LoadEndScene()
     {
         if (PlayerManager.GetInstance.gameObject != null)
@@ -203,9 +212,21 @@ public class SceneController : AbstractSceneController<SceneController>
         EnemyBullet, 
         CloneDobby,
         SlaveSword,
+
+        //Weapons
+        Rifle,
+        Ak47,
+        Bulldog,
+        Cowgun,
+        Crystalgun,
+        Demongun,
+        Icegun,
+        Negev,
+        Axegun,
+        WeaponBox
     }
     public enum Scenes
     {
-        Menu, End, Win, Level1, CharacterChoose, SwordChoose
+        Menu, End, Win, Level1, CharacterChoose, SwordChoose, WeaponChoose
     }
 }

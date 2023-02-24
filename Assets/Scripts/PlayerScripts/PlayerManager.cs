@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Cinemachine;
 
 public class PlayerManager : AbstractSingleton<PlayerManager>
@@ -15,6 +16,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [Header("Data")]
     public PlayerData _playerData;
     public EnemyData _enemyData;
+    public BulletData _bulletData;
 
     [Header("Current Spawn Transforms")]
     public Transform _finishArea;
@@ -71,19 +73,20 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public GameObject _cheeseObject;
 
     [Header("Character Hands")]
-    [SerializeField] GameObject _pinkyGlassy;
-    [SerializeField] GameObject _pinkySpartacus;
-    [SerializeField] GameObject _pinkyDobby;
-    [SerializeField] GameObject _pinkyLusth;
-    [SerializeField] GameObject _pinkyGuard;
-    private GameObject _characterObject;
+    public GameObject _pinkyGlassy;
+    public GameObject _pinkySpartacus;
+    public GameObject _pinkyDobby;
+    public GameObject _pinkyLusth;
+    public GameObject _pinkyGuard;
+    public GameObject _characterObject;
 
-
+    [SerializeField] TextMeshProUGUI _bulletAmountText;
 
     public delegate void Move();    
     void Start()
     {
         CharacterStateControl();
+
         ChooseCharacterStates();
 
         DataStatesOnInitial(_playerData);
@@ -138,6 +141,93 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _characterObject.SetActive(true);
         }
     }
+    public void ChooseGunTransform(GameObject pinky)//Getting finger transform parameter
+    {
+        if (_bulletData.currentWeaponName == BulletData.ak47)
+        {
+            _gunTransform = pinky.transform.GetChild(1).GetChild(0);
+        }
+        else if (_bulletData.currentWeaponName == BulletData.rifle)
+        {
+            _gunTransform = pinky.transform.GetChild(1).GetChild(1);
+        }
+        else if (_bulletData.currentWeaponName == BulletData.bulldog)
+        {
+            _gunTransform = pinky.transform.GetChild(1).GetChild(2);
+        }
+        else if (_bulletData.currentWeaponName == BulletData.cowgun)
+        {
+            _gunTransform = pinky.transform.GetChild(1).GetChild(3);
+        }
+        else if (_bulletData.currentWeaponName == BulletData.crystalgun)
+        {
+            _gunTransform = pinky.transform.GetChild(1).GetChild(4);
+        }
+        else if (_bulletData.currentWeaponName == BulletData.demongun)
+        {
+            _gunTransform = pinky.transform.GetChild(1).GetChild(5);
+        }
+        else if (_bulletData.currentWeaponName == BulletData.icegun)
+        {
+            _gunTransform = pinky.transform.GetChild(1).GetChild(6);
+        }
+        else if (_bulletData.currentWeaponName == BulletData.negev)
+        {
+            _gunTransform = pinky.transform.GetChild(1).GetChild(7);
+        }
+        else if (_bulletData.currentWeaponName == BulletData.axegun)
+        {
+            _gunTransform = pinky.transform.GetChild(1).GetChild(8);
+        }
+    }
+    public void ChooseSwordTransform(GameObject pinky)
+    {
+        if (_bulletData.currentSwordName == BulletData.lowSword)
+        {
+            _swordTransform = pinky.transform.GetChild(2).GetChild(0);
+        }
+        else if (_bulletData.currentSwordName == BulletData.warriorSword)
+        {
+            _swordTransform = pinky.transform.GetChild(2).GetChild(1);
+        }
+        else if (_bulletData.currentSwordName == BulletData.hummer)
+        {
+            _swordTransform = pinky.transform.GetChild(2).GetChild(2);
+        }
+        else if (_bulletData.currentSwordName == BulletData.orcSword)
+        {
+            _swordTransform = pinky.transform.GetChild(2).GetChild(3);
+        }
+        else if (_bulletData.currentSwordName == BulletData.axeSword)
+        {
+            _swordTransform = pinky.transform.GetChild(2).GetChild(4);
+        }
+        else if (_bulletData.currentSwordName == BulletData.axeKnight)
+        {
+            _swordTransform = pinky.transform.GetChild(2).GetChild(5);
+        }
+        else if (_bulletData.currentSwordName == BulletData.barbarianSword)
+        {
+            _swordTransform = pinky.transform.GetChild(2).GetChild(6);
+        }
+        else if (_bulletData.currentSwordName == BulletData.demonSword)
+        {
+            _swordTransform = pinky.transform.GetChild(2).GetChild(7);
+        }
+        else if (_bulletData.currentSwordName == BulletData.magicSword)
+        {
+            _swordTransform = pinky.transform.GetChild(2).GetChild(8);
+        }
+        else if (_bulletData.currentSwordName == BulletData.longHummer)
+        {
+            _swordTransform = pinky.transform.GetChild(2).GetChild(9);
+        }
+        else if (_bulletData.currentSwordName == BulletData.club)
+        {
+            _swordTransform = pinky.transform.GetChild(2).GetChild(10);
+        }
+
+    }
     public void ChooseCharacterStates()
     {
         if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
@@ -150,8 +240,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             //GameObjects
             _coinObject = _pinkyDobby.transform.GetChild(0).gameObject;
-            _gunTransform = _pinkyDobby.transform.GetChild(1);
-            _swordTransform = _pinkyDobby.transform.GetChild(2);
+            ChooseGunTransform(_pinkyDobby);
+            ChooseSwordTransform(_pinkyDobby);
             _cheeseObject = _pinkyDobby.transform.GetChild(3).gameObject;
             _coinObject.SetActive(false);
             _cheeseObject.SetActive(false);
@@ -166,13 +256,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             //GameObjects
             _coinObject = _pinkyGlassy.transform.GetChild(0).gameObject;
-            _gunTransform = _pinkyGlassy.transform.GetChild(1);
-            _swordTransform = _pinkyGlassy.transform.GetChild(2);
+            ChooseGunTransform(_pinkyGlassy);
+            ChooseSwordTransform(_pinkyGlassy);
             _cheeseObject = _pinkyGlassy.transform.GetChild(3).gameObject;
             _coinObject.SetActive(false);
             _cheeseObject.SetActive(false);
-
-
         }
         else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
         {
@@ -184,8 +272,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             //GameObjects
             _coinObject = _pinkySpartacus.transform.GetChild(0).gameObject;
-            _gunTransform = _pinkySpartacus.transform.GetChild(1);
-            _swordTransform = _pinkySpartacus.transform.GetChild(2);
+            ChooseGunTransform(_pinkySpartacus);
+            ChooseSwordTransform(_pinkySpartacus);
             _cheeseObject = _pinkySpartacus.transform.GetChild(3).gameObject;
             _coinObject.SetActive(false);
             _cheeseObject.SetActive(false);
@@ -200,8 +288,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             //GameObjects
             _coinObject = _pinkyGuard.transform.GetChild(0).gameObject;
-            _gunTransform = _pinkyGuard.transform.GetChild(1);
-            _swordTransform = _pinkyGuard.transform.GetChild(2);
+            ChooseGunTransform(_pinkyGuard);
+            ChooseSwordTransform(_pinkyGuard);
             _cheeseObject = _pinkyGuard.transform.GetChild(3).gameObject;
             _coinObject.SetActive(false);
             _cheeseObject.SetActive(false);
@@ -216,8 +304,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             //GameObjects
             _coinObject = _pinkyLusth.transform.GetChild(0).gameObject;
-            _gunTransform = _pinkyLusth.transform.GetChild(1);
-            _swordTransform = _pinkyLusth.transform.GetChild(2);
+            ChooseGunTransform(_pinkyLusth);
+            ChooseSwordTransform(_pinkyLusth);
             _cheeseObject = _pinkyLusth.transform.GetChild(3).gameObject;
             _coinObject.SetActive(false);
             _cheeseObject.SetActive(false);
@@ -232,8 +320,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             //GameObjects
             _coinObject = _pinkyDobby.transform.GetChild(0).gameObject;
-            _gunTransform = _pinkyDobby.transform.GetChild(1);
-            _swordTransform = _pinkyDobby.transform.GetChild(2);
+            ChooseGunTransform(_pinkyDobby);
+            ChooseSwordTransform(_pinkyDobby);
             _cheeseObject = _pinkyDobby.transform.GetChild(3).gameObject;
             _coinObject.SetActive(false);
             _cheeseObject.SetActive(false);
@@ -343,7 +431,59 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         if (other.CompareTag(SceneController.Tags.Water.ToString()))
         {
             DestroyByWater(_playerData);//DeathByLadder
-        }        
+        }
+        CheckWeaponTrigger(other);
+
+    }
+    public void CheckWeaponTrigger(Collider other)
+    {
+        if (other.CompareTag(SceneController.Tags.Rifle.ToString()) && _bulletData.currentWeaponName != BulletData.rifle)
+        {
+            //Debug.Log("Test");
+            Destroy(other.gameObject);
+            _bulletData.isRifle = true;
+        }
+        if (other.CompareTag(SceneController.Tags.Ak47.ToString()) && _bulletData.currentWeaponName != BulletData.ak47)
+        {
+            Destroy(other.gameObject);
+            _bulletData.isAk47 = true;
+        }
+        if (other.CompareTag(SceneController.Tags.Axegun.ToString()) && _bulletData.currentWeaponName != BulletData.axegun)
+        {
+            Destroy(other.gameObject);
+            _bulletData.isAxegun = true;
+        }
+        if (other.CompareTag(SceneController.Tags.Bulldog.ToString()) && _bulletData.currentWeaponName != BulletData.bulldog)
+        {
+            Destroy(other.gameObject);
+            _bulletData.isBulldog = true;
+        }
+        if (other.CompareTag(SceneController.Tags.Cowgun.ToString()) && _bulletData.currentWeaponName != BulletData.cowgun)
+        {
+            Destroy(other.gameObject);
+            _bulletData.isCowgun = true;
+        }
+        if (other.CompareTag(SceneController.Tags.Crystalgun.ToString()) && _bulletData.currentWeaponName != BulletData.crystalgun)
+        {
+            Destroy(other.gameObject);
+            _bulletData.isCrystalgun = true;
+        }
+        if (other.CompareTag(SceneController.Tags.Demongun.ToString()) && _bulletData.currentWeaponName != BulletData.demongun)
+        {
+            Destroy(other.gameObject);
+            _bulletData.isDemongun = true;
+        }
+        if (other.CompareTag(SceneController.Tags.Icegun.ToString()) && _bulletData.currentWeaponName != BulletData.icegun)
+        {
+            Destroy(other.gameObject);
+            _bulletData.isIcegun = true;
+        }
+        if (other.CompareTag(SceneController.Tags.Negev.ToString()) && _bulletData.currentWeaponName != BulletData.negev)
+        {
+            Destroy(other.gameObject);
+            _bulletData.isNegev = true;
+        }
+
     }
     private void OnTriggerExit(Collider other)
     {
@@ -546,8 +686,31 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         if (_playerData.isPlayable && _playerController.fire)
         {
             //PlayerData
-            _playerData.isFiring = true;
-            _playerData.fireCounter--;
+            if (_playerData.bulletAmount <= 0)
+            {
+                _bulletAmountText.text = _playerData.bulletAmount.ToString();
+                _playerData.isFiring = false;
+
+            }
+            else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f)
+            {
+                _playerData.bulletAmount--;
+                _bulletAmountText.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                _bulletAmountText.text = _playerData.bulletAmount.ToString();
+                //_bulletAmountText.gameObject.transform.GetChild(0).gameObject.transform.GetComponent<Material>().color = Color.red;
+                _playerData.isFiring = true;
+
+            }
+            else if(_playerData.bulletAmount >= _playerData.bulletPack / 2f)
+            {
+                _bulletAmountText.gameObject.transform.localScale = Vector3.one;
+                //_bulletAmountText.gameObject.transform.GetChild(0).gameObject.transform.GetComponent<>().color = Color.cyan;
+
+                _playerData.bulletAmount--;
+                _bulletAmountText.text = _playerData.bulletAmount.ToString();
+                _playerData.isFiring = true;
+
+            }
 
             //Crosshair
             crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
@@ -892,10 +1055,15 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
 
             //Trigger CoinObject
-            other.gameObject.SetActive(false);
+            if (_playerData.bulletAmount  != _playerData.bulletPack)
+            {
+                other.gameObject.SetActive(false);
+                _bulletAmountText.gameObject.transform.localScale = Vector3.one;
+            }
 
             //SettingScore
-            _playerData.fireCounter = _playerData.bulletAmount;
+            _playerData.bulletAmount = _playerData.bulletPack;
+            _bulletAmountText.text = _playerData.bulletAmount.ToString();
         }
     }
     void DestroyByWater(PlayerData _playerData)
@@ -1023,7 +1191,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {//PlayerData
         if (_playerData != null)
         {
-            _playerData.fireCounter = _playerData.bulletAmount;
+            _bulletData.isRifle = false;
+            _playerData.bulletAmount = _playerData.bulletPack;
+            _bulletAmountText.text = _playerData.bulletAmount.ToString();
             PlayerData.slaveCounter = 0;
             _playerData.objects[5].GetComponent<MeshRenderer>().enabled = true;
             _playerData.objects[3].transform.localScale = new Vector3(1f, 0.1f, 0.1f);
@@ -1072,23 +1242,23 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     IEnumerator DelayLevelUp(float delayWait, float delayDestroy, PlayerData _playerData)
     {
         //PlayerData
-        _playerData.isLockedWalking = false;
-        _playerData.objects[3].transform.localScale = Vector3.zero;
+        //_playerData.isLockedWalking = false;
+        _playerData.objects[3].transform.localScale = new Vector3(1f, _playerData.objects[3].transform.localScale.y, _playerData.objects[3].transform.localScale.z);
         //DestroyImmediate(_playerData.healthBarObject, true);
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
-        _playerData.isTouchFinish = true;
+        //_playerData.isTouchFinish = true;
 
         yield return new WaitForSeconds(delayWait);
         //PlayerData
-        _playerData.isPlayable = false;
-        _playerData.isWinning = true;
+        //_playerData.isPlayable = false;
+        //_playerData.isWinning = true;
 
         //JolleenAnimation
-        CreateVictoryAnimation(_playerData);
+        //CreateVictoryAnimation(_playerData);
 
         yield return new WaitForSeconds(delayDestroy);
         //Destroy(gameObject);
-        SceneController.GetInstance.LevelUp();
+        //SceneController.GetInstance.LevelUp();
     }
     IEnumerator DelayDestroy(float delayDying)
     {

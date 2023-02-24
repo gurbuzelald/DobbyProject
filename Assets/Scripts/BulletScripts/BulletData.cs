@@ -11,14 +11,69 @@ public class BulletData : ScriptableObject
     public GameObject _bulletObject;
     public GameObject _swordingObject;
 
-    [Header("Bullet Types")]
-    public GameObject _pistolObject;
-    public GameObject _lowSword;
-    public GameObject _warriorSwordObject;
-    public GameObject _hummer;
+    [Header("Weapon Types")]
+    public GameObject ak47Object;
+    public GameObject rifleObject;
+    public GameObject bullDogObject;
+    public GameObject cowgunObject;
+    public GameObject crsytalgunObject;
+    public GameObject demongunObject;
+    public GameObject icegunObject;
+    public GameObject negevObject;
+    public GameObject axegunObject;
+
+    public bool isRifle;
+    public bool isAk47;
+    public bool isBulldog;
+    public bool isCowgun;
+    public bool isCrystalgun;
+    public bool isDemongun;
+    public bool isIcegun;
+    public bool isNegev;
+    public bool isAxegun;
+
+    public const string ak47 = "ak47";
+    public const string rifle = "rifle";
+    public const string bulldog = "bulldog";
+    public const string cowgun = "cowgun";
+    public const string crystalgun = "crystalgun";
+    public const string demongun = "demongun";
+    public const string icegun = "icegun";
+    public const string negev = "negev";
+    public const string axegun = "axegun";
+
+
+
+    [Header("Sword Types")]
+    public GameObject lowSwordObject;
+    public GameObject warriorSwordObject;
+    public GameObject hummerObject;
+    public GameObject orcSwordObject;
+    public GameObject axeObject;
+    public GameObject axeKnightObject;
+    public GameObject barbarianSwordObject;
+    public GameObject demonSwordObject;
+    public GameObject magicWeaponObject;
+    public GameObject longHummerObject;
+    public GameObject clubObject;
+
+    public const string lowSword = "lowSword";
+    public const string warriorSword = "warriorSword";
+    public const string hummer = "hummer";
+    public const string orcSword = "orcSword";
+    public const string axeSword = "axe";
+    public const string axeKnight = "axeKnight";
+    public const string barbarianSword = "barbarianSword";
+    public const string demonSword = "demonSword";
+    public const string magicSword = "magicWeapon";
+    public const string longHummer = "longHummer";
+    public const string club = "club";
+
+
 
     [Header("ChooseSword")]
-    public SwordNames currentSwordName = SwordNames.warriorSword;
+    public string currentSwordName = warriorSword;
+    public string currentWeaponName = ak47;
 
     [Header("Enemy")]
     [Header("Bullet Transform")]
@@ -26,11 +81,5 @@ public class BulletData : ScriptableObject
     public float enemyBulletDelay = 0.05f;
     public float enemyBulletSpeed = 3f;
 
-
-    public enum SwordNames
-    {
-        lowSword,
-        warriorSword,
-        hummer
-    }
+    
 }

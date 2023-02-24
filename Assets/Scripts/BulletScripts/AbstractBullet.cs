@@ -5,6 +5,22 @@ using Cinemachine;
 
 public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
 {
+    private static T _instance;
+
+    public static T GetInstance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<T>();
+                GameObject objectOfGame = new GameObject();
+                objectOfGame.name = typeof(T).Name;
+                _instance = objectOfGame.AddComponent<T>();
+            }
+            return _instance;
+        }
+    }
     public virtual void BulletRotation(bool isLookingUp, CinemachineVirtualCamera CurrentCamera, Transform bulletSpawnTransform)
     {
         if (CurrentCamera != null)

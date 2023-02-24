@@ -606,7 +606,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -1442390507663164623}
-    m_Position: {x: 310, y: 70, z: 0}
+    m_Position: {x: 320, y: 70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4082054374498448108}
     m_Position: {x: 570, y: 70, z: 0}
@@ -974,7 +974,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Pistol Walk
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 517543446165918514}
@@ -1793,7 +1793,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: e3079b6091fe1724293aa6b2b6feccaa, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: bc8ad2bd183785e4c9deb55be0f34eb2, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2360,7 +2360,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Shooting
-  m_Speed: 2
+  m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -393960057518937922}
@@ -2373,7 +2373,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: b5e872f3eb6715f4dba60154e82a8bd4, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 9aa29ffd510edc64c93a3d11b5b3df06, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

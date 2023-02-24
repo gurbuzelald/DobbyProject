@@ -1,43 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ChooseSwordController : MonoBehaviour
 {
     [SerializeField] GameObject[] _objects;
     [SerializeField] GameObject _panelObject;
     [SerializeField] BulletData bulletData;
+    [SerializeField] TextMeshProUGUI havingSwordText;
+
     void FixedUpdate()
+    {
+        RotateSword(50f);
+    }
+    void RotateSword(float rotateSpeed)
     {
         for (int i = 0; i < _objects.Length; i++)
         {
             if (i == 2)
             {
-                _objects[i].transform.Rotate(new Vector3(0f, 0f, Time.deltaTime * 50f));
+                _objects[i].transform.Rotate(new Vector3(0f, 0f, Time.deltaTime * rotateSpeed));
+            }
+            else if (i == 10)
+            {
+                _objects[i].transform.Rotate(new Vector3(Time.deltaTime * rotateSpeed, 0f, 0f));
             }
             else
             {
-                _objects[i].transform.Rotate(new Vector3(0f, Time.deltaTime * 50f, 0f));
+                _objects[i].transform.Rotate(new Vector3(0f, Time.deltaTime * rotateSpeed, 0f));
             }
         }
     }
-    public void ChoosedHummer()
+    public void ChoosedSword(string swordName)
     {
-        bulletData.currentSwordName = BulletData.SwordNames.hummer;
-        SceneController.GetInstance.LoadMenuScene();
+        if (bulletData.currentSwordName == swordName)
+        {
+            havingSwordText.text = "You already have this!!!";
+        }
+        else
+        {
+            havingSwordText.text = "";
+
+            bulletData.currentSwordName = swordName;
+            SceneController.GetInstance.LoadCharacterChoosingScene();
+        }
     }
-    public void ChoosedWarriorSword()
-    {
-        bulletData.currentSwordName = BulletData.SwordNames.warriorSword;
-        SceneController.GetInstance.LoadMenuScene();
-    }
-    public void ChoosedLowSword()
-    {
-        bulletData.currentSwordName = BulletData.SwordNames.lowSword;
-        SceneController.GetInstance.LoadMenuScene();
-    }
+
+
+
     public void GoLeft(int value)
     {
+        havingSwordText.text = "";
+
         for (int i = 0; i < _objects.Length; i++)
         {
             _objects[i].transform.position = new Vector3(_objects[i].transform.position.x - value,
@@ -47,6 +62,8 @@ public class ChooseSwordController : MonoBehaviour
     }
     public void GoRight(int value)
     {
+        havingSwordText.text = "";
+
         for (int i = 0; i < _objects.Length; i++)
         {
             _objects[i].transform.position = new Vector3(_objects[i].transform.position.x + value,
