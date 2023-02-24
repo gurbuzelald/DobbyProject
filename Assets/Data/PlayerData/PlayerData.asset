@@ -31,13 +31,13 @@ MonoBehaviour:
   - {fileID: 7971067666596210365, guid: 48f6891f360c67a488d3fe548e1e8d5f, type: 3}
   - {fileID: 7971067666596210365, guid: 0ba857b35eeb15e4da33c0bc95bc1357, type: 3}
   spawns: {fileID: 2359986759738939504, guid: aabf96d4f82bfd84cadaf35e1afe1e4b, type: 3}
-  sensivityX: 10
-  sensivityY: 20
+  sensivityX: 18
+  sensivityY: 5
   isTouchFinish: 0
   isLose: 0
   playerSpeed: 2
   rotateSpeed: 6
-  isGround: 0
+  isGround: 1
   isWalking: 0
   isLockedWalking: 0
   isBackWalking: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
   jumpCount: 0
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 30
+  bulletAmount: 12
   bulletPack: 30
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}
@@ -69,7 +69,7 @@ MonoBehaviour:
   touchParticle: {fileID: 2098394851902305992, guid: 9bd5863dac0a07144a968a375408214b, type: 3}
   birthParticle: {fileID: 1705621348223521887, guid: cd7d4ea18b432ef44b8f8ed281ea60c7, type: 3}
   deathParticle: {fileID: 5597880929392322992, guid: c3d186f24e85b9549b8b845c134e0d97, type: 3}
-  burningParticle: {fileID: 4795760450652133736, guid: beadd3d20fee2ac4aa43188ab1f50adc, type: 3}
+  burningParticle: {fileID: 2998880394958268818, guid: d1da0b7ce7a5e4e4a9ed42ef14329904, type: 3}
   burningTouchParticle: {fileID: 2998880394958268818, guid: d1da0b7ce7a5e4e4a9ed42ef14329904, type: 3}
   particleCount: 0
   shootClip: {fileID: 8300000, guid: e4d1e9a1be4831542961bcd5a6c97f7a, type: 3}

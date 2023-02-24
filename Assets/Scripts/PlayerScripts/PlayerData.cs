@@ -9,7 +9,7 @@ public class PlayerData : ScriptableObject
     [Header("Prefab Game Objects For Player")]
     public GameObject[] objects;
     public GameObject[] slaveObjects;
-    public static int slaveCounter;
+    //public static int slaveCounter;
     public Transform spawns;
 
     [Header("Sensivity")]

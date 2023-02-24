@@ -180,7 +180,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform);
         }
-        _currentWeaponObject.SetActive(false);
+        _currentWeaponObject.SetActive(true);
 
         _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.position;
         _currentWeaponObject.transform.rotation = bulletData.rifleObject.transform.rotation;

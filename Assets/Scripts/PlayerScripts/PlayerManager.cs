@@ -31,8 +31,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     [SerializeField] Transform _cameraWasherTransform;
 
     public Transform[] _slaveTransforms;
-    [HideInInspector]
     public Transform slaves;
+    private GameObject slaveObject;
 
     [Header("CinemachineVirtualCamera")]    
     public CinemachineVirtualCamera _currentCamera;
@@ -375,7 +375,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
                 //SettingScore
                 ScoreController.GetInstance.SetScore(230);
-                CreateSlaveObject();
+                //CreateSlaveObject();
             }
         }
     }
@@ -439,7 +439,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (other.CompareTag(SceneController.Tags.Rifle.ToString()) && _bulletData.currentWeaponName != BulletData.rifle)
         {
-            //Debug.Log("Test");
             Destroy(other.gameObject);
             _bulletData.isRifle = true;
         }
@@ -582,7 +581,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {//ForwardAndBackWalking
         if (!_playerData.isLockedWalking)
         {
-            if ((_zValue > 0.01f && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isRunning) || _playerData.isLockedWalking)
+            if ((_zValue > 0.01f && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isRunning))
             {
                 GetInstance.GetComponent<Transform>().Translate(0f, 0f, _zValue);
                 //PlayerData
@@ -606,7 +605,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         else
         {
-            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _playerData.playerSpeed * Time.deltaTime / 2f);
+            GetInstance.GetComponent<Transform>().Translate(0f, 0f, _playerData.playerSpeed * Time.deltaTime / 4f);
         }
         SideWalk(_playerData);
         SpeedController(_playerData);
@@ -988,7 +987,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             //Score
             ScoreController.GetInstance.SetScore(23);
-            CreateSlaveObject();
+            //CreateSlaveObject();
         }
         else if (value == SceneController.Tags.RotateCoin)
         {
@@ -1006,7 +1005,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             //SettingScore
             ScoreController.GetInstance.SetScore(23);
-            CreateSlaveObject();
+            //CreateSlaveObject();
         }
         else if (value == SceneController.Tags.CheeseCoin)
         {
@@ -1024,7 +1023,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             //SettingScore
             ScoreController.GetInstance.SetScore(23);
-            CreateSlaveObject();
+            //CreateSlaveObject();
         }
         else if (value == SceneController.Tags.MushroomCoin)
         {
@@ -1097,19 +1096,20 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     public void CreateSlaveObject()
     {
-        if (PlayerData.slaveCounter > 7)
-        {
-            PlayerData.slaveCounter = 0;
-        }
-        Instantiate(_playerData.slaveObjects[PlayerData.slaveCounter],
-                    PlayerManager.GetInstance.gameObject.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).position,
-                    Quaternion.identity,
-                    slaves);
-        if (PlayerData.slaveCounter < 8)
-        {
-            PlayerData.slaveCounter++;
-        }
-        
+        //if (slaves.transform.childCount < 4 && slaves.transform.childCount >= 0)
+        //{
+            
+        //    slaveObject = Instantiate(_playerData.slaveObjects[PlayerData.slaveCounter],
+        //                                             PlayerManager.GetInstance.gameObject.transform.GetChild(1).transform.GetChild(0).transform.GetChild(0).position,
+        //                                             Quaternion.identity,
+        //                                             slaves);
+        //    PlayerData.slaveCounter++;
+        //}
+        //else
+        //{
+        //    PlayerData.slaveCounter = 0;
+        //    Destroy(slaveObject);
+        //}
         
     }
     void TriggerLadder(bool isTouch, bool isTouchExit, PlayerData _playerData)
@@ -1181,7 +1181,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                     playerIconTransform.transform);//PlayerIconPrefab
 
         Instantiate(_playerData.objects[6], gameObject.transform);//PlayerSFXPrefab
-        CreateSlaveObject();
+        //CreateSlaveObject();
 
 
 
@@ -1191,10 +1191,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {//PlayerData
         if (_playerData != null)
         {
+            //PlayerData.slaveCounter = 0;
             _bulletData.isRifle = false;
             _playerData.bulletAmount = _playerData.bulletPack;
             _bulletAmountText.text = _playerData.bulletAmount.ToString();
-            PlayerData.slaveCounter = 0;
             _playerData.objects[5].GetComponent<MeshRenderer>().enabled = true;
             _playerData.objects[3].transform.localScale = new Vector3(1f, 0.1f, 0.1f);
             _playerData.isLockedWalking = false;

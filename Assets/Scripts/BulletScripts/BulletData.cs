@@ -13,14 +13,23 @@ public class BulletData : ScriptableObject
 
     [Header("Weapon Types")]
     public GameObject ak47Object;
+    public GameObject ak47GiftBox;
     public GameObject rifleObject;
+    public GameObject rifleGiftBox;
     public GameObject bullDogObject;
+    public GameObject bullDogGiftBox;
     public GameObject cowgunObject;
+    public GameObject cowgunGiftBox;
     public GameObject crsytalgunObject;
+    public GameObject crsytalgunGiftBox;
     public GameObject demongunObject;
+    public GameObject demongunGiftBox;
     public GameObject icegunObject;
+    public GameObject icegunGiftBox;
     public GameObject negevObject;
+    public GameObject negevGiftBox;
     public GameObject axegunObject;
+    public GameObject axegunGiftBox;
 
     public bool isRifle;
     public bool isAk47;
