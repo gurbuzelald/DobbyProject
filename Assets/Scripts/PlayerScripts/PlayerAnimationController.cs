@@ -13,13 +13,16 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
     public SlaveData slaveData;
     public PlayerData cloneData;
 
-    private void Start()
+    void OnEnable()
     {
         if (gameObject.transform.CompareTag(SceneController.Tags.Slave.ToString()))
         {
             _slaveAnimator = GetComponent<Animator>();
         }
-        _animator = GetComponent<Animator>();
+        else
+        {
+            _animator = GetComponent<Animator>();
+        }
 
         if (_animator != null)
         {

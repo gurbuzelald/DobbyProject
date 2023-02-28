@@ -9,6 +9,9 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     private EnemySpawner _clownSpawner;
     public static bool isFirable;
 
+    [SerializeField] Transform _bulletSpawnTransform;
+
+
     private void Awake()
     {
         isFirable = true;
@@ -40,7 +43,7 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     IEnumerator Delay(float delayValue, float delayDestroy)
     {
         yield return new WaitForSeconds(delayValue);
-        CreateBullet(gameObject.transform, bulletData.enemyBulletSpeed, 1, _clownSpawner._objectPool, delayDestroy);
+        CreateBullet(_bulletSpawnTransform.transform, bulletData.enemyBulletSpeed, 1, _clownSpawner._objectPool, delayDestroy);
     }
     IEnumerator FiringFalse()
     {

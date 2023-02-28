@@ -12,15 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  _finishAreas:
+  - {fileID: 6077999299515317139, guid: 5d3360537580dd6429aa753a9d49fc9a, type: 3}
+  - {fileID: 1463722475801943252, guid: be09b26dde177424c958e3a369cfa478, type: 3}
+  - {fileID: 5151933759386684822, guid: 7cbbc2533eb7f534ea7f29af1e94ebf1, type: 3}
+  isCompleteFirstMap: 0
+  isCompleteSecondMap: 0
+  isCompleteThirdMap: 0
   currentCharacterName: 3
+  dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
+  glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
+  spartacus: {fileID: 1254244383937338342, guid: fa5afc234e9ba074795c420e9145256f, type: 3}
+  guard: {fileID: 5075507251047758960, guid: 121bbb1bd4eef57478721b5ef2cc4082, type: 3}
+  lusth: {fileID: 1804162575734578991, guid: 68835b9515214a54097ef287fe3f1c49, type: 3}
   objects:
   - {fileID: 6582287944818323382, guid: 5d67c0fa01c514a469d241126046c4cb, type: 3}
   - {fileID: 4529110289692566654, guid: ece28a22070f44540a834a2a3abbfcfb, type: 3}
   - {fileID: 2390697041342691216, guid: b9e602427f47be44eb620c354070bca0, type: 3}
-  - {fileID: 4029139522869570636, guid: 0b81f70c3b5360e4f9187d63b7617c13, type: 3}
+  - {fileID: 5742403067897422523, guid: de469484f9f41a9489e9452843ac0131, type: 3}
   - {fileID: 7964753639937622105, guid: 0980400cd9322f648aa9a0d60c767b0c, type: 3}
   - {fileID: 2613066168305214933, guid: 26cc8ebb945008b409049e7880d85d78, type: 3}
   - {fileID: 3102288607414887448, guid: 291ccd016fce448479fcd5813069629a, type: 3}
+  - {fileID: 4849532061827766971, guid: 0475ff0f49311f1439d5dacc468f03fd, type: 3}
   slaveObjects:
   - {fileID: 7971067666596210365, guid: 1ba2500ecb2e6f64385f5eb4aa2331e7, type: 3}
   - {fileID: 7971067666596210365, guid: 85db7fc5363ca954496d7c81ea303618, type: 3}
@@ -61,7 +74,7 @@ MonoBehaviour:
   jumpCount: 0
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 12
+  bulletAmount: 30
   bulletPack: 30
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

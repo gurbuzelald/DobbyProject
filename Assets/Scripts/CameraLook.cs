@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 //[RequireComponent(typeof(CinemachineFreeLook))]
 public class CameraLook : MonoBehaviour
@@ -125,8 +125,11 @@ public class CameraLook : MonoBehaviour
     }
     private void Update()
     {
-        //Debug.Log(Screen.width);
-        gameObject.transform.rotation = PlayerManager.GetInstance._currentCameraTransform.rotation;        
+        gameObject.transform.rotation = PlayerManager.GetInstance._currentCameraTransform.rotation;
+        if (PlayerManager.GetInstance._zValue != 0)
+        {
+            //gameObject.transform.GetComponent<CinemachineVirtualCamera>().m_FollowOffset  
+        }
     }
 
 }

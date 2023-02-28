@@ -6,8 +6,12 @@ using UnityEngine;
 public class EnemyData : ScriptableObject
 {
     [Header("Objects")]
-    public GameObject[] enemiesObjects;
-    public Transform[] enemiesTransform;
+    public GameObject[] enemyFirstObjects;
+    public GameObject[] enemySecondObjects;
+    public GameObject[] enemiesThirdObjects;
+    public GameObject enemyTransformsFirstMap;
+    public GameObject enemyTransformsSecondMap;
+    public GameObject enemyTransformsThirdMap;
 
     [Header("Sounds")]
     //public AudioClip shootClip;

@@ -9,22 +9,43 @@ public class EnemySpawner : MonoBehaviour
     public ObjectPool _objectPool;
     public EnemyData enemyData;
     public TextMeshProUGUI enemyCountText;
+    public PlayerData playerData;
+    private GameObject currentEnemyObjects;
+
+    [SerializeField] Transform enemySpawnTransform;
 
     private void Awake()
     {
-        for (int i = 0; i < enemyData.enemiesTransform.Length; i++)
+        for (int i = 0; i < enemyData.enemyTransformsFirstMap.transform.childCount; i++)
         {
-            GameObject obj = Instantiate(enemyData.enemiesObjects[i],
-                                         enemyData.enemiesTransform[i].position, 
+            currentEnemyObjects = Instantiate(enemyData.enemyFirstObjects[i],
+                                         enemyData.enemyTransformsFirstMap.transform.GetChild(i).position, 
                                          Quaternion.identity,
-                                         gameObject.transform);
-            obj.transform.position = enemyData.enemiesTransform[i].position;
+                                         enemySpawnTransform.transform);
+            currentEnemyObjects.transform.position = enemyData.enemyTransformsFirstMap.transform.GetChild(i).position;
         }
-        enemyCountText.text = gameObject.transform.childCount.ToString();
+        enemyCountText.text = gameObject.transform.GetChild(0).childCount.ToString();
         //Debug.Log(gameObject.transform.childCount);
     }
     private void Update()
     {
-        enemyCountText.text = gameObject.transform.childCount.ToString();
+        enemyCountText.text = gameObject.transform.GetChild(0).childCount.ToString();
+        if (playerData.isCompleteFirstMap)
+        {
+            GameObject currentEnemiesTransform = GameObject.Find("EnemySpawns");
+            for (int i = 0; i < currentEnemiesTransform.transform.childCount; i++)
+            {
+                Destroy(currentEnemiesTransform.transform.GetChild(i).gameObject);
+            }
+
+            for (int i = 0; i < enemyData.enemySecondObjects.Length; i++)
+            {
+                currentEnemyObjects = Instantiate(enemyData.enemySecondObjects[i],
+                                         enemyData.enemyTransformsSecondMap.transform.GetChild(i).position,
+                                         Quaternion.identity,
+                                         currentEnemiesTransform.transform);
+                currentEnemyObjects.transform.position = enemyData.enemyTransformsSecondMap.transform.GetChild(i).position;
+            }
+        }
     }
 }

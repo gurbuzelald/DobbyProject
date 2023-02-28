@@ -4944,7 +4944,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 2.04, z: 1.55}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6948195606205054707}
   m_Father: {fileID: 8967855359998218865}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 10, y: 0, z: 0}
@@ -5028,6 +5029,7 @@ MonoBehaviour:
     m_Bits: 26432
   enemyData: {fileID: 11400000, guid: 60923836beb72234f8c24e6054daa1f7, type: 2}
   bulletData: {fileID: 11400000, guid: 51a13d97738076847b6e0b6cd8c3d021, type: 2}
+  _bulletSpawnTransform: {fileID: 6948195606205054707}
 --- !u!1 &851739173387544763
 GameObject:
   m_ObjectHideFlags: 0
@@ -14658,6 +14660,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &7660942045624449124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6948195606205054707}
+  m_Layer: 6
+  m_Name: bulletSpawnTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6948195606205054707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7660942045624449124}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 851739172678728883}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8475105914845649481
 GameObject:
   m_ObjectHideFlags: 0

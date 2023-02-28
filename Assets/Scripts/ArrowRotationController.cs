@@ -4,17 +4,31 @@ using UnityEngine;
 
 public class ArrowRotationController : MonoBehaviour
 {
+    [SerializeField] PlayerData playerData;
+    private Transform _finishArea;
+    private void Awake()
+    {
+        _finishArea = playerData._finishAreas[0].transform;
+    }
     void Update()
     {
-        ArrowRotation(PlayerManager.GetInstance._finishArea);
+        ArrowRotation();
     }
-    void ArrowRotation(Transform _finishArea)
+    void ArrowRotation()
     {
+
+        if (playerData.isCompleteFirstMap && !playerData.isCompleteSecondMap && !playerData.isCompleteThirdMap)
+        {
+            _finishArea = playerData._finishAreas[1].transform;
+        }
+        else if (!playerData.isCompleteFirstMap && playerData.isCompleteSecondMap && !playerData.isCompleteThirdMap)
+        {
+            _finishArea = playerData._finishAreas[2].transform;
+        }
+
         if (gameObject != null)
         {
-            //gameObject.transform.Rotate(0f, 200f * Time.deltaTime, 0f);
-            //gameObject.transform.rotation = Quaternion.Euler(new Vector3(gameObject.transform.rotation.x, gameObject.transform.rotation.y + 90, gameObject.transform.rotation.z));
-            gameObject.transform.LookAt(_finishArea); 
+            gameObject.transform.LookAt(_finishArea);
         }
     }
 }

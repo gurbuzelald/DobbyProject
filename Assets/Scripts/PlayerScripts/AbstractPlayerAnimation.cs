@@ -434,8 +434,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         _animator.SetLayerWeight(layerOrder, weightAmount);
         playerData.isPicking = false;
         playerData.isPickRotateCoin = false;
-        PlayerManager.GetInstance._coinObject.SetActive(false);
-        PlayerManager.GetInstance._cheeseObject.SetActive(false);
+        //PlayerManager.GetInstance._coinObject.SetActive(false);
+        //PlayerManager.GetInstance._cheeseObject.SetActive(false);
     }
     public enum AnimatorParameters
     {

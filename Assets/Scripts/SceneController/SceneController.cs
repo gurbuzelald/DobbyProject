@@ -195,7 +195,9 @@ public class SceneController : AbstractSceneController<SceneController>
         Player,
         Water,
         FanceWooden,
-        FinishArea,
+        FirstFinishArea,
+        SecondFinishArea,
+        ThirdFinishArea,
 
         //Coins
         Coin,

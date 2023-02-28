@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using Cinemachine;
 
@@ -19,14 +20,15 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public BulletData _bulletData;
 
     [Header("Current Spawn Transforms")]
-    public Transform _finishArea;
     public Transform _particleTransform;
     public Transform _currentCameraTransform;
+
+    [HideInInspector]
     public Transform bulletCoinTransform;
+
     [SerializeField] Transform _jolleenTransform;
     [SerializeField] Transform playerIconTransform;
     [SerializeField] Transform healthBarTransform;
-    [SerializeField] Transform _camerasTransform;
     [SerializeField] Transform _bulletsTransform;    
     [SerializeField] Transform _cameraWasherTransform;
 
@@ -55,43 +57,50 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     [SerializeField] GameObject _warmArrow;
 
-
-    [Header("Choose Character Objects")]
-    [SerializeField] GameObject _spartacusObject;
-    [SerializeField] GameObject _glassyObject;
-    [SerializeField] GameObject _dobbyObject;
-    [SerializeField] GameObject _lusthObject;
-    [SerializeField] GameObject _guardObject;
-
     [HideInInspector]
-    public Transform _gunTransform;
+    public GameObject _gunTransform;
     [HideInInspector]
-    public Transform _swordTransform;
+    public GameObject _swordTransform;
     [HideInInspector]
     public GameObject _coinObject;
     [HideInInspector]
     public GameObject _cheeseObject;
 
     [Header("Character Hands")]
+    [HideInInspector]
     public GameObject _pinkyGlassy;
+    [HideInInspector]
     public GameObject _pinkySpartacus;
+    [HideInInspector]
     public GameObject _pinkyDobby;
+    [HideInInspector]
     public GameObject _pinkyLusth;
+    [HideInInspector]
     public GameObject _pinkyGuard;
-    public GameObject _characterObject;
+    [HideInInspector]
 
-    [SerializeField] TextMeshProUGUI _bulletAmountText;
+    [Header("Character Object")]
+    public GameObject _currentCharacterObject;
+    [SerializeField] GameObject _characterObject;
+    private GameObject characterObject;
 
-    public delegate void Move();    
+    [Header("Show Bullet Amoun")]
+    private GameObject bulletAmounCanvas;
+    private GameObject _healthBarObject;
+    [SerializeField] GameObject _topCanvasHealthBarObject;
+
     void Start()
     {
-        CharacterStateControl();
+        //Scripts
+        _playerController = FindObjectOfType<PlayerController>();
 
-        ChooseCharacterStates();
+        CreateCharacterObject();
 
-        DataStatesOnInitial(_playerData);
+        FindHandObjectTransforms();
 
         CreateStartPlayerStaff(_playerData);
+
+        DataStatesOnInitial(_playerData);
 
         TriggerLadder(false, true, _playerData);
 
@@ -101,235 +110,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
 
         //Audio
-        audioSource = GetComponent<AudioSource>();
-
-        
-
-        //Scripts
-        _playerController = FindObjectOfType<PlayerController>();
-    }
-    public void CharacterStateControl()
-    {
-        if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
-        {
-            _characterObject = _dobbyObject;
-            _characterObject.SetActive(true);
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
-        {
-            _characterObject = _glassyObject;
-            _characterObject.SetActive(true);
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
-        {
-            _characterObject = _spartacusObject;
-            _characterObject.SetActive(true);
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
-        {
-            _characterObject = _lusthObject;
-            _characterObject.SetActive(true);
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
-        {
-            _characterObject = _guardObject;
-            _characterObject.SetActive(true);
-        }
-        else
-        {
-            _characterObject = _dobbyObject;
-            _characterObject.SetActive(true);
-        }
-    }
-    public void ChooseGunTransform(GameObject pinky)//Getting finger transform parameter
-    {
-        if (_bulletData.currentWeaponName == BulletData.ak47)
-        {
-            _gunTransform = pinky.transform.GetChild(1).GetChild(0);
-        }
-        else if (_bulletData.currentWeaponName == BulletData.rifle)
-        {
-            _gunTransform = pinky.transform.GetChild(1).GetChild(1);
-        }
-        else if (_bulletData.currentWeaponName == BulletData.bulldog)
-        {
-            _gunTransform = pinky.transform.GetChild(1).GetChild(2);
-        }
-        else if (_bulletData.currentWeaponName == BulletData.cowgun)
-        {
-            _gunTransform = pinky.transform.GetChild(1).GetChild(3);
-        }
-        else if (_bulletData.currentWeaponName == BulletData.crystalgun)
-        {
-            _gunTransform = pinky.transform.GetChild(1).GetChild(4);
-        }
-        else if (_bulletData.currentWeaponName == BulletData.demongun)
-        {
-            _gunTransform = pinky.transform.GetChild(1).GetChild(5);
-        }
-        else if (_bulletData.currentWeaponName == BulletData.icegun)
-        {
-            _gunTransform = pinky.transform.GetChild(1).GetChild(6);
-        }
-        else if (_bulletData.currentWeaponName == BulletData.negev)
-        {
-            _gunTransform = pinky.transform.GetChild(1).GetChild(7);
-        }
-        else if (_bulletData.currentWeaponName == BulletData.axegun)
-        {
-            _gunTransform = pinky.transform.GetChild(1).GetChild(8);
-        }
-    }
-    public void ChooseSwordTransform(GameObject pinky)
-    {
-        if (_bulletData.currentSwordName == BulletData.lowSword)
-        {
-            _swordTransform = pinky.transform.GetChild(2).GetChild(0);
-        }
-        else if (_bulletData.currentSwordName == BulletData.warriorSword)
-        {
-            _swordTransform = pinky.transform.GetChild(2).GetChild(1);
-        }
-        else if (_bulletData.currentSwordName == BulletData.hummer)
-        {
-            _swordTransform = pinky.transform.GetChild(2).GetChild(2);
-        }
-        else if (_bulletData.currentSwordName == BulletData.orcSword)
-        {
-            _swordTransform = pinky.transform.GetChild(2).GetChild(3);
-        }
-        else if (_bulletData.currentSwordName == BulletData.axeSword)
-        {
-            _swordTransform = pinky.transform.GetChild(2).GetChild(4);
-        }
-        else if (_bulletData.currentSwordName == BulletData.axeKnight)
-        {
-            _swordTransform = pinky.transform.GetChild(2).GetChild(5);
-        }
-        else if (_bulletData.currentSwordName == BulletData.barbarianSword)
-        {
-            _swordTransform = pinky.transform.GetChild(2).GetChild(6);
-        }
-        else if (_bulletData.currentSwordName == BulletData.demonSword)
-        {
-            _swordTransform = pinky.transform.GetChild(2).GetChild(7);
-        }
-        else if (_bulletData.currentSwordName == BulletData.magicSword)
-        {
-            _swordTransform = pinky.transform.GetChild(2).GetChild(8);
-        }
-        else if (_bulletData.currentSwordName == BulletData.longHummer)
-        {
-            _swordTransform = pinky.transform.GetChild(2).GetChild(9);
-        }
-        else if (_bulletData.currentSwordName == BulletData.club)
-        {
-            _swordTransform = pinky.transform.GetChild(2).GetChild(10);
-        }
-
-    }
-    public void ChooseCharacterStates()
-    {
-        if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
-        {
-            //Characters
-            _glassyObject.SetActive(false);
-            _spartacusObject.SetActive(false);
-            _lusthObject.SetActive(false);
-            _guardObject.SetActive(false);
-
-            //GameObjects
-            _coinObject = _pinkyDobby.transform.GetChild(0).gameObject;
-            ChooseGunTransform(_pinkyDobby);
-            ChooseSwordTransform(_pinkyDobby);
-            _cheeseObject = _pinkyDobby.transform.GetChild(3).gameObject;
-            _coinObject.SetActive(false);
-            _cheeseObject.SetActive(false);
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
-        {
-            //Characters
-            _dobbyObject.SetActive(false);
-            _spartacusObject.SetActive(false);
-            _lusthObject.SetActive(false);
-            _guardObject.SetActive(false);
-
-            //GameObjects
-            _coinObject = _pinkyGlassy.transform.GetChild(0).gameObject;
-            ChooseGunTransform(_pinkyGlassy);
-            ChooseSwordTransform(_pinkyGlassy);
-            _cheeseObject = _pinkyGlassy.transform.GetChild(3).gameObject;
-            _coinObject.SetActive(false);
-            _cheeseObject.SetActive(false);
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
-        {
-            //Characters
-            _dobbyObject.SetActive(false);
-            _glassyObject.SetActive(false);
-            _lusthObject.SetActive(false);
-            _guardObject.SetActive(false);
-
-            //GameObjects
-            _coinObject = _pinkySpartacus.transform.GetChild(0).gameObject;
-            ChooseGunTransform(_pinkySpartacus);
-            ChooseSwordTransform(_pinkySpartacus);
-            _cheeseObject = _pinkySpartacus.transform.GetChild(3).gameObject;
-            _coinObject.SetActive(false);
-            _cheeseObject.SetActive(false);
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
-        {
-            //Characters
-            _dobbyObject.SetActive(false);
-            _glassyObject.SetActive(false);
-            _lusthObject.SetActive(false);
-            _spartacusObject.SetActive(false);
-
-            //GameObjects
-            _coinObject = _pinkyGuard.transform.GetChild(0).gameObject;
-            ChooseGunTransform(_pinkyGuard);
-            ChooseSwordTransform(_pinkyGuard);
-            _cheeseObject = _pinkyGuard.transform.GetChild(3).gameObject;
-            _coinObject.SetActive(false);
-            _cheeseObject.SetActive(false);
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
-        {
-            //Characters
-            _dobbyObject.SetActive(false);
-            _glassyObject.SetActive(false);
-            _spartacusObject.SetActive(false);
-            _guardObject.SetActive(false);
-
-            //GameObjects
-            _coinObject = _pinkyLusth.transform.GetChild(0).gameObject;
-            ChooseGunTransform(_pinkyLusth);
-            ChooseSwordTransform(_pinkyLusth);
-            _cheeseObject = _pinkyLusth.transform.GetChild(3).gameObject;
-            _coinObject.SetActive(false);
-            _cheeseObject.SetActive(false);
-        }
-        else
-        {
-            //Characters
-            _glassyObject.SetActive(false);
-            _spartacusObject.SetActive(false);
-            _lusthObject.SetActive(false);
-            _guardObject.SetActive(false);
-
-            //GameObjects
-            _coinObject = _pinkyDobby.transform.GetChild(0).gameObject;
-            ChooseGunTransform(_pinkyDobby);
-            ChooseSwordTransform(_pinkyDobby);
-            _cheeseObject = _pinkyDobby.transform.GetChild(3).gameObject;
-            _coinObject.SetActive(false);
-            _cheeseObject.SetActive(false);
-        }
+        audioSource = GetComponent<AudioSource>();        
     }
 
-
-    // Update is called once per frame
     void Update()
     {
         if (_warmArrow != null)
@@ -350,7 +133,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {        
         if (gameObject != null && _playerData.objects[3] != null)
         {
-            if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()) || collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()) || collision.collider.CompareTag(SceneController.Tags.Magma.ToString()))
+            if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()) || 
+                collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()) || collision.collider.CompareTag(SceneController.Tags.Magma.ToString()))
             {//Ground, Bridge, FanceWooden, Magma
              //PlayerData
                 _playerData.isGround = true;
@@ -400,10 +184,28 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             TriggerLadder(true, false, _playerData);
         }
-        if (other.CompareTag(SceneController.Tags.FinishArea.ToString()))
+
+
+        if (other.CompareTag(SceneController.Tags.FirstFinishArea.ToString()))
         {
-            StartCoroutine(DelayLevelUp(2f, _playerData.danceTime, _playerData));//LevelUpWithCoroutine
+            //playerData_finishArea = MapController.currentMap.transform.GetChild(0).GetChild(0).gameObject;
+
+            StartCoroutine(DelayLevelUp(2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
         }
+        else if (other.CompareTag(SceneController.Tags.SecondFinishArea.ToString()))
+        {
+            //_finishArea = MapController.currentMap.transform.GetChild(0).GetChild(0).gameObject;
+            
+            StartCoroutine(DelayLevelUp(2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
+        }
+        else if (other.CompareTag(SceneController.Tags.ThirdFinishArea.ToString()))
+        {
+            //_finishArea = MapController.currentMap.transform.GetChild(0).GetChild(0).gameObject;
+
+            StartCoroutine(DelayLevelUp(2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
+        }
+
+
         if (other.CompareTag(SceneController.Tags.Coin.ToString()))
         {
             PickUpCoin(SceneController.Tags.Coin, other, _playerData);//GetScore
@@ -424,6 +226,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             PickUpCoin(SceneController.Tags.BulletCoin, other, _playerData);//FreshBulletAmount
         }
+
+
         if (other.CompareTag(SceneController.Tags.Lava.ToString()))
         {
             DestroyByLava(_playerData);//DeathByLava
@@ -687,26 +491,26 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             //PlayerData
             if (_playerData.bulletAmount <= 0)
             {
-                _bulletAmountText.text = _playerData.bulletAmount.ToString();
+                bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
                 _playerData.isFiring = false;
 
             }
             else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f)
             {
                 _playerData.bulletAmount--;
-                _bulletAmountText.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                _bulletAmountText.text = _playerData.bulletAmount.ToString();
+                bulletAmounCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
                 //_bulletAmountText.gameObject.transform.GetChild(0).gameObject.transform.GetComponent<Material>().color = Color.red;
                 _playerData.isFiring = true;
 
             }
             else if(_playerData.bulletAmount >= _playerData.bulletPack / 2f)
             {
-                _bulletAmountText.gameObject.transform.localScale = Vector3.one;
+                bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().gameObject.transform.localScale = Vector3.one;
                 //_bulletAmountText.gameObject.transform.GetChild(0).gameObject.transform.GetComponent<>().color = Color.cyan;
 
                 _playerData.bulletAmount--;
-                _bulletAmountText.text = _playerData.bulletAmount.ToString();
+                bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
                 _playerData.isFiring = true;
 
             }
@@ -867,7 +671,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     //Collision
     void TouchEnemy(Collision collision, PlayerData _playerData)
     {
-        if (_playerData.objects[3].transform.localScale.x <= 0.0625f)
+        if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 0)
         {
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
@@ -883,6 +687,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 collision.gameObject.GetComponent<CloneSpawner>().cloneData.isCloneDancing = true;
                 collision.gameObject.GetComponent<CloneSpawner>().cloneData.isCloneWalking = false;
             }
+
+            _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
 
             //PlayerData
             _playerData.isDestroyed = true;
@@ -909,9 +715,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
                 //PlayerData
-                _playerData.objects[3].transform.localScale = new Vector3(_playerData.objects[3].transform.localScale.x / 1.1f,
-                                                                               _playerData.objects[3].transform.localScale.y,
-                                                                               _playerData.objects[3].transform.localScale.z);
+                _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= 5;
+
+                _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
             }
         }
     }
@@ -922,7 +728,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         
         if (_playerData.objects[3] != null)
         {
-            if (_playerData.objects[3].transform.localScale.x <= 0.0625f && !_playerData.isWinning)
+            if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 0 && !_playerData.isWinning)
             {
                 //Particle Effect
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform.transform);
@@ -944,6 +750,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                     other.gameObject.GetComponent<CloneSpawner>().cloneData.isCloneWalking = false;
                 }
 
+                _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
 
                 //PlayerData
                 _playerData.isDying = true;
@@ -962,9 +769,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
 
                 //PlayerData
-                _playerData.objects[3].transform.localScale = new Vector3(_playerData.objects[3].transform.localScale.x / 1.05f,
-                                                                               _playerData.objects[3].transform.localScale.y,
-                                                                               _playerData.objects[3].transform.localScale.z);
+                _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= 5;
+                _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
             }
         }
         StartCoroutine(LookAtTouchEnemyBullet(other));
@@ -1057,12 +863,12 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             if (_playerData.bulletAmount  != _playerData.bulletPack)
             {
                 other.gameObject.SetActive(false);
-                _bulletAmountText.gameObject.transform.localScale = Vector3.one;
+                bulletAmounCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
             }
 
             //SettingScore
             _playerData.bulletAmount = _playerData.bulletPack;
-            _bulletAmountText.text = _playerData.bulletAmount.ToString();
+            bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
         }
     }
     void DestroyByWater(PlayerData _playerData)
@@ -1112,6 +918,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //}
         
     }
+
     void TriggerLadder(bool isTouch, bool isTouchExit, PlayerData _playerData)
     {
         GetInstance.GetComponent<Rigidbody>().isKinematic = isTouch;
@@ -1143,6 +950,165 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
         }
     }
+
+    void CreateCharacterObject()
+    {
+        characterObject = Instantiate(_characterObject, gameObject.transform);
+
+        GameObject current;
+        if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
+        {
+            current = _playerData.dobby;
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
+        {
+            current = _playerData.glassy;
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
+        {
+            current = _playerData.guard;
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
+        {
+            current = _playerData.spartacus;
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
+        {
+            current = _playerData.lusth;
+        }
+        else
+        {
+            current = _playerData.dobby;
+        }
+        Instantiate(current, characterObject.transform);
+    }
+    public void FindHandObjectTransforms()
+    {
+        //GameObjects
+        _coinObject = GameObject.Find("Coin");
+        SetWeaponTransform(GameObject.Find("WeaponTransforms"));
+        SetSwordTransform(GameObject.Find("SwordTransforms"));
+        _cheeseObject = GameObject.Find("Cheese");
+        _coinObject.SetActive(false);
+        _cheeseObject.SetActive(false);
+    }
+    public void PickFingerTransform()
+    {
+        if (_characterObject != null)
+        {
+            if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
+            {
+                _pinkyDobby = GameObject.Find("mixamorig:RightHandRing4");
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
+            {
+                _pinkyGlassy = GameObject.Find("mixamorig:RightHandPinky4");
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
+            {
+                _pinkySpartacus = GameObject.Find("mixamorig:RightHandRing4");
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
+            {
+                _pinkyGuard = GameObject.Find("mixamorig:RightHandIndex4");
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
+            {
+                _pinkyLusth = GameObject.Find("mixamorig:RightHandRing4");
+            }
+            else
+            {
+                _pinkyDobby = GameObject.Find("mixamorig:RightHandRing4");
+            }
+        }
+    }
+    public void SetWeaponTransform(GameObject pinky)//Getting finger transform parameter
+    {
+        if (_bulletData.currentWeaponName == BulletData.ak47)
+        {
+            _gunTransform = GameObject.Find("Ak47Transform");
+        }
+        else if (_bulletData.currentWeaponName == BulletData.rifle)
+        {
+            _gunTransform = GameObject.Find("RifleTransform");
+        }
+        else if (_bulletData.currentWeaponName == BulletData.bulldog)
+        {
+            _gunTransform = GameObject.Find("BulldogTransform");
+        }
+        else if (_bulletData.currentWeaponName == BulletData.cowgun)
+        {
+            _gunTransform = GameObject.Find("CowgunTransform");
+        }
+        else if (_bulletData.currentWeaponName == BulletData.crystalgun)
+        {
+            _gunTransform = GameObject.Find("CrystalgunTransform");
+        }
+        else if (_bulletData.currentWeaponName == BulletData.demongun)
+        {
+            _gunTransform = GameObject.Find("DemongunTransform");
+        }
+        else if (_bulletData.currentWeaponName == BulletData.icegun)
+        {
+            _gunTransform = GameObject.Find("IcegunTransform");
+        }
+        else if (_bulletData.currentWeaponName == BulletData.negev)
+        {
+            _gunTransform = GameObject.Find("NegevTransform");
+        }
+        else if (_bulletData.currentWeaponName == BulletData.axegun)
+        {
+            _gunTransform = GameObject.Find("AxegunTransform");
+        }
+    }
+    public void SetSwordTransform(GameObject pinky)
+    {
+        if (_bulletData.currentSwordName == BulletData.lowSword)
+        {
+            _swordTransform = GameObject.Find("LowSwordTransform");
+        }
+        else if (_bulletData.currentSwordName == BulletData.warriorSword)
+        {
+            _swordTransform = GameObject.Find("WarriorSwordTransform");
+        }
+        else if (_bulletData.currentSwordName == BulletData.hummer)
+        {
+            _swordTransform = GameObject.Find("HummerTransform");
+        }
+        else if (_bulletData.currentSwordName == BulletData.orcSword)
+        {
+            _swordTransform = GameObject.Find("OrcSwordTransform");
+        }
+        else if (_bulletData.currentSwordName == BulletData.axeSword)
+        {
+            _swordTransform = GameObject.Find("AxeSwordTransform");
+        }
+        else if (_bulletData.currentSwordName == BulletData.axeKnight)
+        {
+            _swordTransform = GameObject.Find("AxeKnightTransform");
+        }
+        else if (_bulletData.currentSwordName == BulletData.barbarianSword)
+        {
+            _swordTransform = GameObject.Find("BarbarianSwordTransform");
+        }
+        else if (_bulletData.currentSwordName == BulletData.demonSword)
+        {
+            _swordTransform = GameObject.Find("DemonSwordTransform");
+        }
+        else if (_bulletData.currentSwordName == BulletData.magicSword)
+        {
+            _swordTransform = GameObject.Find("MagicSwordTransform");
+        }
+        else if (_bulletData.currentSwordName == BulletData.longHummer)
+        {
+            _swordTransform = GameObject.Find("LongHummerTransform");
+        }
+        else if (_bulletData.currentSwordName == BulletData.club)
+        {
+            _swordTransform = GameObject.Find("ClubTransform");
+        }
+
+    }
     void CreateVictoryAnimation(PlayerData _playerData)
     {//InstantiatingDancerObject
         EnemyBulletManager.isFirable = false;
@@ -1166,10 +1132,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                     _cameraWasherTransform.transform.position, 
                     Quaternion.identity, 
                     _cameraWasherTransform.transform);//CameraWasherPrefab
-        Instantiate(_playerData.objects[3],
-                    healthBarTransform.transform.position,
-                    Quaternion.identity,
-                    gameObject.transform);//HealthBarPrefab
+        _healthBarObject = Instantiate(_playerData.objects[3],
+                        healthBarTransform.transform.position,
+                        Quaternion.identity,
+                        gameObject.transform);//HealthBarPrefab
 
         Instantiate(_playerData.objects[4], gameObject.transform.position,
                     Quaternion.identity,
@@ -1181,6 +1147,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                     playerIconTransform.transform);//PlayerIconPrefab
 
         Instantiate(_playerData.objects[6], gameObject.transform);//PlayerSFXPrefab
+
+        bulletAmounCanvas = Instantiate(_playerData.objects[7], gameObject.transform);//BulletAmountCanvas
+
         //CreateSlaveObject();
 
 
@@ -1191,10 +1160,15 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {//PlayerData
         if (_playerData != null)
         {
+            _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
+            _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
+            _playerData.isCompleteFirstMap = false;
+            _playerData.isCompleteSecondMap = false;
+            _playerData.isCompleteThirdMap = false;
             //PlayerData.slaveCounter = 0;
             _bulletData.isRifle = false;
             _playerData.bulletAmount = _playerData.bulletPack;
-            _bulletAmountText.text = _playerData.bulletAmount.ToString();
+            bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
             _playerData.objects[5].GetComponent<MeshRenderer>().enabled = true;
             _playerData.objects[3].transform.localScale = new Vector3(1f, 0.1f, 0.1f);
             _playerData.isLockedWalking = false;
@@ -1239,8 +1213,23 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         //CrosshairImage
         crosshairImage.GetComponent<CanvasGroup>().alpha = 0;
     }
-    IEnumerator DelayLevelUp(float delayWait, float delayDestroy, PlayerData _playerData)
+    IEnumerator DelayLevelUp(float delayWait, float delayDestroy, PlayerData _playerData, Collider other)
     {
+        _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
+        _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
+
+        if (other.CompareTag(SceneController.Tags.FirstFinishArea.ToString()))
+        {
+            _playerData.isCompleteFirstMap = true;
+        }
+        else if (other.CompareTag(SceneController.Tags.SecondFinishArea.ToString()))
+        {
+            _playerData.isCompleteSecondMap = true;
+        }
+        else if (other.CompareTag(SceneController.Tags.ThirdFinishArea.ToString()))
+        {
+            _playerData.isCompleteThirdMap = true;
+        }
         //PlayerData
         //_playerData.isLockedWalking = false;
         _playerData.objects[3].transform.localScale = new Vector3(1f, _playerData.objects[3].transform.localScale.y, _playerData.objects[3].transform.localScale.z);

@@ -3,8 +3,24 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+
+    [Header("Finishes")]
+    public GameObject[] _finishAreas;
+
+    [Header("MapCompletes")]
+    public bool isCompleteFirstMap;
+    public bool isCompleteSecondMap;
+    public bool isCompleteThirdMap;
+
+
     [Header("ChooseCharacter")]
     public CharacterNames currentCharacterName;
+
+    public GameObject dobby;
+    public GameObject glassy;
+    public GameObject spartacus;
+    public GameObject guard;
+    public GameObject lusth;
 
     [Header("Prefab Game Objects For Player")]
     public GameObject[] objects;
