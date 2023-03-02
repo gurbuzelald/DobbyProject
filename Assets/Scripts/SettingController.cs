@@ -25,6 +25,7 @@ public class SettingController : MonoBehaviour
         PlayerPrefs.SetFloat("SensivityX", playerData.sensivityX);
         PlayerPrefs.SetFloat("SensivityY", playerData.sensivityY);        
     }
+
     private void OnEnable()
     {
         //Sensivity preferences are transforming to sliders on enable
@@ -34,7 +35,7 @@ public class SettingController : MonoBehaviour
     private void Start()
     {
         //Settings initial scales are zero
-        if(SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.End.ToString() || SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())
+        if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.End.ToString() || SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())
         {
             _soundSettingsPanel.localScale = Vector3.zero;
             _sensivitySettingsPanel.localScale = Vector3.zero;

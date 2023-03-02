@@ -7,6 +7,7 @@ public class ChooseCharacterController : MonoBehaviour
     [SerializeField] GameObject[] _objects;
     [SerializeField] GameObject _panelObject;
     [SerializeField] PlayerData playerData;
+
     void FixedUpdate()
     {
         for (int i = 0; i < _objects.Length; i++)

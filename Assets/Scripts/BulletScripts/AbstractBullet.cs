@@ -32,18 +32,12 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    public virtual void CreateBullet(Transform bulletSpawn, float bulletSpeed, int objectpoolCount, ObjectPool objectPool, float delayDestroy)
+    public virtual void CreateBullet(Transform bulletSpawn, float bulletSpeed, int objectpoolCount, ObjectPool objectPool,float delayCreate, float delayDestroy)
     {
         //GameObject bulletObject = Instantiate(_bulletObject, _bulletSpawnTransform.transform.position, _bulletSpawnTransform.transform.rotation);
         //bulletObject.GetComponent<Rigidbody>().velocity = (_bulletSpawnTransform.transform.TransformDirection(Vector3.forward * _playerData.bulletSpeed));
 
-        //StartCoroutine(DelayDestroy(bulletObject));
-        GameObject bulletObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(objectpoolCount);
-        bulletObject.transform.position = gameObject.transform.position;
-        bulletObject.transform.rotation = bulletSpawn.rotation;
-
-        bulletObject.GetComponent<Rigidbody>().velocity = (bulletSpawn.TransformDirection(Vector3.forward * bulletSpeed));
-        StartCoroutine(DelaySpawn(bulletObject, bulletSpawn, delayDestroy));
+        StartCoroutine(DelayCreate(bulletSpawn, bulletSpeed, objectpoolCount, objectPool, delayCreate, delayDestroy));
     }
     public IEnumerator DelaySpawn(GameObject bulletObject, Transform bulletSpawn, float delayDestroy)
     {
@@ -51,5 +45,15 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
         bulletObject.transform.rotation = bulletSpawn.rotation;
 
         bulletObject.SetActive(false);
+    }
+    public IEnumerator DelayCreate(Transform bulletSpawn, float bulletSpeed,  int objectpoolCount, ObjectPool objectPool, float delayCreate, float delayDestroy)
+    {
+        yield return new WaitForSeconds(delayCreate);
+        GameObject bulletObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(objectpoolCount);
+        bulletObject.transform.position = gameObject.transform.position;
+        bulletObject.transform.rotation = bulletSpawn.rotation;
+
+        bulletObject.GetComponent<Rigidbody>().velocity = (bulletSpawn.TransformDirection(Vector3.forward * bulletSpeed));
+        StartCoroutine(DelaySpawn(bulletObject, bulletSpawn, delayDestroy));
     }
 }

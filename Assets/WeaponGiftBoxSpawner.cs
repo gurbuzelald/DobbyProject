@@ -51,7 +51,6 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
             FirstMapCreateGiftBoxes();
         }
     }
-
     private void Update()
     {
         SecondMapCreateGiftBoxes();

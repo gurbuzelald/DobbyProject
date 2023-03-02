@@ -18,7 +18,6 @@ public class TimeController : MonoBehaviour
         _timeText.text = "0";
         _time = 0;
         _swordTime = 0;
-
     }
 
     // Update is called once per frame

@@ -601,6 +601,94 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
     }
 
+
+    public void WeaponSoundTypeState()
+    {//PlayerManager.GetInstance.SwordSFX(_playerData);
+        if (bulletData.currentWeaponName == BulletData.ak47)
+        {
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Ak47);
+        }
+        else if (bulletData.currentWeaponName == BulletData.rifle)
+        {
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Rifle);
+        }
+        else if (bulletData.currentWeaponName == BulletData.bulldog)
+        {
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Bulldog);
+        }
+        else if (bulletData.currentWeaponName == BulletData.cowgun)
+        {
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Cowgun);
+        }
+        else if (bulletData.currentWeaponName == BulletData.crystalgun)
+        {
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Crystalgun);
+        }
+        else if (bulletData.currentWeaponName == BulletData.demongun)
+        {
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Demongun);
+        }
+        else if (bulletData.currentWeaponName == BulletData.icegun)
+        {
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Icegun);
+        }
+        else if (bulletData.currentWeaponName == BulletData.negev)
+        {
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Negev);
+        }
+        else if (bulletData.currentWeaponName == BulletData.axegun)
+        {            
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Axegun);
+        }
+    }
+
+    public void SwordSoundTypeState()
+    {
+        if (bulletData.currentSwordName == BulletData.lowSword)
+        {
+            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordtSoundEffectTypes.LowSword);
+        }
+        else if (bulletData.currentSwordName == BulletData.warriorSword)
+        {
+            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordtSoundEffectTypes.WarriorSword);
+        }
+        else if (bulletData.currentSwordName == BulletData.hummer)
+        {
+            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordtSoundEffectTypes.Hummer);
+        }
+        else if (bulletData.currentSwordName == BulletData.orcSword)
+        {
+            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordtSoundEffectTypes.OrcSword);
+        }
+        else if (bulletData.currentSwordName == BulletData.axeSword)
+        {
+            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordtSoundEffectTypes.AxeSword);
+        }
+        else if (bulletData.currentSwordName == BulletData.axeKnight)
+        {
+            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordtSoundEffectTypes.AxeKnight);
+        }
+        else if (bulletData.currentSwordName == BulletData.barbarianSword)
+        {
+            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordtSoundEffectTypes.BarbarianSword);
+        }
+        else if (bulletData.currentSwordName == BulletData.demonSword)
+        {
+            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordtSoundEffectTypes.DemonSword);
+        }
+        else if (bulletData.currentSwordName == BulletData.magicSword)
+        {
+            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordtSoundEffectTypes.MagicSword);
+        }
+        else if (bulletData.currentSwordName == BulletData.longHummer)
+        {
+            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordtSoundEffectTypes.LongHummer);
+        }
+        else if (bulletData.currentSwordName == BulletData.club)
+        {
+            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordtSoundEffectTypes.Club);
+        }
+    }
     IEnumerator Delay(float delayValue, int objectPoolCount)
     {
         if (objectPoolCount == 2)
@@ -609,9 +697,13 @@ public class BulletManager : AbstractBullet<BulletManager>
             _currentSwordObject.SetActive(true);
             _currentWeaponObject.SetActive(false);
             yield return new WaitForSeconds(delayValue);
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Sword);
-            _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._currentCamera.transform.position.x, _bulletSpawnTransform.transform.position.y, _bulletSpawnTransform.transform.position.z);
-            CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 1f);
+             
+            SwordSoundTypeState();
+
+            _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._currentCamera.transform.position.x, 
+                                                        _bulletSpawnTransform.transform.position.y, 
+                                                        _bulletSpawnTransform.transform.position.z);
+            CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 1f, 2f);
             bulletData.bulletDelayCounter = 0;
             yield return new WaitForSeconds(delayValue * 50f);
             //_swordObject.SetActive(false);
@@ -627,14 +719,14 @@ public class BulletManager : AbstractBullet<BulletManager>
             }
             else
             {
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
+                WeaponSoundTypeState();
             }
             _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._currentCamera.transform.position.x, 
                                                          _bulletSpawnTransform.transform.position.y, 
                                                          _bulletSpawnTransform.transform.position.z);
             if (_playerData.bulletAmount >= 0)
             {
-                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 2f);
+                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 2f);
             }
             bulletData.bulletDelayCounter = 0;
             //yield return new WaitForSeconds(delayValue * 50f);
@@ -644,5 +736,4 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
         
     }
-
 }

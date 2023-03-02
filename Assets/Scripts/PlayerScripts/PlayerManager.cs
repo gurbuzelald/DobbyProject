@@ -153,6 +153,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             {//For Big Coins
                 //SoundEffect
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+                //PickUpCoinSFX(_playerData);
 
                 //HitCoinBigObject
                 collision.collider.gameObject.SetActive(false);
@@ -469,6 +470,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
+            //JumpSFX(_playerData);
 
             //PlayerData
             _playerData.isJumping = true;
@@ -550,6 +552,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             _playerData.isFiring = false;
         }
+    }
+    IEnumerator DelaySwordBullet()
+    {
+        yield return new WaitForSeconds(1f);
+        _playerData.isSwording = true;
     }
     void Rotation(PlayerData _playerData)
     {
@@ -674,7 +681,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 0)
         {
             //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
+            //DeathSFX(_playerData);
 
             //EnemyAnimation--Collision
             if (collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
@@ -713,6 +721,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
                 //SoundEffect
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
+                //GetHitSFX(_playerData);
 
                 //PlayerData
                 _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= 5;
@@ -721,6 +730,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
         }
     }
+
+    
 
     //Triggers
     void TriggerBullet(Collider other, PlayerData _playerData)
@@ -735,6 +746,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
                 //Sound Effect
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
+                //DeathSFX(_playerData);
+
 
                 _playerData.isDestroyed = true;
                 
@@ -767,6 +780,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
                 //SoundEffect
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
+                //GetHitSFX(_playerData);
 
                 //PlayerData
                 _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= 5;
@@ -775,6 +789,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
         StartCoroutine(LookAtTouchEnemyBullet(other));
     }
+    
     void PickUpCoin(SceneController.Tags value, Collider other, PlayerData _playerData)
     {
         if (value == SceneController.Tags.Coin)
@@ -783,10 +798,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.playerSpeed = 0.5f;
             _playerData.isPicking = true;
 
-            _coinObject.SetActive(true);
+            //_coinObject.SetActive(true);
+            _coinObject.transform.localScale = Vector3.one;
+            StartCoroutine(DelayDestroyCoinObject(_coinObject));
 
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+            //PickUpCoinSFX(_playerData);
+
 
             //Trigger
             other.gameObject.SetActive(false);
@@ -794,6 +813,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             //Score
             ScoreController.GetInstance.SetScore(23);
             //CreateSlaveObject();
+            ScoreTextGrowing(0, 255, 0);
         }
         else if (value == SceneController.Tags.RotateCoin)
         {
@@ -801,10 +821,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isPickRotateCoin = true;
             _playerData.playerSpeed = 0.5f;
 
-            _coinObject.SetActive(true);
+            //_coinObject.SetActive(true);
+            _coinObject.transform.localScale = Vector3.one;
+            StartCoroutine(DelayDestroyCoinObject(_coinObject));
 
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+            //PickUpCoinSFX(_playerData);
+
 
             //Trigger CoinObject
             other.gameObject.SetActive(false);
@@ -812,6 +836,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             //SettingScore
             ScoreController.GetInstance.SetScore(23);
             //CreateSlaveObject();
+            ScoreTextGrowing(0, 255, 0);
         }
         else if (value == SceneController.Tags.CheeseCoin)
         {
@@ -819,10 +844,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isPickRotateCoin = true;
             _playerData.playerSpeed = 0.5f;
 
-            _cheeseObject.SetActive(true);
+            //_cheeseObject.SetActive(true);
+            _cheeseObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+            StartCoroutine(DelayDestroyCoinObject(_cheeseObject));
 
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+            //PickUpCoinSFX(_playerData);
+
 
             //Trigger CoinObject
             other.gameObject.SetActive(false);
@@ -830,6 +859,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             //SettingScore
             ScoreController.GetInstance.SetScore(23);
             //CreateSlaveObject();
+            ScoreTextGrowing(0, 255, 0);
         }
         else if (value == SceneController.Tags.MushroomCoin)
         {
@@ -837,16 +867,19 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isPickRotateCoin = true;
             _playerData.playerSpeed = 0.5f;
 
-            _coinObject.SetActive(true);
+            //_coinObject.SetActive(true);
+            _coinObject.transform.localScale = Vector3.one;
+            StartCoroutine(DelayDestroyCoinObject(_coinObject));
 
             //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Poison);
+            //PickUpCoinSFX(_playerData);
 
             //Trigger CoinObject
             other.gameObject.SetActive(false);
 
-            //SettingScore
-            ScoreController.GetInstance.SetScore(-23);
+            //GettingDamageScore
+            GettingPoisonDamage(100, 7f, 10);//Score
         }
         else if (value == SceneController.Tags.BulletCoin)
         {
@@ -854,10 +887,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isPickRotateCoin = true;
             _playerData.playerSpeed = 0.5f;
 
-            _coinObject.SetActive(true);
+            //_coinObject.SetActive(true);
+            _coinObject.transform.localScale = Vector3.one;
+            StartCoroutine(DelayDestroyCoinObject(_coinObject));
 
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
+            //PickUpBulletCoinSFX(_playerData);
 
             //Trigger CoinObject
             if (_playerData.bulletAmount  != _playerData.bulletPack)
@@ -869,8 +905,79 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             //SettingScore
             _playerData.bulletAmount = _playerData.bulletPack;
             bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
+
+            //ScoreTextGrowing(0, 255, 0);
         }
     }
+    void DecreaseScore(int scoreDamageValue)
+    {
+
+        ScoreTextGrowing(255, 0 , 0);
+
+        if (ScoreController._scoreAmount > scoreDamageValue)
+        {
+            ScoreController.GetInstance.SetScore(-scoreDamageValue);
+        }
+        else if (ScoreController._scoreAmount < scoreDamageValue && ScoreController._scoreAmount > 0)
+        {
+            ScoreController.GetInstance.SetScore(-ScoreController._scoreAmount);
+        }
+        else if (ScoreController._scoreAmount <= 0)
+        {
+            ScoreController._scoreAmount = 0;
+            ScoreController.GetInstance._scoreText.text = ScoreController._scoreAmount.ToString();
+        }
+    }
+    void ScoreTextGrowing(int r, int g, int b)
+    {
+        ScoreController.GetInstance._scoreText.transform.localScale = new Vector3(ScoreController.GetInstance._scoreText.transform.localScale.x * 2f,
+                                                                                     ScoreController.GetInstance._scoreText.transform.localScale.y * 2f,
+                                                                                     ScoreController.GetInstance._scoreText.transform.localScale.z * 2f);
+        ScoreController.GetInstance._scoreText.color = new Color(r,g,b);
+
+        StartCoroutine(DelaySizeBack());
+    }
+    void DecreaseHealth(int damageHealthValue)
+    {
+        _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= damageHealthValue;
+
+        _healthBarObject.transform.localScale = new Vector3(_healthBarObject.transform.localScale.x,
+                                                                _healthBarObject.transform.localScale.y * 3,
+                                                                _healthBarObject.transform.localScale.z * 3);
+        StartCoroutine(DelaySizeBack());
+    }
+    void GettingPoisonDamage(int scoreDamageValue, float delayDestroying, int damageHealthValue)
+    {
+        DecreaseScore(scoreDamageValue);
+        if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value > 0)
+        {
+            DecreaseHealth(damageHealthValue);
+        }
+        else
+        {
+            //SoundEffect
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
+            //DeathSFX(_playerData);
+            _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
+
+            //PlayerData
+            _playerData.isDestroyed = true;
+            _playerData.isDying = true;
+            _playerData.isIdling = false;
+            _playerData.isPlayable = false;
+            _playerData.objects[3].transform.localScale = Vector3.zero;
+
+            StartCoroutine(DelayDestroy(delayDestroying));
+        }
+    }
+    IEnumerator DelaySizeBack()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ScoreController.GetInstance._scoreText.transform.localScale = Vector3.one;
+        _healthBarObject.transform.localScale = new Vector3(1, 0.1f, 0.1f);
+        ScoreController.GetInstance._scoreText.color = Color.white;
+    }
+
     void DestroyByWater(PlayerData _playerData)
     {
         //PlayerData
@@ -881,6 +988,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
         //SoundEffect
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
+        //JumpToSeaSFX(_playerData);
 
         //DestroyingWithDelay
         StartCoroutine(DelayDestroy(3f));
@@ -986,13 +1094,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         //GameObjects
         _coinObject = GameObject.Find("Coin");
-        SetWeaponTransform(GameObject.Find("WeaponTransforms"));
-        SetSwordTransform(GameObject.Find("SwordTransforms"));
         _cheeseObject = GameObject.Find("Cheese");
-        _coinObject.SetActive(false);
-        _cheeseObject.SetActive(false);
+        _coinObject.transform.localScale = Vector3.zero;
+        _cheeseObject.transform.localScale = Vector3.zero;
+
+        SetWeaponTransform();
+        SetSwordTransform();        
     }
-    public void PickFingerTransform()
+    public void GetFingerTransform()
     {
         if (_characterObject != null)
         {
@@ -1022,7 +1131,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             }
         }
     }
-    public void SetWeaponTransform(GameObject pinky)//Getting finger transform parameter
+    public void SetWeaponTransform()//Getting finger transform parameter
     {
         if (_bulletData.currentWeaponName == BulletData.ak47)
         {
@@ -1061,7 +1170,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _gunTransform = GameObject.Find("AxegunTransform");
         }
     }
-    public void SetSwordTransform(GameObject pinky)
+    public void SetSwordTransform()
     {
         if (_bulletData.currentSwordName == BulletData.lowSword)
         {
@@ -1107,7 +1216,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             _swordTransform = GameObject.Find("ClubTransform");
         }
-
     }
     void CreateVictoryAnimation(PlayerData _playerData)
     {//InstantiatingDancerObject
@@ -1235,6 +1343,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _playerData.objects[3].transform.localScale = new Vector3(1f, _playerData.objects[3].transform.localScale.y, _playerData.objects[3].transform.localScale.z);
         //DestroyImmediate(_playerData.healthBarObject, true);
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
+        //LevelUpSFX(_playerData);
         //_playerData.isTouchFinish = true;
 
         yield return new WaitForSeconds(delayWait);
@@ -1257,5 +1366,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         yield return new WaitForSeconds(delayDying);
         Destroy(gameObject);
         SceneController.GetInstance.LoadEndScene();
+    }
+    IEnumerator DelayDestroyCoinObject(GameObject coinObject)
+    {
+        yield return new WaitForSeconds(0.5f);
+        coinObject.transform.localScale = Vector3.zero;
     }
 }

@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    public PlayerData[] playerDataList;
 
     [Header("Finishes")]
     public GameObject[] _finishAreas;
@@ -89,19 +90,7 @@ public class PlayerData : ScriptableObject
     public ParticleSystem burningTouchParticle;
     [Header("Particle Count Control")]
     public int particleCount;
-
-    [Header("Sounds")]
-    public AudioClip shootClip;
-    public AudioClip nonShootClip;
-    public AudioClip swordClip;
-    public AudioClip getHitClip;
-    public AudioClip jumpingClip;
-    public AudioClip dyingClip;
-    public AudioClip pickupCoinClip;
-    public AudioClip pickupBulletCoinClip;
-    public AudioClip trapClip;
-    public AudioClip levelUpClip;
-    public AudioClip jumpingSeaClip;
+    
 
     [Header("BulletManager Data")]
     public GameObject _bulletObject;//If ObjectPool is not using in project, this'll use

@@ -13,7 +13,6 @@ public class MapController : MonoBehaviour
     {
         currentMap = Instantiate(Maps[0], gameObject.transform);
     }
-
     // Update is called once per frame
     void Update()
     {

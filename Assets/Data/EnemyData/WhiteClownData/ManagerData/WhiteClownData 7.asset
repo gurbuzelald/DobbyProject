@@ -12,13 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df28307b15eed744a58827ea4f595cc, type: 3}
   m_Name: WhiteClownData 7
   m_EditorClassIdentifier: 
+  enemyFirstObjects: []
+  enemySecondObjects: []
+  enemiesThirdObjects: []
+  enemyTransformsFirstMap: {fileID: 0}
+  enemyTransformsSecondMap: {fileID: 0}
+  enemyTransformsThirdMap: {fileID: 0}
   getHitClip: {fileID: 8300000, guid: a6519293710bb5749a4734619dd06379, type: 3}
   giveHitClip: {fileID: 8300000, guid: cf10e1f403c454c47a380a649fc10e7d, type: 3}
-  dyingClip: {fileID: 8300000, guid: 9ee0f2065657ee84189d13e8741d7409, type: 3}
+  dyingClip: {fileID: 8300000, guid: 6d502a9e59205aa418255b021e5cebaf, type: 3}
   isGround: 1
   isDying: 0
-  isWalking: 0
+  isWalking: 1
   isFiring: 0
   isTouchable: 1
   isActivateMagnet: 0
   enemySpeed: 0.3
+  isSpeedZero: 0

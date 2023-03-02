@@ -131,5 +131,4 @@ public class CameraLook : MonoBehaviour
             //gameObject.transform.GetComponent<CinemachineVirtualCamera>().m_FollowOffset  
         }
     }
-
 }

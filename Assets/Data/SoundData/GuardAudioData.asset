@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bee8d0bb8e31c7418529e841cb7ea35, type: 3}
+  m_Name: GuardAudioData
+  m_EditorClassIdentifier: 
+  gameMusic: {fileID: 8300000, guid: c6b5c1205c9e2764db02d9b32c2133ba, type: 3}
+  menuMusic: {fileID: 8300000, guid: 8d366b754e24b1a408f019dcfdd68a4a, type: 3}
+  endMusic: {fileID: 8300000, guid: f513c399476affc4bac4dbe3425b781b, type: 3}
+  winMusic: {fileID: 8300000, guid: 4e4799ee7ef0b424d92ceba08e550ef7, type: 3}
+  nonShootClip: {fileID: 8300000, guid: 71240ac1db2547a4ca916d3438c80177, type: 3}
+  swordClip: {fileID: 8300000, guid: eda4938389a9cda4fa290c4d35df3de2, type: 3}
+  getHitClip: {fileID: 8300000, guid: 0daa4bd7ccf721c4faa7a61d8fe58390, type: 3}
+  jumpingClip: {fileID: 8300000, guid: a6c98811cc43c2646bf2c7baf175b185, type: 3}
+  dyingClip: {fileID: 8300000, guid: 15cd8c02ab105e54b918c97cdc31cbb3, type: 3}
+  pickupCoinClip: {fileID: 8300000, guid: 808c4bf3192b36e4aa9365737800255f, type: 3}
+  pickupBulletCoinClip: {fileID: 8300000, guid: a4a25bc1fb594e64f9f762d8f2e3f8c3, type: 3}
+  trapClip: {fileID: 8300000, guid: 782b25cb1de332a4d90deb66c2f8a34d, type: 3}
+  levelUpClip: {fileID: 8300000, guid: c7361ae8b620e2b49a88af5d63f3dbe9, type: 3}
+  jumpingSeaClip: {fileID: 8300000, guid: 286fde57fbcd5374e80d1ac2d1ad159b, type: 3}
+  dobbyNonShootClip: {fileID: 0}
+  dobbyPoisonClip: {fileID: 0}
+  dobbySwordClip: {fileID: 0}
+  dobbyGetHitClip: {fileID: 0}
+  dobbyJumpingClip: {fileID: 0}
+  dobbyDyingClip: {fileID: 0}
+  dobbyPickupCoinClip: {fileID: 0}
+  dobbyPickupBulletCoinClip: {fileID: 0}
+  dobbyTrapClip: {fileID: 0}
+  dobbyLevelUpClip: {fileID: 0}
+  dobbyJumpingSeaClip: {fileID: 0}
+  glassyNonShootClip: {fileID: 0}
+  glassyPoisonClip: {fileID: 0}
+  glassySwordClip: {fileID: 0}
+  glassyGetHitClip: {fileID: 0}
+  glassyJumpingClip: {fileID: 0}
+  glassyDyingClip: {fileID: 0}
+  glassyPickupCoinClip: {fileID: 0}
+  glassyPickupBulletCoinClip: {fileID: 0}
+  glassyTrapClip: {fileID: 0}
+  glassyLevelUpClip: {fileID: 0}
+  glassyJumpingSeaClip: {fileID: 0}
+  spartacusNonShootClip: {fileID: 0}
+  spartacusPoisonClip: {fileID: 0}
+  spartacusSwordClip: {fileID: 0}
+  spartacusGetHitClip: {fileID: 0}
+  spartacusJumpingClip: {fileID: 0}
+  spartacusDyingClip: {fileID: 0}
+  spartacusPickupCoinClip: {fileID: 0}
+  spartacusPickupBulletCoinClip: {fileID: 0}
+  spartacusTrapClip: {fileID: 0}
+  spartacusLevelUpClip: {fileID: 0}
+  spartacusJumpingSeaClip: {fileID: 0}
+  guardNonShootClip: {fileID: 8300000, guid: 71240ac1db2547a4ca916d3438c80177, type: 3}
+  guardPoisonClip: {fileID: 8300000, guid: f7cfe4315aa2c534c9c5ec68d8d008ee, type: 3}
+  guardSwordClip: {fileID: 8300000, guid: eda4938389a9cda4fa290c4d35df3de2, type: 3}
+  guardGetHitClip: {fileID: 8300000, guid: a6519293710bb5749a4734619dd06379, type: 3}
+  guardJumpingClip: {fileID: 8300000, guid: a6c98811cc43c2646bf2c7baf175b185, type: 3}
+  guardDyingClip: {fileID: 8300000, guid: a5e4952e48c851e42a6162163645a6e9, type: 3}
+  guardPickupCoinClip: {fileID: 8300000, guid: 808c4bf3192b36e4aa9365737800255f, type: 3}
+  guardPickupBulletCoinClip: {fileID: 8300000, guid: dc476f359d2226148ac5c6d8d630cee6, type: 3}
+  guardTrapClip: {fileID: 8300000, guid: 782b25cb1de332a4d90deb66c2f8a34d, type: 3}
+  guardLevelUpClip: {fileID: 8300000, guid: c7361ae8b620e2b49a88af5d63f3dbe9, type: 3}
+  guardJumpingSeaClip: {fileID: 8300000, guid: 286fde57fbcd5374e80d1ac2d1ad159b, type: 3}
+  lusthNonShootClip: {fileID: 0}
+  lusthPoisonClip: {fileID: 0}
+  lusthSwordClip: {fileID: 0}
+  lusthGetHitClip: {fileID: 0}
+  lusthJumpingClip: {fileID: 0}
+  lusthDyingClip: {fileID: 0}
+  lusthPickupCoinClip: {fileID: 0}
+  lusthPickupBulletCoinClip: {fileID: 8300000, guid: dc476f359d2226148ac5c6d8d630cee6, type: 3}
+  lusthTrapClip: {fileID: 0}
+  lusthLevelUpClip: {fileID: 0}
+  lusthJumpingSeaClip: {fileID: 0}
+  Ak47Clip: {fileID: 0}
+  RifleClip: {fileID: 0}
+  BulldogClip: {fileID: 0}
+  CowgunClip: {fileID: 0}
+  CrystalgunClip: {fileID: 0}
+  DemongunClip: {fileID: 0}
+  IcegunClip: {fileID: 0}
+  NegevClip: {fileID: 0}
+  AxegunClip: {fileID: 0}
+  LowSwordClip: {fileID: 0}
+  WarriorSwordClip: {fileID: 0}
+  HummerClip: {fileID: 0}
+  OrcSwordClip: {fileID: 0}
+  AxeSwordClip: {fileID: 0}
+  AxeKnightClip: {fileID: 0}
+  BarbarianSwordClip: {fileID: 0}
+  DemonSwordClip: {fileID: 0}
+  MagicSwordClip: {fileID: 0}
+  LongHummerClip: {fileID: 0}
+  ClubClip: {fileID: 0}

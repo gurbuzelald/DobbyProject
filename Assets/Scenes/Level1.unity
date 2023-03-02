@@ -949,7 +949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5727687878102657880, guid: 1aa4767c1e27e69419cf27296222a971, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8713145
+      value: 1.8719888
       objectReference: {fileID: 0}
     - target: {fileID: 5727687878102657880, guid: 1aa4767c1e27e69419cf27296222a971, type: 3}
       propertyPath: m_LocalPosition.y
@@ -993,7 +993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6454717053398148064, guid: 1aa4767c1e27e69419cf27296222a971, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8713145
+      value: 1.8719888
       objectReference: {fileID: 0}
     - target: {fileID: 6454717053398148064, guid: 1aa4767c1e27e69419cf27296222a971, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1605,6 +1605,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1484659335}
+    - target: {fileID: 4144808127950591264, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
+      propertyPath: m_Name
+      value: ScoreValueText
+      objectReference: {fileID: 0}
+    - target: {fileID: 4478114437056480161, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
+      propertyPath: m_Name
+      value: ScoreValueLabel
+      objectReference: {fileID: 0}
     - target: {fileID: 4598009266626586985, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
       propertyPath: _swordTimeText
       value: 
@@ -2128,6 +2136,18 @@ PrefabInstance:
     - target: {fileID: 7043038350229093203, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
       propertyPath: m_Color.a
       value: 0.8235294
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043038350229093203, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043038350229093203, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7043038350229093203, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7043038350285258294, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
       propertyPath: m_Value

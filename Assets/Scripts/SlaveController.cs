@@ -11,6 +11,7 @@ public class SlaveController : AbstractSlaveController<SlaveController>
 
     private void Start()
     {
+
         slaveTransformValue = UnityEngine.Random.Range(0, PlayerManager.GetInstance._slaveTransforms.Length);
         slaveData.slaveSpeed = UnityEngine.Random.Range(1.95f, 2);
 
@@ -72,5 +73,5 @@ public class SlaveController : AbstractSlaveController<SlaveController>
     {
         gameObject.transform.Translate(0f, 0f, slaveData.slaveSpeed * Time.deltaTime);
         slaveData.isSwording = false;//If player is walking, slave can not able fire
-    }   
+    }
 }

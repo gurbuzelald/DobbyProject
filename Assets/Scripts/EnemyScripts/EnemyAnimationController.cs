@@ -23,5 +23,4 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
     {
         AnimationState(_enemyData, _animator, _playerData, _animationCount);
     }
-    
 }

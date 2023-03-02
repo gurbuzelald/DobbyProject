@@ -43,7 +43,7 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     IEnumerator Delay(float delayValue, float delayDestroy)
     {
         yield return new WaitForSeconds(delayValue);
-        CreateBullet(_bulletSpawnTransform.transform, bulletData.enemyBulletSpeed, 1, _clownSpawner._objectPool, delayDestroy);
+        CreateBullet(_bulletSpawnTransform.transform, bulletData.enemyBulletSpeed, 1, _clownSpawner._objectPool, 0f, delayDestroy);
     }
     IEnumerator FiringFalse()
     {
