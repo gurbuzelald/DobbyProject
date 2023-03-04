@@ -22,7 +22,9 @@ public class EnemySpawner : MonoBehaviour
                                          enemyData.enemyTransformsFirstMap.transform.GetChild(i).position, 
                                          Quaternion.identity,
                                          enemySpawnTransform.transform);
-            currentEnemyObjects.transform.position = enemyData.enemyTransformsFirstMap.transform.GetChild(i).position;
+            currentEnemyObjects.transform.position = new Vector3(enemyData.enemyTransformsFirstMap.transform.GetChild(i).position.x,
+                                                                 10f,
+                                                                 enemyData.enemyTransformsFirstMap.transform.GetChild(i).position.z);
         }
         enemyCountText.text = gameObject.transform.GetChild(0).childCount.ToString();
         //Debug.Log(gameObject.transform.childCount);
@@ -44,7 +46,9 @@ public class EnemySpawner : MonoBehaviour
                                          enemyData.enemyTransformsSecondMap.transform.GetChild(i).position,
                                          Quaternion.identity,
                                          currentEnemiesTransform.transform);
-                currentEnemyObjects.transform.position = enemyData.enemyTransformsSecondMap.transform.GetChild(i).position;
+                currentEnemyObjects.transform.position = new Vector3(enemyData.enemyTransformsFirstMap.transform.GetChild(i).position.x,
+                                                                 10f,
+                                                                 enemyData.enemyTransformsFirstMap.transform.GetChild(i).position.z);
             }
         }
     }

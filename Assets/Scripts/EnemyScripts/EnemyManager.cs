@@ -47,6 +47,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }   
     void Update()
     {
+        if (!enemyData.isGround)
+        {
+            gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+        }
         if (gameObject != null)
         {
             if (playerData.isPlayable)

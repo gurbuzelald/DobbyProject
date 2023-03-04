@@ -183,7 +183,7 @@ public class BulletManager : AbstractBullet<BulletManager>
         _currentWeaponObject.SetActive(true);
 
         _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.transform.position;
-        _currentWeaponObject.transform.rotation = bulletData.rifleObject.transform.rotation;
+        _currentWeaponObject.transform.rotation = PlayerManager.GetInstance._gunTransform.transform.rotation;
     }
 
     public GameObject GetFingerTransform()
@@ -721,7 +721,8 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 WeaponSoundTypeState();
             }
-            _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._currentCamera.transform.position.x, 
+            //PlayerManager.GetInstance._currentCamera.transform.position.x
+            _bulletSpawnTransform.position = new Vector3(_bulletSpawnTransform.transform.position.x, 
                                                          _bulletSpawnTransform.transform.position.y, 
                                                          _bulletSpawnTransform.transform.position.z);
             if (_playerData.bulletAmount >= 0)

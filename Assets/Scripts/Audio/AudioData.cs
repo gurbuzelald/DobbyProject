@@ -23,6 +23,7 @@ public class AudioData : ScriptableObject
     public AudioClip dyingClip;
     public AudioClip pickupCoinClip;
     public AudioClip pickupBulletCoinClip;
+    public AudioClip errorPickupBulletCoinClip;
     public AudioClip trapClip;
     public AudioClip levelUpClip;
     public AudioClip jumpingSeaClip;
@@ -38,6 +39,7 @@ public class AudioData : ScriptableObject
     public AudioClip dobbyDyingClip;
     public AudioClip dobbyPickupCoinClip;
     public AudioClip dobbyPickupBulletCoinClip;
+    public AudioClip dobbyErrorPickupBulletCoinClip;
     public AudioClip dobbyTrapClip;
     public AudioClip dobbyLevelUpClip;
     public AudioClip dobbyJumpingSeaClip;
@@ -54,6 +56,7 @@ public class AudioData : ScriptableObject
     public AudioClip glassyDyingClip;
     public AudioClip glassyPickupCoinClip;
     public AudioClip glassyPickupBulletCoinClip;
+    public AudioClip glassyErrorPickupBulletCoinClip;
     public AudioClip glassyTrapClip;
     public AudioClip glassyLevelUpClip;
     public AudioClip glassyJumpingSeaClip;
@@ -69,6 +72,7 @@ public class AudioData : ScriptableObject
     public AudioClip spartacusDyingClip;
     public AudioClip spartacusPickupCoinClip;
     public AudioClip spartacusPickupBulletCoinClip;
+    public AudioClip spartacusErrorPickupBulletCoinClip;
     public AudioClip spartacusTrapClip;
     public AudioClip spartacusLevelUpClip;
     public AudioClip spartacusJumpingSeaClip;
@@ -84,6 +88,7 @@ public class AudioData : ScriptableObject
     public AudioClip guardDyingClip;
     public AudioClip guardPickupCoinClip;
     public AudioClip guardPickupBulletCoinClip;
+    public AudioClip guardErrorPickupBulletCoinClip;
     public AudioClip guardTrapClip;
     public AudioClip guardLevelUpClip;
     public AudioClip guardJumpingSeaClip;
@@ -99,6 +104,7 @@ public class AudioData : ScriptableObject
     public AudioClip lusthDyingClip;
     public AudioClip lusthPickupCoinClip;
     public AudioClip lusthPickupBulletCoinClip;
+    public AudioClip lusthErrorPickupBulletCoinClip;
     public AudioClip lusthTrapClip;
     public AudioClip lusthLevelUpClip;
     public AudioClip lusthJumpingSeaClip;

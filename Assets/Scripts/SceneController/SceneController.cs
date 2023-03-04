@@ -203,6 +203,7 @@ public class SceneController : AbstractSceneController<SceneController>
         Coin,
         CheeseCoin,
         RotateCoin,
+        HealthCoin,
         MushroomCoin,
         BulletCoin,
 

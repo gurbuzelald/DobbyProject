@@ -11,7 +11,6 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
 
     [SerializeField] Transform _bulletSpawnTransform;
 
-
     private void Awake()
     {
         isFirable = true;

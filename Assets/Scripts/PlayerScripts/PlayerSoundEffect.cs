@@ -172,6 +172,7 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         Death,
         PickUpCoin,
         PickUpBulletCoin,
+        ErrorPickUpBulletCoin,
         Trap,
         LevelUp, 
         ShootOff,

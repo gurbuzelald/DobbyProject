@@ -1,10 +1,8 @@
-using System;
+using Cinemachine;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using Cinemachine;
 
 public class PlayerManager : AbstractSingleton<PlayerManager>
 {
@@ -85,7 +83,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     private GameObject characterObject;
 
     [Header("Show Bullet Amoun")]
-    private GameObject bulletAmounCanvas;
+    private GameObject bulletAmountCanvas;
     private GameObject _healthBarObject;
     [SerializeField] GameObject _topCanvasHealthBarObject;
 
@@ -121,7 +119,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             {
                 StartCoroutine(DelayWarmArrowDirection());
             }
-
         }
         if (gameObject != null)
         {
@@ -160,6 +157,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
                 //SettingScore
                 ScoreController.GetInstance.SetScore(230);
+                ScoreTextGrowing(0, 255, 0);
                 //CreateSlaveObject();
             }
         }
@@ -185,24 +183,16 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             TriggerLadder(true, false, _playerData);
         }
-
-
         if (other.CompareTag(SceneController.Tags.FirstFinishArea.ToString()))
         {
-            //playerData_finishArea = MapController.currentMap.transform.GetChild(0).GetChild(0).gameObject;
-
             StartCoroutine(DelayLevelUp(2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
         }
         else if (other.CompareTag(SceneController.Tags.SecondFinishArea.ToString()))
         {
-            //_finishArea = MapController.currentMap.transform.GetChild(0).GetChild(0).gameObject;
-            
             StartCoroutine(DelayLevelUp(2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
         }
         else if (other.CompareTag(SceneController.Tags.ThirdFinishArea.ToString()))
         {
-            //_finishArea = MapController.currentMap.transform.GetChild(0).GetChild(0).gameObject;
-
             StartCoroutine(DelayLevelUp(2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
         }
 
@@ -493,26 +483,26 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             //PlayerData
             if (_playerData.bulletAmount <= 0)
             {
-                bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
+                bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
                 _playerData.isFiring = false;
 
             }
             else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f)
             {
                 _playerData.bulletAmount--;
-                bulletAmounCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
+                bulletAmountCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
                 //_bulletAmountText.gameObject.transform.GetChild(0).gameObject.transform.GetComponent<Material>().color = Color.red;
                 _playerData.isFiring = true;
 
             }
             else if(_playerData.bulletAmount >= _playerData.bulletPack / 2f)
             {
-                bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().gameObject.transform.localScale = Vector3.one;
+                bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().gameObject.transform.localScale = Vector3.one;
                 //_bulletAmountText.gameObject.transform.GetChild(0).gameObject.transform.GetComponent<>().color = Color.cyan;
 
                 _playerData.bulletAmount--;
-                bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
+                bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
                 _playerData.isFiring = true;
 
             }
@@ -704,7 +694,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             _playerData.isIdling = false;
             _playerData.isPlayable = false;
             _playerData.objects[3].transform.localScale = Vector3.zero;
-
+            
             StartCoroutine(DelayDestroy(7f));
         }
         else
@@ -724,7 +714,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 //GetHitSFX(_playerData);
 
                 //PlayerData
-                _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= 5;
+                DecreaseHealth(5);
+                //_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= 5;
 
                 _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
             }
@@ -732,7 +723,6 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
 
     
-
     //Triggers
     void TriggerBullet(Collider other, PlayerData _playerData)
     {
@@ -745,7 +735,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform.transform);
 
                 //Sound Effect
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
                 //DeathSFX(_playerData);
 
 
@@ -861,6 +851,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             //CreateSlaveObject();
             ScoreTextGrowing(0, 255, 0);
         }
+        else if (value == SceneController.Tags.HealthCoin)
+        {
+            IncreaseHealth(50);
+        }
         else if (value == SceneController.Tags.MushroomCoin)
         {
             //PlayerData
@@ -892,19 +886,23 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             StartCoroutine(DelayDestroyCoinObject(_coinObject));
 
             //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
             //PickUpBulletCoinSFX(_playerData);
 
             //Trigger CoinObject
             if (_playerData.bulletAmount  != _playerData.bulletPack)
             {
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
                 other.gameObject.SetActive(false);
-                bulletAmounCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
+                bulletAmountCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
+            }
+            else
+            {
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin);
             }
 
             //SettingScore
             _playerData.bulletAmount = _playerData.bulletPack;
-            bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
+            bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
 
             //ScoreTextGrowing(0, 255, 0);
         }
@@ -930,12 +928,25 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     void ScoreTextGrowing(int r, int g, int b)
     {
-        ScoreController.GetInstance._scoreText.transform.localScale = new Vector3(ScoreController.GetInstance._scoreText.transform.localScale.x * 2f,
-                                                                                     ScoreController.GetInstance._scoreText.transform.localScale.y * 2f,
-                                                                                     ScoreController.GetInstance._scoreText.transform.localScale.z * 2f);
+        ScoreController.GetInstance._scoreText.transform.localScale = new Vector3(2f, 2f, 2f);
         ScoreController.GetInstance._scoreText.color = new Color(r,g,b);
 
         StartCoroutine(DelaySizeBack());
+    }
+
+    void IncreaseHealth(int damageHealthValue)
+    {
+        if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 50)
+        {
+            _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value += damageHealthValue;
+
+            _healthBarObject.transform.localScale = new Vector3(_healthBarObject.transform.localScale.x,
+                                                                    _healthBarObject.transform.localScale.y * 3,
+                                                                    _healthBarObject.transform.localScale.z * 3);
+            _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
+
+            StartCoroutine(DelaySizeBack());
+        }        
     }
     void DecreaseHealth(int damageHealthValue)
     {
@@ -944,6 +955,8 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         _healthBarObject.transform.localScale = new Vector3(_healthBarObject.transform.localScale.x,
                                                                 _healthBarObject.transform.localScale.y * 3,
                                                                 _healthBarObject.transform.localScale.z * 3);
+        _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
+
         StartCoroutine(DelaySizeBack());
     }
     void GettingPoisonDamage(int scoreDamageValue, float delayDestroying, int damageHealthValue)
@@ -1256,7 +1269,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
         Instantiate(_playerData.objects[6], gameObject.transform);//PlayerSFXPrefab
 
-        bulletAmounCanvas = Instantiate(_playerData.objects[7], gameObject.transform);//BulletAmountCanvas
+        bulletAmountCanvas = Instantiate(_playerData.objects[7], gameObject.transform);//BulletAmountCanvas
 
         //CreateSlaveObject();
 
@@ -1276,7 +1289,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             //PlayerData.slaveCounter = 0;
             _bulletData.isRifle = false;
             _playerData.bulletAmount = _playerData.bulletPack;
-            bulletAmounCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
+            bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
             _playerData.objects[5].GetComponent<MeshRenderer>().enabled = true;
             _playerData.objects[3].transform.localScale = new Vector3(1f, 0.1f, 0.1f);
             _playerData.isLockedWalking = false;
@@ -1311,7 +1324,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
     IEnumerator DelayWarmArrowDirection()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         _warmArrow.transform.localScale = Vector3.zero;
     }
     IEnumerator Delay(float value)

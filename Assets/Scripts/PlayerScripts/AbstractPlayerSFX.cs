@@ -110,6 +110,10 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyPickupBulletCoinClip);
         }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyErrorPickupBulletCoinClip);
+        }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyTrapClip);
@@ -157,6 +161,10 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.glassyPickupCoinClip);
         }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.glassyErrorPickupBulletCoinClip);
+        }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.glassyPickupBulletCoinClip);
@@ -203,6 +211,10 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.spartacusPickupCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.spartacusErrorPickupBulletCoinClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin)
         {
@@ -255,6 +267,10 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.guardPickupBulletCoinClip);
         }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.guardErrorPickupBulletCoinClip);
+        }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.guardTrapClip);
@@ -306,6 +322,10 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthPickupBulletCoinClip);
         }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthErrorPickupBulletCoinClip);
+        }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthTrapClip);
@@ -354,6 +374,10 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.pickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.errorPickupBulletCoinClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
         {

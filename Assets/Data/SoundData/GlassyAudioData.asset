@@ -23,6 +23,7 @@ MonoBehaviour:
   dyingClip: {fileID: 8300000, guid: 15cd8c02ab105e54b918c97cdc31cbb3, type: 3}
   pickupCoinClip: {fileID: 8300000, guid: 808c4bf3192b36e4aa9365737800255f, type: 3}
   pickupBulletCoinClip: {fileID: 8300000, guid: a4a25bc1fb594e64f9f762d8f2e3f8c3, type: 3}
+  errorPickupBulletCoinClip: {fileID: 8300000, guid: a4e455bcc94d34540bd3ef99440ba8c0, type: 3}
   trapClip: {fileID: 8300000, guid: 782b25cb1de332a4d90deb66c2f8a34d, type: 3}
   levelUpClip: {fileID: 8300000, guid: c7361ae8b620e2b49a88af5d63f3dbe9, type: 3}
   jumpingSeaClip: {fileID: 8300000, guid: 286fde57fbcd5374e80d1ac2d1ad159b, type: 3}
@@ -34,17 +35,19 @@ MonoBehaviour:
   dobbyDyingClip: {fileID: 0}
   dobbyPickupCoinClip: {fileID: 0}
   dobbyPickupBulletCoinClip: {fileID: 0}
+  dobbyErrorPickupBulletCoinClip: {fileID: 0}
   dobbyTrapClip: {fileID: 0}
   dobbyLevelUpClip: {fileID: 0}
   dobbyJumpingSeaClip: {fileID: 0}
   glassyNonShootClip: {fileID: 8300000, guid: 71240ac1db2547a4ca916d3438c80177, type: 3}
   glassyPoisonClip: {fileID: 8300000, guid: 504437ef31cb66241881324adac93bc7, type: 3}
   glassySwordClip: {fileID: 8300000, guid: bd848664b9b7ce5428da3b4880aebac2, type: 3}
-  glassyGetHitClip: {fileID: 8300000, guid: 0daa4bd7ccf721c4faa7a61d8fe58390, type: 3}
+  glassyGetHitClip: {fileID: 8300000, guid: 1fb6db31891c81b44b11f7ccb517e7a9, type: 3}
   glassyJumpingClip: {fileID: 8300000, guid: a6c98811cc43c2646bf2c7baf175b185, type: 3}
-  glassyDyingClip: {fileID: 8300000, guid: 6d502a9e59205aa418255b021e5cebaf, type: 3}
+  glassyDyingClip: {fileID: 8300000, guid: 76fba0b13d5fd5743ab39e10946e27db, type: 3}
   glassyPickupCoinClip: {fileID: 8300000, guid: 808c4bf3192b36e4aa9365737800255f, type: 3}
   glassyPickupBulletCoinClip: {fileID: 8300000, guid: dc476f359d2226148ac5c6d8d630cee6, type: 3}
+  glassyErrorPickupBulletCoinClip: {fileID: 8300000, guid: a4e455bcc94d34540bd3ef99440ba8c0, type: 3}
   glassyTrapClip: {fileID: 8300000, guid: 782b25cb1de332a4d90deb66c2f8a34d, type: 3}
   glassyLevelUpClip: {fileID: 8300000, guid: c7361ae8b620e2b49a88af5d63f3dbe9, type: 3}
   glassyJumpingSeaClip: {fileID: 8300000, guid: 541dd825f41fcac4db4771f59de0b94e, type: 3}
@@ -56,6 +59,7 @@ MonoBehaviour:
   spartacusDyingClip: {fileID: 0}
   spartacusPickupCoinClip: {fileID: 0}
   spartacusPickupBulletCoinClip: {fileID: 0}
+  spartacusErrorPickupBulletCoinClip: {fileID: 0}
   spartacusTrapClip: {fileID: 0}
   spartacusLevelUpClip: {fileID: 0}
   spartacusJumpingSeaClip: {fileID: 0}
@@ -67,6 +71,7 @@ MonoBehaviour:
   guardDyingClip: {fileID: 0}
   guardPickupCoinClip: {fileID: 0}
   guardPickupBulletCoinClip: {fileID: 0}
+  guardErrorPickupBulletCoinClip: {fileID: 0}
   guardTrapClip: {fileID: 0}
   guardLevelUpClip: {fileID: 0}
   guardJumpingSeaClip: {fileID: 0}
@@ -78,6 +83,7 @@ MonoBehaviour:
   lusthDyingClip: {fileID: 0}
   lusthPickupCoinClip: {fileID: 0}
   lusthPickupBulletCoinClip: {fileID: 0}
+  lusthErrorPickupBulletCoinClip: {fileID: 0}
   lusthTrapClip: {fileID: 0}
   lusthLevelUpClip: {fileID: 0}
   lusthJumpingSeaClip: {fileID: 0}

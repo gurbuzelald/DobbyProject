@@ -9,7 +9,7 @@ public class CameraLook : MonoBehaviour
 {
     public PlayerData _playerData;
     public Transform _finishArrowTransform;
-    [SerializeField] float lookSpeed = 1;
+    //[SerializeField] float lookSpeed = 1;
     private static int spawnCounter = 0;
 
     private void Awake()
