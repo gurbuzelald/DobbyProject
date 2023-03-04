@@ -36,8 +36,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     [Header("CinemachineVirtualCamera")]    
     public CinemachineVirtualCamera _currentCamera;
-    public CinemachineVirtualCamera _upCamera;
-    public CinemachineVirtualCamera _downCamera;
+    public CinemachineVirtualCamera _farCamera;
+    public CinemachineVirtualCamera _closeCamera;
+    //public CinemachineVirtualCamera _upCamera;
+    //public CinemachineVirtualCamera _downCamera;
 
     [Header("Crosshair")]
     public CanvasGroup crosshairImage;
@@ -113,6 +115,18 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     void Update()
     {
+        if (_zValue == 0 && _xValue == 0)
+        {
+            _farCamera.gameObject.SetActive(false);
+            _closeCamera.gameObject.SetActive(true);
+            _currentCamera = _closeCamera;
+        }
+        else
+        {
+            _closeCamera.gameObject.SetActive(false);
+            _farCamera.gameObject.SetActive(true);
+            _currentCamera = _farCamera;
+        }
         if (_warmArrow != null)
         {
             if (_warmArrow.transform.localScale == Vector3.one)

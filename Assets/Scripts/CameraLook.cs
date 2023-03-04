@@ -9,7 +9,6 @@ public class CameraLook : MonoBehaviour
 {
     public PlayerData _playerData;
     public Transform _finishArrowTransform;
-    //[SerializeField] float lookSpeed = 1;
     private static int spawnCounter = 0;
 
     private void Awake()
@@ -128,7 +127,7 @@ public class CameraLook : MonoBehaviour
         gameObject.transform.rotation = PlayerManager.GetInstance._currentCameraTransform.rotation;
         if (PlayerManager.GetInstance._zValue != 0)
         {
-            //gameObject.transform.GetComponent<CinemachineVirtualCamera>().m_FollowOffset  
+           // gameObject.transform.GetComponent<CinemachineVirtualCamera>().  
         }
     }
 }
