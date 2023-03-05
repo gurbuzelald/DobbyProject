@@ -86,9 +86,13 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyPoisonClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetHit)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyGetHitClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyGetEnemyHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetBulletHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyGetBulletHitClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Jump)
         {
@@ -98,9 +102,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyDyingClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetHit)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyGetHitClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyGetEnemyHitClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
         {
@@ -141,9 +145,13 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.glassyPoisonClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetHit)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.glassyGetHitClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.glassyGetEnemyHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetBulletHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.glassyGetBulletHitClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Jump)
         {
@@ -152,10 +160,6 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Death)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.glassyDyingClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetHit)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.glassyGetHitClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
         {
@@ -204,9 +208,13 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.spartacusDyingClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetHit)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.spartacusGetHitClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.spartacusGetEnemyHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetBulletHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.spartacusGetBulletHitClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
         {
@@ -255,9 +263,13 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.guardDyingClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetHit)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.guardGetHitClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.guardGetEnemyHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetBulletHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.guardGetBulletHitClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
         {
@@ -298,9 +310,13 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthPoisonClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetHit)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthGetHitClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthGetEnemyHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetBulletHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthGetBulletHitClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Jump)
         {
@@ -310,9 +326,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthDyingClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetHit)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthGetHitClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthGetEnemyHitClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
         {
@@ -351,7 +367,7 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.nonShootClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetHit)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.getHitClip);
         }
@@ -363,7 +379,7 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dyingClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetHit)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.getHitClip);
         }

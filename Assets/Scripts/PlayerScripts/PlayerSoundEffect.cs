@@ -165,7 +165,8 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
     public enum SoundEffectTypes
     {
         NonShoot,
-        GetHit,
+        GetEnemyHit,
+        GetBulletHit,
         Poison,
         Jump,
         JumpToSea,

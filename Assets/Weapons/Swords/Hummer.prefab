@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3253581183789951367}
   - component: {fileID: 1912008168141940258}
   - component: {fileID: 4425954339394032360}
-  m_Layer: 0
+  - component: {fileID: 983156457343745290}
+  m_Layer: 21
   m_Name: Hummer
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &983156457343745290
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2768828069807502141}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.29652104, y: 0.82283694, z: 0.61572796}
+  m_Center: {x: 0, y: 0.41335765, z: 0}

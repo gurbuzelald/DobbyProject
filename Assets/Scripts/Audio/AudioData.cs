@@ -34,7 +34,8 @@ public class AudioData : ScriptableObject
     public AudioClip dobbyNonShootClip;
     public AudioClip dobbyPoisonClip;
     public AudioClip dobbySwordClip;
-    public AudioClip dobbyGetHitClip;
+    public AudioClip dobbyGetEnemyHitClip;
+    public AudioClip dobbyGetBulletHitClip;
     public AudioClip dobbyJumpingClip;
     public AudioClip dobbyDyingClip;
     public AudioClip dobbyPickupCoinClip;
@@ -51,7 +52,8 @@ public class AudioData : ScriptableObject
     public AudioClip glassyNonShootClip;
     public AudioClip glassyPoisonClip;
     public AudioClip glassySwordClip;
-    public AudioClip glassyGetHitClip;
+    public AudioClip glassyGetEnemyHitClip;
+    public AudioClip glassyGetBulletHitClip;
     public AudioClip glassyJumpingClip;
     public AudioClip glassyDyingClip;
     public AudioClip glassyPickupCoinClip;
@@ -67,7 +69,8 @@ public class AudioData : ScriptableObject
     public AudioClip spartacusNonShootClip;
     public AudioClip spartacusPoisonClip;
     public AudioClip spartacusSwordClip;
-    public AudioClip spartacusGetHitClip;
+    public AudioClip spartacusGetEnemyHitClip;
+    public AudioClip spartacusGetBulletHitClip;
     public AudioClip spartacusJumpingClip;
     public AudioClip spartacusDyingClip;
     public AudioClip spartacusPickupCoinClip;
@@ -83,7 +86,8 @@ public class AudioData : ScriptableObject
     public AudioClip guardNonShootClip;
     public AudioClip guardPoisonClip;
     public AudioClip guardSwordClip;
-    public AudioClip guardGetHitClip;
+    public AudioClip guardGetEnemyHitClip;
+    public AudioClip guardGetBulletHitClip;
     public AudioClip guardJumpingClip;
     public AudioClip guardDyingClip;
     public AudioClip guardPickupCoinClip;
@@ -99,7 +103,8 @@ public class AudioData : ScriptableObject
     public AudioClip lusthNonShootClip;
     public AudioClip lusthPoisonClip;
     public AudioClip lusthSwordClip;
-    public AudioClip lusthGetHitClip;
+    public AudioClip lusthGetEnemyHitClip;
+    public AudioClip lusthGetBulletHitClip;
     public AudioClip lusthJumpingClip;
     public AudioClip lusthDyingClip;
     public AudioClip lusthPickupCoinClip;

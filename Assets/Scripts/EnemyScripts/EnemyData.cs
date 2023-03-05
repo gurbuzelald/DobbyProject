@@ -8,7 +8,7 @@ public class EnemyData : ScriptableObject
     [Header("Objects")]
     public GameObject[] enemyFirstObjects;
     public GameObject[] enemySecondObjects;
-    public GameObject[] enemiesThirdObjects;
+    public GameObject[] enemyThirdObjects;
     public GameObject enemyTransformsFirstMap;
     public GameObject enemyTransformsSecondMap;
     public GameObject enemyTransformsThirdMap;

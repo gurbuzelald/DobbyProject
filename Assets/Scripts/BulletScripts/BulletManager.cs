@@ -583,24 +583,22 @@ public class BulletManager : AbstractBullet<BulletManager>
         DestroyWeaponObject();
         DestroySwordObject();
 
-        BulletRotation(_playerData.isLookingUp, 
-                       PlayerManager.GetInstance._currentCamera.transform.GetComponent<CinemachineVirtualCamera>(), 
+        BulletRotation(PlayerManager.GetInstance._currentCamera,
                        _bulletSpawnTransform);
 
         if (_playerData.isFiring && !_playerData.isSwording && bulletData.bulletDelayCounter == 0)
         {
             bulletData.bulletDelayCounter++;       
             
-            StartCoroutine(Delay(bulletData.bulletDelay, 0));
+            StartCoroutine(Delay(bulletData.swordBulletDelay, 0));
         }
         if (_playerData.isSwording && !_playerData.isFiring && bulletData.bulletDelayCounter == 0 && _playerData.isSwordTime)
         {
             bulletData.bulletDelayCounter++;
 
-            StartCoroutine(Delay(bulletData.bulletDelay, 2));
+            StartCoroutine(Delay(bulletData.weaponBulletDelay, 2));
         }
     }
-
 
     public void WeaponSoundTypeState()
     {//PlayerManager.GetInstance.SwordSFX(_playerData);
@@ -690,7 +688,7 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
     }
     IEnumerator Delay(float delayValue, int objectPoolCount)
-    {
+    {        
         if (objectPoolCount == 2)
         {
             //yield return new WaitForSeconds(1);
@@ -720,15 +718,12 @@ public class BulletManager : AbstractBullet<BulletManager>
             else
             {
                 WeaponSoundTypeState();
+                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 2f);
             }
             //PlayerManager.GetInstance._currentCamera.transform.position.x
             _bulletSpawnTransform.position = new Vector3(_bulletSpawnTransform.transform.position.x, 
                                                          _bulletSpawnTransform.transform.position.y, 
                                                          _bulletSpawnTransform.transform.position.z);
-            if (_playerData.bulletAmount >= 0)
-            {
-                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 2f);
-            }
             bulletData.bulletDelayCounter = 0;
             //yield return new WaitForSeconds(delayValue * 50f);
             //_currentWeaponObject.SetActive(false);

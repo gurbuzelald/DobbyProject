@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8046374085067022514}
   - component: {fileID: 8046374085067825298}
   - component: {fileID: 8046374085068923474}
-  m_Layer: 0
+  - component: {fileID: 3223776326933291216}
+  m_Layer: 21
   m_Name: MagicWeapon
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3223776326933291216
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8046374085066996882}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27927506, y: 0.9179528, z: 0.24725822}
+  m_Center: {x: 0, y: 0.46228552, z: 0.000000037252903}

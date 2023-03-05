@@ -34,10 +34,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public Transform slaves;
     private GameObject slaveObject;
 
-    [Header("CinemachineVirtualCamera")]    
+    [Header("CinemachineVirtualCamera")]
     public CinemachineVirtualCamera _currentCamera;
-    public CinemachineVirtualCamera _farCamera;
-    public CinemachineVirtualCamera _closeCamera;
+    //public CinemachineVirtualCamera _farCamera;
+    //public CinemachineVirtualCamera _closeCamera;
+    public GameObject cameraSpawner;
     //public CinemachineVirtualCamera _upCamera;
     //public CinemachineVirtualCamera _downCamera;
 
@@ -113,20 +114,18 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         audioSource = GetComponent<AudioSource>();        
     }
 
+    private void FixedUpdate()
+    {
+        if (_playerData.isPlayable && !_playerData.isWinning)
+        {
+            Fire(_playerData);            
+        }
+        
+    }
     void Update()
     {
-        if (_zValue == 0 && _xValue == 0)
-        {
-            _farCamera.gameObject.SetActive(false);
-            _closeCamera.gameObject.SetActive(true);
-            _currentCamera = _closeCamera;
-        }
-        else
-        {
-            _closeCamera.gameObject.SetActive(false);
-            _farCamera.gameObject.SetActive(true);
-            _currentCamera = _farCamera;
-        }
+        ChangeCamera();
+
         if (_warmArrow != null)
         {
             if (_warmArrow.transform.localScale == Vector3.one)
@@ -139,6 +138,104 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             Movement(_playerData);//PlayerStatements
         }
         
+    }
+    void ChangeCamera()
+    {
+        if (_zValue == 0 && _xValue == 0 && _playerController.lookRotation.x == 0 && _playerController.lookRotation.y == 0)
+        {
+            cameraSpawner.transform.GetChild(1).gameObject.transform.position = cameraSpawner.transform.GetChild(0).gameObject.transform.position;
+            cameraSpawner.transform.GetChild(1).gameObject.transform.rotation = cameraSpawner.transform.GetChild(0).gameObject.transform.rotation;
+            cameraSpawner.transform.GetChild(0).gameObject.SetActive(false);
+            cameraSpawner.transform.GetChild(1).gameObject.SetActive(true);
+            _currentCamera = cameraSpawner.transform.GetChild(1).gameObject.GetComponent<CinemachineVirtualCamera>();
+            _currentCamera.m_Follow = gameObject.transform;
+            _currentCamera.m_LookAt = gameObject.transform;
+        }
+        else if (_zValue != 0 && _xValue == 0 && _playerController.lookRotation.x == 0 && _playerController.lookRotation.y == 0)
+        {
+            cameraSpawner.transform.GetChild(0).gameObject.transform.position = cameraSpawner.transform.GetChild(1).gameObject.transform.position;
+            cameraSpawner.transform.GetChild(0).gameObject.transform.rotation = cameraSpawner.transform.GetChild(1).gameObject.transform.rotation;
+
+            cameraSpawner.transform.GetChild(1).gameObject.SetActive(false);
+            cameraSpawner.transform.GetChild(0).gameObject.SetActive(true);
+            _currentCamera = cameraSpawner.transform.GetChild(0).gameObject.GetComponent<CinemachineVirtualCamera>();
+            _currentCamera.m_Follow = gameObject.transform;
+            _currentCamera.m_LookAt = gameObject.transform;
+        }
+        else if (_zValue == 0 && _xValue != 0 && _playerController.lookRotation.x == 0 && _playerController.lookRotation.y == 0)
+        {
+            cameraSpawner.transform.GetChild(0).gameObject.transform.position = cameraSpawner.transform.GetChild(1).gameObject.transform.position;
+            cameraSpawner.transform.GetChild(0).gameObject.transform.rotation = cameraSpawner.transform.GetChild(1).gameObject.transform.rotation;
+
+            cameraSpawner.transform.GetChild(1).gameObject.SetActive(false);
+            cameraSpawner.transform.GetChild(0).gameObject.SetActive(true);
+            _currentCamera = cameraSpawner.transform.GetChild(0).gameObject.GetComponent<CinemachineVirtualCamera>();
+            _currentCamera.m_Follow = gameObject.transform;
+            _currentCamera.m_LookAt = gameObject.transform;
+        }
+        else if (_zValue != 0 && _xValue != 0 && _playerController.lookRotation.x == 0 && _playerController.lookRotation.y == 0)
+        {
+            cameraSpawner.transform.GetChild(0).gameObject.transform.position = cameraSpawner.transform.GetChild(1).gameObject.transform.position;
+            cameraSpawner.transform.GetChild(0).gameObject.transform.rotation = cameraSpawner.transform.GetChild(1).gameObject.transform.rotation;
+
+            cameraSpawner.transform.GetChild(1).gameObject.SetActive(false);
+            cameraSpawner.transform.GetChild(0).gameObject.SetActive(true);
+            _currentCamera = cameraSpawner.transform.GetChild(0).gameObject.GetComponent<CinemachineVirtualCamera>();
+            _currentCamera.m_Follow = gameObject.transform;
+            _currentCamera.m_LookAt = gameObject.transform;
+        }
+        else if (_zValue == 0 && _xValue == 0 && _playerController.lookRotation.x != 0 && _playerController.lookRotation.y == 0)
+        {
+            //Do Nothing
+        }
+        else if (_zValue != 0 && _xValue == 0 && _playerController.lookRotation.x != 0 && _playerController.lookRotation.y == 0)
+        {
+            //Do Nothing
+        }
+        else if (_zValue == 0 && _xValue != 0 && _playerController.lookRotation.x != 0 && _playerController.lookRotation.y == 0)
+        {
+            //Do Nothing
+        }
+        else if (_zValue != 0 && _xValue != 0 && _playerController.lookRotation.x != 0 && _playerController.lookRotation.y == 0)
+        {
+            //Do Nothing
+        }
+        else if (_zValue == 0 && _xValue == 0 && _playerController.lookRotation.x == 0 && _playerController.lookRotation.y != 0)
+        {
+            //Do Nothing
+        }
+        else if (_zValue != 0 && _xValue == 0 && _playerController.lookRotation.x == 0 && _playerController.lookRotation.y != 0)
+        {
+            //Do Nothing
+        }
+        else if (_zValue == 0 && _xValue != 0 && _playerController.lookRotation.x == 0 && _playerController.lookRotation.y != 0)
+        {
+            //Do Nothing
+        }
+        else if (_zValue != 0 && _xValue != 0 && _playerController.lookRotation.x == 0 && _playerController.lookRotation.y != 0)
+        {
+            //Do Nothing
+        }
+        else if (_zValue == 0 && _xValue == 0 && _playerController.lookRotation.x != 0 && _playerController.lookRotation.y != 0)
+        {
+            //Do Nothing
+        }
+        else if (_zValue != 0 && _xValue == 0 && _playerController.lookRotation.x != 0 && _playerController.lookRotation.y != 0)
+        {
+            //Do Nothing
+        }
+        else if (_zValue == 0 && _xValue != 0 && _playerController.lookRotation.x != 0 && _playerController.lookRotation.y != 0)
+        {
+            //Do Nothing
+        }
+        else if (_zValue != 0 && _xValue != 0 && _playerController.lookRotation.x != 0 && _playerController.lookRotation.y != 0)
+        {
+            //Do Nothing
+        }
+        else
+        {
+            //Do Nothing
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {        
@@ -251,47 +348,96 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             Destroy(other.gameObject);
             _bulletData.isRifle = true;
         }
+        else if(other.CompareTag(SceneController.Tags.Rifle.ToString()) && _bulletData.currentWeaponName == BulletData.rifle)
+        {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+            StartCoroutine(DelayTransformOneGiftBoxWarmText(other));
+        }
         if (other.CompareTag(SceneController.Tags.Ak47.ToString()) && _bulletData.currentWeaponName != BulletData.ak47)
         {
             Destroy(other.gameObject);
             _bulletData.isAk47 = true;
+        }
+        else if(other.CompareTag(SceneController.Tags.Ak47.ToString()) && _bulletData.currentWeaponName == BulletData.ak47)
+        {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+            StartCoroutine(DelayTransformOneGiftBoxWarmText(other));
         }
         if (other.CompareTag(SceneController.Tags.Axegun.ToString()) && _bulletData.currentWeaponName != BulletData.axegun)
         {
             Destroy(other.gameObject);
             _bulletData.isAxegun = true;
         }
+        else if(other.CompareTag(SceneController.Tags.Axegun.ToString()) && _bulletData.currentWeaponName == BulletData.axegun)
+        {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+            StartCoroutine(DelayTransformOneGiftBoxWarmText(other));
+        }
         if (other.CompareTag(SceneController.Tags.Bulldog.ToString()) && _bulletData.currentWeaponName != BulletData.bulldog)
         {
             Destroy(other.gameObject);
             _bulletData.isBulldog = true;
+        }
+        else if (other.CompareTag(SceneController.Tags.Bulldog.ToString()) && _bulletData.currentWeaponName == BulletData.bulldog)
+        {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+            StartCoroutine(DelayTransformOneGiftBoxWarmText(other));
         }
         if (other.CompareTag(SceneController.Tags.Cowgun.ToString()) && _bulletData.currentWeaponName != BulletData.cowgun)
         {
             Destroy(other.gameObject);
             _bulletData.isCowgun = true;
         }
+        else if(other.CompareTag(SceneController.Tags.Cowgun.ToString()) && _bulletData.currentWeaponName == BulletData.cowgun)
+        {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+            StartCoroutine(DelayTransformOneGiftBoxWarmText(other));
+        }
         if (other.CompareTag(SceneController.Tags.Crystalgun.ToString()) && _bulletData.currentWeaponName != BulletData.crystalgun)
         {
             Destroy(other.gameObject);
             _bulletData.isCrystalgun = true;
+        }
+        else if(other.CompareTag(SceneController.Tags.Crystalgun.ToString()) && _bulletData.currentWeaponName == BulletData.crystalgun)
+        {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+            StartCoroutine(DelayTransformOneGiftBoxWarmText(other));
         }
         if (other.CompareTag(SceneController.Tags.Demongun.ToString()) && _bulletData.currentWeaponName != BulletData.demongun)
         {
             Destroy(other.gameObject);
             _bulletData.isDemongun = true;
         }
+        else if(other.CompareTag(SceneController.Tags.Demongun.ToString()) && _bulletData.currentWeaponName != BulletData.demongun)
+        {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+            StartCoroutine(DelayTransformOneGiftBoxWarmText(other));
+        }
         if (other.CompareTag(SceneController.Tags.Icegun.ToString()) && _bulletData.currentWeaponName != BulletData.icegun)
         {
             Destroy(other.gameObject);
             _bulletData.isIcegun = true;
+        }
+        else if(other.CompareTag(SceneController.Tags.Icegun.ToString()) && _bulletData.currentWeaponName == BulletData.icegun)
+        {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+            StartCoroutine(DelayTransformOneGiftBoxWarmText(other));
         }
         if (other.CompareTag(SceneController.Tags.Negev.ToString()) && _bulletData.currentWeaponName != BulletData.negev)
         {
             Destroy(other.gameObject);
             _bulletData.isNegev = true;
         }
-
+        else if(other.CompareTag(SceneController.Tags.Negev.ToString()) && _bulletData.currentWeaponName == BulletData.negev)
+        {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+            StartCoroutine(DelayTransformOneGiftBoxWarmText(other));
+        }
+    }
+    IEnumerator DelayTransformOneGiftBoxWarmText(Collider other)
+    {
+        yield return new WaitForSeconds(1f);
+        other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.zero;
     }
     private void OnTriggerExit(Collider other)
     {
@@ -321,7 +467,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 SkateBoard(_playerData);
                 Run(_playerData);
                 Jump(_playerData);
-                Fire(_playerData);
+                //Fire(_playerData);
                 Sword(_playerData);
             }
             else if (_playerData.isWinning)
@@ -494,6 +640,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     {
         if (_playerData.isPlayable && _playerController.fire)
         {
+            if (_playerData.bulletAmount <= 0)
+            {
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
+            }
             //PlayerData
             if (_playerData.bulletAmount <= 0)
             {
@@ -682,7 +832,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     //Collision
     void TouchEnemy(Collision collision, PlayerData _playerData)
     {
-        if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 0)
+        if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value == 0)
         {
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
@@ -724,14 +874,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
 
                 //SoundEffect
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetEnemyHit);
                 //GetHitSFX(_playerData);
 
                 //PlayerData
                 DecreaseHealth(5);
                 //_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= 5;
 
-                _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
+                //_topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
             }
         }
     }
@@ -743,7 +893,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         
         if (_playerData.objects[3] != null)
         {
-            if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 0 && !_playerData.isWinning)
+            if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value == 0 && !_playerData.isWinning)
             {
                 //Particle Effect
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform.transform);
@@ -783,12 +933,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.TouchBurning, _particleTransform.transform);
 
                 //SoundEffect
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetBulletHit);
                 //GetHitSFX(_playerData);
 
                 //PlayerData
-                _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= 5;
-                _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
+                DecreaseHealth(2);
+                //_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= 5;
+                //_topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
             }
         }
         StartCoroutine(LookAtTouchEnemyBullet(other));
@@ -940,6 +1091,25 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             ScoreController.GetInstance._scoreText.text = ScoreController._scoreAmount.ToString();
         }
     }
+    void IncreaseScore(int scoreDamageValue)
+    {
+
+        ScoreTextGrowing(0, 255, 0);
+
+        if (ScoreController._scoreAmount > scoreDamageValue)
+        {
+            ScoreController.GetInstance.SetScore(-scoreDamageValue);
+        }
+        else if (ScoreController._scoreAmount < scoreDamageValue && ScoreController._scoreAmount > 0)
+        {
+            ScoreController.GetInstance.SetScore(-ScoreController._scoreAmount);
+        }
+        else if (ScoreController._scoreAmount <= 0)
+        {
+            ScoreController._scoreAmount = 0;
+            ScoreController.GetInstance._scoreText.text = ScoreController._scoreAmount.ToString();
+        }
+    }
     void ScoreTextGrowing(int r, int g, int b)
     {
         ScoreController.GetInstance._scoreText.transform.localScale = new Vector3(2f, 2f, 2f);
@@ -954,9 +1124,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value += damageHealthValue;
 
-            _healthBarObject.transform.localScale = new Vector3(_healthBarObject.transform.localScale.x,
-                                                                    _healthBarObject.transform.localScale.y * 3,
-                                                                    _healthBarObject.transform.localScale.z * 3);
+            _healthBarObject.transform.localScale = new Vector3(1f,
+                                                                0.3f,
+                                                                0.3f);
             _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
 
             StartCoroutine(DelaySizeBack());
@@ -965,11 +1135,11 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     void DecreaseHealth(int damageHealthValue)
     {
         _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= damageHealthValue;
-
-        _healthBarObject.transform.localScale = new Vector3(_healthBarObject.transform.localScale.x,
-                                                                _healthBarObject.transform.localScale.y * 3,
-                                                                _healthBarObject.transform.localScale.z * 3);
         _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
+
+        _healthBarObject.transform.localScale = new Vector3(1f,
+                                                            0.3f,
+                                                            0.3f);
 
         StartCoroutine(DelaySizeBack());
     }

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6968853562753017298}
   - component: {fileID: 6968853562754311666}
   - component: {fileID: 6968853562755311410}
-  m_Layer: 0
+  - component: {fileID: 5388253942198266812}
+  m_Layer: 21
   m_Name: Axe_Knight
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5388253942198266812
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6968853562753055218}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.055530585, y: 1.9297557, z: 0.23878793}
+  m_Center: {x: 0.0000013941899, y: 0.96260214, z: 0.029520743}

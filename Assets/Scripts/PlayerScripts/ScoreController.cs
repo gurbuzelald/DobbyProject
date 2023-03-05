@@ -10,6 +10,7 @@ public class ScoreController : AbstractSingleton<ScoreController>
     private bool _scored;
     void Start()
     {
+        _scoreText = gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
         _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
     }
     void Update()

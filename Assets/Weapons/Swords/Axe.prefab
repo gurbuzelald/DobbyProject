@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 5664214437997170902}
   - component: {fileID: 5664214437996040726}
   - component: {fileID: 5664214438003572502}
-  m_Layer: 0
+  - component: {fileID: -4980721139095508216}
+  m_Layer: 21
   m_Name: Axe
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,3 +105,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &-4980721139095508216
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5664214437994040534}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10707999, y: 1.0920558, z: 0.49221787}
+  m_Center: {x: 0.000000037252903, y: 0.54725397, z: 0.0038300455}

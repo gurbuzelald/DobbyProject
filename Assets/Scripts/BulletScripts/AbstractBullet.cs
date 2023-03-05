@@ -21,7 +21,7 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
             return _instance;
         }
     }
-    public virtual void BulletRotation(bool isLookingUp, CinemachineVirtualCamera CurrentCamera, Transform bulletSpawnTransform)
+    public virtual void BulletRotation(CinemachineVirtualCamera CurrentCamera, Transform bulletSpawnTransform)
     {
         if (CurrentCamera != null)
         {

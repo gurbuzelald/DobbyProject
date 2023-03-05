@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 7486198881408624911}
   - component: {fileID: 7486198881412049167}
   - component: {fileID: 7486198881410919375}
-  m_Layer: 0
+  - component: {fileID: 6069494011510354023}
+  m_Layer: 21
   m_Name: LowSword
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6069494011510354023
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7486198881408922905}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.592645, y: 5.079894, z: 54.461563}
+  m_Center: {x: 0.0000002384186, y: 4.2632564e-14, z: -0.0000009685755}
