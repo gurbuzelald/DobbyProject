@@ -1281,6 +1281,30 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             current = _playerData.lusth;
         }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Eve)
+        {
+            current = _playerData.eve;
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Michelle)
+        {
+            current = _playerData.michelle;
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Boss)
+        {
+            current = _playerData.boss;
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Aj)
+        {
+            current = _playerData.aj;
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Mremireh)
+        {
+            current = _playerData.mremireh;
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Ty)
+        {
+            current = _playerData.ty;
+        }
         else
         {
             current = _playerData.dobby;

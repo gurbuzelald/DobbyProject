@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1868c7cd3d74059489101668855dfd21, type: 3}
+  m_Name: PlayerBulletData
+  m_EditorClassIdentifier: 
+  swordBulletDelay: 0.05
+  weaponBulletDelay: 0.05
+  bulletSpeed: 5
+  bulletDelayCounter: 0
+  _bulletObject: {fileID: 4568481270464940624, guid: 98dbc9cb5ce9f68458cb04a08252b6ac, type: 3}
+  _swordingObject: {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
+  ak47Object: {fileID: 1285122605500510046, guid: b339fba6c87e1284296b951ba41f28ad, type: 3}
+  ak47GiftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
+  rifleObject: {fileID: 4907868468083396717, guid: f7cbed3675ac52e459a75f65deb30f1c, type: 3}
+  rifleGiftBox: {fileID: 4850221878147488263, guid: 2b9e216addade824fb41b7bc668a5101, type: 3}
+  bullDogObject: {fileID: 2611150449622927918, guid: e2a7ba7e091c8a64d89f057926284f5e, type: 3}
+  bullDogGiftBox: {fileID: 6750732745314709050, guid: 3443f60ab08db384aaa3b04a8b272456, type: 3}
+  cowgunObject: {fileID: 4045390288470663321, guid: 21788765404628840a013ba85ef9bc18, type: 3}
+  cowgunGiftBox: {fileID: 8957379851250910510, guid: 9892378f7235cce4d9f03984a358c0db, type: 3}
+  crsytalgunObject: {fileID: 6090247001165047854, guid: f063e9ac4a8a0da47abeb4ea6b35b9e3, type: 3}
+  crsytalgunGiftBox: {fileID: 4022412064357964157, guid: 028d4e3f0249529499c5a8c81d29ea0b, type: 3}
+  demongunObject: {fileID: 2171148302848499809, guid: 63a007e6a0d63be42ae9e8aadda4784f, type: 3}
+  demongunGiftBox: {fileID: 8947880313132611291, guid: 43147d81d9fef8f4d9beda636a63dc03, type: 3}
+  icegunObject: {fileID: 576073428898831781, guid: 0963f4d0c58abf04bb05b0993ba61424, type: 3}
+  icegunGiftBox: {fileID: 1107915910439118714, guid: ca5ee588c6380b74080b876dbde97c21, type: 3}
+  negevObject: {fileID: 1492883090361208011, guid: 6e1df7167d924f94f85f18de66dd6675, type: 3}
+  negevGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
+  axegunObject: {fileID: 1684248174472265961, guid: a331718668949cc43b683202d1396a03, type: 3}
+  axegunGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
+  isRifle: 0
+  isAk47: 0
+  isBulldog: 0
+  isCowgun: 0
+  isCrystalgun: 0
+  isDemongun: 0
+  isIcegun: 0
+  isNegev: 0
+  isAxegun: 0
+  lowSwordObject: {fileID: 7486198881408922905, guid: e0ca519d8f748de48b2cdc4e12d21e8f, type: 3}
+  warriorSwordObject: {fileID: 9112861893149409468, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
+  hummerObject: {fileID: 2768828069807502141, guid: b55a81b3910ea5748a6e80d5db666505, type: 3}
+  orcSwordObject: {fileID: 59555108974462787, guid: 53bf718842405794086625555bde97fa, type: 3}
+  axeObject: {fileID: 5664214437994040534, guid: 8b52764e0908aa4498f79a7254ea1704, type: 3}
+  axeKnightObject: {fileID: 6968853562753055218, guid: 0f8bf7c5a7e518442a1bae83535526ab, type: 3}
+  barbarianSwordObject: {fileID: 3089508391633436098, guid: 1d7f6a02a94431f4d9ebf6521ad8e1fb, type: 3}
+  demonSwordObject: {fileID: 4426474884974521336, guid: 79303260231974541bacdeb104d6f960, type: 3}
+  magicWeaponObject: {fileID: 8046374085066996882, guid: bf35d7a5290a3d04fb54636d904f9424, type: 3}
+  longHummerObject: {fileID: 1291317392893337651, guid: 9c6a5483a1e057a42bbc8a1bb2033c89, type: 3}
+  clubObject: {fileID: 1401163679098770771, guid: 45f52a9e20fe23c47b83f588dd15dcab, type: 3}
+  isLowSword: 0
+  isWarriorSword: 0
+  isHummer: 0
+  isOrcSword: 0
+  isAxeSword: 0
+  isAxeKnight: 0
+  isBarbarianSword: 0
+  isDemonSword: 0
+  isMagicSword: 0
+  isLongHummer: 0
+  isClub: 0
+  currentSwordName: lowSword
+  currentWeaponName: ak47
+  enemyBulletDelayCounter: 0
+  enemyBulletDelay: 0.05
+  enemyBulletSpeed: 3

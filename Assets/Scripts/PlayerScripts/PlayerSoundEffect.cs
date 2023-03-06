@@ -9,6 +9,12 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
     public AudioData spartacusAudioData;
     public AudioData guardAudioData;
     public AudioData lusthAudioData;
+    public AudioData eveAudioData;
+    public AudioData michelleAudioData;
+    public AudioData bossAudioData;
+    public AudioData ajAudioData;
+    public AudioData mremirehAudioData;
+    public AudioData tyAudioData;
 
     public AudioData currentAudioData;
 
@@ -44,6 +50,36 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         {
             currentAudioData = lusthAudioData;
             LusthSFXStatement(soundEffectType, currentAudioData);
+        }
+        else if (PlayerData.CharacterNames.Eve == playerData.currentCharacterName)
+        {
+            currentAudioData = eveAudioData;
+            EveSFXStatement(soundEffectType, currentAudioData);
+        }
+        else if (PlayerData.CharacterNames.Michelle == playerData.currentCharacterName)
+        {
+            currentAudioData = michelleAudioData;
+            MichelleSFXStatement(soundEffectType, currentAudioData);
+        }
+        else if (PlayerData.CharacterNames.Boss == playerData.currentCharacterName)
+        {
+            currentAudioData = bossAudioData;
+            BossSFXStatement(soundEffectType, currentAudioData);
+        }
+        else if (PlayerData.CharacterNames.Aj == playerData.currentCharacterName)
+        {
+            currentAudioData = ajAudioData;
+            AjSFXStatement(soundEffectType, currentAudioData);
+        }
+        else if (PlayerData.CharacterNames.Mremireh == playerData.currentCharacterName)
+        {
+            currentAudioData = mremirehAudioData;
+            MremirehSFXStatement(soundEffectType, currentAudioData);
+        }
+        else if (PlayerData.CharacterNames.Ty == playerData.currentCharacterName)
+        {
+            currentAudioData = tyAudioData;
+            MremirehSFXStatement(soundEffectType, currentAudioData);
         }
 
     }

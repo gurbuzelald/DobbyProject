@@ -356,6 +356,338 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         }
     }
 
+    public void EveSFXStatement(PlayerSoundEffect.SoundEffectTypes soundEffect, AudioData audioData)
+    {
+        //if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Shoot)
+        //{
+        //    PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthShootClip);
+        //}
+        if (soundEffect == PlayerSoundEffect.SoundEffectTypes.NonShoot)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.eveNonShootClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Poison)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.evePoisonClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.eveGetEnemyHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetBulletHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.eveGetBulletHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Jump)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.eveJumpingClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Death)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.eveDyingClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.evePickupCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.evePickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.eveErrorPickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.eveTrapClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.eveLevelUpClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.JumpToSea)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.eveJumpingSeaClip);
+        }
+    }
+
+    public void MichelleSFXStatement(PlayerSoundEffect.SoundEffectTypes soundEffect, AudioData audioData)
+    {
+        //if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Shoot)
+        //{
+        //    PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthShootClip);
+        //}
+        if (soundEffect == PlayerSoundEffect.SoundEffectTypes.NonShoot)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michelleNonShootClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Poison)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michellePoisonClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michelleGetEnemyHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetBulletHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michelleGetBulletHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Jump)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michelleJumpingClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Death)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michelleDyingClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michellePickupCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michellePickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michelleErrorPickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michelleTrapClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michelleLevelUpClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.JumpToSea)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michelleJumpingSeaClip);
+        }
+    }
+    public void BossSFXStatement(PlayerSoundEffect.SoundEffectTypes soundEffect, AudioData audioData)
+    {
+        //if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Shoot)
+        //{
+        //    PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthShootClip);
+        //}
+        if (soundEffect == PlayerSoundEffect.SoundEffectTypes.NonShoot)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossNonShootClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Poison)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossPoisonClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossGetEnemyHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetBulletHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossGetBulletHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Jump)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossJumpingClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Death)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossDyingClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossPickupCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossPickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossErrorPickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossTrapClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossLevelUpClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.JumpToSea)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossJumpingSeaClip);
+        }
+    }
+
+    public void AjSFXStatement(PlayerSoundEffect.SoundEffectTypes soundEffect, AudioData audioData)
+    {
+        //if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Shoot)
+        //{
+        //    PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthShootClip);
+        //}
+        if (soundEffect == PlayerSoundEffect.SoundEffectTypes.NonShoot)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajNonShootClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Poison)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajPoisonClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajGetEnemyHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetBulletHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajGetBulletHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Jump)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajJumpingClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Death)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajDyingClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajPickupCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajPickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajErrorPickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajTrapClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajLevelUpClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.JumpToSea)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajJumpingSeaClip);
+        }
+    }
+
+    public void MremirehSFXStatement(PlayerSoundEffect.SoundEffectTypes soundEffect, AudioData audioData)
+    {
+        //if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Shoot)
+        //{
+        //    PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthShootClip);
+        //}
+        if (soundEffect == PlayerSoundEffect.SoundEffectTypes.NonShoot)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehNonShootClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Poison)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehPoisonClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehGetEnemyHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetBulletHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehGetBulletHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Jump)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehJumpingClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Death)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehDyingClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehPickupCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehPickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehErrorPickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehTrapClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehLevelUpClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.JumpToSea)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehJumpingSeaClip);
+        }
+    }
+
+
+    public void TySFXStatement(PlayerSoundEffect.SoundEffectTypes soundEffect, AudioData audioData)
+    {
+        if (soundEffect == PlayerSoundEffect.SoundEffectTypes.NonShoot)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyNonShootClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Poison)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyPoisonClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyGetEnemyHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetBulletHit)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyGetBulletHitClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Jump)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyJumpingClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Death)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyDyingClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyPickupCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyPickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyErrorPickupBulletCoinClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyTrapClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyLevelUpClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.JumpToSea)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyJumpingSeaClip);
+        }
+    }
+
 
     public virtual void SFXStatement(PlayerSoundEffect.SoundEffectTypes soundEffect, AudioData audioData)
     {

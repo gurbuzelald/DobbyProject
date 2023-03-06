@@ -40,6 +40,38 @@ public class ChooseCharacterController : MonoBehaviour
         playerData.currentCharacterName = PlayerData.CharacterNames.Guard;
         SceneController.GetInstance.LoadMenuScene();
     }
+    public void ChoosedEve()
+    {
+        playerData.currentCharacterName = PlayerData.CharacterNames.Eve;
+        SceneController.GetInstance.LoadMenuScene();
+    }
+    public void ChoosedMichelle()
+    {
+        playerData.currentCharacterName = PlayerData.CharacterNames.Michelle;
+        SceneController.GetInstance.LoadMenuScene();
+    }
+    public void ChoosedBoss()
+    {
+        playerData.currentCharacterName = PlayerData.CharacterNames.Boss;
+        SceneController.GetInstance.LoadMenuScene();
+    }
+    public void ChoosedAj()
+    {
+        playerData.currentCharacterName = PlayerData.CharacterNames.Aj;
+        SceneController.GetInstance.LoadMenuScene();
+    }
+
+    public void ChoosedMremireh()
+    {
+        playerData.currentCharacterName = PlayerData.CharacterNames.Mremireh;
+        SceneController.GetInstance.LoadMenuScene();
+    }
+
+    public void ChoosedTy()
+    {
+        playerData.currentCharacterName = PlayerData.CharacterNames.Ty;
+        SceneController.GetInstance.LoadMenuScene();
+    }
     public void GoLeft(int value)
     {
         for (int i = 0; i < _objects.Length; i++)

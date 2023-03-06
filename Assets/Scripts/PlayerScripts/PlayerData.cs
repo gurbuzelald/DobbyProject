@@ -22,6 +22,12 @@ public class PlayerData : ScriptableObject
     public GameObject spartacus;
     public GameObject guard;
     public GameObject lusth;
+    public GameObject eve;
+    public GameObject michelle;
+    public GameObject boss;
+    public GameObject aj;
+    public GameObject mremireh;
+    public GameObject ty;
 
     [Header("Prefab Game Objects For Player")]
     public GameObject[] objects;
@@ -126,6 +132,12 @@ public class PlayerData : ScriptableObject
         Dobby,
         Spartacus,
         Lusth,
-        Guard
+        Guard,
+        Eve,
+        Michelle,
+        Boss,
+        Aj, 
+        Mremireh,
+        Ty
     }
 }

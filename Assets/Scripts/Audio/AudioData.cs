@@ -30,10 +30,8 @@ public class AudioData : ScriptableObject
 
 
     [Header("Dobby")]
-    //public AudioClip dobbyShootClip;
     public AudioClip dobbyNonShootClip;
     public AudioClip dobbyPoisonClip;
-    public AudioClip dobbySwordClip;
     public AudioClip dobbyGetEnemyHitClip;
     public AudioClip dobbyGetBulletHitClip;
     public AudioClip dobbyJumpingClip;
@@ -48,10 +46,8 @@ public class AudioData : ScriptableObject
 
 
     [Header("Glassy")]
-    //public AudioClip glassyShootClip;
     public AudioClip glassyNonShootClip;
     public AudioClip glassyPoisonClip;
-    public AudioClip glassySwordClip;
     public AudioClip glassyGetEnemyHitClip;
     public AudioClip glassyGetBulletHitClip;
     public AudioClip glassyJumpingClip;
@@ -65,10 +61,8 @@ public class AudioData : ScriptableObject
 
 
     [Header("Spartacus")]
-    //public AudioClip spartacusShootClip;
     public AudioClip spartacusNonShootClip;
     public AudioClip spartacusPoisonClip;
-    public AudioClip spartacusSwordClip;
     public AudioClip spartacusGetEnemyHitClip;
     public AudioClip spartacusGetBulletHitClip;
     public AudioClip spartacusJumpingClip;
@@ -82,10 +76,8 @@ public class AudioData : ScriptableObject
 
 
     [Header("Guard")]
-    //public AudioClip guardShootClip;
     public AudioClip guardNonShootClip;
     public AudioClip guardPoisonClip;
-    public AudioClip guardSwordClip;
     public AudioClip guardGetEnemyHitClip;
     public AudioClip guardGetBulletHitClip;
     public AudioClip guardJumpingClip;
@@ -99,10 +91,8 @@ public class AudioData : ScriptableObject
 
 
     [Header("Lusth")]
-    //public AudioClip lusthShootClip;
     public AudioClip lusthNonShootClip;
     public AudioClip lusthPoisonClip;
-    public AudioClip lusthSwordClip;
     public AudioClip lusthGetEnemyHitClip;
     public AudioClip lusthGetBulletHitClip;
     public AudioClip lusthJumpingClip;
@@ -113,6 +103,91 @@ public class AudioData : ScriptableObject
     public AudioClip lusthTrapClip;
     public AudioClip lusthLevelUpClip;
     public AudioClip lusthJumpingSeaClip;
+
+    [Header("Eve")]
+    public AudioClip eveNonShootClip;
+    public AudioClip evePoisonClip;
+    public AudioClip eveGetEnemyHitClip;
+    public AudioClip eveGetBulletHitClip;
+    public AudioClip eveJumpingClip;
+    public AudioClip eveDyingClip;
+    public AudioClip evePickupCoinClip;
+    public AudioClip evePickupBulletCoinClip;
+    public AudioClip eveErrorPickupBulletCoinClip;
+    public AudioClip eveTrapClip;
+    public AudioClip eveLevelUpClip;
+    public AudioClip eveJumpingSeaClip;
+
+    [Header("Michelle")]
+    public AudioClip michelleNonShootClip;
+    public AudioClip michellePoisonClip;
+    public AudioClip michelleGetEnemyHitClip;
+    public AudioClip michelleGetBulletHitClip;
+    public AudioClip michelleJumpingClip;
+    public AudioClip michelleDyingClip;
+    public AudioClip michellePickupCoinClip;
+    public AudioClip michellePickupBulletCoinClip;
+    public AudioClip michelleErrorPickupBulletCoinClip;
+    public AudioClip michelleTrapClip;
+    public AudioClip michelleLevelUpClip;
+    public AudioClip michelleJumpingSeaClip;
+    
+    [Header("Boss")]
+    public AudioClip bossNonShootClip;
+    public AudioClip bossPoisonClip;
+    public AudioClip bossGetEnemyHitClip;
+    public AudioClip bossGetBulletHitClip;
+    public AudioClip bossJumpingClip;
+    public AudioClip bossDyingClip;
+    public AudioClip bossPickupCoinClip;
+    public AudioClip bossPickupBulletCoinClip;
+    public AudioClip bossErrorPickupBulletCoinClip;
+    public AudioClip bossTrapClip;
+    public AudioClip bossLevelUpClip;
+    public AudioClip bossJumpingSeaClip;
+
+    [Header("Aj")]
+    public AudioClip ajNonShootClip;
+    public AudioClip ajPoisonClip;
+    public AudioClip ajGetEnemyHitClip;
+    public AudioClip ajGetBulletHitClip;
+    public AudioClip ajJumpingClip;
+    public AudioClip ajDyingClip;
+    public AudioClip ajPickupCoinClip;
+    public AudioClip ajPickupBulletCoinClip;
+    public AudioClip ajErrorPickupBulletCoinClip;
+    public AudioClip ajTrapClip;
+    public AudioClip ajLevelUpClip;
+    public AudioClip ajJumpingSeaClip;
+
+
+    [Header("Mremireh")]
+    public AudioClip mremirehNonShootClip;
+    public AudioClip mremirehPoisonClip;
+    public AudioClip mremirehGetEnemyHitClip;
+    public AudioClip mremirehGetBulletHitClip;
+    public AudioClip mremirehJumpingClip;
+    public AudioClip mremirehDyingClip;
+    public AudioClip mremirehPickupCoinClip;
+    public AudioClip mremirehPickupBulletCoinClip;
+    public AudioClip mremirehErrorPickupBulletCoinClip;
+    public AudioClip mremirehTrapClip;
+    public AudioClip mremirehLevelUpClip;
+    public AudioClip mremirehJumpingSeaClip;
+
+    [Header("Ty")]
+    public AudioClip tyNonShootClip;
+    public AudioClip tyPoisonClip;
+    public AudioClip tyGetEnemyHitClip;
+    public AudioClip tyGetBulletHitClip;
+    public AudioClip tyJumpingClip;
+    public AudioClip tyDyingClip;
+    public AudioClip tyPickupCoinClip;
+    public AudioClip tyPickupBulletCoinClip;
+    public AudioClip tyErrorPickupBulletCoinClip;
+    public AudioClip tyTrapClip;
+    public AudioClip tyLevelUpClip;
+    public AudioClip tyJumpingSeaClip;
 
     [Header("Weapons")]
     public AudioClip Ak47Clip;
