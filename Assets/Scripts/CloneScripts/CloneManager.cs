@@ -37,14 +37,14 @@ public class CloneManager : MonoBehaviour
         if (SceneController.playAgain == true)
         {
             Debug.Log("Test");
-            cloneSpawner.cloneData.currentTarget.position = cloneSpawner.cloneData.firstTarget.position;
+            //cloneSpawner.cloneData.currentTarget.position = cloneSpawner.cloneData.firstTarget.position;
         }
         OnTarget();
         DeadManage();
-        DestinationStates();
+        CloneDestinationStates();
 
     }
-    void DestinationStates()
+    void CloneDestinationStates()
     {
         if (cloneSpawner.cloneData.isTouchFirst)
         {

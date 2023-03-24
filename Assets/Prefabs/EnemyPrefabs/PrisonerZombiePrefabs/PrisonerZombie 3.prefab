@@ -213,7 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db62934cb5ed554cace8c6de7a58c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBullet: {fileID: 7137264946574178199}
   _healthBar: {fileID: 2107907867482100076}
   enemyData: {fileID: 11400000, guid: 66fbb2570cca1e948b5aaf2350be466f, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
@@ -6356,7 +6355,6 @@ GameObject:
   - component: {fileID: 7137264944818706985}
   - component: {fileID: 7137264944818706984}
   - component: {fileID: 7137264944818706983}
-  - component: {fileID: 7137264944818706982}
   m_Layer: 15
   m_Name: EnemyIcon
   m_TagString: PlayerIcon
@@ -6429,20 +6427,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &7137264944818706982
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7137264944818706981}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7137264945957626782
 GameObject:
   m_ObjectHideFlags: 0
@@ -11269,7 +11253,6 @@ GameObject:
   - component: {fileID: 7137264946574178198}
   - component: {fileID: 7137264946574178202}
   - component: {fileID: 7137264946574178201}
-  - component: {fileID: 7137264946574178200}
   - component: {fileID: 7137264946574178199}
   m_Layer: 6
   m_Name: EnemyBullets
@@ -11286,7 +11269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7137264946574178197}
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0, y: 2.04, z: 1.55}
+  m_LocalPosition: {x: 0, y: 1, z: 1.55}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11344,19 +11327,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7137264946574178200
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7137264946574178197}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7137264946574178199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11371,7 +11341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 26432
+    m_Bits: 12597056
   enemyData: {fileID: 11400000, guid: 66fbb2570cca1e948b5aaf2350be466f, type: 2}
   bulletData: {fileID: 11400000, guid: 18c8b5c18ab52d04a9504348ef2342d6, type: 2}
   _bulletSpawnTransform: {fileID: 1682768723577361805}

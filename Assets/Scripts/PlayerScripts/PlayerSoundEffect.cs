@@ -79,7 +79,7 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         else if (PlayerData.CharacterNames.Ty == playerData.currentCharacterName)
         {
             currentAudioData = tyAudioData;
-            MremirehSFXStatement(soundEffectType, currentAudioData);
+            TySFXStatement(soundEffectType, currentAudioData);
         }
 
     }
@@ -210,7 +210,7 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         PickUpCoin,
         PickUpBulletCoin,
         ErrorPickUpBulletCoin,
-        Trap,
+        DamageGiftBox,
         LevelUp, 
         ShootOff,
 

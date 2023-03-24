@@ -229,7 +229,11 @@ public class SceneController : AbstractSceneController<SceneController>
         Icegun,
         Negev,
         Axegun,
-        WeaponBox
+        WeaponBox,
+
+        //Speed
+        NormalSpeed,
+        ExtraSpeed
     }
     public enum Scenes
     {

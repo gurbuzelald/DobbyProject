@@ -9,9 +9,11 @@ public class EnemyData : ScriptableObject
     public GameObject[] enemyFirstObjects;
     public GameObject[] enemySecondObjects;
     public GameObject[] enemyThirdObjects;
+    public GameObject[] enemyFourthObjects;
     public GameObject enemyTransformsFirstMap;
     public GameObject enemyTransformsSecondMap;
     public GameObject enemyTransformsThirdMap;
+    public GameObject enemyTransformsFourthMap;
 
     [Header("Sounds")]
     //public AudioClip shootClip;

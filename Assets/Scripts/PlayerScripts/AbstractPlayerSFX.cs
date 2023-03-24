@@ -58,7 +58,7 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
 
         }
-        else if (PlayerSoundEffect.SoundEffectTypes.Trap == type)
+        else if (PlayerSoundEffect.SoundEffectTypes.DamageGiftBox == type)
         {
 
         }
@@ -118,9 +118,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyErrorPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyTrapClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dobbyDamageGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {
@@ -173,9 +173,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.glassyPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.glassyTrapClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.glassyDamageGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {
@@ -228,9 +228,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.spartacusPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.spartacusTrapClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.spartacusDamageGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {
@@ -283,9 +283,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.guardErrorPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.guardTrapClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.guardDamageGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {
@@ -342,9 +342,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthErrorPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthTrapClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.lusthDamageGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {
@@ -398,9 +398,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.eveErrorPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.eveTrapClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.eveDamageGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {
@@ -454,9 +454,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michelleErrorPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michelleTrapClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.michelleDamageGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {
@@ -509,9 +509,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossErrorPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossTrapClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.bossDamageGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {
@@ -565,9 +565,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajErrorPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajTrapClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ajDamageGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {
@@ -621,9 +621,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehErrorPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehTrapClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.mremirehDamageGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {
@@ -674,9 +674,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyErrorPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyTrapClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.tyDamageGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {
@@ -727,9 +727,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.errorPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Trap)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.trapClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.damageGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {

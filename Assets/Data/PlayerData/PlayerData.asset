@@ -12,20 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  playerDataList:
-  - {fileID: 11400000}
-  - {fileID: 11400000, guid: d447890bba53db7468398c0bbba39b38, type: 2}
-  - {fileID: 11400000, guid: 5303fc1b33f7d02469de1f1bf63039f8, type: 2}
-  - {fileID: 11400000, guid: d3ca7e3b64749234797cd2783eef0de1, type: 2}
-  - {fileID: 11400000, guid: f56fe213f7936844dbdd97a250640745, type: 2}
-  _finishAreas:
-  - {fileID: 6077999299515317139, guid: 5d3360537580dd6429aa753a9d49fc9a, type: 3}
-  - {fileID: 1463722475801943252, guid: be09b26dde177424c958e3a369cfa478, type: 3}
-  - {fileID: 5151933759386684822, guid: 7cbbc2533eb7f534ea7f29af1e94ebf1, type: 3}
+  _finishAreas: {fileID: 311188628955670743, guid: 147c08b652e1e9a4288e6347fc94ddab, type: 3}
   isCompleteFirstMap: 0
   isCompleteSecondMap: 0
   isCompleteThirdMap: 0
-  currentCharacterName: 10
+  isCompleteFourthMap: 0
+  isFirstMapTarget: 0
+  isSecondMapTarget: 0
+  isThirdMapTarget: 0
+  isFourthMapTarget: 0
+  isLevelUp: 0
+  currentCharacterName: 2
+  characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
   glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
   spartacus: {fileID: 1254244383937338342, guid: fa5afc234e9ba074795c420e9145256f, type: 3}
@@ -60,7 +58,7 @@ MonoBehaviour:
   sensivityY: 5
   isTouchFinish: 0
   isLose: 0
-  playerSpeed: 0
+  playerSpeed: 1.5
   rotateSpeed: 6
   isGround: 1
   isWalking: 0
@@ -78,12 +76,17 @@ MonoBehaviour:
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 1
-  jumpForce: 3
-  isFiring: 0
+  jumpForce: 4
+  isFireNonWalk: 0
+  isFireWalk: 0
   isSwording: 0
   isSwordTime: 1
   isJumping: 0
+  isClickable: 1
   jumpCount: 0
+  clickDoubleSpeedCount: 0
+  extraSpeed: 1
+  normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
   bulletAmount: 50

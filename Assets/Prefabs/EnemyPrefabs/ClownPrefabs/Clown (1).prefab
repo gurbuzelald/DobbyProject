@@ -1482,7 +1482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db62934cb5ed554cace8c6de7a58c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBullet: {fileID: 6937427610016114697}
   _healthBar: {fileID: 3633119490486451533}
   enemyData: {fileID: 11400000, guid: 155f026fb07d8404fa5132fe5eb6679d, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
@@ -6604,7 +6603,6 @@ GameObject:
   - component: {fileID: 6535694953442957524}
   - component: {fileID: 6066568577415158370}
   - component: {fileID: 4364644357450267489}
-  - component: {fileID: 1873097442162016080}
   - component: {fileID: 6937427610016114697}
   m_Layer: 6
   m_Name: EnemyBullets
@@ -6621,7 +6619,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4931132252091178909}
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0, y: 2.04, z: 1.55}
+  m_LocalPosition: {x: 0, y: 1, z: 1.55}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6679,19 +6677,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1873097442162016080
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4931132252091178909}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6937427610016114697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6706,7 +6691,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 26432
+    m_Bits: 12597056
   enemyData: {fileID: 11400000, guid: 155f026fb07d8404fa5132fe5eb6679d, type: 2}
   bulletData: {fileID: 11400000, guid: a727b924c557a0c4594d5dba29d86deb, type: 2}
   _bulletSpawnTransform: {fileID: 2435379507850237297}
@@ -6753,7 +6738,6 @@ GameObject:
   - component: {fileID: 5030145031045287181}
   - component: {fileID: 5030145031045287182}
   - component: {fileID: 5030145031045287183}
-  - component: {fileID: 5030145031045287180}
   m_Layer: 15
   m_Name: EnemyIcon
   m_TagString: PlayerIcon
@@ -6826,20 +6810,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5030145031045287180
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5030145031045287170}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5090062645961843535
 GameObject:
   m_ObjectHideFlags: 0

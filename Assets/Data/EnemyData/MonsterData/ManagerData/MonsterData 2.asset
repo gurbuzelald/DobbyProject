@@ -14,13 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyFirstObjects: []
   enemySecondObjects: []
-  enemiesThirdObjects: []
+  enemyThirdObjects: []
+  enemyFourthObjects: []
   enemyTransformsFirstMap: {fileID: 0}
   enemyTransformsSecondMap: {fileID: 0}
   enemyTransformsThirdMap: {fileID: 0}
+  enemyTransformsFourthMap: {fileID: 0}
   getHitClip: {fileID: 8300000, guid: a6519293710bb5749a4734619dd06379, type: 3}
   giveHitClip: {fileID: 8300000, guid: cf10e1f403c454c47a380a649fc10e7d, type: 3}
-  dyingClip: {fileID: 8300000, guid: 6d502a9e59205aa418255b021e5cebaf, type: 3}
+  dyingClip: {fileID: 8300000, guid: a4e455bcc94d34540bd3ef99440ba8c0, type: 3}
   isGround: 1
   isDying: 0
   isWalking: 1
@@ -28,4 +30,4 @@ MonoBehaviour:
   isTouchable: 1
   isActivateMagnet: 0
   enemySpeed: 0.3
-  isSpeedZero: 0
+  isSpeedZero: 1

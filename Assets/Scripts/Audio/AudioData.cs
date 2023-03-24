@@ -24,7 +24,7 @@ public class AudioData : ScriptableObject
     public AudioClip pickupCoinClip;
     public AudioClip pickupBulletCoinClip;
     public AudioClip errorPickupBulletCoinClip;
-    public AudioClip trapClip;
+    public AudioClip damageGiftBoxClip;
     public AudioClip levelUpClip;
     public AudioClip jumpingSeaClip;
 
@@ -39,7 +39,7 @@ public class AudioData : ScriptableObject
     public AudioClip dobbyPickupCoinClip;
     public AudioClip dobbyPickupBulletCoinClip;
     public AudioClip dobbyErrorPickupBulletCoinClip;
-    public AudioClip dobbyTrapClip;
+    public AudioClip dobbyDamageGiftBoxClip;
     public AudioClip dobbyLevelUpClip;
     public AudioClip dobbyJumpingSeaClip;
 
@@ -55,7 +55,7 @@ public class AudioData : ScriptableObject
     public AudioClip glassyPickupCoinClip;
     public AudioClip glassyPickupBulletCoinClip;
     public AudioClip glassyErrorPickupBulletCoinClip;
-    public AudioClip glassyTrapClip;
+    public AudioClip glassyDamageGiftBoxClip;
     public AudioClip glassyLevelUpClip;
     public AudioClip glassyJumpingSeaClip;
 
@@ -70,7 +70,7 @@ public class AudioData : ScriptableObject
     public AudioClip spartacusPickupCoinClip;
     public AudioClip spartacusPickupBulletCoinClip;
     public AudioClip spartacusErrorPickupBulletCoinClip;
-    public AudioClip spartacusTrapClip;
+    public AudioClip spartacusDamageGiftBoxClip;
     public AudioClip spartacusLevelUpClip;
     public AudioClip spartacusJumpingSeaClip;
 
@@ -85,7 +85,7 @@ public class AudioData : ScriptableObject
     public AudioClip guardPickupCoinClip;
     public AudioClip guardPickupBulletCoinClip;
     public AudioClip guardErrorPickupBulletCoinClip;
-    public AudioClip guardTrapClip;
+    public AudioClip guardDamageGiftBoxClip;
     public AudioClip guardLevelUpClip;
     public AudioClip guardJumpingSeaClip;
 
@@ -100,7 +100,7 @@ public class AudioData : ScriptableObject
     public AudioClip lusthPickupCoinClip;
     public AudioClip lusthPickupBulletCoinClip;
     public AudioClip lusthErrorPickupBulletCoinClip;
-    public AudioClip lusthTrapClip;
+    public AudioClip lusthDamageGiftBoxClip;
     public AudioClip lusthLevelUpClip;
     public AudioClip lusthJumpingSeaClip;
 
@@ -114,7 +114,7 @@ public class AudioData : ScriptableObject
     public AudioClip evePickupCoinClip;
     public AudioClip evePickupBulletCoinClip;
     public AudioClip eveErrorPickupBulletCoinClip;
-    public AudioClip eveTrapClip;
+    public AudioClip eveDamageGiftBoxClip;
     public AudioClip eveLevelUpClip;
     public AudioClip eveJumpingSeaClip;
 
@@ -128,7 +128,7 @@ public class AudioData : ScriptableObject
     public AudioClip michellePickupCoinClip;
     public AudioClip michellePickupBulletCoinClip;
     public AudioClip michelleErrorPickupBulletCoinClip;
-    public AudioClip michelleTrapClip;
+    public AudioClip michelleDamageGiftBoxClip;
     public AudioClip michelleLevelUpClip;
     public AudioClip michelleJumpingSeaClip;
     
@@ -142,7 +142,7 @@ public class AudioData : ScriptableObject
     public AudioClip bossPickupCoinClip;
     public AudioClip bossPickupBulletCoinClip;
     public AudioClip bossErrorPickupBulletCoinClip;
-    public AudioClip bossTrapClip;
+    public AudioClip bossDamageGiftBoxClip;
     public AudioClip bossLevelUpClip;
     public AudioClip bossJumpingSeaClip;
 
@@ -156,7 +156,7 @@ public class AudioData : ScriptableObject
     public AudioClip ajPickupCoinClip;
     public AudioClip ajPickupBulletCoinClip;
     public AudioClip ajErrorPickupBulletCoinClip;
-    public AudioClip ajTrapClip;
+    public AudioClip ajDamageGiftBoxClip;
     public AudioClip ajLevelUpClip;
     public AudioClip ajJumpingSeaClip;
 
@@ -171,7 +171,7 @@ public class AudioData : ScriptableObject
     public AudioClip mremirehPickupCoinClip;
     public AudioClip mremirehPickupBulletCoinClip;
     public AudioClip mremirehErrorPickupBulletCoinClip;
-    public AudioClip mremirehTrapClip;
+    public AudioClip mremirehDamageGiftBoxClip;
     public AudioClip mremirehLevelUpClip;
     public AudioClip mremirehJumpingSeaClip;
 
@@ -185,7 +185,7 @@ public class AudioData : ScriptableObject
     public AudioClip tyPickupCoinClip;
     public AudioClip tyPickupBulletCoinClip;
     public AudioClip tyErrorPickupBulletCoinClip;
-    public AudioClip tyTrapClip;
+    public AudioClip tyDamageGiftBoxClip;
     public AudioClip tyLevelUpClip;
     public AudioClip tyJumpingSeaClip;
 

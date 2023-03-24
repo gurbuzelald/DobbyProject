@@ -5,9 +5,6 @@ using TMPro;
 
 public class EnemyManager : AbstractEnemy<EnemyManager>
 {
-    [Header("Bullet")]
-    public EnemyBulletManager enemyBullet;
-
     [Header("Health")]
     public GameObject _healthBar;
 
@@ -51,21 +48,72 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
         }
+        if (enemyData.isGround)
+        {
+            gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        }
         if (gameObject != null)
         {
-            if (playerData.isPlayable)
+            if (playerData.isPlayable && gameObject != null && gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>() != null)
             {
-                enemyData.enemySpeed = _initSpeed;
+                gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>().bulletData.isFirable = true;
+                //enemyData.isFiring = true;
 
-                Movement(clownSpawner.targetTransform, _initTransform, gameObject.transform, enemyData.isActivateMagnet, enemyData.enemySpeed, playerData, enemyData);
+
+                if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.5f))
+                {
+                    enemyData.enemySpeed = _initSpeed;
+                    //Debug.Log("Test");
+                    Movement(clownSpawner.targetTransform, _initTransform, gameObject.transform, enemyData.isActivateMagnet, enemyData.enemySpeed, playerData, enemyData);
+                }
+                else
+                {
+                    enemyData.isWalking = false;
+                }
             }
-            else
+            else if(!playerData.isPlayable && gameObject != null && gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>() != null)
             {
-                EnemyBulletManager.isFirable = false;
+                gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>().bulletData.isFirable = false;
                 enemyData.isFiring = false;
             }
         }
-    }    
+    }
+    private void FixedUpdate()
+    {
+        RayBullet();
+    }
+    void RayBullet()
+    {
+        if (!enemyData.isDying)
+        {
+            GameObject enemySpawner = GameObject.Find("EnemySpawner");
+            RaycastHit hit;
+            if (gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().bulletData.enemyBulletDelayCounter == 0 && 
+                enemyData.isActivateMagnet && gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().bulletData.isFirable)
+            {
+                if (Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward),
+                    out hit, 10f, enemySpawner.GetComponent<EnemySpawner>().layerMask))
+                {
+                    Debug.DrawRay(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
+
+                    gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().bulletData.enemyBulletDelayCounter++;
+
+                    enemyData.isFiring = true;
+                    enemyData.isWalking = false;
+
+                    StartCoroutine(gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>()
+                                   .Delay(gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>()
+                                   .bulletData.enemyBulletDelay, 2f));
+
+                    StartCoroutine(gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().FiringFalse());
+                }
+                else
+                {
+                    Debug.DrawRay(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+                }
+            }
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (enemyData != null || gameObject != null)
@@ -89,7 +137,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         if (other.CompareTag(SceneController.Tags.Magnet.ToString()))
         {
             enemyData.isActivateMagnet = true;
-            if (!enemyData.isFiring)
+            if (!enemyData.isFiring && (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.5f))
             {
                 enemyData.isWalking = true;
             }
@@ -108,12 +156,24 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             TriggerSlaveSword(2f);
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag(SceneController.Tags.Magnet.ToString()))
+        {
+            enemyData.isActivateMagnet = true;
+            if (!enemyData.isFiring && (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.5f))
+            {
+                enemyData.isWalking = true;
+            }
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(SceneController.Tags.Magnet.ToString()))
         {
             enemyData.isActivateMagnet = false;
             enemyData.isWalking = false;
+            enemyData.isFiring = false;
         }
     }
 
@@ -311,7 +371,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         if (enemyData != null)
         {
             enemyData.isTouchable = true;
-            enemyData.isActivateMagnet = false;
+            //enemyData.isActivateMagnet = false;
             enemyData.isGround = true;
             _initSpeed = enemyData.enemySpeed;
         }

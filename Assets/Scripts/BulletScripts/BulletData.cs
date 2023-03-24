@@ -42,15 +42,15 @@ public class BulletData : ScriptableObject
     public bool isNegev;
     public bool isAxegun;
 
-    public const string ak47 = "ak47";
-    public const string rifle = "rifle";
-    public const string bulldog = "bulldog";
-    public const string cowgun = "cowgun";
-    public const string crystalgun = "crystalgun";
-    public const string demongun = "demongun";
-    public const string icegun = "icegun";
-    public const string negev = "negev";
-    public const string axegun = "axegun";
+    public const string ak47 = "Ak47";
+    public const string rifle = "Rifle";
+    public const string bulldog = "Bulldog";
+    public const string cowgun = "Cowgun";
+    public const string crystalgun = "Crystalgun";
+    public const string demongun = "Demongun";
+    public const string icegun = "Icegun";
+    public const string negev = "Negev";
+    public const string axegun = "Axegun";
 
 
 
@@ -67,17 +67,17 @@ public class BulletData : ScriptableObject
     public GameObject longHummerObject;
     public GameObject clubObject;
 
-    public const string lowSword = "lowSword";
-    public const string warriorSword = "warriorSword";
-    public const string hummer = "hummer";
-    public const string orcSword = "orcSword";
-    public const string axeSword = "axe";
-    public const string axeKnight = "axeKnight";
-    public const string barbarianSword = "barbarianSword";
-    public const string demonSword = "demonSword";
-    public const string magicSword = "magicWeapon";
-    public const string longHummer = "longHummer";
-    public const string club = "club";
+    public const string lowSword = "LowSword";
+    public const string warriorSword = "WarriorSword";
+    public const string hummer = "Hummer";
+    public const string orcSword = "OrcSword";
+    public const string axeSword = "Axe";
+    public const string axeKnight = "AxeKnight";
+    public const string barbarianSword = "BarbarianSword";
+    public const string demonSword = "DemonSword";
+    public const string magicSword = "MagicWeapon";
+    public const string longHummer = "LongHummer";
+    public const string club = "Club";
 
     public bool isLowSword;
     public bool isWarriorSword;
@@ -103,5 +103,6 @@ public class BulletData : ScriptableObject
     public float enemyBulletDelay = 0.05f;
     public float enemyBulletSpeed = 3f;
 
-    
+    public bool isFirable;
+
 }

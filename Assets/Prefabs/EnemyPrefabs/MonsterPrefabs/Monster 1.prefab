@@ -234,7 +234,6 @@ GameObject:
   - component: {fileID: 851739172387295500}
   - component: {fileID: 851739172387295501}
   - component: {fileID: 851739172387295490}
-  - component: {fileID: 851739172387295491}
   m_Layer: 15
   m_Name: EnemyIcon
   m_TagString: PlayerIcon
@@ -307,20 +306,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &851739172387295491
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 851739172387295488}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &851739172542214900
 GameObject:
   m_ObjectHideFlags: 0
@@ -5147,7 +5132,6 @@ GameObject:
   - component: {fileID: 851739172678728883}
   - component: {fileID: 851739172678728895}
   - component: {fileID: 851739172678728892}
-  - component: {fileID: 851739172678728893}
   - component: {fileID: 851739172678728882}
   m_Layer: 6
   m_Name: EnemyBullets
@@ -5164,7 +5148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 851739172678728880}
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0, y: 2.04, z: 1.55}
+  m_LocalPosition: {x: 0, y: 1, z: 1.55}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5222,19 +5206,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &851739172678728893
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 851739172678728880}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &851739172678728882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5249,7 +5220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 26432
+    m_Bits: 12597056
   enemyData: {fileID: 11400000, guid: 0612e1f0efc880944adaa20ab34515a8, type: 2}
   bulletData: {fileID: 11400000, guid: 0d3f2b10adbb44c43a7349e3652b27fb, type: 2}
   _bulletSpawnTransform: {fileID: 912767666056363122}
@@ -17065,7 +17036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db62934cb5ed554cace8c6de7a58c47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBullet: {fileID: 851739172678728882}
   _healthBar: {fileID: 8475105914845649481}
   enemyData: {fileID: 11400000, guid: 0612e1f0efc880944adaa20ab34515a8, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}

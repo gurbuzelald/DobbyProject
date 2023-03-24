@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ExtraSpeed",
+                    "type": "Button",
+                    "id": "454ce572-b4b1-42c1-ae74-9c6cd0931bd4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -254,6 +263,73 @@
                     "processors": "",
                     "groups": "",
                     "action": "Sword",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af147493-2b8f-4bc3-a377-ce19bc173fa7",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ExtraSpeed",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CharacterMenuInput",
+            "id": "2015caca-f443-4453-9bc9-b74dbdba0817",
+            "actions": [
+                {
+                    "name": "Stick",
+                    "type": "Value",
+                    "id": "9d2e7db7-d8b9-4777-8d85-3b2e12465c73",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6d4ad014-f1c6-41b3-afc6-16ceb8a7dc1b",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Stick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "GrowMap",
+            "id": "9865e4c6-f71f-4d00-b830-f256ec7046b8",
+            "actions": [
+                {
+                    "name": "GrowingStuate",
+                    "type": "Button",
+                    "id": "de04f6af-6bfb-475e-8272-35412cf260fb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8e040b4a-f250-4ae2-bb76-611438f179eb",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GrowingStuate",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

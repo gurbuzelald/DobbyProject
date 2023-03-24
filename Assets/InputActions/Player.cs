@@ -89,6 +89,15 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ExtraSpeed"",
+                    ""type"": ""Button"",
+                    ""id"": ""454ce572-b4b1-42c1-ae74-9c6cd0931bd4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -278,6 +287,73 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""action"": ""Sword"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""af147493-2b8f-4bc3-a377-ce19bc173fa7"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExtraSpeed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""CharacterMenuInput"",
+            ""id"": ""2015caca-f443-4453-9bc9-b74dbdba0817"",
+            ""actions"": [
+                {
+                    ""name"": ""Stick"",
+                    ""type"": ""Value"",
+                    ""id"": ""9d2e7db7-d8b9-4777-8d85-3b2e12465c73"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6d4ad014-f1c6-41b3-afc6-16ceb8a7dc1b"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Stick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""GrowMap"",
+            ""id"": ""9865e4c6-f71f-4d00-b830-f256ec7046b8"",
+            ""actions"": [
+                {
+                    ""name"": ""GrowingStuate"",
+                    ""type"": ""Button"",
+                    ""id"": ""de04f6af-6bfb-475e-8272-35412cf260fb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""8e040b4a-f250-4ae2-bb76-611438f179eb"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GrowingStuate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -293,6 +369,13 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_PlayerMain_Skate = m_PlayerMain.FindAction("Skate", throwIfNotFound: true);
         m_PlayerMain_Run = m_PlayerMain.FindAction("Run", throwIfNotFound: true);
         m_PlayerMain_Sword = m_PlayerMain.FindAction("Sword", throwIfNotFound: true);
+        m_PlayerMain_ExtraSpeed = m_PlayerMain.FindAction("ExtraSpeed", throwIfNotFound: true);
+        // CharacterMenuInput
+        m_CharacterMenuInput = asset.FindActionMap("CharacterMenuInput", throwIfNotFound: true);
+        m_CharacterMenuInput_Stick = m_CharacterMenuInput.FindAction("Stick", throwIfNotFound: true);
+        // GrowMap
+        m_GrowMap = asset.FindActionMap("GrowMap", throwIfNotFound: true);
+        m_GrowMap_GrowingStuate = m_GrowMap.FindAction("GrowingStuate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -359,6 +442,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerMain_Skate;
     private readonly InputAction m_PlayerMain_Run;
     private readonly InputAction m_PlayerMain_Sword;
+    private readonly InputAction m_PlayerMain_ExtraSpeed;
     public struct PlayerMainActions
     {
         private @Player m_Wrapper;
@@ -370,6 +454,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         public InputAction @Skate => m_Wrapper.m_PlayerMain_Skate;
         public InputAction @Run => m_Wrapper.m_PlayerMain_Run;
         public InputAction @Sword => m_Wrapper.m_PlayerMain_Sword;
+        public InputAction @ExtraSpeed => m_Wrapper.m_PlayerMain_ExtraSpeed;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMain; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -400,6 +485,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Sword.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnSword;
                 @Sword.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnSword;
                 @Sword.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnSword;
+                @ExtraSpeed.started -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnExtraSpeed;
+                @ExtraSpeed.performed -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnExtraSpeed;
+                @ExtraSpeed.canceled -= m_Wrapper.m_PlayerMainActionsCallbackInterface.OnExtraSpeed;
             }
             m_Wrapper.m_PlayerMainActionsCallbackInterface = instance;
             if (instance != null)
@@ -425,10 +513,79 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Sword.started += instance.OnSword;
                 @Sword.performed += instance.OnSword;
                 @Sword.canceled += instance.OnSword;
+                @ExtraSpeed.started += instance.OnExtraSpeed;
+                @ExtraSpeed.performed += instance.OnExtraSpeed;
+                @ExtraSpeed.canceled += instance.OnExtraSpeed;
             }
         }
     }
     public PlayerMainActions @PlayerMain => new PlayerMainActions(this);
+
+    // CharacterMenuInput
+    private readonly InputActionMap m_CharacterMenuInput;
+    private ICharacterMenuInputActions m_CharacterMenuInputActionsCallbackInterface;
+    private readonly InputAction m_CharacterMenuInput_Stick;
+    public struct CharacterMenuInputActions
+    {
+        private @Player m_Wrapper;
+        public CharacterMenuInputActions(@Player wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Stick => m_Wrapper.m_CharacterMenuInput_Stick;
+        public InputActionMap Get() { return m_Wrapper.m_CharacterMenuInput; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CharacterMenuInputActions set) { return set.Get(); }
+        public void SetCallbacks(ICharacterMenuInputActions instance)
+        {
+            if (m_Wrapper.m_CharacterMenuInputActionsCallbackInterface != null)
+            {
+                @Stick.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnStick;
+                @Stick.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnStick;
+                @Stick.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnStick;
+            }
+            m_Wrapper.m_CharacterMenuInputActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Stick.started += instance.OnStick;
+                @Stick.performed += instance.OnStick;
+                @Stick.canceled += instance.OnStick;
+            }
+        }
+    }
+    public CharacterMenuInputActions @CharacterMenuInput => new CharacterMenuInputActions(this);
+
+    // GrowMap
+    private readonly InputActionMap m_GrowMap;
+    private IGrowMapActions m_GrowMapActionsCallbackInterface;
+    private readonly InputAction m_GrowMap_GrowingStuate;
+    public struct GrowMapActions
+    {
+        private @Player m_Wrapper;
+        public GrowMapActions(@Player wrapper) { m_Wrapper = wrapper; }
+        public InputAction @GrowingStuate => m_Wrapper.m_GrowMap_GrowingStuate;
+        public InputActionMap Get() { return m_Wrapper.m_GrowMap; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GrowMapActions set) { return set.Get(); }
+        public void SetCallbacks(IGrowMapActions instance)
+        {
+            if (m_Wrapper.m_GrowMapActionsCallbackInterface != null)
+            {
+                @GrowingStuate.started -= m_Wrapper.m_GrowMapActionsCallbackInterface.OnGrowingStuate;
+                @GrowingStuate.performed -= m_Wrapper.m_GrowMapActionsCallbackInterface.OnGrowingStuate;
+                @GrowingStuate.canceled -= m_Wrapper.m_GrowMapActionsCallbackInterface.OnGrowingStuate;
+            }
+            m_Wrapper.m_GrowMapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @GrowingStuate.started += instance.OnGrowingStuate;
+                @GrowingStuate.performed += instance.OnGrowingStuate;
+                @GrowingStuate.canceled += instance.OnGrowingStuate;
+            }
+        }
+    }
+    public GrowMapActions @GrowMap => new GrowMapActions(this);
     public interface IPlayerMainActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -438,5 +595,14 @@ public partial class @Player : IInputActionCollection2, IDisposable
         void OnSkate(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
         void OnSword(InputAction.CallbackContext context);
+        void OnExtraSpeed(InputAction.CallbackContext context);
+    }
+    public interface ICharacterMenuInputActions
+    {
+        void OnStick(InputAction.CallbackContext context);
+    }
+    public interface IGrowMapActions
+    {
+        void OnGrowingStuate(InputAction.CallbackContext context);
     }
 }

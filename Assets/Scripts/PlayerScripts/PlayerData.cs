@@ -3,19 +3,27 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
-    public PlayerData[] playerDataList;
-
     [Header("Finishes")]
-    public GameObject[] _finishAreas;
+    public GameObject _finishAreas;
 
-    [Header("MapCompletes")]
+    [Header("MapCompleteBools")]
     public bool isCompleteFirstMap;
     public bool isCompleteSecondMap;
     public bool isCompleteThirdMap;
+    public bool isCompleteFourthMap;
+
+    [Header("MapFinishTargetBools")]
+    public bool isFirstMapTarget;
+    public bool isSecondMapTarget;
+    public bool isThirdMapTarget;
+    public bool isFourthMapTarget;
+    public bool isLevelUp;
 
 
     [Header("ChooseCharacter")]
     public CharacterNames currentCharacterName;
+
+    public GameObject characterObject;
 
     public GameObject dobby;
     public GameObject glassy;
@@ -73,11 +81,16 @@ public class PlayerData : ScriptableObject
 
     [Header("Input")]
     public float jumpForce;
-    public bool isFiring;
+    public bool isFireNonWalk;
+    public bool isFireWalk;
     public bool isSwording;
     public bool isSwordTime;
     public bool isJumping;
+    public bool isClickable;
     public int jumpCount;
+    public int clickDoubleSpeedCount;
+    public bool extraSpeed;
+    public bool normalSpeed;
     public int clickTabCount;
     public int clickShiftCount;
     public int bulletAmount = 90;

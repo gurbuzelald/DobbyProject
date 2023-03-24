@@ -18,20 +18,46 @@ public class BulletController : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (gameObject != null)
+        if (gameObject.transform.name == "EnemyBullet")
         {
-            if (collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()))
+            if (gameObject != null)
+            {
+                if (collision.collider.CompareTag(SceneController.Tags.Player.ToString()))
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+        }
+        if (gameObject.transform.name == "Bullet")
+        {
+            if (gameObject != null)
+            {
+                if (collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()))
+                {
+                    gameObject.SetActive(false);
+                }
+            }
+        }
+
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (gameObject.transform.name == "EnemyBullet")
+        {
+            if (other.gameObject.CompareTag(SceneController.Tags.Player.ToString()))
             {
                 gameObject.SetActive(false);
             }
         }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
+
+        if (gameObject.transform.name == "Bullet")
         {
-            gameObject.SetActive(false);
+            if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
+            {
+                gameObject.SetActive(false);
+            }
         }
-        
+
+
     }
 }
