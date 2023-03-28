@@ -36,13 +36,13 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
     [Header("Current Spawn Transforms")]
     public Transform _particleTransform;
-    public Transform _currentCameraTransform;  
+    public Transform _currentCameraTransform;
 
-    [SerializeField] Transform _jolleenTransform;
-    [SerializeField] Transform playerIconTransform;
-    [SerializeField] Transform healthBarTransform;
-    [SerializeField] Transform _bulletsTransform;    
-    [SerializeField] Transform _cameraWasherTransform;
+    [SerializeField] public Transform _jolleenTransform;
+    [SerializeField] public Transform playerIconTransform;
+    [SerializeField] public Transform healthBarTransform;
+    [SerializeField] public Transform _bulletsTransform;
+    [SerializeField] public Transform _cameraWasherTransform;
 
     public Transform[] _slaveTransforms;
     public Transform slaves;
@@ -72,13 +72,20 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     public GameObject _currentCharacterObject;
     private GameObject characterObject;
 
-    [Header("Show Bullet Amoun")]
+    [Header("Show Bullet Amount")]
     private GameObject bulletAmountCanvas;
     private GameObject _healthBarObject;
     [SerializeField] GameObject _topCanvasHealthBarObject;
 
+
+    private IPlayer iPlayer;
+
+
     void Start()
     {
+        iPlayer = GetComponent<IPlayer>();
+        //iPlayerManager.SayHello("Hello World");
+
         //Scripts
         _playerController = FindObjectOfType<PlayerController>();
         _arrowRotationController = FindObjectOfType<ArrowRotationController>();
@@ -103,13 +110,14 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
 
     private void FixedUpdate()
-    {        
-        Fire(_playerData);
-        
+    {
+        iPlayer.Fire(_playerData);
+        bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
+
     }
     void Update()
     {
-        ChangeCamera();
+        iPlayer.ChangeCamera();
 
         DamageArrowDirection();
 
@@ -365,6 +373,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     }
 
     #endregion
+
 
     #region //Touch
     private void OnCollisionEnter(Collision collision)
@@ -834,7 +843,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         {
             //PlayerData
             _playerData.isPicking = true;
-            _playerData.playerSpeed = 0.5f;
+            _playerData.playerSpeed /= 2f;
 
             //_coinObject.SetActive(true);
             _coinObject.transform.localScale = Vector3.one;
@@ -951,7 +960,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         }
     }
 
-    void BulletPackGrow()
+    public void BulletPackGrow()
     {
         if (_playerData.bulletAmount <= _playerData.bulletPack / 2f)
         {
@@ -1075,117 +1084,9 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     #endregion
 
     #region //Camera
-    void ChangeCamera()
-    {
-        if (_zValue == 0 && _xValue == 0 && _playerController.lookRotation.x == 0 && _playerController.lookRotation.y == 0)
-        {
-            ConvertToFarCamera(cameraSpawner);
-        }
-        else if (_zValue != 0 && _xValue == 0 && _playerController.lookRotation.x == 0 && _playerController.lookRotation.y == 0)
-        {
-            ConvertToCloseCamera(cameraSpawner);
-        }
-        else if (_zValue == 0 && _xValue != 0 && _playerController.lookRotation.x == 0 && _playerController.lookRotation.y == 0)
-        {
-            ConvertToCloseCamera(cameraSpawner);
-        }
-        else if (_zValue != 0 && _xValue != 0 && _playerController.lookRotation.x == 0 && _playerController.lookRotation.y == 0)
-        {
-            ConvertToCloseCamera(cameraSpawner);
-        }
-        else
-        {
-            //Do Nothing
-        }
-    }
-    void ConvertToCloseCamera(GameObject cameraSpawner)
-    {
-        cameraSpawner.transform.GetChild(0).gameObject.transform.position = cameraSpawner.transform.GetChild(1).gameObject.transform.position;
-        cameraSpawner.transform.GetChild(0).gameObject.transform.rotation = cameraSpawner.transform.GetChild(1).gameObject.transform.rotation;
 
-        cameraSpawner.transform.GetChild(1).gameObject.SetActive(false);
-        cameraSpawner.transform.GetChild(0).gameObject.SetActive(true);
-        _currentCamera = cameraSpawner.transform.GetChild(0).gameObject.GetComponent<CinemachineVirtualCamera>();
-        _currentCamera.m_Follow = gameObject.transform;
-        _currentCamera.m_LookAt = gameObject.transform;
-    }
-    void ConvertToFarCamera(GameObject cameraSpawner)
-    {
-        cameraSpawner.transform.GetChild(1).gameObject.transform.position = cameraSpawner.transform.GetChild(0).gameObject.transform.position;
-        cameraSpawner.transform.GetChild(1).gameObject.transform.rotation = cameraSpawner.transform.GetChild(0).gameObject.transform.rotation;
 
-        cameraSpawner.transform.GetChild(0).gameObject.SetActive(false);
-        cameraSpawner.transform.GetChild(1).gameObject.SetActive(true);
-
-        _currentCamera = cameraSpawner.transform.GetChild(1).gameObject.GetComponent<CinemachineVirtualCamera>();
-
-        _currentCamera.m_Follow = gameObject.transform;
-        _currentCamera.m_LookAt = gameObject.transform;
-    }
-    void CheckCameraEulerX(PlayerData _playerData)
-    {
-        if (_currentCameraTransform.transform.eulerAngles.x > 74 && _currentCameraTransform.transform.eulerAngles.x <= 80)
-        {
-            //PlayerData
-            _playerData.isLookingUp = false;
-
-            //CinemachineVirtualCamera
-            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, _currentCameraTransform.transform.eulerAngles.y, _currentCameraTransform.transform.eulerAngles.z);
-        }
-        else if (_currentCameraTransform.transform.eulerAngles.x > 355)
-        {
-            //PlayerData
-            _playerData.isLookingUp = false;
-
-            //CinemachineVirtualCamera
-            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, _currentCameraTransform.transform.eulerAngles.y, _currentCameraTransform.transform.eulerAngles.z);
-        }
-        else if (_currentCameraTransform.transform.eulerAngles.x < 0)
-        {
-            //PlayerData
-            _playerData.isLookingUp = true;
-
-            //CinemachineVirtualCamera
-            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, _currentCameraTransform.transform.eulerAngles.y, _currentCameraTransform.transform.eulerAngles.z);
-        }
-        else if (_currentCameraTransform.transform.eulerAngles.x > 270 && _currentCameraTransform.transform.eulerAngles.x <= 360)
-        {
-            //PlayerData
-            _playerData.isLookingUp = true;
-            //_currentCamera = _upCamera;
-        }
-        else
-        {
-            _playerData.isLookingUp = false;
-        }
-    }
-    void ChooseCamera()
-    {
-        //if (_playerData.isLookingUp)
-        //{
-        //    if (_downCamera.enabled == false)
-        //    {
-        //        _upCamera.gameObject.SetActive(true);
-        //    }
-        //    if (_upCamera.enabled == true)
-        //    {
-        //        _downCamera.gameObject.SetActive(false);
-        //    }
-        //    _currentCamera = _upCamera;
-        //}
-        //else
-        //{
-        //    if (_downCamera.enabled == true)
-        //    {
-        //        _upCamera.gameObject.SetActive(false);
-        //    }
-        //    if (_upCamera.enabled == false)
-        //    {
-        //        _downCamera.gameObject.SetActive(true);
-        //    }
-        //    _currentCamera = _downCamera;
-        //}
-    }
+    
     #endregion
 
     #region //Move and Rotation
@@ -1210,7 +1111,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
                 Run(_playerData);
                 Jump(_playerData);
                 //Fire(_playerData);
-                Sword(_playerData);
+                iPlayer.Sword(_playerData);
             }
             else if (_playerData.isWinning)
             {
@@ -1375,6 +1276,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
             //Touch Rotation Controller
             SensivityXSettings(1, _playerController, _playerData);
             _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime * 40;
+
         }
         //Rotating With Camera On X Axis
         GetInstance.GetComponent<Transform>().Rotate(0f, _touchX, 0f);
@@ -1384,10 +1286,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
 
 
         //Debug.Log(_playerController.lookRotation.x);
-        CheckCameraEulerX(_playerData);
-
-        //Debug.Log(_currentCamera.transform.eulerAngles.x);
-        ChooseCamera();
+        iPlayer.CheckCameraEulerX(_playerData, _currentCameraTransform);
     }
     IEnumerator DelayFalseRunning(float delay)
     {
@@ -1560,83 +1459,10 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
     #endregion
 
     #region //Shoot
-    public void Fire(PlayerData _playerData)
-    {
-        if (_playerData.isPlayable && _playerController.fire && !_playerData.isWinning)
-        {
-            //PlayerData
-            if (_playerData.bulletAmount <= 0)
-            {
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
+    
+    
 
-                _playerData.isFireNonWalk = false;
-
-                _playerData.isFireWalk = false;
-            }
-            else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && !_playerData.isWalking)
-            {
-                _playerData.bulletAmount--;
-
-                _playerData.isFireNonWalk = true;
-
-            }
-            else if (_playerData.bulletAmount > _playerData.bulletPack / 2f && !_playerData.isWalking)
-            {
-                _playerData.bulletAmount--;
-
-                _playerData.isFireNonWalk = true;
-
-            }
-            else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && _playerData.isWalking)
-            {
-                _playerData.bulletAmount--;
-
-                _playerData.isFireWalk = true;
-
-            }
-            else if (_playerData.bulletAmount > _playerData.bulletPack / 2f && _playerData.isWalking)
-            {
-                _playerData.bulletAmount--;
-
-                _playerData.isFireWalk = true;
-            }
-
-            bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
-
-            //SetFalseBullet
-            StartCoroutine(DelayShowingCrosshairAlpha(2f));
-            BulletPackGrow();
-        }
-        else
-        {
-            _playerData.isFireNonWalk = false;
-            StartCoroutine(delayFireWalkDisactivity(4f));
-        }
-    }
-    public void Sword(PlayerData _playerData)
-    {
-        if (_playerData.isPlayable)
-        {
-            if (_playerController.sword && _playerData.isSwordTime)
-            {
-                //PlayerData
-                _playerData.isSwording = true;
-
-                //SetFalseBullet
-                StartCoroutine(DelayShowingCrosshairAlpha(2f));
-            }
-            else
-            {
-                _playerData.isSwording = false;
-            }
-        }
-        else
-        {
-            _playerData.isFireNonWalk = false;
-        }
-    }
-
-    IEnumerator DelayShowingCrosshairAlpha(float value)
+    public IEnumerator DelayShowingCrosshairAlpha(float value)
     {
         crosshairImage.GetComponent<CanvasGroup>().alpha = 1;
 
@@ -1645,7 +1471,7 @@ public class PlayerManager : AbstractSingleton<PlayerManager>
         crosshairImage.GetComponent<CanvasGroup>().alpha = 0;
     }
 
-    IEnumerator delayFireWalkDisactivity(float delay)
+    public IEnumerator delayFireWalkDisactivity(float delay)
     {
         yield return new WaitForSeconds(delay);
         _playerData.isFireWalk = false;

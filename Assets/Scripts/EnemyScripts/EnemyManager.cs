@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 
 public class EnemyManager : AbstractEnemy<EnemyManager>
-{
+{    
     [Header("Health")]
     public GameObject _healthBar;
 
@@ -78,7 +78,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
         }
     }
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         RayBullet();
     }
@@ -114,7 +114,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         if (enemyData != null || gameObject != null)
         {
@@ -132,7 +132,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
         }        
     }
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(SceneController.Tags.Magnet.ToString()))
         {
@@ -156,7 +156,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             TriggerSlaveSword(2f);
         }
     }
-    private void OnTriggerStay(Collider other)
+    void OnTriggerStay(Collider other)
     {
         if (other.CompareTag(SceneController.Tags.Magnet.ToString()))
         {
@@ -167,7 +167,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
         }
     }
-    private void OnTriggerExit(Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(SceneController.Tags.Magnet.ToString()))
         {

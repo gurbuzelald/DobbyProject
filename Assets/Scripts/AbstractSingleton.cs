@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 using Cinemachine;
 
 
-public abstract class AbstractSingleton<T> : MonoBehaviour where T : MonoBehaviour
+
+public abstract class AbstractSingleton<T> : MonoBehaviour, IPlayer where T : MonoBehaviour
 {
     private static T _instance;
 
@@ -31,295 +33,184 @@ public abstract class AbstractSingleton<T> : MonoBehaviour where T : MonoBehavio
             DontDestroyOnLoad(gameObject);
         }
     }
-    //public virtual void ShootSFX(PlayerData _playerData)
-    //{
-    //    if (PlayerData.CharacterNames.Dobby == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
-    //    }
-    //    else if (PlayerData.CharacterNames.Glassy == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
-    //    }
-    //    else if (PlayerData.CharacterNames.Spartacus == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
-    //    }
-    //    else if (PlayerData.CharacterNames.Guard == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
-    //    }
-    //    else if (PlayerData.CharacterNames.Lusth == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Shoot);
-    //    }
-    //}
-    //public virtual void NonShootSFX(PlayerData _playerData)
-    //{
-    //    if (PlayerData.CharacterNames.Dobby == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
-    //    }
-    //    else if (PlayerData.CharacterNames.Glassy == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
-    //    }
-    //    else if (PlayerData.CharacterNames.Spartacus == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
-    //    }
-    //    else if (PlayerData.CharacterNames.Guard == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
-    //    }
-    //    else if (PlayerData.CharacterNames.Lusth == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
-    //    }
-    //}
-
-    //public virtual void SwordSFX(PlayerData _playerData)
-    //{
-    //    if (PlayerData.CharacterNames.Dobby == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Sword);
-    //    }
-    //    else if (PlayerData.CharacterNames.Glassy == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Sword);
-    //    }
-    //    else if (PlayerData.CharacterNames.Spartacus == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Sword);
-    //    }
-    //    else if (PlayerData.CharacterNames.Guard == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Sword);
-    //    }
-    //    else if (PlayerData.CharacterNames.Lusth == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Sword);
-    //    }
-    //}
+    public void SayHello(string value)
+    {
+        Debug.Log(value);
+    }
 
 
-    //public virtual void GetHitSFX(PlayerData _playerData)
-    //{
-    //    if (PlayerData.CharacterNames.Dobby == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
-    //    }
-    //    else if (PlayerData.CharacterNames.Glassy == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
-    //    }
-    //    else if (PlayerData.CharacterNames.Spartacus == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
-    //    }
-    //    else if (PlayerData.CharacterNames.Guard == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
-    //    }
-    //    else if (PlayerData.CharacterNames.Lusth == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetHit);
-    //    }
-    //}
+    #region //Start
 
-    //public virtual void JumpSFX(PlayerData _playerData)
-    //{
-    //    if (PlayerData.CharacterNames.Dobby == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
-    //    }
-    //    else if (PlayerData.CharacterNames.Glassy == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
-    //    }
-    //    else if (PlayerData.CharacterNames.Spartacus == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
-    //    }
-    //    else if (PlayerData.CharacterNames.Guard == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
-    //    }
-    //    else if (PlayerData.CharacterNames.Lusth == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
-    //    }
-    //}
+    #endregion
+
+    #region //Shoot
+    public virtual void Fire(PlayerData _playerData)
+    {
+        if (_playerData.isPlayable && PlayerManager.GetInstance._playerController.fire && !_playerData.isWinning)
+        {
+            //PlayerData
+            if (_playerData.bulletAmount <= 0)
+            {
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
+
+                _playerData.isFireNonWalk = false;
+
+                _playerData.isFireWalk = false;
+            }
+            else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && !_playerData.isWalking)
+            {
+                _playerData.bulletAmount--;
+
+                _playerData.isFireNonWalk = true;
+
+            }
+            else if (_playerData.bulletAmount > _playerData.bulletPack / 2f && !_playerData.isWalking)
+            {
+                _playerData.bulletAmount--;
+
+                _playerData.isFireNonWalk = true;
+
+            }
+            else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && _playerData.isWalking)
+            {
+                _playerData.bulletAmount--;
+
+                _playerData.isFireWalk = true;
+
+            }
+            else if (_playerData.bulletAmount > _playerData.bulletPack / 2f && _playerData.isWalking)
+            {
+                _playerData.bulletAmount--;
+
+                _playerData.isFireWalk = true;
+            }
 
 
-    //public virtual void JumpToSeaSFX(PlayerData _playerData)
-    //{
-    //    if (PlayerData.CharacterNames.Dobby == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
-    //    }
-    //    else if (PlayerData.CharacterNames.Glassy == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
-    //    }
-    //    else if (PlayerData.CharacterNames.Spartacus == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
-    //    }
-    //    else if (PlayerData.CharacterNames.Guard == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
-    //    }
-    //    else if (PlayerData.CharacterNames.Lusth == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
-    //    }
-    //}
+            //SetFalseBullet
+            StartCoroutine(PlayerManager.GetInstance.DelayShowingCrosshairAlpha(2f));
+            PlayerManager.GetInstance.BulletPackGrow();
+        }
+        else
+        {
+            _playerData.isFireNonWalk = false;
+            StartCoroutine(PlayerManager.GetInstance.delayFireWalkDisactivity(4f));
+        }
+    }
+    public virtual void Sword(PlayerData _playerData)
+    {
+        if (_playerData.isPlayable)
+        {
+            if (PlayerManager.GetInstance._playerController.sword && _playerData.isSwordTime)
+            {
+                //PlayerData
+                _playerData.isSwording = true;
 
-    //public virtual void DeathSFX(PlayerData _playerData)
-    //{
-    //    if (PlayerData.CharacterNames.Dobby == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-    //    }
-    //    else if (PlayerData.CharacterNames.Glassy == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-    //    }
-    //    else if (PlayerData.CharacterNames.Spartacus == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-    //    }
-    //    else if (PlayerData.CharacterNames.Guard == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-    //    }
-    //    else if (PlayerData.CharacterNames.Lusth == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-    //    }
-    //}
+                //SetFalseBullet
+                StartCoroutine(PlayerManager.GetInstance.DelayShowingCrosshairAlpha(2f));
+            }
+            else
+            {
+                _playerData.isSwording = false;
+            }
+        }
+        else
+        {
+            _playerData.isFireNonWalk = false;
+        }
+    }
 
-    //public virtual void PickUpCoinSFX(PlayerData _playerData)
-    //{
-    //    if (PlayerData.CharacterNames.Dobby == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
-    //    }
-    //    else if (PlayerData.CharacterNames.Glassy == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
-    //    }
-    //    else if (PlayerData.CharacterNames.Spartacus == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
-    //    }
-    //    else if (PlayerData.CharacterNames.Guard == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
-    //    }
-    //    else if (PlayerData.CharacterNames.Lusth == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
-    //    }
-    //}
+    #endregion
 
 
-
-    //public virtual void PickUpBulletCoinSFX(PlayerData _playerData)
-    //{
-    //    if (PlayerData.CharacterNames.Dobby == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-    //    }
-    //    else if (PlayerData.CharacterNames.Glassy == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-    //    }
-    //    else if (PlayerData.CharacterNames.Spartacus == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-    //    }
-    //    else if (PlayerData.CharacterNames.Guard == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-    //    }
-    //    else if (PlayerData.CharacterNames.Lusth == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-    //    }
-    //}
-
-    //public virtual void TrapSFX(PlayerData _playerData)
-    //{
-    //    if (PlayerData.CharacterNames.Dobby == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Trap);
-    //    }
-    //    else if (PlayerData.CharacterNames.Glassy == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Trap);
-    //    }
-    //    else if (PlayerData.CharacterNames.Spartacus == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Trap);
-    //    }
-    //    else if (PlayerData.CharacterNames.Guard == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Trap);
-    //    }
-    //    else if (PlayerData.CharacterNames.Lusth == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Trap);
-    //    }
-    //}
+    #region //Camera
 
 
-    //public virtual void LevelUpSFX(PlayerData _playerData)
-    //{
-    //    if (PlayerData.CharacterNames.Dobby == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
-    //    }
-    //    else if (PlayerData.CharacterNames.Glassy == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
-    //    }
-    //    else if (PlayerData.CharacterNames.Spartacus == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
-    //    }
-    //    else if (PlayerData.CharacterNames.Guard == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
-    //    }
-    //    else if (PlayerData.CharacterNames.Lusth == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
-    //    }
-    //}
-    //public virtual void ShootOffSFX(PlayerData _playerData)
-    //{
-    //    if (PlayerData.CharacterNames.Dobby == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ShootOff);
-    //    }
-    //    else if (PlayerData.CharacterNames.Glassy == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ShootOff);
-    //    }
-    //    else if (PlayerData.CharacterNames.Spartacus == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ShootOff);
-    //    }
-    //    else if (PlayerData.CharacterNames.Guard == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ShootOff);
-    //    }
-    //    else if (PlayerData.CharacterNames.Lusth == _playerData.currentCharacterName)
-    //    {
-    //        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ShootOff);
-    //    }
-    //}
+    public virtual void ChangeCamera()
+    {
+        if (PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 
+            && PlayerManager.GetInstance._playerController.lookRotation.x == 0 
+            && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
+        {
+            ConvertToFarCamera(PlayerManager.GetInstance.cameraSpawner);
+        }
+        else if (PlayerManager.GetInstance._zValue != 0 && PlayerManager.GetInstance._xValue == 0 
+            && PlayerManager.GetInstance._playerController.lookRotation.x == 0 && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
+        {
+            ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
+        }
+        else if (PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue != 0 
+            && PlayerManager.GetInstance._playerController.lookRotation.x == 0 && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
+        {
+            ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
+        }
+        else if (PlayerManager.GetInstance._zValue != 0 && PlayerManager.GetInstance._xValue != 0 
+            && PlayerManager.GetInstance._playerController.lookRotation.x == 0 && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
+        {
+            ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
+        }
+    }
+    public virtual void ConvertToCloseCamera(GameObject cameraSpawner)
+    {
+        cameraSpawner.transform.GetChild(0).gameObject.transform.position = cameraSpawner.transform.GetChild(1).gameObject.transform.position;
+        cameraSpawner.transform.GetChild(0).gameObject.transform.rotation = cameraSpawner.transform.GetChild(1).gameObject.transform.rotation;
 
+        cameraSpawner.transform.GetChild(1).gameObject.SetActive(false);
+        cameraSpawner.transform.GetChild(0).gameObject.SetActive(true);
+        PlayerManager.GetInstance._currentCamera = cameraSpawner.transform.GetChild(0).gameObject.GetComponent<CinemachineVirtualCamera>();
+        PlayerManager.GetInstance._currentCamera.m_Follow = gameObject.transform;
+        PlayerManager.GetInstance._currentCamera.m_LookAt = gameObject.transform;
+    }
+    public virtual void ConvertToFarCamera(GameObject cameraSpawner)
+    {
+        cameraSpawner.transform.GetChild(1).gameObject.transform.position = cameraSpawner.transform.GetChild(0).gameObject.transform.position;
+        cameraSpawner.transform.GetChild(1).gameObject.transform.rotation = cameraSpawner.transform.GetChild(0).gameObject.transform.rotation;
+
+        cameraSpawner.transform.GetChild(0).gameObject.SetActive(false);
+        cameraSpawner.transform.GetChild(1).gameObject.SetActive(true);
+
+        PlayerManager.GetInstance._currentCamera = cameraSpawner.transform.GetChild(1).gameObject.GetComponent<CinemachineVirtualCamera>();
+
+        PlayerManager.GetInstance._currentCamera.m_Follow = gameObject.transform;
+        PlayerManager.GetInstance._currentCamera.m_LookAt = gameObject.transform;
+    }
+
+    public virtual void CheckCameraEulerX(PlayerData _playerData, Transform _currentCameraTransform)
+    {
+        if (_currentCameraTransform.transform.eulerAngles.x > 74 && _currentCameraTransform.transform.eulerAngles.x <= 80)
+        {
+            //PlayerData
+            _playerData.isLookingUp = false;
+
+            //CinemachineVirtualCamera
+            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, _currentCameraTransform.transform.eulerAngles.y, _currentCameraTransform.transform.eulerAngles.z);
+        }
+        else if (_currentCameraTransform.transform.eulerAngles.x > 355)
+        {
+            //PlayerData
+            _playerData.isLookingUp = false;
+
+            //CinemachineVirtualCamera
+            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, _currentCameraTransform.transform.eulerAngles.y, _currentCameraTransform.transform.eulerAngles.z);
+        }
+        else if (_currentCameraTransform.transform.eulerAngles.x < 0)
+        {
+            //PlayerData
+            _playerData.isLookingUp = true;
+
+            //CinemachineVirtualCamera
+            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, _currentCameraTransform.transform.eulerAngles.y, _currentCameraTransform.transform.eulerAngles.z);
+        }
+        else if (_currentCameraTransform.transform.eulerAngles.x > 270 && _currentCameraTransform.transform.eulerAngles.x <= 360)
+        {
+            //PlayerData
+            _playerData.isLookingUp = true;
+            //_currentCamera = _upCamera;
+        }
+        else
+        {
+            _playerData.isLookingUp = false;
+        }
+    }
+
+    #endregion
 }
