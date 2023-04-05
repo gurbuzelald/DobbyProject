@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class ScoreController : AbstractSingleton<ScoreController>
+public class ScoreController : AbstractPlayer<ScoreController>
 {
     public TextMeshProUGUI _scoreText;
     public static int _scoreAmount;

@@ -193,7 +193,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""95d536a6-a40c-4f35-8a9f-cbe968a81c6e"",
                     ""path"": ""<Mouse>/press"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Fire"",
@@ -313,17 +313,237 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Spartacus"",
+                    ""type"": ""Button"",
+                    ""id"": ""b0eb42be-0b5a-4e0c-99f6-6d832c2f9eb4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Glassy"",
+                    ""type"": ""Button"",
+                    ""id"": ""5bb5977e-7035-43d7-ac20-6e937572b3f9"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dobby"",
+                    ""type"": ""Button"",
+                    ""id"": ""d1f1bc31-995d-47c8-8f85-72379fca6969"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Guard"",
+                    ""type"": ""Button"",
+                    ""id"": ""51553149-b0de-4c2b-9c31-e059d47dcb5f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Lusth"",
+                    ""type"": ""Button"",
+                    ""id"": ""63c929c0-dcb8-4eb7-b751-0d3c8c09f101"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Eve"",
+                    ""type"": ""Button"",
+                    ""id"": ""c292def6-3370-4aec-94b4-3b112e7d2cb7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Michelle"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd65162b-5d4c-4e5b-b5af-8c987898f511"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Boss"",
+                    ""type"": ""Button"",
+                    ""id"": ""3c1c68e7-6dcf-434d-94b7-47a63bbb976c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aj"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8eaa997-698b-4ce0-9b46-0ca10f1ee243"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mremireh"",
+                    ""type"": ""Button"",
+                    ""id"": ""c69a75bb-2be3-4aed-b232-485fbefa2f23"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ty"",
+                    ""type"": ""Button"",
+                    ""id"": ""312774fa-666f-4cd5-9b56-290054a16350"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""6d4ad014-f1c6-41b3-afc6-16ceb8a7dc1b"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Stick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf19af75-853b-4138-b49e-0a527c22c3b4"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Spartacus"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a2d4571c-41a2-4232-af29-7db66b737ed0"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Glassy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""978135b7-20d8-4e51-b2ff-5faea310182c"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dobby"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3839b41-081e-410a-b8d5-9fe03113152d"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Guard"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f6cc4f66-d7f1-49a6-8530-4d1462451973"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lusth"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e41a1c27-cc23-4dd5-ab89-a51c2daefc50"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Eve"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""05f0f49d-2b97-46df-9a72-9f76d2d2c09e"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Michelle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ff285b62-c02c-4fb6-8d61-cf3f4f19059a"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Boss"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c42f86f7-de3c-40a1-8117-a57deb59c94d"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aj"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4bc44c4d-0b1a-4d61-a5b5-2d3f852548da"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Mremireh"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d7f5a53-72b1-43c0-a4ad-d677aa2aae23"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ty"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -373,6 +593,17 @@ public partial class @Player : IInputActionCollection2, IDisposable
         // CharacterMenuInput
         m_CharacterMenuInput = asset.FindActionMap("CharacterMenuInput", throwIfNotFound: true);
         m_CharacterMenuInput_Stick = m_CharacterMenuInput.FindAction("Stick", throwIfNotFound: true);
+        m_CharacterMenuInput_Spartacus = m_CharacterMenuInput.FindAction("Spartacus", throwIfNotFound: true);
+        m_CharacterMenuInput_Glassy = m_CharacterMenuInput.FindAction("Glassy", throwIfNotFound: true);
+        m_CharacterMenuInput_Dobby = m_CharacterMenuInput.FindAction("Dobby", throwIfNotFound: true);
+        m_CharacterMenuInput_Guard = m_CharacterMenuInput.FindAction("Guard", throwIfNotFound: true);
+        m_CharacterMenuInput_Lusth = m_CharacterMenuInput.FindAction("Lusth", throwIfNotFound: true);
+        m_CharacterMenuInput_Eve = m_CharacterMenuInput.FindAction("Eve", throwIfNotFound: true);
+        m_CharacterMenuInput_Michelle = m_CharacterMenuInput.FindAction("Michelle", throwIfNotFound: true);
+        m_CharacterMenuInput_Boss = m_CharacterMenuInput.FindAction("Boss", throwIfNotFound: true);
+        m_CharacterMenuInput_Aj = m_CharacterMenuInput.FindAction("Aj", throwIfNotFound: true);
+        m_CharacterMenuInput_Mremireh = m_CharacterMenuInput.FindAction("Mremireh", throwIfNotFound: true);
+        m_CharacterMenuInput_Ty = m_CharacterMenuInput.FindAction("Ty", throwIfNotFound: true);
         // GrowMap
         m_GrowMap = asset.FindActionMap("GrowMap", throwIfNotFound: true);
         m_GrowMap_GrowingStuate = m_GrowMap.FindAction("GrowingStuate", throwIfNotFound: true);
@@ -525,11 +756,33 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_CharacterMenuInput;
     private ICharacterMenuInputActions m_CharacterMenuInputActionsCallbackInterface;
     private readonly InputAction m_CharacterMenuInput_Stick;
+    private readonly InputAction m_CharacterMenuInput_Spartacus;
+    private readonly InputAction m_CharacterMenuInput_Glassy;
+    private readonly InputAction m_CharacterMenuInput_Dobby;
+    private readonly InputAction m_CharacterMenuInput_Guard;
+    private readonly InputAction m_CharacterMenuInput_Lusth;
+    private readonly InputAction m_CharacterMenuInput_Eve;
+    private readonly InputAction m_CharacterMenuInput_Michelle;
+    private readonly InputAction m_CharacterMenuInput_Boss;
+    private readonly InputAction m_CharacterMenuInput_Aj;
+    private readonly InputAction m_CharacterMenuInput_Mremireh;
+    private readonly InputAction m_CharacterMenuInput_Ty;
     public struct CharacterMenuInputActions
     {
         private @Player m_Wrapper;
         public CharacterMenuInputActions(@Player wrapper) { m_Wrapper = wrapper; }
         public InputAction @Stick => m_Wrapper.m_CharacterMenuInput_Stick;
+        public InputAction @Spartacus => m_Wrapper.m_CharacterMenuInput_Spartacus;
+        public InputAction @Glassy => m_Wrapper.m_CharacterMenuInput_Glassy;
+        public InputAction @Dobby => m_Wrapper.m_CharacterMenuInput_Dobby;
+        public InputAction @Guard => m_Wrapper.m_CharacterMenuInput_Guard;
+        public InputAction @Lusth => m_Wrapper.m_CharacterMenuInput_Lusth;
+        public InputAction @Eve => m_Wrapper.m_CharacterMenuInput_Eve;
+        public InputAction @Michelle => m_Wrapper.m_CharacterMenuInput_Michelle;
+        public InputAction @Boss => m_Wrapper.m_CharacterMenuInput_Boss;
+        public InputAction @Aj => m_Wrapper.m_CharacterMenuInput_Aj;
+        public InputAction @Mremireh => m_Wrapper.m_CharacterMenuInput_Mremireh;
+        public InputAction @Ty => m_Wrapper.m_CharacterMenuInput_Ty;
         public InputActionMap Get() { return m_Wrapper.m_CharacterMenuInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -542,6 +795,39 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Stick.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnStick;
                 @Stick.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnStick;
                 @Stick.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnStick;
+                @Spartacus.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnSpartacus;
+                @Spartacus.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnSpartacus;
+                @Spartacus.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnSpartacus;
+                @Glassy.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnGlassy;
+                @Glassy.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnGlassy;
+                @Glassy.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnGlassy;
+                @Dobby.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnDobby;
+                @Dobby.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnDobby;
+                @Dobby.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnDobby;
+                @Guard.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnGuard;
+                @Guard.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnGuard;
+                @Guard.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnGuard;
+                @Lusth.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnLusth;
+                @Lusth.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnLusth;
+                @Lusth.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnLusth;
+                @Eve.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnEve;
+                @Eve.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnEve;
+                @Eve.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnEve;
+                @Michelle.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnMichelle;
+                @Michelle.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnMichelle;
+                @Michelle.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnMichelle;
+                @Boss.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnBoss;
+                @Boss.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnBoss;
+                @Boss.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnBoss;
+                @Aj.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnAj;
+                @Aj.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnAj;
+                @Aj.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnAj;
+                @Mremireh.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnMremireh;
+                @Mremireh.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnMremireh;
+                @Mremireh.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnMremireh;
+                @Ty.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnTy;
+                @Ty.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnTy;
+                @Ty.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnTy;
             }
             m_Wrapper.m_CharacterMenuInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -549,6 +835,39 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Stick.started += instance.OnStick;
                 @Stick.performed += instance.OnStick;
                 @Stick.canceled += instance.OnStick;
+                @Spartacus.started += instance.OnSpartacus;
+                @Spartacus.performed += instance.OnSpartacus;
+                @Spartacus.canceled += instance.OnSpartacus;
+                @Glassy.started += instance.OnGlassy;
+                @Glassy.performed += instance.OnGlassy;
+                @Glassy.canceled += instance.OnGlassy;
+                @Dobby.started += instance.OnDobby;
+                @Dobby.performed += instance.OnDobby;
+                @Dobby.canceled += instance.OnDobby;
+                @Guard.started += instance.OnGuard;
+                @Guard.performed += instance.OnGuard;
+                @Guard.canceled += instance.OnGuard;
+                @Lusth.started += instance.OnLusth;
+                @Lusth.performed += instance.OnLusth;
+                @Lusth.canceled += instance.OnLusth;
+                @Eve.started += instance.OnEve;
+                @Eve.performed += instance.OnEve;
+                @Eve.canceled += instance.OnEve;
+                @Michelle.started += instance.OnMichelle;
+                @Michelle.performed += instance.OnMichelle;
+                @Michelle.canceled += instance.OnMichelle;
+                @Boss.started += instance.OnBoss;
+                @Boss.performed += instance.OnBoss;
+                @Boss.canceled += instance.OnBoss;
+                @Aj.started += instance.OnAj;
+                @Aj.performed += instance.OnAj;
+                @Aj.canceled += instance.OnAj;
+                @Mremireh.started += instance.OnMremireh;
+                @Mremireh.performed += instance.OnMremireh;
+                @Mremireh.canceled += instance.OnMremireh;
+                @Ty.started += instance.OnTy;
+                @Ty.performed += instance.OnTy;
+                @Ty.canceled += instance.OnTy;
             }
         }
     }
@@ -600,6 +919,17 @@ public partial class @Player : IInputActionCollection2, IDisposable
     public interface ICharacterMenuInputActions
     {
         void OnStick(InputAction.CallbackContext context);
+        void OnSpartacus(InputAction.CallbackContext context);
+        void OnGlassy(InputAction.CallbackContext context);
+        void OnDobby(InputAction.CallbackContext context);
+        void OnGuard(InputAction.CallbackContext context);
+        void OnLusth(InputAction.CallbackContext context);
+        void OnEve(InputAction.CallbackContext context);
+        void OnMichelle(InputAction.CallbackContext context);
+        void OnBoss(InputAction.CallbackContext context);
+        void OnAj(InputAction.CallbackContext context);
+        void OnMremireh(InputAction.CallbackContext context);
+        void OnTy(InputAction.CallbackContext context);
     }
     public interface IGrowMapActions
     {

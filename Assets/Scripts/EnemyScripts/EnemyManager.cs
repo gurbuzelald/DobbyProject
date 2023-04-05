@@ -232,8 +232,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (_healthBar.transform.localScale.x <= 0.0625f)
             {
-                PlayerManager.GetInstance.CreateSlaveObject();
-
                 bottomParticle.Play();
                 middleParticle.Play();
                 topParticle.Play();
@@ -279,8 +277,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (_healthBar.transform.localScale.x <= 0.0625f)
             {
-                PlayerManager.GetInstance.CreateSlaveObject();
-
                 bottomParticle.Play();
                 middleParticle.Play();
                 topParticle.Play();

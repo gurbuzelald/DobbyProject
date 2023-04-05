@@ -174,8 +174,8 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3532475191173677778}
   serializedVersion: 8
-  lengthInSec: 100
-  simulationSpeed: 0.01
+  lengthInSec: 1
+  simulationSpeed: 25
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -249,7 +249,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -400,7 +400,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 2
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -982,7 +982,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.8
+      scalar: 1
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1430,32 +1430,32 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.68235296, b: 0, a: 1}
-        key2: {r: 0.10791205, g: 0.7271669, b: 0.9150943, a: 0}
-        key3: {r: 1, g: 0.5942211, b: 0.09411764, a: 0.6431373}
+        key1: {r: 1, g: 0.68235296, b: 0, a: 0.5176471}
+        key2: {r: 1, g: 0, b: 0.06914902, a: 0.61960787}
+        key3: {r: 1, g: 0.5942211, b: 0.09411764, a: 1}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
-        ctime1: 5397
-        ctime2: 23130
-        ctime3: 55319
+        ctime1: 15227
+        ctime2: 28527
+        ctime3: 42598
         ctime4: 0
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 55127
-        atime2: 65535
-        atime3: 56283
+        atime1: 22937
+        atime2: 39707
+        atime3: 51464
         atime4: 65535
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
         m_NumColorKeys: 4
-        m_NumAlphaKeys: 3
+        m_NumAlphaKeys: 5
       minGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4897,7 +4897,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 76a21cc4a4143fd408be8d499c3888e1, type: 2}
+  - {fileID: 2100000, guid: 8dced36040afa4343a9b6c6ea449d5e5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4918,7 +4918,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 3
+  m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 4
   m_MinParticleSize: 0

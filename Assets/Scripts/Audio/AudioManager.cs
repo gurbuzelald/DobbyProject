@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine;
 
-public class AudioManager : AbstractSingleton<AudioManager>
+public class AudioManager : AbstractPlayer<AudioManager>
 {
     [Header("Data")]
     public AudioData _audioData;

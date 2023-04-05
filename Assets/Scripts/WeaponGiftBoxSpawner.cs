@@ -8,6 +8,110 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
     [SerializeField] PlayerData playerData;
 
 
+    private void Awake()
+    {
+        if (!playerData.isCompleteFirstMap || !playerData.isCompleteSecondMap || !playerData.isCompleteThirdMap)
+        {
+            FirstMapCreateGiftBoxes();
+        }
+    }
+    private void Update()
+    {
+        SecondMapCreateGiftBoxes();
+        ThirdMapCreateGiftBoxes();
+        FourthMapCreateGiftBoxes();
+    }
+    void FirstMapCreateGiftBoxes()
+    {
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Destroy(gameObject.transform.GetChild(i));
+        }
+
+        GameObject giftBox = Instantiate(bulletData.giftBoxes[0], gameObject.transform);
+        CreateWeaponGiftBox(bulletData.ak47GiftBox, giftBox.transform.GetChild(1).transform);
+
+
+        CreateWeaponGiftBox(bulletData.rifleGiftBox, giftBox.transform.GetChild(0).transform);
+        CreateWeaponGiftBox(bulletData.axegunGiftBox, giftBox.transform.GetChild(2).transform);
+    }
+    public void CreateWeaponGiftBox(GameObject weaponObject, Transform weaponTransform)
+    {
+        for (int i = 0; i < weaponTransform.childCount; i++)
+        {
+
+            GameObject _weaponObejct = Instantiate(weaponObject, weaponTransform.GetChild(i).position, Quaternion.identity, weaponTransform.GetChild(i));
+            _weaponObejct.transform.rotation = weaponTransform.GetChild(i).rotation;
+        }
+    }   
+    void SecondMapCreateGiftBoxes()
+    {
+        if (playerData.isCompleteFirstMap)
+        {
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                Destroy(gameObject.transform.GetChild(i).gameObject);
+            }
+
+            GameObject giftBox = Instantiate(bulletData.giftBoxes[1], gameObject.transform);
+
+            CreateWeaponGiftBox(bulletData.bullDogGiftBox, giftBox.transform.GetChild(0).transform);
+            CreateWeaponGiftBox(bulletData.cowgunGiftBox, giftBox.transform.GetChild(1).transform);
+            CreateWeaponGiftBox(bulletData.crsytalgunGiftBox, giftBox.transform.GetChild(2).transform);
+            CreateWeaponGiftBox(bulletData.demongunGiftBox, giftBox.transform.GetChild(3).transform);
+            CreateWeaponGiftBox(bulletData.icegunGiftBox, giftBox.transform.GetChild(4).transform);
+            CreateWeaponGiftBox(bulletData.negevGiftBox, giftBox.transform.GetChild(5).transform);
+            CreateWeaponGiftBox(bulletData.axegunGiftBox, giftBox.transform.GetChild(6).transform);
+        }        
+    }
+    void ThirdMapCreateGiftBoxes()
+    {
+        if (playerData.isCompleteSecondMap)
+        {
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                Destroy(gameObject.transform.GetChild(i).gameObject);
+            }
+
+            GameObject giftBox = Instantiate(bulletData.giftBoxes[2], gameObject.transform);
+
+            CreateWeaponGiftBox(bulletData.bullDogGiftBox, giftBox.transform.GetChild(0).transform);
+            CreateWeaponGiftBox(bulletData.cowgunGiftBox, giftBox.transform.GetChild(1).transform);
+            CreateWeaponGiftBox(bulletData.crsytalgunGiftBox, giftBox.transform.GetChild(2).transform);
+            CreateWeaponGiftBox(bulletData.demongunGiftBox, giftBox.transform.GetChild(3).transform);
+            CreateWeaponGiftBox(bulletData.icegunGiftBox, giftBox.transform.GetChild(4).transform);
+            CreateWeaponGiftBox(bulletData.negevGiftBox, giftBox.transform.GetChild(5).transform);
+            CreateWeaponGiftBox(bulletData.axegunGiftBox, giftBox.transform.GetChild(6).transform);
+        }
+    }
+
+    void FourthMapCreateGiftBoxes()
+    {
+        if (playerData.isCompleteThirdMap)
+        {
+            for (int i = 0; i < gameObject.transform.childCount; i++)
+            {
+                Destroy(gameObject.transform.GetChild(i).gameObject);
+            }
+
+            GameObject giftBox = Instantiate(bulletData.giftBoxes[3], gameObject.transform);
+
+            CreateWeaponGiftBox(bulletData.bullDogGiftBox, giftBox.transform.GetChild(0).transform);
+            CreateWeaponGiftBox(bulletData.cowgunGiftBox, giftBox.transform.GetChild(1).transform);
+            CreateWeaponGiftBox(bulletData.crsytalgunGiftBox, giftBox.transform.GetChild(2).transform);
+            CreateWeaponGiftBox(bulletData.demongunGiftBox, giftBox.transform.GetChild(3).transform);
+            CreateWeaponGiftBox(bulletData.icegunGiftBox, giftBox.transform.GetChild(4).transform);
+            CreateWeaponGiftBox(bulletData.negevGiftBox, giftBox.transform.GetChild(5).transform);
+            CreateWeaponGiftBox(bulletData.axegunGiftBox, giftBox.transform.GetChild(6).transform);
+        }
+    }
+    
+}
+/* 
+ 
+ 
+
+
     [Header("First Map Gift Boxes")]
     [Header("Rifle")]
     public Transform[] _firstMapRifleTransforms;
@@ -87,90 +191,5 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
 
     [Header("Axegun")]
     public Transform[] _fourthMapAxegunTransforms;
-
-    [SerializeField] GameObject[] giftBoxes;
-
-    private void Awake()
-    {
-        if (!playerData.isCompleteFirstMap || !playerData.isCompleteSecondMap || !playerData.isCompleteThirdMap)
-        {
-            FirstMapCreateGiftBoxes();
-        }
-    }
-    private void Update()
-    {
-        SecondMapCreateGiftBoxes();
-        ThirdMapCreateGiftBoxes();
-        FourthMapCreateGiftBoxes();
-    }
-    void FirstMapCreateGiftBoxes()
-    {
-        CreateWeaponGiftBox(bulletData.ak47GiftBox, _firstMapAk47Transforms);
-
-
-        CreateWeaponGiftBox(bulletData.rifleGiftBox, _firstMapRifleTransforms);
-        CreateWeaponGiftBox(bulletData.axegunGiftBox, _firstMapAxegunTransforms);
-    }
-    void SecondMapCreateGiftBoxes()
-    {
-        if (playerData.isCompleteFirstMap)
-        {
-            CreateWeaponGiftBox(bulletData.bullDogGiftBox, _secondMapBulldogTransforms);
-            CreateWeaponGiftBox(bulletData.cowgunGiftBox, _secondMapCowgunTransforms);
-            CreateWeaponGiftBox(bulletData.crsytalgunGiftBox, _secondMapCrystalgunTransforms);
-            CreateWeaponGiftBox(bulletData.demongunGiftBox, _secondMapDemongunTransforms);
-            CreateWeaponGiftBox(bulletData.icegunGiftBox, _secondMapIcegunTransforms);
-            CreateWeaponGiftBox(bulletData.negevGiftBox, _secondMapNegevTransforms);
-            CreateWeaponGiftBox(bulletData.axegunGiftBox, _secondMapAxegunTransforms);
-
-            DestroyPastMapGiftBoxes(giftBoxes[0]);
-        }        
-    }
-    void ThirdMapCreateGiftBoxes()
-    {
-        if (playerData.isCompleteSecondMap)
-        {
-            CreateWeaponGiftBox(bulletData.bullDogGiftBox, _thirdMapBulldogTransforms);
-            CreateWeaponGiftBox(bulletData.cowgunGiftBox, _thirdMapCowgunTransforms);
-            CreateWeaponGiftBox(bulletData.crsytalgunGiftBox, _thirdMapCrystalgunTransforms);
-            CreateWeaponGiftBox(bulletData.demongunGiftBox, _thirdMapDemongunTransforms);
-            CreateWeaponGiftBox(bulletData.icegunGiftBox, _thirdMapIcegunTransforms);
-            CreateWeaponGiftBox(bulletData.negevGiftBox, _thirdMapNegevTransforms);
-            CreateWeaponGiftBox(bulletData.axegunGiftBox, _thirdMapAxegunTransforms);
-            DestroyPastMapGiftBoxes(giftBoxes[0]);
-            DestroyPastMapGiftBoxes(giftBoxes[1]);
-        }
-    }
-
-    void FourthMapCreateGiftBoxes()
-    {
-        if (playerData.isCompleteThirdMap)
-        {
-            CreateWeaponGiftBox(bulletData.bullDogGiftBox, _fourthMapBulldogTransforms);
-            CreateWeaponGiftBox(bulletData.cowgunGiftBox, _fourthMapCowgunTransforms);
-            CreateWeaponGiftBox(bulletData.crsytalgunGiftBox, _fourthMapCrystalgunTransforms);
-            CreateWeaponGiftBox(bulletData.demongunGiftBox, _fourthMapDemongunTransforms);
-            CreateWeaponGiftBox(bulletData.icegunGiftBox, _fourthMapIcegunTransforms);
-            CreateWeaponGiftBox(bulletData.negevGiftBox, _fourthMapNegevTransforms);
-            CreateWeaponGiftBox(bulletData.axegunGiftBox, _fourthMapAxegunTransforms);
-            DestroyPastMapGiftBoxes(giftBoxes[0]);
-            DestroyPastMapGiftBoxes(giftBoxes[1]);
-            DestroyPastMapGiftBoxes(giftBoxes[2]);
-        }
-    }
-
-
-    void DestroyPastMapGiftBoxes(GameObject giftBox)
-    {
-        Destroy(giftBox);
-    }
-    public void CreateWeaponGiftBox(GameObject weaponObject, Transform[] weaponTransform)
-    {
-        for (int i = 0; i < weaponTransform.Length; i++)
-        {
-            
-            GameObject _weaponObejct = Instantiate(weaponObject, weaponTransform[i].position, Quaternion.identity, weaponTransform[i]);
-            _weaponObejct.transform.rotation = weaponTransform[i].rotation;
-        }
-    }
-}
+ 
+ */

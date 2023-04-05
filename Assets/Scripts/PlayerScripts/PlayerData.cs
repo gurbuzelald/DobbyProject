@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+
+    public string currentMirrorName;
+
     [Header("Finishes")]
     public GameObject _finishAreas;
 
@@ -83,6 +86,7 @@ public class PlayerData : ScriptableObject
     public float jumpForce;
     public bool isFireNonWalk;
     public bool isFireWalk;
+    public bool isFireTime;
     public bool isSwording;
     public bool isSwordTime;
     public bool isJumping;

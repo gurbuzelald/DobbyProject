@@ -17,8 +17,19 @@ public class PlayerController : MonoBehaviour
     public static bool run;
 
     public Vector2 stick;
+    public bool Spartacus;
+    public bool Glassy;
+    public bool Dobby;
+    public bool Guard;
+    public bool Lusth;
+    public bool Eve;
+    public bool Michelle;
+    public bool Boss;
+    public bool Aj;
+    public bool Mremireh;
+    public bool Ty;
 
-    private void Awake()
+    private void Awake() 
     {
         playerInput = new Player();
     }
@@ -33,6 +44,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         ControlStates();
+        ChooseCharacter();
     }
     public void ControlStates()
     {
@@ -43,7 +55,21 @@ public class PlayerController : MonoBehaviour
         extraSpeed = playerInput.PlayerMain.ExtraSpeed.IsPressed();
         jump = playerInput.PlayerMain.Jump.IsPressed();
         skateBoard = playerInput.PlayerMain.Skate.IsPressed();
-        run = playerInput.PlayerMain.Run.IsPressed();
+        run = playerInput.PlayerMain.Run.IsPressed();       
+    }
+    void ChooseCharacter()
+    {
+        Spartacus = playerInput.CharacterMenuInput.Spartacus.IsPressed();
+        Glassy = playerInput.CharacterMenuInput.Glassy.IsPressed();
+        Dobby = playerInput.CharacterMenuInput.Dobby.IsPressed();
+        Guard = playerInput.CharacterMenuInput.Guard.IsPressed();
+        Lusth = playerInput.CharacterMenuInput.Lusth.IsPressed();
+        Eve = playerInput.CharacterMenuInput.Eve.IsPressed();
+        Michelle = playerInput.CharacterMenuInput.Michelle.IsPressed();
+        Boss = playerInput.CharacterMenuInput.Boss.IsPressed();
+        Aj = playerInput.CharacterMenuInput.Aj.IsPressed();
+        Mremireh = playerInput.CharacterMenuInput.Mremireh.IsPressed();
+        Ty = playerInput.CharacterMenuInput.Ty.IsPressed();
 
 
         stick = playerInput.CharacterMenuInput.Stick.ReadValue<Vector2>();

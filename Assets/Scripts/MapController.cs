@@ -13,7 +13,7 @@ public class MapController : MonoBehaviour
     {
         currentMap = Instantiate(Maps[0], gameObject.transform);
         //DarknesCubesActivity();
-        currentMap.transform.GetChild(1).gameObject.SetActive(true);
+        //currentMap.transform.GetChild(1).gameObject.SetActive(true);
     }
     void DarknesCubesActivity()
     {

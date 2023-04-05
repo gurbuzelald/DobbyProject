@@ -19,8 +19,11 @@ public class BulletManager : AbstractBullet<BulletManager>
     public GameObject _currentSwordObject;
     public GameObject pinky;
 
+    public static bool isCreatedWeaponBullet;
+
     void Start()
     {
+        isCreatedWeaponBullet = false;
         CreateWeaponObject();
 
         CreateSwordObject();
@@ -538,17 +541,23 @@ public class BulletManager : AbstractBullet<BulletManager>
         BulletRotation(PlayerManager.GetInstance._currentCamera,
                        _bulletSpawnTransform);
 
-        if ((_playerData.isFireNonWalk || _playerData.isFireWalk) && !_playerData.isSwording && bulletData.bulletDelayCounter == 0)
-        {
-            bulletData.bulletDelayCounter++;       
-            
-            StartCoroutine(Delay(bulletData.swordBulletDelay, 0));
-        }
+        
         if (_playerData.isSwording && !_playerData.isFireNonWalk && bulletData.bulletDelayCounter == 0 && _playerData.isSwordTime)
         {
             bulletData.bulletDelayCounter++;
 
             StartCoroutine(Delay(bulletData.weaponBulletDelay, 2));
+        }
+        WeaponFire();
+    }
+
+    public void WeaponFire()
+    {
+        if ((_playerData.isFireNonWalk || _playerData.isFireWalk) && !_playerData.isSwording && bulletData.bulletDelayCounter == 0 && _playerData.isFireTime)
+        {
+            bulletData.bulletDelayCounter++;
+
+            StartCoroutine(Delay(bulletData.swordBulletDelay, 0));
         }
     }
 
@@ -642,7 +651,7 @@ public class BulletManager : AbstractBullet<BulletManager>
     IEnumerator Delay(float delayValue, int objectPoolCount)
     {        
         if (objectPoolCount == 2)
-        {
+        {//SwordBullet
             //yield return new WaitForSeconds(1);
             _currentSwordObject.SetActive(true);
             _currentWeaponObject.SetActive(false);
@@ -659,7 +668,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             //_swordObject.SetActive(false);
         }
         else
-        {
+        {//WeaponBullet
             _currentWeaponObject.SetActive(true);
             _currentSwordObject.SetActive(false);
             yield return new WaitForSeconds(delayValue);
@@ -670,7 +679,8 @@ public class BulletManager : AbstractBullet<BulletManager>
             else
             {
                 WeaponSoundTypeState();
-                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 2f);
+                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 1f, 2f);
+                isCreatedWeaponBullet = true;
             }
             //PlayerManager.GetInstance._currentCamera.transform.position.x
             _bulletSpawnTransform.position = new Vector3(_bulletSpawnTransform.transform.position.x, 

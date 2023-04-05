@@ -7,6 +7,7 @@ public class TimeController : MonoBehaviour
 {
     private float _time;
     private float _swordTime;
+    private float _weaponTime;
     public PlayerData playerData;
     [SerializeField] TextMeshProUGUI _timeText;
     [SerializeField] TextMeshProUGUI _warmTimeText;
@@ -18,6 +19,7 @@ public class TimeController : MonoBehaviour
         _timeText.text = "0";
         _time = 0;
         _swordTime = 0;
+        _weaponTime = 0;
     }
 
     // Update is called once per frame
@@ -25,6 +27,7 @@ public class TimeController : MonoBehaviour
     {
         GetTime(900);
         SwordTimer(playerData, _swordTimeText);
+        WeaponTimer(playerData);
     }
     private void GetTime(int timeValue)
     {
@@ -66,6 +69,20 @@ public class TimeController : MonoBehaviour
             }
         }
         _swordTime += Time.deltaTime;
+    }
+    public void WeaponTimer(PlayerData playerData)
+    {
+        if ((playerData.isFireNonWalk || playerData.isFireWalk) && _weaponTime >= 0.1f)
+        {
+            playerData.isFireTime = true;
+            _weaponTime = 0;
+        }
+        else
+        {
+            playerData.isFireTime = false;
+        }
+
+        _weaponTime += Time.deltaTime;
     }
     enum SwordTexts
     {

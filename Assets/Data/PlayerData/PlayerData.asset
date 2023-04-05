@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  currentMirrorName: Mirror1
   _finishAreas: {fileID: 311188628955670743, guid: 147c08b652e1e9a4288e6347fc94ddab, type: 3}
   isCompleteFirstMap: 0
   isCompleteSecondMap: 0
@@ -79,8 +80,9 @@ MonoBehaviour:
   jumpForce: 4
   isFireNonWalk: 0
   isFireWalk: 0
+  isFireTime: 0
   isSwording: 0
-  isSwordTime: 1
+  isSwordTime: 0
   isJumping: 0
   isClickable: 1
   jumpCount: 0
@@ -89,8 +91,8 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 50
-  bulletPack: 50
+  bulletAmount: 44
+  bulletPack: 30
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}
   skateboardParticle: {fileID: 4302228992980891979, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}

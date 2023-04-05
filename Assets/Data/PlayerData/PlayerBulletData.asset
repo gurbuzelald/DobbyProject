@@ -12,6 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1868c7cd3d74059489101668855dfd21, type: 3}
   m_Name: PlayerBulletData
   m_EditorClassIdentifier: 
+  giftBoxes:
+  - {fileID: 8961598618424200994, guid: c9b0815641d6f3a4f898bef83cb6f012, type: 3}
+  - {fileID: 1155883618481309716, guid: 2c0182fcbc961b549aaf76bac3601f5b, type: 3}
+  - {fileID: 4005587169595579027, guid: dc96519d3829f3c4bbf128913090c40c, type: 3}
+  - {fileID: 2638599540784326576, guid: 62fd21db8b232674aad8d559edf830d2, type: 3}
   swordBulletDelay: 0.05
   weaponBulletDelay: 0.05
   bulletSpeed: 5
@@ -72,3 +77,4 @@ MonoBehaviour:
   enemyBulletDelayCounter: 0
   enemyBulletDelay: 0.05
   enemyBulletSpeed: 3
+  isFirable: 0

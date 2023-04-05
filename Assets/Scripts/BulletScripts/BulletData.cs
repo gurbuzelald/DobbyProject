@@ -4,6 +4,9 @@ using UnityEngine;
 public class BulletData : ScriptableObject
 {
     [Header("Player")]
+    [Header("WeaponGiftBoxes")]
+    public GameObject[] giftBoxes;
+
     [Header("Bullet Transform")]
     public float swordBulletDelay = 0.05f;
     public float weaponBulletDelay = 0.05f;
