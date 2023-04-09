@@ -80,7 +80,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     void FixedUpdate()
     {
-        RayBullet();
+        //RayBullet();
     }
     void RayBullet()
     {
@@ -88,15 +88,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             GameObject enemySpawner = GameObject.Find("EnemySpawner");
             RaycastHit hit;
-            if (gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().bulletData.enemyBulletDelayCounter == 0 && 
-                enemyData.isActivateMagnet && gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().bulletData.isFirable)
+            if (enemyData.isActivateMagnet && gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().bulletData.isFirable)
             {
                 if (Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward),
                     out hit, 10f, enemySpawner.GetComponent<EnemySpawner>().layerMask))
                 {
                     Debug.DrawRay(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
-
-                    gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().bulletData.enemyBulletDelayCounter++;
 
                     enemyData.isFiring = true;
                     enemyData.isWalking = false;
@@ -105,7 +102,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                                    .Delay(gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>()
                                    .bulletData.enemyBulletDelay, 2f));
 
-                    StartCoroutine(gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().FiringFalse());
+                    StartCoroutine(gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().FiringFalse(gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().bulletData.enemyFireFrequency));
                 }
                 else
                 {

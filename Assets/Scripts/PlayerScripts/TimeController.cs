@@ -72,7 +72,7 @@ public class TimeController : MonoBehaviour
     }
     public void WeaponTimer(PlayerData playerData)
     {
-        if ((playerData.isFireNonWalk || playerData.isFireWalk) && _weaponTime >= 0.1f)
+        if ((playerData.isFireNonWalk || playerData.isFireWalk) && _weaponTime >= 0f)
         {
             playerData.isFireTime = true;
             _weaponTime = 0;

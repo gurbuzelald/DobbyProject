@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class LightController : MonoBehaviour
@@ -10,6 +11,7 @@ public class LightController : MonoBehaviour
     [SerializeField] PlayerData playerData;
     private void Awake()
     {
+
         lights[0].SetActive(true);
         for (int i = 1; i < lights.Length; i++)
         {

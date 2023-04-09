@@ -1,6 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public PlayerController _playerController;
     [HideInInspector]
     public ArrowRotationController _arrowRotationController;
+
 
     [Header("InterFAces")]
     private IPlayerShoot iPlayerShoot;
@@ -77,8 +79,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     [SerializeField] GameObject _damageArrow;
 
 
-    [Header("Character Object")]
-    
+    [HideInInspector]    
     public GameObject _currentCharacterObject;
     private GameObject characterObject;
 
@@ -89,7 +90,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public GameObject _healthBarObject;
     [SerializeField] GameObject _topCanvasHealthBarObject;
 
-    
     void Start()
     {
         InitStates();

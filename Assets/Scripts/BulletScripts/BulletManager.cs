@@ -679,7 +679,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             else
             {
                 WeaponSoundTypeState();
-                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 1f, 2f);
+                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 2f);
                 isCreatedWeaponBullet = true;
             }
             //PlayerManager.GetInstance._currentCamera.transform.position.x
