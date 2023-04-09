@@ -17,148 +17,17 @@ MonoBehaviour:
   endMusic: {fileID: 8300000, guid: f513c399476affc4bac4dbe3425b781b, type: 3}
   winMusic: {fileID: 8300000, guid: 4e4799ee7ef0b424d92ceba08e550ef7, type: 3}
   nonShootClip: {fileID: 8300000, guid: 71240ac1db2547a4ca916d3438c80177, type: 3}
-  swordClip: {fileID: 8300000, guid: eda4938389a9cda4fa290c4d35df3de2, type: 3}
-  getHitClip: {fileID: 8300000, guid: 0daa4bd7ccf721c4faa7a61d8fe58390, type: 3}
-  jumpingClip: {fileID: 8300000, guid: a6c98811cc43c2646bf2c7baf175b185, type: 3}
-  dyingClip: {fileID: 8300000, guid: 15cd8c02ab105e54b918c97cdc31cbb3, type: 3}
-  pickupCoinClip: {fileID: 8300000, guid: 808c4bf3192b36e4aa9365737800255f, type: 3}
-  pickupBulletCoinClip: {fileID: 8300000, guid: a4a25bc1fb594e64f9f762d8f2e3f8c3, type: 3}
+  poisonClip: {fileID: 8300000, guid: a4e455bcc94d34540bd3ef99440ba8c0, type: 3}
+  getEnemyHitClip: {fileID: 0}
+  getBulletHitClip: {fileID: 8300000, guid: 77646a2ac73c4fe4ba5bd9d5f6e99d77, type: 3}
+  jumpingClip: {fileID: 8300000, guid: b1bcb13aeec7aba4bab4561ecb11b341, type: 3}
+  dyingClip: {fileID: 8300000, guid: a4e455bcc94d34540bd3ef99440ba8c0, type: 3}
+  pickupCoinClip: {fileID: 8300000, guid: 849f7b5284c0b8c45a31f69cc57bf99e, type: 3}
+  pickupBulletCoinClip: {fileID: 8300000, guid: dc476f359d2226148ac5c6d8d630cee6, type: 3}
   errorPickupBulletCoinClip: {fileID: 8300000, guid: a4e455bcc94d34540bd3ef99440ba8c0, type: 3}
   damageGiftBoxClip: {fileID: 8300000, guid: 777110000c118ee42b3a423432fa179e, type: 3}
   levelUpClip: {fileID: 8300000, guid: c7361ae8b620e2b49a88af5d63f3dbe9, type: 3}
   jumpingSeaClip: {fileID: 8300000, guid: 286fde57fbcd5374e80d1ac2d1ad159b, type: 3}
-  dobbyNonShootClip: {fileID: 0}
-  dobbyPoisonClip: {fileID: 0}
-  dobbyGetEnemyHitClip: {fileID: 0}
-  dobbyGetBulletHitClip: {fileID: 0}
-  dobbyJumpingClip: {fileID: 0}
-  dobbyDyingClip: {fileID: 0}
-  dobbyPickupCoinClip: {fileID: 0}
-  dobbyPickupBulletCoinClip: {fileID: 0}
-  dobbyErrorPickupBulletCoinClip: {fileID: 0}
-  dobbyDamageGiftBoxClip: {fileID: 0}
-  dobbyLevelUpClip: {fileID: 0}
-  dobbyJumpingSeaClip: {fileID: 0}
-  glassyNonShootClip: {fileID: 0}
-  glassyPoisonClip: {fileID: 0}
-  glassyGetEnemyHitClip: {fileID: 0}
-  glassyGetBulletHitClip: {fileID: 0}
-  glassyJumpingClip: {fileID: 0}
-  glassyDyingClip: {fileID: 0}
-  glassyPickupCoinClip: {fileID: 0}
-  glassyPickupBulletCoinClip: {fileID: 0}
-  glassyErrorPickupBulletCoinClip: {fileID: 0}
-  glassyDamageGiftBoxClip: {fileID: 0}
-  glassyLevelUpClip: {fileID: 0}
-  glassyJumpingSeaClip: {fileID: 0}
-  spartacusNonShootClip: {fileID: 8300000, guid: 71240ac1db2547a4ca916d3438c80177, type: 3}
-  spartacusPoisonClip: {fileID: 8300000, guid: f7cfe4315aa2c534c9c5ec68d8d008ee, type: 3}
-  spartacusGetEnemyHitClip: {fileID: 8300000, guid: a4e455bcc94d34540bd3ef99440ba8c0, type: 3}
-  spartacusGetBulletHitClip: {fileID: 8300000, guid: 77646a2ac73c4fe4ba5bd9d5f6e99d77, type: 3}
-  spartacusJumpingClip: {fileID: 8300000, guid: b1bcb13aeec7aba4bab4561ecb11b341, type: 3}
-  spartacusDyingClip: {fileID: 8300000, guid: f0433f439e9f3a14b9cc43c0f0d467d4, type: 3}
-  spartacusPickupCoinClip: {fileID: 8300000, guid: 808c4bf3192b36e4aa9365737800255f, type: 3}
-  spartacusPickupBulletCoinClip: {fileID: 8300000, guid: dc476f359d2226148ac5c6d8d630cee6, type: 3}
-  spartacusErrorPickupBulletCoinClip: {fileID: 8300000, guid: a4e455bcc94d34540bd3ef99440ba8c0, type: 3}
-  spartacusDamageGiftBoxClip: {fileID: 8300000, guid: 777110000c118ee42b3a423432fa179e, type: 3}
-  spartacusLevelUpClip: {fileID: 8300000, guid: c7361ae8b620e2b49a88af5d63f3dbe9, type: 3}
-  spartacusJumpingSeaClip: {fileID: 8300000, guid: 541dd825f41fcac4db4771f59de0b94e, type: 3}
-  guardNonShootClip: {fileID: 0}
-  guardPoisonClip: {fileID: 0}
-  guardGetEnemyHitClip: {fileID: 0}
-  guardGetBulletHitClip: {fileID: 0}
-  guardJumpingClip: {fileID: 0}
-  guardDyingClip: {fileID: 0}
-  guardPickupCoinClip: {fileID: 0}
-  guardPickupBulletCoinClip: {fileID: 0}
-  guardErrorPickupBulletCoinClip: {fileID: 0}
-  guardDamageGiftBoxClip: {fileID: 0}
-  guardLevelUpClip: {fileID: 0}
-  guardJumpingSeaClip: {fileID: 0}
-  lusthNonShootClip: {fileID: 0}
-  lusthPoisonClip: {fileID: 0}
-  lusthGetEnemyHitClip: {fileID: 0}
-  lusthGetBulletHitClip: {fileID: 0}
-  lusthJumpingClip: {fileID: 0}
-  lusthDyingClip: {fileID: 0}
-  lusthPickupCoinClip: {fileID: 0}
-  lusthPickupBulletCoinClip: {fileID: 0}
-  lusthErrorPickupBulletCoinClip: {fileID: 0}
-  lusthDamageGiftBoxClip: {fileID: 0}
-  lusthLevelUpClip: {fileID: 0}
-  lusthJumpingSeaClip: {fileID: 0}
-  eveNonShootClip: {fileID: 0}
-  evePoisonClip: {fileID: 0}
-  eveGetEnemyHitClip: {fileID: 0}
-  eveGetBulletHitClip: {fileID: 0}
-  eveJumpingClip: {fileID: 0}
-  eveDyingClip: {fileID: 0}
-  evePickupCoinClip: {fileID: 0}
-  evePickupBulletCoinClip: {fileID: 0}
-  eveErrorPickupBulletCoinClip: {fileID: 0}
-  eveDamageGiftBoxClip: {fileID: 0}
-  eveLevelUpClip: {fileID: 0}
-  eveJumpingSeaClip: {fileID: 0}
-  michelleNonShootClip: {fileID: 0}
-  michellePoisonClip: {fileID: 0}
-  michelleGetEnemyHitClip: {fileID: 0}
-  michelleGetBulletHitClip: {fileID: 0}
-  michelleJumpingClip: {fileID: 0}
-  michelleDyingClip: {fileID: 0}
-  michellePickupCoinClip: {fileID: 0}
-  michellePickupBulletCoinClip: {fileID: 0}
-  michelleErrorPickupBulletCoinClip: {fileID: 0}
-  michelleDamageGiftBoxClip: {fileID: 0}
-  michelleLevelUpClip: {fileID: 0}
-  michelleJumpingSeaClip: {fileID: 0}
-  bossNonShootClip: {fileID: 0}
-  bossPoisonClip: {fileID: 0}
-  bossGetEnemyHitClip: {fileID: 0}
-  bossGetBulletHitClip: {fileID: 0}
-  bossJumpingClip: {fileID: 0}
-  bossDyingClip: {fileID: 0}
-  bossPickupCoinClip: {fileID: 0}
-  bossPickupBulletCoinClip: {fileID: 0}
-  bossErrorPickupBulletCoinClip: {fileID: 0}
-  bossDamageGiftBoxClip: {fileID: 0}
-  bossLevelUpClip: {fileID: 0}
-  bossJumpingSeaClip: {fileID: 0}
-  ajNonShootClip: {fileID: 0}
-  ajPoisonClip: {fileID: 0}
-  ajGetEnemyHitClip: {fileID: 0}
-  ajGetBulletHitClip: {fileID: 0}
-  ajJumpingClip: {fileID: 0}
-  ajDyingClip: {fileID: 0}
-  ajPickupCoinClip: {fileID: 0}
-  ajPickupBulletCoinClip: {fileID: 0}
-  ajErrorPickupBulletCoinClip: {fileID: 0}
-  ajDamageGiftBoxClip: {fileID: 0}
-  ajLevelUpClip: {fileID: 0}
-  ajJumpingSeaClip: {fileID: 0}
-  mremirehNonShootClip: {fileID: 0}
-  mremirehPoisonClip: {fileID: 0}
-  mremirehGetEnemyHitClip: {fileID: 0}
-  mremirehGetBulletHitClip: {fileID: 0}
-  mremirehJumpingClip: {fileID: 0}
-  mremirehDyingClip: {fileID: 0}
-  mremirehPickupCoinClip: {fileID: 0}
-  mremirehPickupBulletCoinClip: {fileID: 0}
-  mremirehErrorPickupBulletCoinClip: {fileID: 0}
-  mremirehDamageGiftBoxClip: {fileID: 0}
-  mremirehLevelUpClip: {fileID: 0}
-  mremirehJumpingSeaClip: {fileID: 0}
-  tyNonShootClip: {fileID: 0}
-  tyPoisonClip: {fileID: 0}
-  tyGetEnemyHitClip: {fileID: 0}
-  tyGetBulletHitClip: {fileID: 0}
-  tyJumpingClip: {fileID: 0}
-  tyDyingClip: {fileID: 0}
-  tyPickupCoinClip: {fileID: 0}
-  tyPickupBulletCoinClip: {fileID: 0}
-  tyErrorPickupBulletCoinClip: {fileID: 0}
-  tyDamageGiftBoxClip: {fileID: 0}
-  tyLevelUpClip: {fileID: 0}
-  tyJumpingSeaClip: {fileID: 0}
   Ak47Clip: {fileID: 0}
   RifleClip: {fileID: 0}
   BulldogClip: {fileID: 0}

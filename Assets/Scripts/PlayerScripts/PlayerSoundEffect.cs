@@ -29,59 +29,48 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         if (PlayerData.CharacterNames.Dobby == playerData.currentCharacterName)
         {
             currentAudioData = dobbyAudioData;
-            DobbySFXStatement(soundEffectType, currentAudioData);
         }
         else if (PlayerData.CharacterNames.Glassy == playerData.currentCharacterName)
         {
             currentAudioData = glassyAudioData;
-            GlassySFXStatement(soundEffectType, currentAudioData);
         }
         else if (PlayerData.CharacterNames.Spartacus == playerData.currentCharacterName)
         {
             currentAudioData = spartacusAudioData;
-            SpartacusSFXStatement(soundEffectType, currentAudioData);
         }
         else if (PlayerData.CharacterNames.Guard == playerData.currentCharacterName)
         {
             currentAudioData = guardAudioData;
-            GuardSFXStatement(soundEffectType, currentAudioData);
         }
         else if (PlayerData.CharacterNames.Lusth == playerData.currentCharacterName)
         {
             currentAudioData = lusthAudioData;
-            LusthSFXStatement(soundEffectType, currentAudioData);
         }
         else if (PlayerData.CharacterNames.Eve == playerData.currentCharacterName)
         {
             currentAudioData = eveAudioData;
-            EveSFXStatement(soundEffectType, currentAudioData);
         }
         else if (PlayerData.CharacterNames.Michelle == playerData.currentCharacterName)
         {
             currentAudioData = michelleAudioData;
-            MichelleSFXStatement(soundEffectType, currentAudioData);
         }
         else if (PlayerData.CharacterNames.Boss == playerData.currentCharacterName)
         {
             currentAudioData = bossAudioData;
-            BossSFXStatement(soundEffectType, currentAudioData);
         }
         else if (PlayerData.CharacterNames.Aj == playerData.currentCharacterName)
         {
             currentAudioData = ajAudioData;
-            AjSFXStatement(soundEffectType, currentAudioData);
         }
         else if (PlayerData.CharacterNames.Mremireh == playerData.currentCharacterName)
         {
             currentAudioData = mremirehAudioData;
-            MremirehSFXStatement(soundEffectType, currentAudioData);
         }
         else if (PlayerData.CharacterNames.Ty == playerData.currentCharacterName)
         {
             currentAudioData = tyAudioData;
-            TySFXStatement(soundEffectType, currentAudioData);
         }
-
+        SFXStatement(soundEffectType, currentAudioData);
     }
 
     public void ShootSoundEffectStatement(ShootSoundEffectTypes shootSoundEffectType)
