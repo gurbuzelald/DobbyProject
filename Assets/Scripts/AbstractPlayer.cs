@@ -347,7 +347,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Mremireh)
         {
-            _playerData.playerSpeed = 2.5f;
+            _playerData.playerSpeed = 1.2f;
         }
         else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
         {

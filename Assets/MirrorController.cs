@@ -16,6 +16,7 @@ public class MirrorController : MonoBehaviour
         {
             triggerMirror = true;
             _playerData.currentMirrorName = gameObject.name;
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Teleport);
         }
     }
 }

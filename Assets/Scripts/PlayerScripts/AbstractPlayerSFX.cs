@@ -81,6 +81,10 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.jumpingSeaClip);
         }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Teleport)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.teleportClip);
+        }
     }
 
     public void WeaponSFX(PlayerSoundEffect.ShootSoundEffectTypes shootSoundEffectType, AudioData audioData)

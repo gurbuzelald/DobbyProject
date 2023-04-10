@@ -28,6 +28,7 @@ public class AudioData : ScriptableObject
     public AudioClip damageGiftBoxClip;
     public AudioClip levelUpClip;
     public AudioClip jumpingSeaClip;
+    public AudioClip teleportClip;
 
     [Header("Weapons")]
     public AudioClip Ak47Clip;
