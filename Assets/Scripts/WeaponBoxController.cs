@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WeaponBoxController : MonoBehaviour
 {
-
     private int damageToWeaponBox;
     [SerializeField] GameObject damageGiftBoxParticle;
     private GameObject _damageGiftBoxParticle;

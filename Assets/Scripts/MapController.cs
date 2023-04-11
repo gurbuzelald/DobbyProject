@@ -12,10 +12,10 @@ public class MapController : MonoBehaviour
     void Awake()
     {
         currentMap = Instantiate(Maps[0], gameObject.transform);
-        //DarknesCubesActivity();
+        //DarknessCubesActivity();
         //currentMap.transform.GetChild(1).gameObject.SetActive(true);
     }
-    void DarknesCubesActivity()
+    void DarknessCubesActivity()
     {
         //StartCoroutine(DelayDarknesCubesClose());
     }
@@ -25,33 +25,43 @@ public class MapController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         currentMap.transform.GetChild(1).gameObject.SetActive(false);
     }
-    // Update is called once per frame
+    IEnumerator DelayTruePlayable()
+    {
+        yield return new WaitForSeconds(0.5f);
+        playerData.isPlayable = true;
+    }
     void Update()
     {
         if (playerData.isCompleteFirstMap)
         {
             if (currentMap != null)
             {
-                DarknesCubesActivity();
-                Destroy(currentMap);
+                playerData.isPlayable = false;
+                DarknessCubesActivity();
+                Destroy(currentMap, 1);
                 CreateMap(Maps[1], gameObject.transform);
                 playerData.isCompleteFirstMap = false;
+                StartCoroutine(DelayTruePlayable());
             }
             
         }
         else if (playerData.isCompleteSecondMap)
         {
-            DarknesCubesActivity();
-            Destroy(currentMap);
+            playerData.isPlayable = false;
+            DarknessCubesActivity();
+            Destroy(currentMap, 1);
             CreateMap(Maps[2], gameObject.transform);
             playerData.isCompleteSecondMap = false;
+            StartCoroutine(DelayTruePlayable());
         }
         else if (playerData.isCompleteThirdMap)
         {
-            DarknesCubesActivity();
-            Destroy(currentMap);
+            playerData.isPlayable = false;
+            DarknessCubesActivity();
+            Destroy(currentMap, 1);
             CreateMap(Maps[3], gameObject.transform);
             playerData.isCompleteThirdMap = false;
+            StartCoroutine(DelayTruePlayable());
         }
     }
     void CreateMap(GameObject mapObject, Transform mapTransform)

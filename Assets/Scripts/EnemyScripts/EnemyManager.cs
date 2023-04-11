@@ -33,6 +33,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     void Start()
     {
+        enemyData.bulletCoinActivate = false;
         _damageText.text = "";
         _damageText.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
@@ -320,22 +321,31 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     public IEnumerator DelayDestroy(float delayDestroy)
     {
+        StartCoroutine(CreateDestroyParticle());
+        
         yield return new WaitForSeconds(delayDestroy);
         Destroy(gameObject);
+        
         enemyData.isWalking = true;
         enemyData.isDying = false;
-        CreateBulletCoin();
     }
-    void CreateBulletCoin()
-    {
-        GameObject bulletCoin = Instantiate(_bulletCoin,
-                                            new Vector3(gameObject.transform.position.x,
-                                                        _bulletCoin.transform.position.y, 
-                                                        gameObject.transform.position.z), 
-                                            Quaternion.identity, 
-                                            PlayerManager.GetInstance.bulletCoinTransform);
-        bulletCoin.transform.eulerAngles = new Vector3(0f, gameObject.transform.eulerAngles.y + 90f, 90f);
+    IEnumerator CreateDestroyParticle() {
+        Transform currentBulletCoinTransform = gameObject.transform;
+
+        enemyData.bulletCoinActivate = true;
+
+        yield return new WaitForSeconds(2f);
+
+        GameObject enemyDestroyParticle = Instantiate(enemyData._enemyDestroyParticle,
+                            new Vector3(currentBulletCoinTransform.position.x,
+                                        enemyData._playerBulletObject.transform.position.y,
+                                        currentBulletCoinTransform.position.z),
+                            Quaternion.identity);
+
+        Destroy(enemyDestroyParticle, 2f);
     }
+    
+
     //SFX States
     public void PlaySoundEffect(SoundEffectTypes soundEffect, AudioSource audioSource)
     {

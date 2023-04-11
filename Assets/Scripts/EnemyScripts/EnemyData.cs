@@ -5,6 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewEnemyData", menuName = "EnemyData")]
 public class EnemyData : ScriptableObject
 {
+    [Header("Particles")]
+    public GameObject _enemyDestroyParticle;
+
+    [Header("Bullet Object")]
+    public GameObject _playerBulletObject;
+    public bool bulletCoinActivate;
+
     [Header("Objects")]
     public GameObject[] enemyFirstObjects;
     public GameObject[] enemySecondObjects;

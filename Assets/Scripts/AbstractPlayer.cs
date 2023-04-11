@@ -1101,7 +1101,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     #region //Health
     public virtual void IncreaseHealth(int damageHealthValue, ref GameObject _healthBarObject, ref GameObject _topCanvasHealthBarObject)
     {
-        if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 50)
+        if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value < 100)
         {
             _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value += damageHealthValue;
 

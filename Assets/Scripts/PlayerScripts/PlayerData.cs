@@ -3,7 +3,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Finishes")]
+    public GameObject[] _healtCoinTransform;
+    public GameObject _healtCoinObject;
 
+    [Header("Mirror")]
     public string currentMirrorName;
 
     [Header("Finishes")]

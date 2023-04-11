@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  _healtCoinTransform:
+  - {fileID: 1707016675134421311, guid: 06d257ec3674d9446806cfc13725069b, type: 3}
+  _healtCoinObject: {fileID: 9077765185764460176, guid: a275adbe230564749ac78dcd554d00e3, type: 3}
   currentMirrorName: Mirror1
   _finishAreas: {fileID: 311188628955670743, guid: 147c08b652e1e9a4288e6347fc94ddab, type: 3}
   isCompleteFirstMap: 0
@@ -91,7 +94,7 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 44
+  bulletAmount: 30
   bulletPack: 30
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1660900818451563847}
   - component: {fileID: 1660900818451563846}
   - component: {fileID: 1660900818451563865}
+  - component: {fileID: 246250166637590282}
   m_Layer: 12
   m_Name: HealthCoin
   m_TagString: HealthCoin
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1660900818451563867}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4130468845157623843}
@@ -63,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6762671d35dd8da4cb9b03d578ecac3f, type: 2}
+  - {fileID: 2100000, guid: d265a6dd7bcb1034bbf2ec6dc9327413, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,11 +94,23 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660900818451563867}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2210281, y: 0.2, z: 0.22162688}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.66307795, y: 0.30237505, z: 0.47461802}
+  m_Center: {x: 0.0028280613, y: 0.14691053, z: 2.0877238e-15}
+--- !u!114 &246250166637590282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660900818451563867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f215dade6da5f84e96e173b9453e397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4130468844403943558
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,7 +137,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4130468844403943558}
   m_LocalRotation: {x: 0, y: -0.70710677, z: 0.70710677, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.861}
+  m_LocalPosition: {x: 0, y: 0, z: 0.932}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -133,7 +146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 90, z: 270}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.645, y: 0.793}
+  m_AnchoredPosition: {x: 0.645, y: 0.811}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &4130468844403943563
@@ -173,8 +186,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -361,7 +374,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4130468845534158080}
   m_LocalRotation: {x: -0.70710677, y: 0, z: 0, w: 0.70710677}
-  m_LocalPosition: {x: 0, y: 0, z: 0.953}
+  m_LocalPosition: {x: 0, y: 0, z: 0.999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -370,7 +383,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 270, y: 90, z: 270}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.317, y: 0.496}
+  m_AnchoredPosition: {x: 0.317, y: 0.483}
   m_SizeDelta: {x: 0, y: 0.04400003}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &4130468845534158085
@@ -410,8 +423,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

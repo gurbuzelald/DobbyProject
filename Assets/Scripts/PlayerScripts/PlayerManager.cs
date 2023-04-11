@@ -295,6 +295,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         if (other.CompareTag(SceneController.Tags.HealthCoin.ToString()))
         {
             iPlayerHealth.IncreaseHealth(50, ref _healthBarObject, ref _topCanvasHealthBarObject);
+            Destroy(other.gameObject, 1f);
         }
 
 
