@@ -33,7 +33,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     void Start()
     {
-        enemyData.bulletCoinActivate = false;
         _damageText.text = "";
         _damageText.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
@@ -147,11 +146,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         if (other.CompareTag(SceneController.Tags.Sword.ToString()))
         {
-            TriggerSlaveSword(32f);
-        }
-        if (other.CompareTag(SceneController.Tags.SlaveSword.ToString()))
-        {
-            TriggerSlaveSword(2f);
+            TriggerSword(32f);
         }
     }
     void OnTriggerStay(Collider other)
@@ -222,7 +217,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             gameObject.transform.Rotate(0f, 180f, 0f);
         }
     }
-    public void TriggerSlaveSword(float bulletPower)
+    public void TriggerSword(float bulletPower)
     {
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
         StartCoroutine(DelayStopEnemy(3f));
@@ -240,7 +235,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isSpeedZero = true;
                 StartCoroutine(DelayStopEnemy(5f));
                 Destroy(_healthBar);
-                ScoreController.GetInstance.SetScore(20);
+                ScoreController.GetInstance.SetScore(2);
                 PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
                 StartCoroutine(DelayDestroy(2f));
             }
@@ -285,7 +280,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isSpeedZero = true;
                 StartCoroutine(DelayStopEnemy(5f));
                 Destroy(_healthBar);
-                ScoreController.GetInstance.SetScore(20);
+                ScoreController.GetInstance.SetScore(2);
                 PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
                 StartCoroutine(DelayDestroy(2f));                
             }
@@ -331,8 +326,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     IEnumerator CreateDestroyParticle() {
         Transform currentBulletCoinTransform = gameObject.transform;
-
-        enemyData.bulletCoinActivate = true;
 
         yield return new WaitForSeconds(2f);
 

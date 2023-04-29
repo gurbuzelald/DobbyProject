@@ -10,6 +10,8 @@ public class SettingController : MonoBehaviour
     [SerializeField] RectTransform _soundSettingsPanel;
     [SerializeField] RectTransform _sensivitySettingsPanel;
 
+    [SerializeField] RectTransform _chooseCharacterButton;
+
     [Header("Sensivity")]
     [SerializeField] Slider _sensivityX;
     [SerializeField] Slider _sensivityY;
@@ -61,12 +63,16 @@ public class SettingController : MonoBehaviour
         {
             _soundSettingsPanel.localScale = Vector3.one;
             _sensivitySettingsPanel.localScale = Vector3.one;
+
+            _chooseCharacterButton.localScale = Vector3.zero;
         }
         else
         {
             _soundSettingsPanel.localScale = Vector3.zero;
             _sensivitySettingsPanel.localScale = Vector3.zero;
-        }        
+
+            _chooseCharacterButton.localScale = Vector3.one;
+        }
     }
     public void SetDefaulth()
     {

@@ -479,6 +479,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &1863513712 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5889377280168332990, guid: a61e229668daba14eb3b7572febee9e3, type: 3}
+  m_PrefabInstance: {fileID: 5889377279205821899}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &3561150236388728894 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5585044801702287410, guid: 120214d728964f545bbced5a09cf92f4, type: 3}
@@ -693,6 +698,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1283124261}
+    - target: {fileID: 5889377280568054519, guid: a61e229668daba14eb3b7572febee9e3, type: 3}
+      propertyPath: _chooseCharacterButton
+      value: 
+      objectReference: {fileID: 1863513712}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a61e229668daba14eb3b7572febee9e3, type: 3}
 --- !u!1001 &9000918765598472204

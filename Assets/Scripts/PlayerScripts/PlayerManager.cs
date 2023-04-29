@@ -191,7 +191,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 collision.collider.gameObject.SetActive(false);
 
                 //SettingScore
-                ScoreController.GetInstance.SetScore(230);
+                ScoreController.GetInstance.SetScore(2);
                 iPlayerScore.ScoreTextGrowing(0, 255, 0);
                 //CreateSlaveObject();
             }
@@ -256,8 +256,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             StartCoroutine(iPlayerTrigger.DelayLevelUp(2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
         }
-
-
         if (other.CompareTag(SceneController.Tags.Coin.ToString()))
         {
             iPlayerTrigger.PickUpCoin(SceneController.Tags.Coin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas);//GetScore
@@ -275,7 +273,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         if (other.CompareTag(SceneController.Tags.MushroomCoin.ToString()))
         {
-            iPlayerScore.DecreaseScore(100);
+            iPlayerScore.DecreaseScore(10);
 
             iPlayerTrigger.PickUpCoin(SceneController.Tags.MushroomCoin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas);
             if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value > 0)
@@ -294,7 +292,10 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         if (other.CompareTag(SceneController.Tags.HealthCoin.ToString()))
         {
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.IncreasingHealth);
+
             iPlayerHealth.IncreaseHealth(50, ref _healthBarObject, ref _topCanvasHealthBarObject);
+
             Destroy(other.gameObject, 1f);
         }
 

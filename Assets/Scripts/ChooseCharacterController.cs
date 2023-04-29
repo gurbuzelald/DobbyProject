@@ -8,6 +8,7 @@ public class ChooseCharacterController : MonoBehaviour
 
     [SerializeField] GameObject _panelObject;
     [SerializeField] PlayerData playerData;
+    [SerializeField] PlayerCoinData playerCoinData;
 
 
     private PlayerController _playerController;
@@ -24,17 +25,17 @@ public class ChooseCharacterController : MonoBehaviour
     }
     void CharacterChooseStates()
     {        
-        ChoosedSpartacus();
-        ChoosedGlassy();
-        ChoosedDobby();
-        ChoosedLusth();
-        ChoosedGuard();
-        ChoosedEve();
-        ChoosedMichelle();
-        ChoosedBoss();
-        ChoosedAj();
-        ChoosedMremireh();
-        ChoosedTy();
+        ChoosedSpartacus(0);
+        ChoosedGlassy(100);
+        ChoosedDobby(200);
+        ChoosedLusth(300);
+        ChoosedGuard(400);
+        ChoosedEve(500);
+        ChoosedMichelle(600);
+        ChoosedBoss(700);
+        ChoosedAj(800);
+        ChoosedMremireh(900);
+        ChoosedTy(1000);
     }
 
     void RotateCharacters()
@@ -64,94 +65,133 @@ public class ChooseCharacterController : MonoBehaviour
                                                              _panelObject.transform.position.z);
             }
         }
+        if (_panelObject.transform.localPosition.x > 0)
+        {
+            _panelObject.transform.localPosition = new Vector3(0f, _panelObject.transform.localPosition.y, _panelObject.transform.localPosition.z);
+        }
+        if (_panelObject.transform.localPosition.x < -9000)
+        {
+            _panelObject.transform.localPosition = new Vector3(-9000f, _panelObject.transform.localPosition.y, _panelObject.transform.localPosition.z);
+        }
     }
-    public void ChoosedSpartacus()
+    public void ChoosedSpartacus(int avaliableCoinAmount)
     {
-        if (_playerController.Spartacus)
+        if (_playerController.Spartacus && playerCoinData.avaliableCoin >= avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Spartacus;
+
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
-    public void ChoosedDobby()
+    public void ChoosedDobby(int avaliableCoinAmount)
     {
-        if (_playerController.Dobby)
+        if (_playerController.Dobby && playerCoinData.avaliableCoin > avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
+
+            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
-    public void ChoosedGlassy()
+    public void ChoosedGlassy(int avaliableCoinAmount)
     {
-        if (_playerController.Glassy)
+        if (_playerController.Glassy && playerCoinData.avaliableCoin > avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Glassy;
+
+            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
-    public void ChoosedLusth()
+    public void ChoosedLusth(int avaliableCoinAmount)
     {
-        if ((_playerController.Lusth))
+        if ((_playerController.Lusth) && playerCoinData.avaliableCoin > avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Lusth;
+
+            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
-    public void ChoosedGuard()
+    public void ChoosedGuard(int avaliableCoinAmount)
     {
-        if ((_playerController.Guard))
+        if ((_playerController.Guard) && playerCoinData.avaliableCoin > avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Guard;
+
+            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
             SceneController.GetInstance.LoadMenuScene();
         }            
     }
-    public void ChoosedEve()
+    public void ChoosedEve(int avaliableCoinAmount)
     {
-        if ((_playerController.Eve))
+        if ((_playerController.Eve) && playerCoinData.avaliableCoin > avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Eve;
+
+            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
-    public void ChoosedMichelle()
+    public void ChoosedMichelle(int avaliableCoinAmount)
     {
-        if ((_playerController.Michelle))
+        if ((_playerController.Michelle) && playerCoinData.avaliableCoin > avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Michelle;
+
+            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
-    public void ChoosedBoss()
+    public void ChoosedBoss(int avaliableCoinAmount)
     {
-        if ((_playerController.Boss))
+        if ((_playerController.Boss) && playerCoinData.avaliableCoin > avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Boss;
+
+            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
-    public void ChoosedAj()
+    public void ChoosedAj(int avaliableCoinAmount)
     {
-        if ((_playerController.Aj))
+        if ((_playerController.Aj) && playerCoinData.avaliableCoin > avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Aj;
+
+            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
 
-    public void ChoosedMremireh()
+    public void ChoosedMremireh(int avaliableCoinAmount)
     {
-        if ((_playerController.Mremireh))
+        if ((_playerController.Mremireh) && playerCoinData.avaliableCoin > avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Mremireh;
+
+            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
 
-    public void ChoosedTy()
+    public void ChoosedTy(int avaliableCoinAmount)
     {
-        if ((_playerController.Ty))
+        if ((_playerController.Ty) && playerCoinData.avaliableCoin > avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Ty;
+
+            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
             SceneController.GetInstance.LoadMenuScene();
         }
     }

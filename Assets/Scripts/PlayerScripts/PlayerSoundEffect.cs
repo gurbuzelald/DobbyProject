@@ -113,49 +113,49 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         }
     }
 
-    public void SwordSoundEffectStatement(SwordtSoundEffectTypes swordSoundEffectType)
+    public void SwordSoundEffectStatement(SwordSoundEffectTypes swordSoundEffectType)
     {
-        if (PlayerSoundEffect.SwordtSoundEffectTypes.LowSword == swordSoundEffectType)
+        if (PlayerSoundEffect.SwordSoundEffectTypes.LowSword == swordSoundEffectType)
         {
             SwordSFX(swordSoundEffectType, swordAudioData);
         }
-        else if (PlayerSoundEffect.SwordtSoundEffectTypes.WarriorSword == swordSoundEffectType)
+        else if (PlayerSoundEffect.SwordSoundEffectTypes.WarriorSword == swordSoundEffectType)
         {
             SwordSFX(swordSoundEffectType, swordAudioData);
         }
-        else if (PlayerSoundEffect.SwordtSoundEffectTypes.Hummer == swordSoundEffectType)
+        else if (PlayerSoundEffect.SwordSoundEffectTypes.Hummer == swordSoundEffectType)
         {
             SwordSFX(swordSoundEffectType, swordAudioData);
         }
-        else if (PlayerSoundEffect.SwordtSoundEffectTypes.OrcSword == swordSoundEffectType)
+        else if (PlayerSoundEffect.SwordSoundEffectTypes.OrcSword == swordSoundEffectType)
         {
             SwordSFX(swordSoundEffectType, swordAudioData);
         }
-        else if (PlayerSoundEffect.SwordtSoundEffectTypes.AxeSword == swordSoundEffectType)
+        else if (PlayerSoundEffect.SwordSoundEffectTypes.AxeSword == swordSoundEffectType)
         {
             SwordSFX(swordSoundEffectType, swordAudioData);
         }
-        else if (PlayerSoundEffect.SwordtSoundEffectTypes.AxeKnight == swordSoundEffectType)
+        else if (PlayerSoundEffect.SwordSoundEffectTypes.AxeKnight == swordSoundEffectType)
         {
             SwordSFX(swordSoundEffectType, swordAudioData);
         }
-        else if (PlayerSoundEffect.SwordtSoundEffectTypes.BarbarianSword == swordSoundEffectType)
+        else if (PlayerSoundEffect.SwordSoundEffectTypes.BarbarianSword == swordSoundEffectType)
         {
             SwordSFX(swordSoundEffectType, swordAudioData);
         }
-        else if (PlayerSoundEffect.SwordtSoundEffectTypes.DemonSword == swordSoundEffectType)
+        else if (PlayerSoundEffect.SwordSoundEffectTypes.DemonSword == swordSoundEffectType)
         {
             SwordSFX(swordSoundEffectType, swordAudioData);
         }
-        else if (PlayerSoundEffect.SwordtSoundEffectTypes.MagicSword == swordSoundEffectType)
+        else if (PlayerSoundEffect.SwordSoundEffectTypes.MagicSword == swordSoundEffectType)
         {
             SwordSFX(swordSoundEffectType, swordAudioData);
         }
-        else if (PlayerSoundEffect.SwordtSoundEffectTypes.LongHummer == swordSoundEffectType)
+        else if (PlayerSoundEffect.SwordSoundEffectTypes.LongHummer == swordSoundEffectType)
         {
             SwordSFX(swordSoundEffectType, swordAudioData);
         }
-        else if (PlayerSoundEffect.SwordtSoundEffectTypes.Club == swordSoundEffectType)
+        else if (PlayerSoundEffect.SwordSoundEffectTypes.Club == swordSoundEffectType)
         {
             SwordSFX(swordSoundEffectType, swordAudioData);
         }
@@ -173,7 +173,7 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         Negev,
         Axegun
     }
-    public enum SwordtSoundEffectTypes
+    public enum SwordSoundEffectTypes
     {
         LowSword,
         WarriorSword,
@@ -202,6 +202,7 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         DamageGiftBox,
         LevelUp, 
         ShootOff,
-        Teleport
+        Teleport,
+        IncreasingHealth
     }
 }

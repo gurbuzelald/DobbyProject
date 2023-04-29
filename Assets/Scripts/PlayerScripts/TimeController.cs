@@ -8,10 +8,12 @@ public class TimeController : MonoBehaviour
     private float _time;
     private float _swordTime;
     private float _weaponTime;
+    private float _enemySpawnTime;
     public PlayerData playerData;
     [SerializeField] TextMeshProUGUI _timeText;
     [SerializeField] TextMeshProUGUI _warmTimeText;
     [SerializeField] TextMeshProUGUI _swordTimeText;
+    [SerializeField] EnemySpawner _enemySpawner;
     void Start()
     {
         _warmTimeText.transform.localScale = Vector3.zero;
@@ -20,6 +22,7 @@ public class TimeController : MonoBehaviour
         _time = 0;
         _swordTime = 0;
         _weaponTime = 0;
+        _enemySpawnTime = 0;
     }
 
     // Update is called once per frame
@@ -28,6 +31,7 @@ public class TimeController : MonoBehaviour
         GetTime(900);
         SwordTimer(playerData, _swordTimeText);
         WeaponTimer(playerData);
+        EnemySpawnTimer(10);
     }
     private void GetTime(int timeValue)
     {
@@ -83,6 +87,21 @@ public class TimeController : MonoBehaviour
         }
 
         _weaponTime += Time.deltaTime;
+    }
+
+    public void EnemySpawnTimer(int enemSpawnDelayer)
+    {
+        if (_enemySpawnTime >= enemSpawnDelayer)
+        {
+            _enemySpawnTime = 0;
+            _enemySpawner.isActivateCreateEnemy = true;
+        }
+        else
+        {
+            _enemySpawner.isActivateCreateEnemy = false;
+        }
+
+        _enemySpawnTime += Time.deltaTime;
     }
     enum SwordTexts
     {

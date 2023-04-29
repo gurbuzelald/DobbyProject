@@ -663,10 +663,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
 
             //Trigger
-            other.gameObject.SetActive(false);
+            Destroy(other.gameObject);
+            //other.gameObject.SetActive(false);
 
             //Score
-            ScoreController.GetInstance.SetScore(23);
+            ScoreController.GetInstance.SetScore(1);
             //CreateSlaveObject();
         }
         else if (value == SceneController.Tags.RotateCoin)
@@ -690,7 +691,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             other.gameObject.SetActive(false);
 
             //SettingScore
-            ScoreController.GetInstance.SetScore(23);
+            ScoreController.GetInstance.SetScore(1);
             //CreateSlaveObject();
         }
         else if (value == SceneController.Tags.CheeseCoin)
@@ -712,7 +713,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             other.gameObject.SetActive(false);
 
             //SettingScore
-            ScoreController.GetInstance.SetScore(23);
+            ScoreController.GetInstance.SetScore(1);
             //CreateSlaveObject();
         }
         else if (value == SceneController.Tags.MushroomCoin)
@@ -1046,7 +1047,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     #region //Score
     public virtual void DecreaseScore(int scoreDamageValue)
     {
-
         ScoreTextGrowing(255, 0, 0);
 
         if (ScoreController._scoreAmount > scoreDamageValue)
@@ -1070,11 +1070,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
         if (ScoreController._scoreAmount > scoreDamageValue)
         {
-            ScoreController.GetInstance.SetScore(-scoreDamageValue);
+            ScoreController.GetInstance.SetScore(scoreDamageValue);
         }
         else if (ScoreController._scoreAmount < scoreDamageValue && ScoreController._scoreAmount > 0)
         {
-            ScoreController.GetInstance.SetScore(-ScoreController._scoreAmount);
+            ScoreController.GetInstance.SetScore(ScoreController._scoreAmount);
         }
         else if (ScoreController._scoreAmount <= 0)
         {

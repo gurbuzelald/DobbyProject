@@ -85,6 +85,10 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.teleportClip);
         }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.IncreasingHealth)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.healthClip);
+        }
     }
 
     public void WeaponSFX(PlayerSoundEffect.ShootSoundEffectTypes shootSoundEffectType, AudioData audioData)
@@ -127,49 +131,49 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         }
     }
 
-    public void SwordSFX(PlayerSoundEffect.SwordtSoundEffectTypes swordSoundEffectType, AudioData audioData)
+    public void SwordSFX(PlayerSoundEffect.SwordSoundEffectTypes swordSoundEffectType, AudioData audioData)
     {
-        if (swordSoundEffectType == PlayerSoundEffect.SwordtSoundEffectTypes.LowSword)
+        if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.LowSword)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.LowSwordClip);
         }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordtSoundEffectTypes.WarriorSword)
+        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.WarriorSword)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.WarriorSwordClip);
         }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordtSoundEffectTypes.Hummer)
+        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.Hummer)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.HummerClip);
         }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordtSoundEffectTypes.OrcSword)
+        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.OrcSword)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.OrcSwordClip);
         }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordtSoundEffectTypes.AxeSword)
+        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.AxeSword)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.AxeSwordClip);
         }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordtSoundEffectTypes.AxeKnight)
+        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.AxeKnight)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.AxeKnightClip);
         }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordtSoundEffectTypes.BarbarianSword)
+        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.BarbarianSword)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.BarbarianSwordClip);
         }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordtSoundEffectTypes.DemonSword)
+        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.DemonSword)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.DemonSwordClip);
         }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordtSoundEffectTypes.MagicSword)
+        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.MagicSword)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.MagicSwordClip);
         }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordtSoundEffectTypes.LongHummer)
+        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.LongHummer)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.LongHummerClip);
         }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordtSoundEffectTypes.Club)
+        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.Club)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ClubClip);
         }

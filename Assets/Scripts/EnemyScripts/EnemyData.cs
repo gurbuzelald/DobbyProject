@@ -10,7 +10,6 @@ public class EnemyData : ScriptableObject
 
     [Header("Bullet Object")]
     public GameObject _playerBulletObject;
-    public bool bulletCoinActivate;
 
     [Header("Objects")]
     public GameObject[] enemyFirstObjects;

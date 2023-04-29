@@ -17,22 +17,15 @@ MonoBehaviour:
   m_MaterialReferences: []
 --- !u!21 &2100000
 Material:
-  serializedVersion: 8
+  serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Heather
   m_Shader: {fileID: -6465566751694194690, guid: dfa3b96612ed4df4a97b7fd06217ba23, type: 3}
-  m_ValidKeywords:
-  - _BUILTIN_ALPHATEST_ON
-  - _BUILTIN_AlphaClip
-  m_InvalidKeywords:
-  - _ALPHATEST_ON
-  - _DISABLE_DECALS
-  - _DISABLE_SSR
-  - _DISABLE_SSR_TRANSPARENT
-  - _DOUBLESIDED_ON
+  m_ShaderKeywords: _ALPHATEST_ON _BUILTIN_ALPHATEST_ON _BUILTIN_AlphaClip _DISABLE_DECALS
+    _DISABLE_SSR _DISABLE_SSR_TRANSPARENT _DOUBLESIDED_ON
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -118,10 +111,10 @@ Material:
     m_Floats:
     - AO_Scale: 0.5
     - Alpha_Clip_Threshold: 0.86
-    - Animation_Cutoff: 0
+    - Animation_Cutoff: 20
     - Boolean_42a44e347a464bd59e694ae00ebc61d5: 0
-    - Distance_Fade_End: 0
-    - Distance_Fade_Start: 1
+    - Distance_Fade_End: 80
+    - Distance_Fade_Start: 40
     - Dither_Scale: 1.5
     - Enable_Blend_Terrain_Color: 0
     - Normal_Scale: 1
@@ -138,16 +131,16 @@ Material:
     - Vector1_33cc054b3f4645e9a533ccc659b670a2: 48
     - Vector1_422091274f8d4e31bed0352887ce87fe: 0.05
     - Vector1_470c7ffcdf88403a8c7144266a4f3546: 10
-    - Vector1_593c5cea6c4a42e993ed03ced4685732: 0
+    - Vector1_593c5cea6c4a42e993ed03ced4685732: 0.5
     - Vector1_687109297e874d1a848c7007e0a6b58e: 180
-    - Vector1_8651797e3e304e108dbd25f9d5a426ba: 0
+    - Vector1_8651797e3e304e108dbd25f9d5a426ba: 0.81
     - Vector1_88a79d61c4924a7f8a3cd9694abcada1: 5
     - Vector1_8d0ed5c4e8184041a818498c5845e583: 0
     - Vector1_9D07BAD0: 0
     - Vector1_9dc2909fd83248fd8cfeb0e11d3c6a69: 3
     - Vector1_CC8AC700: 0
-    - Vector1_a5b8b09028ce49a39f4d090894c89e22: 0.01
-    - Vector1_a6983181c8dc4691ba6a28a34c4223a6: 0
+    - Vector1_a5b8b09028ce49a39f4d090894c89e22: 0.5
+    - Vector1_a6983181c8dc4691ba6a28a34c4223a6: 1
     - Vector1_d83984afb5544f70917fb9a962dcc101: 51
     - Vector1_ea86e9e96fde4ee9b3a9534d87b290d3: 1
     - Vector1_f46ed9607e984836a16fb226b0b8a203: 0
@@ -156,7 +149,7 @@ Material:
     - Wind_Blast: 0.1
     - Wind_Intensity: 0.05
     - Wind_Ripples: 0.05
-    - Wind_Speed: 0
+    - Wind_Speed: 5
     - Wind_Turbulence: 0
     - Wind_Turbulence_1: 0
     - Wind_Wavelength: 10

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2685585295929571721}
   - component: {fileID: 2851967943813638551}
   - component: {fileID: 2850917164752338965}
-  - component: {fileID: 119538442}
   m_Layer: 0
   m_Name: EnemyDestroyParticle
   m_TagString: Untagged
@@ -43,14 +42,14 @@ ParticleSystem:
   m_GameObject: {fileID: 2689552222238927185}
   serializedVersion: 8
   lengthInSec: 5
-  simulationSpeed: 0.1
-  stopAction: 2
+  simulationSpeed: 5
+  stopAction: 1
   cullingMode: 3
-  ringBufferMode: 1
+  ringBufferMode: 2
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
-  prewarm: 1
+  looping: 0
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -206,7 +205,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.8314501, b: 0, a: 0.14117648}
+      maxColor: {r: 1, g: 0.5990566, b: 0.89825076, a: 0.14117648}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -584,7 +583,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 100
+    maxNumParticles: 1
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -719,7 +718,7 @@ ParticleSystem:
     m_SpriteRenderer: {fileID: 0}
     m_UseMeshMaterialIndex: 0
     m_UseMeshColors: 1
-    alignToDirection: 0
+    alignToDirection: 1
     m_Texture: {fileID: 0}
     m_TextureClipChannel: 3
     m_TextureClipThreshold: 0
@@ -727,7 +726,7 @@ ParticleSystem:
     m_TextureColorAffectsParticles: 1
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
-    randomDirectionAmount: 0
+    randomDirectionAmount: 1
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
@@ -789,7 +788,7 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 360
-      mode: 0
+      mode: 2
       spread: 0
       speed:
         serializedVersion: 2
@@ -850,7 +849,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 75
+      scalar: 25
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -1288,8 +1287,8 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.9607843, g: 0.80322653, b: 0.0039215437, a: 1}
-        key1: {r: 1, g: 0.8207309, b: 0, a: 1}
+        key0: {r: 0.33962262, g: 0.09772159, b: 0.3013756, a: 1}
+        key1: {r: 1, g: 1, b: 1, a: 1}
         key2: {r: 0.2517689, g: 1, b: 1, a: 0.77254903}
         key3: {r: 1, g: 0.5942211, b: 0.09411764, a: 0.6431373}
         key4: {r: 0, g: 0, b: 0, a: 0}
@@ -4793,12 +4792,12 @@ ParticleSystemRenderer:
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 0
-  m_ApplyActiveColorSpace: 0
+  m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -4807,16 +4806,3 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &119538442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2689552222238927185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c798219194625d846be07c8cd87a0f7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
