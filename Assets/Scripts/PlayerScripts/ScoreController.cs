@@ -31,6 +31,8 @@ public class ScoreController : AbstractPlayer<ScoreController>
         }
         else if (SceneController.playAgain)
         {
+            playerCoinData.avaliableCoin -= PlayerPrefs.GetInt("ScoreAmount");
+
             _scoreAmount = 0;
             PlayerPrefs.SetInt("ScoreAmount", 0);
             _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
@@ -48,8 +50,8 @@ public class ScoreController : AbstractPlayer<ScoreController>
     public int SetScore(int scoreAmount)
     {
         _scored = true;
-        _scoreAmount += scoreAmount;
-        PlayerPrefs.SetInt("ScoreAmount", _scoreAmount);
+        _scoreAmount += scoreAmount;       
+        PlayerPrefs.SetInt("ScoreAmount", _scoreAmount);        
         playerCoinData.avaliableCoin += scoreAmount;
         avaliableCoinText.text = playerCoinData.avaliableCoin.ToString();
         return _scoreAmount;

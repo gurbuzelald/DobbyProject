@@ -4,6 +4,9 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     [Header("Finishes")]
+    public int enemySpawnDelay;
+
+    [Header("Finishes")]
     public GameObject[] _healtCoinTransform;
     public GameObject _healtCoinObject;
 

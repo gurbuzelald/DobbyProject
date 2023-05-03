@@ -294,9 +294,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.IncreasingHealth);
 
-            iPlayerHealth.IncreaseHealth(50, ref _healthBarObject, ref _topCanvasHealthBarObject);
-
-            Destroy(other.gameObject, 1f);
+            iPlayerHealth.IncreaseHealth(50, ref _healthBarObject, ref _topCanvasHealthBarObject, other);
         }
 
 

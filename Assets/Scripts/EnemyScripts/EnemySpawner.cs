@@ -34,6 +34,7 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < enemyData.enemyTransformsFirstMap.transform.childCount; i++)
         {
+            playerData.enemySpawnDelay = 10;
             currentEnemyObjects = Instantiate(enemyData.enemyFirstObjects[i],
                                          enemyTransformObject.transform.GetChild(i).position, 
                                          Quaternion.identity,
@@ -140,6 +141,8 @@ public class EnemySpawner : MonoBehaviour
         enemyCountText.text = gameObject.transform.GetChild(0).childCount.ToString();
         if (playerData.isCompleteFirstMap)
         {
+            playerData.enemySpawnDelay = 7;
+
             Destroy(enemyTransformObject);
             enemyTransformObject = Instantiate(enemyData.enemyTransformsSecondMap.gameObject, gameObject.transform);
 
@@ -156,6 +159,8 @@ public class EnemySpawner : MonoBehaviour
         }
         if (playerData.isCompleteSecondMap)
         {
+            playerData.enemySpawnDelay = 5;
+
             Destroy(enemyTransformObject);
             enemyTransformObject = Instantiate(enemyData.enemyTransformsThirdMap.gameObject, gameObject.transform);
 
@@ -172,6 +177,8 @@ public class EnemySpawner : MonoBehaviour
         }
         if (playerData.isCompleteThirdMap)
         {
+            playerData.enemySpawnDelay = 3;
+
             Destroy(enemyTransformObject);
             enemyTransformObject = Instantiate(enemyData.enemyTransformsFourthMap.gameObject, gameObject.transform);
 

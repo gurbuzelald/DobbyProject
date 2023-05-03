@@ -11,6 +11,7 @@ public class SceneController : AbstractSceneController<SceneController>
 
     [Header("Data")]
     public PlayerData _playerData;
+    [SerializeField] PlayerCoinData playerCoinData;
 
     [Header("Buttons")]
     [SerializeField] GameObject pausePanel;
@@ -53,11 +54,13 @@ public class SceneController : AbstractSceneController<SceneController>
         if (_playerData.isLockedWalking)
         {
             _playerData.isLockedWalking = false;
+
             lockedWalking.text = "Not Locked";
         }
         else
         {
             _playerData.isLockedWalking = true;
+
             lockedWalking.text = "Locked";
         }
     }
@@ -65,13 +68,9 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         playAgain = true;
 
-        //_audioSource.Stop();
-        if (PlayerManager.GetInstance.gameObject != null)
-        {
-            Destroy(PlayerManager.GetInstance.gameObject);
-            Destroy(AudioManager.GetInstance.gameObject);
-        }
-        SceneManager.LoadScene(Scenes.Level1.ToString());
+        DestroySingletonObjects();
+
+        SceneManager.LoadScene(Scenes.Level1.ToString());        
     }
     public string CheckSceneName()
     {
@@ -80,58 +79,60 @@ public class SceneController : AbstractSceneController<SceneController>
     }
     public void LoadMenuScene()
     {
-        //_audioSource.Stop();
-        if (PlayerManager.GetInstance.gameObject != null)
+        if (CheckSceneName() != "End")
         {
-            Destroy(AudioManager.GetInstance.gameObject);
-            Destroy(PlayerManager.GetInstance.gameObject);
+            playAgain = true;
         }
+
+        DestroySingletonObjects();
+
         SceneManager.LoadScene(Scenes.Menu.ToString());
     }
+
+    public void LoadByCodeMenuScene()
+    {
+        DestroySingletonObjects();
+
+        SceneManager.LoadScene(Scenes.Menu.ToString());
+    }
+
     public void LoadWinScene()
     {
-        if (PlayerManager.GetInstance.gameObject != null)
-        {
-            Destroy(AudioManager.GetInstance.gameObject);
-            Destroy(PlayerManager.GetInstance.gameObject);
-        }
+        DestroySingletonObjects();
+
         SceneManager.LoadScene(Scenes.Win.ToString());
     }
     public void LoadCharacterChoosingScene()
     {
-        if (PlayerManager.GetInstance.gameObject != null)
-        {
-            Destroy(AudioManager.GetInstance.gameObject);
-            Destroy(PlayerManager.GetInstance.gameObject);
-        }
+        DestroySingletonObjects();
+
         SceneManager.LoadScene(Scenes.CharacterChoose.ToString());
     }
     public void LoadSwordChoosingScene()
     {
-        if (PlayerManager.GetInstance.gameObject != null)
-        {
-            Destroy(AudioManager.GetInstance.gameObject);
-            Destroy(PlayerManager.GetInstance.gameObject);
-        }
+        DestroySingletonObjects();
+
         SceneManager.LoadScene(Scenes.SwordChoose.ToString());
     }
     public void LoadWeaponChoosingScene()
     {
-        if (PlayerManager.GetInstance.gameObject != null)
-        {
-            Destroy(AudioManager.GetInstance.gameObject);
-            Destroy(PlayerManager.GetInstance.gameObject);
-        }
+        DestroySingletonObjects();
+
         SceneManager.LoadScene(Scenes.WeaponChoose.ToString());
     }
     public void LoadEndScene()
+    {
+        DestroySingletonObjects();
+
+        SceneManager.LoadScene(Scenes.End.ToString());
+    }
+    void DestroySingletonObjects()
     {
         if (PlayerManager.GetInstance.gameObject != null)
         {
             Destroy(AudioManager.GetInstance.gameObject);
             Destroy(PlayerManager.GetInstance.gameObject);
         }
-        SceneManager.LoadScene(Scenes.End.ToString());
     }
     public void PauseGame()
     {

@@ -5,6 +5,8 @@ using TMPro;
 
 public class TimeController : MonoBehaviour
 {
+    [SerializeField] TextMeshProUGUI test;
+
     private float _time;
     private float _swordTime;
     private float _weaponTime;
@@ -28,10 +30,12 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        test.text = _enemySpawnTime.ToString();
+
         GetTime(900);
         SwordTimer(playerData, _swordTimeText);
         WeaponTimer(playerData);
-        EnemySpawnTimer(10);
+        EnemySpawnTimer(playerData.enemySpawnDelay);
     }
     private void GetTime(int timeValue)
     {

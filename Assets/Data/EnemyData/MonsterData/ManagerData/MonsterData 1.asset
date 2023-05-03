@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MonsterData 1
   m_EditorClassIdentifier: 
   _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
+  _enemyTouchParticle: {fileID: 2689552222238927185, guid: 632812bd72b786d4c937d25598e0498d, type: 3}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
   enemyFirstObjects: []
   enemySecondObjects: []
@@ -27,9 +28,9 @@ MonoBehaviour:
   dyingClip: {fileID: 8300000, guid: a4e455bcc94d34540bd3ef99440ba8c0, type: 3}
   isGround: 1
   isDying: 0
-  isWalking: 0
+  isWalking: 1
   isFiring: 0
-  isTouchable: 1
+  isTouchable: 0
   isActivateMagnet: 1
   enemySpeed: 0.3
   isSpeedZero: 1

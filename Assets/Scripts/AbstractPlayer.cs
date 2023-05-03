@@ -1099,9 +1099,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     #endregion
 
     #region //Health
-    public virtual void IncreaseHealth(int damageHealthValue, ref GameObject _healthBarObject, ref GameObject _topCanvasHealthBarObject)
+    public virtual void IncreaseHealth(int damageHealthValue, ref GameObject _healthBarObject, ref GameObject _topCanvasHealthBarObject, Collider other)
     {
-        if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value < 100)
+        if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value < 75)
         {
             _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value += damageHealthValue;
 
@@ -1111,6 +1111,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
 
             StartCoroutine(DelayHealthSizeBack(_healthBarObject));
+
+            Destroy(other.gameObject, 1f);
         }
     }
     public virtual void DecreaseHealth(int damageHealthValue, ref GameObject _healthBarObject, ref GameObject _topCanvasHealthBarObject)

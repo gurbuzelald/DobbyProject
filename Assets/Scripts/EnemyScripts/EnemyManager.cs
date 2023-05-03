@@ -142,7 +142,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         if (other.CompareTag(SceneController.Tags.Bullet.ToString()))
         {
-            TriggerBullet(2f);
+            TriggerBullet(2f, other);
         }
         if (other.CompareTag(SceneController.Tags.Sword.ToString()))
         {
@@ -260,8 +260,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             StartCoroutine(ShowDamage(100, 0.1f, 3f));
         }
     }
-    public void TriggerBullet(float bulletPower)
+    public void TriggerBullet(float bulletPower, Collider other)
     {
+        TriggerBulletParticleCreater(other);
+
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
         enemyData.isWalking = false;
         enemyData.isSpeedZero = true;
@@ -286,7 +288,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
             else
             {
-                if(_healthBar.transform.localScale.x <= 0.125f && _healthBar.transform.localScale.x > 0.0625f)
+                if (_healthBar.transform.localScale.x <= 0.125f && _healthBar.transform.localScale.x > 0.0625f)
                 {
                     bottomParticle.Play();
                     middleParticle.Play();
@@ -305,6 +307,15 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             StartCoroutine(ShowDamage(20, 0.1f, 3f));
         }
     }   
+    void TriggerBulletParticleCreater(Collider other)
+    {
+        GameObject touchParticle = Instantiate(enemyData._enemyTouchParticle, 
+                                               new Vector3(other.gameObject.transform.position.x, 
+                                                           other.gameObject.transform.position.y,
+                                                           other.gameObject.transform.position.z + 0.1f), 
+                                               Quaternion.identity, gameObject.transform);
+        Destroy(touchParticle, 0.5f);
+    }
 
 
     public IEnumerator DelayStopEnemy(float value)
