@@ -309,6 +309,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             other.tag.ToString() == BulletData.axegun)
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
+            iPlayerTrigger.PickUpCoin(SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas);//FreshBulletAmount
         }
 
         if (other.tag.ToString() == _bulletData.currentSwordName)

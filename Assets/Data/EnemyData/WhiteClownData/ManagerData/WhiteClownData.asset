@@ -26,11 +26,13 @@ MonoBehaviour:
   getHitClip: {fileID: 8300000, guid: a6519293710bb5749a4734619dd06379, type: 3}
   giveHitClip: {fileID: 8300000, guid: cf10e1f403c454c47a380a649fc10e7d, type: 3}
   dyingClip: {fileID: 8300000, guid: a6519293710bb5749a4734619dd06379, type: 3}
+  bulletHitClip: {fileID: 8300000, guid: 597305f8f085bf645a629294a087b41e, type: 3}
+  swordHitClip: {fileID: 8300000, guid: 28c27e828e8b6b540baa9afb526d529e, type: 3}
   isGround: 1
   isDying: 0
   isWalking: 1
   isFiring: 0
-  isTouchable: 1
-  isActivateMagnet: 0
+  isTouchable: 0
+  isActivateMagnet: 1
   enemySpeed: 0.3
-  isSpeedZero: 0
+  isSpeedZero: 1

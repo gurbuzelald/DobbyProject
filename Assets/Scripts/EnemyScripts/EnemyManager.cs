@@ -247,7 +247,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     middleParticle.Play();
                 }
                 if (_healthBar.transform.localScale.x > 0.125f)
-                {
+                {  
                     middleParticle.Play();
                 }
                 enemyData.isWalking = false;
@@ -255,6 +255,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isSpeedZero = true;
                 StartCoroutine(DelayStopEnemy(3f));
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
+                PlaySoundEffect(SoundEffectTypes.SwordHit, _audioSource);
+
                 _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / bulletPower, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
             StartCoroutine(ShowDamage(100, 0.1f, 3f));
@@ -262,7 +264,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     public void TriggerBullet(float bulletPower, Collider other)
     {
-        TriggerBulletParticleCreater(other);
+        StartCoroutine(TriggerBulletParticleCreater(other));
 
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
         enemyData.isWalking = false;
@@ -302,17 +304,19 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isSpeedZero = true;
                 StartCoroutine(DelayStopEnemy(3f));
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
+                PlaySoundEffect(SoundEffectTypes.BulletHit, _audioSource);
                 _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / bulletPower, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
             }
             StartCoroutine(ShowDamage(20, 0.1f, 3f));
         }
     }   
-    void TriggerBulletParticleCreater(Collider other)
+    IEnumerator TriggerBulletParticleCreater(Collider other)
     {
+        yield return new WaitForSeconds(0.0001f);
         GameObject touchParticle = Instantiate(enemyData._enemyTouchParticle, 
                                                new Vector3(other.gameObject.transform.position.x, 
                                                            other.gameObject.transform.position.y,
-                                                           other.gameObject.transform.position.z + 0.1f), 
+                                                           other.gameObject.transform.position.z), 
                                                Quaternion.identity, gameObject.transform);
         Destroy(touchParticle, 0.5f);
     }
@@ -365,12 +369,22 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             audioSource.PlayOneShot(enemyData.dyingClip);
         }
+        else if (soundEffect == SoundEffectTypes.BulletHit)
+        {
+            audioSource.PlayOneShot(enemyData.bulletHitClip);
+        }
+        else if (soundEffect == SoundEffectTypes.SwordHit)
+        {
+            audioSource.PlayOneShot(enemyData.swordHitClip);
+        }
     }
     public enum SoundEffectTypes
     {
         GetHit,
         GiveHit,
         Death,
+        BulletHit,
+        SwordHit,
     }
 
     private void DataStatesOnInitial()

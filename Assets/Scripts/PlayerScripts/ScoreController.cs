@@ -10,8 +10,11 @@ public class ScoreController : AbstractPlayer<ScoreController>
     public static int _scoreAmount;
     private bool _scored;
     [SerializeField] PlayerCoinData playerCoinData;
+
+    private JsonReadAndWriteSystem readWrite;
     void Start()
     {
+        readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
         if (SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.CharacterChoose.ToString())
         {
             _scoreText = gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
@@ -21,6 +24,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
     void Update()
     {
         avaliableCoinText.text = playerCoinData.avaliableCoin.ToString();
+        readWrite.SaveToJson();
 
         //Debug.Log(playerCoinData.avaliableCoin);
         if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())
@@ -32,6 +36,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
         else if (SceneController.playAgain)
         {
             playerCoinData.avaliableCoin -= PlayerPrefs.GetInt("ScoreAmount");
+            //Buraya PlayerCoinData koyulacak. (Json için)
 
             _scoreAmount = 0;
             PlayerPrefs.SetInt("ScoreAmount", 0);

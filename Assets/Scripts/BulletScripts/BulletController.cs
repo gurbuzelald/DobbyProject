@@ -52,12 +52,10 @@ public class BulletController : MonoBehaviour
 
         if (gameObject.transform.name == "Bullet")
         {
-            if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
+            if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) || other.gameObject.CompareTag(SceneController.Tags.WeaponBox.ToString()))
             {
                 gameObject.SetActive(false);
             }
         }
-
-
     }
 }

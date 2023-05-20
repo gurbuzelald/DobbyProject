@@ -69,9 +69,13 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.errorPickupBulletCoinClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DamageGiftBox)
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DestroyGiftBox)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.damageGiftBoxClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.destroyGiftBoxClip);
+        }
+        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.TouchGiftBox)
+        {
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.touchGiftBoxClip);
         }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
         {

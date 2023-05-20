@@ -34,9 +34,15 @@ public class WeaponBoxController : MonoBehaviour
             if (damageToWeaponBox > 1)
             {
                 _damageGiftBoxParticle = Instantiate(damageGiftBoxParticle,gameObject.transform.position, Quaternion.identity, gameObject.transform);
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.DamageGiftBox);
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.DestroyGiftBox);
 
                 other.gameObject.SetActive(false);
+            }
+            else
+            {
+                other.gameObject.SetActive(false);
+
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.TouchGiftBox);
             }
             damageToWeaponBox++;
         }

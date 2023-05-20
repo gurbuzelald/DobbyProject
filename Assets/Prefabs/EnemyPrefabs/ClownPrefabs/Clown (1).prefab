@@ -1363,7 +1363,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4288211826120023548
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1380,7 +1380,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &4288211826120023491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1518,9 +1518,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.48241526
-  m_Height: 2.5
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 2.21, z: 0}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!82 &8945788182541930664
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6689,9 +6689,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60d5b47d7aaf24449d132e00a7c1ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 12597056
   enemyData: {fileID: 11400000, guid: 155f026fb07d8404fa5132fe5eb6679d, type: 2}
   bulletData: {fileID: 11400000, guid: a727b924c557a0c4594d5dba29d86deb, type: 2}
   _bulletSpawnTransform: {fileID: 2435379507850237297}

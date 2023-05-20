@@ -25,7 +25,8 @@ public class AudioData : ScriptableObject
     public AudioClip pickupCoinClip;
     public AudioClip pickupBulletCoinClip;
     public AudioClip errorPickupBulletCoinClip;
-    public AudioClip damageGiftBoxClip;
+    public AudioClip destroyGiftBoxClip;
+    public AudioClip touchGiftBoxClip;
     public AudioClip levelUpClip;
     public AudioClip jumpingSeaClip;
     public AudioClip teleportClip;

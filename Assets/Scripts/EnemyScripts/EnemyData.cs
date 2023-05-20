@@ -27,6 +27,8 @@ public class EnemyData : ScriptableObject
     public AudioClip getHitClip;
     public AudioClip giveHitClip;
     public AudioClip dyingClip;
+    public AudioClip bulletHitClip;
+    public AudioClip swordHitClip;
 
     [Header("Bools")]
     public bool isGround;
