@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2892904039195626459}
   - component: {fileID: 2892904039195626456}
+  - component: {fileID: 1283124263}
   m_Layer: 0
   m_Name: SceneLoad
   m_TagString: Untagged
@@ -50,3 +51,16 @@ MonoBehaviour:
   pausePanel: {fileID: 0}
   mouseOrTouchText: {fileID: 0}
   lockedWalking: {fileID: 0}
+--- !u!114 &1283124263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2892904039195626457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fedb3d9b000ece48adece1876dee4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCoinData: {fileID: 11400000, guid: 853c688538b9c714f8661972da059616, type: 2}
