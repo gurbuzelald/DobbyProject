@@ -686,6 +686,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
             //PickUpCoinSFX(_playerData);
 
+            
+            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyRotateCoin, other.gameObject.transform);
 
             //Trigger CoinObject
             other.gameObject.SetActive(false);
@@ -1191,6 +1193,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             {
                 //PlayerData
                 _playerData.isWalking = true;
+
                 if (PlayerManager.GetInstance.transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>().GetLayerWeight(16) == 1)
                 {//When fireWalk Animation is active, player speed will lower then original speed
                     PlayerManager.GetInstance.GetComponent<Transform>().Translate(0f, 0f, PlayerManager.GetInstance._zValue * _playerData.playerSpeed * Time.deltaTime * 3f);

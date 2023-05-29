@@ -118,6 +118,8 @@ public class PlayerData : ScriptableObject
     public ParticleSystem deathParticle;
     public ParticleSystem burningParticle;
     public ParticleSystem burningTouchParticle;
+    public ParticleSystem destroyRotateCoinParticle;
+    public ParticleSystem playerWalkingParticle;
     [Header("Particle Count Control")]
     public int particleCount;
     

@@ -4788,6 +4788,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _soundSettingsPanel: {fileID: 5889377278806450481}
   _sensivitySettingsPanel: {fileID: 5889377279785913509}
+  _chooseCharacterButton: {fileID: 5889377280168332990}
   _sensivityX: {fileID: 5889377280121839605}
   _sensivityY: {fileID: 5889377279345841546}
   _sensivityXText: {fileID: 5889377280112761075}
@@ -5245,6 +5246,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6976350887290199507}
   - component: {fileID: 6976350887290199506}
+  - component: {fileID: 5889377279205821901}
   m_Layer: 5
   m_Name: ScoreController
   m_TagString: Untagged
@@ -5288,6 +5290,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 6976350886141616231}
   avaliableCoinText: {fileID: 341367832935263677}
+  playerCoinData: {fileID: 11400000, guid: 853c688538b9c714f8661972da059616, type: 2}
+--- !u!114 &5889377279205821901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6976350887290199504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fedb3d9b000ece48adece1876dee4c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   playerCoinData: {fileID: 11400000, guid: 853c688538b9c714f8661972da059616, type: 2}
 --- !u!1 &7932342591315176635
 GameObject:

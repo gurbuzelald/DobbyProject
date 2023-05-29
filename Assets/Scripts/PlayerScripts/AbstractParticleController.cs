@@ -74,6 +74,23 @@ public abstract class AbstractParticleController<T> : MonoBehaviour where T : Mo
             particleObject.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DelayStopParticle(3f, particleObject));
         }
+        if (particleName == ParticleNames.DestroyRotateCoin)
+        {
+            GameObject particleObject = Instantiate(playerData.destroyRotateCoinParticle.gameObject);
+            particleObject.transform.position = particleTransform.position;
+            particleObject.GetComponent<ParticleSystem>().Play();
+            StartCoroutine(DelayStopParticle(1f, particleObject));
+        }
+        if (particleName == ParticleNames.PlayerWalking)
+        {
+            GameObject particleObject = Instantiate(playerData.playerWalkingParticle.gameObject);
+            particleObject.transform.position = particleTransform.position;
+            particleObject.GetComponent<ParticleSystem>().Play();
+            if (!playerData.isWalking)
+            {
+                StartCoroutine(DelayStopParticle(0f, particleObject));
+            }
+        }
     }
     public enum ParticleNames
     {
@@ -82,7 +99,9 @@ public abstract class AbstractParticleController<T> : MonoBehaviour where T : Mo
         Touch,
         TouchBurning,
         Birth,
-        Burn
+        Burn,
+        DestroyRotateCoin,
+        PlayerWalking
     }
     IEnumerator DelayStopParticle(float value, GameObject particleObject)
     {

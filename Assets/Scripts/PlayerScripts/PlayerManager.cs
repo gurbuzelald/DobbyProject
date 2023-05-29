@@ -13,7 +13,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public ArrowRotationController _arrowRotationController;
 
 
-    [Header("InterFAces")]
+    [Header("Interfaces")]
     private IPlayerShoot iPlayerShoot;
     private IPlayerCamera iPlayerCamera;
     private IPlayerInitial iPlayerInitial;

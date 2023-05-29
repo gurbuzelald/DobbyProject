@@ -15,6 +15,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
     void Start()
     {
         readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
+        
         if (SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.CharacterChoose.ToString())
         {
             _scoreText = gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();

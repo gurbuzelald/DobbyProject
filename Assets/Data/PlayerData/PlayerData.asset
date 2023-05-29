@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  enemySpawnDelay: 10
   _healtCoinTransform:
   - {fileID: 1707016675134421311, guid: 06d257ec3674d9446806cfc13725069b, type: 3}
   _healtCoinObject: {fileID: 9077765185764460176, guid: a275adbe230564749ac78dcd554d00e3, type: 3}
@@ -85,7 +86,7 @@ MonoBehaviour:
   isFireWalk: 0
   isFireTime: 0
   isSwording: 0
-  isSwordTime: 0
+  isSwordTime: 1
   isJumping: 0
   isClickable: 1
   jumpCount: 0
@@ -104,6 +105,8 @@ MonoBehaviour:
   deathParticle: {fileID: 5597880929392322992, guid: c3d186f24e85b9549b8b845c134e0d97, type: 3}
   burningParticle: {fileID: 2998880394958268818, guid: d1da0b7ce7a5e4e4a9ed42ef14329904, type: 3}
   burningTouchParticle: {fileID: 2998880394958268818, guid: d1da0b7ce7a5e4e4a9ed42ef14329904, type: 3}
+  destroyRotateCoinParticle: {fileID: 7843557430029568611, guid: a53c763de9e987f48bc10c8ebe511e7a, type: 3}
+  playerWalkingParticle: {fileID: 3532911235452109422, guid: e23fee5b26651554395da526e4bb4ce1, type: 3}
   particleCount: 0
   _bulletObject: {fileID: 4568481270464940624, guid: 98dbc9cb5ce9f68458cb04a08252b6ac, type: 3}
   bulletSpeed: 5

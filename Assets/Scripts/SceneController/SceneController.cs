@@ -195,7 +195,6 @@ public class SceneController : AbstractSceneController<SceneController>
         Enemy,
         Bullet,
         Sword,
-        Slave,
         Player,
         Water,
         FanceWooden,
@@ -218,7 +217,6 @@ public class SceneController : AbstractSceneController<SceneController>
         MainTarget,
         EnemyBullet, 
         CloneDobby,
-        SlaveSword,
 
         //Weapons
         Rifle,
