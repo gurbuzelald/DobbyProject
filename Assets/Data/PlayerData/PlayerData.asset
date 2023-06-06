@@ -12,6 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  spartacusPrice: 0
+  dobbyPrice: 0
+  glassyPrice: 0
+  lusthPrice: 0
+  guardPrice: 0
+  michellePrice: 0
+  evePrice: 0
+  ajPrice: 0
+  bossPrice: 0
+  tyPrice: 0
+  mremirehPrice: 0
   enemySpawnDelay: 10
   _healtCoinTransform:
   - {fileID: 1707016675134421311, guid: 06d257ec3674d9446806cfc13725069b, type: 3}
@@ -27,7 +38,7 @@ MonoBehaviour:
   isThirdMapTarget: 0
   isFourthMapTarget: 0
   isLevelUp: 0
-  currentCharacterName: 2
+  currentCharacterName: 3
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
   glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
@@ -63,7 +74,7 @@ MonoBehaviour:
   sensivityY: 5
   isTouchFinish: 0
   isLose: 0
-  playerSpeed: 1.5
+  playerSpeed: 2.5
   rotateSpeed: 6
   isGround: 1
   isWalking: 0
@@ -81,7 +92,7 @@ MonoBehaviour:
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 1
-  jumpForce: 4
+  jumpForce: 4.5
   isFireNonWalk: 0
   isFireWalk: 0
   isFireTime: 0

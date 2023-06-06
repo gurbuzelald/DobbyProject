@@ -12,6 +12,7 @@ public class ChooseCharacterController : MonoBehaviour
 
 
     private PlayerController _playerController;
+    
 
     private void Start()
     {
@@ -25,17 +26,17 @@ public class ChooseCharacterController : MonoBehaviour
     }
     void CharacterChooseStates()
     {        
-        ChoosedSpartacus(0);
-        ChoosedGlassy(100);
-        ChoosedDobby(200);
-        ChoosedLusth(300);
-        ChoosedGuard(400);
-        ChoosedEve(500);
-        ChoosedMichelle(600);
-        ChoosedBoss(700);
-        ChoosedAj(800);
-        ChoosedMremireh(900);
-        ChoosedTy(1000);
+        ChoosedSpartacus(playerData.glassyPrice);
+        ChoosedGlassy(playerData.glassyPrice);
+        ChoosedDobby(playerData.glassyPrice);
+        ChoosedLusth(playerData.glassyPrice);
+        ChoosedGuard(playerData.glassyPrice);
+        ChoosedEve(playerData.glassyPrice);
+        ChoosedMichelle(playerData.glassyPrice);
+        ChoosedBoss(playerData.glassyPrice);
+        ChoosedAj(playerData.glassyPrice);
+        ChoosedMremireh(playerData.glassyPrice);
+        ChoosedTy(playerData.glassyPrice);
     }
 
     void RotateCharacters()
@@ -85,7 +86,7 @@ public class ChooseCharacterController : MonoBehaviour
     }
     public void ChoosedDobby(int avaliableCoinAmount)
     {
-        if (_playerController.Dobby && playerCoinData.avaliableCoin > avaliableCoinAmount)
+        if (_playerController.Dobby && playerCoinData.avaliableCoin >= avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
 
@@ -96,7 +97,7 @@ public class ChooseCharacterController : MonoBehaviour
     }
     public void ChoosedGlassy(int avaliableCoinAmount)
     {
-        if (_playerController.Glassy && playerCoinData.avaliableCoin > avaliableCoinAmount)
+        if (_playerController.Glassy && playerCoinData.avaliableCoin >= avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Glassy;
 
@@ -107,7 +108,7 @@ public class ChooseCharacterController : MonoBehaviour
     }
     public void ChoosedLusth(int avaliableCoinAmount)
     {
-        if ((_playerController.Lusth) && playerCoinData.avaliableCoin > avaliableCoinAmount)
+        if ((_playerController.Lusth) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Lusth;
 
@@ -118,7 +119,7 @@ public class ChooseCharacterController : MonoBehaviour
     }
     public void ChoosedGuard(int avaliableCoinAmount)
     {
-        if ((_playerController.Guard) && playerCoinData.avaliableCoin > avaliableCoinAmount)
+        if ((_playerController.Guard) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Guard;
 
@@ -129,7 +130,7 @@ public class ChooseCharacterController : MonoBehaviour
     }
     public void ChoosedEve(int avaliableCoinAmount)
     {
-        if ((_playerController.Eve) && playerCoinData.avaliableCoin > avaliableCoinAmount)
+        if ((_playerController.Eve) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Eve;
 
@@ -140,7 +141,7 @@ public class ChooseCharacterController : MonoBehaviour
     }
     public void ChoosedMichelle(int avaliableCoinAmount)
     {
-        if ((_playerController.Michelle) && playerCoinData.avaliableCoin > avaliableCoinAmount)
+        if ((_playerController.Michelle) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Michelle;
 
@@ -151,7 +152,7 @@ public class ChooseCharacterController : MonoBehaviour
     }
     public void ChoosedBoss(int avaliableCoinAmount)
     {
-        if ((_playerController.Boss) && playerCoinData.avaliableCoin > avaliableCoinAmount)
+        if ((_playerController.Boss) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Boss;
 
@@ -162,7 +163,7 @@ public class ChooseCharacterController : MonoBehaviour
     }
     public void ChoosedAj(int avaliableCoinAmount)
     {
-        if ((_playerController.Aj) && playerCoinData.avaliableCoin > avaliableCoinAmount)
+        if ((_playerController.Aj) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Aj;
 
@@ -174,7 +175,7 @@ public class ChooseCharacterController : MonoBehaviour
 
     public void ChoosedMremireh(int avaliableCoinAmount)
     {
-        if ((_playerController.Mremireh) && playerCoinData.avaliableCoin > avaliableCoinAmount)
+        if ((_playerController.Mremireh) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Mremireh;
 
@@ -186,7 +187,7 @@ public class ChooseCharacterController : MonoBehaviour
 
     public void ChoosedTy(int avaliableCoinAmount)
     {
-        if ((_playerController.Ty) && playerCoinData.avaliableCoin > avaliableCoinAmount)
+        if ((_playerController.Ty) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Ty;
 

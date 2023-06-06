@@ -3,6 +3,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Character Prices")]
+    public int spartacusPrice;
+    public int dobbyPrice;
+    public int glassyPrice;
+    public int lusthPrice;
+    public int guardPrice;
+    public int michellePrice;
+    public int evePrice;
+    public int ajPrice;
+    public int bossPrice;
+    public int tyPrice;
+    public int mremirehPrice;
+
     [Header("Finishes")]
     public int enemySpawnDelay;
 

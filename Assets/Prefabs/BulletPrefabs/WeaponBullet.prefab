@@ -4806,7 +4806,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 4300004, guid: 6f299df7f9c40294e980156472f21832, type: 3}
+  m_Mesh: {fileID: 4300000, guid: aac3219a223aac144a01ba9fb7e653bd, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -9622,7 +9622,7 @@ ParticleSystemRenderer:
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1
   m_VertexStreams: 00010304
-  m_Mesh: {fileID: 4300004, guid: 6f299df7f9c40294e980156472f21832, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 0a917f8eb83914e8881c4aeea76d4ecc, type: 3}
   m_Mesh1: {fileID: 0}
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
@@ -9816,7 +9816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1690737465433652, guid: 311e8ab541d8f0d4bb42bd6a69f299e9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1690737465433652, guid: 311e8ab541d8f0d4bb42bd6a69f299e9, type: 3}
       propertyPath: m_TagString
@@ -9999,6 +9999,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198014068628800754, guid: 311e8ab541d8f0d4bb42bd6a69f299e9, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 198014068628800754, guid: 311e8ab541d8f0d4bb42bd6a69f299e9, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
       value: 10
       objectReference: {fileID: 0}
@@ -10008,15 +10012,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198014068628800754, guid: 311e8ab541d8f0d4bb42bd6a69f299e9, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
-      value: 0.98039216
-      objectReference: {fileID: 0}
-    - target: {fileID: 198014068628800754, guid: 311e8ab541d8f0d4bb42bd6a69f299e9, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
       value: 0.050980378
       objectReference: {fileID: 0}
     - target: {fileID: 198014068628800754, guid: 311e8ab541d8f0d4bb42bd6a69f299e9, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.38081366
+      objectReference: {fileID: 0}
+    - target: {fileID: 198014068628800754, guid: 311e8ab541d8f0d4bb42bd6a69f299e9, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
-      value: 0.5564112
+      value: 0.98039216
       objectReference: {fileID: 0}
     - target: {fileID: 198014068628800754, guid: 311e8ab541d8f0d4bb42bd6a69f299e9, type: 3}
       propertyPath: CollisionModule.m_Planes.Array.data[0]
