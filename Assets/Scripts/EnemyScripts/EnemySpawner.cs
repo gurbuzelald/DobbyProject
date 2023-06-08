@@ -156,6 +156,8 @@ public class EnemySpawner : MonoBehaviour
                                                                  10f,
                                                                  enemyTransformObject.transform.GetChild(i).position.z);
             }
+
+            playerData.isCompleteFirstMap = false;
         }
         if (playerData.isCompleteSecondMap)
         {
@@ -174,6 +176,8 @@ public class EnemySpawner : MonoBehaviour
                                                                  10f,
                                                                  enemyTransformObject.transform.GetChild(i).position.z);
             }
+
+            playerData.isCompleteSecondMap = false;
         }
         if (playerData.isCompleteThirdMap)
         {
@@ -192,6 +196,8 @@ public class EnemySpawner : MonoBehaviour
                                                                  10f,
                                                                  enemyTransformObject.transform.GetChild(i).position.z);
             }
+
+            playerData.isCompleteThirdMap = false;
         }
     }
 }

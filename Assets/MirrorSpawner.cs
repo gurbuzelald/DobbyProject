@@ -21,7 +21,7 @@ public class MirrorSpawner : MonoBehaviour
         {
             Destroy(_currentMirrorCouple);
 
-            Debug.Log("Test");
+
             for (int i = 0; i < gameObject.transform.childCount; i++)
             {
             }

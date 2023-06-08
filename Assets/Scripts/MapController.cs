@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class MapController : MonoBehaviour
@@ -8,10 +9,14 @@ public class MapController : MonoBehaviour
     [SerializeField] GameObject[] WeaponGiftBoxes;
     [SerializeField] PlayerData playerData;
     public static GameObject currentMap;
+
     // Start is called before the first frame update
     void Awake()
     {
+
         currentMap = Instantiate(Maps[0], gameObject.transform);
+        RenderSettings.skybox = playerData.firstSkybox;
+
         //DarknessCubesActivity();
         //currentMap.transform.GetChild(1).gameObject.SetActive(true);
     }
@@ -32,18 +37,18 @@ public class MapController : MonoBehaviour
     }
     void Update()
     {
+        SetLevelSkybox();
+        SetNewMap();
+    }
+    void SetNewMap()
+    {
         if (playerData.isCompleteFirstMap)
         {
-            if (currentMap != null)
-            {
-                playerData.isPlayable = false;
-                DarknessCubesActivity();
-                Destroy(currentMap, 1);
-                CreateMap(Maps[1], gameObject.transform);
-                playerData.isCompleteFirstMap = false;
-                StartCoroutine(DelayTruePlayable());
-            }
-            
+            playerData.isPlayable = false;
+            DarknessCubesActivity();
+            Destroy(currentMap, 1);
+            CreateMap(Maps[1], gameObject.transform);
+            StartCoroutine(DelayTruePlayable());
         }
         else if (playerData.isCompleteSecondMap)
         {
@@ -51,7 +56,6 @@ public class MapController : MonoBehaviour
             DarknessCubesActivity();
             Destroy(currentMap, 1);
             CreateMap(Maps[2], gameObject.transform);
-            playerData.isCompleteSecondMap = false;
             StartCoroutine(DelayTruePlayable());
         }
         else if (playerData.isCompleteThirdMap)
@@ -60,12 +64,26 @@ public class MapController : MonoBehaviour
             DarknessCubesActivity();
             Destroy(currentMap, 1);
             CreateMap(Maps[3], gameObject.transform);
-            playerData.isCompleteThirdMap = false;
             StartCoroutine(DelayTruePlayable());
         }
     }
     void CreateMap(GameObject mapObject, Transform mapTransform)
     {
         currentMap  = Instantiate(mapObject, mapTransform);
+    }
+    private void SetLevelSkybox()
+    {
+        if (playerData.isCompleteFirstMap)
+        {
+            RenderSettings.skybox = playerData.secondMapSkyBox;
+        }
+        else if (playerData.isCompleteSecondMap)
+        {
+            RenderSettings.skybox = playerData.thirdSkybox;
+        }
+        else if (playerData.isCompleteThirdMap)
+        {
+            RenderSettings.skybox = playerData.fourthSkybox;
+        }
     }
 }

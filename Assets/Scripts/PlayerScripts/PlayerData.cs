@@ -3,6 +3,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Level SkyBoxes")]
+    public Material firstSkybox;
+    public Material secondMapSkyBox;
+    public Material thirdSkybox;
+    public Material fourthSkybox;
+
     [Header("Character Prices")]
     public int spartacusPrice;
     public int dobbyPrice;

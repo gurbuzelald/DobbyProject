@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 4
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.6164455, g: 0, b: 1, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -917,6 +917,37 @@ MonoBehaviour:
   - {fileID: 2851912928209315399, guid: c8ba529d0e6a2e045bb106dfe0a3d4a7, type: 3}
   WeaponGiftBoxes: []
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
+--- !u!1 &1118767029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1118767030}
+  m_Layer: 0
+  m_Name: BulletsTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1118767030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1118767029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1543081837}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1139559636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,6 +1328,7 @@ Transform:
   - {fileID: 1294139703}
   - {fileID: 2124036260}
   - {fileID: 1520259900}
+  - {fileID: 1118767030}
   m_Father: {fileID: 1785344939}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2033,13 +2065,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 1785344939}
     m_Modifications:
     - target: {fileID: 4371192747629300294, guid: 8c41a3ade5a4f16468dd22b6887e2acf, type: 3}
-      propertyPath: pools.Array.data[0].poolSize
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4371192747629300294, guid: 8c41a3ade5a4f16468dd22b6887e2acf, type: 3}
       propertyPath: pools.Array.data[0].objectTransform
       value: 
-      objectReference: {fileID: 1966716591}
+      objectReference: {fileID: 1118767030}
     - target: {fileID: 4371192747629300294, guid: 8c41a3ade5a4f16468dd22b6887e2acf, type: 3}
       propertyPath: pools.Array.data[1].objectTransform
       value: 
