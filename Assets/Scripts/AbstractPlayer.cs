@@ -207,7 +207,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                         Quaternion.identity,
                         PlayerManager.GetInstance.gameObject.transform);//HealthBarPrefab
 
-        Instantiate(_playerData.objects[4], PlayerManager.GetInstance.gameObject.transform.position,
+        Instantiate(_playerData.objects[4],
+                    new Vector3(PlayerManager.GetInstance.gameObject.transform.position.x,
+                                1,
+                                PlayerManager.GetInstance.gameObject.transform.position.z),
                     Quaternion.identity,
                     PlayerManager.GetInstance.gameObject.transform);//MagnetPrefab
 

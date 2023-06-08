@@ -11,6 +11,9 @@ public class SettingController : MonoBehaviour
     [SerializeField] RectTransform _sensivitySettingsPanel;
 
     [SerializeField] RectTransform _chooseCharacterButton;
+    [SerializeField] RectTransform _playButton;
+    [SerializeField] RectTransform _quitButton;
+    [SerializeField] RectTransform _continueButton;
 
     [Header("Sensivity")]
     [SerializeField] Slider _sensivityX;
@@ -41,8 +44,12 @@ public class SettingController : MonoBehaviour
         {
             _soundSettingsPanel.localScale = Vector3.zero;
             _sensivitySettingsPanel.localScale = Vector3.zero;
-        }
-        
+
+            if (playerData.currentMapName != PlayerData.MapNames.FirstMap)
+            {
+                _continueButton.localScale = Vector3.one;
+            }
+        }        
     }
     private void Update()
     {
@@ -65,6 +72,9 @@ public class SettingController : MonoBehaviour
             _sensivitySettingsPanel.localScale = Vector3.one;
 
             _chooseCharacterButton.localScale = Vector3.zero;
+            _playButton.localScale = Vector3.zero;
+            _quitButton.localScale = Vector3.zero;
+            _continueButton.localScale = Vector3.zero;
         }
         else
         {
@@ -72,6 +82,12 @@ public class SettingController : MonoBehaviour
             _sensivitySettingsPanel.localScale = Vector3.zero;
 
             _chooseCharacterButton.localScale = Vector3.one;
+            _playButton.localScale = Vector3.one;
+            _quitButton.localScale = Vector3.one;
+            if (playerData.currentMapName != PlayerData.MapNames.FirstMap)
+            {
+                _continueButton.localScale = Vector3.one;
+            }
         }
     }
     public void SetDefaulth()

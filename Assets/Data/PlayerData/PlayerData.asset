@@ -12,22 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
+  currentMapName: 2
   firstSkybox: {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
   secondMapSkyBox: {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
   thirdSkybox: {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
   fourthSkybox: {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
   spartacusPrice: 0
-  dobbyPrice: 0
-  glassyPrice: 0
-  lusthPrice: 0
-  guardPrice: 0
-  michellePrice: 0
-  evePrice: 0
-  ajPrice: 0
-  bossPrice: 0
-  tyPrice: 0
-  mremirehPrice: 0
-  enemySpawnDelay: 10
+  dobbyPrice: 100
+  glassyPrice: 200
+  lusthPrice: 300
+  guardPrice: 400
+  michellePrice: 500
+  evePrice: 600
+  ajPrice: 700
+  bossPrice: 800
+  tyPrice: 900
+  mremirehPrice: 1000
+  enemySpawnDelay: 5
   _healtCoinTransform:
   - {fileID: 1707016675134421311, guid: 06d257ec3674d9446806cfc13725069b, type: 3}
   _healtCoinObject: {fileID: 9077765185764460176, guid: a275adbe230564749ac78dcd554d00e3, type: 3}
@@ -39,10 +41,10 @@ MonoBehaviour:
   isCompleteFourthMap: 0
   isFirstMapTarget: 0
   isSecondMapTarget: 0
-  isThirdMapTarget: 0
+  isThirdMapTarget: 1
   isFourthMapTarget: 0
   isLevelUp: 0
-  currentCharacterName: 3
+  currentCharacterName: 2
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
   glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
@@ -78,7 +80,7 @@ MonoBehaviour:
   sensivityY: 5
   isTouchFinish: 0
   isLose: 0
-  playerSpeed: 2.5
+  playerSpeed: 1.5
   rotateSpeed: 6
   isGround: 1
   isWalking: 0
@@ -96,7 +98,7 @@ MonoBehaviour:
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 1
-  jumpForce: 4.5
+  jumpForce: 4
   isFireNonWalk: 0
   isFireWalk: 0
   isFireTime: 0

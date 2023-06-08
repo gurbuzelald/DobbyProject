@@ -25,7 +25,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
     void Update()
     {
         avaliableCoinText.text = playerCoinData.avaliableCoin.ToString();
-        readWrite.SaveToJson();
+        readWrite.SaveCoinToJson();
 
         //Debug.Log(playerCoinData.avaliableCoin);
         if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())

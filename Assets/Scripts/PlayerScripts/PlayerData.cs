@@ -3,6 +3,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Player Level Spawns")]
+    public Transform playerSpawns;
+
+    [Header("Level SkyBoxes")]
+    public MapNames currentMapName;
+
     [Header("Level SkyBoxes")]
     public Material firstSkybox;
     public Material secondMapSkyBox;
@@ -184,5 +190,13 @@ public class PlayerData : ScriptableObject
         Aj, 
         Mremireh,
         Ty
+    }
+
+    public enum MapNames
+    {
+        FirstMap,
+        SecondMap,
+        ThirdMap,
+        FourthMap
     }
 }

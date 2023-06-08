@@ -315,9 +315,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         yield return new WaitForSeconds(0.0001f);
         GameObject touchParticle = Instantiate(enemyData._enemyTouchParticle, 
                                                new Vector3(other.gameObject.transform.position.x, 
-                                                           other.gameObject.transform.position.y,
+                                                           other.gameObject.transform.position.y + .05f,
                                                            other.gameObject.transform.position.z), 
-                                               Quaternion.identity, gameObject.transform);
+                                               Quaternion.identity, 
+                                               gameObject.transform);
         Destroy(touchParticle, 0.5f);
     }
 

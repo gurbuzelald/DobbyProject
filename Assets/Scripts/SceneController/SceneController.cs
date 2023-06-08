@@ -66,6 +66,16 @@ public class SceneController : AbstractSceneController<SceneController>
     }
     public void PlayAgain()
     {
+        _playerData.currentMapName = PlayerData.MapNames.FirstMap;
+
+        playAgain = true;
+
+        DestroySingletonObjects();
+
+        SceneManager.LoadScene(Scenes.Level1.ToString());
+    }
+    public void ContinueLastLevel()
+    {
         playAgain = true;
 
         DestroySingletonObjects();
@@ -78,7 +88,8 @@ public class SceneController : AbstractSceneController<SceneController>
         return _sceneName;
     }
     public void LoadMenuScene()
-    {
+    {//Load By Click Menu Scene
+        
         if (CheckSceneName() != "End")
         {
             playAgain = true;
@@ -91,6 +102,8 @@ public class SceneController : AbstractSceneController<SceneController>
 
     public void LoadByCodeMenuScene()
     {
+        _playerData.currentMapName = PlayerData.MapNames.FirstMap;
+
         DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Menu.ToString());

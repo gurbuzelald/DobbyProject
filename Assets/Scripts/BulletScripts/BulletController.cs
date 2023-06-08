@@ -42,7 +42,7 @@ public class BulletController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.transform.name == "EnemyBullet")
+        if (gameObject.transform.name == "EnemyBullet(Clone)")
         {
             if (other.gameObject.CompareTag(SceneController.Tags.Player.ToString()))
             {
@@ -50,7 +50,7 @@ public class BulletController : MonoBehaviour
             }
         }
 
-        if (gameObject.transform.name == "Bullet")
+        if (gameObject.transform.name == "WeaponBullet(Clone)")
         {
             if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) || other.gameObject.CompareTag(SceneController.Tags.WeaponBox.ToString()))
             {

@@ -5,8 +5,9 @@ using UnityEngine;
 public class JsonReadAndWriteSystem : MonoBehaviour
 {
     public PlayerCoinData playerCoinData;
+    public PlayerData playerData;
  
-    public void SaveToJson()
+    public void SaveCoinToJson()
     {
         playerCoinData.avaliableCoinJson = playerCoinData.avaliableCoin.ToString();
 
@@ -14,7 +15,12 @@ public class JsonReadAndWriteSystem : MonoBehaviour
         string json = JsonUtility.ToJson(playerCoinData, true);
         File.WriteAllText(Application.dataPath + "/PlayerCoinDataFile.json", json);
     }
- 
+    public void SavePlayerDataToJson()
+    {
+        string json = JsonUtility.ToJson(playerData, true);
+        File.WriteAllText(Application.dataPath + "/PlayerDataFile.json", json);
+    }
+
     public void LoadFromJson()
     {
         string json = File.ReadAllText(Application.dataPath + "/PlayerCoinDataFile.json");

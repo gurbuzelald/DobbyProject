@@ -53,7 +53,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     [SerializeField] public Transform _jolleenTransform;
     [SerializeField] public Transform playerIconTransform;
     [SerializeField] public Transform healthBarTransform;
-    [SerializeField] public Transform _bulletsTransform;
+    [SerializeField] public Transform _bulletsSpawnTransform;
     [SerializeField] public Transform _cameraWasherTransform;
 
     [HideInInspector]
@@ -440,6 +440,23 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     //Init
     private void InitStates()
     {
+        if (_playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        {
+            PlayerManager.GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(0).transform.position;
+        }
+        else if (_playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        {
+            PlayerManager.GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(1).transform.position;
+        }
+        else if (_playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        {
+            PlayerManager.GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(2).transform.position;
+        }
+        else if (_playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        {
+            PlayerManager.GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(3).transform.position;
+        }
+
         iPlayerShoot = GetComponent<IPlayerShoot>();
         iPlayerCamera = GetComponent<IPlayerCamera>();
         iPlayerInitial = GetComponent<IPlayerInitial>();
@@ -453,7 +470,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         if (_playerData)
         {
             iPlayerTrigger.TriggerLadder(false, true, _playerData);
-            iPlayerInitial.PlayerRandomSpawn(_playerData);
+            //iPlayerInitial.PlayerRandomSpawn(_playerData);
 
 
             iPlayerInitial.CreateCharacterObject(_playerData, ref characterObject);
@@ -463,7 +480,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             iPlayerInitial.GetHandObjectsTransform(ref _coinObject, ref _cheeseObject);
             iPlayerInitial.GetWeaponTransform(_bulletData, ref _gunTransform);
             iPlayerInitial.GetSwordTransform(_bulletData, ref _swordTransform);
-            iPlayerInitial.CreateStartPlayerStaff(_playerData, ref playerIconTransform, ref _bulletsTransform,
+            iPlayerInitial.CreateStartPlayerStaff(_playerData, ref playerIconTransform, ref _bulletsSpawnTransform,
                                                    ref _cameraWasherTransform, healthBarTransform,
                                                    ref _healthBarObject, ref bulletAmountCanvas);
 
