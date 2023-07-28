@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ChooseCharacterController : MonoBehaviour
 {
@@ -18,7 +20,7 @@ public class ChooseCharacterController : MonoBehaviour
     {
         _playerController = FindObjectOfType<PlayerController>();
     }
-    void FixedUpdate()
+    void Update()
     {
         RotateCharacters();
         SlideMenu();
@@ -81,8 +83,10 @@ public class ChooseCharacterController : MonoBehaviour
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Spartacus;
 
-            SceneController.GetInstance.LoadByCodeMenuScene();
-        }        
+            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
+            SceneController.GetInstance.LoadMenuScene();
+        }
     }
     public void ChoosedDobby(int avaliableCoinAmount)
     {
@@ -92,8 +96,8 @@ public class ChooseCharacterController : MonoBehaviour
 
             playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-            SceneController.GetInstance.LoadByCodeMenuScene();
-        }        
+            SceneController.GetInstance.LoadMenuScene();
+        }
     }
     public void ChoosedGlassy(int avaliableCoinAmount)
     {
@@ -103,7 +107,7 @@ public class ChooseCharacterController : MonoBehaviour
 
             playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-            SceneController.GetInstance.LoadByCodeMenuScene();
+            SceneController.GetInstance.LoadMenuScene();
         }        
     }
     public void ChoosedLusth(int avaliableCoinAmount)
@@ -114,7 +118,7 @@ public class ChooseCharacterController : MonoBehaviour
 
             playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-            SceneController.GetInstance.LoadByCodeMenuScene();
+            SceneController.GetInstance.LoadMenuScene();
         }        
     }
     public void ChoosedGuard(int avaliableCoinAmount)
@@ -125,7 +129,7 @@ public class ChooseCharacterController : MonoBehaviour
 
             playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-            SceneController.GetInstance.LoadByCodeMenuScene();
+            SceneController.GetInstance.LoadMenuScene();
         }            
     }
     public void ChoosedEve(int avaliableCoinAmount)
@@ -136,7 +140,7 @@ public class ChooseCharacterController : MonoBehaviour
 
             playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-            SceneController.GetInstance.LoadByCodeMenuScene();
+            SceneController.GetInstance.LoadMenuScene();
         }        
     }
     public void ChoosedMichelle(int avaliableCoinAmount)
@@ -147,7 +151,7 @@ public class ChooseCharacterController : MonoBehaviour
 
             playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-            SceneController.GetInstance.LoadByCodeMenuScene();
+            SceneController.GetInstance.LoadMenuScene();
         }        
     }
     public void ChoosedBoss(int avaliableCoinAmount)
@@ -158,7 +162,7 @@ public class ChooseCharacterController : MonoBehaviour
 
             playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-            SceneController.GetInstance.LoadByCodeMenuScene();
+            SceneController.GetInstance.LoadMenuScene();
         }        
     }
     public void ChoosedAj(int avaliableCoinAmount)
@@ -169,7 +173,7 @@ public class ChooseCharacterController : MonoBehaviour
 
             playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-            SceneController.GetInstance.LoadByCodeMenuScene();
+            SceneController.GetInstance.LoadMenuScene();
         }        
     }
 
@@ -181,7 +185,7 @@ public class ChooseCharacterController : MonoBehaviour
 
             playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-            SceneController.GetInstance.LoadByCodeMenuScene();
+            SceneController.GetInstance.LoadMenuScene();
         }        
     }
 
@@ -193,7 +197,7 @@ public class ChooseCharacterController : MonoBehaviour
 
             playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-            SceneController.GetInstance.LoadByCodeMenuScene();
+            SceneController.GetInstance.LoadMenuScene();
         }
     }
 }

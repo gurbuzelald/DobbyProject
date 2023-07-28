@@ -182,4 +182,12 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ClubClip);
         }
     }
+
+    public void MenuSFX(MenuSoundEffect.MenuSoundEffectTypes soundEffect, AudioData audioData)
+    {
+        if (soundEffect == MenuSoundEffect.MenuSoundEffectTypes.MenuClick)
+        {
+            MenuSoundEffect.GetInstance.audioSource.PlayOneShot(audioData.menuClickClip);
+        }
+    }
 }

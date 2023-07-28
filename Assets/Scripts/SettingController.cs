@@ -64,10 +64,12 @@ public class SettingController : MonoBehaviour
         _sensivityXText.text = playerData.sensivityX.ToString();
         _sensivityYText.text = playerData.sensivityY.ToString();
     }
-    public void ClickSettingButon()
+    public void ClickSettingButton()
     {
         if (_soundSettingsPanel.localScale.x == 0)
         {
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
             _soundSettingsPanel.localScale = Vector3.one;
             _sensivitySettingsPanel.localScale = Vector3.one;
 
@@ -78,6 +80,8 @@ public class SettingController : MonoBehaviour
         }
         else
         {
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
             _soundSettingsPanel.localScale = Vector3.zero;
             _sensivitySettingsPanel.localScale = Vector3.zero;
 

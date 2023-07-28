@@ -30,21 +30,77 @@ public class EnemySpawner : MonoBehaviour
         isActivateCreateEnemy = false;
         bulletCoinCount = 0;
 
-        enemyTransformObject = Instantiate(enemyData.enemyTransformsFirstMap.gameObject, gameObject.transform);
+        CreateAwakeEnemies();
 
-        for (int i = 0; i < enemyData.enemyTransformsFirstMap.transform.childCount; i++)
-        {
-            playerData.enemySpawnDelay = 10;
-            currentEnemyObjects = Instantiate(enemyData.enemyFirstObjects[i],
-                                         enemyTransformObject.transform.GetChild(i).position, 
-                                         Quaternion.identity,
-                                         enemyTransformObject.transform.GetChild(i).transform);
-            currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                                 10f,
-                                                                 enemyTransformObject.transform.GetChild(i).position.z);
-        }
-        enemyCountText.text = gameObject.transform.GetChild(0).childCount.ToString();
         //Debug.Log(gameObject.transform.childCount);
+    }
+    void CreateAwakeEnemies()
+    {
+        if (playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        {
+            enemyTransformObject = Instantiate(enemyData.enemyTransformsFirstMap.gameObject, gameObject.transform);
+
+            for (int i = 0; i < enemyData.enemyTransformsFirstMap.transform.childCount; i++)
+            {
+                playerData.enemySpawnDelay = 10;
+                currentEnemyObjects = Instantiate(enemyData.enemyFirstObjects[i],
+                                             enemyTransformObject.transform.GetChild(i).position,
+                                             Quaternion.identity,
+                                             enemyTransformObject.transform.GetChild(i).transform);
+                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
+                                                                     10f,
+                                                                     enemyTransformObject.transform.GetChild(i).position.z);
+            }
+        }
+       else if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
+       {
+            enemyTransformObject = Instantiate(enemyData.enemyTransformsSecondMap.gameObject, gameObject.transform);
+
+            for (int i = 0; i < enemyData.enemyTransformsSecondMap.transform.childCount; i++)
+            {
+                playerData.enemySpawnDelay = 7;
+                currentEnemyObjects = Instantiate(enemyData.enemySecondObjects[i],
+                                             enemyTransformObject.transform.GetChild(i).position,
+                                             Quaternion.identity,
+                                             enemyTransformObject.transform.GetChild(i).transform);
+                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
+                                                                     10f,
+                                                                     enemyTransformObject.transform.GetChild(i).position.z);
+            }
+        }
+        else if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        {
+            enemyTransformObject = Instantiate(enemyData.enemyTransformsThirdMap.gameObject, gameObject.transform);
+
+            for (int i = 0; i < enemyData.enemyTransformsThirdMap.transform.childCount; i++)
+            {
+                playerData.enemySpawnDelay = 5;
+                currentEnemyObjects = Instantiate(enemyData.enemyThirdObjects[i],
+                                             enemyTransformObject.transform.GetChild(i).position,
+                                             Quaternion.identity,
+                                             enemyTransformObject.transform.GetChild(i).transform);
+                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
+                                                                     10f,
+                                                                     enemyTransformObject.transform.GetChild(i).position.z);
+            }
+        }
+        else if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        {
+            enemyTransformObject = Instantiate(enemyData.enemyTransformsFourthMap.gameObject, gameObject.transform);
+
+            for (int i = 0; i < enemyData.enemyTransformsFourthMap.transform.childCount; i++)
+            {
+                playerData.enemySpawnDelay = 3;
+                currentEnemyObjects = Instantiate(enemyData.enemyFourthObjects[i],
+                                             enemyTransformObject.transform.GetChild(i).position,
+                                             Quaternion.identity,
+                                             enemyTransformObject.transform.GetChild(i).transform);
+                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
+                                                                     10f,
+                                                                     enemyTransformObject.transform.GetChild(i).position.z);
+            }
+        }
+        //enemyCountText.text = gameObject.transform.GetChild(0).childCount.ToString();
     }
     IEnumerator CreateBulletCoin(int i)
     {
@@ -86,59 +142,63 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Update()
     {
-        for (int i = 0; i < gameObject.transform.GetChild(0).transform.childCount; i++)
-        {//if enemyTransformObject's childCount equals zero, destroy enemyTransformObject. This code is for getting enemies amount.
-            if (gameObject.transform.GetChild(0).transform.GetChild(i).childCount == 0)
-            {
-                StartCoroutine(CreateBulletCoin(i));
-                if (gameObject.transform.GetChild(0).name == "EnemyTransformsFirstMap(Clone)")
+        if (gameObject.transform.childCount != 0)
+        {
+            for (int i = 0; i < gameObject.transform.GetChild(0).transform.childCount; i++)
+            {//if enemyTransformObject's childCount equals zero, destroy enemyTransformObject. This code is for getting enemies amount.
+                if (gameObject.transform.GetChild(0).transform.GetChild(i).childCount == 0)
                 {
-                    if (isActivateCreateEnemy)
+                    StartCoroutine(CreateBulletCoin(i));
+                    if (gameObject.transform.GetChild(0).name == "EnemyTransformsFirstMap(Clone)")
                     {
-                        currentEnemyObjects = Instantiate(enemyData.enemyFirstObjects[i],
-                                             enemyTransformObject.transform.GetChild(i).position,
-                                             Quaternion.identity,
-                                             enemyTransformObject.transform.GetChild(i).transform);
-                        isActivateCreateEnemy = false;
+                        if (isActivateCreateEnemy)
+                        {
+                            currentEnemyObjects = Instantiate(enemyData.enemyFirstObjects[i],
+                                                 enemyTransformObject.transform.GetChild(i).position,
+                                                 Quaternion.identity,
+                                                 enemyTransformObject.transform.GetChild(i).transform);
+                            isActivateCreateEnemy = false;
+                        }
                     }
-                }
-                if (gameObject.transform.GetChild(0).name == "EnemyTransformsSecondMap(Clone)")
-                {
-                    if (isActivateCreateEnemy)
+                    if (gameObject.transform.GetChild(0).name == "EnemyTransformsSecondMap(Clone)")
                     {
-                        currentEnemyObjects = Instantiate(enemyData.enemySecondObjects[i],
-                                             enemyTransformObject.transform.GetChild(i).position,
-                                             Quaternion.identity,
-                                             enemyTransformObject.transform.GetChild(i).transform);
-                        isActivateCreateEnemy = false;
+                        if (isActivateCreateEnemy)
+                        {
+                            currentEnemyObjects = Instantiate(enemyData.enemySecondObjects[i],
+                                                 enemyTransformObject.transform.GetChild(i).position,
+                                                 Quaternion.identity,
+                                                 enemyTransformObject.transform.GetChild(i).transform);
+                            isActivateCreateEnemy = false;
+                        }
                     }
-                }
-                if (gameObject.transform.GetChild(0).name == "EnemyTransformsThirdMap(Clone)")
-                {
-                    if (isActivateCreateEnemy)
+                    if (gameObject.transform.GetChild(0).name == "EnemyTransformsThirdMap(Clone)")
                     {
-                        currentEnemyObjects = Instantiate(enemyData.enemyThirdObjects[i],
-                                             enemyTransformObject.transform.GetChild(i).position,
-                                             Quaternion.identity,
-                                             enemyTransformObject.transform.GetChild(i).transform);
-                        isActivateCreateEnemy = false;
+                        if (isActivateCreateEnemy)
+                        {
+                            currentEnemyObjects = Instantiate(enemyData.enemyThirdObjects[i],
+                                                 enemyTransformObject.transform.GetChild(i).position,
+                                                 Quaternion.identity,
+                                                 enemyTransformObject.transform.GetChild(i).transform);
+                            isActivateCreateEnemy = false;
+                        }
                     }
-                }
-                if (gameObject.transform.GetChild(0).name == "EnemyTransformsFourthMap(Clone)")
-                {
-                    if (isActivateCreateEnemy)
+                    if (gameObject.transform.GetChild(0).name == "EnemyTransformsFourthMap(Clone)")
                     {
-                        currentEnemyObjects = Instantiate(enemyData.enemyFourthObjects[i],
-                                             enemyTransformObject.transform.GetChild(i).position,
-                                             Quaternion.identity,
-                                             enemyTransformObject.transform.GetChild(i).transform);
-                        isActivateCreateEnemy = false;
+                        if (isActivateCreateEnemy)
+                        {
+                            currentEnemyObjects = Instantiate(enemyData.enemyFourthObjects[i],
+                                                 enemyTransformObject.transform.GetChild(i).position,
+                                                 Quaternion.identity,
+                                                 enemyTransformObject.transform.GetChild(i).transform);
+                            isActivateCreateEnemy = false;
+                        }
                     }
                 }
             }
         }
         
-        enemyCountText.text = gameObject.transform.GetChild(0).childCount.ToString();
+        
+        //enemyCountText.text = gameObject.transform.GetChild(0).childCount.ToString();
         if (playerData.isCompleteFirstMap)
         {
             playerData.enemySpawnDelay = 7;

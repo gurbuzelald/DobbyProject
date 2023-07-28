@@ -15,7 +15,9 @@ public class SceneController : AbstractSceneController<SceneController>
 
     [Header("Buttons")]
     [SerializeField] GameObject pausePanel;
+    [HideInInspector]
     private bool pauseGame = false;
+    [HideInInspector]
     public static bool playAgain;
 
     [Header("RotationControl")]
@@ -66,6 +68,8 @@ public class SceneController : AbstractSceneController<SceneController>
     }
     public void PlayAgain()
     {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         _playerData.currentMapName = PlayerData.MapNames.FirstMap;
 
         playAgain = true;
@@ -89,7 +93,9 @@ public class SceneController : AbstractSceneController<SceneController>
     }
     public void LoadMenuScene()
     {//Load By Click Menu Scene
-        
+
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         if (CheckSceneName() != "End")
         {
             playAgain = true;
@@ -98,43 +104,58 @@ public class SceneController : AbstractSceneController<SceneController>
         DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Menu.ToString());
+
     }
 
     public void LoadByCodeMenuScene()
     {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         _playerData.currentMapName = PlayerData.MapNames.FirstMap;
+        Debug.Log(_playerData.currentMapName);
 
         DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Menu.ToString());
+
     }
 
     public void LoadWinScene()
     {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Win.ToString());
     }
     public void LoadCharacterChoosingScene()
     {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.CharacterChoose.ToString());
     }
     public void LoadSwordChoosingScene()
     {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.SwordChoose.ToString());
     }
     public void LoadWeaponChoosingScene()
     {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.WeaponChoose.ToString());
     }
     public void LoadEndScene()
     {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.End.ToString());
@@ -150,6 +171,9 @@ public class SceneController : AbstractSceneController<SceneController>
     public void PauseGame()
     {
         if (pauseGame) {
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
             GameObject.Find("Look").transform.localScale = Vector3.one;
             //_lookStick.transform.localScale = Vector3.one;
             pauseGame = false;
@@ -157,12 +181,16 @@ public class SceneController : AbstractSceneController<SceneController>
             _playerData.isPlayable = true;
         }
         else if (!pauseGame) {
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
             GameObject.Find("Look").transform.localScale = Vector3.zero;
 
             //_lookStick.transform.localScale = Vector3.zero;
             pauseGame = true;
             pausePanel.transform.localScale = Vector3.one;
             _playerData.isPlayable = false;
+
         }
     }
     public void ControlRotate()
@@ -198,6 +226,8 @@ public class SceneController : AbstractSceneController<SceneController>
     }
     public void QuitGame()
     {
+                    MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         Application.Quit();
     }
     public enum Tags

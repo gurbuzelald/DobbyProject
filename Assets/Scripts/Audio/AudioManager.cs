@@ -14,6 +14,11 @@ public class AudioManager : AbstractPlayer<AudioManager>
     // Start is called before the first frame update
     void Start()
     {
+        SetStartMusic();
+        LoadVolume();   
+    }
+    void SetStartMusic()
+    {
         _audioSource = GetComponent<AudioSource>();
         if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())
         {
@@ -24,7 +29,7 @@ public class AudioManager : AbstractPlayer<AudioManager>
             _audioSource.clip = _audioData.endMusic;
         }
         else if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Win.ToString())
-        {            
+        {
             _audioSource.clip = _audioData.winMusic;
         }
         else
@@ -32,32 +37,24 @@ public class AudioManager : AbstractPlayer<AudioManager>
             _audioSource.clip = _audioData.gameMusic;
         }
         _audioSource.Play();
-
-        LoadVolume();   
     }
-    public void GetPlayerSFX(AudioClip audioClip)
-    {
-        _audioSource.PlayOneShot(audioClip);
-    }
-    public void GetEnemySFX(AudioClip audioClip)
-    {
-        _audioSource.PlayOneShot(audioClip);
-    }
-
     public enum ExposedParameters
     {
         MusicVolume,
         PlayerSFXVolume,
-        EnemySFXVolume
+        EnemySFXVolume,
+        MenuSFXVolume
     }
     void LoadVolume()
     {
         float _musicVolume = PlayerPrefs.GetFloat(ExposedParameters.MusicVolume.ToString(), 0f);
         float _playerSfxVolume = PlayerPrefs.GetFloat(ExposedParameters.PlayerSFXVolume.ToString(), 1f);
         float _enemySFXVolume = PlayerPrefs.GetFloat(ExposedParameters.EnemySFXVolume.ToString(), 1f);
+        float _menuSFXVolume = PlayerPrefs.GetFloat(ExposedParameters.MenuSFXVolume.ToString(), 1f);
 
         _audiomixer.SetFloat(VolumeSetting.ExposedParameters.MusicVolume.ToString(), Mathf.Log10(_musicVolume)*20f);
         _audiomixer.SetFloat(VolumeSetting.ExposedParameters.PlayerSFXVolume.ToString(), Mathf.Log10(_playerSfxVolume)*20);
         _audiomixer.SetFloat(VolumeSetting.ExposedParameters.EnemySFXVolume.ToString(), Mathf.Log10(_enemySFXVolume)*20f);
+        _audiomixer.SetFloat(VolumeSetting.ExposedParameters.MenuSFXVolume.ToString(), Mathf.Log10(_menuSFXVolume)*20f);
     }
 }

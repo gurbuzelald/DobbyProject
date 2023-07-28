@@ -470,6 +470,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         if (_playerData)
         {
             iPlayerTrigger.TriggerLadder(false, true, _playerData);
+            //
             //iPlayerInitial.PlayerRandomSpawn(_playerData);
 
 

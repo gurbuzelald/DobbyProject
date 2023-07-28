@@ -14,7 +14,7 @@ public class AudioData : ScriptableObject
     [Header("Sounds")]
 
     //Defaulth
-    [Header("Defaulth")]
+    [Header("Player Clips")]
     //public AudioClip shootClip;
     public AudioClip nonShootClip;
     public AudioClip poisonClip;
@@ -55,4 +55,8 @@ public class AudioData : ScriptableObject
     public AudioClip MagicSwordClip;
     public AudioClip LongHummerClip;
     public AudioClip ClubClip;
+
+    [Header("Menu Sounds")]
+    public AudioClip menuClickClip;
+
 }

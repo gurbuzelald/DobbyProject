@@ -12,25 +12,29 @@ public class VolumeSetting : MonoBehaviour
     [Header("Sliders")]
     [SerializeField] Slider _playerSFXSlider;
     [SerializeField] Slider _musicSlider;
-    [SerializeField] Slider _enemySFXVolume;
+    [SerializeField] Slider _enemySFXSliderVolume;
+    [SerializeField] Slider _menuSFXSliderVolume;
 
     private void Start()
     {
         _musicSlider.value = PlayerPrefs.GetFloat(AudioManager.ExposedParameters.MusicVolume.ToString(), 1f);
         _playerSFXSlider.value = PlayerPrefs.GetFloat(AudioManager.ExposedParameters.PlayerSFXVolume.ToString(), 1f);
-        _enemySFXVolume.value = PlayerPrefs.GetFloat(AudioManager.ExposedParameters.EnemySFXVolume.ToString(), 1f);
+        _enemySFXSliderVolume.value = PlayerPrefs.GetFloat(AudioManager.ExposedParameters.EnemySFXVolume.ToString(), 1f);
+        _menuSFXSliderVolume.value = PlayerPrefs.GetFloat(AudioManager.ExposedParameters.MenuSFXVolume.ToString(), 1f);
     }
     private void OnDisable()
     {
         PlayerPrefs.SetFloat(AudioManager.ExposedParameters.MusicVolume.ToString(), _musicSlider.value);
         PlayerPrefs.SetFloat(AudioManager.ExposedParameters.PlayerSFXVolume.ToString(), _playerSFXSlider.value);
-        PlayerPrefs.SetFloat(AudioManager.ExposedParameters.EnemySFXVolume.ToString(), _enemySFXVolume.value);
+        PlayerPrefs.SetFloat(AudioManager.ExposedParameters.EnemySFXVolume.ToString(), _enemySFXSliderVolume.value);
+        PlayerPrefs.SetFloat(AudioManager.ExposedParameters.MenuSFXVolume.ToString(), _menuSFXSliderVolume.value);
     }
     private void Update()
     {
         SetMusicVolume(_musicSlider.value);
         SetPlayerSFXVolume(_playerSFXSlider.value);
-        SetEnemySFXVolume(_enemySFXVolume.value);
+        SetEnemySFXVolume(_enemySFXSliderVolume.value);
+        SetMenuSFXVolume(_menuSFXSliderVolume.value);
     }
     public void SetMusicVolume(float volume)
     {
@@ -44,11 +48,16 @@ public class VolumeSetting : MonoBehaviour
     {
         _audioMixer.SetFloat(ExposedParameters.EnemySFXVolume.ToString(), Mathf.Log10(volume) * 20);
     }
+    public void SetMenuSFXVolume(float volume)
+    {
+        _audioMixer.SetFloat(ExposedParameters.MenuSFXVolume.ToString(), Mathf.Log10(volume) * 20);
+    }
 
     public enum ExposedParameters
     {
         MusicVolume,
         PlayerSFXVolume,
-        EnemySFXVolume
+        EnemySFXVolume,
+        MenuSFXVolume
     }
 }
