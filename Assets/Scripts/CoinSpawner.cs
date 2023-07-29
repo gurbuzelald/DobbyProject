@@ -22,7 +22,22 @@ public class CoinSpawner : MonoBehaviour
 
     void Start()
     {
-        currentMapCoins = Instantiate(_mapCoins[0], gameObject.transform);
+        if (playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        {
+            currentMapCoins = Instantiate(_mapCoins[0], gameObject.transform);
+        }
+        else if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        {
+            currentMapCoins = Instantiate(_mapCoins[1], gameObject.transform);
+        }
+        else if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        {
+            currentMapCoins = Instantiate(_mapCoins[2], gameObject.transform);
+        }
+        else if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        {
+            currentMapCoins = Instantiate(_mapCoins[3], gameObject.transform);
+        }
 
 
         for (int i = 0; i < bulletCoinTransformPos.Length; i++)
@@ -36,39 +51,60 @@ public class CoinSpawner : MonoBehaviour
     }
     void Update()
     {
-        if (playerData.isCompleteFirstMap)
+        
+        
+
+        
+    }
+    public void CreateSecondCoin()
+    {
+        Destroy(currentMapCoins);
+        currentMapCoins = Instantiate(_mapCoins[1], gameObject.transform);
+
+        for (int i = 0; i < bulletCoinTransformPos.Length; i++)
         {
-            Destroy(currentMapCoins);
-            currentMapCoins = Instantiate(_mapCoins[1], gameObject.transform);
-
-            for (int i = 0; i < bulletCoinTransformPos.Length; i++)
-            {
-                Destroy(currentBulletCoinObject);
-                currentBulletCoinObject = Instantiate(bulletCoinObject, bulletCoinTransformPos[i].position, Quaternion.identity, bulletCoinTransform.transform);
-            }
-
-            for (int i = 0; i < healthCoinTransformPos.Length; i++)
-            {
-                Destroy(currentHealthCoinObject);
-                currentHealthCoinObject = Instantiate(healthCoinObject, healthCoinTransformPos[i].position, Quaternion.identity, healthCoinTransform.transform);
-            }
+            Destroy(currentBulletCoinObject);
+            currentBulletCoinObject = Instantiate(bulletCoinObject, bulletCoinTransformPos[i].position, Quaternion.identity, bulletCoinTransform.transform);
         }
-        else if (playerData.isCompleteSecondMap)
+
+        for (int i = 0; i < healthCoinTransformPos.Length; i++)
         {
-            Destroy(currentMapCoins);
-            currentMapCoins = Instantiate(_mapCoins[2], gameObject.transform);
+            Destroy(currentHealthCoinObject);
+            currentHealthCoinObject = Instantiate(healthCoinObject, healthCoinTransformPos[i].position, Quaternion.identity, healthCoinTransform.transform);
+        }
+    }
+    public void CreateThirdCoin()
+    {
+        Destroy(currentMapCoins);
+        currentMapCoins = Instantiate(_mapCoins[2], gameObject.transform);
 
-            for (int i = 0; i < bulletCoinTransformPos.Length; i++)
-            {
-                Destroy(currentBulletCoinObject);
-                currentBulletCoinObject = Instantiate(bulletCoinObject, bulletCoinTransformPos[i].position, Quaternion.identity, bulletCoinTransform.transform);
-            }
+        for (int i = 0; i < bulletCoinTransformPos.Length; i++)
+        {
+            Destroy(currentBulletCoinObject);
+            currentBulletCoinObject = Instantiate(bulletCoinObject, bulletCoinTransformPos[i].position, Quaternion.identity, bulletCoinTransform.transform);
+        }
 
-            for (int i = 0; i < healthCoinTransformPos.Length; i++)
-            {
-                Destroy(currentHealthCoinObject);
-                currentHealthCoinObject = Instantiate(healthCoinObject, healthCoinTransformPos[i].position, Quaternion.identity, healthCoinTransform.transform);
-            }
+        for (int i = 0; i < healthCoinTransformPos.Length; i++)
+        {
+            Destroy(currentHealthCoinObject);
+            currentHealthCoinObject = Instantiate(healthCoinObject, healthCoinTransformPos[i].position, Quaternion.identity, healthCoinTransform.transform);
+        }
+    }
+    public void CreateFourthCoin()
+    {
+        Destroy(currentMapCoins);
+        currentMapCoins = Instantiate(_mapCoins[3], gameObject.transform);
+
+        for (int i = 0; i < bulletCoinTransformPos.Length; i++)
+        {
+            Destroy(currentBulletCoinObject);
+            currentBulletCoinObject = Instantiate(bulletCoinObject, bulletCoinTransformPos[i].position, Quaternion.identity, bulletCoinTransform.transform);
+        }
+
+        for (int i = 0; i < healthCoinTransformPos.Length; i++)
+        {
+            Destroy(currentHealthCoinObject);
+            currentHealthCoinObject = Instantiate(healthCoinObject, healthCoinTransformPos[i].position, Quaternion.identity, healthCoinTransform.transform);
         }
     }
 }

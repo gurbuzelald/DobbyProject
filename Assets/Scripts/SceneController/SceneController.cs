@@ -13,30 +13,21 @@ public class SceneController : AbstractSceneController<SceneController>
     public PlayerData _playerData;
     [SerializeField] PlayerCoinData playerCoinData;
 
-    [Header("Buttons")]
-    [SerializeField] GameObject pausePanel;
-    [HideInInspector]
+    private GameObject pausePanel;
     private bool pauseGame = false;
     [HideInInspector]
     public static bool playAgain;
 
     [Header("RotationControl")]
     public static bool rotateTouchOrMousePos = false;
-    [SerializeField] TextMeshProUGUI mouseOrTouchText;
-    [SerializeField] TextMeshProUGUI lockedWalking;
-    //[SerializeField] GameObject _lookStick;
+    private GameObject mouseOrTouchText;
+    private GameObject lockWalkingText;
     void Start()
     {
-        if (mouseOrTouchText != null && lockedWalking != null && _playerData != null)
-        {
-            lockedWalking.text = "Not Locked";
-            mouseOrTouchText.text = "Touch";
-            rotateTouchOrMousePos = false;
-            _playerData.isLockedWalking = false;
-        }
-        playAgain = false;
-        pauseGame = false;
+        DefaulthVariableValues();
     }
+    
+
     void OnEnable()
     {
         if (pauseGame)
@@ -51,19 +42,39 @@ public class SceneController : AbstractSceneController<SceneController>
             Time.timeScale = 1;
         }
     }
+    void FindGameObjects()
+    {
+        mouseOrTouchText = GameObject.Find("MouseOrTouchText");
+        lockWalkingText = GameObject.Find("LockWalkingText");
+        pausePanel = GameObject.Find("PausePanel");
+    }
+
+    void DefaulthVariableValues()
+    {
+        FindGameObjects();
+        if (mouseOrTouchText != null && lockWalkingText != null && _playerData != null)
+        {
+            lockWalkingText.GetComponent<TextMeshProUGUI>().text = "Not Locked";
+            mouseOrTouchText.GetComponent<TextMeshProUGUI>().text = "Touch";
+            rotateTouchOrMousePos = false;
+            _playerData.isLockedWalking = false;
+        }
+        playAgain = false;
+        pauseGame = false;
+    }
     public void LockWalking()
     {
         if (_playerData.isLockedWalking)
         {
             _playerData.isLockedWalking = false;
 
-            lockedWalking.text = "Not Locked";
+            lockWalkingText.GetComponent<TextMeshProUGUI>().text = "Not Locked";
         }
         else
         {
             _playerData.isLockedWalking = true;
 
-            lockedWalking.text = "Locked";
+            lockWalkingText.GetComponent<TextMeshProUGUI>().text = "Locked";
         }
     }
     public void PlayAgain()
@@ -197,13 +208,13 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         if (rotateTouchOrMousePos == true)
         {
-            mouseOrTouchText.text = "Touch";
+            mouseOrTouchText.GetComponent<TextMeshProUGUI>().text = "Touch";
 
             rotateTouchOrMousePos = false;
         }
         else
         {
-            mouseOrTouchText.text = "Mouse";
+            mouseOrTouchText.GetComponent<TextMeshProUGUI>().text = "Mouse";
 
             rotateTouchOrMousePos = true;
         }

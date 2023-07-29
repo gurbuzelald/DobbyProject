@@ -196,68 +196,59 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
         }
-        
-        
-        //enemyCountText.text = gameObject.transform.GetChild(0).childCount.ToString();
-        if (playerData.isCompleteFirstMap)
+    }
+    public void CreateSecondMapEnemies()
+    {
+        playerData.enemySpawnDelay = 7;
+
+        Destroy(enemyTransformObject);
+        enemyTransformObject = Instantiate(enemyData.enemyTransformsSecondMap.gameObject, gameObject.transform);
+
+        for (int i = 0; i < enemyData.enemySecondObjects.Length; i++)
         {
-            playerData.enemySpawnDelay = 7;
-
-            Destroy(enemyTransformObject);
-            enemyTransformObject = Instantiate(enemyData.enemyTransformsSecondMap.gameObject, gameObject.transform);
-
-            for (int i = 0; i < enemyData.enemySecondObjects.Length; i++)
-            {
-                currentEnemyObjects = Instantiate(enemyData.enemySecondObjects[i],
-                                         enemyTransformObject.transform.GetChild(i).position,
-                                         Quaternion.identity,
-                                         enemyTransformObject.transform.GetChild(i).transform);
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                                 10f,
-                                                                 enemyTransformObject.transform.GetChild(i).position.z);
-            }
-
-            playerData.isCompleteFirstMap = false;
+            currentEnemyObjects = Instantiate(enemyData.enemySecondObjects[i],
+                                     enemyTransformObject.transform.GetChild(i).position,
+                                     Quaternion.identity,
+                                     enemyTransformObject.transform.GetChild(i).transform);
+            currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
+                                                             10f,
+                                                             enemyTransformObject.transform.GetChild(i).position.z);
         }
-        if (playerData.isCompleteSecondMap)
+    }
+    public void CreateThirdMapEnemies()
+    {
+        playerData.enemySpawnDelay = 5;
+
+        Destroy(enemyTransformObject);
+        enemyTransformObject = Instantiate(enemyData.enemyTransformsThirdMap.gameObject, gameObject.transform);
+
+        for (int i = 0; i < enemyData.enemyThirdObjects.Length; i++)
         {
-            playerData.enemySpawnDelay = 5;
-
-            Destroy(enemyTransformObject);
-            enemyTransformObject = Instantiate(enemyData.enemyTransformsThirdMap.gameObject, gameObject.transform);
-
-            for (int i = 0; i < enemyData.enemyThirdObjects.Length; i++)
-            {
-                currentEnemyObjects = Instantiate(enemyData.enemyThirdObjects[i],
-                                         enemyTransformObject.transform.GetChild(i).position,
-                                         Quaternion.identity,
-                                         enemyTransformObject.transform.GetChild(i).transform);
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                                 10f,
-                                                                 enemyTransformObject.transform.GetChild(i).position.z);
-            }
-
-            playerData.isCompleteSecondMap = false;
+            currentEnemyObjects = Instantiate(enemyData.enemyThirdObjects[i],
+                                     enemyTransformObject.transform.GetChild(i).position,
+                                     Quaternion.identity,
+                                     enemyTransformObject.transform.GetChild(i).transform);
+            currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
+                                                             10f,
+                                                             enemyTransformObject.transform.GetChild(i).position.z);
         }
-        if (playerData.isCompleteThirdMap)
+    }
+    public void CreateFourthMapEnemies()
+    {
+        playerData.enemySpawnDelay = 3;
+
+        Destroy(enemyTransformObject);
+        enemyTransformObject = Instantiate(enemyData.enemyTransformsFourthMap.gameObject, gameObject.transform);
+
+        for (int i = 0; i < enemyData.enemyFourthObjects.Length; i++)
         {
-            playerData.enemySpawnDelay = 3;
-
-            Destroy(enemyTransformObject);
-            enemyTransformObject = Instantiate(enemyData.enemyTransformsFourthMap.gameObject, gameObject.transform);
-
-            for (int i = 0; i < enemyData.enemyFourthObjects.Length; i++)
-            {
-                currentEnemyObjects = Instantiate(enemyData.enemyFourthObjects[i],
-                                         enemyTransformObject.transform.GetChild(i).position,
-                                         Quaternion.identity,
-                                         enemyTransformObject.transform.GetChild(i).transform);
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                                 10f,
-                                                                 enemyTransformObject.transform.GetChild(i).position.z);
-            }
-
-            playerData.isCompleteThirdMap = false;
+            currentEnemyObjects = Instantiate(enemyData.enemyFourthObjects[i],
+                                     enemyTransformObject.transform.GetChild(i).position,
+                                     Quaternion.identity,
+                                     enemyTransformObject.transform.GetChild(i).transform);
+            currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
+                                                             10f,
+                                                             enemyTransformObject.transform.GetChild(i).position.z);
         }
     }
 }

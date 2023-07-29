@@ -5,47 +5,67 @@ using UnityEngine;
 public class MirrorSpawner : MonoBehaviour
 {
     [SerializeField] PlayerData _playerData;
-    [SerializeField] GameObject[] _mirrorCouple;
 
     private GameObject _currentMirrorCouple;
     void Awake()
     {
-        for (int i = 0; i < _mirrorCouple.Length; i++)
+        if (_playerData.currentMapName == PlayerData.MapNames.FirstMap)
         {
-            _currentMirrorCouple = Instantiate(_mirrorCouple[i], gameObject.transform);
+            for (int i = 0; i < _playerData._firstMapMirrorCouples.Length; i++)
+            {
+                _currentMirrorCouple = Instantiate(_playerData._firstMapMirrorCouples[i], gameObject.transform);
+            }
+        }
+        if (_playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        {
+            for (int i = 0; i < _playerData._secondMapMirrorCouples.Length; i++)
+            {
+                _currentMirrorCouple = Instantiate(_playerData._secondMapMirrorCouples[i], gameObject.transform);
+            }
+        }
+        if (_playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        {
+            for (int i = 0; i < _playerData._thirdMapMirrorCouples.Length; i++)
+            {
+                _currentMirrorCouple = Instantiate(_playerData._thirdMapMirrorCouples[i], gameObject.transform);
+            }
+        }
+        if (_playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        {
+            for (int i = 0; i < _playerData._fourthMapMirrorCouples.Length; i++)
+            {
+                _currentMirrorCouple = Instantiate(_playerData._fourthMapMirrorCouples[i], gameObject.transform);
+            }
+        }
+
+
+    }
+    public void CreateSecondMapMirror()
+    {
+        Destroy(_currentMirrorCouple);
+
+
+        for (int i = 0; i < _playerData._secondMapMirrorCouples.Length; i++)
+        {
+            _currentMirrorCouple = Instantiate(_playerData._secondMapMirrorCouples[i], gameObject.transform);
         }
     }
-    void Update()
+    public void CreateThirdMapMirror()
     {
-        if (_playerData.isCompleteFirstMap)
-        {
-            Destroy(_currentMirrorCouple);
+        Destroy(_currentMirrorCouple);
 
+        for (int i = 0; i < _playerData._thirdMapMirrorCouples.Length; i++)
+        {
+            _currentMirrorCouple = Instantiate(_playerData._thirdMapMirrorCouples[i], gameObject.transform);
+        }
+    }
+    public void CreateFourthMapMirror()
+    {
+        Destroy(_currentMirrorCouple);
 
-            for (int i = 0; i < gameObject.transform.childCount; i++)
-            {
-            }
-        }
-        else if (_playerData.isCompleteSecondMap)
+        for (int i = 0; i < _playerData._fourthMapMirrorCouples.Length; i++)
         {
-            for (int i = 0; i < gameObject.transform.childCount; i++)
-            {
-                Destroy(_currentMirrorCouple);
-            }
-        }
-        else if (_playerData.isCompleteThirdMap)
-        {
-            for (int i = 0; i < gameObject.transform.childCount; i++)
-            {
-                Destroy(_currentMirrorCouple);
-            }
-        }
-        else if (_playerData.isCompleteFourthMap)
-        {
-            for (int i = 0; i < gameObject.transform.childCount; i++)
-            {
-                Destroy(_currentMirrorCouple);
-            }
+            _currentMirrorCouple = Instantiate(_playerData._fourthMapMirrorCouples[i], gameObject.transform);
         }
     }
 }

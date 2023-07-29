@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
-  currentMapName: 0
+  currentMapName: 1
+  currentLevel: 0
   firstSkybox: {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
   secondMapSkyBox: {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
   thirdSkybox: {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
@@ -29,11 +30,22 @@ MonoBehaviour:
   bossPrice: 0
   tyPrice: 0
   mremirehPrice: 0
-  enemySpawnDelay: 10
+  enemySpawnDelay: 7
   _healtCoinTransform:
   - {fileID: 1707016675134421311, guid: 06d257ec3674d9446806cfc13725069b, type: 3}
+  - {fileID: 2602705668131860869, guid: 16b30ccc6b22aee44b1deac6fb497ceb, type: 3}
+  - {fileID: 1198534576858581768, guid: b91f8c0951dc9aa419cdd62f0d11a1e3, type: 3}
+  - {fileID: 6848931167675852839, guid: 6ec948522583f334b9bdcc24159a6354, type: 3}
   _healtCoinObject: {fileID: 9077765185764460176, guid: a275adbe230564749ac78dcd554d00e3, type: 3}
   currentMirrorName: Mirror1
+  _firstMapMirrorCouples:
+  - {fileID: 9044617553140458651, guid: e7f4d5f6e375e4548a69d4d890e6ec8c, type: 3}
+  _secondMapMirrorCouples:
+  - {fileID: 6167717323233158170, guid: e039fe0c70ee28544a24b18517c302fe, type: 3}
+  _thirdMapMirrorCouples:
+  - {fileID: 2808162707802702247, guid: ae0befe520627db47823e83467a22361, type: 3}
+  _fourthMapMirrorCouples:
+  - {fileID: 6022340288675348387, guid: 0e6ca9137dddb924fb941e3a65e4e1ac, type: 3}
   _finishAreas: {fileID: 311188628955670743, guid: 147c08b652e1e9a4288e6347fc94ddab, type: 3}
   isCompleteFirstMap: 0
   isCompleteSecondMap: 0
@@ -80,25 +92,25 @@ MonoBehaviour:
   sensivityY: 5
   isTouchFinish: 0
   isLose: 0
-  playerSpeed: 2.5
+  playerSpeed: 1.5
   rotateSpeed: 6
   isGround: 1
   isWalking: 0
   isLockedWalking: 0
-  isBackWalking: 1
+  isBackWalking: 0
   isClimbing: 0
   isBackClimbing: 0
   isIdling: 0
-  isDying: 1
+  isDying: 0
   isWinning: 0
   isSkateBoarding: 0
   isRunning: 0
   isPicking: 0
   isPickRotateCoin: 0
   isLookingUp: 0
-  isDestroyed: 1
-  isPlayable: 0
-  jumpForce: 3
+  isDestroyed: 0
+  isPlayable: 1
+  jumpForce: 4
   isFireNonWalk: 0
   isFireWalk: 0
   isFireTime: 0
@@ -112,7 +124,7 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 24
+  bulletAmount: 30
   bulletPack: 30
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

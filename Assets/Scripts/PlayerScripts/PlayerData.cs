@@ -9,6 +9,9 @@ public class PlayerData : ScriptableObject
     [Header("Level SkyBoxes")]
     public MapNames currentMapName;
 
+    [Header("Current Level")]
+    public Levels currentLevel;
+
     [Header("Level SkyBoxes")]
     public Material firstSkybox;
     public Material secondMapSkyBox;
@@ -28,15 +31,19 @@ public class PlayerData : ScriptableObject
     public int tyPrice;
     public int mremirehPrice;
 
-    [Header("Finishes")]
+    [Header("Enemy Spawn")]
     public int enemySpawnDelay;
 
-    [Header("Finishes")]
+    [Header("HealthCoin Transforms")]
     public GameObject[] _healtCoinTransform;
     public GameObject _healtCoinObject;
 
     [Header("Mirror")]
     public string currentMirrorName;
+    public GameObject[] _firstMapMirrorCouples;
+    public GameObject[] _secondMapMirrorCouples;
+    public GameObject[] _thirdMapMirrorCouples;
+    public GameObject[] _fourthMapMirrorCouples;
 
     [Header("Finishes")]
     public GameObject _finishAreas;
@@ -198,5 +205,12 @@ public class PlayerData : ScriptableObject
         SecondMap,
         ThirdMap,
         FourthMap
+    }
+    public enum Levels
+    {
+        Level1,
+        Level2,
+        Level3,
+        Level4
     }
 }

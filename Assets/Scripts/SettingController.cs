@@ -10,10 +10,10 @@ public class SettingController : MonoBehaviour
     [SerializeField] RectTransform _soundSettingsPanel;
     [SerializeField] RectTransform _sensivitySettingsPanel;
 
-    [SerializeField] RectTransform _chooseCharacterButton;
-    [SerializeField] RectTransform _playButton;
-    [SerializeField] RectTransform _quitButton;
-    [SerializeField] RectTransform _continueButton;
+    private GameObject _chooseCharacterButton;
+    private GameObject _playButton;
+    private GameObject _quitButton;
+    private GameObject _continueButton;
 
     [Header("Sensivity")]
     [SerializeField] Slider _sensivityX;
@@ -26,11 +26,13 @@ public class SettingController : MonoBehaviour
 
     private void Awake()
     {
+        //Finding button objects with names.
+        FindButtonObjects();
+
         //Sensivity Datas are transforming to preferences on awake
         PlayerPrefs.SetFloat("SensivityX", playerData.sensivityX);
         PlayerPrefs.SetFloat("SensivityY", playerData.sensivityY);        
     }
-
     private void OnEnable()
     {
         //Sensivity preferences are transforming to sliders on enable
@@ -47,7 +49,7 @@ public class SettingController : MonoBehaviour
 
             if (playerData.currentMapName != PlayerData.MapNames.FirstMap)
             {
-                _continueButton.localScale = Vector3.one;
+                _continueButton.GetComponent<RectTransform>().localScale = Vector3.one;
             }
         }        
     }
@@ -73,10 +75,10 @@ public class SettingController : MonoBehaviour
             _soundSettingsPanel.localScale = Vector3.one;
             _sensivitySettingsPanel.localScale = Vector3.one;
 
-            _chooseCharacterButton.localScale = Vector3.zero;
-            _playButton.localScale = Vector3.zero;
-            _quitButton.localScale = Vector3.zero;
-            _continueButton.localScale = Vector3.zero;
+            _chooseCharacterButton.GetComponent<RectTransform>().localScale = Vector3.zero;
+            _playButton.GetComponent<RectTransform>().localScale = Vector3.zero;
+            _quitButton.GetComponent<RectTransform>().localScale = Vector3.zero;
+            _continueButton.GetComponent<RectTransform>().localScale = Vector3.zero;
         }
         else
         {
@@ -85,12 +87,12 @@ public class SettingController : MonoBehaviour
             _soundSettingsPanel.localScale = Vector3.zero;
             _sensivitySettingsPanel.localScale = Vector3.zero;
 
-            _chooseCharacterButton.localScale = Vector3.one;
-            _playButton.localScale = Vector3.one;
-            _quitButton.localScale = Vector3.one;
+            _chooseCharacterButton.GetComponent<RectTransform>().localScale = Vector3.one;
+            _playButton.GetComponent<RectTransform>().localScale = Vector3.one;
+            _quitButton.GetComponent<RectTransform>().localScale = Vector3.one;
             if (playerData.currentMapName != PlayerData.MapNames.FirstMap)
             {
-                _continueButton.localScale = Vector3.one;
+                _continueButton.GetComponent<RectTransform>().localScale = Vector3.one;
             }
         }
     }
@@ -98,5 +100,13 @@ public class SettingController : MonoBehaviour
     {
         _sensivityX.value = 10f;
         _sensivityY.value = 10f;
+    }
+
+    void FindButtonObjects()
+    {
+        _chooseCharacterButton = GameObject.Find("ChooseCharacterButton");
+        _playButton = GameObject.Find("PlayButton");
+        _quitButton = GameObject.Find("QuitButton");
+        _continueButton = GameObject.Find("ContinueButton");
     }
 }

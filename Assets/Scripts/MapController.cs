@@ -59,61 +59,52 @@ public class MapController : MonoBehaviour
     }
     void Update()
     {
-        SetLevelSkybox();
-        SetNewMap();
-    }
-    void SetNewMap()
-    {
         readWrite.SavePlayerDataToJson();
+    }
+    public void CreateSecondMap()
+    {
+        playerData.currentMapName = PlayerData.MapNames.SecondMap;
 
-        if (playerData.isCompleteFirstMap)
-        {
-            playerData.currentMapName = PlayerData.MapNames.SecondMap;
+        playerData.isPlayable = false;
+        DarknessCubesActivity();
+        Destroy(currentMap, 1);
+        CreateMap(Maps[1], gameObject.transform);
+        StartCoroutine(DelayTruePlayable());
+    }
+    public void CreateThirdMap()
+    {
+        playerData.currentMapName = PlayerData.MapNames.ThirdMap;
 
-            playerData.isPlayable = false;
-            DarknessCubesActivity();
-            Destroy(currentMap, 1);
-            CreateMap(Maps[1], gameObject.transform);
-            StartCoroutine(DelayTruePlayable());
-        }
-        else if (playerData.isCompleteSecondMap)
-        {
-            playerData.currentMapName = PlayerData.MapNames.ThirdMap;
+        playerData.isPlayable = false;
+        DarknessCubesActivity();
+        Destroy(currentMap, 1);
+        CreateMap(Maps[2], gameObject.transform);
+        StartCoroutine(DelayTruePlayable());
+    }
+    public void CreateFourthMap()
+    {
+        playerData.currentMapName = PlayerData.MapNames.FourthMap;
 
-            playerData.isPlayable = false;
-            DarknessCubesActivity();
-            Destroy(currentMap, 1);
-            CreateMap(Maps[2], gameObject.transform);
-            StartCoroutine(DelayTruePlayable());
-        }
-        else if (playerData.isCompleteThirdMap)
-        {
-            playerData.currentMapName = PlayerData.MapNames.FourthMap;
-
-            playerData.isPlayable = false;
-            DarknessCubesActivity();
-            Destroy(currentMap, 1);
-            CreateMap(Maps[3], gameObject.transform);
-            StartCoroutine(DelayTruePlayable());
-        }
+        playerData.isPlayable = false;
+        DarknessCubesActivity();
+        Destroy(currentMap, 1);
+        CreateMap(Maps[3], gameObject.transform);
+        StartCoroutine(DelayTruePlayable());
     }
     void CreateMap(GameObject mapObject, Transform mapTransform)
     {
         currentMap  = Instantiate(mapObject, mapTransform);
     }
-    private void SetLevelSkybox()
+    public void SetSecondSkybox()
     {
-        if (playerData.isCompleteFirstMap)
-        {
-            RenderSettings.skybox = playerData.secondMapSkyBox;
-        }
-        else if (playerData.isCompleteSecondMap)
-        {
-            RenderSettings.skybox = playerData.thirdSkybox;
-        }
-        else if (playerData.isCompleteThirdMap)
-        {
-            RenderSettings.skybox = playerData.fourthSkybox;
-        }
+        RenderSettings.skybox = playerData.secondMapSkyBox;
+    }
+    public void SetThirdSkyBox()
+    {
+        RenderSettings.skybox = playerData.thirdSkybox;
+    }
+    public void SetFourthSkybox()
+    {
+        RenderSettings.skybox = playerData.fourthSkybox;
     }
 }
