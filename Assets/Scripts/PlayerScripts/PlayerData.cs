@@ -34,7 +34,8 @@ public class PlayerData : ScriptableObject
     [Header("Enemy Spawn")]
     public int enemySpawnDelay;
 
-    [Header("HealthCoin Transforms")]
+    [Header("Coin Transforms")]
+    public GameObject[] mapCoins;
     public GameObject[] _healtCoinTransform;
     public GameObject _healtCoinObject;
 

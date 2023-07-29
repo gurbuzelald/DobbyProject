@@ -12,28 +12,22 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
     {
         if (playerData.currentMapName == PlayerData.MapNames.FirstMap)
         {
-            FirstMapCreateGiftBoxes();
+            CreateFirstMapGiftBoxes();
         }
         else if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
         {
-            playerData.isCompleteFirstMap = true;
-
             CreateSecondMapGiftBoxes();
         }
         else if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
         {
-            playerData.isCompleteSecondMap = true;
-
             CreateThirdMapGiftBoxes();
         }
         else if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
         {
-            playerData.isCompleteThirdMap = true;
-
             CreateFourthMapGiftBoxes();
         }
     }
-    void FirstMapCreateGiftBoxes()
+    void CreateFirstMapGiftBoxes()
     {
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
@@ -110,89 +104,3 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
     }
     
 }
-/* 
- 
- 
-
-
-    [Header("First Map Gift Boxes")]
-    [Header("Rifle")]
-    public Transform[] _firstMapRifleTransforms;
-
-    [Header("Ak47")]
-    public Transform[] _firstMapAk47Transforms;
-
-    [Header("Axegun")]
-    public Transform[] _firstMapAxegunTransforms;
-
-
-
-    [Header("Second Map Gift Boxes")]
-    [Header("Bulldog")]
-    public Transform[] _secondMapBulldogTransforms;
-
-    [Header("Cowgun")]
-    public Transform[] _secondMapCowgunTransforms;
-
-    [Header("Crystalgun")]
-    public Transform[] _secondMapCrystalgunTransforms;
-
-    [Header("Demongun")]
-    public Transform[] _secondMapDemongunTransforms;
-
-    [Header("Icegun")]
-    public Transform[] _secondMapIcegunTransforms;
-
-    [Header("Negev")]
-    public Transform[] _secondMapNegevTransforms;
-
-    [Header("Axegun")]
-    public Transform[] _secondMapAxegunTransforms;
-
-
-    [Header("Third Map Gift Boxes")]
-    [Header("Bulldog")]
-    public Transform[] _thirdMapBulldogTransforms;
-
-    [Header("Cowgun")]
-    public Transform[] _thirdMapCowgunTransforms;
-
-    [Header("Crystalgun")]
-    public Transform[] _thirdMapCrystalgunTransforms;
-
-    [Header("Demongun")]
-    public Transform[] _thirdMapDemongunTransforms;
-
-    [Header("Icegun")]
-    public Transform[] _thirdMapIcegunTransforms;
-
-    [Header("Negev")]
-    public Transform[] _thirdMapNegevTransforms;
-
-    [Header("Axegun")]
-    public Transform[] _thirdMapAxegunTransforms;
-
-
-    [Header("Fourth Map Gift Boxes")]
-    [Header("Bulldog")]
-    public Transform[] _fourthMapBulldogTransforms;
-
-    [Header("Cowgun")]
-    public Transform[] _fourthMapCowgunTransforms;
-
-    [Header("Crystalgun")]
-    public Transform[] _fourthMapCrystalgunTransforms;
-
-    [Header("Demongun")]
-    public Transform[] _fourthMapDemongunTransforms;
-
-    [Header("Icegun")]
-    public Transform[] _fourthMapIcegunTransforms;
-
-    [Header("Negev")]
-    public Transform[] _fourthMapNegevTransforms;
-
-    [Header("Axegun")]
-    public Transform[] _fourthMapAxegunTransforms;
- 
- */

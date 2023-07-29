@@ -37,8 +37,6 @@ public class MirrorSpawner : MonoBehaviour
                 _currentMirrorCouple = Instantiate(_playerData._fourthMapMirrorCouples[i], gameObject.transform);
             }
         }
-
-
     }
     public void CreateSecondMapMirror()
     {

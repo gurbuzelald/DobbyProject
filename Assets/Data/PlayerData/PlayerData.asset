@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
-  currentMapName: 1
+  currentMapName: 3
   currentLevel: 0
   firstSkybox: {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
   secondMapSkyBox: {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
@@ -30,14 +30,19 @@ MonoBehaviour:
   bossPrice: 0
   tyPrice: 0
   mremirehPrice: 0
-  enemySpawnDelay: 7
+  enemySpawnDelay: 3
+  mapCoins:
+  - {fileID: 3880732843794124356, guid: 8afde6b0df00a404199392eae3715794, type: 3}
+  - {fileID: 1413783167371764476, guid: 5b53e633fa5f1eb408fa0f939e143a88, type: 3}
+  - {fileID: 5322124332606893326, guid: 8fb09cecb8edfca4d83ec9f7f6fa405c, type: 3}
+  - {fileID: 3947003817539995590, guid: dd1fc5b288f4fc04fbe488864f4a4dd6, type: 3}
   _healtCoinTransform:
   - {fileID: 1707016675134421311, guid: 06d257ec3674d9446806cfc13725069b, type: 3}
   - {fileID: 2602705668131860869, guid: 16b30ccc6b22aee44b1deac6fb497ceb, type: 3}
   - {fileID: 1198534576858581768, guid: b91f8c0951dc9aa419cdd62f0d11a1e3, type: 3}
   - {fileID: 6848931167675852839, guid: 6ec948522583f334b9bdcc24159a6354, type: 3}
   _healtCoinObject: {fileID: 9077765185764460176, guid: a275adbe230564749ac78dcd554d00e3, type: 3}
-  currentMirrorName: Mirror1
+  currentMirrorName: Mirror2
   _firstMapMirrorCouples:
   - {fileID: 9044617553140458651, guid: e7f4d5f6e375e4548a69d4d890e6ec8c, type: 3}
   _secondMapMirrorCouples:
@@ -52,9 +57,9 @@ MonoBehaviour:
   isCompleteThirdMap: 0
   isCompleteFourthMap: 0
   isFirstMapTarget: 0
-  isSecondMapTarget: 0
-  isThirdMapTarget: 0
-  isFourthMapTarget: 0
+  isSecondMapTarget: 1
+  isThirdMapTarget: 1
+  isFourthMapTarget: 1
   isLevelUp: 0
   currentCharacterName: 2
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
@@ -115,7 +120,7 @@ MonoBehaviour:
   isFireWalk: 0
   isFireTime: 0
   isSwording: 0
-  isSwordTime: 0
+  isSwordTime: 1
   isJumping: 0
   isClickable: 1
   jumpCount: 0
@@ -124,7 +129,7 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 30
+  bulletAmount: 22
   bulletPack: 30
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}
