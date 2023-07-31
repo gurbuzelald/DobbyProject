@@ -123,6 +123,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: d1bb71ab89b3d0d4aa86d9a3d6e9b81e, type: 2}
+--- !u!1001 &52859826
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4800993404208530312, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_Name
+      value: EnemyTransformsFirstMap
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800993404208530312, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800993404208530313, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800993404208530313, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800993404208530313, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800993404208530313, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800993404208530313, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800993404208530313, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800993404208530313, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800993404208530313, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800993404208530313, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800993404208530313, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4800993404208530313, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
 --- !u!4 &129794121 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2506085336869235473, guid: 1ced5c931ec6dce4f856786d86939927, type: 3}
@@ -174,20 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 564ada80d34fbdc449c557277bdaa526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletCoinObject: {fileID: 8727144327109741877, guid: c9f215a222585534b9e1750b7fe1679d, type: 3}
-  bulletCoinTransform: {fileID: 337927394}
-  bulletCoinTransformPos:
-  - {fileID: 337927394}
-  healthCoinObject: {fileID: 9077765185764460176, guid: a275adbe230564749ac78dcd554d00e3, type: 3}
-  healthCoinTransform: {fileID: 2007781032}
-  healthCoinTransformPos:
-  - {fileID: 2007781032}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
-  _mapCoins:
-  - {fileID: 3880732843794124356, guid: 8afde6b0df00a404199392eae3715794, type: 3}
-  - {fileID: 1413783167371764476, guid: 5b53e633fa5f1eb408fa0f939e143a88, type: 3}
-  - {fileID: 5322124332606893326, guid: 8fb09cecb8edfca4d83ec9f7f6fa405c, type: 3}
-  - {fileID: 3947003817539995590, guid: dd1fc5b288f4fc04fbe488864f4a4dd6, type: 3}
 --- !u!225 &176541238 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 176541238, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}

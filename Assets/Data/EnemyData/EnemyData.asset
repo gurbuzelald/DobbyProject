@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
+  _enemyTouchParticle: {fileID: 0}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
-  bulletCoinActivate: 0
   enemyFirstObjects:
   - {fileID: 4288211827455112566, guid: 0306d1720a844fa4e9feb9b2b604d860, type: 3}
   - {fileID: 2134151945780647761, guid: 61a60c4eb8936f94e8b91f35ae8c8991, type: 3}
@@ -24,6 +24,7 @@ MonoBehaviour:
   - {fileID: 2133012914156472325, guid: 72f0133ff64d426428014c76a2926d9c, type: 3}
   - {fileID: 8949910313472600481, guid: 7e1e4c01a8efd1d4b89fc959204dafef, type: 3}
   - {fileID: 4393876145780571537, guid: 70dac476223967e46b180fda0accefaa, type: 3}
+  - {fileID: 1124876159237399022, guid: b8bad723ca5a02947bddd66f50f0d411, type: 3}
   - {fileID: 1124876159237399022, guid: 08524ce7f172b1f40ab3eee041359683, type: 3}
   - {fileID: 8967855359998218866, guid: ab3ca2ef43192e44d9b42185d6cda213, type: 3}
   - {fileID: 8967855359998218866, guid: db7e0b172b7b5b84588c0534061d1a51, type: 3}
@@ -32,6 +33,7 @@ MonoBehaviour:
   - {fileID: 1488839946682538327, guid: 1dbed879eb27d4441a3d9e5a4f7ac80d, type: 3}
   - {fileID: 1488839946682538327, guid: 6b1f0cf01150a844785d55fcb97cebeb, type: 3}
   - {fileID: 1488839946682538327, guid: 99d2c8c18ff62554a9cf81b7166dcc22, type: 3}
+  - {fileID: 1488839946682538327, guid: 406cd1a12e40a5544a310264f08b9bb7, type: 3}
   - {fileID: 1488839946682538327, guid: 406cd1a12e40a5544a310264f08b9bb7, type: 3}
   enemySecondObjects:
   - {fileID: 4288211827455112566, guid: 0306d1720a844fa4e9feb9b2b604d860, type: 3}
@@ -94,6 +96,8 @@ MonoBehaviour:
   getHitClip: {fileID: 8300000, guid: a6519293710bb5749a4734619dd06379, type: 3}
   giveHitClip: {fileID: 8300000, guid: cf10e1f403c454c47a380a649fc10e7d, type: 3}
   dyingClip: {fileID: 8300000, guid: 6d502a9e59205aa418255b021e5cebaf, type: 3}
+  bulletHitClip: {fileID: 0}
+  swordHitClip: {fileID: 0}
   isGround: 0
   isDying: 0
   isWalking: 0

@@ -68,7 +68,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 }
                 else
                 {
-                    enemyData.isWalking = false;
+                    //When Enemy touched player, enemy will get a animation to here.
+                    //enemyData.isWalking = false;
                 }
             }
             else if(!playerData.isPlayable && gameObject != null && gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>() != null)
@@ -230,7 +231,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 topParticle.Play();
                 enemyData.isTouchable = false;
                 enemyData.isDying = true;
-                enemyData.isWalking = false;
+                //enemyData.isWalking = false;
                 enemyData.isFiring = false;
                 enemyData.isSpeedZero = true;
                 StartCoroutine(DelayStopEnemy(5f));
@@ -250,7 +251,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 {  
                     middleParticle.Play();
                 }
-                enemyData.isWalking = false;
+                //enemyData.isWalking = false;
                 enemyData.isFiring = false;
                 enemyData.isSpeedZero = true;
                 StartCoroutine(DelayStopEnemy(3f));
@@ -267,7 +268,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         StartCoroutine(TriggerBulletParticleCreater(other));
 
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
-        enemyData.isWalking = false;
+        //enemyData.isWalking = false;
         enemyData.isSpeedZero = true;
         StartCoroutine(DelayStopEnemy(3f));
         if (_healthBar != null)
@@ -279,7 +280,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 topParticle.Play();
                 enemyData.isTouchable = false;
                 enemyData.isDying = true;
-                enemyData.isWalking = false;
+                //enemyData.isWalking = false;
                 enemyData.isFiring = false;
                 enemyData.isSpeedZero = true;
                 StartCoroutine(DelayStopEnemy(5f));
@@ -299,7 +300,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 {
                     middleParticle.Play();
                 }
-                enemyData.isWalking = false;
+                //enemyData.isWalking = false;
                 enemyData.isFiring = false;
                 enemyData.isSpeedZero = true;
                 StartCoroutine(DelayStopEnemy(3f));
@@ -326,7 +327,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     public IEnumerator DelayStopEnemy(float value)
     {
         yield return new WaitForSeconds(value);
-        enemyData.isWalking = true;
+        //enemyData.isWalking = true;
         enemyData.isSpeedZero = false;
 
     }
@@ -337,7 +338,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         yield return new WaitForSeconds(delayDestroy);
         Destroy(gameObject);
         
-        enemyData.isWalking = true;
+        //enemyData.isWalking = true;
         enemyData.isDying = false;
     }
     IEnumerator CreateDestroyParticle() {

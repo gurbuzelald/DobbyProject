@@ -1028,7 +1028,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         if (collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
         {
             collision.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
-            collision.gameObject.GetComponent<EnemyManager>().enemyData.enemySpeed = 0;
+            //collision.gameObject.GetComponent<EnemyManager>().enemyData.enemySpeed = 0;
         }
         if (collision.gameObject.CompareTag(SceneController.Tags.CloneDobby.ToString()))
         {

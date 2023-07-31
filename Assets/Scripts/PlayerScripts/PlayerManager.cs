@@ -169,7 +169,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                     }
                     if (collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable)
                     {
-                        //ParticleEffect
+                        //Touch ParticleEffect
                         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
 
                         //SoundEffect
@@ -227,6 +227,9 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             StartCoroutine(iPlayerTrigger.DamageArrowIsLookAtEnemy(other, _damageArrow));
 
             iPlayerHealth.DecreaseHealth(2, ref _healthBarObject, ref _topCanvasHealthBarObject);
+
+            //Touch ParticleEffect
+            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);    
         }
         if (other.CompareTag(SceneController.Tags.Ladder.ToString()))
         {
