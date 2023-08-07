@@ -200,4 +200,8 @@ public class ChooseCharacterController : MonoBehaviour
             SceneController.GetInstance.LoadMenuScene();
         }
     }
+
+
+
+    
 }

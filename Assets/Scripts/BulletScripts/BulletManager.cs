@@ -183,6 +183,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
         }
+
         _currentWeaponObject.SetActive(true);
 
         _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.transform.position;
@@ -662,12 +663,12 @@ public class BulletManager : AbstractBullet<BulletManager>
             _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._currentCamera.transform.position.x, 
                                                         _bulletSpawnTransform.transform.position.y, 
                                                         _bulletSpawnTransform.transform.position.z);
-            CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 1f, 2f);
+            CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 1f, .1f);
             bulletData.bulletDelayCounter = 0;
             yield return new WaitForSeconds(delayValue * 50f);
             //_swordObject.SetActive(false);
         }
-        else
+        else if (objectPoolCount == 0)
         {//WeaponBullet
             _currentWeaponObject.SetActive(true);
             _currentSwordObject.SetActive(false);
@@ -679,7 +680,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             else
             {
                 WeaponSoundTypeState();
-                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 2f);
+                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 3f);
                 isCreatedWeaponBullet = true;
             }
             //PlayerManager.GetInstance._currentCamera.transform.position.x

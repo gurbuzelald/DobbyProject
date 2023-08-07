@@ -45,7 +45,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         _coinObject = GameObject.Find("Coin");
         _cheeseObject = GameObject.Find("Cheese");
         _coinObject.transform.localScale = Vector3.zero;
-        _cheeseObject.transform.localScale = Vector3.zero;        
+        _cheeseObject.transform.localScale = Vector3.zero;
     }
     public virtual void GetWeaponTransform(BulletData _bulletData, ref GameObject _gunTransform)//Getting finger transform parameter
     {
@@ -190,8 +190,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
 
 
-    public virtual void CreateStartPlayerStaff(PlayerData _playerData, ref Transform playerIconTransform, ref Transform _bulletsTransform, 
-                                               ref Transform _cameraWasherTransform, Transform healthBarTransform, 
+    public virtual void CreateStartPlayerStaff(PlayerData _playerData, ref Transform playerIconTransform, ref Transform _bulletsTransform,
+                                               ref Transform _cameraWasherTransform, Transform healthBarTransform,
                                                ref GameObject _healthBarObject, ref GameObject bulletAmountCanvas)
     { //Create Player Objects On Start
         Instantiate(_playerData.objects[1],
@@ -419,7 +419,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else
         {
-            _playerData.isFireNonWalk = false;            
+            _playerData.isFireNonWalk = false;
         }
     }
     IEnumerator DelayDisactivateFire()
@@ -434,7 +434,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             if (PlayerManager.GetInstance._playerController.sword && _playerData.isSwordTime)
             {
                 //PlayerData
-                _playerData.isSwording = true;                
+                _playerData.isSwording = true;
             }
             else
             {
@@ -469,23 +469,23 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void ChangeCamera()
     {
-        if (PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0 
-            && PlayerManager.GetInstance._playerController.lookRotation.x == 0 
+        if (PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0
+            && PlayerManager.GetInstance._playerController.lookRotation.x == 0
             && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
         {
             ConvertToFarCamera(PlayerManager.GetInstance.cameraSpawner);
         }
-        else if (PlayerManager.GetInstance._zValue != 0 && PlayerManager.GetInstance._xValue == 0 
+        else if (PlayerManager.GetInstance._zValue != 0 && PlayerManager.GetInstance._xValue == 0
             && PlayerManager.GetInstance._playerController.lookRotation.x == 0 && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
         {
             ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
         }
-        else if (PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue != 0 
+        else if (PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue != 0
             && PlayerManager.GetInstance._playerController.lookRotation.x == 0 && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
         {
             ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
         }
-        else if (PlayerManager.GetInstance._zValue != 0 && PlayerManager.GetInstance._xValue != 0 
+        else if (PlayerManager.GetInstance._zValue != 0 && PlayerManager.GetInstance._xValue != 0
             && PlayerManager.GetInstance._playerController.lookRotation.x == 0 && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
         {
             ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
@@ -554,7 +554,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
     }
 
-    
+
     #endregion
 
     #region //Trigger
@@ -689,7 +689,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
             //PickUpCoinSFX(_playerData);
 
-            
+
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyRotateCoin, other.gameObject.transform);
 
             //Trigger CoinObject
@@ -1187,7 +1187,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
 
     }
-    
+
     public virtual void Walk(PlayerData _playerData)
     {//ForwardAndBackWalking
         if (!_playerData.isLockedWalking)
@@ -1276,10 +1276,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         if (!_playerData.isLockedWalking)
         {
-            if ((PlayerManager.GetInstance._xValue > 0 && PlayerManager.GetInstance._zValue > 0) || 
-                (PlayerManager.GetInstance._xValue < 0 && PlayerManager.GetInstance._zValue > 0) || 
-                (PlayerManager.GetInstance._xValue < 0 && PlayerManager.GetInstance._zValue < 0) || 
-                (PlayerManager.GetInstance._xValue > 0 && PlayerManager.GetInstance._zValue < 0) || 
+            if ((PlayerManager.GetInstance._xValue > 0 && PlayerManager.GetInstance._zValue > 0) ||
+                (PlayerManager.GetInstance._xValue < 0 && PlayerManager.GetInstance._zValue > 0) ||
+                (PlayerManager.GetInstance._xValue < 0 && PlayerManager.GetInstance._zValue < 0) ||
+                (PlayerManager.GetInstance._xValue > 0 && PlayerManager.GetInstance._zValue < 0) ||
                 PlayerManager.GetInstance._zValue < 0)
             {
                 //PlayerData

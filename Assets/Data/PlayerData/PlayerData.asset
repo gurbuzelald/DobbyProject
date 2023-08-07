@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
-  currentMapName: 3
+  currentMapName: 0
   currentLevel: 0
   firstSkybox: {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
   secondMapSkyBox: {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
@@ -30,7 +30,7 @@ MonoBehaviour:
   bossPrice: 0
   tyPrice: 0
   mremirehPrice: 0
-  enemySpawnDelay: 3
+  enemySpawnDelay: 10
   mapCoins:
   - {fileID: 3880732843794124356, guid: 8afde6b0df00a404199392eae3715794, type: 3}
   - {fileID: 1413783167371764476, guid: 5b53e633fa5f1eb408fa0f939e143a88, type: 3}
@@ -57,11 +57,11 @@ MonoBehaviour:
   isCompleteThirdMap: 0
   isCompleteFourthMap: 0
   isFirstMapTarget: 0
-  isSecondMapTarget: 1
-  isThirdMapTarget: 1
-  isFourthMapTarget: 1
+  isSecondMapTarget: 0
+  isThirdMapTarget: 0
+  isFourthMapTarget: 0
   isLevelUp: 0
-  currentCharacterName: 2
+  currentCharacterName: 3
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
   glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
@@ -97,8 +97,18 @@ MonoBehaviour:
   sensivityY: 5
   isTouchFinish: 0
   isLose: 0
-  playerSpeed: 1.5
+  playerSpeed: 2
   rotateSpeed: 6
+  dobbySpeed: 2
+  michelleSpeed: 2
+  glassySpeed: 2
+  ajSpeed: 2
+  mremirehSpeed: 2
+  lusthSpeed: 2
+  spartacusSpeed: 2
+  bossSpeed: 2
+  tySpeed: 2
+  guardSpeed: 2
   isGround: 1
   isWalking: 0
   isLockedWalking: 0
@@ -115,7 +125,7 @@ MonoBehaviour:
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 1
-  jumpForce: 4
+  jumpForce: 4.5
   isFireNonWalk: 0
   isFireWalk: 0
   isFireTime: 0
@@ -129,7 +139,7 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 22
+  bulletAmount: 30
   bulletPack: 30
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

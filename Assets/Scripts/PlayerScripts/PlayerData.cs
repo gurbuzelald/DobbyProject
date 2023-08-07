@@ -96,7 +96,19 @@ public class PlayerData : ScriptableObject
 
     [Header("Speed")]
     public float playerSpeed;
-    public float rotateSpeed;     
+    public float rotateSpeed;
+    //Character Speeds
+    public float dobbySpeed;
+    public float michelleSpeed;
+    public float glassySpeed;
+    public float ajSpeed;
+    public float mremirehSpeed;
+    public float lusthSpeed;
+    public float spartacusSpeed;
+    public float bossSpeed;
+    public float tySpeed;
+    public float guardSpeed;
+
 
     [Header("Animation Bools")]
     public bool isGround;

@@ -56,7 +56,7 @@ public class LevelUpController : MonoBehaviour
             mapController.GetComponent<MapController>().CreateFourthMap();
             mapController.GetComponent<MapController>().SetFourthSkybox();
             mirrorSpawner.GetComponent<MirrorSpawner>().CreateFourthMapMirror();
-            enemySpawner.GetComponent<EnemySpawner>().CreateFourthMapEnemies();
+            enemySpawner.GetComponent<EnemySpawner>();
 
             playerData.isCompleteThirdMap = false;
         }

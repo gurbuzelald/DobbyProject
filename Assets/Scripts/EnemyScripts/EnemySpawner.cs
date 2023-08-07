@@ -154,13 +154,13 @@ public class EnemySpawner : MonoBehaviour
                 if (gameObject.transform.GetChild(0).transform.GetChild(i).childCount == 0)
                 {
                     StartCoroutine(CreateBulletCoin(i));
-                    CheckEnemyDeathForMaps(i);
+                    CheckEnemyDeathForLevels(i);
                     
                 }
             }
         }
     }
-    void CheckEnemyDeathForMaps(int i)
+    void CheckEnemyDeathForLevels(int i)
     {
         CheckEnemyDeathFirstMap(i);
         CheckEnemyDeathSecondMap(i);

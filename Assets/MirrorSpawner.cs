@@ -59,11 +59,11 @@ public class MirrorSpawner : MonoBehaviour
     }
     public void CreateFourthMapMirror()
     {
-        Destroy(_currentMirrorCouple);
+        Destroy(_currentMirrorCouple); 
 
         for (int i = 0; i < _playerData._fourthMapMirrorCouples.Length; i++)
         {
             _currentMirrorCouple = Instantiate(_playerData._fourthMapMirrorCouples[i], gameObject.transform);
         }
     }
-}
+}  

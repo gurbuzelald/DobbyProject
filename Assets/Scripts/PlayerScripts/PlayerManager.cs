@@ -71,7 +71,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public float _xValue;
     public float _zValue;
     private float _touchX;
-    private float _touchY;        
+    private float _touchY;
 
 
     public ObjectPool _objectPool;
@@ -79,7 +79,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     [SerializeField] GameObject _damageArrow;
 
 
-    [HideInInspector]    
+    [HideInInspector]
     public GameObject _currentCharacterObject;
     private GameObject characterObject;
 
@@ -100,9 +100,9 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         audioSource = GetComponent<AudioSource>();
 
         //Particle
-        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);           
+        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
     }
-    
+
 
 
     void FixedUpdate()
@@ -229,7 +229,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             iPlayerHealth.DecreaseHealth(2, ref _healthBarObject, ref _topCanvasHealthBarObject);
 
             //Touch ParticleEffect
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);    
+            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
         }
         if (other.CompareTag(SceneController.Tags.Ladder.ToString()))
         {
@@ -415,7 +415,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime * 40;
 
         }
-        
+
         iPlayerRotation.Rotate(ref _touchX, ref _touchX);
 
 

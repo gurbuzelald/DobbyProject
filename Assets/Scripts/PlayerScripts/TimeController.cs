@@ -55,7 +55,7 @@ public class TimeController : MonoBehaviour
     }
     public void SwordTimer(PlayerData playerData, TextMeshProUGUI _swordTimeText)
     {
-        if (_swordTime <= 4)
+        if (_swordTime <= 2)
         {
             _swordTimeText.text = ((int)_swordTime).ToString();
         }

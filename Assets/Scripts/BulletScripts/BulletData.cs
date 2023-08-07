@@ -45,15 +45,15 @@ public class BulletData : ScriptableObject
     public bool isNegev;
     public bool isAxegun;
 
-    public const string ak47 = "Ak47";
-    public const string rifle = "Rifle";
-    public const string bulldog = "Bulldog";
-    public const string cowgun = "Cowgun";
-    public const string crystalgun = "Crystalgun";
-    public const string demongun = "Demongun";
-    public const string icegun = "Icegun";
-    public const string negev = "Negev";
-    public const string axegun = "Axegun";
+    public const string ak47 = "ak47";
+    public const string rifle = "rifle";
+    public const string bulldog = "bulldog";
+    public const string cowgun = "cowgun";
+    public const string crystalgun = "crystalgun";
+    public const string demongun = "demongun";
+    public const string icegun = "icegun";
+    public const string negev = "negev";
+    public const string axegun = "axegun";
 
 
 

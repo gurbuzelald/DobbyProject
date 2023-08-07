@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class EnemyManager : AbstractEnemy<EnemyManager>
 {    
@@ -224,7 +225,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         StartCoroutine(DelayStopEnemy(3f));
         if (_healthBar != null)
         {
-            if (_healthBar.transform.localScale.x <= 0.0625f)
+            if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 0)
             {
                 bottomParticle.Play();
                 middleParticle.Play();
@@ -242,12 +243,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
             else
             {
-                if (_healthBar.transform.localScale.x <= 0.125f && _healthBar.transform.localScale.x > 0.0625f)
+                if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 50 && _healthBar.transform.GetChild(0).GetComponent<Slider>().value > 0)
                 {
                     bottomParticle.Play();
                     middleParticle.Play();
                 }
-                if (_healthBar.transform.localScale.x > 0.125f)
+                if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value > 50)
                 {  
                     middleParticle.Play();
                 }
@@ -258,7 +259,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
                 PlaySoundEffect(SoundEffectTypes.SwordHit, _audioSource);
 
-                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / bulletPower, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+                _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= bulletPower;
             }
             StartCoroutine(ShowDamage(100, 0.1f, 3f));
         }
@@ -273,7 +274,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         StartCoroutine(DelayStopEnemy(3f));
         if (_healthBar != null)
         {
-            if (_healthBar.transform.localScale.x <= 0.0625f)
+            if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 0)
             {
                 bottomParticle.Play();
                 middleParticle.Play();
@@ -291,12 +292,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
             else
             {
-                if (_healthBar.transform.localScale.x <= 0.125f && _healthBar.transform.localScale.x > 0.0625f)
+                if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 50 && 
+                    _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value > 0)
                 {
                     bottomParticle.Play();
                     middleParticle.Play();
                 }
-                if (_healthBar.transform.localScale.x > 0.125f)
+                if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value > 50)
                 {
                     middleParticle.Play();
                 }
@@ -306,7 +308,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 StartCoroutine(DelayStopEnemy(3f));
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
                 PlaySoundEffect(SoundEffectTypes.BulletHit, _audioSource);
-                _healthBar.transform.localScale = new Vector3(_healthBar.transform.localScale.x / bulletPower, _healthBar.transform.localScale.y, _healthBar.transform.localScale.z);
+                _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= bulletPower;
             }
             StartCoroutine(ShowDamage(20, 0.1f, 3f));
         }

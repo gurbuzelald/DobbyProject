@@ -31,7 +31,7 @@ public class SettingController : MonoBehaviour
 
         //Sensivity Datas are transforming to preferences on awake
         PlayerPrefs.SetFloat("SensivityX", playerData.sensivityX);
-        PlayerPrefs.SetFloat("SensivityY", playerData.sensivityY);        
+        PlayerPrefs.SetFloat("SensivityY", playerData.sensivityY);
     }
     private void OnEnable()
     {
@@ -51,7 +51,7 @@ public class SettingController : MonoBehaviour
             {
                 _continueButton.GetComponent<RectTransform>().localScale = Vector3.one;
             }
-        }        
+        }
     }
     private void Update()
     {
