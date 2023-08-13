@@ -55,7 +55,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 195741389}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -859,13 +859,13 @@ Rigidbody:
   m_GameObject: {fileID: 7193906221332498770}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0.5
+  m_Drag: 3
   m_AngularDrag: 0.5
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 2
+  m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0
 --- !u!136 &7193906221332498761
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -920,8 +920,10 @@ MonoBehaviour:
   _damageArrow: {fileID: 3522872604140518913}
   _currentCharacterObject: {fileID: 0}
   bulletAmountCanvas: {fileID: 0}
+  bulletAmountText: {fileID: 0}
   _healthBarObject: {fileID: 0}
   _topCanvasHealthBarObject: {fileID: 0}
+  _topCanvasHealthBarSlider: {fileID: 0}
 --- !u!82 &1494319917
 AudioSource:
   m_ObjectHideFlags: 0

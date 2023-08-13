@@ -573,7 +573,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8882827000555430166
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -583,14 +583,14 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 284552db9d38cc948b98c82ec02c952a, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &8882827000555430167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,7 +604,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
-  slaveData: {fileID: 0}
   cloneData: {fileID: 11400000, guid: 0e1d9c4eaf80763478d175de10154293, type: 2}
 --- !u!1 &1931416421684182132
 GameObject:

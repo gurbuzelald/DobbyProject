@@ -7,9 +7,14 @@ public class MiniMapController : MonoBehaviour
     private Player playerInput;
     public bool growing;
     GameObject miniMapMask;
+    private bool _isMiniMapTouchable;
+    [SerializeField] float delayTouching;
+    private Camera miniMapCamera;
     
     private void Awake()
     {
+        miniMapCamera = gameObject.GetComponent<Camera>();
+        _isMiniMapTouchable = true;
         playerInput = new Player();
 
         miniMapMask = GameObject.Find("MiniMapMask");
@@ -24,23 +29,46 @@ public class MiniMapController : MonoBehaviour
     }
     void Update()
     {
+        MiniMapRotation();
+
+        TouchMiniMap(miniMapCamera);
+    }
+    void MiniMapRotation()
+    {
         gameObject.transform.LookAt(PlayerManager.GetInstance.gameObject.transform.GetChild(0).GetChild(9));
         gameObject.transform.position = new Vector3(PlayerManager.GetInstance.transform.position.x,
                                                     gameObject.transform.position.y,
                                                     PlayerManager.GetInstance.transform.position.z);
+    }
+    void TouchMiniMap(Camera miniMapCamera)
+    {
         growing = playerInput.GrowMap.GrowingStuate.IsPressed();
-        if (growing)
+        if (growing && _isMiniMapTouchable)
         {
             if (miniMapMask.transform.localScale == new Vector3(0.25f, 0.25f, 0.25f))
             {
-                gameObject.GetComponent<Camera>().orthographicSize = 10;
+                miniMapCamera.orthographicSize = 10;
                 miniMapMask.transform.localScale = Vector3.one;
+
+                _isMiniMapTouchable = false;
+
+                StartCoroutine(OpenSmoothMiniMap(delayTouching));
             }
             else
             {
                 gameObject.GetComponent<Camera>().orthographicSize = 6;
                 miniMapMask.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+
+                _isMiniMapTouchable = false;
+
+                StartCoroutine(OpenSmoothMiniMap(delayTouching));
             }
         }
+    }
+    IEnumerator OpenSmoothMiniMap(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        _isMiniMapTouchable = true;
     }
 }

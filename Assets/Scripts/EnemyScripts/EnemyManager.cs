@@ -31,9 +31,20 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     [SerializeField] GameObject _bulletCoin;
 
     [SerializeField] TextMeshProUGUI _damageText;
+    private Rigidbody enemyRigidbody;
+    private EnemyBulletManager enemyBulletManager;
+    private GameObject enemySpawnerObj;
+    private EnemySpawner enemySpawner;
 
     void Start()
     {
+        enemyRigidbody = gameObject.transform.GetComponent<Rigidbody>();
+
+        enemyBulletManager = gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>();
+
+        enemySpawnerObj = GameObject.Find("EnemySpawner");
+        enemySpawner = enemySpawnerObj.GetComponent<EnemySpawner>();
+
         _damageText.text = "";
         _damageText.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
@@ -47,17 +58,17 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (!enemyData.isGround)
         {
-            gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+            enemyRigidbody.constraints = RigidbodyConstraints.FreezePositionY;
         }
         if (enemyData.isGround)
         {
-            gameObject.transform.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            enemyRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
         if (gameObject != null)
         {
-            if (playerData.isPlayable && gameObject != null && gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>() != null)
+            if (playerData.isPlayable && gameObject != null && enemyBulletManager != null)
             {
-                gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>().bulletData.isFirable = true;
+                enemyBulletManager.bulletData.isFirable = true;
                 //enemyData.isFiring = true;
 
 
@@ -73,9 +84,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     //enemyData.isWalking = false;
                 }
             }
-            else if(!playerData.isPlayable && gameObject != null && gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>() != null)
+            else if(!playerData.isPlayable && gameObject != null && enemyBulletManager != null)
             {
-                gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>().bulletData.isFirable = false;
+                enemyBulletManager.bulletData.isFirable = false;
                 enemyData.isFiring = false;
             }
         }
@@ -88,12 +99,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (!enemyData.isDying)
         {
-            GameObject enemySpawner = GameObject.Find("EnemySpawner");
+            
             RaycastHit hit;
-            if (enemyData.isActivateMagnet && gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().bulletData.isFirable)
+            if (enemyData.isActivateMagnet && enemyBulletManager.bulletData.isFirable)
             {
                 if (Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward),
-                    out hit, 10f, enemySpawner.GetComponent<EnemySpawner>().layerMask))
+                    out hit, 10f, enemySpawner.layerMask))
                 {
                     Debug.DrawRay(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
 
@@ -144,7 +155,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         if (other.CompareTag(SceneController.Tags.Bullet.ToString()))
         {
-            TriggerBullet(2f, other);
+            TriggerBullet(10f, other);
         }
         if (other.CompareTag(SceneController.Tags.Sword.ToString()))
         {
@@ -243,7 +254,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
             else
             {
-                if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 50 && _healthBar.transform.GetChild(0).GetComponent<Slider>().value > 0)
+                if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 50 && 
+                    _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value > 0)
                 {
                     bottomParticle.Play();
                     middleParticle.Play();
@@ -261,7 +273,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
                 _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= bulletPower;
             }
-            StartCoroutine(ShowDamage(100, 0.1f, 3f));
+            StartCoroutine(ShowDamage((int)bulletPower, 0.1f, 3f));
         }
     }
     public void TriggerBullet(float bulletPower, Collider other)
@@ -310,7 +322,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 PlaySoundEffect(SoundEffectTypes.BulletHit, _audioSource);
                 _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= bulletPower;
             }
-            StartCoroutine(ShowDamage(20, 0.1f, 3f));
+            StartCoroutine(ShowDamage((int)bulletPower, 0.1f, 3f));
         }
     }   
     IEnumerator TriggerBulletParticleCreater(Collider other)

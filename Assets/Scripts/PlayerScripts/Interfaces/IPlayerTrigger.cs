@@ -1,16 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 internal interface IPlayerTrigger
 {
-    void TriggerLadder(bool isTouch, bool isTouchExit, PlayerData _playerData);
+    void TriggerLadder(bool isTouch, bool isTouchExit, PlayerData _playerData, ref Rigidbody objectRigidbody);
 
 
-    void TriggerBullet(Collider other, PlayerData _playerData, ref GameObject _healthBarObject, ref GameObject _topCanvasHealthBarObject, ref Transform _particleTransform);
+    void TriggerBullet(Collider other, PlayerData _playerData, 
+                        ref GameObject _healthBarObject, 
+                        ref GameObject _topCanvasHealthBarObject, 
+                        ref Transform _particleTransform,
+                        ref Slider healthBarSlider);
 
 
-    void PickUpCoin(SceneController.Tags value, Collider other, PlayerData _playerData, ref GameObject _coinObject, ref GameObject _cheeseObject, ref GameObject bulletAmountCanvas);
+    void PickUpCoin(SceneController.Tags value, 
+                    Collider other, 
+                    PlayerData _playerData, 
+                    ref GameObject _coinObject, 
+                    ref GameObject _cheeseObject, 
+                    ref GameObject bulletAmountCanvas,
+                    ref TextMeshProUGUI bulletAmountText);
 
     void CheckWeaponCollect(Collider other, BulletData _bulletData);
 
@@ -22,7 +34,7 @@ internal interface IPlayerTrigger
 
     void DestroyByLava(PlayerData _playerData, ref Transform _particleTransform);
 
-    void GettingPoisonDamage(PlayerData _playerData, ref GameObject _topCanvasHealthBarObject, ref GameObject _healthBarObject);
+    void GettingPoisonDamage(PlayerData _playerData, ref Slider _topCanvasHealthBarSlider, ref Slider _healthBarSlider);
 
     IEnumerator DelayLevelUp(float delayWait, float delayDestroy, PlayerData _playerData, Collider other);
 

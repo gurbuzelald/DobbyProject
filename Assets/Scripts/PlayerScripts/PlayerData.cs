@@ -151,6 +151,7 @@ public class PlayerData : ScriptableObject
     public int clickShiftCount;
     public int bulletAmount = 90;
     public int bulletPack = 90;
+    public bool isTouchableSkate;
 
     [Header("Dance")]
     public float danceTime = 5f;
