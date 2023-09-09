@@ -280,7 +280,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e5534e6d-8a3f-4b9d-b866-0faf7fdd74b3"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<VirtualMouse>/press"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

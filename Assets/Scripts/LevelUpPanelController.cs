@@ -6,9 +6,14 @@ using UnityEngine.UI;
 public class LevelUpPanelController : MonoBehaviour
 {
     [SerializeField] PlayerData playerData;
+    private Image levelUpImage;
+    private CanvasGroup levelUpCanvasGroup;
     void Awake()
     {
-        gameObject.transform.GetComponent<Image>().enabled = true;
+        levelUpImage = gameObject.GetComponent<Image>();
+        levelUpCanvasGroup = gameObject.GetComponent<CanvasGroup>();
+
+        levelUpImage.enabled = true;
         //gameObject.transform.GetComponent<CanvasGroup>().alpha = 1;
     }
 
@@ -17,20 +22,20 @@ public class LevelUpPanelController : MonoBehaviour
     {
         if (playerData.isLevelUp)
         {
-            gameObject.transform.GetComponent<CanvasGroup>().alpha = 1;
-            gameObject.transform.GetComponent<Image>().enabled = true;
-            gameObject.transform.GetComponent<CanvasGroup>().alpha -= 0.01f;
-            if (gameObject.transform.GetComponent<CanvasGroup>().alpha == 0)
+            levelUpCanvasGroup.alpha = 1;
+            levelUpImage.enabled = true;
+            levelUpCanvasGroup.alpha -= 0.01f;
+            if (levelUpCanvasGroup.alpha == 0)
             {
-                gameObject.transform.GetComponent<Image>().enabled = false;
+                levelUpImage.enabled = false;
             }
         }
-        else if (gameObject.transform.GetComponent<Image>() && !playerData.isLevelUp)
+        else if (levelUpImage && !playerData.isLevelUp)
         {
-            gameObject.transform.GetComponent<CanvasGroup>().alpha -= 0.05f;
-            if (gameObject.transform.GetComponent<CanvasGroup>().alpha == 0)
+            levelUpCanvasGroup.alpha -= 0.05f;
+            if (levelUpCanvasGroup.alpha == 0)
             {
-                gameObject.transform.GetComponent<Image>().enabled = false;
+                levelUpImage.enabled = false;
             }
         }
     }

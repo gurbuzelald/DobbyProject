@@ -19,17 +19,6 @@ MonoBehaviour:
   secondMapSkyBox: {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
   thirdSkybox: {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
   fourthSkybox: {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
-  spartacusPrice: 0
-  dobbyPrice: 0
-  glassyPrice: 0
-  lusthPrice: 0
-  guardPrice: 0
-  michellePrice: 0
-  evePrice: 0
-  ajPrice: 0
-  bossPrice: 0
-  tyPrice: 0
-  mremirehPrice: 0
   enemySpawnDelay: 10
   mapCoins:
   - {fileID: 3880732843794124356, guid: 8afde6b0df00a404199392eae3715794, type: 3}
@@ -42,7 +31,7 @@ MonoBehaviour:
   - {fileID: 1198534576858581768, guid: b91f8c0951dc9aa419cdd62f0d11a1e3, type: 3}
   - {fileID: 6848931167675852839, guid: 6ec948522583f334b9bdcc24159a6354, type: 3}
   _healtCoinObject: {fileID: 9077765185764460176, guid: a275adbe230564749ac78dcd554d00e3, type: 3}
-  currentMirrorName: Mirror2
+  currentMirrorName: Mirror1
   _firstMapMirrorCouples:
   - {fileID: 9044617553140458651, guid: e7f4d5f6e375e4548a69d4d890e6ec8c, type: 3}
   _secondMapMirrorCouples:
@@ -61,7 +50,7 @@ MonoBehaviour:
   isThirdMapTarget: 0
   isFourthMapTarget: 0
   isLevelUp: 0
-  currentCharacterName: 3
+  currentCharacterName: 5
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
   glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
@@ -79,7 +68,6 @@ MonoBehaviour:
   - {fileID: 4529110289692566654, guid: ece28a22070f44540a834a2a3abbfcfb, type: 3}
   - {fileID: 2390697041342691216, guid: b9e602427f47be44eb620c354070bca0, type: 3}
   - {fileID: 5742403067897422523, guid: de469484f9f41a9489e9452843ac0131, type: 3}
-  - {fileID: 7964753639937622105, guid: 0980400cd9322f648aa9a0d60c767b0c, type: 3}
   - {fileID: 2613066168305214933, guid: 26cc8ebb945008b409049e7880d85d78, type: 3}
   - {fileID: 3102288607414887448, guid: 291ccd016fce448479fcd5813069629a, type: 3}
   - {fileID: 4849532061827766971, guid: 0475ff0f49311f1439d5dacc468f03fd, type: 3}
@@ -97,18 +85,39 @@ MonoBehaviour:
   sensivityY: 5
   isTouchFinish: 0
   isLose: 0
+  spartacusPrice: 1
+  dobbyPrice: 1
+  glassyPrice: 1
+  lusthPrice: 1
+  guardPrice: 1
+  michellePrice: 1
+  evePrice: 1
+  ajPrice: 1
+  bossPrice: 1
+  tyPrice: 1
+  mremirehPrice: 1
   playerSpeed: 2
   rotateSpeed: 6
-  dobbySpeed: 2
-  michelleSpeed: 2
-  glassySpeed: 2
-  ajSpeed: 2
-  mremirehSpeed: 2
-  lusthSpeed: 2
-  spartacusSpeed: 2
-  bossSpeed: 2
-  tySpeed: 2
-  guardSpeed: 2
+  dobbySpeed: 3
+  michelleSpeed: 3
+  glassySpeed: 3
+  ajSpeed: 3
+  mremirehSpeed: 3
+  lusthSpeed: 3
+  spartacusSpeed: 3
+  bossSpeed: 3
+  tySpeed: 3
+  guardSpeed: 3
+  dobbyJumpForce: 4
+  michelleJumpForce: 4
+  glassyJumpForce: 4
+  ajJumpForce: 4
+  mremirehJumpForce: 4
+  lusthJumpForce: 4
+  spartacusJumpForce: 4
+  bossJumpForce: 4
+  tyJumpForce: 4
+  guardJumpForce: 4
   isGround: 1
   isWalking: 0
   isLockedWalking: 0
@@ -122,15 +131,16 @@ MonoBehaviour:
   isRunning: 0
   isPicking: 0
   isPickRotateCoin: 0
+  isSwordAnimate: 0
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 1
-  jumpForce: 4.5
+  currentJumpForce: 0
   isFireNonWalk: 0
   isFireWalk: 0
   isFireTime: 0
   isSwording: 0
-  isSwordTime: 1
+  isSwordTime: 0
   isJumping: 0
   isClickable: 1
   jumpCount: 0
@@ -141,6 +151,7 @@ MonoBehaviour:
   clickShiftCount: 0
   bulletAmount: 30
   bulletPack: 30
+  isTouchableSkate: 1
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}
   skateboardParticle: {fileID: 4302228992980891979, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
@@ -150,6 +161,9 @@ MonoBehaviour:
   burningParticle: {fileID: 2998880394958268818, guid: d1da0b7ce7a5e4e4a9ed42ef14329904, type: 3}
   burningTouchParticle: {fileID: 2998880394958268818, guid: d1da0b7ce7a5e4e4a9ed42ef14329904, type: 3}
   destroyRotateCoinParticle: {fileID: 7843557430029568611, guid: a53c763de9e987f48bc10c8ebe511e7a, type: 3}
+  destroyHealthCoinParticle: {fileID: 8288753135164088106, guid: 5d1b41e89aeadc54d8b8754f2510a377, type: 3}
+  destroyBulletCoinParticle: {fileID: 5528744555975214268, guid: f15554b031345d14590701f56225ee6b, type: 3}
+  destroyMushroomCoinParticle: {fileID: 5170391159290364789, guid: 9ad1b0280ab4ddb488e732d284326376, type: 3}
   playerWalkingParticle: {fileID: 3532911235452109422, guid: e23fee5b26651554395da526e4bb4ce1, type: 3}
   particleCount: 0
   _bulletObject: {fileID: 4568481270464940624, guid: 98dbc9cb5ce9f68458cb04a08252b6ac, type: 3}

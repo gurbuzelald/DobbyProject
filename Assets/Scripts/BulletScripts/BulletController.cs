@@ -8,6 +8,7 @@ public class BulletController : MonoBehaviour
     [Header("Raycast")]
     public LayerMask layerMask;
     public PlayerData playerData;
+    [SerializeField] float delayFalseBulletValue;
     private void Update()
     {
         RaycastHit hit;
@@ -52,10 +53,17 @@ public class BulletController : MonoBehaviour
 
         if (gameObject.transform.name == "WeaponBullet(Clone)")
         {
-            if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) || other.gameObject.CompareTag(SceneController.Tags.WeaponBox.ToString()))
+            if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) || 
+                other.gameObject.CompareTag(SceneController.Tags.WeaponBox.ToString()) ||
+                other.gameObject.CompareTag(SceneController.Tags.Ground.ToString()))
             {
-                gameObject.SetActive(false);
+                StartCoroutine(DelayFalseBulletObject(delayFalseBulletValue));
             }
         }
+    }
+    IEnumerator DelayFalseBulletObject(float value)
+    {
+        yield return new WaitForSeconds(value);
+        gameObject.SetActive(false);
     }
 }

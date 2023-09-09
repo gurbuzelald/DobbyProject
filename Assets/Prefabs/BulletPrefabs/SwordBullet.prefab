@@ -9860,7 +9860,7 @@ GameObject:
   - component: {fileID: 9111941371038968117}
   m_Layer: 17
   m_Name: SwordBullet
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9965,6 +9965,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
+  delayFalseBulletValue: 0
 --- !u!1 &4303203405244050151
 GameObject:
   m_ObjectHideFlags: 0

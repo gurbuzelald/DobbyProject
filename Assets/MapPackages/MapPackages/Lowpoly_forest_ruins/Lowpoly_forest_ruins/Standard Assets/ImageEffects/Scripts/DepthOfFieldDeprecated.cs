@@ -116,7 +116,7 @@ namespace UnityStandardAssets.ImageEffects
         }
 
         void OnEnable () {
-            _camera = GetComponent<Camera>();
+            _camera =  GetComponent<Camera>();
             _camera.depthTextureMode |= DepthTextureMode.Depth;
         }
 

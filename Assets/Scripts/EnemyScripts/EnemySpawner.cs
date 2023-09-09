@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Transform _bulletCoinSpawn;
 
 
-    public bool isActivateCreateEnemy = false;
+    public bool isActivateCreateEnemy;
     private void Awake()
     {
         isActivateCreateEnemy = false;
@@ -104,27 +104,41 @@ public class EnemySpawner : MonoBehaviour
     }
     IEnumerator CreateBulletCoin(int i)
     {
-        if (bulletCoinCount <= 2)
+        //if (bulletCoinCount <= 0)
+        //{
+        //    if (_bulletCoinSpawn.childCount <= 3)
+        //    {
+                
+        //    }
+
+        //    
+        //}
+        yield return new WaitForSeconds(2);
+
+        if (gameObject.transform.GetChild(0).GetChild(i).transform.childCount == 0)
         {
-            yield return new WaitForSeconds(2);
-            if (_bulletCoinSpawn.childCount == 0)
-            {
-                if(enemyData)
-                    playerBulletObject = Instantiate(enemyData._playerBulletObject,
-                                                    new Vector3(gameObject.transform.GetChild(0).GetChild(i).transform.position.x,
-                                                                enemyData._playerBulletObject.transform.position.y,
-                                                                gameObject.transform.GetChild(0).GetChild(i).transform.position.z),
-                                                    Quaternion.identity,
-                                                    _bulletCoinSpawn);
+            if (enemyData)
+                playerBulletObject = Instantiate(enemyData._playerBulletObject,
+                                                new Vector3(gameObject.transform.GetChild(0).GetChild(i).transform.position.x,
+                                                            enemyData._playerBulletObject.transform.position.y,
+                                                            gameObject.transform.GetChild(0).GetChild(i).transform.position.z),
+                                                Quaternion.identity,
+                                                gameObject.transform.GetChild(0).GetChild(i).transform);
 
-                bulletCoinCount++;
 
-                playerBulletObject.transform.eulerAngles = new Vector3(0f, gameObject.transform.GetChild(0).GetChild(i).transform.eulerAngles.y + 90f, 90f);
-            }
-            Destroy(_bulletCoinSpawn.transform.GetChild(0).gameObject, 10f);
+            //bulletCoinCount++;
 
-            //StartCoroutine(DelayDestroy());
+            playerBulletObject.transform.eulerAngles = new Vector3(0f,
+                                                                   gameObject.transform.GetChild(0).GetChild(i).transform.eulerAngles.y + 90f,
+                                                                   90f);
+
+            //Destroy(_bulletCoinSpawn.transform.GetChild(0).GetChild(i).GetChild(0).gameObject, 10f);
+
+
+            StartCoroutine(DelayDestroy());
         }
+        
+
     }
     IEnumerator DelayDestroy()
     {
@@ -151,7 +165,7 @@ public class EnemySpawner : MonoBehaviour
         {
             for (int i = 0; i < gameObject.transform.GetChild(0).transform.childCount; i++)
             {//if enemyTransformObject's childCount equals zero, destroy enemyTransformObject. This code is for getting enemies amount.
-                if (gameObject.transform.GetChild(0).transform.GetChild(i).childCount == 0)
+                if (gameObject.transform.GetChild(0).GetChild(i).childCount == 0)
                 {
                     StartCoroutine(CreateBulletCoin(i));
                     CheckEnemyDeathForLevels(i);

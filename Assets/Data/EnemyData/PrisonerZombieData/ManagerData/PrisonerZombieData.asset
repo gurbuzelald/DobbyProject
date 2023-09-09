@@ -30,9 +30,13 @@ MonoBehaviour:
   swordHitClip: {fileID: 8300000, guid: 28c27e828e8b6b540baa9afb526d529e, type: 3}
   isGround: 1
   isDying: 0
-  isWalking: 1
+  isWalking: 0
   isFiring: 0
-  isTouchable: 0
+  isAttacking: 0
+  isTouchable: 1
   isActivateMagnet: 1
-  enemySpeed: 0.8
+  enemySpeed: 0.4
+  bulletDamageValue: 5
+  swordDamageValue: 15
   isSpeedZero: 0
+  isWalkable: 1

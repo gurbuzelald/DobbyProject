@@ -8,6 +8,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 {    
     [Header("Health")]
     public GameObject _healthBar;
+    private Slider _healthBarSlider;
 
     [Header("Output Sound")]
     private AudioSource _audioSource;
@@ -38,6 +39,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     void Start()
     {
+        enemyData.isWalkable = true;
+
+        _healthBarSlider = _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>();
         enemyRigidbody = gameObject.transform.GetComponent<Rigidbody>();
 
         enemyBulletManager = gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>();
@@ -56,6 +60,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }   
     void Update()
     {
+        if (!enemyData.isFiring && (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.5f))
+        {
+            enemyData.isWalking = true;
+        }
         if (!enemyData.isGround)
         {
             enemyRigidbody.constraints = RigidbodyConstraints.FreezePositionY;
@@ -72,22 +80,54 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 //enemyData.isFiring = true;
 
 
-                if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.5f))
+                if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.1f) &&
+                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 4f) && enemyData.isWalkable)
                 {
                     enemyData.enemySpeed = _initSpeed;
+                    enemyData.isWalking = true;
+                    enemyData.isAttacking = false;
+                    enemyData.isFiring = false;
+                    enemyData.isDying = false;
+                    
                     //Debug.Log("Test");
-                    Movement(clownSpawner.targetTransform, _initTransform, gameObject.transform, enemyData.isActivateMagnet, enemyData.enemySpeed, playerData, enemyData);
+                    Movement(clownSpawner.targetTransform, _initTransform, gameObject.transform, enemyData.enemySpeed, playerData, enemyData);
                 }
-                else
+                else if((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) <= 0.1f))
                 {
+                    //Debug.Log("Test");
+                    enemyData.isAttacking = true;
+                    playerData.isDecreaseHealth = true;
+
+                    enemyData.isWalking = false;
+                    enemyData.isDying = false;
+                    enemyData.isFiring = false;
                     //When Enemy touched player, enemy will get a animation to here.
                     //enemyData.isWalking = false;
                 }
+                else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.4f) &&
+                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 8f))
+                {
+                    enemyData.isFiring = true;
+                    enemyData.isAttacking = false;
+                    enemyData.isDying = false;
+                    enemyData.isWalking = false;
+
+                }
+                else
+                {
+                    enemyData.isAttacking = false;
+                    enemyData.isWalking = false;
+                    enemyData.isDying = false;
+                    enemyData.isFiring = false;
+                }
             }
-            else if(!playerData.isPlayable && gameObject != null && enemyBulletManager != null)
+            else if(!playerData.isPlayable || gameObject != null || enemyBulletManager != null)
             {
                 enemyBulletManager.bulletData.isFirable = false;
                 enemyData.isFiring = false;
+                enemyData.isAttacking = false;  
+                enemyData.isWalking = false;  
+                enemyData.isDying = false;  
             }
         }
     }
@@ -101,7 +141,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             
             RaycastHit hit;
-            if (enemyData.isActivateMagnet && enemyBulletManager.bulletData.isFirable)
+            if (enemyBulletManager.bulletData.isFirable)
             {
                 if (Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward),
                     out hit, 10f, enemySpawner.layerMask))
@@ -136,7 +176,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 TouchWall();
             }
-            if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneController.Tags.Ladder.ToString()))
+            if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || 
+                collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()) || 
+                collision.collider.CompareTag(SceneController.Tags.Ladder.ToString()))
             {//Ground, Ladder, Enemy
                 enemyData.isGround = true;
             }
@@ -144,42 +186,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(SceneController.Tags.Magnet.ToString()))
-        {
-            enemyData.isActivateMagnet = true;
-            if (!enemyData.isFiring && (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.5f))
-            {
-                enemyData.isWalking = true;
-            }
-        }
-
         if (other.CompareTag(SceneController.Tags.Bullet.ToString()))
         {
-            TriggerBullet(10f, other);
+            TriggerBullet(enemyData.bulletDamageValue, other);
         }
         if (other.CompareTag(SceneController.Tags.Sword.ToString()))
         {
-            TriggerSword(32f);
-        }
-    }
-    void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag(SceneController.Tags.Magnet.ToString()))
-        {
-            enemyData.isActivateMagnet = true;
-            if (!enemyData.isFiring && (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.5f))
-            {
-                enemyData.isWalking = true;
-            }
-        }
-    }
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag(SceneController.Tags.Magnet.ToString()))
-        {
-            enemyData.isActivateMagnet = false;
-            enemyData.isWalking = false;
-            enemyData.isFiring = false;
+            TriggerSword(enemyData.swordDamageValue);
         }
     }
 
@@ -236,7 +249,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         StartCoroutine(DelayStopEnemy(3f));
         if (_healthBar != null)
         {
-            if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 0)
+            if (_healthBarSlider.value <= 0)
             {
                 bottomParticle.Play();
                 middleParticle.Play();
@@ -254,13 +267,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
             else
             {
-                if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 50 && 
-                    _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value > 0)
+                if (_healthBarSlider.value <= 50 &&
+                    _healthBarSlider.value > 0)
                 {
                     bottomParticle.Play();
                     middleParticle.Play();
                 }
-                if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value > 50)
+                if (_healthBarSlider.value > 50)
                 {  
                     middleParticle.Play();
                 }
@@ -271,7 +284,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
                 PlaySoundEffect(SoundEffectTypes.SwordHit, _audioSource);
 
-                _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= bulletPower;
+                _healthBarSlider.value -= bulletPower;
             }
             StartCoroutine(ShowDamage((int)bulletPower, 0.1f, 3f));
         }
@@ -286,7 +299,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         StartCoroutine(DelayStopEnemy(3f));
         if (_healthBar != null)
         {
-            if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 0)
+            if (_healthBarSlider.value <= 0)
             {
                 bottomParticle.Play();
                 middleParticle.Play();
@@ -304,36 +317,43 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
             else
             {
-                if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value <= 50 && 
-                    _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value > 0)
+                if (_healthBarSlider.value <= 50 &&
+                    _healthBarSlider.value > 0)
                 {
                     bottomParticle.Play();
                     middleParticle.Play();
                 }
-                if (_healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value > 50)
+                if (_healthBarSlider.value > 50)
                 {
                     middleParticle.Play();
                 }
                 //enemyData.isWalking = false;
                 enemyData.isFiring = false;
+                
                 enemyData.isSpeedZero = true;
                 StartCoroutine(DelayStopEnemy(3f));
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
                 PlaySoundEffect(SoundEffectTypes.BulletHit, _audioSource);
-                _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= bulletPower;
+                _healthBarSlider.value -= bulletPower;
             }
             StartCoroutine(ShowDamage((int)bulletPower, 0.1f, 3f));
         }
     }   
     IEnumerator TriggerBulletParticleCreater(Collider other)
     {
-        yield return new WaitForSeconds(0.0001f);
+        yield return new WaitForSeconds(0.0002f);
         GameObject touchParticle = Instantiate(enemyData._enemyTouchParticle, 
                                                new Vector3(other.gameObject.transform.position.x, 
-                                                           other.gameObject.transform.position.y + .05f,
+                                                           other.gameObject.transform.position.y + .08f,
                                                            other.gameObject.transform.position.z), 
                                                Quaternion.identity, 
                                                gameObject.transform);
+        enemyData.isWalkable = false;
+
+        yield return new WaitForSeconds(1f);
+
+        enemyData.isWalkable = true;
+
         Destroy(touchParticle, 0.5f);
     }
 
