@@ -1,78 +1,78 @@
 {
     "playerSpawns": {
-        "instanceID": 27204
+        "instanceID": 37180
     },
     "currentMapName": 0,
     "currentLevel": 0,
     "firstSkybox": {
-        "instanceID": 26954
+        "instanceID": 37182
     },
     "secondMapSkyBox": {
-        "instanceID": 27206
+        "instanceID": 37184
     },
     "thirdSkybox": {
-        "instanceID": 27208
+        "instanceID": 37186
     },
     "fourthSkybox": {
-        "instanceID": 27210
+        "instanceID": 37188
     },
     "isDecreaseHealth": false,
     "decreaseCounter": 0,
     "enemySpawnDelay": 10,
     "mapCoins": [
         {
-            "instanceID": 27212
+            "instanceID": 37190
         },
         {
-            "instanceID": 27214
+            "instanceID": 37192
         },
         {
-            "instanceID": 27216
+            "instanceID": 37194
         },
         {
-            "instanceID": 27218
+            "instanceID": 37196
         }
     ],
     "_healtCoinTransform": [
         {
-            "instanceID": 27220
+            "instanceID": 37198
         },
         {
-            "instanceID": 27222
+            "instanceID": 37200
         },
         {
-            "instanceID": 27224
+            "instanceID": 37202
         },
         {
-            "instanceID": 27226
+            "instanceID": 37204
         }
     ],
     "_healtCoinObject": {
-        "instanceID": 27228
+        "instanceID": 37206
     },
     "currentMirrorName": "Mirror1",
     "_firstMapMirrorCouples": [
         {
-            "instanceID": 27230
+            "instanceID": 37208
         }
     ],
     "_secondMapMirrorCouples": [
         {
-            "instanceID": 27232
+            "instanceID": 37210
         }
     ],
     "_thirdMapMirrorCouples": [
         {
-            "instanceID": 27234
+            "instanceID": 37212
         }
     ],
     "_fourthMapMirrorCouples": [
         {
-            "instanceID": 27236
+            "instanceID": 37214
         }
     ],
     "_finishAreas": {
-        "instanceID": 27238
+        "instanceID": 37216
     },
     "isCompleteFirstMap": false,
     "isCompleteSecondMap": false,
@@ -83,94 +83,94 @@
     "isThirdMapTarget": false,
     "isFourthMapTarget": false,
     "isLevelUp": false,
-    "currentCharacterName": 5,
+    "currentCharacterName": 1,
     "characterObject": {
-        "instanceID": 27240
+        "instanceID": 37218
     },
     "dobby": {
-        "instanceID": 27242
+        "instanceID": 37220
     },
     "glassy": {
-        "instanceID": 27244
+        "instanceID": 37222
     },
     "spartacus": {
-        "instanceID": 27246
+        "instanceID": 37224
     },
     "guard": {
-        "instanceID": 27248
+        "instanceID": 37226
     },
     "lusth": {
-        "instanceID": 27250
+        "instanceID": 37228
     },
     "eve": {
-        "instanceID": 27252
+        "instanceID": 37230
     },
     "michelle": {
-        "instanceID": 27254
+        "instanceID": 37232
     },
     "boss": {
-        "instanceID": 27256
+        "instanceID": 37234
     },
     "aj": {
-        "instanceID": 27258
+        "instanceID": 37236
     },
     "mremireh": {
-        "instanceID": 27260
+        "instanceID": 37238
     },
     "ty": {
-        "instanceID": 27262
+        "instanceID": 37240
     },
     "objects": [
         {
-            "instanceID": 27264
+            "instanceID": 37242
         },
         {
-            "instanceID": 27266
+            "instanceID": 37244
         },
         {
-            "instanceID": 27268
+            "instanceID": 37246
         },
         {
-            "instanceID": 27270
+            "instanceID": 37248
         },
         {
-            "instanceID": 27272
+            "instanceID": 37250
         },
         {
-            "instanceID": 27274
+            "instanceID": 37252
         },
         {
-            "instanceID": 27276
+            "instanceID": 37254
         }
     ],
     "slaveObjects": [
         {
-            "instanceID": 27278
+            "instanceID": 37256
         },
         {
-            "instanceID": 27280
+            "instanceID": 37258
         },
         {
-            "instanceID": 27282
+            "instanceID": 37260
         },
         {
-            "instanceID": 27284
+            "instanceID": 37262
         },
         {
-            "instanceID": 27286
+            "instanceID": 37264
         },
         {
-            "instanceID": 27288
+            "instanceID": 37266
         },
         {
-            "instanceID": 27290
+            "instanceID": 37268
         },
         {
-            "instanceID": 27292
+            "instanceID": 37270
         }
     ],
     "spawns": {
-        "instanceID": 27294
+        "instanceID": 37272
     },
     "sensivityX": 18.0,
     "sensivityY": 5.0,
@@ -187,28 +187,30 @@
     "bossPrice": 1,
     "tyPrice": 1,
     "mremirehPrice": 1,
-    "playerSpeed": 2.0,
+    "playerSpeed": 1.0,
     "rotateSpeed": 6.0,
-    "dobbySpeed": 3.0,
-    "michelleSpeed": 3.0,
+    "dobbySpeed": 1.0,
+    "michelleSpeed": 2.0,
     "glassySpeed": 3.0,
-    "ajSpeed": 3.0,
+    "ajSpeed": 2.0,
+    "eveSpeed": 2.0,
     "mremirehSpeed": 3.0,
     "lusthSpeed": 3.0,
     "spartacusSpeed": 3.0,
-    "bossSpeed": 3.0,
+    "bossSpeed": 2.0,
     "tySpeed": 3.0,
-    "guardSpeed": 3.0,
-    "dobbyJumpForce": 4.0,
-    "michelleJumpForce": 4.0,
-    "glassyJumpForce": 4.0,
-    "ajJumpForce": 4.0,
-    "mremirehJumpForce": 4.0,
-    "lusthJumpForce": 4.0,
-    "spartacusJumpForce": 4.0,
-    "bossJumpForce": 4.0,
-    "tyJumpForce": 4.0,
-    "guardJumpForce": 4.0,
+    "guardSpeed": 1.0,
+    "dobbyJumpForce": 2.0,
+    "michelleJumpForce": 3.0,
+    "glassyJumpForce": 2.0,
+    "ajJumpForce": 3.0,
+    "eveJumpForce": 2.0,
+    "mremirehJumpForce": 3.0,
+    "lusthJumpForce": 2.0,
+    "spartacusJumpForce": 3.0,
+    "bossJumpForce": 3.0,
+    "tyJumpForce": 5.0,
+    "guardJumpForce": 3.0,
     "isGround": true,
     "isWalking": false,
     "isLockedWalking": false,
@@ -226,7 +228,7 @@
     "isLookingUp": false,
     "isDestroyed": false,
     "isPlayable": true,
-    "currentJumpForce": 4.0,
+    "currentJumpForce": 2.0,
     "isFireNonWalk": false,
     "isFireWalk": false,
     "isFireTime": false,
@@ -240,49 +242,49 @@
     "normalSpeed": true,
     "clickTabCount": 0,
     "clickShiftCount": 0,
-    "bulletAmount": 20,
+    "bulletAmount": 24,
     "bulletPack": 30,
     "isTouchableSkate": true,
     "danceTime": 5.0,
     "jolleenObject": {
-        "instanceID": 27296
+        "instanceID": 37274
     },
     "skateboardParticle": {
-        "instanceID": 27298
+        "instanceID": 37276
     },
     "touchParticle": {
-        "instanceID": 27300
+        "instanceID": 37278
     },
     "birthParticle": {
-        "instanceID": 27302
+        "instanceID": 37280
     },
     "deathParticle": {
-        "instanceID": 27304
+        "instanceID": 37282
     },
     "burningParticle": {
-        "instanceID": 27306
+        "instanceID": 37284
     },
     "burningTouchParticle": {
-        "instanceID": 27306
+        "instanceID": 37284
     },
     "destroyRotateCoinParticle": {
-        "instanceID": 27308
+        "instanceID": 37286
     },
     "destroyHealthCoinParticle": {
-        "instanceID": 27310
+        "instanceID": 37288
     },
     "destroyBulletCoinParticle": {
-        "instanceID": 27312
+        "instanceID": 37290
     },
     "destroyMushroomCoinParticle": {
-        "instanceID": 27314
+        "instanceID": 37292
     },
     "playerWalkingParticle": {
-        "instanceID": 27316
+        "instanceID": 37294
     },
     "particleCount": 0,
     "_bulletObject": {
-        "instanceID": 27318
+        "instanceID": 37296
     },
     "bulletSpeed": 5.0,
     "isCloneWalking": false,

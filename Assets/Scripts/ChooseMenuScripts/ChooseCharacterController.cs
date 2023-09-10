@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
 public class ChooseCharacterController : MonoBehaviour
@@ -14,12 +15,105 @@ public class ChooseCharacterController : MonoBehaviour
 
 
     private PlayerController _playerController;
+
+    private GameObject[] infoPanel;
     
 
     private void Start()
     {
         _playerController = FindObjectOfType<PlayerController>();
+
+        infoPanel = new GameObject[gameObject.transform.GetChild(1).GetChild(0).childCount];
+
+        SetCharacterInfos();
+        
     }
+    void SetCharacterInfos()
+    {
+        if (gameObject.transform.GetChild(1).gameObject.name == "Panel")
+        {
+            playerData.characterStaffs = new Dictionary<int, GameObject>();
+
+            for (int i = 0; i < gameObject.transform.GetChild(1).GetChild(0).childCount; i++)
+            {
+                playerData.characterStaffs[i] = gameObject.transform.GetChild(1).GetChild(0).GetChild(i).gameObject;
+            }
+
+            for (int i = 0; i < playerData.characterStaffs.Count; i++)
+            {
+                if (playerData.characterStaffs[i].name == "SpartacusStaff")
+                {
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.spartacusSpeed.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.spartacusJumpForce.ToString();
+                }
+                else if (playerData.characterStaffs[i].name == "DobbyStaff")
+                {
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.dobbySpeed.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.dobbyJumpForce.ToString();
+                }
+                else if (playerData.characterStaffs[i].name == "GlassyStaff")
+                {
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.glassySpeed.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.glassyJumpForce.ToString();
+                }
+                else if (playerData.characterStaffs[i].name == "LusthStaff")
+                {
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.lusthSpeed.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.lusthJumpForce.ToString();
+                }
+                else if (playerData.characterStaffs[i].name == "GuardStaff")
+                {
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.guardSpeed.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.guardJumpForce.ToString();
+
+                }
+                else if (playerData.characterStaffs[i].name == "MichelleStaff")
+                {
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.michelleSpeed.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.michelleJumpForce.ToString();
+                }
+                else if (playerData.characterStaffs[i].name == "EveStaff")
+                {
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.eveSpeed.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.eveJumpForce.ToString();
+                }
+                else if (playerData.characterStaffs[i].name == "AjStaff")
+                {
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.ajSpeed.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.ajJumpForce.ToString();
+                }
+                else if (playerData.characterStaffs[i].name == "BossStaff")
+                {
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.bossSpeed.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.bossJumpForce.ToString();
+                }
+                else if (playerData.characterStaffs[i].name == "TyStaff")
+                {
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.tySpeed.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.tyJumpForce.ToString();
+                }
+                else if (playerData.characterStaffs[i].name == "MremirehStaff")
+                {
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.guardSpeed.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.guardJumpForce.ToString();
+                }
+            }
+        }
+        
+
+    }
+    
     void Update()
     {
         RotateCharacters();

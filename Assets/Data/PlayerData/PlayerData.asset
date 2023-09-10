@@ -19,6 +19,8 @@ MonoBehaviour:
   secondMapSkyBox: {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
   thirdSkybox: {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
   fourthSkybox: {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
+  isDecreaseHealth: 0
+  decreaseCounter: 0
   enemySpawnDelay: 10
   mapCoins:
   - {fileID: 3880732843794124356, guid: 8afde6b0df00a404199392eae3715794, type: 3}
@@ -98,26 +100,28 @@ MonoBehaviour:
   mremirehPrice: 1
   playerSpeed: 2
   rotateSpeed: 6
-  dobbySpeed: 3
-  michelleSpeed: 3
+  dobbySpeed: 1
+  michelleSpeed: 2
   glassySpeed: 3
-  ajSpeed: 3
+  ajSpeed: 2
+  eveSpeed: 2
   mremirehSpeed: 3
   lusthSpeed: 3
   spartacusSpeed: 3
-  bossSpeed: 3
+  bossSpeed: 2
   tySpeed: 3
-  guardSpeed: 3
-  dobbyJumpForce: 4
-  michelleJumpForce: 4
-  glassyJumpForce: 4
-  ajJumpForce: 4
-  mremirehJumpForce: 4
-  lusthJumpForce: 4
-  spartacusJumpForce: 4
-  bossJumpForce: 4
-  tyJumpForce: 4
-  guardJumpForce: 4
+  guardSpeed: 1
+  dobbyJumpForce: 2
+  michelleJumpForce: 3
+  glassyJumpForce: 2
+  ajJumpForce: 3
+  eveJumpForce: 2
+  mremirehJumpForce: 3
+  lusthJumpForce: 2
+  spartacusJumpForce: 3
+  bossJumpForce: 3
+  tyJumpForce: 5
+  guardJumpForce: 3
   isGround: 1
   isWalking: 0
   isLockedWalking: 0

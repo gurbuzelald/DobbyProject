@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
@@ -86,6 +87,7 @@ public class PlayerData : ScriptableObject
     public bool isLose;
 
     [Header("Character Prices")]
+
     public int spartacusPrice;
     public int dobbyPrice;
     public int glassyPrice;
@@ -98,7 +100,8 @@ public class PlayerData : ScriptableObject
     public int tyPrice;
     public int mremirehPrice;
 
-    [Header("Speed")]
+    [Header("Character Speed")]
+
     public float playerSpeed;
     public float rotateSpeed;
     //Character Speeds
@@ -106,6 +109,7 @@ public class PlayerData : ScriptableObject
     public float michelleSpeed;
     public float glassySpeed;
     public float ajSpeed;
+    public float eveSpeed;
     public float mremirehSpeed;
     public float lusthSpeed;
     public float spartacusSpeed;
@@ -114,11 +118,13 @@ public class PlayerData : ScriptableObject
     public float guardSpeed;
 
 
-    [Header("Jump Force")]
+    [Header("Character Jump Forces")]
+    public Dictionary<int, GameObject> characterStaffs;
     public float dobbyJumpForce;
     public float michelleJumpForce;
     public float glassyJumpForce;
     public float ajJumpForce;
+    public float eveJumpForce;
     public float mremirehJumpForce;
     public float lusthJumpForce;
     public float spartacusJumpForce;
