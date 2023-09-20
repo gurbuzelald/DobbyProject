@@ -15,7 +15,7 @@ public class TimeController : MonoBehaviour
     [SerializeField] TextMeshProUGUI _timeText;
     [SerializeField] TextMeshProUGUI _warmTimeText;
     [SerializeField] TextMeshProUGUI _swordTimeText;
-    [SerializeField] EnemySpawner _enemySpawner;
+    [SerializeField] EnemyData enemyData;
     void Start()
     {
         _warmTimeText.transform.localScale = Vector3.zero;
@@ -68,7 +68,7 @@ public class TimeController : MonoBehaviour
             !playerData.isWalking && !playerData.isBackWalking && 
             !playerData.isClimbing && !playerData.isBackClimbing && 
             !playerData.isJumping && !playerData.isRunning && 
-            !playerData.isSkateBoarding && PlayerManager.GetInstance._xValue == 0)
+            !playerData.isSkateBoarding )
         {
             playerData.isSwordTime = true;
             if (playerData.isSwording && playerData.isPlayable)
@@ -97,12 +97,10 @@ public class TimeController : MonoBehaviour
     {
         if (_enemySpawnTime >= enemSpawnDelayer)
         {
+            enemyData.isActivateCreateEnemy = true;
+
+
             _enemySpawnTime = 0;
-            _enemySpawner.isActivateCreateEnemy = true;
-        }
-        else
-        {
-            _enemySpawner.isActivateCreateEnemy = false;
         }
 
         _enemySpawnTime += Time.deltaTime;

@@ -20,7 +20,7 @@ MonoBehaviour:
   swordBulletDelay: 0.05
   weaponBulletDelay: 0.05
   bulletSpeed: 5
-  bulletDelayCounter: 1
+  bulletDelayCounter: 0
   _bulletObject: {fileID: 4568481270464940624, guid: 98dbc9cb5ce9f68458cb04a08252b6ac, type: 3}
   _swordingObject: {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
   ak47Object: {fileID: 1285122605500510046, guid: b339fba6c87e1284296b951ba41f28ad, type: 3}
@@ -41,6 +41,15 @@ MonoBehaviour:
   negevGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
   axegunObject: {fileID: 1684248174472265961, guid: a331718668949cc43b683202d1396a03, type: 3}
   axegunGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
+  ak47Power: 5
+  riflePower: 5
+  bulldogPower: 5
+  cowgunPower: 5
+  crystalgunPower: 5
+  demongunPower: 5
+  icegunPower: 5
+  negevPower: 5
+  axegunPower: 5
   isRifle: 0
   isAk47: 0
   isBulldog: 0
@@ -73,7 +82,7 @@ MonoBehaviour:
   isLongHummer: 0
   isClub: 0
   currentSwordName: LowSword
-  currentWeaponName: ak47
+  currentWeaponName: rifle
   enemyFireFrequency: 5
   enemyBulletDelayCounter: 0
   enemyBulletDelay: 0.05

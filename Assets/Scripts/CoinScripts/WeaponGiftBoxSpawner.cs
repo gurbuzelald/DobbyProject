@@ -35,11 +35,10 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
         }
 
         GameObject giftBox = Instantiate(bulletData.giftBoxes[0], gameObject.transform);
-        CreateWeaponGiftBox(bulletData.ak47GiftBox, giftBox.transform.GetChild(1).transform);
 
 
         CreateWeaponGiftBox(bulletData.rifleGiftBox, giftBox.transform.GetChild(0).transform);
-        CreateWeaponGiftBox(bulletData.axegunGiftBox, giftBox.transform.GetChild(2).transform);
+        CreateWeaponGiftBox(bulletData.bullDogGiftBox, giftBox.transform.GetChild(1).transform);
     }
     public void CreateWeaponGiftBox(GameObject weaponObject, Transform weaponTransform)
     {
@@ -59,13 +58,8 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
 
         GameObject giftBox = Instantiate(bulletData.giftBoxes[1], gameObject.transform);
 
-        CreateWeaponGiftBox(bulletData.bullDogGiftBox, giftBox.transform.GetChild(0).transform);
-        CreateWeaponGiftBox(bulletData.cowgunGiftBox, giftBox.transform.GetChild(1).transform);
-        CreateWeaponGiftBox(bulletData.crsytalgunGiftBox, giftBox.transform.GetChild(2).transform);
-        CreateWeaponGiftBox(bulletData.demongunGiftBox, giftBox.transform.GetChild(3).transform);
-        CreateWeaponGiftBox(bulletData.icegunGiftBox, giftBox.transform.GetChild(4).transform);
-        CreateWeaponGiftBox(bulletData.negevGiftBox, giftBox.transform.GetChild(5).transform);
-        CreateWeaponGiftBox(bulletData.axegunGiftBox, giftBox.transform.GetChild(6).transform);
+        CreateWeaponGiftBox(bulletData.cowgunGiftBox, giftBox.transform.GetChild(0).transform);
+        CreateWeaponGiftBox(bulletData.crsytalgunGiftBox, giftBox.transform.GetChild(1).transform);
     }
     public void CreateThirdMapGiftBoxes()
     {
@@ -76,13 +70,8 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
 
         GameObject giftBox = Instantiate(bulletData.giftBoxes[2], gameObject.transform);
 
-        CreateWeaponGiftBox(bulletData.bullDogGiftBox, giftBox.transform.GetChild(0).transform);
-        CreateWeaponGiftBox(bulletData.cowgunGiftBox, giftBox.transform.GetChild(1).transform);
-        CreateWeaponGiftBox(bulletData.crsytalgunGiftBox, giftBox.transform.GetChild(2).transform);
-        CreateWeaponGiftBox(bulletData.demongunGiftBox, giftBox.transform.GetChild(3).transform);
-        CreateWeaponGiftBox(bulletData.icegunGiftBox, giftBox.transform.GetChild(4).transform);
-        CreateWeaponGiftBox(bulletData.negevGiftBox, giftBox.transform.GetChild(5).transform);
-        CreateWeaponGiftBox(bulletData.axegunGiftBox, giftBox.transform.GetChild(6).transform);
+        CreateWeaponGiftBox(bulletData.demongunGiftBox, giftBox.transform.GetChild(0).transform);
+        CreateWeaponGiftBox(bulletData.icegunGiftBox, giftBox.transform.GetChild(1).transform);
     }
 
     public void CreateFourthMapGiftBoxes()
@@ -94,13 +83,8 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
 
         GameObject giftBox = Instantiate(bulletData.giftBoxes[3], gameObject.transform);
 
-        CreateWeaponGiftBox(bulletData.bullDogGiftBox, giftBox.transform.GetChild(0).transform);
-        CreateWeaponGiftBox(bulletData.cowgunGiftBox, giftBox.transform.GetChild(1).transform);
-        CreateWeaponGiftBox(bulletData.crsytalgunGiftBox, giftBox.transform.GetChild(2).transform);
-        CreateWeaponGiftBox(bulletData.demongunGiftBox, giftBox.transform.GetChild(3).transform);
-        CreateWeaponGiftBox(bulletData.icegunGiftBox, giftBox.transform.GetChild(4).transform);
-        CreateWeaponGiftBox(bulletData.negevGiftBox, giftBox.transform.GetChild(5).transform);
-        CreateWeaponGiftBox(bulletData.axegunGiftBox, giftBox.transform.GetChild(6).transform);
+        CreateWeaponGiftBox(bulletData.negevGiftBox, giftBox.transform.GetChild(0).transform);
+        CreateWeaponGiftBox(bulletData.axegunGiftBox, giftBox.transform.GetChild(1).transform);
     }
     
 }

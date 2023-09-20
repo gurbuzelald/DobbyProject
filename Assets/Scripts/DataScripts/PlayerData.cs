@@ -1,9 +1,28 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("EnemyDamages")]
+    public int currentEnemyAttackDamage;
+    public int monsterEnemyAttackDamage;
+    public int prisonerEnemyAttackDamage;
+    public int clownEnemyAttackDamage;
+
+    public int currentEnemyTriggerDamage;
+    public int monsterEnemyTriggerDamage;
+    public int prisonerEnemyTriggerDamage;
+    public int clownEnemyTriggerDamage;
+
+    public int currentEnemyCollisionDamage;
+    public int monsterEnemyCollisionDamage;
+    public int prisonerEnemyCollisionDamage;
+    public int clownEnemyCollisionDamage;
+
+    public char enemyTag;
+
     [Header("Player Level Spawns")]
     public Transform playerSpawns;
 
@@ -21,10 +40,15 @@ public class PlayerData : ScriptableObject
 
     [Header("Health State")]
     public bool isDecreaseHealth;
+    public TextMeshProUGUI damageHealthText;
     public int decreaseCounter;
 
     [Header("Enemy Spawn")]
     public int enemySpawnDelay;
+    public int firstMapEnemySpawnDelay;
+    public int secondMapEnemySpawnDelay;
+    public int thirdMapEnemySpawnDelay;
+    public int fourthMapEnemySpawnDelay;
 
     [Header("Coin Transforms")]
     public GameObject[] mapCoins;
@@ -103,6 +127,11 @@ public class PlayerData : ScriptableObject
     [Header("Character Speed")]
 
     public float playerSpeed;
+    public float slideWalkSpeed;
+    public float backWalkingSpeed;
+    public float fireWalkSpeed;
+    public float climbSpeed;
+    public float lockedSpeed;
     public float rotateSpeed;
     //Character Speeds
     public float dobbySpeed;
@@ -135,6 +164,7 @@ public class PlayerData : ScriptableObject
     [Header("Animation Bools")]
     public bool isGround;
     public bool isWalking;
+    public bool isSideWalking;
     public bool isLockedWalking;
     public bool isBackWalking;
     public bool isClimbing;

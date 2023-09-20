@@ -44,4 +44,6 @@ public class EnemyData : ScriptableObject
     public float swordDamageValue;
     public bool isSpeedZero;
     public bool isWalkable;
+
+    public bool isActivateCreateEnemy;
 }

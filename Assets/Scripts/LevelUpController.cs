@@ -42,7 +42,10 @@ public class LevelUpController : MonoBehaviour
     {
         weaponGiftBoxSpawner = weaponGiftBoxSpawnerObject.GetComponent<WeaponGiftBoxSpawner>();
         healthCoinSpawner = healthCoinSpawnerObject.GetComponent<HealthCoinSpawner>();
-        enemySpawner = enemySpawnerObject.GetComponent<EnemySpawner>();
+        if (enemySpawnerObject)
+        {
+            enemySpawner = enemySpawnerObject.GetComponent<EnemySpawner>();
+        }
         coinSpawner = coinSpawnerObject.GetComponent<CoinSpawner>();
         mirrorSpawner = mirrorSpawnerObject.GetComponent<MirrorSpawner>();
         cameraSpawner = cameraSpawnerObject.GetComponent<CameraSpawner>();

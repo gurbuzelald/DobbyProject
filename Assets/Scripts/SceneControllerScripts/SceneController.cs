@@ -246,7 +246,10 @@ public class SceneController : AbstractSceneController<SceneController>
     }
     public void QuitGame()
     {
-                    MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+        PlayerManager.GetInstance._bulletData.currentWeaponName = BulletData.ak47;
+        PlayerManager.GetInstance._bulletData.currentSwordName = BulletData.lowSword;
 
         Application.Quit();
     }
@@ -264,6 +267,7 @@ public class SceneController : AbstractSceneController<SceneController>
         FirstFinishArea,
         SecondFinishArea,
         ThirdFinishArea,
+        Tree,
 
         //Coins
         Coin,

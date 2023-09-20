@@ -35,6 +35,16 @@ public class BulletData : ScriptableObject
     public GameObject axegunObject;
     public GameObject axegunGiftBox;
 
+    public int ak47Power;
+    public int riflePower;
+    public int bulldogPower;
+    public int cowgunPower;
+    public int crystalgunPower;
+    public int demongunPower;
+    public int icegunPower;
+    public int negevPower;
+    public int axegunPower;
+
     public bool isRifle;
     public bool isAk47;
     public bool isBulldog;

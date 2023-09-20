@@ -24,7 +24,6 @@ TagManager:
   - PlayerIcon
   - CameraWasher
   - Sword
-  - Slave
   - SlaveSword
   - CheeseCoin
   - MushroomCoin
@@ -46,6 +45,7 @@ TagManager:
   - FinishArea
   - HealthCoin
   - FourthFinishArea
+  - Tree
   layers:
   - Default
   - TransparentFX
@@ -82,4 +82,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 782441051
     locked: 0

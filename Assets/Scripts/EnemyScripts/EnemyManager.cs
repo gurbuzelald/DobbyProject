@@ -40,8 +40,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     void Start()
     {
         enemyData.isWalkable = true;
-
+        _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
         _healthBarSlider = _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>();
+
         enemyRigidbody = gameObject.transform.GetComponent<Rigidbody>();
 
         enemyBulletManager = gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>();
@@ -60,7 +61,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }   
     void Update()
     {
-        if (!enemyData.isFiring && (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.5f))
+        WeaponBulletPower(); 
+
+        if (!enemyData.isFiring && !enemyData.isDying && 
+            (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.5f))
         {
             enemyData.isWalking = true;
         }
@@ -81,7 +85,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
 
                 if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.1f) &&
-                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 4f) && enemyData.isWalkable)
+                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 4f) && 
+                    enemyData.isWalkable && !enemyData.isDying)
                 {
                     enemyData.enemySpeed = _initSpeed;
                     enemyData.isWalking = true;
@@ -92,11 +97,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     //Debug.Log("Test");
                     Movement(clownSpawner.targetTransform, _initTransform, gameObject.transform, enemyData.enemySpeed, playerData, enemyData);
                 }
-                else if((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) <= 0.1f))
+                else if((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) <= 0.1f) && !enemyData.isDying)
                 {
                     //Debug.Log("Test");
                     enemyData.isAttacking = true;
                     playerData.isDecreaseHealth = true;
+                    
+                    playerData.enemyTag = gameObject.name[0];
 
                     enemyData.isWalking = false;
                     enemyData.isDying = false;
@@ -105,7 +112,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     //enemyData.isWalking = false;
                 }
                 else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.4f) &&
-                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 8f))
+                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 8f) &&
+                    !enemyData.isDying && !playerData.isDying)
                 {
                     enemyData.isFiring = true;
                     enemyData.isAttacking = false;
@@ -117,7 +125,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 {
                     enemyData.isAttacking = false;
                     enemyData.isWalking = false;
-                    enemyData.isDying = false;
                     enemyData.isFiring = false;
                 }
             }
@@ -193,6 +200,45 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         if (other.CompareTag(SceneController.Tags.Sword.ToString()))
         {
             TriggerSword(enemyData.swordDamageValue);
+        }
+    }
+    void WeaponBulletPower()
+    {
+        if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.ak47)
+        {
+            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.ak47Power;
+        }
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.rifle)
+        {
+            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.riflePower;
+        }
+        else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.bulldog)
+        {
+            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.bulldogPower;
+        }
+        else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.cowgun)
+        {
+            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.cowgunPower;
+        }
+        else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.crystalgun)
+        {
+            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.crystalgunPower;
+        }
+        else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.demongun)
+        {
+            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.demongunPower;
+        }
+        else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.icegun)
+        {
+            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.icegunPower;
+        }
+        else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.negev)
+        {
+            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.negevPower;
+        }
+        else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.axegun)
+        {
+            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.axegunPower;
         }
     }
 
@@ -285,7 +331,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 PlaySoundEffect(SoundEffectTypes.SwordHit, _audioSource);
 
                 _healthBarSlider.value -= bulletPower;
+
             }
+
+            _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = _healthBarSlider.value;
+
             StartCoroutine(ShowDamage((int)bulletPower, 0.1f, 3f));
         }
     }
@@ -296,7 +346,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
         //enemyData.isWalking = false;
         enemyData.isSpeedZero = true;
-        StartCoroutine(DelayStopEnemy(3f));
+        //StartCoroutine(DelayStopEnemy(3f));
         if (_healthBar != null)
         {
             if (_healthBarSlider.value <= 0)
@@ -336,6 +386,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 PlaySoundEffect(SoundEffectTypes.BulletHit, _audioSource);
                 _healthBarSlider.value -= bulletPower;
             }
+
+            _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = _healthBarSlider.value;
+
             StartCoroutine(ShowDamage((int)bulletPower, 0.1f, 3f));
         }
     }   

@@ -80,6 +80,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     [SerializeField] GameObject _damageArrow;
 
 
+
     [HideInInspector]
     public GameObject _currentCharacterObject;
     private GameObject characterObject;
@@ -95,10 +96,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     private Rigidbody playerRigidbody;
     private Slider healthBarSlider;
     private Animator characterAnimator;
-
-
-    
-
     void Start()
     {
         _playerData.decreaseCounter = 0;
@@ -153,22 +150,62 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
 
     }
+    void CheckEnemyCollisionDamage(Collision collision)
+    {
+
+        _playerData.enemyTag = collision.gameObject.name[0];
+
+        if (_playerData.enemyTag == 'C')
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.clownEnemyCollisionDamage;
+        }
+        else if (_playerData.enemyTag == 'M')
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.monsterEnemyCollisionDamage;
+        }
+        else if (_playerData.enemyTag == 'P')
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.prisonerEnemyCollisionDamage;
+        }
+    }
+    void CheckEnemyAttackDamage()
+    {        
+        if (_playerData.enemyTag == 'C')
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.clownEnemyAttackDamage;
+        }
+        else if (_playerData.enemyTag == 'M')
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.monsterEnemyAttackDamage;
+        }
+        else if (_playerData.enemyTag == 'P')
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.prisonerEnemyAttackDamage;
+        }
+    }
     void GetAttackFromEnemy()
     {
-        if (_playerData.isDecreaseHealth && _playerData.decreaseCounter == 0)
+        if (_playerData.isDecreaseHealth && _playerData.decreaseCounter == 0 && healthBarSlider.value > 0)
         {
-            iPlayerHealth.DecreaseHealth(2, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider);
+            CheckEnemyAttackDamage();
+
+            iPlayerHealth.DecreaseHealth(_playerData.currentEnemyAttackDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
             //Touch ParticleEffect
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
 
             //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetEnemyHit);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetBulletHit);
 
             _playerData.isDecreaseHealth = false;
 
             _playerData.decreaseCounter++;
             StartCoroutine(DelayDecreaseCounterZero());
+        }
+        else if(healthBarSlider.value == 0)
+        {
+            //_playerData.isDying = true;
+            StartCoroutine(DelayDestroy(7f));
         }
     }
     IEnumerator DelayDecreaseCounterZero()
@@ -220,7 +257,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                         //GetHitSFX(_playerData);
 
                         //PlayerData
-                        iPlayerHealth.DecreaseHealth(5,ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider);
+                        CheckEnemyCollisionDamage(collision);
+                        iPlayerHealth.DecreaseHealth(_playerData.currentEnemyCollisionDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
                     }
                 }
             }
@@ -259,7 +297,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
     }
 
-
+    
 
     void OnTriggerEnter(Collider other)
     {
@@ -274,7 +312,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             StartCoroutine(iPlayerTrigger.DamageArrowIsLookAtEnemy(other, _damageArrow));
 
-            iPlayerHealth.DecreaseHealth(2,ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider);
+            iPlayerHealth.DecreaseHealth(_playerData.currentEnemyTriggerDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
             //Touch ParticleEffect
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
@@ -330,7 +368,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                                       ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);
             if (healthBarSlider.value > 0)
             {
-                iPlayerHealth.DecreaseHealth(30,ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider);
+                iPlayerHealth.DecreaseHealth(30,ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
                 iPlayerTrigger.PickUpCoin(SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject,
                                           ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//FreshBulletAmount
@@ -502,6 +540,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     //Init
     private void InitStates()
     {
+        _playerData.damageHealthText = GameObject.Find("DamageHealthText").GetComponent<TextMeshProUGUI>();
         playerTransform = GetInstance.GetComponent<Transform>();
 
         if (_playerData.currentMapName == PlayerData.MapNames.FirstMap)

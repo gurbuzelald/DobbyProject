@@ -393,11 +393,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
                 _playerData.isFireWalk = false;
             }
-            else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && !_playerData.isWalking)
+            else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && !_playerData.isWalking && !_playerData.isSideWalking)
             {
                 _playerData.isFireNonWalk = true;
             }
-            else if (_playerData.bulletAmount > _playerData.bulletPack / 2f && !_playerData.isWalking)
+            else if (_playerData.bulletAmount > _playerData.bulletPack / 2f && !_playerData.isWalking && !_playerData.isSideWalking)
             {
                 _playerData.isFireNonWalk = true;
             }
@@ -432,6 +432,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             if (PlayerManager.GetInstance._playerController.sword && _playerData.isSwordTime)
             {
+               
                 //PlayerData
                 _playerData.isSwording = true;
                 _playerData.isSwordAnimate = true;
@@ -1141,21 +1142,32 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             Destroy(other.gameObject, 1f);
         }
     }
-    public virtual void DecreaseHealth(int damageHealthValue, ref GameObject _healthBarObject, ref Slider _healthBarSlider, ref Slider _topCanvasHealthBarSlider)
+    public virtual void DecreaseHealth(int damageHealthValue, ref GameObject _healthBarObject, ref Slider _healthBarSlider, ref Slider _topCanvasHealthBarSlider,
+                                       ref TextMeshProUGUI damageHealthText)
     {
         _healthBarSlider.value -= damageHealthValue;
         _topCanvasHealthBarSlider.value = _healthBarSlider.value;
+
+        damageHealthText.enabled = true;
+
+        damageHealthText.text = "-" + damageHealthValue.ToString();
 
 
         _healthBarObject.transform.localScale = new Vector3(1f, 0.3f, 0.3f);
 
         StartCoroutine(DelayHealthSizeBack(_healthBarObject));
+        StartCoroutine(DelayDamageHealthTextEnableFalse(damageHealthText));
     }
 
     public virtual IEnumerator DelayHealthSizeBack(GameObject _healthBarObject)
     {
         yield return new WaitForSeconds(0.5f);
         _healthBarObject.transform.localScale = new Vector3(1, 0.1f, 0.1f);
+    }
+    public virtual IEnumerator DelayDamageHealthTextEnableFalse(TextMeshProUGUI damageHealthText)
+    {
+        yield return new WaitForSeconds(0.5f);
+        damageHealthText.enabled = false;
     }
     #endregion
 
@@ -1227,7 +1239,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             //_skateboardParticle.Play();
             //GetInstance.GetComponent<Transform>().Translate(0f, 0f, _playerData.playerSpeed * Time.deltaTime * 4f);
-            objectRigidbody.AddForce(transform.forward*_playerData.playerSpeed * Time.deltaTime * 10000f);
+            objectRigidbody.AddForce(transform.forward*_playerData.playerSpeed * Time.deltaTime * 1000f);
             //Debug.Log(PlayerManager.GetInstance.transform.eulerAngles.y);
         }
 
@@ -1237,25 +1249,25 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {//ForwardAndBackWalking
         if (!_playerData.isLockedWalking)
         {
-            if ((PlayerManager.GetInstance._zValue > 0.01f && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding))
+            if ((PlayerManager.GetInstance._zValue >= 0 && PlayerManager.GetInstance._xValue <= 0.5f && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding))
             {
                 //PlayerData
                 _playerData.isWalking = true;
 
                 if (characterAnimator.GetLayerWeight(16) == 1)
                 {//When fireWalk Animation is active, player speed will lower then original speed
-                    playerTransform.Translate(0f, 0f, PlayerManager.GetInstance._zValue * _playerData.playerSpeed * Time.deltaTime * 3f);
+                    playerTransform.Translate(0f, 0f, PlayerManager.GetInstance._zValue * _playerData.fireWalkSpeed * Time.deltaTime);
                 }
                 else
                 {
-                    playerTransform.Translate(0f, 0f, PlayerManager.GetInstance._zValue * _playerData.playerSpeed * Time.deltaTime * 10f);
+                    playerTransform.Translate(0f, 0f, PlayerManager.GetInstance._zValue * _playerData.playerSpeed * Time.deltaTime);
                 }
                 _playerData.isBackWalking = false;
             }
             else if (PlayerManager.GetInstance._zValue < -0.01 && !_playerData.isClimbing && !_playerData.isBackClimbing)
             {
                 //PlayerData
-                playerTransform.Translate(0f, 0f, PlayerManager.GetInstance._zValue * _playerData.playerSpeed * Time.deltaTime * 3f);
+                playerTransform.Translate(0f, 0f, PlayerManager.GetInstance._zValue * _playerData.backWalkingSpeed * Time.deltaTime);
                 _playerData.isBackWalking = true;
                 _playerData.isWalking = false;
             }
@@ -1268,15 +1280,36 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else
         {
-            playerTransform.Translate(0f, 0f, _playerData.playerSpeed * Time.deltaTime / 4f);
+            playerTransform.Translate(0f, 0f, _playerData.lockedSpeed * Time.deltaTime);
         }
 
+    }
+    public virtual void SideWalk(PlayerData _playerData, ref Transform playerTransform)
+    {//LeftAndRightWalking
+
+        if (Mathf.Abs(PlayerManager.GetInstance._xValue) <= Mathf.Abs(PlayerManager.GetInstance._zValue) || (PlayerManager.GetInstance._zValue > 0.1f && PlayerManager.GetInstance._xValue > 0.1f))
+        {
+            _playerData.isWalking = true;
+            _playerData.isSideWalking = false;
+        }
+        else if ((!_playerData.isClimbing && !_playerData.isBackClimbing) && 
+            (PlayerManager.GetInstance._xValue < -0.05f || PlayerManager.GetInstance._xValue > 0.05f) &&
+            Mathf.Abs(PlayerManager.GetInstance._xValue) > 2 * Mathf.Abs(PlayerManager.GetInstance._zValue))
+        {
+            _playerData.isSideWalking = true;
+
+            playerTransform.Translate(PlayerManager.GetInstance._xValue * _playerData.slideWalkSpeed * Time.deltaTime, 0f, 0f);
+        }        
+        else
+        {
+            _playerData.isSideWalking = false;
+        }
     }
     public virtual void Climb(PlayerData _playerData, ref Transform playerTransform)
     {//WhenEnterToTheLadderGoToClimb
         if (PlayerManager.GetInstance._zValue > 0 && _playerData.isClimbing && !_playerData.isBackClimbing)
         {
-            playerTransform.Translate(0f, PlayerManager.GetInstance._zValue, 0f);
+            playerTransform.Translate(0f, PlayerManager.GetInstance._zValue * _playerData.climbSpeed, 0f);
         }
         else if (PlayerManager.GetInstance._zValue < 0 && !_playerData.isClimbing && _playerData.isBackClimbing)
         {
@@ -1306,15 +1339,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.isJumping = false;
         }
 
-    }
-
-
-    public virtual void SideWalk(PlayerData _playerData, ref Transform playerTransform)
-    {//LeftAndRightWalking
-        if ((!_playerData.isClimbing && !_playerData.isBackClimbing) && (PlayerManager.GetInstance._xValue < -0.02f || PlayerManager.GetInstance._xValue > 0.02f))
-        {
-            playerTransform.Translate(PlayerManager.GetInstance._xValue * _playerData.playerSpeed * Time.deltaTime * 3.5f, 0f, 0f);
-        }
     }
 
     public virtual void SpeedSettings(PlayerData _playerData, float _initPlayerSpeed)
