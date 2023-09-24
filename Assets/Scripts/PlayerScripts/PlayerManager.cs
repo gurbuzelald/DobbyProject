@@ -69,8 +69,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public CanvasGroup crosshairImage;
 
     [Header("Input Movement")]
-    public float _xValue;
-    public float _zValue;
+    private float _xValue;
+    private float _zValue;
     private float _touchX;
     private float _touchY;
 
@@ -78,8 +78,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public ObjectPool _objectPool;
 
     [SerializeField] GameObject _damageArrow;
-
-
 
     [HideInInspector]
     public GameObject _currentCharacterObject;
@@ -96,6 +94,15 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     private Rigidbody playerRigidbody;
     private Slider healthBarSlider;
     private Animator characterAnimator;
+
+    public float GetZValue()
+    {
+        return _zValue;
+    }
+    public float GetXValue()
+    {
+        return _xValue;
+    }
     void Start()
     {
         _playerData.decreaseCounter = 0;
@@ -146,75 +153,10 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         Movement(_playerData);//PlayerStatement
         Rotation(_playerData);
-        GetAttackFromEnemy();
+        GetAttackFromEnemy(ref _playerData, ref _topCanvasHealthBarSlider, ref healthBarSlider, ref _healthBarObject, ref _particleTransform);
 
 
     }
-    void CheckEnemyCollisionDamage(Collision collision)
-    {
-
-        _playerData.enemyTag = collision.gameObject.name[0];
-
-        if (_playerData.enemyTag == 'C')
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.clownEnemyCollisionDamage;
-        }
-        else if (_playerData.enemyTag == 'M')
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.monsterEnemyCollisionDamage;
-        }
-        else if (_playerData.enemyTag == 'P')
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.prisonerEnemyCollisionDamage;
-        }
-    }
-    void CheckEnemyAttackDamage()
-    {        
-        if (_playerData.enemyTag == 'C')
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.clownEnemyAttackDamage;
-        }
-        else if (_playerData.enemyTag == 'M')
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.monsterEnemyAttackDamage;
-        }
-        else if (_playerData.enemyTag == 'P')
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.prisonerEnemyAttackDamage;
-        }
-    }
-    void GetAttackFromEnemy()
-    {
-        if (_playerData.isDecreaseHealth && _playerData.decreaseCounter == 0 && healthBarSlider.value > 0)
-        {
-            CheckEnemyAttackDamage();
-
-            iPlayerHealth.DecreaseHealth(_playerData.currentEnemyAttackDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
-
-            //Touch ParticleEffect
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
-
-            //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetBulletHit);
-
-            _playerData.isDecreaseHealth = false;
-
-            _playerData.decreaseCounter++;
-            StartCoroutine(DelayDecreaseCounterZero());
-        }
-        else if(healthBarSlider.value == 0)
-        {
-            //_playerData.isDying = true;
-            StartCoroutine(DelayDestroy(7f));
-        }
-    }
-    IEnumerator DelayDecreaseCounterZero()
-    {
-        yield return new WaitForSeconds(1f);
-        _playerData.decreaseCounter = 0;
-    }
-
-
 
     void OnCollisionEnter(Collision collision)
     {
@@ -257,7 +199,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                         //GetHitSFX(_playerData);
 
                         //PlayerData
-                        CheckEnemyCollisionDamage(collision);
+                        CheckEnemyCollisionDamage(collision, ref _playerData);
                         iPlayerHealth.DecreaseHealth(_playerData.currentEnemyCollisionDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
                     }
                 }

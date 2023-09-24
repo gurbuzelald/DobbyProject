@@ -25,8 +25,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     public virtual void IdleAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isIdling && !playerData.isWalking && 
-            !playerData.isLockedWalking && PlayerManager.GetInstance._xValue == 0 && 
-            PlayerManager.GetInstance._zValue == 0 && !playerData.isJumping && 
+            !playerData.isLockedWalking && PlayerManager.GetInstance.GetXValue() == 0 && 
+            PlayerManager.GetInstance.GetZValue() == 0 && !playerData.isJumping && 
             !playerData.isDying && !playerData.isSwordAnimate)
         {
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), true);
@@ -60,7 +60,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             (playerData.isWalking && !playerData.isFireWalk && 
             !playerData.isBackWalking && !playerData.isJumping && 
             !playerData.isClimbing) && 
-            !playerData.isSwordAnimate)
+            !playerData.isSwordAnimate &&
+            !playerData.isDying && !playerData.isPlayable)
         {
             _animator.SetBool(AnimatorParameters.isWalking.ToString(), true);
             _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
@@ -83,7 +84,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         else if ((playerData.isLockedWalking && playerData.isFireWalk) || 
             (playerData.isWalking && playerData.isFireWalk && 
             !playerData.isBackWalking && !playerData.isJumping && !playerData.isClimbing) && 
-            !playerData.isSwordAnimate)
+            !playerData.isSwordAnimate && !playerData.isSideWalking &&
+            !playerData.isDying && !playerData.isPlayable)
         {
             _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
             _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
@@ -119,15 +121,13 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public virtual void BackWalkAnimation(PlayerData playerData, Animator _animator)
     {
-        if (playerData.isBackWalking && !playerData.isWalking && !playerData.isJumping 
-            && !playerData.isBackClimbing && !playerData.isLockedWalking && !playerData.isSwordAnimate && !playerData.isSideWalking)
+        if (playerData.isBackWalking )
         {
             _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), true);
 
             _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
             _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
-
             _animator.SetLayerWeight(2, 1);
             _animator.SetLayerWeight(1, 0);
             _animator.SetLayerWeight(4, 0);
@@ -138,9 +138,9 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public virtual void LeftWalkAnimation(PlayerData playerData, Animator _animator)
     {
-        if (PlayerManager.GetInstance._xValue < -0.03f && 
-            PlayerManager.GetInstance._zValue > -0.05f && 
-            PlayerManager.GetInstance._zValue < 0.05f && 
+        if (PlayerManager.GetInstance.GetXValue() < -0.03f && 
+            PlayerManager.GetInstance.GetZValue() > -0.05f && 
+            PlayerManager.GetInstance.GetZValue() < 0.05f && 
             !playerData.isJumping && 
             !playerData.isSwordAnimate &&
             playerData.isSideWalking)
@@ -159,8 +159,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(7, 0);
 
         }
-        else if (PlayerManager.GetInstance._xValue < -0.03f && 
-                 PlayerManager.GetInstance._zValue > 0.05f && 
+        else if (PlayerManager.GetInstance.GetXValue() < -0.03f && 
+                 PlayerManager.GetInstance.GetZValue() > 0.05f && 
                  !playerData.isJumping && 
                  !playerData.isSwordAnimate)
         {
@@ -178,7 +178,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(7, 0);
 
         }
-        else if (PlayerManager.GetInstance._xValue == 0 && 
+        else if (PlayerManager.GetInstance.GetXValue() == 0 && 
                  !playerData.isJumping && 
                  !playerData.isLockedWalking && 
                  !playerData.isSwordAnimate)
@@ -191,9 +191,9 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public virtual void RightWalkAnimation(PlayerData playerData, Animator _animator)
     {
-        if (PlayerManager.GetInstance._xValue > 0.03f && 
-            PlayerManager.GetInstance._zValue < 0.05f && 
-            PlayerManager.GetInstance._zValue > -0.05f && 
+        if (PlayerManager.GetInstance.GetXValue() > 0.03f && 
+            PlayerManager.GetInstance.GetZValue() < 0.05f && 
+            PlayerManager.GetInstance.GetZValue() > -0.05f && 
             !playerData.isJumping && 
             !playerData.isSwordAnimate &&
             playerData.isSideWalking)
@@ -211,8 +211,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(7, 0);
 
         }
-        else if (PlayerManager.GetInstance._xValue > 0.03f && 
-            PlayerManager.GetInstance._zValue > 0.05f &&
+        else if (PlayerManager.GetInstance.GetXValue() > 0.03f && 
+            PlayerManager.GetInstance.GetZValue() > 0.05f &&
             !playerData.isJumping && 
             !playerData.isSwordAnimate)
         {
@@ -230,7 +230,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(7, 0);
 
         }
-        else if (PlayerManager.GetInstance._xValue == 0 && 
+        else if (PlayerManager.GetInstance.GetXValue() == 0 && 
                 !playerData.isJumping && 
                 !playerData.isSwordAnimate)
         {
@@ -248,7 +248,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     {
         if (playerData.isClimbing && 
             !playerData.isBackClimbing && 
-            PlayerManager.GetInstance._zValue > 0 && 
+            PlayerManager.GetInstance.GetZValue() > 0 && 
             !playerData.isSwordAnimate)
         {
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
@@ -264,7 +264,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         }
         if (!playerData.isClimbing && 
             playerData.isBackClimbing && 
-            PlayerManager.GetInstance._zValue < 0 && 
+            PlayerManager.GetInstance.GetZValue() < 0 && 
             !playerData.isSwordAnimate)
         {
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
@@ -281,27 +281,25 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(4, 1);
         }
         if ((playerData.isClimbing || !playerData.isClimbing) && 
-            PlayerManager.GetInstance._zValue == 0 && 
+            PlayerManager.GetInstance.GetZValue() == 0 && 
             !playerData.isFireNonWalk && 
             !playerData.isJumping && 
-            !playerData.isSwordAnimate)
+            !playerData.isSwordAnimate &&
+            !playerData.isLockedWalking)
         {
-            if (!playerData.isLockedWalking)
-            {
-                _animator.SetBool(AnimatorParameters.isIdling.ToString(), true);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), true);
 
-                _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
-                _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
-                _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
-                _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
 
-                _animator.SetLayerWeight(0, 1);
-                _animator.SetLayerWeight(1, 0);
-                _animator.SetLayerWeight(2, 0);
-                _animator.SetLayerWeight(3, 0);
-                _animator.SetLayerWeight(4, 0);
-                _animator.SetLayerWeight(7, 0);
-            }            
+            _animator.SetLayerWeight(0, 1);
+            _animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(2, 0);
+            _animator.SetLayerWeight(3, 0);
+            _animator.SetLayerWeight(4, 0);
+            _animator.SetLayerWeight(7, 0);
         }
     }
     public virtual void FireNonWalkAnimation(PlayerData playerData, Animator _animator)
@@ -325,8 +323,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         }
         else if (!playerData.isFireNonWalk && 
                 !playerData.isSwording && 
-                PlayerManager.GetInstance._zValue == 0 && 
-                PlayerManager.GetInstance._xValue == 0 && 
+                PlayerManager.GetInstance.GetZValue() == 0 && 
+                PlayerManager.GetInstance.GetXValue() == 0 && 
                 !playerData.isClimbing && 
                 !playerData.isLockedWalking && 
                 !playerData.isSwordAnimate &&
@@ -362,8 +360,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         }
         else if (!playerData.isSwording && 
                  !playerData.isFireNonWalk && 
-                 PlayerManager.GetInstance._zValue == 0 && 
-                 PlayerManager.GetInstance._xValue == 0 && 
+                 PlayerManager.GetInstance.GetZValue() == 0 && 
+                 PlayerManager.GetInstance.GetXValue() == 0 && 
                  !playerData.isClimbing && 
                  !playerData.isLockedWalking && 
                  !playerData.isSwordAnimate)
@@ -383,7 +381,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         if (playerData.isJumping && 
             playerData.isGround && 
             !playerData.isSkateBoarding && 
-            (PlayerManager.GetInstance._zValue > 0 || PlayerManager.GetInstance._xValue > 0) && 
+            (PlayerManager.GetInstance.GetZValue() > 0 || PlayerManager.GetInstance.GetXValue() > 0) && 
             !playerData.isSwordAnimate)
         {
             _animator.SetLayerWeight(1, 1);
@@ -393,21 +391,21 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         }
         if (!playerData.isGround && 
             !playerData.isJumping && 
-            (PlayerManager.GetInstance._zValue > 0 || PlayerManager.GetInstance._zValue < 0) && 
+            (PlayerManager.GetInstance.GetZValue() > 0 || PlayerManager.GetInstance.GetZValue() < 0) && 
             !playerData.isSwordAnimate)
         {
             _animator.SetLayerWeight(13, 1);
         }
         else if (!playerData.isGround && 
                  !playerData.isJumping && 
-                 (PlayerManager.GetInstance._xValue > 0) && 
+                 (PlayerManager.GetInstance.GetXValue() > 0) && 
                  !playerData.isSwordAnimate)
         {
             _animator.SetLayerWeight(14, 1);
         }
         else if (!playerData.isGround && 
                  !playerData.isJumping && 
-                 (PlayerManager.GetInstance._xValue < 0) && 
+                 (PlayerManager.GetInstance.GetXValue() < 0) && 
                  !playerData.isSwordAnimate)
         {
             _animator.SetLayerWeight(15, 1);
@@ -420,7 +418,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(0, 1);
         }
         if (playerData.isJumping && 
-            PlayerManager.GetInstance._zValue == 0 && 
+            PlayerManager.GetInstance.GetZValue() == 0 && 
             !playerData.isSwordAnimate)
         {
             _animator.SetBool(AnimatorParameters.isJumping.ToString(), true);
@@ -433,7 +431,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
         }
         else if (playerData.isJumping && 
-                 PlayerManager.GetInstance._zValue > 0 && 
+                 PlayerManager.GetInstance.GetZValue() > 0 && 
                  !playerData.isSkateBoarding && 
                  !playerData.isSwordAnimate)
         {
@@ -479,8 +477,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         }
         else if (!playerData.isJumping && 
                  !playerData.isWalking && 
-                 PlayerManager.GetInstance._zValue == 0 && 
-                 PlayerManager.GetInstance._xValue == 0 && 
+                 PlayerManager.GetInstance.GetZValue() == 0 && 
+                 PlayerManager.GetInstance.GetXValue() == 0 && 
                  !playerData.isSwordAnimate)
         {
             _animator.SetBool(AnimatorParameters.isJumping.ToString(), false);

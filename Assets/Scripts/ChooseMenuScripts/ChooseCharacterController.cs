@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class ChooseCharacterController : MonoBehaviour
 {
@@ -15,18 +16,21 @@ public class ChooseCharacterController : MonoBehaviour
 
 
     private PlayerController _playerController;
-
-    private GameObject[] infoPanel;
-    
-
     private void Start()
     {
+        //ResetTheCharacters();
+        playerData.avaliableCharacters[0] = "Spartacus";
         _playerController = FindObjectOfType<PlayerController>();
 
-        infoPanel = new GameObject[gameObject.transform.GetChild(1).GetChild(0).childCount];
+        //infoPanel = new GameObject[gameObject.transform.GetChild(1).GetChild(0).childCount];
 
         SetCharacterInfos();
-        
+        for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+        {
+            Debug.Log(playerData.avaliableCharacters[i]);
+        }
+
+        //characterLockStatesTextsObject = GameObject.Find("CharacterLockStatesTexts");
     }
     void SetCharacterInfos()
     {
@@ -122,17 +126,17 @@ public class ChooseCharacterController : MonoBehaviour
     }
     void CharacterChooseStates()
     {        
-        ChoosedSpartacus(playerData.glassyPrice);
+        ChoosedSpartacus(playerData.spartacusPrice);
         ChoosedGlassy(playerData.glassyPrice);
-        ChoosedDobby(playerData.glassyPrice);
-        ChoosedLusth(playerData.glassyPrice);
-        ChoosedGuard(playerData.glassyPrice);
-        ChoosedEve(playerData.glassyPrice);
-        ChoosedMichelle(playerData.glassyPrice);
-        ChoosedBoss(playerData.glassyPrice);
-        ChoosedAj(playerData.glassyPrice);
-        ChoosedMremireh(playerData.glassyPrice);
-        ChoosedTy(playerData.glassyPrice);
+        ChoosedDobby(playerData.dobbyPrice);
+        ChoosedLusth(playerData.lusthPrice);
+        ChoosedGuard(playerData.guardPrice);
+        ChoosedEve(playerData.evePrice);
+        ChoosedMichelle(playerData.michellePrice);
+        ChoosedBoss(playerData.bossPrice);
+        ChoosedAj(playerData.ajPrice);
+        ChoosedMremireh(playerData.mremirehPrice);
+        ChoosedTy(playerData.tyPrice);
     }
 
     void RotateCharacters()
@@ -173,99 +177,210 @@ public class ChooseCharacterController : MonoBehaviour
     }
     public void ChoosedSpartacus(int avaliableCoinAmount)
     {
-        if (_playerController.Spartacus && playerCoinData.avaliableCoin >= avaliableCoinAmount)
+        if (_playerController.Spartacus && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            playerData.currentCharacterName != PlayerData.CharacterNames.Spartacus)
         {
+            
             playerData.currentCharacterName = PlayerData.CharacterNames.Spartacus;
 
-            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+            playerCoinData.avaliableCoin -= 0;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            playerData.spartacusLock = PlayerData.CharacterLocking.Unlocked;
+
+        }
+    }
+    void ResetTheCharacters()
+    {
+        for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+        {
+            playerData.avaliableCharacters[i] = "";
         }
     }
     public void ChoosedDobby(int avaliableCoinAmount)
     {
-        if (_playerController.Dobby && playerCoinData.avaliableCoin >= avaliableCoinAmount)
+        if (_playerController.Dobby && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            playerData.currentCharacterName != PlayerData.CharacterNames.Dobby)
         {
+            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            {
+                if (playerData.avaliableCharacters[i] == "" && playerData.dobbyLock == PlayerData.CharacterLocking.Locked)
+                {
+                    playerData.avaliableCharacters[i] = "Dobby";
+
+                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
+                    playerData.dobbyLock = PlayerData.CharacterLocking.Unlocked;
+                    break;
+                }
+            }
             playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
 
-            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+            
 
             SceneController.GetInstance.LoadMenuScene();
         }
+        
     }
     public void ChoosedGlassy(int avaliableCoinAmount)
     {
-        if (_playerController.Glassy && playerCoinData.avaliableCoin >= avaliableCoinAmount)
+        if (_playerController.Glassy && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            playerData.currentCharacterName != PlayerData.CharacterNames.Glassy)
         {
+            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            {
+                if (playerData.avaliableCharacters[i] == "" && playerData.glassyLock == PlayerData.CharacterLocking.Locked)
+                {
+                    playerData.avaliableCharacters[i] = "Glassy";
+
+                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
+                    playerData.glassyLock = PlayerData.CharacterLocking.Unlocked;
+
+                    break;
+                }
+            }
             playerData.currentCharacterName = PlayerData.CharacterNames.Glassy;
 
-            playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
     public void ChoosedLusth(int avaliableCoinAmount)
     {
-        if ((_playerController.Lusth) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
+        if ((_playerController.Lusth) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            playerData.currentCharacterName != PlayerData.CharacterNames.Lusth)
         {
-            playerData.currentCharacterName = PlayerData.CharacterNames.Lusth;
+            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            {
+                if (playerData.avaliableCharacters[i] == "" && playerData.lusthLock == PlayerData.CharacterLocking.Locked)
+                {
+                    playerData.avaliableCharacters[i] = "Lusth";
 
-            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
+                    playerData.lusthLock = PlayerData.CharacterLocking.Unlocked;
+
+                    break;
+                }
+            }
+            playerData.currentCharacterName = PlayerData.CharacterNames.Lusth;
 
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
     public void ChoosedGuard(int avaliableCoinAmount)
     {
-        if ((_playerController.Guard) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
+        if ((_playerController.Guard) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            playerData.currentCharacterName != PlayerData.CharacterNames.Guard)
         {
-            playerData.currentCharacterName = PlayerData.CharacterNames.Guard;
+            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            {
+                if (playerData.avaliableCharacters[i] == "" && playerData.guardLock == PlayerData.CharacterLocking.Locked)
+                {
+                    playerData.avaliableCharacters[i] = "Guard";
 
-            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
+                    playerData.guardLock = PlayerData.CharacterLocking.Unlocked;
+
+                    break;
+                }
+            }
+            playerData.currentCharacterName = PlayerData.CharacterNames.Guard;
 
             SceneController.GetInstance.LoadMenuScene();
         }            
     }
     public void ChoosedEve(int avaliableCoinAmount)
     {
-        if ((_playerController.Eve) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
+        if ((_playerController.Eve) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            playerData.currentCharacterName != PlayerData.CharacterNames.Eve)
         {
-            playerData.currentCharacterName = PlayerData.CharacterNames.Eve;
+            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            {
+                if (playerData.avaliableCharacters[i] == "" && playerData.eveLock == PlayerData.CharacterLocking.Locked)
+                {
+                    playerData.avaliableCharacters[i] = "Eve";
 
-            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
+                    playerData.eveLock = PlayerData.CharacterLocking.Unlocked;
+
+                    break;
+                }
+            }
+            playerData.currentCharacterName = PlayerData.CharacterNames.Eve;
 
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
     public void ChoosedMichelle(int avaliableCoinAmount)
     {
-        if ((_playerController.Michelle) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
+        if ((_playerController.Michelle) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            playerData.currentCharacterName != PlayerData.CharacterNames.Michelle)
         {
-            playerData.currentCharacterName = PlayerData.CharacterNames.Michelle;
+            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            {
+                if (playerData.avaliableCharacters[i] == "" && playerData.michelleLock == PlayerData.CharacterLocking.Locked)
+                {
+                    playerData.avaliableCharacters[i] = "Michelle";
 
-            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
+                    playerData.michelleLock = PlayerData.CharacterLocking.Unlocked;
+
+                    break;
+                }
+            }
+            playerData.currentCharacterName = PlayerData.CharacterNames.Michelle;
 
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
     public void ChoosedBoss(int avaliableCoinAmount)
     {
-        if ((_playerController.Boss) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
+        if ((_playerController.Boss) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            playerData.currentCharacterName != PlayerData.CharacterNames.Boss)
         {
-            playerData.currentCharacterName = PlayerData.CharacterNames.Boss;
+            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            {
+                if (playerData.avaliableCharacters[i] == "" && playerData.bossLock == PlayerData.CharacterLocking.Locked)
+                {
+                    playerData.avaliableCharacters[i] = "Boss";
 
-            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
+                    playerData.bossLock = PlayerData.CharacterLocking.Unlocked;
+
+                    break;
+                }
+            }
+            playerData.currentCharacterName = PlayerData.CharacterNames.Boss;
 
             SceneController.GetInstance.LoadMenuScene();
         }        
     }
     public void ChoosedAj(int avaliableCoinAmount)
     {
-        if ((_playerController.Aj) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
+        if ((_playerController.Aj) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            playerData.currentCharacterName != PlayerData.CharacterNames.Aj)
         {
-            playerData.currentCharacterName = PlayerData.CharacterNames.Aj;
+            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            {
+                if (playerData.avaliableCharacters[i] == "" && playerData.ajLock == PlayerData.CharacterLocking.Locked)
+                {
+                    playerData.avaliableCharacters[i] = "Aj";
 
-            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
+                    playerData.ajLock = PlayerData.CharacterLocking.Unlocked;
+
+                    break;
+                }
+            }
+            playerData.currentCharacterName = PlayerData.CharacterNames.Aj;
 
             SceneController.GetInstance.LoadMenuScene();
         }        
@@ -273,11 +388,23 @@ public class ChooseCharacterController : MonoBehaviour
 
     public void ChoosedMremireh(int avaliableCoinAmount)
     {
-        if ((_playerController.Mremireh) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
+        if ((_playerController.Mremireh) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            playerData.currentCharacterName != PlayerData.CharacterNames.Mremireh)
         {
-            playerData.currentCharacterName = PlayerData.CharacterNames.Mremireh;
+            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            {
+                if (playerData.avaliableCharacters[i] == "" && playerData.mremirehLock == PlayerData.CharacterLocking.Locked)
+                {
+                    playerData.avaliableCharacters[i] = "Mremireh";
 
-            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
+                    playerData.mremirehLock = PlayerData.CharacterLocking.Unlocked;
+
+                    break;
+                }
+            }
+            playerData.currentCharacterName = PlayerData.CharacterNames.Mremireh;
 
             SceneController.GetInstance.LoadMenuScene();
         }        
@@ -285,11 +412,23 @@ public class ChooseCharacterController : MonoBehaviour
 
     public void ChoosedTy(int avaliableCoinAmount)
     {
-        if ((_playerController.Ty) && playerCoinData.avaliableCoin >= avaliableCoinAmount)
+        if ((_playerController.Ty) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            playerData.currentCharacterName != PlayerData.CharacterNames.Ty)
         {
-            playerData.currentCharacterName = PlayerData.CharacterNames.Ty;
+            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            {
+                if (playerData.avaliableCharacters[i] == "" && playerData.tyLock == PlayerData.CharacterLocking.Locked)
+                {
+                    playerData.avaliableCharacters[i] = "Ty";
 
-            playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+
+                    playerData.tyLock = PlayerData.CharacterLocking.Unlocked;
+
+                    break;
+                }
+            }
+            playerData.currentCharacterName = PlayerData.CharacterNames.Ty;
 
             SceneController.GetInstance.LoadMenuScene();
         }

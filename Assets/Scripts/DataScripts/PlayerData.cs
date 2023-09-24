@@ -96,6 +96,21 @@ public class PlayerData : ScriptableObject
     public GameObject mremireh;
     public GameObject ty;
 
+    [Header("Character Locking Modes")]
+    public CharacterLocking dobbyLock = CharacterLocking.Locked;
+    public CharacterLocking glassyLock = CharacterLocking.Locked;
+    public CharacterLocking spartacusLock = CharacterLocking.Unlocked;
+    public CharacterLocking guardLock = CharacterLocking.Locked;
+    public CharacterLocking lusthLock = CharacterLocking.Locked;
+    public CharacterLocking eveLock = CharacterLocking.Locked;
+    public CharacterLocking michelleLock = CharacterLocking.Locked;
+    public CharacterLocking ajLock = CharacterLocking.Locked;
+    public CharacterLocking bossLock = CharacterLocking.Locked;
+    public CharacterLocking mremirehLock = CharacterLocking.Locked;
+    public CharacterLocking tyLock = CharacterLocking.Locked;
+
+
+
     [Header("Prefab Game Objects For Player")]
     public GameObject[] objects;
     public GameObject[] slaveObjects;
@@ -127,6 +142,7 @@ public class PlayerData : ScriptableObject
     [Header("Character Speed")]
 
     public float playerSpeed;
+    public float skateBoardSpeed;
     public float slideWalkSpeed;
     public float backWalkingSpeed;
     public float fireWalkSpeed;
@@ -161,6 +177,10 @@ public class PlayerData : ScriptableObject
     public float tyJumpForce;
     public float guardJumpForce;
 
+
+    [Header("Avaliable Characters")]
+    public string[] avaliableCharacters = new string[11];
+
     [Header("Animation Bools")]
     public bool isGround;
     public bool isWalking;
@@ -177,6 +197,8 @@ public class PlayerData : ScriptableObject
     public bool isPicking;
     public bool isPickRotateCoin;
     public bool isSwordAnimate;
+
+
 
     [Header("CameraRotation Info")]
     public bool isLookingUp;
@@ -283,5 +305,11 @@ public class PlayerData : ScriptableObject
         Level2,
         Level3,
         Level4
+    }
+
+    public enum CharacterLocking
+    {
+        Locked,
+        Unlocked
     }
 }

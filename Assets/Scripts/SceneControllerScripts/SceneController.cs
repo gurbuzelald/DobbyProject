@@ -116,7 +116,7 @@ public class SceneController : AbstractSceneController<SceneController>
 
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        if (CheckSceneName() != "End")
+        if (CheckSceneName() != SceneController.Scenes.End.ToString())
         {
             playAgain = true;
         }
@@ -132,7 +132,6 @@ public class SceneController : AbstractSceneController<SceneController>
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
         _playerData.currentMapName = PlayerData.MapNames.FirstMap;
-        Debug.Log(_playerData.currentMapName);
 
         DestroySingletonObjects();
 

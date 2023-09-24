@@ -231,6 +231,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {//PlayerData
         if (_playerData != null)
         {
+            _playerData.isFireNonWalk = false;
+            _playerData.isFireWalk = false;
             _playerData.isLevelUp = false;
 
             _playerData.isClickable = true;
@@ -379,6 +381,55 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     #endregion
 
+    #region //Update Functions
+    public virtual void GetAttackFromEnemy(ref PlayerData _playerData, ref Slider _topCanvasHealthBarSlider, ref Slider healthBarSlider, ref GameObject _healthBarObject, ref Transform _particleTransform)
+    {
+        if (_playerData.isDecreaseHealth && _playerData.decreaseCounter == 0 && healthBarSlider.value > 0)
+        {
+            CheckEnemyAttackDamage(ref _playerData);
+
+            DecreaseHealth(_playerData.currentEnemyAttackDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+
+            //Touch ParticleEffect
+            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
+
+            //SoundEffect
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetBulletHit);
+
+            _playerData.isDecreaseHealth = false;
+
+            _playerData.decreaseCounter++;
+            StartCoroutine(DelayDecreaseCounterZero(_playerData));
+        }
+        else if (healthBarSlider.value <= 0)
+        {
+            _playerData.isPlayable = false;
+            _playerData.isDying = true;
+            StartCoroutine(PlayerManager.GetInstance.DelayDestroy(7f));
+        }
+    }
+    public virtual void CheckEnemyAttackDamage(ref PlayerData _playerData)
+    {
+        if (_playerData.enemyTag == 'C')
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.clownEnemyAttackDamage;
+        }
+        else if (_playerData.enemyTag == 'M')
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.monsterEnemyAttackDamage;
+        }
+        else if (_playerData.enemyTag == 'P')
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.prisonerEnemyAttackDamage;
+        }
+    }
+    IEnumerator DelayDecreaseCounterZero(PlayerData _playerData)
+    {
+        yield return new WaitForSeconds(1f);
+        _playerData.decreaseCounter = 0;
+    }
+    #endregion
+
     #region //Shoot
     public virtual void Fire(PlayerData _playerData)
     {
@@ -432,7 +483,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             if (PlayerManager.GetInstance._playerController.sword && _playerData.isSwordTime)
             {
-               
                 //PlayerData
                 _playerData.isSwording = true;
                 _playerData.isSwordAnimate = true;
@@ -477,23 +527,23 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void ChangeCamera()
     {
-        if (PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue == 0
+        if (PlayerManager.GetInstance.GetZValue() == 0 && PlayerManager.GetInstance.GetXValue() == 0
             && PlayerManager.GetInstance._playerController.lookRotation.x == 0
             && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
         {
             ConvertToFarCamera(PlayerManager.GetInstance.cameraSpawner);
         }
-        else if (PlayerManager.GetInstance._zValue != 0 && PlayerManager.GetInstance._xValue == 0
+        else if (PlayerManager.GetInstance.GetZValue() != 0 && PlayerManager.GetInstance.GetXValue() == 0
             && PlayerManager.GetInstance._playerController.lookRotation.x == 0 && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
         {
             ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
         }
-        else if (PlayerManager.GetInstance._zValue == 0 && PlayerManager.GetInstance._xValue != 0
+        else if (PlayerManager.GetInstance.GetZValue() == 0 && PlayerManager.GetInstance.GetXValue() != 0
             && PlayerManager.GetInstance._playerController.lookRotation.x == 0 && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
         {
             ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
         }
-        else if (PlayerManager.GetInstance._zValue != 0 && PlayerManager.GetInstance._xValue != 0
+        else if (PlayerManager.GetInstance.GetZValue() != 0 && PlayerManager.GetInstance.GetXValue() != 0
             && PlayerManager.GetInstance._playerController.lookRotation.x == 0 && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
         {
             ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
@@ -571,29 +621,29 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     public virtual void TriggerLadder(bool isTouch, bool isTouchExit, PlayerData _playerData, ref Rigidbody objectRigidbody)
     {
         objectRigidbody.isKinematic = isTouch;
-        if (PlayerManager.GetInstance._zValue > 0 && !isTouchExit)
+        if (PlayerManager.GetInstance.GetZValue() > 0 && !isTouchExit)
         {
             //PlayerData
             _playerData.isClimbing = isTouch;
             _playerData.isBackClimbing = !isTouch;
         }
-        else if (PlayerManager.GetInstance._zValue < 0 && !isTouchExit)
+        else if (PlayerManager.GetInstance.GetZValue() < 0 && !isTouchExit)
         {
             //PlayerData
             _playerData.isBackClimbing = isTouch;
             _playerData.isClimbing = !isTouch;
         }
-        else if (isTouchExit && PlayerManager.GetInstance._zValue != 0)
+        else if (isTouchExit && PlayerManager.GetInstance.GetZValue() != 0)
         {
             //PlayerData
             _playerData.isBackClimbing = isTouch;
             _playerData.isClimbing = isTouch;
 
-            if (PlayerManager.GetInstance._zValue < 0)
+            if (PlayerManager.GetInstance.GetZValue() < 0)
             {
                 _playerData.isBackWalking = !isTouch;
             }
-            else if (PlayerManager.GetInstance._zValue > 0)
+            else if (PlayerManager.GetInstance.GetZValue() > 0)
             {
                 _playerData.isWalking = !isTouch;
             }
@@ -1069,6 +1119,24 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     }
 
+    public virtual void CheckEnemyCollisionDamage(Collision collision, ref PlayerData _playerData)
+    {
+
+        _playerData.enemyTag = collision.gameObject.name[0];
+
+        if (_playerData.enemyTag == 'C')
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.clownEnemyCollisionDamage;
+        }
+        else if (_playerData.enemyTag == 'M')
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.monsterEnemyCollisionDamage;
+        }
+        else if (_playerData.enemyTag == 'P')
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.prisonerEnemyCollisionDamage;
+        }
+    }
     #endregion
 
     #region //Score
@@ -1207,7 +1275,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Skateboard, _particleTransform.transform);
 
             //_skateboardParticle.Play();
-            playerTransform.Translate(0f, 0f, _playerData.playerSpeed * Time.deltaTime);            
+            playerTransform.Translate(0f, 0f, _playerData.skateBoardSpeed * Time.deltaTime);            
         }
         
     }
@@ -1249,29 +1317,32 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {//ForwardAndBackWalking
         if (!_playerData.isLockedWalking)
         {
-            if ((PlayerManager.GetInstance._zValue >= 0 && PlayerManager.GetInstance._xValue <= 0.5f && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding))
+            if ((PlayerManager.GetInstance.GetZValue() >= 0 && PlayerManager.GetInstance.GetXValue() <= 0.5f && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding))
             {
                 //PlayerData
                 _playerData.isWalking = true;
 
                 if (characterAnimator.GetLayerWeight(16) == 1)
                 {//When fireWalk Animation is active, player speed will lower then original speed
-                    playerTransform.Translate(0f, 0f, PlayerManager.GetInstance._zValue * _playerData.fireWalkSpeed * Time.deltaTime);
+                    playerTransform.Translate(0f, 0f, PlayerManager.GetInstance.GetZValue() * _playerData.fireWalkSpeed * Time.deltaTime);
                 }
                 else
                 {
-                    playerTransform.Translate(0f, 0f, PlayerManager.GetInstance._zValue * _playerData.playerSpeed * Time.deltaTime);
+                    playerTransform.Translate(0f, 0f, PlayerManager.GetInstance.GetZValue() * _playerData.playerSpeed * Time.deltaTime);
                 }
                 _playerData.isBackWalking = false;
             }
-            else if (PlayerManager.GetInstance._zValue < -0.01 && !_playerData.isClimbing && !_playerData.isBackClimbing)
+            else if (PlayerManager.GetInstance.GetZValue() < -0.01 && !_playerData.isClimbing && !_playerData.isBackClimbing)
             {
                 //PlayerData
-                playerTransform.Translate(0f, 0f, PlayerManager.GetInstance._zValue * _playerData.backWalkingSpeed * Time.deltaTime);
+                playerTransform.Translate(0f, 0f, PlayerManager.GetInstance.GetZValue() * _playerData.backWalkingSpeed * Time.deltaTime);
                 _playerData.isBackWalking = true;
                 _playerData.isWalking = false;
+                _playerData.isBackClimbing = false;
+                _playerData.isClimbing = false;
+                _playerData.isSideWalking = false;
             }
-            else if (PlayerManager.GetInstance._zValue == 0)
+            else if (PlayerManager.GetInstance.GetZValue() == 0)
             {
                 //PlayerData
                 _playerData.isBackWalking = false;
@@ -1287,18 +1358,19 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     public virtual void SideWalk(PlayerData _playerData, ref Transform playerTransform)
     {//LeftAndRightWalking
 
-        if (Mathf.Abs(PlayerManager.GetInstance._xValue) <= Mathf.Abs(PlayerManager.GetInstance._zValue) || (PlayerManager.GetInstance._zValue > 0.1f && PlayerManager.GetInstance._xValue > 0.1f))
+        if (Mathf.Abs(PlayerManager.GetInstance.GetXValue()) <= Mathf.Abs(PlayerManager.GetInstance.GetZValue()) || (PlayerManager.GetInstance.GetZValue() > 0.1f &&
+            PlayerManager.GetInstance.GetXValue() > 0.1f))
         {
             _playerData.isWalking = true;
             _playerData.isSideWalking = false;
         }
         else if ((!_playerData.isClimbing && !_playerData.isBackClimbing) && 
-            (PlayerManager.GetInstance._xValue < -0.05f || PlayerManager.GetInstance._xValue > 0.05f) &&
-            Mathf.Abs(PlayerManager.GetInstance._xValue) > 2 * Mathf.Abs(PlayerManager.GetInstance._zValue))
+            (PlayerManager.GetInstance.GetXValue() < -0.05f || PlayerManager.GetInstance.GetXValue() > 0.05f) &&
+            Mathf.Abs(PlayerManager.GetInstance.GetXValue()) > 2 * Mathf.Abs(PlayerManager.GetInstance.GetZValue()))
         {
             _playerData.isSideWalking = true;
 
-            playerTransform.Translate(PlayerManager.GetInstance._xValue * _playerData.slideWalkSpeed * Time.deltaTime, 0f, 0f);
+            playerTransform.Translate(PlayerManager.GetInstance.GetXValue() * _playerData.slideWalkSpeed * Time.deltaTime, 0f, 0f);
         }        
         else
         {
@@ -1307,13 +1379,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
     public virtual void Climb(PlayerData _playerData, ref Transform playerTransform)
     {//WhenEnterToTheLadderGoToClimb
-        if (PlayerManager.GetInstance._zValue > 0 && _playerData.isClimbing && !_playerData.isBackClimbing)
+        if (PlayerManager.GetInstance.GetZValue() > 0 && _playerData.isClimbing && !_playerData.isBackClimbing)
         {
-            playerTransform.Translate(0f, PlayerManager.GetInstance._zValue * _playerData.climbSpeed, 0f);
+            playerTransform.Translate(0f, PlayerManager.GetInstance.GetZValue() * _playerData.climbSpeed, 0f);
         }
-        else if (PlayerManager.GetInstance._zValue < 0 && !_playerData.isClimbing && _playerData.isBackClimbing)
+        else if (PlayerManager.GetInstance.GetZValue() < 0 && !_playerData.isClimbing && _playerData.isBackClimbing)
         {
-            playerTransform.Translate(0f, PlayerManager.GetInstance._zValue, 0f);
+            playerTransform.Translate(0f, PlayerManager.GetInstance.GetZValue(), 0f);
         }
     }
 
@@ -1345,11 +1417,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         if (!_playerData.isLockedWalking)
         {
-            if ((PlayerManager.GetInstance._xValue > 0 && PlayerManager.GetInstance._zValue > 0) ||
-                (PlayerManager.GetInstance._xValue < 0 && PlayerManager.GetInstance._zValue > 0) ||
-                (PlayerManager.GetInstance._xValue < 0 && PlayerManager.GetInstance._zValue < 0) ||
-                (PlayerManager.GetInstance._xValue > 0 && PlayerManager.GetInstance._zValue < 0) ||
-                PlayerManager.GetInstance._zValue < 0)
+            if ((PlayerManager.GetInstance.GetXValue() > 0 && PlayerManager.GetInstance.GetZValue() > 0) ||
+                (PlayerManager.GetInstance.GetXValue() < 0 && PlayerManager.GetInstance.GetZValue() > 0) ||
+                (PlayerManager.GetInstance.GetXValue() < 0 && PlayerManager.GetInstance.GetZValue() < 0) ||
+                (PlayerManager.GetInstance.GetXValue() > 0 && PlayerManager.GetInstance.GetZValue() < 0) ||
+                PlayerManager.GetInstance.GetZValue() < 0)
             {
                 //PlayerData
                 if (_playerData.extraSpeed)
@@ -1360,12 +1432,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 {
                     _playerData.playerSpeed = _initPlayerSpeed;
                 }
-            }
-            else if (_playerData.isSkateBoarding && PlayerManager.GetInstance._zValue > 0)
-            {
-                //PlayerData
-                _playerData.playerSpeed = _initPlayerSpeed * 1.6f;
-
             }
             else if (_playerData.isRunning)
             {

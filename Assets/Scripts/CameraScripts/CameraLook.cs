@@ -125,7 +125,7 @@ public class CameraLook : MonoBehaviour
     private void Update()
     {
         gameObject.transform.rotation = PlayerManager.GetInstance._currentCameraTransform.rotation;
-        if (PlayerManager.GetInstance._zValue != 0)
+        if (PlayerManager.GetInstance.GetZValue() != 0)
         {
            // gameObject.transform.GetComponent<CinemachineVirtualCamera>().  
         }
