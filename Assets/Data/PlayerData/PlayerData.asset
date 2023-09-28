@@ -20,10 +20,21 @@ MonoBehaviour:
   monsterEnemyTriggerDamage: 10
   prisonerEnemyTriggerDamage: 15
   clownEnemyTriggerDamage: 20
-  currentEnemyCollisionDamage: 25
-  monsterEnemyCollisionDamage: 20
-  prisonerEnemyCollisionDamage: 25
-  clownEnemyCollisionDamage: 30
+  currentEnemyCollisionDamage: 12
+  monsterEnemyCollisionDamage: 10
+  prisonerEnemyCollisionDamage: 12
+  clownEnemyCollisionDamage: 14
+  dobbyResistance: 1
+  glassyResistance: 2
+  spartacusResistance: 5
+  guardResistance: 9
+  lusthResistance: 7
+  eveResistance: 4
+  michelleResistance: 3
+  bossResistance: 4
+  ajResistance: 3
+  mremirehResistance: 9
+  tyResistance: 3
   enemyTag: 80
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
   currentMapName: 0
@@ -70,7 +81,7 @@ MonoBehaviour:
   isThirdMapTarget: 0
   isFourthMapTarget: 0
   isLevelUp: 0
-  currentCharacterName: 3
+  currentCharacterName: 9
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
   glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
@@ -83,17 +94,18 @@ MonoBehaviour:
   aj: {fileID: 2416847389608877635, guid: a700b507a30e0be4ead42ca0bfc5c998, type: 3}
   mremireh: {fileID: 3269665489637412912, guid: cc265cd48b1f31c4cbb86e276d4a94d0, type: 3}
   ty: {fileID: 5945881725241583734, guid: 5dbe1f8c957aa354d8786aba50aaf083, type: 3}
-  dobbyLock: 0
-  glassyLock: 0
-  spartacusLock: 0
-  guardLock: 0
-  lusthLock: 0
-  eveLock: 0
-  michelleLock: 0
-  ajLock: 0
-  bossLock: 0
-  mremirehLock: 0
-  tyLock: 0
+  dobbyLock: 
+  glassyLock: Locked
+  spartacusLock: 
+  guardLock: 
+  lusthLock: Locked
+  eveLock: Locked
+  michelleLock: Locked
+  ajLock: 
+  bossLock: 
+  mremirehLock: 
+  tyLock: Locked
+  resetLocks: Locked
   objects:
   - {fileID: 6582287944818323382, guid: 5d67c0fa01c514a469d241126046c4cb, type: 3}
   - {fileID: 4529110289692566654, guid: ece28a22070f44540a834a2a3abbfcfb, type: 3}
@@ -116,7 +128,7 @@ MonoBehaviour:
   sensivityY: 5
   isTouchFinish: 0
   isLose: 0
-  spartacusPrice: 1
+  spartacusPrice: 0
   dobbyPrice: 2
   glassyPrice: 3
   lusthPrice: 4
@@ -127,7 +139,7 @@ MonoBehaviour:
   bossPrice: 9
   tyPrice: 10
   mremirehPrice: 11
-  playerSpeed: 5
+  playerSpeed: 7
   skateBoardSpeed: 1
   slideWalkSpeed: 5
   backWalkingSpeed: 6
@@ -140,7 +152,7 @@ MonoBehaviour:
   glassySpeed: 5
   ajSpeed: 5
   eveSpeed: 5
-  mremirehSpeed: 10
+  mremirehSpeed: 7
   lusthSpeed: 5
   spartacusSpeed: 5
   bossSpeed: 5
@@ -159,10 +171,10 @@ MonoBehaviour:
   guardJumpForce: 5
   avaliableCharacters:
   - Spartacus
-  - Glassy
+  - Aj
   - Dobby
-  - Lusth
-  - Guard
+  - Mremireh
+  - 
   - 
   - 
   - 
@@ -173,11 +185,11 @@ MonoBehaviour:
   isWalking: 1
   isSideWalking: 0
   isLockedWalking: 0
-  isBackWalking: 1
+  isBackWalking: 0
   isClimbing: 0
   isBackClimbing: 0
   isIdling: 0
-  isDying: 1
+  isDying: 0
   isWinning: 0
   isSkateBoarding: 0
   isRunning: 0
@@ -185,9 +197,9 @@ MonoBehaviour:
   isPickRotateCoin: 0
   isSwordAnimate: 0
   isLookingUp: 0
-  isDestroyed: 1
-  isPlayable: 0
-  currentJumpForce: 7
+  isDestroyed: 0
+  isPlayable: 1
+  currentJumpForce: 10
   isFireNonWalk: 0
   isFireWalk: 0
   isFireTime: 0
@@ -201,7 +213,7 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 5
+  bulletAmount: 21
   bulletPack: 21
   isTouchableSkate: 1
   danceTime: 5
@@ -235,3 +247,5 @@ MonoBehaviour:
   thirdTarget: {fileID: 0}
   finishTarget: {fileID: 0}
   currentTarget: {fileID: 0}
+  locked: Locked
+  unLocked: 

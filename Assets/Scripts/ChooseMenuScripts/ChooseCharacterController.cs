@@ -16,19 +16,35 @@ public class ChooseCharacterController : MonoBehaviour
 
 
     private PlayerController _playerController;
+    private GameObject characterPriceErrorTextObjects;
+    private TextMeshProUGUI[] characterPriceErrorTextObjectChilds;
     private void Start()
     {
+
+        if (playerCoinData.avaliableCoin < 0)
+        {
+            Debug.Log("Coin is lower then zero");
+            playerCoinData.avaliableCoin = 0;
+        }
         //ResetTheCharacters();
         playerData.avaliableCharacters[0] = "Spartacus";
         _playerController = FindObjectOfType<PlayerController>();
 
+
+        characterPriceErrorTextObjects = GameObject.Find("CharacterPriceErrorTexts");
+        characterPriceErrorTextObjectChilds = new TextMeshProUGUI[characterPriceErrorTextObjects.transform.childCount];
+
+        for (int i = 0; i < characterPriceErrorTextObjects.transform.childCount; i++)
+        {
+            characterPriceErrorTextObjectChilds[i] = characterPriceErrorTextObjects.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
+        }
+
         //infoPanel = new GameObject[gameObject.transform.GetChild(1).GetChild(0).childCount];
 
         SetCharacterInfos();
-        for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
-        {
-            Debug.Log(playerData.avaliableCharacters[i]);
-        }
+        
+
+        //ResetTheCharacters();
 
         //characterLockStatesTextsObject = GameObject.Find("CharacterLockStatesTexts");
     }
@@ -185,17 +201,40 @@ public class ChooseCharacterController : MonoBehaviour
 
             playerCoinData.avaliableCoin -= 0;
 
+            characterPriceErrorTextObjectChilds[0].text = "";
+
             SceneController.GetInstance.LoadMenuScene();
 
-            playerData.spartacusLock = PlayerData.CharacterLocking.Unlocked;
+            playerData.spartacusLock = playerData.unLocked;
 
         }
+        else if (_playerController.Spartacus && playerData.spartacusLock == playerData.unLocked)
+        {
+            playerData.currentCharacterName = PlayerData.CharacterNames.Spartacus;
+
+            SceneController.GetInstance.LoadMenuScene();
+        }
+        else if((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.spartacusLock == playerData.locked)
+        {
+            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            {
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "SpartacusPriceErorText")
+                {
+                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                }
+            }
+        }
     }
-    void ResetTheCharacters()
+    public void ResetTheCharacters()
     {
         for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
         {
             playerData.avaliableCharacters[i] = "";
+        }
+
+        for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+        {
+            Debug.Log(playerData.avaliableCharacters[i]);
         }
     }
     public void ChoosedDobby(int avaliableCoinAmount)
@@ -205,23 +244,40 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.dobbyLock == PlayerData.CharacterLocking.Locked)
+                if (playerData.avaliableCharacters[i] == "" && playerData.dobbyLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Dobby";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-                    playerData.dobbyLock = PlayerData.CharacterLocking.Unlocked;
+                    playerData.dobbyLock = playerData.unLocked;
                     break;
                 }
             }
-            playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
 
-            
+            characterPriceErrorTextObjectChilds[1].text = "";
+
+            playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
 
             SceneController.GetInstance.LoadMenuScene();
         }
-        
+        else if (_playerController.Dobby && playerData.dobbyLock == playerData.unLocked)
+        {
+            playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
+
+            SceneController.GetInstance.LoadMenuScene();
+        }
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.dobbyLock == playerData.locked)
+        {
+            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            {
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "DobbyPriceErorText")
+                {
+                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                }
+            }
+        }
+
     }
     public void ChoosedGlassy(int avaliableCoinAmount)
     {
@@ -230,22 +286,42 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.glassyLock == PlayerData.CharacterLocking.Locked)
+                if (playerData.avaliableCharacters[i] == "" && playerData.glassyLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Glassy";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-                    playerData.glassyLock = PlayerData.CharacterLocking.Unlocked;
+                    playerData.glassyLock = playerData.unLocked;
 
                     break;
                 }
             }
+
+            characterPriceErrorTextObjectChilds[2].text = "";
+
             playerData.currentCharacterName = PlayerData.CharacterNames.Glassy;
 
 
             SceneController.GetInstance.LoadMenuScene();
-        }        
+        }
+        else if (_playerController.Glassy && playerData.glassyLock == playerData.unLocked)
+        {
+            playerData.currentCharacterName = PlayerData.CharacterNames.Glassy;
+
+
+            SceneController.GetInstance.LoadMenuScene();
+        }
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.glassyLock == playerData.locked)
+        {
+            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            {
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "GlassyPriceErorText")
+                {
+                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                }
+            }
+        }
     }
     public void ChoosedLusth(int avaliableCoinAmount)
     {
@@ -254,21 +330,40 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.lusthLock == PlayerData.CharacterLocking.Locked)
+                if (playerData.avaliableCharacters[i] == "" && playerData.lusthLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Lusth";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-                    playerData.lusthLock = PlayerData.CharacterLocking.Unlocked;
+                    playerData.lusthLock = playerData.unLocked;
 
                     break;
                 }
             }
+
+            characterPriceErrorTextObjectChilds[3].text = "";
+
             playerData.currentCharacterName = PlayerData.CharacterNames.Lusth;
 
             SceneController.GetInstance.LoadMenuScene();
-        }        
+        }
+        else if (_playerController.Lusth && playerData.lusthLock == playerData.unLocked)
+        {
+            playerData.currentCharacterName = PlayerData.CharacterNames.Lusth;
+
+            SceneController.GetInstance.LoadMenuScene();
+        }
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.lusthLock == playerData.locked)
+        {
+            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            {
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "LusthPriceErorText")
+                {
+                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                }
+            }
+        }
     }
     public void ChoosedGuard(int avaliableCoinAmount)
     {
@@ -277,21 +372,40 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.guardLock == PlayerData.CharacterLocking.Locked)
+                if (playerData.avaliableCharacters[i] == "" && playerData.guardLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Guard";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-                    playerData.guardLock = PlayerData.CharacterLocking.Unlocked;
+                    playerData.guardLock = playerData.unLocked;
 
                     break;
                 }
             }
+
+            characterPriceErrorTextObjectChilds[4].text = "";
+
             playerData.currentCharacterName = PlayerData.CharacterNames.Guard;
 
             SceneController.GetInstance.LoadMenuScene();
-        }            
+        }
+        else if (_playerController.Guard && playerData.guardLock == playerData.unLocked)
+        {
+            playerData.currentCharacterName = PlayerData.CharacterNames.Guard;
+
+            SceneController.GetInstance.LoadMenuScene();
+        }
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.guardLock == playerData.locked)
+        {
+            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            {
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "GuardPriceErorText")
+                {
+                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                }
+            }
+        }
     }
     public void ChoosedEve(int avaliableCoinAmount)
     {
@@ -300,21 +414,40 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.eveLock == PlayerData.CharacterLocking.Locked)
+                if (playerData.avaliableCharacters[i] == "" && playerData.eveLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Eve";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-                    playerData.eveLock = PlayerData.CharacterLocking.Unlocked;
+                    playerData.eveLock = playerData.unLocked;
 
                     break;
                 }
             }
+
+            characterPriceErrorTextObjectChilds[5].text = "";
+
             playerData.currentCharacterName = PlayerData.CharacterNames.Eve;
 
             SceneController.GetInstance.LoadMenuScene();
-        }        
+        }
+        else if (_playerController.Eve && playerData.eveLock == playerData.unLocked)
+        {
+            playerData.currentCharacterName = PlayerData.CharacterNames.Eve;
+
+            SceneController.GetInstance.LoadMenuScene();
+        }
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.eveLock == playerData.locked)
+        {
+            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            {
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "EvePriceErorText")
+                {
+                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                }
+            }
+        }
     }
     public void ChoosedMichelle(int avaliableCoinAmount)
     {
@@ -323,21 +456,40 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.michelleLock == PlayerData.CharacterLocking.Locked)
+                if (playerData.avaliableCharacters[i] == "" && playerData.michelleLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Michelle";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-                    playerData.michelleLock = PlayerData.CharacterLocking.Unlocked;
+                    playerData.michelleLock = playerData.unLocked;
 
                     break;
                 }
             }
+
+            characterPriceErrorTextObjectChilds[6].text = "";
+
             playerData.currentCharacterName = PlayerData.CharacterNames.Michelle;
 
             SceneController.GetInstance.LoadMenuScene();
-        }        
+        }
+        else if (_playerController.Michelle && playerData.michelleLock == playerData.unLocked)
+        {
+            playerData.currentCharacterName = PlayerData.CharacterNames.Michelle;
+
+            SceneController.GetInstance.LoadMenuScene();
+        }
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.michelleLock == playerData.locked)
+        {
+            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            {
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "MichellePriceErorText")
+                {
+                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                }
+            }
+        }
     }
     public void ChoosedBoss(int avaliableCoinAmount)
     {
@@ -346,21 +498,40 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.bossLock == PlayerData.CharacterLocking.Locked)
+                if (playerData.avaliableCharacters[i] == "" && playerData.bossLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Boss";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-                    playerData.bossLock = PlayerData.CharacterLocking.Unlocked;
+                    playerData.bossLock = playerData.unLocked;
 
                     break;
                 }
             }
+
+            characterPriceErrorTextObjectChilds[7].text = "";
+
             playerData.currentCharacterName = PlayerData.CharacterNames.Boss;
 
             SceneController.GetInstance.LoadMenuScene();
-        }        
+        }
+        else if (_playerController.Boss && playerData.bossLock == playerData.unLocked)
+        {
+            playerData.currentCharacterName = PlayerData.CharacterNames.Boss;
+
+            SceneController.GetInstance.LoadMenuScene();
+        }
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.bossLock == playerData.locked)
+        {
+            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            {
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "BossPriceErorText")
+                {
+                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                }
+            }
+        }
     }
     public void ChoosedAj(int avaliableCoinAmount)
     {
@@ -369,21 +540,39 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.ajLock == PlayerData.CharacterLocking.Locked)
+                if (playerData.avaliableCharacters[i] == "" && playerData.ajLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Aj";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-                    playerData.ajLock = PlayerData.CharacterLocking.Unlocked;
+                    playerData.ajLock = playerData.unLocked;
 
                     break;
                 }
             }
+            characterPriceErrorTextObjectChilds[8].text = "";
+
             playerData.currentCharacterName = PlayerData.CharacterNames.Aj;
 
             SceneController.GetInstance.LoadMenuScene();
-        }        
+        }
+        else if (_playerController.Aj && playerData.ajLock == playerData.unLocked)
+        {
+            playerData.currentCharacterName = PlayerData.CharacterNames.Aj;
+
+            SceneController.GetInstance.LoadMenuScene();
+        }       
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.ajLock == playerData.locked)
+        {
+            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            {
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "AjPriceErorText")
+                {
+                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                }
+            }
+        }
     }
 
     public void ChoosedMremireh(int avaliableCoinAmount)
@@ -393,21 +582,42 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.mremirehLock == PlayerData.CharacterLocking.Locked)
+                if (playerData.avaliableCharacters[i] == "" && playerData.mremirehLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Mremireh";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-                    playerData.mremirehLock = PlayerData.CharacterLocking.Unlocked;
+                    playerData.mremirehLock = playerData.unLocked;
 
                     break;
                 }
             }
+
+            characterPriceErrorTextObjectChilds[9].text = "";
+
             playerData.currentCharacterName = PlayerData.CharacterNames.Mremireh;
 
             SceneController.GetInstance.LoadMenuScene();
-        }        
+
+        }
+        else if (_playerController.Mremireh && playerData.mremirehLock == playerData.unLocked)
+        {
+            playerData.currentCharacterName = PlayerData.CharacterNames.Mremireh;
+
+            SceneController.GetInstance.LoadMenuScene();
+        }
+       
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.mremirehLock == playerData.locked)
+        {
+            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            {
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "MremirehPriceErorText")
+                {
+                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                }
+            }
+        }
     }
 
     public void ChoosedTy(int avaliableCoinAmount)
@@ -417,20 +627,39 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.tyLock == PlayerData.CharacterLocking.Locked)
+                if (playerData.avaliableCharacters[i] == "" && playerData.tyLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Ty";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-                    playerData.tyLock = PlayerData.CharacterLocking.Unlocked;
+                    playerData.tyLock = playerData.unLocked;
 
                     break;
                 }
             }
+
+            characterPriceErrorTextObjectChilds[10].text = "";
+
             playerData.currentCharacterName = PlayerData.CharacterNames.Ty;
 
             SceneController.GetInstance.LoadMenuScene();
+        }
+        else if (_playerController.Ty && playerData.tyLock == playerData.unLocked)
+        {
+            playerData.currentCharacterName = PlayerData.CharacterNames.Ty;
+
+            SceneController.GetInstance.LoadMenuScene();
+        }
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.tyLock == playerData.locked)
+        {
+            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            {
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "TyPriceErorText")
+                {
+                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                }
+            }
         }
     }
 

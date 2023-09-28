@@ -763,7 +763,7 @@ Transform:
   m_Children:
   - {fileID: 6779619092415629145}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &7193906221332498775
 MeshRenderer:
@@ -871,8 +871,6 @@ MonoBehaviour:
   _currentCamera: {fileID: 0}
   cameraSpawner: {fileID: 0}
   crosshairImage: {fileID: 0}
-  _xValue: 0
-  _zValue: 0
   _objectPool: {fileID: 0}
   _damageArrow: {fileID: 3522872604140518913}
   _currentCharacterObject: {fileID: 0}
@@ -1042,6 +1040,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 6779619092415629145}
     m_Modifications:
     - target: {fileID: 3522872604169548057, guid: 17454f421d3aee2499123f81d934a815, type: 3}
@@ -1093,6 +1092,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 17454f421d3aee2499123f81d934a815, type: 3}
 --- !u!1 &3522872604140518913 stripped
 GameObject:

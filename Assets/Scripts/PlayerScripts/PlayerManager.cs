@@ -105,6 +105,9 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     void Start()
     {
+        PlayerManager.GetInstance.gameObject.GetComponent<Rigidbody>().isKinematic = false  ;
+
+
         _playerData.decreaseCounter = 0;
         InitStates();
         //Scripts
@@ -115,6 +118,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         //Particle
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
+
+        
     }
 
 
@@ -154,8 +159,25 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         Movement(_playerData);//PlayerStatement
         Rotation(_playerData);
         GetAttackFromEnemy(ref _playerData, ref _topCanvasHealthBarSlider, ref healthBarSlider, ref _healthBarObject, ref _particleTransform);
+        DontFallDown();
+    }
 
+    void DontFallDown()
+    {
 
+        if (GetInstance.transform.position.y <= 0.9301061f && !_playerData.isGround)
+        {
+            Debug.Log("Test");
+            GetInstance.transform.position = new Vector3(GetInstance.transform.position.x,
+                                                         0.93010632f,
+                                                         GetInstance.transform.position.z);
+           // playerRigidbody.isKinematic = true;
+        }
+        else if (GetInstance.transform.position.y > 0.9301061f && _playerData.isGround)
+        {
+
+            playerRigidbody.isKinematic = false;
+        }
     }
 
     void OnCollisionEnter(Collision collision)
@@ -200,7 +222,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
                         //PlayerData
                         CheckEnemyCollisionDamage(collision, ref _playerData);
-                        iPlayerHealth.DecreaseHealth(_playerData.currentEnemyCollisionDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+                        iPlayerHealth.DecreaseHealth(ref _playerData, _playerData.currentEnemyCollisionDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
                     }
                 }
             }
@@ -254,7 +276,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             StartCoroutine(iPlayerTrigger.DamageArrowIsLookAtEnemy(other, _damageArrow));
 
-            iPlayerHealth.DecreaseHealth(_playerData.currentEnemyTriggerDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+            iPlayerHealth.DecreaseHealth(ref _playerData, _playerData.currentEnemyTriggerDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
             //Touch ParticleEffect
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
@@ -310,7 +332,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                                       ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);
             if (healthBarSlider.value > 0)
             {
-                iPlayerHealth.DecreaseHealth(30,ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+                iPlayerHealth.DecreaseHealth(ref _playerData, 30,ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
                 iPlayerTrigger.PickUpCoin(SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject,
                                           ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//FreshBulletAmount

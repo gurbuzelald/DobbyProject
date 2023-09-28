@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
-    [Header("EnemyDamages")]
+    [Header("Enemy Damages")]
     public int currentEnemyAttackDamage;
     public int monsterEnemyAttackDamage;
     public int prisonerEnemyAttackDamage;
@@ -21,6 +21,21 @@ public class PlayerData : ScriptableObject
     public int prisonerEnemyCollisionDamage;
     public int clownEnemyCollisionDamage;
 
+    [Header("Player Resistance")]
+    public int dobbyResistance;
+    public int glassyResistance;
+    public int spartacusResistance;
+    public int guardResistance;
+    public int lusthResistance;
+    public int eveResistance;
+    public int michelleResistance;
+    public int bossResistance;
+    public int ajResistance;
+    public int mremirehResistance;
+    public int tyResistance;
+
+
+    [Header("Enemy Tag")]
     public char enemyTag;
 
     [Header("Player Level Spawns")]
@@ -97,17 +112,18 @@ public class PlayerData : ScriptableObject
     public GameObject ty;
 
     [Header("Character Locking Modes")]
-    public CharacterLocking dobbyLock = CharacterLocking.Locked;
-    public CharacterLocking glassyLock = CharacterLocking.Locked;
-    public CharacterLocking spartacusLock = CharacterLocking.Unlocked;
-    public CharacterLocking guardLock = CharacterLocking.Locked;
-    public CharacterLocking lusthLock = CharacterLocking.Locked;
-    public CharacterLocking eveLock = CharacterLocking.Locked;
-    public CharacterLocking michelleLock = CharacterLocking.Locked;
-    public CharacterLocking ajLock = CharacterLocking.Locked;
-    public CharacterLocking bossLock = CharacterLocking.Locked;
-    public CharacterLocking mremirehLock = CharacterLocking.Locked;
-    public CharacterLocking tyLock = CharacterLocking.Locked;
+    public string dobbyLock = "locked";
+    public string glassyLock = "locked";
+    public string spartacusLock = "locked";
+    public string guardLock = "locked";
+    public string lusthLock = "locked";
+    public string eveLock = "locked";
+    public string michelleLock = "locked";
+    public string ajLock = "locked";
+    public string bossLock = "locked";
+    public string mremirehLock = "locked";
+    public string tyLock = "locked";
+    public string resetLocks = "locked";
 
 
 
@@ -306,10 +322,11 @@ public class PlayerData : ScriptableObject
         Level3,
         Level4
     }
-
+    public string locked = "Locked";
+    public string unLocked = "";
     public enum CharacterLocking
     {
-        Locked,
-        Unlocked
+        //Locked,
+        //Unlocked
     }
 }

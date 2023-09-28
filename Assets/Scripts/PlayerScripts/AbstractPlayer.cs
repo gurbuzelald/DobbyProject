@@ -388,7 +388,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             CheckEnemyAttackDamage(ref _playerData);
 
-            DecreaseHealth(_playerData.currentEnemyAttackDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+            DecreaseHealth(ref _playerData, _playerData.currentEnemyAttackDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
             //Touch ParticleEffect
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
@@ -1210,10 +1210,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             Destroy(other.gameObject, 1f);
         }
     }
-    public virtual void DecreaseHealth(int damageHealthValue, ref GameObject _healthBarObject, ref Slider _healthBarSlider, ref Slider _topCanvasHealthBarSlider,
+    public virtual void DecreaseHealth(ref PlayerData playerData, int damageHealthValue, ref GameObject _healthBarObject, ref Slider _healthBarSlider, ref Slider _topCanvasHealthBarSlider,
                                        ref TextMeshProUGUI damageHealthText)
     {
-        _healthBarSlider.value -= damageHealthValue;
+        _healthBarSlider.value -= CharacterResistance(damageHealthValue, ref playerData);
         _topCanvasHealthBarSlider.value = _healthBarSlider.value;
 
         damageHealthText.enabled = true;
@@ -1225,6 +1225,54 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
         StartCoroutine(DelayHealthSizeBack(_healthBarObject));
         StartCoroutine(DelayDamageHealthTextEnableFalse(damageHealthText));
+    }
+    public virtual int CharacterResistance(int damageHealthValue, ref PlayerData playerData)
+    {
+        if (PlayerData.CharacterNames.Glassy == playerData.currentCharacterName)
+        {
+            damageHealthValue -= playerData.glassyResistance;
+        }
+        else if (PlayerData.CharacterNames.Dobby == playerData.currentCharacterName)
+        {
+            damageHealthValue -= playerData.dobbyResistance;
+        }
+        else if (PlayerData.CharacterNames.Spartacus == playerData.currentCharacterName)
+        {
+            damageHealthValue -= playerData.spartacusResistance;
+        }
+        else if (PlayerData.CharacterNames.Lusth == playerData.currentCharacterName)
+        {
+            damageHealthValue -= playerData.lusthResistance;
+        }
+        else if (PlayerData.CharacterNames.Guard == playerData.currentCharacterName)
+        {
+            damageHealthValue -= playerData.guardResistance;
+        }
+        else if (PlayerData.CharacterNames.Eve == playerData.currentCharacterName)
+        {
+            damageHealthValue -= playerData.eveResistance;
+        }
+        else if (PlayerData.CharacterNames.Michelle == playerData.currentCharacterName)
+        {
+            damageHealthValue -= playerData.michelleResistance;
+        }
+        else if (PlayerData.CharacterNames.Boss == playerData.currentCharacterName)
+        {
+            damageHealthValue -= playerData.bossResistance;
+        }
+        else if (PlayerData.CharacterNames.Aj == playerData.currentCharacterName)
+        {
+            damageHealthValue -= playerData.ajResistance;
+        }
+        else if (PlayerData.CharacterNames.Mremireh == playerData.currentCharacterName)
+        {
+            damageHealthValue -= playerData.mremirehResistance;
+        }
+        else if (PlayerData.CharacterNames.Ty == playerData.currentCharacterName)
+        {
+            damageHealthValue -= playerData.tyResistance;
+        }
+        return damageHealthValue;
     }
 
     public virtual IEnumerator DelayHealthSizeBack(GameObject _healthBarObject)

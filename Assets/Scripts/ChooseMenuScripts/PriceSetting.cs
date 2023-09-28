@@ -12,12 +12,10 @@ public class PriceSetting : MonoBehaviour
 
 
     private GameObject characterStaffs;
-    private GameObject characterPriceErrorTextObject;
 
     private void Awake()
     {
         characterStaffs = GameObject.Find("CharacterStaffs");
-        characterPriceErrorTextObject = GameObject.Find("CharacterPriceErrorTexts");
         SetCharacterNames();
 
         SetCharacterPrices();
@@ -38,37 +36,115 @@ public class PriceSetting : MonoBehaviour
             switch (characterNames[i])
             {
                 case PlayerData.CharacterNames.Spartacus:
-                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.spartacusPrice.ToString() + " Coin";
+                    if (playerData.locked == playerData.spartacusLock)
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.spartacusPrice.ToString() + " Coin";
+
+                    }
+                    else
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "";
+                    }
                     break;
                 case PlayerData.CharacterNames.Dobby:
-                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.dobbyPrice.ToString() + " Coin";
+                    if (playerData.locked == playerData.dobbyLock)
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.dobbyPrice.ToString() + " Coin";
+                    }
+                    else
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "";
+                    }
                     break;
                 case PlayerData.CharacterNames.Glassy:
-                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.glassyPrice.ToString() + " Coin";
+                    if (playerData.locked == playerData.glassyLock)
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.glassyPrice.ToString() + " Coin";
+                    }
+                    else
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "";
+                    }
                     break;
                 case PlayerData.CharacterNames.Lusth:
-                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.lusthPrice.ToString() + " Coin";
+                    if (playerData.locked == playerData.lusthLock)
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.lusthPrice.ToString() + " Coin";
+                    }
+                    else
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "";
+                    }
                     break;
                 case PlayerData.CharacterNames.Guard:
-                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.guardPrice.ToString() + " Coin";
+                    if (playerData.locked == playerData.guardLock)
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.guardPrice.ToString() + " Coin";
+                    }
+                    else
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "";
+                    }
                     break;
                 case PlayerData.CharacterNames.Michelle:
-                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.michellePrice.ToString() + " Coin";
+                    if (playerData.locked == playerData.michelleLock)
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.michellePrice.ToString() + " Coin";
+                    }
+                    else
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "";
+                    }
                     break;
                 case PlayerData.CharacterNames.Eve:
-                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.evePrice.ToString() + " Coin";
+                    if (playerData.locked == playerData.eveLock)
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.evePrice.ToString() + " Coin";
+                    }
+                    else
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "";
+                    }
                     break;
                 case PlayerData.CharacterNames.Aj:
-                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.ajPrice.ToString() + " Coin";
+                    if (playerData.locked == playerData.ajLock)
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.ajPrice.ToString() + " Coin";
+                    }
+                    else
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "";
+                    }
                     break;
                 case PlayerData.CharacterNames.Boss:
-                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.bossPrice.ToString() + " Coin";
+                    if (playerData.locked == playerData.bossLock)
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.bossPrice.ToString() + " Coin";
+                    }
+                    else
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "";
+                    }
                     break;
                 case PlayerData.CharacterNames.Ty:
-                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.tyPrice.ToString() + " Coin";
+                    if (playerData.locked == playerData.tyLock)
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.tyPrice.ToString() + " Coin";
+                    }
+                    else
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "";
+                    }
                     break;
                 case PlayerData.CharacterNames.Mremireh:
-                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.mremirehPrice.ToString() + " Coin";
+                    if (playerData.locked == playerData.mremirehLock)
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.mremirehPrice.ToString() + " Coin";
+                    }
+                    else
+                    {
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "";
+                    }
                     break;
                 default:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "No Valid";

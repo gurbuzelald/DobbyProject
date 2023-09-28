@@ -79,7 +79,7 @@ public class CameraSpawner : MonoBehaviour
                 
 
             }
-            if (Vector3.Distance(gameObject.transform.GetChild(0).position, meshRenderers[i].transform.position) < 50 && meshRenderers[i].tag != "Ground")
+            if (Vector3.Distance(PlayerManager.GetInstance.gameObject.transform.position, meshRenderers[i].transform.position) > 3 && meshRenderers[i].tag != "Ground")
             {
                 //meshRenderers[i].enabled = false;
             }
