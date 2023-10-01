@@ -56,12 +56,15 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public virtual void WalkAnimation(PlayerData playerData, Animator _animator)
     {
-        if ((playerData.isLockedWalking && !playerData.isFireWalk) || 
+        /*
+         (playerData.isLockedWalking && !playerData.isFireWalk) || 
             (playerData.isWalking && !playerData.isFireWalk && 
             !playerData.isBackWalking && !playerData.isJumping && 
             !playerData.isClimbing) && 
             !playerData.isSwordAnimate &&
-            !playerData.isDying && !playerData.isPlayable)
+            !playerData.isDying && !playerData.isPlayable
+        */
+        if ((PlayerManager.GetInstance.GetZValue() >= 0.01 && !playerData.isClimbing && !playerData.isBackClimbing && !playerData.isSkateBoarding))
         {
             _animator.SetBool(AnimatorParameters.isWalking.ToString(), true);
             _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
@@ -138,12 +141,10 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public virtual void LeftWalkAnimation(PlayerData playerData, Animator _animator)
     {
-        if (PlayerManager.GetInstance.GetXValue() < -0.03f && 
-            PlayerManager.GetInstance.GetZValue() > -0.05f && 
-            PlayerManager.GetInstance.GetZValue() < 0.05f && 
-            !playerData.isJumping && 
-            !playerData.isSwordAnimate &&
-            playerData.isSideWalking)
+        if ((!playerData.isClimbing && !playerData.isBackClimbing) &&
+            (PlayerManager.GetInstance.GetXValue() < -0.05f) &&
+            Mathf.Abs(PlayerManager.GetInstance.GetXValue()) > 2 * Mathf.Abs(PlayerManager.GetInstance.GetZValue()) &&
+            PlayerManager.GetInstance.GetZValue() < 0.2f)
         {
             _animator.SetBool(AnimatorParameters.isLeftWalk.ToString(), true);
 
@@ -191,12 +192,10 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public virtual void RightWalkAnimation(PlayerData playerData, Animator _animator)
     {
-        if (PlayerManager.GetInstance.GetXValue() > 0.03f && 
-            PlayerManager.GetInstance.GetZValue() < 0.05f && 
-            PlayerManager.GetInstance.GetZValue() > -0.05f && 
-            !playerData.isJumping && 
-            !playerData.isSwordAnimate &&
-            playerData.isSideWalking)
+        if ((!playerData.isClimbing && !playerData.isBackClimbing) &&
+            (PlayerManager.GetInstance.GetXValue() > -0.05f) &&
+            Mathf.Abs(PlayerManager.GetInstance.GetXValue()) > 2 * Mathf.Abs(PlayerManager.GetInstance.GetZValue()) &&
+            PlayerManager.GetInstance.GetZValue() < 0.2f)
         {
             _animator.SetBool(AnimatorParameters.isRightWalk.ToString(), true);
             _animator.SetBool(AnimatorParameters.isLeftWalk.ToString(), false);

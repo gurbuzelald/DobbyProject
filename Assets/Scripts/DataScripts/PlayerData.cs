@@ -21,18 +21,18 @@ public class PlayerData : ScriptableObject
     public int prisonerEnemyCollisionDamage;
     public int clownEnemyCollisionDamage;
 
-    [Header("Player Resistance")]
-    public int dobbyResistance;
-    public int glassyResistance;
-    public int spartacusResistance;
-    public int guardResistance;
-    public int lusthResistance;
-    public int eveResistance;
-    public int michelleResistance;
-    public int bossResistance;
-    public int ajResistance;
-    public int mremirehResistance;
-    public int tyResistance;
+    [Header("Player Durability")]
+    public int dobbyDurability;
+    public int glassyDurability;
+    public int spartacusDurability;
+    public int guardDurability;
+    public int lusthDurability;
+    public int eveDurability;
+    public int michelleDurability;
+    public int bossDurability;
+    public int ajDurability;
+    public int mremirehDurability;
+    public int tyDurability;
 
 
     [Header("Enemy Tag")]
@@ -155,7 +155,7 @@ public class PlayerData : ScriptableObject
     public int tyPrice;
     public int mremirehPrice;
 
-    [Header("Character Speed")]
+    [Header("Speed")]
 
     public float playerSpeed;
     public float skateBoardSpeed;
@@ -165,7 +165,8 @@ public class PlayerData : ScriptableObject
     public float climbSpeed;
     public float lockedSpeed;
     public float rotateSpeed;
-    //Character Speeds
+
+    [Header("Character Speeds")]
     public float dobbySpeed;
     public float michelleSpeed;
     public float glassySpeed;
@@ -177,10 +178,11 @@ public class PlayerData : ScriptableObject
     public float bossSpeed;
     public float tySpeed;
     public float guardSpeed;
-
+        
 
     [Header("Character Jump Forces")]
     public Dictionary<int, GameObject> characterStaffs;
+    public float currentJumpForce;
     public float dobbyJumpForce;
     public float michelleJumpForce;
     public float glassyJumpForce;
@@ -226,7 +228,6 @@ public class PlayerData : ScriptableObject
     public bool isPlayable;
 
     [Header("Input")]
-    public float currentJumpForce;
     public bool isFireNonWalk;
     public bool isFireWalk;
     public bool isFireTime;

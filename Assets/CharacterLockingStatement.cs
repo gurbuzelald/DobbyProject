@@ -54,8 +54,21 @@ public class CharacterLockingStatement : MonoBehaviour
             playerData.mremirehLock = playerData.locked;
             playerData.tyLock = playerData.locked;
             playerData.resetLocks = playerData.locked;
-
-            
+        }
+        else if (playerData.dobbyLock == playerData.locked &&
+            playerData.glassyLock == playerData.locked &&
+            playerData.spartacusLock == playerData.locked &&
+            playerData.guardLock == playerData.locked &&
+            playerData.lusthLock == playerData.locked &&
+            playerData.eveLock == playerData.locked &&
+            playerData.michelleLock == playerData.locked &&
+            playerData.ajLock == playerData.locked &&
+            playerData.bossLock == playerData.locked &&
+            playerData.mremirehLock == playerData.locked &&
+            playerData.tyLock == playerData.locked &&
+            playerData.resetLocks == playerData.locked)
+        {
+            playerData.currentCharacterName = PlayerData.CharacterNames.Spartacus;
         }
     }
     private void Update()
