@@ -35,7 +35,7 @@ public class TimeController : MonoBehaviour
         GetTime(900);
         SwordTimer(playerData, _swordTimeText);
         WeaponTimer(playerData);
-        EnemySpawnTimer(playerData.enemySpawnDelay);
+        EnemySpawnTimer(playerData.currentEnemySpawnDelay);
     }
     private void GetTime(int timeValue)
     {

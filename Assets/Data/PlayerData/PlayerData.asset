@@ -37,7 +37,7 @@ MonoBehaviour:
   tyDurability: 2
   enemyTag: 67
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
-  currentMapName: 0
+  currentMapName: 3
   currentLevel: 0
   firstSkybox: {fileID: 2100000, guid: a07fadb24ea940240afba3afc1a692cc, type: 2}
   secondMapSkyBox: {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
@@ -46,11 +46,16 @@ MonoBehaviour:
   isDecreaseHealth: 0
   damageHealthText: {fileID: 0}
   decreaseCounter: 0
-  enemySpawnDelay: 10
-  firstMapEnemySpawnDelay: 10
-  secondMapEnemySpawnDelay: 7
-  thirdMapEnemySpawnDelay: 5
-  fourthMapEnemySpawnDelay: 3
+  currentEnemyDetectionDistance: 5
+  level1EnemyDetectionDistance: 2
+  level2EnemyDetectionDistance: 3
+  level3EnemyDetectionDistance: 4
+  level4EnemyDetectionDistance: 5
+  currentEnemySpawnDelay: 2
+  firstMapEnemySpawnDelay: 5
+  secondMapEnemySpawnDelay: 4
+  thirdMapEnemySpawnDelay: 3
+  fourthMapEnemySpawnDelay: 2
   mapCoins:
   - {fileID: 3880732843794124356, guid: 8afde6b0df00a404199392eae3715794, type: 3}
   - {fileID: 1413783167371764476, guid: 5b53e633fa5f1eb408fa0f939e143a88, type: 3}
@@ -71,7 +76,11 @@ MonoBehaviour:
   - {fileID: 2808162707802702247, guid: ae0befe520627db47823e83467a22361, type: 3}
   _fourthMapMirrorCouples:
   - {fileID: 6022340288675348387, guid: 0e6ca9137dddb924fb941e3a65e4e1ac, type: 3}
-  _finishAreas: {fileID: 311188628955670743, guid: 147c08b652e1e9a4288e6347fc94ddab, type: 3}
+  currentFinishArea: {fileID: 1149033832906918883, guid: 14ee547a4dde40b4a8847f703ec8d8a9, type: 3}
+  level1FinishArea: {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
+  level2FinishArea: {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
+  level3FinishArea: {fileID: 5566931848723951372, guid: 4585e76964e5f6b47a170518135f316f, type: 3}
+  level4FinishArea: {fileID: 1149033832906918883, guid: 14ee547a4dde40b4a8847f703ec8d8a9, type: 3}
   isCompleteFirstMap: 0
   isCompleteSecondMap: 0
   isCompleteThirdMap: 0
@@ -158,6 +167,7 @@ MonoBehaviour:
   bossSpeed: 5
   tySpeed: 5
   guardSpeed: 5
+  currentJumpForce: 7
   dobbyJumpForce: 6
   michelleJumpForce: 7
   glassyJumpForce: 6
@@ -199,7 +209,6 @@ MonoBehaviour:
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 1
-  currentJumpForce: 7
   isFireNonWalk: 0
   isFireWalk: 0
   isFireTime: 0

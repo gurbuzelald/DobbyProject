@@ -144,26 +144,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         if ((!playerData.isClimbing && !playerData.isBackClimbing) &&
             (PlayerManager.GetInstance.GetXValue() < -0.05f) &&
             Mathf.Abs(PlayerManager.GetInstance.GetXValue()) > 2 * Mathf.Abs(PlayerManager.GetInstance.GetZValue()) &&
-            PlayerManager.GetInstance.GetZValue() < 0.2f)
-        {
-            _animator.SetBool(AnimatorParameters.isLeftWalk.ToString(), true);
-
-            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isRightWalk.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isFireWalk.ToString(), false);
-
-            _animator.SetLayerWeight(5, 1);
-            _animator.SetLayerWeight(6, 0);
-            _animator.SetLayerWeight(7, 0);
-
-        }
-        else if (PlayerManager.GetInstance.GetXValue() < -0.03f && 
-                 PlayerManager.GetInstance.GetZValue() > 0.05f && 
-                 !playerData.isJumping && 
-                 !playerData.isSwordAnimate)
+            PlayerManager.GetInstance.GetZValue() < 0.2f &&
+            !playerData.isRunning)
         {
             _animator.SetBool(AnimatorParameters.isLeftWalk.ToString(), true);
 
@@ -193,30 +175,12 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     public virtual void RightWalkAnimation(PlayerData playerData, Animator _animator)
     {
         if ((!playerData.isClimbing && !playerData.isBackClimbing) &&
-            (PlayerManager.GetInstance.GetXValue() > -0.05f) &&
+            (PlayerManager.GetInstance.GetXValue() > 0.05f) &&
             Mathf.Abs(PlayerManager.GetInstance.GetXValue()) > 2 * Mathf.Abs(PlayerManager.GetInstance.GetZValue()) &&
-            PlayerManager.GetInstance.GetZValue() < 0.2f)
+            PlayerManager.GetInstance.GetZValue() < 0.2f &&
+            !playerData.isRunning)
         {
             _animator.SetBool(AnimatorParameters.isRightWalk.ToString(), true);
-            _animator.SetBool(AnimatorParameters.isLeftWalk.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isFireWalk.ToString(), false);
-
-            _animator.SetLayerWeight(6, 1);
-            _animator.SetLayerWeight(5, 0);
-            _animator.SetLayerWeight(7, 0);
-
-        }
-        else if (PlayerManager.GetInstance.GetXValue() > 0.03f && 
-            PlayerManager.GetInstance.GetZValue() > 0.05f &&
-            !playerData.isJumping && 
-            !playerData.isSwordAnimate)
-        {
-            _animator.SetBool(AnimatorParameters.isRightWalk.ToString(), true);
-
             _animator.SetBool(AnimatorParameters.isLeftWalk.ToString(), false);
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
             _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);

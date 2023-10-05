@@ -19,6 +19,7 @@ public class MapController : MonoBehaviour
         readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
 
         if (playerData.currentMapName == PlayerData.MapNames.FirstMap) {
+
             currentMap = Instantiate(Maps[0], gameObject.transform);
             RenderSettings.skybox = playerData.firstSkybox;
         }

@@ -59,6 +59,11 @@ public class LevelUpController : MonoBehaviour
 
     private void Update()
     {
+        CheckCompleteLevel();
+        SetDetectionOfEnemyAtUpdate();
+    }
+    void CheckCompleteLevel()
+    {
         if (playerData.isCompleteFirstMap)
         {
             weaponGiftBoxSpawner.CreateSecondMapGiftBoxes();
@@ -100,7 +105,26 @@ public class LevelUpController : MonoBehaviour
         }
         else if (playerData.isCompleteFourthMap)
         {
+        }
+    }
 
+    void SetDetectionOfEnemyAtUpdate()
+    {
+        if (playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        {
+            playerData.currentEnemyDetectionDistance = playerData.level1EnemyDetectionDistance;
+        }
+        else if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        {
+            playerData.currentEnemyDetectionDistance = playerData.level2EnemyDetectionDistance;
+        }
+        else if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        {
+            playerData.currentEnemyDetectionDistance = playerData.level3EnemyDetectionDistance;
+        }
+        else if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        {
+            playerData.currentEnemyDetectionDistance = playerData.level4EnemyDetectionDistance;
         }
     }
 }

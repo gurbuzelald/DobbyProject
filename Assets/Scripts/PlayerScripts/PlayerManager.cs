@@ -470,11 +470,9 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         else
         {
-
             //Touch Rotation Controller
             iPlayerRotation.SensivityXSettings(1, _playerController, _playerData, ref _touchX);
             _touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime * 40;
-
         }
 
         iPlayerRotation.Rotate(ref _touchX, ref _touchX, ref playerTransform);
@@ -509,19 +507,27 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         if (_playerData.currentMapName == PlayerData.MapNames.FirstMap)
         {
+            _playerData.currentEnemyDetectionDistance = _playerData.level1EnemyDetectionDistance;
+
             //GetInstance.gameObject.transform.position = new Vector3(0f, 5f, 0f);
             GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(0).transform.position;
         }
         else if (_playerData.currentMapName == PlayerData.MapNames.SecondMap)
         {
+            _playerData.currentEnemyDetectionDistance = _playerData.level2EnemyDetectionDistance;
+
             GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(1).transform.position;
         }
         else if (_playerData.currentMapName == PlayerData.MapNames.ThirdMap)
         {
+            _playerData.currentEnemyDetectionDistance = _playerData.level3EnemyDetectionDistance;
+
             GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(2).transform.position;
         }
         else if (_playerData.currentMapName == PlayerData.MapNames.FourthMap)
         {
+            _playerData.currentEnemyDetectionDistance = _playerData.level4EnemyDetectionDistance;
+
             GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(3).transform.position;
         }
 

@@ -42,7 +42,7 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < enemyData.enemyTransformsFirstMap.transform.childCount; i++)
             {
-                playerData.enemySpawnDelay = playerData.firstMapEnemySpawnDelay;
+                playerData.currentEnemySpawnDelay = playerData.firstMapEnemySpawnDelay;
                 currentEnemyObjects = Instantiate(enemyData.enemyFirstObjects[i],
                                              enemyTransformObject.transform.GetChild(i).position,
                                              Quaternion.identity,
@@ -58,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < enemyData.enemyTransformsSecondMap.transform.childCount; i++)
             {
-                playerData.enemySpawnDelay = playerData.secondMapEnemySpawnDelay;
+                playerData.currentEnemySpawnDelay = playerData.secondMapEnemySpawnDelay;
                 currentEnemyObjects = Instantiate(enemyData.enemySecondObjects[i],
                                              enemyTransformObject.transform.GetChild(i).position,
                                              Quaternion.identity,
@@ -74,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < enemyData.enemyTransformsThirdMap.transform.childCount; i++)
             {
-                playerData.enemySpawnDelay = playerData.thirdMapEnemySpawnDelay;
+                playerData.currentEnemySpawnDelay = playerData.thirdMapEnemySpawnDelay;
                 currentEnemyObjects = Instantiate(enemyData.enemyThirdObjects[i],
                                              enemyTransformObject.transform.GetChild(i).position,
                                              Quaternion.identity,
@@ -90,7 +90,7 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < enemyData.enemyTransformsFourthMap.transform.childCount; i++)
             {
-                playerData.enemySpawnDelay = playerData.fourthMapEnemySpawnDelay;
+                playerData.currentEnemySpawnDelay = playerData.fourthMapEnemySpawnDelay;
                 currentEnemyObjects = Instantiate(enemyData.enemyFourthObjects[i],
                                              enemyTransformObject.transform.GetChild(i).position,
                                              Quaternion.identity,
@@ -254,7 +254,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public void CreateSecondMapEnemies()
     {
-        playerData.enemySpawnDelay = playerData.secondMapEnemySpawnDelay;
+        playerData.currentEnemySpawnDelay = playerData.secondMapEnemySpawnDelay;
 
         Destroy(enemyTransformObject);
         enemyTransformObject = Instantiate(enemyData.enemyTransformsSecondMap.gameObject, gameObject.transform);
@@ -274,7 +274,7 @@ public class EnemySpawner : MonoBehaviour
    
     public void CreateThirdMapEnemies()
     {
-        playerData.enemySpawnDelay = playerData.thirdMapEnemySpawnDelay;
+        playerData.currentEnemySpawnDelay = playerData.thirdMapEnemySpawnDelay;
 
         Destroy(enemyTransformObject);
         enemyTransformObject = Instantiate(enemyData.enemyTransformsThirdMap.gameObject, gameObject.transform);
@@ -294,7 +294,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public void CreateFourthMapEnemies()
     {
-        playerData.enemySpawnDelay = playerData.fourthMapEnemySpawnDelay;
+        playerData.currentEnemySpawnDelay = playerData.fourthMapEnemySpawnDelay;
 
         Destroy(enemyTransformObject);
         enemyTransformObject = Instantiate(enemyData.enemyTransformsFourthMap.gameObject, gameObject.transform);

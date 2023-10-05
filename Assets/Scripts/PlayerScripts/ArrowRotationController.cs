@@ -5,24 +5,15 @@ using UnityEngine;
 public class ArrowRotationController : MonoBehaviour
 {
     [SerializeField] PlayerData playerData;
-    public Transform _currentFinishArea;
-
-    public Transform _currentFirstFinishArea;
-    public Transform _currentSecondFinishArea;
-    public Transform _currentThirdFinishArea;
-    public Transform _currentFourthFinishArea;
+    
     private void Awake()
     {
         playerData.isSecondMapTarget = false;
         playerData.isThirdMapTarget = false;
         playerData.isFourthMapTarget = false;
 
-        _currentFirstFinishArea = playerData._finishAreas.transform.GetChild(0).transform;
-        _currentSecondFinishArea = playerData._finishAreas.transform.GetChild(1).transform;
-        _currentThirdFinishArea = playerData._finishAreas.transform.GetChild(2).transform;
-        _currentFourthFinishArea = playerData._finishAreas.transform.GetChild(3).transform;
 
-        _currentFinishArea = _currentFirstFinishArea;
+        playerData.currentFinishArea = playerData.level1FinishArea;
     }
     void Update()
     {
@@ -30,22 +21,26 @@ public class ArrowRotationController : MonoBehaviour
     }
     void ArrowRotation()
     {
-        if (playerData.isSecondMapTarget)
+        if (playerData.currentMapName == PlayerData.MapNames.FirstMap)
         {
-            _currentFinishArea.position = _currentSecondFinishArea.position;
+            playerData.currentFinishArea = playerData.level1FinishArea;
         }
-        if (playerData.isThirdMapTarget)
+        if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
         {
-            _currentFinishArea.position = _currentThirdFinishArea.position;
+            playerData.currentFinishArea = playerData.level2FinishArea;
         }
-        if (playerData.isFourthMapTarget)
+        if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
         {
-            _currentFinishArea.position = _currentFourthFinishArea.position;
+            playerData.currentFinishArea = playerData.level3FinishArea;
+        }
+        if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        {
+            playerData.currentFinishArea = playerData.level4FinishArea;
         }
 
         if (gameObject != null)
         {
-            gameObject.transform.LookAt(_currentFinishArea.position);
+            gameObject.transform.LookAt(playerData.currentFinishArea.position);
         }
         //Debug.Log(_currentFinishArea.position);
 

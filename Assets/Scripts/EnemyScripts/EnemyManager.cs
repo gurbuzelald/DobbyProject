@@ -76,6 +76,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             enemyRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
+        FollowPlayer();
+    }
+
+    void FollowPlayer()
+    {
         if (gameObject != null)
         {
             if (playerData.isPlayable && gameObject != null && enemyBulletManager != null)
@@ -85,7 +90,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
 
                 if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.1f) &&
-                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 4f) && 
+                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < playerData.currentEnemyDetectionDistance) &&
                     enemyData.isWalkable && !enemyData.isDying)
                 {
                     enemyData.enemySpeed = _initSpeed;
@@ -93,16 +98,16 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     enemyData.isAttacking = false;
                     enemyData.isFiring = false;
                     enemyData.isDying = false;
-                    
+
                     //Debug.Log("Test");
                     Movement(clownSpawner.targetTransform, _initTransform, gameObject.transform, enemyData.enemySpeed, playerData, enemyData);
                 }
-                else if((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) <= 0.1f) && !enemyData.isDying)
+                else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) <= 0.1f) && !enemyData.isDying)
                 {
                     //Debug.Log("Test");
                     enemyData.isAttacking = true;
                     playerData.isDecreaseHealth = true;
-                    
+
                     playerData.enemyTag = gameObject.name[0];
 
                     enemyData.isWalking = false;
@@ -112,7 +117,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     //enemyData.isWalking = false;
                 }
                 else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.4f) &&
-                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 8f) &&
+                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 10f) &&
                     !enemyData.isDying && !playerData.isDying)
                 {
                     enemyData.isFiring = true;
@@ -128,13 +133,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     enemyData.isFiring = false;
                 }
             }
-            else if(!playerData.isPlayable || gameObject != null || enemyBulletManager != null)
+            else if (!playerData.isPlayable || gameObject != null || enemyBulletManager != null)
             {
                 enemyBulletManager.bulletData.isFirable = false;
                 enemyData.isFiring = false;
-                enemyData.isAttacking = false;  
-                enemyData.isWalking = false;  
-                enemyData.isDying = false;  
+                enemyData.isAttacking = false;
+                enemyData.isWalking = false;
+                enemyData.isDying = false;
             }
         }
     }

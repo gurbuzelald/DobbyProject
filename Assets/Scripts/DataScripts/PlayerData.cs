@@ -58,8 +58,15 @@ public class PlayerData : ScriptableObject
     public TextMeshProUGUI damageHealthText;
     public int decreaseCounter;
 
+    [Header("Level Difficulty")]
+    public float currentEnemyDetectionDistance;
+    public float level1EnemyDetectionDistance;
+    public float level2EnemyDetectionDistance;
+    public float level3EnemyDetectionDistance;
+    public float level4EnemyDetectionDistance;
+
     [Header("Enemy Spawn")]
-    public int enemySpawnDelay;
+    public int currentEnemySpawnDelay;
     public int firstMapEnemySpawnDelay;
     public int secondMapEnemySpawnDelay;
     public int thirdMapEnemySpawnDelay;
@@ -78,7 +85,11 @@ public class PlayerData : ScriptableObject
     public GameObject[] _fourthMapMirrorCouples;
 
     [Header("Finishes")]
-    public GameObject _finishAreas;
+    public Transform currentFinishArea;
+    public Transform level1FinishArea;
+    public Transform level2FinishArea;
+    public Transform level3FinishArea;
+    public Transform level4FinishArea;
 
     [Header("MapCompleteBools")]
     public bool isCompleteFirstMap;

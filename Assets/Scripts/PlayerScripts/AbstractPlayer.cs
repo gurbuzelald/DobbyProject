@@ -452,6 +452,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             {
                 _playerData.isFireNonWalk = true;
             }
+            else if (!_playerData.isWalking && _playerData.isSideWalking)
+            {
+                _playerData.isFireNonWalk = true;
+            }
             else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && _playerData.isWalking)
             {
                 _playerData.isFireWalk = true;
@@ -462,7 +466,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             }
             if (_playerData.bulletAmount > 0 && BulletManager.isCreatedWeaponBullet)
             {
-                _playerData.bulletAmount--;
+                --_playerData.bulletAmount;
                 PlayerManager.GetInstance._playerController.fire = false;
                 BulletManager.isCreatedWeaponBullet = false;
             }
@@ -484,6 +488,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             if (PlayerManager.GetInstance._playerController.sword && _playerData.isSwordTime)
             {
                 //PlayerData
+                Debug.Log("Test");
                 _playerData.isSwording = true;
                 _playerData.isSwordAnimate = true;
 
