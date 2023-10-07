@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public static bool skateBoard;
     public static bool run;
 
-    public Vector2 stick;
+    public Vector2 characterStick;
     public bool Spartacus;
     public bool Glassy;
     public bool Dobby;
@@ -28,6 +28,18 @@ public class PlayerController : MonoBehaviour
     public bool Aj;
     public bool Mremireh;
     public bool Ty;
+
+    public Vector2 weaponStick;
+    public bool AK47;
+    public bool Axe;
+    public bool Bulldog;
+    public bool Cow;
+    public bool Crystal;
+    public bool Demon;
+    public bool Ice;
+    public bool Negev;
+    public bool Pistol;
+    public bool Rifle;
 
     private void Awake() 
     {
@@ -45,6 +57,7 @@ public class PlayerController : MonoBehaviour
     {
         ControlStates();
         ChooseCharacter();
+        WwaponCharacter();
     }
     public void ControlStates()
     {
@@ -73,7 +86,23 @@ public class PlayerController : MonoBehaviour
         Ty = playerInput.CharacterMenuInput.Ty.IsPressed();
 
 
-        stick = playerInput.CharacterMenuInput.Stick.ReadValue<Vector2>();
+        characterStick = playerInput.CharacterMenuInput.CharacterStick.ReadValue<Vector2>();
+    }
+    void WwaponCharacter()
+    {
+        AK47 = playerInput.WeaponMenuInput.AK47.IsPressed();
+        Axe = playerInput.WeaponMenuInput.Axe.IsPressed();
+        Bulldog = playerInput.WeaponMenuInput.Bulldog.IsPressed();
+        Cow = playerInput.WeaponMenuInput.Cow.IsPressed();
+        Crystal = playerInput.WeaponMenuInput.Crystal.IsPressed();
+        Demon = playerInput.WeaponMenuInput.Demon.IsPressed();
+        Ice = playerInput.WeaponMenuInput.Ice.IsPressed();
+        Negev = playerInput.WeaponMenuInput.Negev.IsPressed();
+        Pistol = playerInput.WeaponMenuInput.Pistol.IsPressed();
+        Rifle = playerInput.WeaponMenuInput.Rifle.IsPressed();
+
+
+        weaponStick = playerInput.WeaponMenuInput.WeaponStick.ReadValue<Vector2>();
     }
 }
 

@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Background Maps")]
+    public GameObject backgroundMap;
+
     [Header("Enemy Damages")]
     public int currentEnemyAttackDamage;
     public int monsterEnemyAttackDamage;
@@ -135,6 +138,8 @@ public class PlayerData : ScriptableObject
     public string mremirehLock = "locked";
     public string tyLock = "locked";
     public string resetLocks = "locked";
+    public string locked = "Locked";
+    public string unLocked = "";
 
 
 
@@ -334,8 +339,7 @@ public class PlayerData : ScriptableObject
         Level3,
         Level4
     }
-    public string locked = "Locked";
-    public string unLocked = "";
+    
     public enum CharacterLocking
     {
         //Locked,

@@ -8,16 +8,17 @@ using Unity.VisualScripting;
 
 public class ChooseCharacterController : MonoBehaviour
 {
-    [SerializeField] GameObject[] _objects;
-
     [SerializeField] GameObject _panelObject;
     [SerializeField] PlayerData playerData;
     [SerializeField] PlayerCoinData playerCoinData;
 
 
     private PlayerController _playerController;
+
     private GameObject characterPriceErrorTextObjects;
     private TextMeshProUGUI[] characterPriceErrorTextObjectChilds;
+
+    
     private void Start()
     {
 
@@ -31,13 +32,9 @@ public class ChooseCharacterController : MonoBehaviour
         _playerController = FindObjectOfType<PlayerController>();
 
 
-        characterPriceErrorTextObjects = GameObject.Find("CharacterPriceErrorTexts");
-        characterPriceErrorTextObjectChilds = new TextMeshProUGUI[characterPriceErrorTextObjects.transform.childCount];
+        CharacterPriceError();
+        
 
-        for (int i = 0; i < characterPriceErrorTextObjects.transform.childCount; i++)
-        {
-            characterPriceErrorTextObjectChilds[i] = characterPriceErrorTextObjects.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
-        }
 
         //infoPanel = new GameObject[gameObject.transform.GetChild(1).GetChild(0).childCount];
 
@@ -48,6 +45,24 @@ public class ChooseCharacterController : MonoBehaviour
 
         //characterLockStatesTextsObject = GameObject.Find("CharacterLockStatesTexts");
     }
+    void CharacterPriceError()
+    {
+        characterPriceErrorTextObjects = GameObject.Find("CharacterPriceErrorTexts");
+
+        if (characterPriceErrorTextObjects)
+        {
+            characterPriceErrorTextObjectChilds = new TextMeshProUGUI[characterPriceErrorTextObjects.transform.childCount];
+
+            for (int i = 0; i < characterPriceErrorTextObjects.transform.childCount; i++)
+            {
+                characterPriceErrorTextObjectChilds[i] = characterPriceErrorTextObjects.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
+            }
+        }
+
+       
+    }
+
+    
     void SetCharacterInfos()
     {
         if (gameObject.transform.GetChild(1).gameObject.name == "Panel")
@@ -63,6 +78,8 @@ public class ChooseCharacterController : MonoBehaviour
             {
                 if (playerData.characterStaffs[i].name == "SpartacusStaff")
                 {
+                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
+
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.spartacusSpeed.ToString();
 
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.spartacusJumpForce.ToString();
@@ -71,6 +88,8 @@ public class ChooseCharacterController : MonoBehaviour
                 }
                 else if (playerData.characterStaffs[i].name == "DobbyStaff")
                 {
+                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
+
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.dobbySpeed.ToString();
 
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.dobbyJumpForce.ToString();
@@ -79,6 +98,8 @@ public class ChooseCharacterController : MonoBehaviour
                 }
                 else if (playerData.characterStaffs[i].name == "GlassyStaff")
                 {
+                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
+
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.glassySpeed.ToString();
 
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.glassyJumpForce.ToString();
@@ -87,6 +108,8 @@ public class ChooseCharacterController : MonoBehaviour
                 }
                 else if (playerData.characterStaffs[i].name == "LusthStaff")
                 {
+                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
+
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.lusthSpeed.ToString();
 
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.lusthJumpForce.ToString();
@@ -95,6 +118,8 @@ public class ChooseCharacterController : MonoBehaviour
                 }
                 else if (playerData.characterStaffs[i].name == "GuardStaff")
                 {
+                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
+
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.guardSpeed.ToString();
 
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.guardJumpForce.ToString();
@@ -104,6 +129,8 @@ public class ChooseCharacterController : MonoBehaviour
                 }
                 else if (playerData.characterStaffs[i].name == "MichelleStaff")
                 {
+                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
+
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.michelleSpeed.ToString();
 
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.michelleJumpForce.ToString();
@@ -112,6 +139,8 @@ public class ChooseCharacterController : MonoBehaviour
                 }
                 else if (playerData.characterStaffs[i].name == "EveStaff")
                 {
+                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
+
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.eveSpeed.ToString();
 
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.eveJumpForce.ToString();
@@ -120,6 +149,8 @@ public class ChooseCharacterController : MonoBehaviour
                 }
                 else if (playerData.characterStaffs[i].name == "AjStaff")
                 {
+                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
+
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.ajSpeed.ToString();
 
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.ajJumpForce.ToString();
@@ -128,6 +159,8 @@ public class ChooseCharacterController : MonoBehaviour
                 }
                 else if (playerData.characterStaffs[i].name == "BossStaff")
                 {
+                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
+
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.bossSpeed.ToString();
 
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.bossJumpForce.ToString();
@@ -136,6 +169,8 @@ public class ChooseCharacterController : MonoBehaviour
                 }
                 else if (playerData.characterStaffs[i].name == "TyStaff")
                 {
+                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
+
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.tySpeed.ToString();
 
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.tyJumpForce.ToString();
@@ -144,6 +179,8 @@ public class ChooseCharacterController : MonoBehaviour
                 }
                 else if (playerData.characterStaffs[i].name == "MremirehStaff")
                 {
+                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
+
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.mremirehSpeed.ToString();
 
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.mremirehJumpForce.ToString();
@@ -158,46 +195,40 @@ public class ChooseCharacterController : MonoBehaviour
     
     void Update()
     {
-        RotateCharacters();
         SlideMenu();
         CharacterChooseStates();
     }
     void CharacterChooseStates()
-    {        
-        ChoosedSpartacus(playerData.spartacusPrice);
-        ChoosedGlassy(playerData.glassyPrice);
-        ChoosedDobby(playerData.dobbyPrice);
-        ChoosedLusth(playerData.lusthPrice);
-        ChoosedGuard(playerData.guardPrice);
-        ChoosedEve(playerData.evePrice);
-        ChoosedMichelle(playerData.michellePrice);
-        ChoosedBoss(playerData.bossPrice);
-        ChoosedAj(playerData.ajPrice);
-        ChoosedMremireh(playerData.mremirehPrice);
-        ChoosedTy(playerData.tyPrice);
-    }
-
-    void RotateCharacters()
     {
-        for (int i = 0; i < _objects.Length; i++)
+        if (characterPriceErrorTextObjects)
         {
-            _objects[i].transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
-        }
+            ChoosedSpartacus(playerData.spartacusPrice);
+            ChoosedGlassy(playerData.glassyPrice);
+            ChoosedDobby(playerData.dobbyPrice);
+            ChoosedLusth(playerData.lusthPrice);
+            ChoosedGuard(playerData.guardPrice);
+            ChoosedEve(playerData.evePrice);
+            ChoosedMichelle(playerData.michellePrice);
+            ChoosedBoss(playerData.bossPrice);
+            ChoosedAj(playerData.ajPrice);
+            ChoosedMremireh(playerData.mremirehPrice);
+            ChoosedTy(playerData.tyPrice);
+        }       
     }
     void SlideMenu()
     {
-        if (_playerController.stick.x < 0f)
+        if (_playerController.characterStick.x < 0f)
         {
-            for (int i = 0; i < _objects.Length; i++)
+            for (int i = 0; i < playerData.characterStaffs.Count; i++)
             {
                 _panelObject.transform.position = new Vector3(_panelObject.transform.position.x - 1.5f * Time.deltaTime,
                                                              _panelObject.transform.position.y,
                                                              _panelObject.transform.position.z);
             }
         }
-        if (_playerController.stick.x > 0f)
+        if (_playerController.characterStick.x > 0f)
         {
-            for (int i = 0; i < _objects.Length; i++)
+            for (int i = 0; i < playerData.characterStaffs.Count; i++)
             {
                 _panelObject.transform.position = new Vector3(_panelObject.transform.position.x + 1.5f * Time.deltaTime,
                                                              _panelObject.transform.position.y,
@@ -211,6 +242,13 @@ public class ChooseCharacterController : MonoBehaviour
         if (_panelObject.transform.localPosition.x < -9000)
         {
             _panelObject.transform.localPosition = new Vector3(-9000f, _panelObject.transform.localPosition.y, _panelObject.transform.localPosition.z);
+        }
+    }
+    public void ResetTheCharacters()
+    {
+        for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+        {
+            playerData.avaliableCharacters[i] = playerData.unLocked;
         }
     }
     public void ChoosedSpartacus(int avaliableCoinAmount)
@@ -240,25 +278,14 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "SpartacusPriceErorText")
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "SpartacusPriceErrorText")
                 {
                     characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
             }
         }
     }
-    public void ResetTheCharacters()
-    {
-        for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
-        {
-            playerData.avaliableCharacters[i] = playerData.unLocked;            
-        }
-
-        for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
-        {
-            Debug.Log(playerData.avaliableCharacters[i]);
-        }
-    }
+    
     public void ChoosedDobby(int avaliableCoinAmount)
     {
         if (_playerController.Dobby && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
@@ -293,7 +320,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "DobbyPriceErorText")
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "DobbyPriceErrorText")
                 {
                     characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
@@ -338,7 +365,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "GlassyPriceErorText")
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "GlassyPriceErrorText")
                 {
                     characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
@@ -348,7 +375,7 @@ public class ChooseCharacterController : MonoBehaviour
     public void ChoosedLusth(int avaliableCoinAmount)
     {
         if ((_playerController.Lusth) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-            playerData.currentCharacterName != PlayerData.CharacterNames.Lusth)
+            playerData.currentCharacterName != PlayerData.CharacterNames.Lusth )
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
@@ -380,7 +407,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "LusthPriceErorText")
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "LusthPriceErrorText")
                 {
                     characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
@@ -422,7 +449,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "GuardPriceErorText")
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "GuardPriceErrorText")
                 {
                     characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
@@ -464,7 +491,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "EvePriceErorText")
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "EvePriceErrorText")
                 {
                     characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
@@ -506,7 +533,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "MichellePriceErorText")
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "MichellePriceErrorText")
                 {
                     characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
@@ -548,7 +575,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "BossPriceErorText")
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "BossPriceErrorText")
                 {
                     characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
@@ -589,7 +616,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "AjPriceErorText")
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "AjPriceErrorText")
                 {
                     characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
@@ -634,7 +661,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "MremirehPriceErorText")
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "MremirehPriceErrorText")
                 {
                     characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
@@ -677,7 +704,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "TyPriceErorText")
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "TyPriceErrorText")
                 {
                     characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }

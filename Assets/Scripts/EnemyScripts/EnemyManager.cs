@@ -77,6 +77,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             enemyRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
         FollowPlayer();
+
+        SetEnemySpeed();
     }
 
     void FollowPlayer()
@@ -344,6 +346,25 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             StartCoroutine(ShowDamage((int)bulletPower, 0.1f, 3f));
         }
     }
+    void SetEnemySpeed()
+    {
+        if (playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        {
+            enemyData.enemySpeed = Random.Range(0.1f, 0.5f);
+        }
+        else if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        {
+            enemyData.enemySpeed = Random.Range(0.3f, 0.7f);
+        }
+        else if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        {
+            enemyData.enemySpeed = Random.Range(0.5f, 0.9f);
+        }
+        else if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        {
+            enemyData.enemySpeed = Random.Range(0.7f, 1.1f);
+        }
+    }
     public void TriggerBullet(float bulletPower, Collider other)
     {
         StartCoroutine(TriggerBulletParticleCreater(other));
@@ -412,7 +433,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         enemyData.isWalkable = true;
 
-        Destroy(touchParticle, 0.5f);
+        Destroy(touchParticle, 0.01f);
     }
 
 

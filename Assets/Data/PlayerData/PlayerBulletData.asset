@@ -41,16 +41,54 @@ MonoBehaviour:
   negevGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
   axegunObject: {fileID: 1684248174472265961, guid: a331718668949cc43b683202d1396a03, type: 3}
   axegunGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
-  ak47Power: 5
-  riflePower: 5
-  bulldogPower: 5
-  cowgunPower: 5
+  pistolObject: {fileID: 8853850299777618421, guid: 39aa8c7ebaa670646b7147b6d3cfdd63, type: 3}
+  pistolGiftBox: {fileID: 0}
+  ak47Power: 1
+  axegunPower: 2
+  bulldogPower: 3
+  cowgunPower: 4
   crystalgunPower: 5
-  demongunPower: 5
-  icegunPower: 5
-  negevPower: 5
-  axegunPower: 5
+  demongunPower: 6
+  icegunPower: 7
+  negevPower: 8
+  pistolPower: 9
+  riflePower: 10
+  ak47Price: 0
+  axegunPrice: 100
+  bulldogPrice: 150
+  cowgunPrice: 200
+  crystalgunPrice: 300
+  demongunPrice: 400
+  icegunPrice: 500
+  negevPrice: 600
+  pistolPrice: 0
+  riflePrice: 800
+  avaliableWeapons:
+  - PISTOL
+  - AK47
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  ak47Lock: 
+  axeLock: locked
+  bulldogLock: locked
+  cowLock: locked
+  crystalLock: locked
+  demonLock: locked
+  iceLock: locked
+  negevLock: locked
+  pistolLock: 
+  rifleLock: locked
+  resetLocks: locked
+  locked: locked
+  unLocked: 
   isRifle: 0
+  isPistol: 0
   isAk47: 0
   isBulldog: 0
   isCowgun: 0
@@ -82,7 +120,7 @@ MonoBehaviour:
   isLongHummer: 0
   isClub: 0
   currentSwordName: LowSword
-  currentWeaponName: rifle
+  currentWeaponName: pistol
   enemyFireFrequency: 5
   enemyBulletDelayCounter: 0
   enemyBulletDelay: 0.05

@@ -5,7 +5,7 @@ using UnityEngine;
 internal interface IPlayerCamera
 {
     #region //Camera
-    void ChangeCamera();
+    void ChangeCamera(PlayerData playerData, ref PlayerManager playerManager);
     void ConvertToCloseCamera(GameObject cameraSpawner);
     void ConvertToFarCamera(GameObject cameraSpawner);
     void CheckCameraEulerX(PlayerData _playerData, Transform _currentCameraTransform);

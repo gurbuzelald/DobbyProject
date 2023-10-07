@@ -530,28 +530,29 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     #region //Camera
 
 
-    public virtual void ChangeCamera()
+    public virtual void ChangeCamera(PlayerData playerData, ref PlayerManager playerManager)
     {
-        if (PlayerManager.GetInstance.GetZValue() == 0 && PlayerManager.GetInstance.GetXValue() == 0
-            && PlayerManager.GetInstance._playerController.lookRotation.x == 0
-            && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
+        if (playerManager.GetZValue() == 0 && playerManager.GetXValue() == 0
+            && playerManager._playerController.lookRotation.x == 0
+            && playerManager._playerController.lookRotation.y == 0)
         {
-            ConvertToFarCamera(PlayerManager.GetInstance.cameraSpawner);
+            ConvertToFarCamera(playerManager.cameraSpawner);
         }
-        else if (PlayerManager.GetInstance.GetZValue() != 0 && PlayerManager.GetInstance.GetXValue() == 0
-            && PlayerManager.GetInstance._playerController.lookRotation.x == 0 && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
+        else if (playerManager.GetZValue() != 0 || playerManager.GetXValue() != 0 || playerData.isSkateBoarding
+            && playerManager._playerController.lookRotation.x == 0 && playerManager._playerController.lookRotation.y == 0)
         {
-            ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
+            ConvertToCloseCamera(playerManager.cameraSpawner);
         }
-        else if (PlayerManager.GetInstance.GetZValue() == 0 && PlayerManager.GetInstance.GetXValue() != 0
-            && PlayerManager.GetInstance._playerController.lookRotation.x == 0 && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
+        else if (playerManager.GetZValue() == 0 && playerManager.GetXValue() != 0
+            && playerManager._playerController.lookRotation.x == 0 && playerManager._playerController.lookRotation.y == 0)
         {
-            ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
+            Debug.Log("Test");
+            ConvertToCloseCamera(playerManager.cameraSpawner);
         }
-        else if (PlayerManager.GetInstance.GetZValue() != 0 && PlayerManager.GetInstance.GetXValue() != 0
-            && PlayerManager.GetInstance._playerController.lookRotation.x == 0 && PlayerManager.GetInstance._playerController.lookRotation.y == 0)
+        else if (playerManager.GetZValue() != 0 && playerManager.GetXValue() != 0
+            && playerManager._playerController.lookRotation.x == 0 && playerManager._playerController.lookRotation.y == 0)
         {
-            ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
+            ConvertToCloseCamera(playerManager.cameraSpawner);
         }
     }
     public virtual void ConvertToCloseCamera(GameObject cameraSpawner)

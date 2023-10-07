@@ -111,6 +111,10 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
+        else if (PlayerSoundEffect.ShootSoundEffectTypes.Pistol == shootSoundEffectType)
+        {
+            WeaponSFX(shootSoundEffectType, weaponAudioData);
+        }
     }
 
     public void SwordSoundEffectStatement(SwordSoundEffectTypes swordSoundEffectType)
@@ -171,7 +175,8 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         Demongun,
         Icegun,
         Negev,
-        Axegun
+        Axegun,
+        Pistol
     }
     public enum SwordSoundEffectTypes
     {

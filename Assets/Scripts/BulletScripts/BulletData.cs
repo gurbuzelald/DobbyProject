@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewBulletData", menuName = "BulletData")]
@@ -34,18 +35,56 @@ public class BulletData : ScriptableObject
     public GameObject negevGiftBox;
     public GameObject axegunObject;
     public GameObject axegunGiftBox;
+    public GameObject pistolObject;
+    public GameObject pistolGiftBox;
+
 
     public int ak47Power;
-    public int riflePower;
+    public int axegunPower;
     public int bulldogPower;
     public int cowgunPower;
     public int crystalgunPower;
     public int demongunPower;
     public int icegunPower;
     public int negevPower;
-    public int axegunPower;
+    public int pistolPower;
+    public int riflePower;
+
+    public int ak47Price;
+    public int axegunPrice;
+    public int bulldogPrice;
+    public int cowgunPrice;
+    public int crystalgunPrice;
+    public int demongunPrice;
+    public int icegunPrice;
+    public int negevPrice;
+    public int pistolPrice;
+    public int riflePrice;
+
+    [Header("Weapon Staff")]
+    public Dictionary<int, GameObject> weaponStaffs;
+
+    [Header("Avaliable Weapons")]
+    public string[] avaliableWeapons= new string[10];
+
+    [Header("Weapon Locking Modes")]
+    public string ak47Lock = "locked";
+    public string axeLock = "locked";
+    public string bulldogLock = "locked";
+    public string cowLock = "locked";
+    public string crystalLock = "locked";
+    public string demonLock = "locked";
+    public string iceLock = "locked";
+    public string negevLock = "locked";
+    public string pistolLock = "locked";
+    public string rifleLock = "locked";
+    public string resetLocks = "locked";
+    public string locked = "locked";
+    public string unLocked = "";
+
 
     public bool isRifle;
+    public bool isPistol;
     public bool isAk47;
     public bool isBulldog;
     public bool isCowgun;
@@ -64,6 +103,7 @@ public class BulletData : ScriptableObject
     public const string icegun = "icegun";
     public const string negev = "negev";
     public const string axegun = "axegun";
+    public const string pistol = "pistol";
 
 
 
@@ -119,4 +159,18 @@ public class BulletData : ScriptableObject
 
     public bool isFirable;
 
+    public enum WeaponNames
+    {
+        AK47,
+        Bulldog,
+        Cowgun,
+        Crystalgun,
+        Demongun,
+        Icegun,
+        Negev,
+        Eve,
+        Axegun,
+        Pistol,
+        Rifle
+    }
 }

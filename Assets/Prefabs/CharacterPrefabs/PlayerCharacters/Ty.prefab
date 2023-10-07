@@ -2045,6 +2045,7 @@ Transform:
   - {fileID: 8255010287945679587}
   - {fileID: 3192561365164878677}
   - {fileID: 4312763735556506793}
+  - {fileID: 8327336508757860137}
   m_Father: {fileID: 754645222487137015}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2539,6 +2540,37 @@ Transform:
   m_Father: {fileID: 3756264693713058159}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5701543265875883682
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8327336508757860137}
+  m_Layer: 0
+  m_Name: AxegunTransform (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8327336508757860137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5701543265875883682}
+  m_LocalRotation: {x: 0.02581236, y: -0.03702299, z: 0.6498248, w: 0.75874287}
+  m_LocalPosition: {x: -0.146, y: -0.032, z: -0.031}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8713070854497341618}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 5, y: -1.3, z: 81.1}
 --- !u!1 &5776716192865057874
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,11 +2838,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
-  slaveData: {fileID: 0}
   cloneData: {fileID: 11400000, guid: 0e1d9c4eaf80763478d175de10154293, type: 2}
 --- !u!95 &5945881725241583721
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2827,7 +2858,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &5979730821111259320
 GameObject:
   m_ObjectHideFlags: 0

@@ -69,6 +69,7 @@ Transform:
   - {fileID: 7981523530138606652}
   - {fileID: 8104168286934391952}
   - {fileID: 1900689953224496625}
+  - {fileID: 6818137133977357094}
   m_Father: {fileID: 4900100245078332469}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -198,6 +199,37 @@ Transform:
   m_Father: {fileID: 1757163470324523241}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 3.393, y: -185.102, z: -96.365}
+--- !u!1 &523751166251558783
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6818137133977357094}
+  m_Layer: 0
+  m_Name: PistolTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6818137133977357094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523751166251558783}
+  m_LocalRotation: {x: 0.032125663, y: -0.046604224, z: 0.7479619, w: 0.6613237}
+  m_LocalPosition: {x: -0.072, y: 0.081, z: 0.019}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1757163470324523241}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: -186.443, y: -180.783, z: 276.992}
 --- !u!1 &575537391242996590
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,7 +522,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &602852197543427256
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -507,7 +539,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &1664736317486929553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -521,7 +553,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
-  slaveData: {fileID: 0}
   cloneData: {fileID: 11400000, guid: 0e1d9c4eaf80763478d175de10154293, type: 2}
 --- !u!1 &2184995855949345424
 GameObject:

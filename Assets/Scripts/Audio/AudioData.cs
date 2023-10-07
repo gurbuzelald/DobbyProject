@@ -42,6 +42,7 @@ public class AudioData : ScriptableObject
     public AudioClip IcegunClip;
     public AudioClip NegevClip;
     public AudioClip AxegunClip;
+    public AudioClip PistolClip;
 
     [Header("Swords")]
     public AudioClip LowSwordClip;

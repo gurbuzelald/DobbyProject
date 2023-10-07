@@ -95,6 +95,9 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     private Slider healthBarSlider;
     private Animator characterAnimator;
 
+
+    private PlayerManager playerManager;
+
     public float GetZValue()
     {
         return _zValue;
@@ -105,6 +108,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     void Start()
     {
+        playerManager = gameObject.GetComponent<PlayerManager>(); 
         PlayerManager.GetInstance.gameObject.GetComponent<Rigidbody>().isKinematic = false  ;
 
 
@@ -152,7 +156,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     void Update()
     {
 
-        iPlayerCamera.ChangeCamera();
+        iPlayerCamera.ChangeCamera(_playerData, ref playerManager);
 
         iPlayerTrigger.DamageArrowDirection(ref _damageArrow);
 

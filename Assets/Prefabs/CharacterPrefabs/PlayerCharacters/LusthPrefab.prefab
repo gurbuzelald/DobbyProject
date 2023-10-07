@@ -470,6 +470,7 @@ Transform:
   - {fileID: 7148801819440080022}
   - {fileID: 5614036252181634501}
   - {fileID: 8996696788254365668}
+  - {fileID: 3985754744598647097}
   m_Father: {fileID: 4752606524197498286}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2602,6 +2603,37 @@ Transform:
   m_Father: {fileID: 6519760883529471634}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7558516130141880528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3985754744598647097}
+  m_Layer: 0
+  m_Name: PistolTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3985754744598647097
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7558516130141880528}
+  m_LocalRotation: {x: -0.18591096, y: -0.25162297, z: 0.6565427, w: 0.6863488}
+  m_LocalPosition: {x: -0.14720948, y: -0.01877927, z: 0.002104233}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4185533419018281704}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 4.313, y: -36.242, z: 86.045}
 --- !u!1 &7604929783532272890
 GameObject:
   m_ObjectHideFlags: 0

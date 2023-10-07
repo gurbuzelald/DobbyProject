@@ -284,7 +284,7 @@
             "id": "2015caca-f443-4453-9bc9-b74dbdba0817",
             "actions": [
                 {
-                    "name": "Stick",
+                    "name": "CharacterStick",
                     "type": "Value",
                     "id": "9d2e7db7-d8b9-4777-8d85-3b2e12465c73",
                     "expectedControlType": "Vector2",
@@ -400,7 +400,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Stick",
+                    "action": "CharacterStick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -522,6 +522,234 @@
                     "processors": "",
                     "groups": "",
                     "action": "Ty",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "WeaponMenuInput",
+            "id": "bb644433-e641-41da-9827-8755e16d5e37",
+            "actions": [
+                {
+                    "name": "WeaponStick",
+                    "type": "Value",
+                    "id": "c191d826-ab10-49f1-914a-679b302c58dc",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "AK47",
+                    "type": "Button",
+                    "id": "223c4f2b-6925-4002-856a-bfe0dce62ada",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Axe",
+                    "type": "Button",
+                    "id": "8fdb06ad-2319-4338-b832-b83394b982aa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Bulldog",
+                    "type": "Button",
+                    "id": "b745d850-ac52-40e9-8712-e7fd6a8fcb0b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Cow",
+                    "type": "Button",
+                    "id": "c8b05a78-48d6-4a45-bcf5-1a86ffca8e4e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Crystal",
+                    "type": "Button",
+                    "id": "8f964315-4dce-4c37-a467-e90432f87f10",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Demon",
+                    "type": "Button",
+                    "id": "f1d87f63-e1f6-421b-b92b-211534222ebb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ice",
+                    "type": "Button",
+                    "id": "bf40ab7f-e41e-4d09-b1bf-66b33b2ef75b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Negev",
+                    "type": "Button",
+                    "id": "c03923cc-015e-4b80-8dd8-67bc21a63772",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pistol",
+                    "type": "Button",
+                    "id": "7a35abf0-1f0e-4dda-91f5-53ba095f2090",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Rifle",
+                    "type": "Button",
+                    "id": "5fdc0c96-661b-4c0e-b213-c3b0d07a6bf3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "768f5030-2d8e-4fc0-b47a-08cbb0f4b5ff",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WeaponStick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f418530-592f-47ed-8976-b249c15cdabb",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AK47",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5aac7385-412e-4f4a-9b31-5db699949a38",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Axe",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "acb8ae09-fdee-47aa-97f5-5020a5051f6f",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Bulldog",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b3d3e7e1-47c8-415d-8b76-07992792b6ff",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cow",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d38bc57f-1af0-40f4-a499-ecff3ddf4371",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crystal",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e361e7a-c8a6-433d-b2e2-60e661ded341",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Demon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f4588e74-bfeb-46d8-a018-62058c18da09",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Ice",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6c372018-5c56-4061-8a98-20cd2c0ee941",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Negev",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4562cc16-4233-438a-ad38-64916609066b",
+                    "path": "<Gamepad>/leftStick/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pistol",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a3c9f68-c979-4fb9-846c-c460d66171b1",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rifle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

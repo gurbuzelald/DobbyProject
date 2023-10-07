@@ -306,7 +306,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
             ""id"": ""2015caca-f443-4453-9bc9-b74dbdba0817"",
             ""actions"": [
                 {
-                    ""name"": ""Stick"",
+                    ""name"": ""CharacterStick"",
                     ""type"": ""Value"",
                     ""id"": ""9d2e7db7-d8b9-4777-8d85-3b2e12465c73"",
                     ""expectedControlType"": ""Vector2"",
@@ -422,7 +422,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Stick"",
+                    ""action"": ""CharacterStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -550,6 +550,234 @@ public partial class @Player : IInputActionCollection2, IDisposable
             ]
         },
         {
+            ""name"": ""WeaponMenuInput"",
+            ""id"": ""bb644433-e641-41da-9827-8755e16d5e37"",
+            ""actions"": [
+                {
+                    ""name"": ""WeaponStick"",
+                    ""type"": ""Value"",
+                    ""id"": ""c191d826-ab10-49f1-914a-679b302c58dc"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AK47"",
+                    ""type"": ""Button"",
+                    ""id"": ""223c4f2b-6925-4002-856a-bfe0dce62ada"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Axe"",
+                    ""type"": ""Button"",
+                    ""id"": ""8fdb06ad-2319-4338-b832-b83394b982aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Bulldog"",
+                    ""type"": ""Button"",
+                    ""id"": ""b745d850-ac52-40e9-8712-e7fd6a8fcb0b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Cow"",
+                    ""type"": ""Button"",
+                    ""id"": ""c8b05a78-48d6-4a45-bcf5-1a86ffca8e4e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Crystal"",
+                    ""type"": ""Button"",
+                    ""id"": ""8f964315-4dce-4c37-a467-e90432f87f10"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Demon"",
+                    ""type"": ""Button"",
+                    ""id"": ""f1d87f63-e1f6-421b-b92b-211534222ebb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Ice"",
+                    ""type"": ""Button"",
+                    ""id"": ""bf40ab7f-e41e-4d09-b1bf-66b33b2ef75b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Negev"",
+                    ""type"": ""Button"",
+                    ""id"": ""c03923cc-015e-4b80-8dd8-67bc21a63772"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pistol"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a35abf0-1f0e-4dda-91f5-53ba095f2090"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rifle"",
+                    ""type"": ""Button"",
+                    ""id"": ""5fdc0c96-661b-4c0e-b213-c3b0d07a6bf3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""768f5030-2d8e-4fc0-b47a-08cbb0f4b5ff"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""WeaponStick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f418530-592f-47ed-8976-b249c15cdabb"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AK47"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5aac7385-412e-4f4a-9b31-5db699949a38"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Axe"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""acb8ae09-fdee-47aa-97f5-5020a5051f6f"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Bulldog"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3d3e7e1-47c8-415d-8b76-07992792b6ff"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cow"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d38bc57f-1af0-40f4-a499-ecff3ddf4371"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crystal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e361e7a-c8a6-433d-b2e2-60e661ded341"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Demon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4588e74-bfeb-46d8-a018-62058c18da09"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Ice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c372018-5c56-4061-8a98-20cd2c0ee941"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Negev"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4562cc16-4233-438a-ad38-64916609066b"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pistol"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a3c9f68-c979-4fb9-846c-c460d66171b1"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rifle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""GrowMap"",
             ""id"": ""9865e4c6-f71f-4d00-b830-f256ec7046b8"",
             ""actions"": [
@@ -592,7 +820,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_PlayerMain_ExtraSpeed = m_PlayerMain.FindAction("ExtraSpeed", throwIfNotFound: true);
         // CharacterMenuInput
         m_CharacterMenuInput = asset.FindActionMap("CharacterMenuInput", throwIfNotFound: true);
-        m_CharacterMenuInput_Stick = m_CharacterMenuInput.FindAction("Stick", throwIfNotFound: true);
+        m_CharacterMenuInput_CharacterStick = m_CharacterMenuInput.FindAction("CharacterStick", throwIfNotFound: true);
         m_CharacterMenuInput_Spartacus = m_CharacterMenuInput.FindAction("Spartacus", throwIfNotFound: true);
         m_CharacterMenuInput_Glassy = m_CharacterMenuInput.FindAction("Glassy", throwIfNotFound: true);
         m_CharacterMenuInput_Dobby = m_CharacterMenuInput.FindAction("Dobby", throwIfNotFound: true);
@@ -604,6 +832,19 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_CharacterMenuInput_Aj = m_CharacterMenuInput.FindAction("Aj", throwIfNotFound: true);
         m_CharacterMenuInput_Mremireh = m_CharacterMenuInput.FindAction("Mremireh", throwIfNotFound: true);
         m_CharacterMenuInput_Ty = m_CharacterMenuInput.FindAction("Ty", throwIfNotFound: true);
+        // WeaponMenuInput
+        m_WeaponMenuInput = asset.FindActionMap("WeaponMenuInput", throwIfNotFound: true);
+        m_WeaponMenuInput_WeaponStick = m_WeaponMenuInput.FindAction("WeaponStick", throwIfNotFound: true);
+        m_WeaponMenuInput_AK47 = m_WeaponMenuInput.FindAction("AK47", throwIfNotFound: true);
+        m_WeaponMenuInput_Axe = m_WeaponMenuInput.FindAction("Axe", throwIfNotFound: true);
+        m_WeaponMenuInput_Bulldog = m_WeaponMenuInput.FindAction("Bulldog", throwIfNotFound: true);
+        m_WeaponMenuInput_Cow = m_WeaponMenuInput.FindAction("Cow", throwIfNotFound: true);
+        m_WeaponMenuInput_Crystal = m_WeaponMenuInput.FindAction("Crystal", throwIfNotFound: true);
+        m_WeaponMenuInput_Demon = m_WeaponMenuInput.FindAction("Demon", throwIfNotFound: true);
+        m_WeaponMenuInput_Ice = m_WeaponMenuInput.FindAction("Ice", throwIfNotFound: true);
+        m_WeaponMenuInput_Negev = m_WeaponMenuInput.FindAction("Negev", throwIfNotFound: true);
+        m_WeaponMenuInput_Pistol = m_WeaponMenuInput.FindAction("Pistol", throwIfNotFound: true);
+        m_WeaponMenuInput_Rifle = m_WeaponMenuInput.FindAction("Rifle", throwIfNotFound: true);
         // GrowMap
         m_GrowMap = asset.FindActionMap("GrowMap", throwIfNotFound: true);
         m_GrowMap_GrowingStuate = m_GrowMap.FindAction("GrowingStuate", throwIfNotFound: true);
@@ -755,7 +996,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     // CharacterMenuInput
     private readonly InputActionMap m_CharacterMenuInput;
     private ICharacterMenuInputActions m_CharacterMenuInputActionsCallbackInterface;
-    private readonly InputAction m_CharacterMenuInput_Stick;
+    private readonly InputAction m_CharacterMenuInput_CharacterStick;
     private readonly InputAction m_CharacterMenuInput_Spartacus;
     private readonly InputAction m_CharacterMenuInput_Glassy;
     private readonly InputAction m_CharacterMenuInput_Dobby;
@@ -771,7 +1012,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     {
         private @Player m_Wrapper;
         public CharacterMenuInputActions(@Player wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Stick => m_Wrapper.m_CharacterMenuInput_Stick;
+        public InputAction @CharacterStick => m_Wrapper.m_CharacterMenuInput_CharacterStick;
         public InputAction @Spartacus => m_Wrapper.m_CharacterMenuInput_Spartacus;
         public InputAction @Glassy => m_Wrapper.m_CharacterMenuInput_Glassy;
         public InputAction @Dobby => m_Wrapper.m_CharacterMenuInput_Dobby;
@@ -792,9 +1033,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_CharacterMenuInputActionsCallbackInterface != null)
             {
-                @Stick.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnStick;
-                @Stick.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnStick;
-                @Stick.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnStick;
+                @CharacterStick.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnCharacterStick;
+                @CharacterStick.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnCharacterStick;
+                @CharacterStick.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnCharacterStick;
                 @Spartacus.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnSpartacus;
                 @Spartacus.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnSpartacus;
                 @Spartacus.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnSpartacus;
@@ -832,9 +1073,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
             m_Wrapper.m_CharacterMenuInputActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Stick.started += instance.OnStick;
-                @Stick.performed += instance.OnStick;
-                @Stick.canceled += instance.OnStick;
+                @CharacterStick.started += instance.OnCharacterStick;
+                @CharacterStick.performed += instance.OnCharacterStick;
+                @CharacterStick.canceled += instance.OnCharacterStick;
                 @Spartacus.started += instance.OnSpartacus;
                 @Spartacus.performed += instance.OnSpartacus;
                 @Spartacus.canceled += instance.OnSpartacus;
@@ -872,6 +1113,119 @@ public partial class @Player : IInputActionCollection2, IDisposable
         }
     }
     public CharacterMenuInputActions @CharacterMenuInput => new CharacterMenuInputActions(this);
+
+    // WeaponMenuInput
+    private readonly InputActionMap m_WeaponMenuInput;
+    private IWeaponMenuInputActions m_WeaponMenuInputActionsCallbackInterface;
+    private readonly InputAction m_WeaponMenuInput_WeaponStick;
+    private readonly InputAction m_WeaponMenuInput_AK47;
+    private readonly InputAction m_WeaponMenuInput_Axe;
+    private readonly InputAction m_WeaponMenuInput_Bulldog;
+    private readonly InputAction m_WeaponMenuInput_Cow;
+    private readonly InputAction m_WeaponMenuInput_Crystal;
+    private readonly InputAction m_WeaponMenuInput_Demon;
+    private readonly InputAction m_WeaponMenuInput_Ice;
+    private readonly InputAction m_WeaponMenuInput_Negev;
+    private readonly InputAction m_WeaponMenuInput_Pistol;
+    private readonly InputAction m_WeaponMenuInput_Rifle;
+    public struct WeaponMenuInputActions
+    {
+        private @Player m_Wrapper;
+        public WeaponMenuInputActions(@Player wrapper) { m_Wrapper = wrapper; }
+        public InputAction @WeaponStick => m_Wrapper.m_WeaponMenuInput_WeaponStick;
+        public InputAction @AK47 => m_Wrapper.m_WeaponMenuInput_AK47;
+        public InputAction @Axe => m_Wrapper.m_WeaponMenuInput_Axe;
+        public InputAction @Bulldog => m_Wrapper.m_WeaponMenuInput_Bulldog;
+        public InputAction @Cow => m_Wrapper.m_WeaponMenuInput_Cow;
+        public InputAction @Crystal => m_Wrapper.m_WeaponMenuInput_Crystal;
+        public InputAction @Demon => m_Wrapper.m_WeaponMenuInput_Demon;
+        public InputAction @Ice => m_Wrapper.m_WeaponMenuInput_Ice;
+        public InputAction @Negev => m_Wrapper.m_WeaponMenuInput_Negev;
+        public InputAction @Pistol => m_Wrapper.m_WeaponMenuInput_Pistol;
+        public InputAction @Rifle => m_Wrapper.m_WeaponMenuInput_Rifle;
+        public InputActionMap Get() { return m_Wrapper.m_WeaponMenuInput; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(WeaponMenuInputActions set) { return set.Get(); }
+        public void SetCallbacks(IWeaponMenuInputActions instance)
+        {
+            if (m_Wrapper.m_WeaponMenuInputActionsCallbackInterface != null)
+            {
+                @WeaponStick.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnWeaponStick;
+                @WeaponStick.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnWeaponStick;
+                @WeaponStick.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnWeaponStick;
+                @AK47.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnAK47;
+                @AK47.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnAK47;
+                @AK47.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnAK47;
+                @Axe.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnAxe;
+                @Axe.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnAxe;
+                @Axe.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnAxe;
+                @Bulldog.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnBulldog;
+                @Bulldog.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnBulldog;
+                @Bulldog.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnBulldog;
+                @Cow.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnCow;
+                @Cow.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnCow;
+                @Cow.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnCow;
+                @Crystal.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnCrystal;
+                @Crystal.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnCrystal;
+                @Crystal.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnCrystal;
+                @Demon.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnDemon;
+                @Demon.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnDemon;
+                @Demon.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnDemon;
+                @Ice.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnIce;
+                @Ice.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnIce;
+                @Ice.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnIce;
+                @Negev.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnNegev;
+                @Negev.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnNegev;
+                @Negev.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnNegev;
+                @Pistol.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnPistol;
+                @Pistol.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnPistol;
+                @Pistol.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnPistol;
+                @Rifle.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnRifle;
+                @Rifle.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnRifle;
+                @Rifle.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnRifle;
+            }
+            m_Wrapper.m_WeaponMenuInputActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @WeaponStick.started += instance.OnWeaponStick;
+                @WeaponStick.performed += instance.OnWeaponStick;
+                @WeaponStick.canceled += instance.OnWeaponStick;
+                @AK47.started += instance.OnAK47;
+                @AK47.performed += instance.OnAK47;
+                @AK47.canceled += instance.OnAK47;
+                @Axe.started += instance.OnAxe;
+                @Axe.performed += instance.OnAxe;
+                @Axe.canceled += instance.OnAxe;
+                @Bulldog.started += instance.OnBulldog;
+                @Bulldog.performed += instance.OnBulldog;
+                @Bulldog.canceled += instance.OnBulldog;
+                @Cow.started += instance.OnCow;
+                @Cow.performed += instance.OnCow;
+                @Cow.canceled += instance.OnCow;
+                @Crystal.started += instance.OnCrystal;
+                @Crystal.performed += instance.OnCrystal;
+                @Crystal.canceled += instance.OnCrystal;
+                @Demon.started += instance.OnDemon;
+                @Demon.performed += instance.OnDemon;
+                @Demon.canceled += instance.OnDemon;
+                @Ice.started += instance.OnIce;
+                @Ice.performed += instance.OnIce;
+                @Ice.canceled += instance.OnIce;
+                @Negev.started += instance.OnNegev;
+                @Negev.performed += instance.OnNegev;
+                @Negev.canceled += instance.OnNegev;
+                @Pistol.started += instance.OnPistol;
+                @Pistol.performed += instance.OnPistol;
+                @Pistol.canceled += instance.OnPistol;
+                @Rifle.started += instance.OnRifle;
+                @Rifle.performed += instance.OnRifle;
+                @Rifle.canceled += instance.OnRifle;
+            }
+        }
+    }
+    public WeaponMenuInputActions @WeaponMenuInput => new WeaponMenuInputActions(this);
 
     // GrowMap
     private readonly InputActionMap m_GrowMap;
@@ -918,7 +1272,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     }
     public interface ICharacterMenuInputActions
     {
-        void OnStick(InputAction.CallbackContext context);
+        void OnCharacterStick(InputAction.CallbackContext context);
         void OnSpartacus(InputAction.CallbackContext context);
         void OnGlassy(InputAction.CallbackContext context);
         void OnDobby(InputAction.CallbackContext context);
@@ -930,6 +1284,20 @@ public partial class @Player : IInputActionCollection2, IDisposable
         void OnAj(InputAction.CallbackContext context);
         void OnMremireh(InputAction.CallbackContext context);
         void OnTy(InputAction.CallbackContext context);
+    }
+    public interface IWeaponMenuInputActions
+    {
+        void OnWeaponStick(InputAction.CallbackContext context);
+        void OnAK47(InputAction.CallbackContext context);
+        void OnAxe(InputAction.CallbackContext context);
+        void OnBulldog(InputAction.CallbackContext context);
+        void OnCow(InputAction.CallbackContext context);
+        void OnCrystal(InputAction.CallbackContext context);
+        void OnDemon(InputAction.CallbackContext context);
+        void OnIce(InputAction.CallbackContext context);
+        void OnNegev(InputAction.CallbackContext context);
+        void OnPistol(InputAction.CallbackContext context);
+        void OnRifle(InputAction.CallbackContext context);
     }
     public interface IGrowMapActions
     {

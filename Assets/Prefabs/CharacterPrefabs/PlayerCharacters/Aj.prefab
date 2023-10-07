@@ -3747,6 +3747,37 @@ Transform:
   m_Father: {fileID: 100705998343701775}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7930918257403370011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8771290290865624958}
+  m_Layer: 0
+  m_Name: PistolTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8771290290865624958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7930918257403370011}
+  m_LocalRotation: {x: 0.058016002, y: -0.07311703, z: 0.71098006, w: 0.69699025}
+  m_LocalPosition: {x: -0.071248375, y: 0.083894715, z: 0.019820979}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 417822810573773561}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: -190.65201, y: -181.133, z: 271.033}
 --- !u!1 &7968018059640884826
 GameObject:
   m_ObjectHideFlags: 0
@@ -3847,6 +3878,7 @@ Transform:
   - {fileID: 3157820507396508642}
   - {fileID: 8434197811675054177}
   - {fileID: 3802641397339011845}
+  - {fileID: 8771290290865624958}
   m_Father: {fileID: 8752561005801761986}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

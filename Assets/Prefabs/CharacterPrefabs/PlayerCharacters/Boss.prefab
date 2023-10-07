@@ -700,6 +700,7 @@ Transform:
   - {fileID: 8487347118023992793}
   - {fileID: 3397093811835842882}
   - {fileID: 3697102663450178882}
+  - {fileID: 8393158523290329345}
   m_Father: {fileID: 7956233309019044960}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1642,6 +1643,37 @@ Transform:
   m_Father: {fileID: 2586182362330778744}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2577766546485570918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8393158523290329345}
+  m_Layer: 0
+  m_Name: PistolTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8393158523290329345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2577766546485570918}
+  m_LocalRotation: {x: -0.41494444, y: 0.39584896, z: 0.58493, w: 0.5735692}
+  m_LocalPosition: {x: -0.004, y: 0.103, z: -0.166}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5881751874462812591}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 290.101, y: 354.769, z: 94.781}
 --- !u!1 &2644085809709595643
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,7 +2194,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4457686904536421541
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2179,7 +2211,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!114 &4457686904536421540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2193,7 +2225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
-  slaveData: {fileID: 0}
   cloneData: {fileID: 11400000, guid: 0e1d9c4eaf80763478d175de10154293, type: 2}
 --- !u!1 &4055906641469108726
 GameObject:
