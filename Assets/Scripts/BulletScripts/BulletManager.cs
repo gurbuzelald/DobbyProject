@@ -192,6 +192,10 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
         }
+        else
+        {
+            Debug.Log("Check current weapon name");
+        }
 
         _currentWeaponObject.SetActive(true);
 

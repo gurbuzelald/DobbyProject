@@ -5,36 +5,37 @@ using UnityEngine;
 public class MirrorSpawner : MonoBehaviour
 {
     [SerializeField] PlayerData _playerData;
+    [SerializeField] LevelData levelData;
 
     private GameObject _currentMirrorCouple;
     void Awake()
     {
-        if (_playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
         {
-            for (int i = 0; i < _playerData._firstMapMirrorCouples.Length; i++)
+            for (int i = 0; i < levelData._firstMapMirrorCouples.Length; i++)
             {
-                _currentMirrorCouple = Instantiate(_playerData._firstMapMirrorCouples[i], gameObject.transform);
+                _currentMirrorCouple = Instantiate(levelData._firstMapMirrorCouples[i], gameObject.transform);
             }
         }
-        if (_playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        if (levelData.currentMapName == LevelData.MapNames.SecondMap)
         {
-            for (int i = 0; i < _playerData._secondMapMirrorCouples.Length; i++)
+            for (int i = 0; i < levelData._secondMapMirrorCouples.Length; i++)
             {
-                _currentMirrorCouple = Instantiate(_playerData._secondMapMirrorCouples[i], gameObject.transform);
+                _currentMirrorCouple = Instantiate(levelData._secondMapMirrorCouples[i], gameObject.transform);
             }
         }
-        if (_playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
-            for (int i = 0; i < _playerData._thirdMapMirrorCouples.Length; i++)
+            for (int i = 0; i < levelData._thirdMapMirrorCouples.Length; i++)
             {
-                _currentMirrorCouple = Instantiate(_playerData._thirdMapMirrorCouples[i], gameObject.transform);
+                _currentMirrorCouple = Instantiate(levelData._thirdMapMirrorCouples[i], gameObject.transform);
             }
         }
-        if (_playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
-            for (int i = 0; i < _playerData._fourthMapMirrorCouples.Length; i++)
+            for (int i = 0; i < levelData._fourthMapMirrorCouples.Length; i++)
             {
-                _currentMirrorCouple = Instantiate(_playerData._fourthMapMirrorCouples[i], gameObject.transform);
+                _currentMirrorCouple = Instantiate(levelData._fourthMapMirrorCouples[i], gameObject.transform);
             }
         }
     }
@@ -43,27 +44,27 @@ public class MirrorSpawner : MonoBehaviour
         Destroy(_currentMirrorCouple);
 
 
-        for (int i = 0; i < _playerData._secondMapMirrorCouples.Length; i++)
+        for (int i = 0; i < levelData._secondMapMirrorCouples.Length; i++)
         {
-            _currentMirrorCouple = Instantiate(_playerData._secondMapMirrorCouples[i], gameObject.transform);
+            _currentMirrorCouple = Instantiate(levelData._secondMapMirrorCouples[i], gameObject.transform);
         }
     }
     public void CreateThirdMapMirror()
     {
         Destroy(_currentMirrorCouple);
 
-        for (int i = 0; i < _playerData._thirdMapMirrorCouples.Length; i++)
+        for (int i = 0; i < levelData._thirdMapMirrorCouples.Length; i++)
         {
-            _currentMirrorCouple = Instantiate(_playerData._thirdMapMirrorCouples[i], gameObject.transform);
+            _currentMirrorCouple = Instantiate(levelData._thirdMapMirrorCouples[i], gameObject.transform);
         }
     }
     public void CreateFourthMapMirror()
     {
         Destroy(_currentMirrorCouple); 
 
-        for (int i = 0; i < _playerData._fourthMapMirrorCouples.Length; i++)
+        for (int i = 0; i < levelData._fourthMapMirrorCouples.Length; i++)
         {
-            _currentMirrorCouple = Instantiate(_playerData._fourthMapMirrorCouples[i], gameObject.transform);
+            _currentMirrorCouple = Instantiate(levelData._fourthMapMirrorCouples[i], gameObject.transform);
         }
     }
 }  

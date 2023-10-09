@@ -45,6 +45,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public PlayerData _playerData;
     public EnemyData _enemyData;
     public BulletData _bulletData;
+    public LevelData _levelData;
 
     [Header("Current Spawn Transforms")]
     public Transform _particleTransform;
@@ -296,7 +297,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             healthBarSlider.value = 100;
             _topCanvasHealthBarSlider.value = healthBarSlider.value;
 
-            StartCoroutine(iPlayerTrigger.DelayLevelUp(2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
+            StartCoroutine(iPlayerTrigger.DelayLevelUp(_levelData, 2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
         }
         else if (other.CompareTag(SceneController.Tags.SecondFinishArea.ToString()))
         {
@@ -304,41 +305,41 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             healthBarSlider.value = 100;
             _topCanvasHealthBarSlider.value = healthBarSlider.value;
 
-            StartCoroutine(iPlayerTrigger.DelayLevelUp(2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
+            StartCoroutine(iPlayerTrigger.DelayLevelUp(_levelData, 2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
         }
         else if (other.CompareTag(SceneController.Tags.ThirdFinishArea.ToString()))
         {
             healthBarSlider.value = 100;
             _topCanvasHealthBarSlider.value = healthBarSlider.value;
 
-            StartCoroutine(iPlayerTrigger.DelayLevelUp(2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
+            StartCoroutine(iPlayerTrigger.DelayLevelUp(_levelData, 2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
         }
         if (other.CompareTag(SceneController.Tags.Coin.ToString()))
         {
-            iPlayerTrigger.PickUpCoin(SceneController.Tags.Coin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//GetScore
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.Coin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//GetScore
             iPlayerScore.ScoreTextGrowing(0, 255, 0);
         }
         if (other.CompareTag(SceneController.Tags.CheeseCoin.ToString()))
         {
-            iPlayerTrigger.PickUpCoin(SceneController.Tags.CheeseCoin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//GetScore
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.CheeseCoin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//GetScore
             iPlayerScore.ScoreTextGrowing(0, 255, 0);
         }
         if (other.CompareTag(SceneController.Tags.RotateCoin.ToString()))
         {
-            iPlayerTrigger.PickUpCoin(SceneController.Tags.RotateCoin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//GetScore
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.RotateCoin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//GetScore
             iPlayerScore.ScoreTextGrowing(0, 255, 0);
         }
         if (other.CompareTag(SceneController.Tags.MushroomCoin.ToString()))
         {
             iPlayerScore.DecreaseScore(10);
 
-            iPlayerTrigger.PickUpCoin(SceneController.Tags.MushroomCoin, other, _playerData, ref _coinObject, 
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.MushroomCoin, other, _playerData, ref _coinObject, 
                                       ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);
             if (healthBarSlider.value > 0)
             {
                 iPlayerHealth.DecreaseHealth(ref _playerData, 30,ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
-                iPlayerTrigger.PickUpCoin(SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject,
+                iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject,
                                           ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//FreshBulletAmount
             }
             else
@@ -349,13 +350,13 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         if (other.CompareTag(SceneController.Tags.BulletCoin.ToString()))
         {
-            iPlayerTrigger.PickUpCoin(SceneController.Tags.BulletCoin, other, _playerData, 
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, 
                                       ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, 
                                       ref bulletAmountText);//FreshBulletAmount
         }
         if (other.CompareTag(SceneController.Tags.HealthCoin.ToString()))
         {
-            iPlayerTrigger.PickUpCoin(SceneController.Tags.HealthCoin, other, _playerData,
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.HealthCoin, other, _playerData,
                                       ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
                                       ref bulletAmountText);
             iPlayerHealth.IncreaseHealth(50, ref _healthBarObject,ref healthBarSlider, ref _topCanvasHealthBarSlider, other);
@@ -372,7 +373,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             other.tag.ToString() == BulletData.axegun)
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-            iPlayerTrigger.PickUpCoin(SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject, 
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject, 
                                       ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//FreshBulletAmount
         }
 
@@ -509,28 +510,28 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         _playerData.damageHealthText = GameObject.Find("DamageHealthText").GetComponent<TextMeshProUGUI>();
         playerTransform = GetInstance.GetComponent<Transform>();
 
-        if (_playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        if (_levelData.currentMapName == LevelData.MapNames.FirstMap)
         {
-            _playerData.currentEnemyDetectionDistance = _playerData.level1EnemyDetectionDistance;
+            _levelData.currentEnemyDetectionDistance = _levelData.level1EnemyDetectionDistance;
 
             //GetInstance.gameObject.transform.position = new Vector3(0f, 5f, 0f);
             GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(0).transform.position;
         }
-        else if (_playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        else if (_levelData.currentMapName == LevelData.MapNames.SecondMap)
         {
-            _playerData.currentEnemyDetectionDistance = _playerData.level2EnemyDetectionDistance;
+            _levelData.currentEnemyDetectionDistance = _levelData.level2EnemyDetectionDistance;
 
             GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(1).transform.position;
         }
-        else if (_playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        else if (_levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
-            _playerData.currentEnemyDetectionDistance = _playerData.level3EnemyDetectionDistance;
+            _levelData.currentEnemyDetectionDistance = _levelData.level3EnemyDetectionDistance;
 
             GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(2).transform.position;
         }
-        else if (_playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        else if (_levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
-            _playerData.currentEnemyDetectionDistance = _playerData.level4EnemyDetectionDistance;
+            _levelData.currentEnemyDetectionDistance = _levelData.level4EnemyDetectionDistance;
 
             GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(3).transform.position;
         }
@@ -571,7 +572,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
 
 
-            iPlayerInitial.DataStatesOnInitial(_playerData, _bulletData, 
+            iPlayerInitial.DataStatesOnInitial(_levelData, _playerData, _bulletData, 
                                  ref _healthBarObject,
                                  ref _topCanvasHealthBarObject, 
                                  ref bulletAmountCanvas,

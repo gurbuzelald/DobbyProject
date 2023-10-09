@@ -5,15 +5,16 @@ using UnityEngine;
 public class ArrowRotationController : MonoBehaviour
 {
     [SerializeField] PlayerData playerData;
+    [SerializeField] LevelData levelData;
     
     private void Awake()
     {
-        playerData.isSecondMapTarget = false;
-        playerData.isThirdMapTarget = false;
-        playerData.isFourthMapTarget = false;
+        levelData.isSecondMapTarget = false;
+        levelData.isThirdMapTarget = false;
+        levelData.isFourthMapTarget = false;
 
 
-        playerData.currentFinishArea = playerData.level1FinishArea;
+        levelData.currentFinishArea = levelData.level1FinishArea;
     }
     void Update()
     {
@@ -21,26 +22,26 @@ public class ArrowRotationController : MonoBehaviour
     }
     void ArrowRotation()
     {
-        if (playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
         {
-            playerData.currentFinishArea = playerData.level1FinishArea;
+            levelData.currentFinishArea = levelData.level1FinishArea;
         }
-        if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        if (levelData.currentMapName == LevelData.MapNames.SecondMap)
         {
-            playerData.currentFinishArea = playerData.level2FinishArea;
+            levelData.currentFinishArea = levelData.level2FinishArea;
         }
-        if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
-            playerData.currentFinishArea = playerData.level3FinishArea;
+            levelData.currentFinishArea = levelData.level3FinishArea;
         }
-        if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
-            playerData.currentFinishArea = playerData.level4FinishArea;
+            levelData.currentFinishArea = levelData.level4FinishArea;
         }
 
         if (gameObject != null)
         {
-            gameObject.transform.LookAt(playerData.currentFinishArea.position);
+            gameObject.transform.LookAt(levelData.currentFinishArea.position);
         }
         //Debug.Log(_currentFinishArea.position);
 

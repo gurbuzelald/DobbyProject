@@ -30,6 +30,7 @@ public class SettingController : MonoBehaviour
 
     [Header("Data")]
     public PlayerData playerData;
+    public LevelData levelData;
 
     private void Awake()
     {
@@ -56,7 +57,7 @@ public class SettingController : MonoBehaviour
             _soundSettingsPanel.localScale = Vector3.zero;
             _sensivitySettingsPanel.localScale = Vector3.zero;
 
-            if (playerData.currentMapName != PlayerData.MapNames.FirstMap)
+            if (levelData.currentMapName != LevelData.MapNames.FirstMap)
             {
                 _continueButton.GetComponent<RectTransform>().localScale = Vector3.one;
             }
@@ -118,7 +119,7 @@ public class SettingController : MonoBehaviour
             _chooseCharacterButtonRectTransform.localScale = Vector3.one;
             _playButtonRectTransform.localScale = Vector3.one;
             _quitButtonRectTransform.localScale = Vector3.one;
-            if (playerData.currentMapName != PlayerData.MapNames.FirstMap)
+            if (levelData.currentMapName != LevelData.MapNames.FirstMap)
             {
                 _continueButtonRectTransform.localScale = Vector3.one;
             }

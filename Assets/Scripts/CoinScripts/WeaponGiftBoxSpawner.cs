@@ -6,23 +6,24 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
 {
     [SerializeField] BulletData bulletData;
     [SerializeField] PlayerData playerData;
+    [SerializeField] LevelData levelData;
 
 
     private void Awake()
     {
-        if (playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
         {
             CreateFirstMapGiftBoxes();
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
         {
             CreateSecondMapGiftBoxes();
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
             CreateThirdMapGiftBoxes();
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
             CreateFourthMapGiftBoxes();
         }

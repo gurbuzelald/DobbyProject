@@ -9,6 +9,7 @@ public class LightController : MonoBehaviour
     [SerializeField] float delayLevelUpLight = 1.2f;
 
     [SerializeField] PlayerData playerData;
+    [SerializeField] LevelData levelData;
     private void Awake()
     {
 
@@ -24,7 +25,7 @@ public class LightController : MonoBehaviour
     }
     void LevelUpLight(PlayerData playerData, float delayLevelUpLight)
     {
-        if (playerData.isLevelUp)
+        if (levelData.isLevelUp)
         {
             lights[1].SetActive(true);//Dark Light isActivated
             lights[0].SetActive(false);
@@ -36,6 +37,6 @@ public class LightController : MonoBehaviour
         yield return new WaitForSeconds(delayLevelUpLight);
         lights[1].SetActive(false);
         lights[0].SetActive(true);
-        playerData.isLevelUp = false;
+        levelData.isLevelUp = false;
     }
 }

@@ -16,6 +16,7 @@ public class TimeController : MonoBehaviour
     [SerializeField] TextMeshProUGUI _warmTimeText;
     [SerializeField] TextMeshProUGUI _swordTimeText;
     [SerializeField] EnemyData enemyData;
+    [SerializeField] LevelData levelData;
     void Start()
     {
         _warmTimeText.transform.localScale = Vector3.zero;
@@ -35,7 +36,7 @@ public class TimeController : MonoBehaviour
         GetTime(900);
         SwordTimer(playerData, _swordTimeText);
         WeaponTimer(playerData);
-        EnemySpawnTimer(playerData.currentEnemySpawnDelay);
+        EnemySpawnTimer(levelData.currentEnemySpawnDelay);
     }
     private void GetTime(int timeValue)
     {

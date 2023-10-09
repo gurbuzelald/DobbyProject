@@ -12,6 +12,7 @@ public class SceneController : AbstractSceneController<SceneController>
     [Header("Data")]
     public PlayerData _playerData;
     [SerializeField] PlayerCoinData playerCoinData;
+    [SerializeField] LevelData levelData;
 
     private GameObject pausePanel;
     private bool pauseGame = false;
@@ -90,7 +91,7 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        _playerData.currentMapName = PlayerData.MapNames.FirstMap;
+        levelData.currentMapName = LevelData.MapNames.FirstMap;
 
         playAgain = true;
 
@@ -131,7 +132,7 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        _playerData.currentMapName = PlayerData.MapNames.FirstMap;
+        levelData.currentMapName = LevelData.MapNames.FirstMap;
 
         DestroySingletonObjects();
 

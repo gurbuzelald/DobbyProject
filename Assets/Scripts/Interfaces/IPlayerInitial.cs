@@ -14,7 +14,7 @@ internal interface IPlayerInitial
                                                ref Transform _cameraWasherTransform, Transform healthBarTransform,
                                                ref GameObject _healthBarObject, ref GameObject bulletAmountCanvas);
 
-    void DataStatesOnInitial(PlayerData _playerData, BulletData _bulletData, ref GameObject _healthBarObject,
+    void DataStatesOnInitial(LevelData levelData, PlayerData _playerData, BulletData _bulletData, ref GameObject _healthBarObject,
                              ref GameObject _topCanvasHealthBarObject, ref GameObject bulletAmountCanvas,
                              ref float _initPlayerSpeed);
     void CreateCharacterObject(PlayerData _playerData, ref GameObject characterObject);

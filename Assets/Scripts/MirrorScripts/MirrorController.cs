@@ -5,6 +5,7 @@ using UnityEngine;
 public class MirrorController : MonoBehaviour
 {
     [SerializeField] PlayerData _playerData;
+    [SerializeField] LevelData levelData;
     public static bool triggerMirror;
     private void Awake()
     {
@@ -15,7 +16,7 @@ public class MirrorController : MonoBehaviour
         if (other.CompareTag(SceneController.Tags.Player.ToString()))
         {
             triggerMirror = true;
-            _playerData.currentMirrorName = gameObject.name;
+            levelData.currentMirrorName = gameObject.name;
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Teleport);
         }
     }

@@ -8,6 +8,7 @@ public class MapController : MonoBehaviour
     [SerializeField] GameObject[] Maps;
     [SerializeField] GameObject[] WeaponGiftBoxes;
     [SerializeField] PlayerData playerData;
+    [SerializeField] LevelData levelData;
     public static GameObject currentMap;
 
     private JsonReadAndWriteSystem readWrite;
@@ -18,25 +19,25 @@ public class MapController : MonoBehaviour
     {
         readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
 
-        if (playerData.currentMapName == PlayerData.MapNames.FirstMap) {
+        if (levelData.currentMapName == LevelData.MapNames.FirstMap) {
 
             currentMap = Instantiate(Maps[0], gameObject.transform);
-            RenderSettings.skybox = playerData.firstSkybox;
+            RenderSettings.skybox = levelData.firstSkybox;
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
         {
             currentMap = Instantiate(Maps[1], gameObject.transform);
-            RenderSettings.skybox = playerData.secondMapSkyBox;
+            RenderSettings.skybox = levelData.secondMapSkyBox;
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
             currentMap = Instantiate(Maps[2], gameObject.transform);
-            RenderSettings.skybox = playerData.thirdSkybox;
+            RenderSettings.skybox = levelData.thirdSkybox;
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
             currentMap = Instantiate(Maps[3], gameObject.transform);
-            RenderSettings.skybox = playerData.fourthSkybox;
+            RenderSettings.skybox = levelData.fourthSkybox;
         }
 
 
@@ -64,7 +65,7 @@ public class MapController : MonoBehaviour
     }
     public void CreateSecondMap()
     {
-        playerData.currentMapName = PlayerData.MapNames.SecondMap;
+        levelData.currentMapName = LevelData.MapNames.SecondMap;
 
         playerData.isPlayable = false;
         DarknessCubesActivity();
@@ -74,7 +75,7 @@ public class MapController : MonoBehaviour
     }
     public void CreateThirdMap()
     {
-        playerData.currentMapName = PlayerData.MapNames.ThirdMap;
+        levelData.currentMapName = LevelData.MapNames.ThirdMap;
 
         playerData.isPlayable = false;
         DarknessCubesActivity();
@@ -84,7 +85,7 @@ public class MapController : MonoBehaviour
     }
     public void CreateFourthMap()
     {
-        playerData.currentMapName = PlayerData.MapNames.FourthMap;
+        levelData.currentMapName = LevelData.MapNames.FourthMap;
 
         playerData.isPlayable = false;
         DarknessCubesActivity();
@@ -98,14 +99,14 @@ public class MapController : MonoBehaviour
     }
     public void SetSecondSkybox()
     {
-        RenderSettings.skybox = playerData.secondMapSkyBox;
+        RenderSettings.skybox = levelData.secondMapSkyBox;
     }
     public void SetThirdSkyBox()
     {
-        RenderSettings.skybox = playerData.thirdSkybox;
+        RenderSettings.skybox = levelData.thirdSkybox;
     }
     public void SetFourthSkybox()
     {
-        RenderSettings.skybox = playerData.fourthSkybox;
+        RenderSettings.skybox = levelData.fourthSkybox;
     }
 }

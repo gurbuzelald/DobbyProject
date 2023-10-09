@@ -17,7 +17,8 @@ internal interface IPlayerTrigger
                         ref Slider topCanvasHealthBarSlider);
 
 
-    void PickUpCoin(SceneController.Tags value, 
+    void PickUpCoin(LevelData levelData,
+                    SceneController.Tags value, 
                     Collider other, 
                     PlayerData _playerData, 
                     ref GameObject _coinObject, 
@@ -37,7 +38,7 @@ internal interface IPlayerTrigger
 
     void GettingPoisonDamage(PlayerData _playerData, ref Slider _topCanvasHealthBarSlider, ref Slider _healthBarSlider);
 
-    IEnumerator DelayLevelUp(float delayWait, float delayDestroy, PlayerData _playerData, Collider other);
+    IEnumerator DelayLevelUp(LevelData levelData, float delayWait, float delayDestroy, PlayerData _playerData, Collider other);
 
 
     IEnumerator DamageArrowIsLookAtEnemy(Collider other, GameObject _damageArrow);

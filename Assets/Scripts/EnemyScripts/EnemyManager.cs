@@ -16,6 +16,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     [Header("Data")]
     public EnemyData enemyData;
     public PlayerData playerData;
+    public LevelData levelData;
 
     [Header("Initial Situations")]
     private float _initSpeed;
@@ -92,7 +93,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
 
                 if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.1f) &&
-                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < playerData.currentEnemyDetectionDistance) &&
+                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < levelData.currentEnemyDetectionDistance) &&
                     enemyData.isWalkable && !enemyData.isDying)
                 {
                     enemyData.enemySpeed = _initSpeed;
@@ -348,19 +349,19 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     void SetEnemySpeed()
     {
-        if (playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
         {
             enemyData.enemySpeed = Random.Range(0.1f, 0.5f);
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
         {
             enemyData.enemySpeed = Random.Range(0.3f, 0.7f);
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
             enemyData.enemySpeed = Random.Range(0.5f, 0.9f);
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
             enemyData.enemySpeed = Random.Range(0.7f, 1.1f);
         }

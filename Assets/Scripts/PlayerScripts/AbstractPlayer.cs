@@ -225,7 +225,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         //CreateSlaveObject();
     }
 
-    public void DataStatesOnInitial(PlayerData _playerData, BulletData _bulletData, ref GameObject _healthBarObject,
+    public void DataStatesOnInitial(LevelData levelData, PlayerData _playerData, BulletData _bulletData, ref GameObject _healthBarObject,
                              ref GameObject _topCanvasHealthBarObject, ref GameObject bulletAmountCanvas,
                              ref float _initPlayerSpeed)
     {//PlayerData
@@ -233,7 +233,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.isFireNonWalk = false;
             _playerData.isFireWalk = false;
-            _playerData.isLevelUp = false;
+            levelData.isLevelUp = false;
 
             _playerData.isClickable = true;
             _playerData.normalSpeed = true;
@@ -241,9 +241,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
             _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
-            _playerData.isCompleteFirstMap = false;
-            _playerData.isCompleteSecondMap = false;
-            _playerData.isCompleteThirdMap = false;
+            levelData.isCompleteFirstMap = false;
+            levelData.isCompleteSecondMap = false;
+            levelData.isCompleteThirdMap = false;
             //PlayerData.slaveCounter = 0;
             _bulletData.isRifle = false;
             _playerData.bulletAmount = _playerData.bulletPack;
@@ -712,7 +712,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
     }
 
-    public virtual void PickUpCoin(SceneController.Tags value, Collider other, 
+    public virtual void PickUpCoin(LevelData levelData, 
+                                    SceneController.Tags value, Collider other, 
                                     PlayerData _playerData, 
                                     ref GameObject _coinObject, 
                                     ref GameObject _cheeseObject, 
@@ -739,7 +740,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             //other.gameObject.SetActive(false);
 
             //Score
-            ScoreController.GetInstance.SetScore(1);
+            ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
             //CreateSlaveObject();
         }
         else if (value == SceneController.Tags.RotateCoin)
@@ -1016,26 +1017,26 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
 
 
-    public virtual IEnumerator DelayLevelUp(float delayWait, float delayDestroy, PlayerData _playerData, Collider other)
+    public virtual IEnumerator DelayLevelUp(LevelData levelData, float delayWait, float delayDestroy, PlayerData _playerData, Collider other)
     {
 
         if (other.CompareTag(SceneController.Tags.FirstFinishArea.ToString()))
         {
-            _playerData.isLevelUp = true;
-            _playerData.isCompleteFirstMap = true;
-            _playerData.isSecondMapTarget = true;
+            levelData.isLevelUp = true;
+            levelData.isCompleteFirstMap = true;
+            levelData.isSecondMapTarget = true;
         }
         else if (other.CompareTag(SceneController.Tags.SecondFinishArea.ToString()))
         {
-            _playerData.isLevelUp = true;
-            _playerData.isCompleteSecondMap = true;
-            _playerData.isThirdMapTarget = true;
+            levelData.isLevelUp = true;
+            levelData.isCompleteSecondMap = true;
+            levelData.isThirdMapTarget = true;
         }
         else if (other.CompareTag(SceneController.Tags.ThirdFinishArea.ToString()))
         {
-            _playerData.isLevelUp = true;
-            _playerData.isCompleteThirdMap = true;
-            _playerData.isFourthMapTarget = true;
+            levelData.isLevelUp = true;
+            levelData.isCompleteThirdMap = true;
+            levelData.isFourthMapTarget = true;
         }
         //PlayerData
         //_playerData.isLockedWalking = false;

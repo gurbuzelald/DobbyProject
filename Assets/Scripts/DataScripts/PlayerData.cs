@@ -42,77 +42,21 @@ public class PlayerData : ScriptableObject
     public char enemyTag;
 
     [Header("Player Level Spawns")]
-    public Transform playerSpawns;
-
-    [Header("Level SkyBoxes")]
-    public MapNames currentMapName;
-
-    [Header("Current Level")]
-    public Levels currentLevel;
-
-    [Header("Level SkyBoxes")]
-    public Material firstSkybox;
-    public Material secondMapSkyBox;
-    public Material thirdSkybox;
-    public Material fourthSkybox;
+    public Transform playerSpawns;     
 
     [Header("Health State")]
     public bool isDecreaseHealth;
     public TextMeshProUGUI damageHealthText;
     public int decreaseCounter;
-
-    [Header("Level Difficulty")]
-    public float currentEnemyDetectionDistance;
-    public float level1EnemyDetectionDistance;
-    public float level2EnemyDetectionDistance;
-    public float level3EnemyDetectionDistance;
-    public float level4EnemyDetectionDistance;
-
-    [Header("Enemy Spawn")]
-    public int currentEnemySpawnDelay;
-    public int firstMapEnemySpawnDelay;
-    public int secondMapEnemySpawnDelay;
-    public int thirdMapEnemySpawnDelay;
-    public int fourthMapEnemySpawnDelay;
-
+    
     [Header("Coin Transforms")]
     public GameObject[] mapCoins;
     public GameObject[] _healtCoinTransform;
-    public GameObject _healtCoinObject;
-
-    [Header("Mirror")]
-    public string currentMirrorName;
-    public GameObject[] _firstMapMirrorCouples;
-    public GameObject[] _secondMapMirrorCouples;
-    public GameObject[] _thirdMapMirrorCouples;
-    public GameObject[] _fourthMapMirrorCouples;
-
-    [Header("Finishes")]
-    public Transform currentFinishArea;
-    public Transform level1FinishArea;
-    public Transform level2FinishArea;
-    public Transform level3FinishArea;
-    public Transform level4FinishArea;
-
-    [Header("MapCompleteBools")]
-    public bool isCompleteFirstMap;
-    public bool isCompleteSecondMap;
-    public bool isCompleteThirdMap;
-    public bool isCompleteFourthMap;
-
-    [Header("MapFinishTargetBools")]
-    public bool isFirstMapTarget;
-    public bool isSecondMapTarget;
-    public bool isThirdMapTarget;
-    public bool isFourthMapTarget;
-    public bool isLevelUp;
-
+    public GameObject _healtCoinObject;    
 
     [Header("ChooseCharacter")]
     public CharacterNames currentCharacterName;
-
     public GameObject characterObject;
-
     public GameObject dobby;
     public GameObject glassy;
     public GameObject spartacus;
@@ -141,8 +85,6 @@ public class PlayerData : ScriptableObject
     public string locked = "Locked";
     public string unLocked = "";
 
-
-
     [Header("Prefab Game Objects For Player")]
     public GameObject[] objects;
     public GameObject[] slaveObjects;
@@ -158,7 +100,6 @@ public class PlayerData : ScriptableObject
     public bool isLose;
 
     [Header("Character Prices")]
-
     public int spartacusPrice;
     public int dobbyPrice;
     public int glassyPrice;
@@ -232,8 +173,6 @@ public class PlayerData : ScriptableObject
     public bool isPickRotateCoin;
     public bool isSwordAnimate;
 
-
-
     [Header("CameraRotation Info")]
     public bool isLookingUp;
 
@@ -302,14 +241,7 @@ public class PlayerData : ScriptableObject
     [Header("Clone Transform")]
     public Transform[] cloneTransforms;
     public GameObject[] cloneObjects;
-
-    public Transform firstTarget;
-    public Transform secondTarget;
-    public Transform thirdTarget;
-    public Transform finishTarget;
-    public Transform currentTarget;
-
-
+    
     public enum CharacterNames
     {
         Glassy,
@@ -323,21 +255,6 @@ public class PlayerData : ScriptableObject
         Aj, 
         Mremireh,
         Ty
-    }
-
-    public enum MapNames
-    {
-        FirstMap,
-        SecondMap,
-        ThirdMap,
-        FourthMap
-    }
-    public enum Levels
-    {
-        Level1,
-        Level2,
-        Level3,
-        Level4
     }
     
     public enum CharacterLocking

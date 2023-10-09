@@ -5,11 +5,13 @@ using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public PlayerData playerData;
+    public EnemyData enemyData;
+    public LevelData levelData;
+
     public Transform targetTransform;
     public ObjectPool _objectPool;
-    public EnemyData enemyData;
-    public TextMeshProUGUI enemyCountText;
-    public PlayerData playerData;
+    public TextMeshProUGUI enemyCountText;   
     private GameObject currentEnemyObjects;
 
     public LayerMask layerMask;
@@ -36,13 +38,13 @@ public class EnemySpawner : MonoBehaviour
     }
     void CreateAwakeEnemies()
     {
-        if (playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
         {
             enemyTransformObject = Instantiate(enemyData.enemyTransformsFirstMap.gameObject, gameObject.transform);
 
             for (int i = 0; i < enemyData.enemyTransformsFirstMap.transform.childCount; i++)
             {
-                playerData.currentEnemySpawnDelay = playerData.firstMapEnemySpawnDelay;
+                levelData.currentEnemySpawnDelay = levelData.firstMapEnemySpawnDelay;
                 currentEnemyObjects = Instantiate(enemyData.enemyFirstObjects[i],
                                              enemyTransformObject.transform.GetChild(i).position,
                                              Quaternion.identity,
@@ -52,13 +54,13 @@ public class EnemySpawner : MonoBehaviour
                                                                      enemyTransformObject.transform.GetChild(i).position.z);
             }
         }
-       else if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
+       else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
        {
             enemyTransformObject = Instantiate(enemyData.enemyTransformsSecondMap.gameObject, gameObject.transform);
 
             for (int i = 0; i < enemyData.enemyTransformsSecondMap.transform.childCount; i++)
             {
-                playerData.currentEnemySpawnDelay = playerData.secondMapEnemySpawnDelay;
+                levelData.currentEnemySpawnDelay = levelData.secondMapEnemySpawnDelay;
                 currentEnemyObjects = Instantiate(enemyData.enemySecondObjects[i],
                                              enemyTransformObject.transform.GetChild(i).position,
                                              Quaternion.identity,
@@ -68,13 +70,13 @@ public class EnemySpawner : MonoBehaviour
                                                                      enemyTransformObject.transform.GetChild(i).position.z);
             }
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
             enemyTransformObject = Instantiate(enemyData.enemyTransformsThirdMap.gameObject, gameObject.transform);
 
             for (int i = 0; i < enemyData.enemyTransformsThirdMap.transform.childCount; i++)
             {
-                playerData.currentEnemySpawnDelay = playerData.thirdMapEnemySpawnDelay;
+                levelData.currentEnemySpawnDelay = levelData.thirdMapEnemySpawnDelay;
                 currentEnemyObjects = Instantiate(enemyData.enemyThirdObjects[i],
                                              enemyTransformObject.transform.GetChild(i).position,
                                              Quaternion.identity,
@@ -84,13 +86,13 @@ public class EnemySpawner : MonoBehaviour
                                                                      enemyTransformObject.transform.GetChild(i).position.z);
             }
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
             enemyTransformObject = Instantiate(enemyData.enemyTransformsFourthMap.gameObject, gameObject.transform);
 
             for (int i = 0; i < enemyData.enemyTransformsFourthMap.transform.childCount; i++)
             {
-                playerData.currentEnemySpawnDelay = playerData.fourthMapEnemySpawnDelay;
+                levelData.currentEnemySpawnDelay = levelData.fourthMapEnemySpawnDelay;
                 currentEnemyObjects = Instantiate(enemyData.enemyFourthObjects[i],
                                              enemyTransformObject.transform.GetChild(i).position,
                                              Quaternion.identity,
@@ -185,7 +187,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void CheckEnemyDeathFirstMap(int i)
     {
-        if (playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
         {
 
             if (enemyData.isActivateCreateEnemy)
@@ -203,7 +205,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void CheckEnemyDeathSecondMap(int i)
     {
-        if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        if (levelData.currentMapName == LevelData.MapNames.SecondMap)
         {
             if (enemyData.isActivateCreateEnemy)
             {
@@ -220,7 +222,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void CheckEnemyDeathThirdMap(int i)
     {
-        if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
             if (enemyData.isActivateCreateEnemy)
             {
@@ -237,7 +239,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void CheckEnemyDeathFourthMap(int i)
     {
-        if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
             if (enemyData.isActivateCreateEnemy)
             {
@@ -254,7 +256,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public void CreateSecondMapEnemies()
     {
-        playerData.currentEnemySpawnDelay = playerData.secondMapEnemySpawnDelay;
+        levelData.currentEnemySpawnDelay = levelData.secondMapEnemySpawnDelay;
 
         Destroy(enemyTransformObject);
         enemyTransformObject = Instantiate(enemyData.enemyTransformsSecondMap.gameObject, gameObject.transform);
@@ -274,7 +276,7 @@ public class EnemySpawner : MonoBehaviour
    
     public void CreateThirdMapEnemies()
     {
-        playerData.currentEnemySpawnDelay = playerData.thirdMapEnemySpawnDelay;
+        levelData.currentEnemySpawnDelay = levelData.thirdMapEnemySpawnDelay;
 
         Destroy(enemyTransformObject);
         enemyTransformObject = Instantiate(enemyData.enemyTransformsThirdMap.gameObject, gameObject.transform);
@@ -294,7 +296,7 @@ public class EnemySpawner : MonoBehaviour
     }
     public void CreateFourthMapEnemies()
     {
-        playerData.currentEnemySpawnDelay = playerData.fourthMapEnemySpawnDelay;
+        levelData.currentEnemySpawnDelay = levelData.fourthMapEnemySpawnDelay;
 
         Destroy(enemyTransformObject);
         enemyTransformObject = Instantiate(enemyData.enemyTransformsFourthMap.gameObject, gameObject.transform);

@@ -8,13 +8,15 @@ public class CloneManager : MonoBehaviour
     [Header("Navmesh")]
     private NavMeshAgent _navmeshAgent;
 
+    [SerializeField] LevelData levelData;
+
     [Header("Destination Transform")]
     private CloneSpawner cloneSpawner;
 
     void Awake()
     {
         cloneSpawner = FindObjectOfType<CloneSpawner>();
-        cloneSpawner.cloneData.currentTarget.position = cloneSpawner.cloneData.firstTarget.position;
+        levelData.currentTarget.position = levelData.firstTarget.position;
 
         if (cloneSpawner.cloneData != null)
         {
@@ -23,7 +25,7 @@ public class CloneManager : MonoBehaviour
             cloneSpawner.cloneData.isTouchFirst = true;
             cloneSpawner.cloneData.isTouchSecond = false;
         }
-        cloneSpawner.cloneData.currentTarget.position = cloneSpawner.cloneData.firstTarget.position;
+        levelData.currentTarget.position = levelData.firstTarget.position;
 
         _navmeshAgent = GetComponent<NavMeshAgent>();
         if (_navmeshAgent != null)
@@ -48,27 +50,27 @@ public class CloneManager : MonoBehaviour
     {
         if (cloneSpawner.cloneData.isTouchFirst)
         {
-            cloneSpawner.cloneData.currentTarget.position = cloneSpawner.cloneData.firstTarget.position;
+            levelData.currentTarget.position = levelData.firstTarget.position;
         }
         if (cloneSpawner.cloneData.isTouchSecond)
         {
-            cloneSpawner.cloneData.currentTarget.position = cloneSpawner.cloneData.secondTarget.position;
+            levelData.currentTarget.position = levelData.secondTarget.position;
 
-            _navmeshAgent.destination = new Vector3(cloneSpawner.cloneData.currentTarget.position.x, cloneSpawner.cloneData.currentTarget.position.y, cloneSpawner.cloneData.currentTarget.position.z);
+            _navmeshAgent.destination = new Vector3(levelData.currentTarget.position.x, levelData.currentTarget.position.y, levelData.currentTarget.position.z);
         }
         if (cloneSpawner.cloneData.isTouchThird)
         {
-            cloneSpawner.cloneData.currentTarget.position = cloneSpawner.cloneData.thirdTarget.position;
+            levelData.currentTarget.position = levelData.thirdTarget.position;
 
-            _navmeshAgent.destination = new Vector3(cloneSpawner.cloneData.currentTarget.position.x, cloneSpawner.cloneData.currentTarget.position.y, cloneSpawner.cloneData.currentTarget.position.z);
+            _navmeshAgent.destination = new Vector3(levelData.currentTarget.position.x, levelData.currentTarget.position.y, levelData.currentTarget.position.z);
         }
         if (cloneSpawner.cloneData.isTouchFinish)
         {
-            cloneSpawner.cloneData.currentTarget.position = cloneSpawner.cloneData.finishTarget.position;
+            levelData.currentTarget.position = levelData.finishTarget.position;
 
-            _navmeshAgent.destination = new Vector3(cloneSpawner.cloneData.currentTarget.position.x, cloneSpawner.cloneData.currentTarget.position.y, cloneSpawner.cloneData.currentTarget.position.z);
+            _navmeshAgent.destination = new Vector3(levelData.currentTarget.position.x, levelData.currentTarget.position.y, levelData.currentTarget.position.z);
         }
-        _navmeshAgent.destination = cloneSpawner.cloneData.currentTarget.position;
+        _navmeshAgent.destination = levelData.currentTarget.position;
     }
     void DeadManage()
     {
@@ -88,7 +90,7 @@ public class CloneManager : MonoBehaviour
     }
     public void OnTarget()
     {
-        if (Vector3.Distance(gameObject.transform.position, cloneSpawner.cloneData.firstTarget.position) < 0.6f)
+        if (Vector3.Distance(gameObject.transform.position, levelData.firstTarget.position) < 0.6f)
         {
             cloneSpawner.cloneData.isTouchFirst = false;
             cloneSpawner.cloneData.isTouchSecond = true;
@@ -98,7 +100,7 @@ public class CloneManager : MonoBehaviour
 
             cloneSpawner.firstTargetCanvas.alpha = 1;
         }
-        if (Vector3.Distance(gameObject.transform.position, cloneSpawner.cloneData.secondTarget.position) < 0.6f)
+        if (Vector3.Distance(gameObject.transform.position, levelData.secondTarget.position) < 0.6f)
         {
             cloneSpawner.cloneData.isTouchFirst = false;
             cloneSpawner.cloneData.isTouchSecond = false;
@@ -107,7 +109,7 @@ public class CloneManager : MonoBehaviour
 
             cloneSpawner.secondTargetCanvas.alpha = 1;
         }
-        if (Vector3.Distance(gameObject.transform.position, cloneSpawner.cloneData.thirdTarget.position) < 0.6f)
+        if (Vector3.Distance(gameObject.transform.position, levelData.thirdTarget.position) < 0.6f)
         {
             cloneSpawner.cloneData.isTouchFirst = false;
             cloneSpawner.cloneData.isTouchSecond = false;
@@ -116,7 +118,7 @@ public class CloneManager : MonoBehaviour
 
             cloneSpawner.thirdTargetCanvas.alpha = 1;
         }
-        if (Vector3.Distance(gameObject.transform.position, cloneSpawner.cloneData.finishTarget.position) < 0.6f || cloneSpawner.playerData.isLose)
+        if (Vector3.Distance(gameObject.transform.position, levelData.finishTarget.position) < 0.6f || cloneSpawner.playerData.isLose)
         {
             cloneSpawner.cloneData.isTouchFirst = false;
             cloneSpawner.cloneData.isTouchSecond = false;

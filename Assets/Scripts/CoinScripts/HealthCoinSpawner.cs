@@ -5,22 +5,24 @@ using UnityEngine;
 public class HealthCoinSpawner : MonoBehaviour
 {
     [SerializeField] PlayerData _playerData;
+    [SerializeField] LevelData levelData;
+
     private GameObject _healtCoinTransform;
     void Awake()
     {
-        if (_playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
         {
             _healtCoinTransform = Instantiate(_playerData._healtCoinTransform[0], gameObject.transform);
         }
-        else if (_playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
         {
             _healtCoinTransform = Instantiate(_playerData._healtCoinTransform[1], gameObject.transform);
         }
-        else if (_playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
             _healtCoinTransform = Instantiate(_playerData._healtCoinTransform[2], gameObject.transform);
         }
-        else if (_playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
             _healtCoinTransform = Instantiate(_playerData._healtCoinTransform[3], gameObject.transform);
         }

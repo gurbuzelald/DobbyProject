@@ -5,6 +5,8 @@ using UnityEngine;
 public class LevelUpController : MonoBehaviour
 {
     [SerializeField] PlayerData playerData;
+    [SerializeField] LevelData levelData;
+
     private GameObject weaponGiftBoxSpawnerObject;
     private WeaponGiftBoxSpawner weaponGiftBoxSpawner;
 
@@ -64,7 +66,7 @@ public class LevelUpController : MonoBehaviour
     }
     void CheckCompleteLevel()
     {
-        if (playerData.isCompleteFirstMap)
+        if (levelData.isCompleteFirstMap)
         {
             weaponGiftBoxSpawner.CreateSecondMapGiftBoxes();
             healthCoinSpawner.CreateSecondtMapHealthCoin();
@@ -75,9 +77,9 @@ public class LevelUpController : MonoBehaviour
             enemySpawner.CreateSecondMapEnemies();
             //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
 
-            playerData.isCompleteFirstMap = false;
+            levelData.isCompleteFirstMap = false;
         }
-        else if (playerData.isCompleteSecondMap)
+        else if (levelData.isCompleteSecondMap)
         {
             weaponGiftBoxSpawner.CreateThirdMapGiftBoxes();
             healthCoinSpawner.CreateThirdMapHealthCoin();
@@ -88,9 +90,9 @@ public class LevelUpController : MonoBehaviour
             enemySpawner.CreateThirdMapEnemies();
             //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
 
-            playerData.isCompleteSecondMap = false;
+            levelData.isCompleteSecondMap = false;
         }
-        else if (playerData.isCompleteThirdMap)
+        else if (levelData.isCompleteThirdMap)
         {
             weaponGiftBoxSpawner.CreateFourthMapGiftBoxes();
             healthCoinSpawner.CreateFourthMapHealthCoin();
@@ -101,30 +103,30 @@ public class LevelUpController : MonoBehaviour
             enemySpawner.CreateFourthMapEnemies();
             //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
 
-            playerData.isCompleteThirdMap = false;
+            levelData.isCompleteThirdMap = false;
         }
-        else if (playerData.isCompleteFourthMap)
+        else if (levelData.isCompleteFourthMap)
         {
         }
     }
 
     void SetDetectionOfEnemyAtUpdate()
     {
-        if (playerData.currentMapName == PlayerData.MapNames.FirstMap)
+        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
         {
-            playerData.currentEnemyDetectionDistance = playerData.level1EnemyDetectionDistance;
+            levelData.currentEnemyDetectionDistance = levelData.level1EnemyDetectionDistance;
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.SecondMap)
+        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
         {
-            playerData.currentEnemyDetectionDistance = playerData.level2EnemyDetectionDistance;
+            levelData.currentEnemyDetectionDistance = levelData.level2EnemyDetectionDistance;
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.ThirdMap)
+        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
-            playerData.currentEnemyDetectionDistance = playerData.level3EnemyDetectionDistance;
+            levelData.currentEnemyDetectionDistance = levelData.level3EnemyDetectionDistance;
         }
-        else if (playerData.currentMapName == PlayerData.MapNames.FourthMap)
+        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
-            playerData.currentEnemyDetectionDistance = playerData.level4EnemyDetectionDistance;
+            levelData.currentEnemyDetectionDistance = levelData.level4EnemyDetectionDistance;
         }
     }
 }

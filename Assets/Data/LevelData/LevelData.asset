@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11bd5ee0fd3b6564f95fa990dbc67b4b, type: 3}
+  m_Name: LevelData
+  m_EditorClassIdentifier: 
+  currentStaticCoinValue: 1
+  firstLevelStaticCoinValue: 1
+  secondLevelStaticCoinValue: 2
+  thirdLevelStaticCoinValue: 3
+  fourthLevelStaticCoinValue: 4
+  firstSkybox: {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
+  secondMapSkyBox: {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
+  thirdSkybox: {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
+  fourthSkybox: {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
+  currentEnemyDetectionDistance: 1
+  level1EnemyDetectionDistance: 1
+  level2EnemyDetectionDistance: 2
+  level3EnemyDetectionDistance: 3
+  level4EnemyDetectionDistance: 4
+  currentEnemySpawnDelay: 1
+  firstMapEnemySpawnDelay: 1
+  secondMapEnemySpawnDelay: 2
+  thirdMapEnemySpawnDelay: 3
+  fourthMapEnemySpawnDelay: 4
+  currentMirrorName: 
+  _firstMapMirrorCouples:
+  - {fileID: 9044617553140458651, guid: e7f4d5f6e375e4548a69d4d890e6ec8c, type: 3}
+  _secondMapMirrorCouples:
+  - {fileID: 6167717323233158170, guid: e039fe0c70ee28544a24b18517c302fe, type: 3}
+  _thirdMapMirrorCouples:
+  - {fileID: 2808162707802702247, guid: ae0befe520627db47823e83467a22361, type: 3}
+  _fourthMapMirrorCouples:
+  - {fileID: 6022340288675348387, guid: 0e6ca9137dddb924fb941e3a65e4e1ac, type: 3}
+  currentFinishArea: {fileID: 0}
+  level1FinishArea: {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
+  level2FinishArea: {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
+  level3FinishArea: {fileID: 5566931848723951372, guid: 4585e76964e5f6b47a170518135f316f, type: 3}
+  level4FinishArea: {fileID: 1149033832906918883, guid: 14ee547a4dde40b4a8847f703ec8d8a9, type: 3}
+  isCompleteFirstMap: 0
+  isCompleteSecondMap: 0
+  isCompleteThirdMap: 0
+  isCompleteFourthMap: 0
+  isFirstMapTarget: 0
+  isSecondMapTarget: 0
+  isThirdMapTarget: 0
+  isFourthMapTarget: 0
+  isLevelUp: 0
+  firstTarget: {fileID: 0}
+  secondTarget: {fileID: 0}
+  thirdTarget: {fileID: 0}
+  finishTarget: {fileID: 0}
+  currentTarget: {fileID: 0}
+  currentMapName: 0
+  currentLevel: 0

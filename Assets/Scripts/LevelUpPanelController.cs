@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LevelUpPanelController : MonoBehaviour
 {
     [SerializeField] PlayerData playerData;
+    [SerializeField] LevelData levelData;
     private Image levelUpImage;
     private CanvasGroup levelUpCanvasGroup;
     void Awake()
@@ -20,7 +21,7 @@ public class LevelUpPanelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerData.isLevelUp)
+        if (levelData.isLevelUp)
         {
             levelUpCanvasGroup.alpha = 1;
             levelUpImage.enabled = true;
@@ -30,7 +31,7 @@ public class LevelUpPanelController : MonoBehaviour
                 levelUpImage.enabled = false;
             }
         }
-        else if (levelUpImage && !playerData.isLevelUp)
+        else if (levelUpImage && !levelData.isLevelUp)
         {
             levelUpCanvasGroup.alpha -= 0.05f;
             if (levelUpCanvasGroup.alpha == 0)
