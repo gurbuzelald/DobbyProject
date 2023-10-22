@@ -316,7 +316,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         if (other.CompareTag(SceneController.Tags.Coin.ToString()))
         {
-            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.Coin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//GetScore
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.Coin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText   );//GetScore
             iPlayerScore.ScoreTextGrowing(0, 255, 0);
         }
         if (other.CompareTag(SceneController.Tags.CheeseCoin.ToString()))
@@ -459,7 +459,10 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             iPlayerMovement.Run(_playerData, _particleTransform.transform, 0.05f, playerRigidbody);
             iPlayerMovement.Jump(_playerData, ref playerRigidbody);
         }
-        iPlayerShoot.Sword(_playerData);
+        else
+        {
+            iPlayerShoot.Sword(_playerData);
+        }
 
 
         //SetFalseBullet

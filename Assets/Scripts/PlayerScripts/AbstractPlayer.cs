@@ -231,6 +231,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {//PlayerData
         if (_playerData != null)
         {
+            _playerData.currentMessageObject = GameObject.Find("MessageText");
+            if (_playerData.currentMessageObject)
+            {
+                _playerData.currentMessageText = _playerData.currentMessageObject.GetComponent<TextMeshProUGUI>();
+            }
             _playerData.isFireNonWalk = false;
             _playerData.isFireWalk = false;
             levelData.isLevelUp = false;
@@ -488,7 +493,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             if (PlayerManager.GetInstance._playerController.sword && _playerData.isSwordTime)
             {
                 //PlayerData
-                Debug.Log("Test");
                 _playerData.isSwording = true;
                 _playerData.isSwordAnimate = true;
 
@@ -546,7 +550,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         else if (playerManager.GetZValue() == 0 && playerManager.GetXValue() != 0
             && playerManager._playerController.lookRotation.x == 0 && playerManager._playerController.lookRotation.y == 0)
         {
-            Debug.Log("Test");
             ConvertToCloseCamera(playerManager.cameraSpawner);
         }
         else if (playerManager.GetZValue() != 0 && playerManager.GetXValue() != 0
@@ -819,6 +822,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             //_coinObject.SetActive(true);
             _coinObject.transform.localScale = Vector3.one;
+            
             StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(_coinObject));
 
             //SoundEffect
@@ -827,6 +831,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             //Trigger CoinObject
             if (_playerData.bulletAmount != _playerData.bulletPack)
             {
+                _playerData.currentMessageText.text = PlayerData.pickBulletObjectMessage;
+                StartCoroutine(DelayMessageText(_playerData));
+
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyBulletCoin, other.gameObject.transform);
 
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
@@ -846,6 +853,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (value == SceneController.Tags.HealthCoin)
         {
+            _playerData.currentMessageText.text = PlayerData.pickHealthObjectMessage;
+            StartCoroutine(DelayMessageText(_playerData));
+
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.IncreasingHealth);
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyHealthCoin, other.gameObject.transform);
         }
@@ -1404,9 +1414,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 _playerData.isWalking = false;
             }
         }
-        else
+        else if(_playerData.isLockedWalking)
         {
             playerTransform.Translate(0f, 0f, _playerData.lockedSpeed * Time.deltaTime);
+        }
+        else
+        {
+            _playerData.isWalking = false;
         }
 
     }
@@ -1502,7 +1516,14 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             }
         }
     }
-
+    IEnumerator DelayMessageText(PlayerData _playerData)
+    {
+        if (_playerData.currentMessageText.text != "")
+        {
+            yield return new WaitForSeconds(0.5f);
+            _playerData.currentMessageText.text = PlayerData.emptyMessage;
+        }
+    }
     IEnumerator DelayFalseRunning(PlayerData _playerData, float delay)
     {
         yield return new WaitForSeconds(delay);

@@ -19,7 +19,7 @@ public class JoystickCanvasManager : MonoBehaviour
         fireButton.SetActive(true);
         fire2Button.SetActive(true);
         runButton.SetActive(true);
-        swordButton.SetActive(false);
+        //swordButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -34,13 +34,13 @@ public class JoystickCanvasManager : MonoBehaviour
         {
             fireButton.SetActive(false);
             fire2Button.SetActive(false);
-            swordButton.SetActive(true);
+            //swordButton.SetActive(true);
         }
         else
         {
             fireButton.SetActive(true);
             fire2Button.SetActive(true);
-            swordButton.SetActive(false);
+            //swordButton.SetActive(false);
         }
     }
     void RunMode()

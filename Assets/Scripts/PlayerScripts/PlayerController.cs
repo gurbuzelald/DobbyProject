@@ -64,8 +64,7 @@ public class PlayerController : MonoBehaviour
         movement = playerInput.PlayerMain.Move.ReadValue<Vector2>();
         lookRotation = playerInput.PlayerMain.Look.ReadValue<Vector2>();
         fire = playerInput.PlayerMain.Fire.IsPressed();
-        sword = playerInput.PlayerMain.Sword.IsPressed();
-        
+        sword = playerInput.PlayerMain.Sword.IsPressed();    
         extraSpeed = playerInput.PlayerMain.ExtraSpeed.IsPressed();
         jump = playerInput.PlayerMain.Jump.IsPressed();
         skateBoard = playerInput.PlayerMain.Skate.IsPressed();

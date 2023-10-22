@@ -5,6 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Message Text")]
+    public TextMeshProUGUI currentMessageText;
+    public GameObject currentMessageObject;
+    public const string pickBulletObjectMessage = "Your Bullets are Full.";
+    public const string pickHealthObjectMessage = "You are Healthier.";
+    public const string pickWeaponObjectMessage = "Your Weapon is Better.";
+    public const string emptyMessage = "";
+
     [Header("Background Maps")]
     public GameObject backgroundMap;
 
@@ -82,7 +90,7 @@ public class PlayerData : ScriptableObject
     public string mremirehLock = "locked";
     public string tyLock = "locked";
     public string resetLocks = "locked";
-    public string locked = "Locked";
+    public string locked = "locked";
     public string unLocked = "";
 
     [Header("Prefab Game Objects For Player")]

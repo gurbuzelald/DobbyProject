@@ -34,7 +34,10 @@ public class TimeController : MonoBehaviour
         test.text = _enemySpawnTime.ToString();
 
         GetTime(900);
+
         SwordTimer(playerData, _swordTimeText);
+
+
         WeaponTimer(playerData);
         EnemySpawnTimer(levelData.currentEnemySpawnDelay);
     }
@@ -65,11 +68,7 @@ public class TimeController : MonoBehaviour
             _swordTimeText.text = SwordTexts.Active.ToString();
         }
         playerData.isSwordTime = false;
-        if (_swordTimeText.text == SwordTexts.Active.ToString() && 
-            !playerData.isWalking && !playerData.isBackWalking && 
-            !playerData.isClimbing && !playerData.isBackClimbing && 
-            !playerData.isJumping && !playerData.isRunning && 
-            !playerData.isSkateBoarding )
+        if (_swordTimeText.text == SwordTexts.Active.ToString())
         {
             playerData.isSwordTime = true;
             if (playerData.isSwording && playerData.isPlayable)
