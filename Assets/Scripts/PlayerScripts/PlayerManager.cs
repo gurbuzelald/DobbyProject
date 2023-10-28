@@ -136,7 +136,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             iPlayerShoot.Fire(_playerData);
         }
 
-        if (_playerData.isPlayable && PlayerManager.GetInstance._playerController.fire && !_playerData.isWinning)
+        if (_playerData.isPlayable && GetInstance._playerController.fire && !_playerData.isWinning)
         {
             //SetFalseBullet
             StartCoroutine(iPlayerShoot.DelayShowingCrosshairAlpha(crosshairImage, 2f));
@@ -154,6 +154,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         bulletAmountText.text = _playerData.bulletAmount.ToString();
 
     }
+    
     void Update()
     {
 

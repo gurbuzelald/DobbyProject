@@ -81,7 +81,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         SetEnemySpeed();
     }
-
+    
     void FollowPlayer()
     {
         if (gameObject != null)
@@ -101,14 +101,16 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     enemyData.isAttacking = false;
                     enemyData.isFiring = false;
                     enemyData.isDying = false;
-
                     //Debug.Log("Test");
                     Movement(clownSpawner.targetTransform, _initTransform, gameObject.transform, enemyData.enemySpeed, playerData, enemyData);
                 }
-                else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) <= 0.1f) && !enemyData.isDying)
+                else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) <= 0.1f) && !enemyData.isDying &&
+                          playerData.isPlayable)
                 {
                     //Debug.Log("Test");
                     enemyData.isAttacking = true;
+
+
                     playerData.isDecreaseHealth = true;
 
                     playerData.enemyTag = gameObject.name[0];
@@ -116,6 +118,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     enemyData.isWalking = false;
                     enemyData.isDying = false;
                     enemyData.isFiring = false;
+                    
                     //When Enemy touched player, enemy will get a animation to here.
                     //enemyData.isWalking = false;
                 }
@@ -146,6 +149,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
         }
     }
+    
     void FixedUpdate()
     {
         //RayBullet();
