@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MapController : MonoBehaviour
 {
-    [SerializeField] GameObject[] Maps;
+    
     [SerializeField] GameObject[] WeaponGiftBoxes;
     [SerializeField] PlayerData playerData;
     [SerializeField] LevelData levelData;
@@ -21,24 +21,30 @@ public class MapController : MonoBehaviour
 
         if (levelData.currentMapName == LevelData.MapNames.FirstMap) {
 
-            currentMap = Instantiate(Maps[0], gameObject.transform);
+            currentMap = Instantiate(levelData.Maps[0], gameObject.transform);
             RenderSettings.skybox = levelData.firstSkybox;
         }
         else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
         {
-            currentMap = Instantiate(Maps[1], gameObject.transform);
+            currentMap = Instantiate(levelData.Maps[1], gameObject.transform);
             RenderSettings.skybox = levelData.secondMapSkyBox;
         }
         else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
-            currentMap = Instantiate(Maps[2], gameObject.transform);
+            currentMap = Instantiate(levelData.Maps[2], gameObject.transform);
             RenderSettings.skybox = levelData.thirdSkybox;
         }
         else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
-            currentMap = Instantiate(Maps[3], gameObject.transform);
+            currentMap = Instantiate(levelData.Maps[3], gameObject.transform);
             RenderSettings.skybox = levelData.fourthSkybox;
         }
+        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
+        {
+            currentMap = Instantiate(levelData.Maps[4], gameObject.transform);
+            RenderSettings.skybox = levelData.fourthSkybox;
+        }
+
 
 
         //DarknessCubesActivity();
@@ -70,7 +76,7 @@ public class MapController : MonoBehaviour
         playerData.isPlayable = false;
         DarknessCubesActivity();
         Destroy(currentMap, 1);
-        CreateMap(Maps[1], gameObject.transform);
+        CreateMap(levelData.Maps[1], gameObject.transform);
         StartCoroutine(DelayTruePlayable());
     }
     public void CreateThirdMap()
@@ -80,7 +86,7 @@ public class MapController : MonoBehaviour
         playerData.isPlayable = false;
         DarknessCubesActivity();
         Destroy(currentMap, 1);
-        CreateMap(Maps[2], gameObject.transform);
+        CreateMap(levelData.Maps[2], gameObject.transform);
         StartCoroutine(DelayTruePlayable());
     }
     public void CreateFourthMap()
@@ -90,7 +96,17 @@ public class MapController : MonoBehaviour
         playerData.isPlayable = false;
         DarknessCubesActivity();
         Destroy(currentMap, 1);
-        CreateMap(Maps[3], gameObject.transform);
+        CreateMap(levelData.Maps[3], gameObject.transform);
+        StartCoroutine(DelayTruePlayable());
+    }
+    public void CreateFifthMap()
+    {
+        levelData.currentMapName = LevelData.MapNames.FifthMap;
+
+        playerData.isPlayable = false;
+        DarknessCubesActivity();
+        Destroy(currentMap, 1);
+        CreateMap(levelData.Maps[4], gameObject.transform);
         StartCoroutine(DelayTruePlayable());
     }
     void CreateMap(GameObject mapObject, Transform mapTransform)
@@ -108,5 +124,9 @@ public class MapController : MonoBehaviour
     public void SetFourthSkybox()
     {
         RenderSettings.skybox = levelData.fourthSkybox;
+    }
+    public void SetFifthSkybox()
+    {
+        RenderSettings.skybox = levelData.fifthSkybox;
     }
 }

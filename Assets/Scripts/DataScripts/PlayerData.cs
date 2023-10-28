@@ -56,11 +56,6 @@ public class PlayerData : ScriptableObject
     public bool isDecreaseHealth;
     public TextMeshProUGUI damageHealthText;
     public int decreaseCounter;
-    
-    [Header("Coin Transforms")]
-    public GameObject[] mapCoins;
-    public GameObject[] _healtCoinTransform;
-    public GameObject _healtCoinObject;    
 
     [Header("ChooseCharacter")]
     public CharacterNames currentCharacterName;

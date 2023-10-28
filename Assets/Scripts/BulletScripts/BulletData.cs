@@ -16,27 +16,31 @@ public class BulletData : ScriptableObject
     public GameObject _bulletObject;
     public GameObject _swordingObject;
 
+    [Header("Weapon GiftBoxes")]
+    public GameObject currentGiftBox;
+    public GameObject ak47GiftBox;
+    public GameObject rifleGiftBox;
+    public GameObject bullDogGiftBox; //+
+    public GameObject cowgunGiftBox; //+
+    public GameObject crsytalgunGiftBox;
+    public GameObject demongunGiftBox; //+
+    public GameObject icegunGiftBox;
+    public GameObject negevGiftBox; //+
+    public GameObject axegunGiftBox; //+
+    public GameObject pistolGiftBox;
+
+
     [Header("Weapon Types")]
     public GameObject ak47Object;
-    public GameObject ak47GiftBox;
     public GameObject rifleObject;
-    public GameObject rifleGiftBox;
     public GameObject bullDogObject;
-    public GameObject bullDogGiftBox;
     public GameObject cowgunObject;
-    public GameObject cowgunGiftBox;
     public GameObject crsytalgunObject;
-    public GameObject crsytalgunGiftBox;
     public GameObject demongunObject;
-    public GameObject demongunGiftBox;
     public GameObject icegunObject;
-    public GameObject icegunGiftBox;
     public GameObject negevObject;
-    public GameObject negevGiftBox;
     public GameObject axegunObject;
-    public GameObject axegunGiftBox;
     public GameObject pistolObject;
-    public GameObject pistolGiftBox;
 
 
     public int ak47Power;

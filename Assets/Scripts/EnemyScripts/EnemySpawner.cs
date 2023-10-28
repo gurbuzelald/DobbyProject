@@ -40,12 +40,12 @@ public class EnemySpawner : MonoBehaviour
     {
         if (levelData.currentMapName == LevelData.MapNames.FirstMap)
         {
-            enemyTransformObject = Instantiate(enemyData.enemyTransformsFirstMap.gameObject, gameObject.transform);
+            enemyTransformObject = Instantiate(levelData.enemyTransformsFirstMap.gameObject, gameObject.transform);
 
-            for (int i = 0; i < enemyData.enemyTransformsFirstMap.transform.childCount; i++)
+            for (int i = 0; i < levelData.enemyTransformsFirstMap.transform.childCount; i++)
             {
                 levelData.currentEnemySpawnDelay = levelData.firstMapEnemySpawnDelay;
-                currentEnemyObjects = Instantiate(enemyData.enemyFirstObjects[i],
+                currentEnemyObjects = Instantiate(levelData.enemyFirstObjects[i],
                                              enemyTransformObject.transform.GetChild(i).position,
                                              Quaternion.identity,
                                              enemyTransformObject.transform.GetChild(i).transform);
@@ -56,12 +56,12 @@ public class EnemySpawner : MonoBehaviour
         }
        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
        {
-            enemyTransformObject = Instantiate(enemyData.enemyTransformsSecondMap.gameObject, gameObject.transform);
+            enemyTransformObject = Instantiate(levelData.enemyTransformsSecondMap.gameObject, gameObject.transform);
 
-            for (int i = 0; i < enemyData.enemyTransformsSecondMap.transform.childCount; i++)
+            for (int i = 0; i < levelData.enemyTransformsSecondMap.transform.childCount; i++)
             {
                 levelData.currentEnemySpawnDelay = levelData.secondMapEnemySpawnDelay;
-                currentEnemyObjects = Instantiate(enemyData.enemySecondObjects[i],
+                currentEnemyObjects = Instantiate(levelData.enemySecondObjects[i],
                                              enemyTransformObject.transform.GetChild(i).position,
                                              Quaternion.identity,
                                              enemyTransformObject.transform.GetChild(i).transform);
@@ -72,12 +72,12 @@ public class EnemySpawner : MonoBehaviour
         }
         else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
-            enemyTransformObject = Instantiate(enemyData.enemyTransformsThirdMap.gameObject, gameObject.transform);
+            enemyTransformObject = Instantiate(levelData.enemyTransformsThirdMap.gameObject, gameObject.transform);
 
-            for (int i = 0; i < enemyData.enemyTransformsThirdMap.transform.childCount; i++)
+            for (int i = 0; i < levelData.enemyTransformsThirdMap.transform.childCount; i++)
             {
                 levelData.currentEnemySpawnDelay = levelData.thirdMapEnemySpawnDelay;
-                currentEnemyObjects = Instantiate(enemyData.enemyThirdObjects[i],
+                currentEnemyObjects = Instantiate(levelData.enemyThirdObjects[i],
                                              enemyTransformObject.transform.GetChild(i).position,
                                              Quaternion.identity,
                                              enemyTransformObject.transform.GetChild(i).transform);
@@ -88,12 +88,28 @@ public class EnemySpawner : MonoBehaviour
         }
         else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
-            enemyTransformObject = Instantiate(enemyData.enemyTransformsFourthMap.gameObject, gameObject.transform);
+            enemyTransformObject = Instantiate(levelData.enemyTransformsFourthMap.gameObject, gameObject.transform);
 
-            for (int i = 0; i < enemyData.enemyTransformsFourthMap.transform.childCount; i++)
+            for (int i = 0; i < levelData.enemyTransformsFourthMap.transform.childCount; i++)
             {
                 levelData.currentEnemySpawnDelay = levelData.fourthMapEnemySpawnDelay;
-                currentEnemyObjects = Instantiate(enemyData.enemyFourthObjects[i],
+                currentEnemyObjects = Instantiate(levelData.enemyFourthObjects[i],
+                                             enemyTransformObject.transform.GetChild(i).position,
+                                             Quaternion.identity,
+                                             enemyTransformObject.transform.GetChild(i).transform);
+                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
+                                                                     10f,
+                                                                     enemyTransformObject.transform.GetChild(i).position.z);
+            }
+        }
+        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
+        {
+            enemyTransformObject = Instantiate(levelData.enemyTransformsFourthMap.gameObject, gameObject.transform);
+
+            for (int i = 0; i < levelData.enemyTransformsFifthMap.transform.childCount; i++)
+            {
+                levelData.currentEnemySpawnDelay = levelData.fourthMapEnemySpawnDelay;
+                currentEnemyObjects = Instantiate(levelData.enemyFourthObjects[i],
                                              enemyTransformObject.transform.GetChild(i).position,
                                              Quaternion.identity,
                                              enemyTransformObject.transform.GetChild(i).transform);
@@ -192,7 +208,7 @@ public class EnemySpawner : MonoBehaviour
 
             if (enemyData.isActivateCreateEnemy)
             {
-                currentEnemyObjects = Instantiate(enemyData.enemyFirstObjects[i],
+                currentEnemyObjects = Instantiate(levelData.enemyFirstObjects[i],
                                      enemyTransformObject.transform.GetChild(i).position,
                                      Quaternion.identity,
                                      enemyTransformObject.transform.GetChild(i).transform);
@@ -209,7 +225,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (enemyData.isActivateCreateEnemy)
             {
-                currentEnemyObjects = Instantiate(enemyData.enemySecondObjects[i],
+                currentEnemyObjects = Instantiate(levelData.enemySecondObjects[i],
                                      enemyTransformObject.transform.GetChild(i).position,
                                      Quaternion.identity,
                                      enemyTransformObject.transform.GetChild(i).transform);
@@ -226,7 +242,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (enemyData.isActivateCreateEnemy)
             {
-                currentEnemyObjects = Instantiate(enemyData.enemyThirdObjects[i],
+                currentEnemyObjects = Instantiate(levelData.enemyThirdObjects[i],
                                      enemyTransformObject.transform.GetChild(i).position,
                                      Quaternion.identity,
                                      enemyTransformObject.transform.GetChild(i).transform);
@@ -243,7 +259,7 @@ public class EnemySpawner : MonoBehaviour
         {
             if (enemyData.isActivateCreateEnemy)
             {
-                currentEnemyObjects = Instantiate(enemyData.enemyFourthObjects[i],
+                currentEnemyObjects = Instantiate(levelData.enemyFourthObjects[i],
                                      enemyTransformObject.transform.GetChild(i).position,
                                      Quaternion.identity,
                                      enemyTransformObject.transform.GetChild(i).transform);
@@ -259,7 +275,7 @@ public class EnemySpawner : MonoBehaviour
         levelData.currentEnemySpawnDelay = levelData.secondMapEnemySpawnDelay;
 
         Destroy(enemyTransformObject);
-        enemyTransformObject = Instantiate(enemyData.enemyTransformsSecondMap.gameObject, gameObject.transform);
+        enemyTransformObject = Instantiate(levelData.enemyTransformsSecondMap.gameObject, gameObject.transform);
 
         //for (int i = 0; i < enemyData.enemySecondObjects.Length; i++)
         //{
@@ -271,7 +287,7 @@ public class EnemySpawner : MonoBehaviour
         //                                                     10f,
         //                                                     enemyTransformObject.transform.GetChild(i).position.z);
         //}
-        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformObject, enemyData.enemySecondObjects);
+        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformObject, levelData.enemySecondObjects);
     }
    
     public void CreateThirdMapEnemies()
@@ -279,7 +295,7 @@ public class EnemySpawner : MonoBehaviour
         levelData.currentEnemySpawnDelay = levelData.thirdMapEnemySpawnDelay;
 
         Destroy(enemyTransformObject);
-        enemyTransformObject = Instantiate(enemyData.enemyTransformsThirdMap.gameObject, gameObject.transform);
+        enemyTransformObject = Instantiate(levelData.enemyTransformsThirdMap.gameObject, gameObject.transform);
 
         //for (int i = 0; i < enemyData.enemyThirdObjects.Length; i++)
         //{
@@ -291,7 +307,7 @@ public class EnemySpawner : MonoBehaviour
         //                                                     10f,
         //                                                     enemyTransformObject.transform.GetChild(i).position.z);
         //}
-        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformObject, enemyData.enemyThirdObjects);
+        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformObject, levelData.enemyThirdObjects);
 
     }
     public void CreateFourthMapEnemies()
@@ -299,7 +315,7 @@ public class EnemySpawner : MonoBehaviour
         levelData.currentEnemySpawnDelay = levelData.fourthMapEnemySpawnDelay;
 
         Destroy(enemyTransformObject);
-        enemyTransformObject = Instantiate(enemyData.enemyTransformsFourthMap.gameObject, gameObject.transform);
+        enemyTransformObject = Instantiate(levelData.enemyTransformsFourthMap.gameObject, gameObject.transform);
 
         //for (int i = 0; i < enemyData.enemyFourthObjects.Length; i++)
         //{
@@ -311,13 +327,32 @@ public class EnemySpawner : MonoBehaviour
         //                                                     10f,
         //                                                     enemyTransformObject.transform.GetChild(i).position.z);
         //}
-        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformObject, enemyData.enemyFourthObjects);
+        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformObject, levelData.enemyFourthObjects);
 
     }
+    public void CreateFifthMapEnemies()
+    {
+        levelData.currentEnemySpawnDelay = levelData.fifthMapEnemySpawnDelay;
 
+        Destroy(enemyTransformObject);
+        enemyTransformObject = Instantiate(levelData.enemyTransformsFifthMap.gameObject, gameObject.transform);
+
+        //for (int i = 0; i < enemyData.enemyFourthObjects.Length; i++)
+        //{
+        //    currentEnemyObjects = Instantiate(enemyData.enemyFourthObjects[i],
+        //                             enemyTransformObject.transform.GetChild(i).position,
+        //                             Quaternion.identity,
+        //                             enemyTransformObject.transform.GetChild(i).transform);
+        //    currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
+        //                                                     10f,
+        //                                                     enemyTransformObject.transform.GetChild(i).position.z);
+        //}
+        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformObject, levelData.enemyFifthObjects);
+
+    }
     void CreateEnemyInUpdate(GameObject currentEnemyObjects, GameObject enemyTransformObject, GameObject[] enemyObjects)
     {
-        for (int i = 0; i < enemyData.enemySecondObjects.Length; i++)
+        for (int i = 0; i < levelData.enemySecondObjects.Length; i++)
         {
             currentEnemyObjects = Instantiate(enemyObjects[i],//enemySecondObjects[i]
                                      enemyTransformObject.transform.GetChild(i).position,

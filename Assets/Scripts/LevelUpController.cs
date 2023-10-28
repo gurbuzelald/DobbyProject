@@ -6,6 +6,7 @@ public class LevelUpController : MonoBehaviour
 {
     [SerializeField] PlayerData playerData;
     [SerializeField] LevelData levelData;
+    [SerializeField] BulletData bulletData;
 
     private GameObject weaponGiftBoxSpawnerObject;
     private WeaponGiftBoxSpawner weaponGiftBoxSpawner;
@@ -107,6 +108,16 @@ public class LevelUpController : MonoBehaviour
         }
         else if (levelData.isCompleteFourthMap)
         {
+            weaponGiftBoxSpawner.CreateFifthMapGiftBoxes();
+            healthCoinSpawner.CreateFifthMapHealthCoin();
+            coinSpawner.CreateFifthCoin();
+            mapController.CreateFifthMap();
+            mapController.SetFifthSkybox();
+            mirrorSpawner.CreateFifthMapMirror();
+            enemySpawner.CreateFifthMapEnemies();
+            //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
+
+            levelData.isCompleteFourthMap = false;
         }
     }
 
@@ -115,18 +126,27 @@ public class LevelUpController : MonoBehaviour
         if (levelData.currentMapName == LevelData.MapNames.FirstMap)
         {
             levelData.currentEnemyDetectionDistance = levelData.level1EnemyDetectionDistance;
+            bulletData.currentGiftBox = bulletData.bullDogGiftBox;
         }
         else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
         {
             levelData.currentEnemyDetectionDistance = levelData.level2EnemyDetectionDistance;
+            bulletData.currentGiftBox = bulletData.cowgunGiftBox;
         }
         else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
             levelData.currentEnemyDetectionDistance = levelData.level3EnemyDetectionDistance;
+            bulletData.currentGiftBox = bulletData.demongunGiftBox;
         }
         else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
             levelData.currentEnemyDetectionDistance = levelData.level4EnemyDetectionDistance;
+            bulletData.currentGiftBox = bulletData.negevGiftBox;
+        }
+        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
+        {
+            levelData.currentEnemyDetectionDistance = levelData.level5EnemyDetectionDistance;
+            bulletData.currentGiftBox = bulletData.axegunGiftBox;
         }
     }
 }

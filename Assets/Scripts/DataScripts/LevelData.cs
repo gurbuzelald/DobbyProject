@@ -5,18 +5,40 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewLevelData", menuName = "LevelData")]
 public class LevelData : ScriptableObject
 {
+    [Header("Coin Transforms")]
+    public GameObject[] mapCoins;
+    public GameObject[] _healtCoinTransform;
+    public GameObject _healtCoinObject;
+
+    [Header("Map Objects")]
+    public GameObject[] Maps;
+
+    [Header("Enemy Level Objects")]
+    public GameObject[] enemyFirstObjects;
+    public GameObject[] enemySecondObjects;
+    public GameObject[] enemyThirdObjects;
+    public GameObject[] enemyFourthObjects;
+    public GameObject[] enemyFifthObjects;
+    public GameObject enemyTransformsFirstMap;
+    public GameObject enemyTransformsSecondMap;
+    public GameObject enemyTransformsThirdMap;
+    public GameObject enemyTransformsFourthMap;
+    public GameObject enemyTransformsFifthMap;
+
     [Header("Coin Values")]
     public int currentStaticCoinValue;
     public int firstLevelStaticCoinValue;
     public int secondLevelStaticCoinValue;
     public int thirdLevelStaticCoinValue;
     public int fourthLevelStaticCoinValue;
+    public int fifthLevelStaticCoinValue;
 
     [Header("Level SkyBoxes")]
     public Material firstSkybox;
     public Material secondMapSkyBox;
     public Material thirdSkybox;
     public Material fourthSkybox;
+    public Material fifthSkybox;
 
     [Header("Level Difficulty")]
     public float currentEnemyDetectionDistance;
@@ -24,6 +46,7 @@ public class LevelData : ScriptableObject
     public float level2EnemyDetectionDistance;
     public float level3EnemyDetectionDistance;
     public float level4EnemyDetectionDistance;
+    public float level5EnemyDetectionDistance;
 
     [Header("Enemy Spawn")]
     public int currentEnemySpawnDelay;
@@ -31,6 +54,7 @@ public class LevelData : ScriptableObject
     public int secondMapEnemySpawnDelay;
     public int thirdMapEnemySpawnDelay;
     public int fourthMapEnemySpawnDelay;
+    public int fifthMapEnemySpawnDelay;
 
     [Header("Mirror")]
     public string currentMirrorName;
@@ -38,6 +62,7 @@ public class LevelData : ScriptableObject
     public GameObject[] _secondMapMirrorCouples;
     public GameObject[] _thirdMapMirrorCouples;
     public GameObject[] _fourthMapMirrorCouples;
+    public GameObject[] _fifthMapMirrorCouples;
 
 
     [Header("Finishes")]
@@ -46,18 +71,21 @@ public class LevelData : ScriptableObject
     public Transform level2FinishArea;
     public Transform level3FinishArea;
     public Transform level4FinishArea;
+    public Transform level5FinishArea;
 
     [Header("MapCompleteBools")]
     public bool isCompleteFirstMap;
     public bool isCompleteSecondMap;
     public bool isCompleteThirdMap;
     public bool isCompleteFourthMap;
+    public bool isCompleteFifthMap;
 
     [Header("MapFinishTargetBools")]
     public bool isFirstMapTarget;
     public bool isSecondMapTarget;
     public bool isThirdMapTarget;
     public bool isFourthMapTarget;
+    public bool isFifthMapTarget;
     public bool isLevelUp;
 
     [Header("Clone Target")]
@@ -78,14 +106,16 @@ public class LevelData : ScriptableObject
         FirstMap,
         SecondMap,
         ThirdMap,
-        FourthMap
+        FourthMap,
+        FifthMap
     }
     public enum Levels
     {
         Level1,
         Level2,
         Level3,
-        Level4
+        Level4,
+        Level5
     }
 
     

@@ -267,6 +267,7 @@ public class SceneController : AbstractSceneController<SceneController>
         FirstFinishArea,
         SecondFinishArea,
         ThirdFinishArea,
+        FourthFinishArea,
         Tree,
 
         //Coins

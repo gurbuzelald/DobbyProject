@@ -12,15 +12,7 @@ public class EnemyData : ScriptableObject
     [Header("Bullet Object")]
     public GameObject _playerBulletObject;
 
-    [Header("Objects")]
-    public GameObject[] enemyFirstObjects;
-    public GameObject[] enemySecondObjects;
-    public GameObject[] enemyThirdObjects;
-    public GameObject[] enemyFourthObjects;
-    public GameObject enemyTransformsFirstMap;
-    public GameObject enemyTransformsSecondMap;
-    public GameObject enemyTransformsThirdMap;
-    public GameObject enemyTransformsFourthMap;
+    
 
     [Header("Sounds")]
     //public AudioClip shootClip;

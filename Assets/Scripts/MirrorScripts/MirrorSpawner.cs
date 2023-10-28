@@ -38,6 +38,13 @@ public class MirrorSpawner : MonoBehaviour
                 _currentMirrorCouple = Instantiate(levelData._fourthMapMirrorCouples[i], gameObject.transform);
             }
         }
+        if (levelData.currentMapName == LevelData.MapNames.FifthMap)
+        {
+            for (int i = 0; i < levelData._fifthMapMirrorCouples.Length; i++)
+            {
+                _currentMirrorCouple = Instantiate(levelData._fifthMapMirrorCouples[i], gameObject.transform);
+            }
+        }
     }
     public void CreateSecondMapMirror()
     {
@@ -65,6 +72,15 @@ public class MirrorSpawner : MonoBehaviour
         for (int i = 0; i < levelData._fourthMapMirrorCouples.Length; i++)
         {
             _currentMirrorCouple = Instantiate(levelData._fourthMapMirrorCouples[i], gameObject.transform);
+        }
+    }
+    public void CreateFifthMapMirror()
+    {
+        Destroy(_currentMirrorCouple);
+
+        for (int i = 0; i < levelData._fifthMapMirrorCouples.Length; i++)
+        {
+            _currentMirrorCouple = Instantiate(levelData._fifthMapMirrorCouples[i], gameObject.transform);
         }
     }
 }  

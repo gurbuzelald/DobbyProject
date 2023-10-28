@@ -1049,6 +1049,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             levelData.isCompleteThirdMap = true;
             levelData.isFourthMapTarget = true;
         }
+        else if (other.CompareTag(SceneController.Tags.FourthFinishArea.ToString()))
+        {
+            levelData.isLevelUp = true;
+            levelData.isCompleteFourthMap = true;
+            levelData.isFifthMapTarget = true;
+        }
         //PlayerData
         //_playerData.isLockedWalking = false;
         //_playerData.objects[3].transform.localScale = new Vector3(1f, _playerData.objects[3].transform.localScale.y, _playerData.objects[3].transform.localScale.z);

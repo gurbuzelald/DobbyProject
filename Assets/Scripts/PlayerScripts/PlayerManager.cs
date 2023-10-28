@@ -315,6 +315,13 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             StartCoroutine(iPlayerTrigger.DelayLevelUp(_levelData, 2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
         }
+        else if (other.CompareTag(SceneController.Tags.FourthFinishArea.ToString()))
+        {
+            healthBarSlider.value = 100;
+            _topCanvasHealthBarSlider.value = healthBarSlider.value;
+
+            StartCoroutine(iPlayerTrigger.DelayLevelUp(_levelData, 2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
+        }
         if (other.CompareTag(SceneController.Tags.Coin.ToString()))
         {
             iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.Coin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText   );//GetScore

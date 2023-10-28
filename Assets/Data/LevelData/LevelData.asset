@@ -12,25 +12,148 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11bd5ee0fd3b6564f95fa990dbc67b4b, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
+  mapCoins:
+  - {fileID: 3880732843794124356, guid: 8afde6b0df00a404199392eae3715794, type: 3}
+  - {fileID: 1413783167371764476, guid: 5b53e633fa5f1eb408fa0f939e143a88, type: 3}
+  - {fileID: 5322124332606893326, guid: 8fb09cecb8edfca4d83ec9f7f6fa405c, type: 3}
+  - {fileID: 3947003817539995590, guid: dd1fc5b288f4fc04fbe488864f4a4dd6, type: 3}
+  - {fileID: 1353036755210376119, guid: 76df070d9d7c03d4682f5c394d4b04f1, type: 3}
+  _healtCoinTransform:
+  - {fileID: 1707016675134421311, guid: 06d257ec3674d9446806cfc13725069b, type: 3}
+  - {fileID: 2602705668131860869, guid: 16b30ccc6b22aee44b1deac6fb497ceb, type: 3}
+  - {fileID: 1198534576858581768, guid: b91f8c0951dc9aa419cdd62f0d11a1e3, type: 3}
+  - {fileID: 6848931167675852839, guid: 6ec948522583f334b9bdcc24159a6354, type: 3}
+  - {fileID: 1014725745505510010, guid: ffb435699512ea448bda3ab977722a0e, type: 3}
+  _healtCoinObject: {fileID: 9077765185764460176, guid: a275adbe230564749ac78dcd554d00e3, type: 3}
+  Maps:
+  - {fileID: 5890090584550861642, guid: 53875437ff385384e89f23428ca8b5b0, type: 3}
+  - {fileID: 4974844189412968160, guid: 5f6fad289645f8d499783dabe681b5db, type: 3}
+  - {fileID: 6719176771443135241, guid: ac0201e8cf62cb24eafe396cee8465c4, type: 3}
+  - {fileID: 7138293202800543776, guid: b58971eee7eabb341a9e50612b070986, type: 3}
+  - {fileID: 6995526888015887884, guid: 79af744eb362dbe45b39dfc062a6f120, type: 3}
+  enemyFirstObjects:
+  - {fileID: 1124876159237399022, guid: 08524ce7f172b1f40ab3eee041359683, type: 3}
+  - {fileID: 4288211827455112566, guid: 0306d1720a844fa4e9feb9b2b604d860, type: 3}
+  - {fileID: 2134151945780647761, guid: 61a60c4eb8936f94e8b91f35ae8c8991, type: 3}
+  - {fileID: 2679552619666515618, guid: c31f001e3aec46844ba4a4baf555cb76, type: 3}
+  - {fileID: 2264917539931701796, guid: be0acb9d5aeef374f9a9519fe1b90393, type: 3}
+  - {fileID: 4049568489955151096, guid: 9924de07a739d6e4caa5ddae8e2315fc, type: 3}
+  - {fileID: 2133012914156472325, guid: 72f0133ff64d426428014c76a2926d9c, type: 3}
+  - {fileID: 8949910313472600481, guid: 7e1e4c01a8efd1d4b89fc959204dafef, type: 3}
+  - {fileID: 4393876145780571537, guid: 70dac476223967e46b180fda0accefaa, type: 3}
+  - {fileID: 1124876159237399022, guid: b8bad723ca5a02947bddd66f50f0d411, type: 3}
+  - {fileID: 8967855359998218866, guid: d830058d07bf14b40ad3cbaca613fa1a, type: 3}
+  - {fileID: 8967855359998218866, guid: ab3ca2ef43192e44d9b42185d6cda213, type: 3}
+  - {fileID: 8967855359998218866, guid: db7e0b172b7b5b84588c0534061d1a51, type: 3}
+  - {fileID: 8967855359998218866, guid: 1bd0892715d26d74eb5b9a8100cc2a00, type: 3}
+  - {fileID: 1488839946682538327, guid: 406cd1a12e40a5544a310264f08b9bb7, type: 3}
+  - {fileID: 1488839946682538327, guid: 1dbed879eb27d4441a3d9e5a4f7ac80d, type: 3}
+  - {fileID: 1488839946682538327, guid: 6b1f0cf01150a844785d55fcb97cebeb, type: 3}
+  - {fileID: 1488839946682538327, guid: 99d2c8c18ff62554a9cf81b7166dcc22, type: 3}
+  enemySecondObjects:
+  - {fileID: 1124876159237399022, guid: 08524ce7f172b1f40ab3eee041359683, type: 3}
+  - {fileID: 4288211827455112566, guid: 0306d1720a844fa4e9feb9b2b604d860, type: 3}
+  - {fileID: 2134151945780647761, guid: 61a60c4eb8936f94e8b91f35ae8c8991, type: 3}
+  - {fileID: 2679552619666515618, guid: c31f001e3aec46844ba4a4baf555cb76, type: 3}
+  - {fileID: 2264917539931701796, guid: be0acb9d5aeef374f9a9519fe1b90393, type: 3}
+  - {fileID: 4049568489955151096, guid: 9924de07a739d6e4caa5ddae8e2315fc, type: 3}
+  - {fileID: 2133012914156472325, guid: 72f0133ff64d426428014c76a2926d9c, type: 3}
+  - {fileID: 8949910313472600481, guid: 7e1e4c01a8efd1d4b89fc959204dafef, type: 3}
+  - {fileID: 4393876145780571537, guid: 70dac476223967e46b180fda0accefaa, type: 3}
+  - {fileID: 1124876159237399022, guid: b8bad723ca5a02947bddd66f50f0d411, type: 3}
+  - {fileID: 8967855359998218866, guid: d830058d07bf14b40ad3cbaca613fa1a, type: 3}
+  - {fileID: 8967855359998218866, guid: ab3ca2ef43192e44d9b42185d6cda213, type: 3}
+  - {fileID: 8967855359998218866, guid: db7e0b172b7b5b84588c0534061d1a51, type: 3}
+  - {fileID: 8967855359998218866, guid: 1bd0892715d26d74eb5b9a8100cc2a00, type: 3}
+  - {fileID: 1488839946682538327, guid: 406cd1a12e40a5544a310264f08b9bb7, type: 3}
+  - {fileID: 1488839946682538327, guid: 1dbed879eb27d4441a3d9e5a4f7ac80d, type: 3}
+  - {fileID: 1488839946682538327, guid: 6b1f0cf01150a844785d55fcb97cebeb, type: 3}
+  - {fileID: 1488839946682538327, guid: 99d2c8c18ff62554a9cf81b7166dcc22, type: 3}
+  enemyThirdObjects:
+  - {fileID: 1124876159237399022, guid: 08524ce7f172b1f40ab3eee041359683, type: 3}
+  - {fileID: 4288211827455112566, guid: 0306d1720a844fa4e9feb9b2b604d860, type: 3}
+  - {fileID: 2134151945780647761, guid: 61a60c4eb8936f94e8b91f35ae8c8991, type: 3}
+  - {fileID: 2679552619666515618, guid: c31f001e3aec46844ba4a4baf555cb76, type: 3}
+  - {fileID: 2264917539931701796, guid: be0acb9d5aeef374f9a9519fe1b90393, type: 3}
+  - {fileID: 4049568489955151096, guid: 9924de07a739d6e4caa5ddae8e2315fc, type: 3}
+  - {fileID: 2133012914156472325, guid: 72f0133ff64d426428014c76a2926d9c, type: 3}
+  - {fileID: 8949910313472600481, guid: 7e1e4c01a8efd1d4b89fc959204dafef, type: 3}
+  - {fileID: 4393876145780571537, guid: 70dac476223967e46b180fda0accefaa, type: 3}
+  - {fileID: 1124876159237399022, guid: b8bad723ca5a02947bddd66f50f0d411, type: 3}
+  - {fileID: 8967855359998218866, guid: d830058d07bf14b40ad3cbaca613fa1a, type: 3}
+  - {fileID: 8967855359998218866, guid: ab3ca2ef43192e44d9b42185d6cda213, type: 3}
+  - {fileID: 8967855359998218866, guid: db7e0b172b7b5b84588c0534061d1a51, type: 3}
+  - {fileID: 8967855359998218866, guid: 1bd0892715d26d74eb5b9a8100cc2a00, type: 3}
+  - {fileID: 1488839946682538327, guid: 406cd1a12e40a5544a310264f08b9bb7, type: 3}
+  - {fileID: 1488839946682538327, guid: 1dbed879eb27d4441a3d9e5a4f7ac80d, type: 3}
+  - {fileID: 1488839946682538327, guid: 6b1f0cf01150a844785d55fcb97cebeb, type: 3}
+  - {fileID: 1488839946682538327, guid: 99d2c8c18ff62554a9cf81b7166dcc22, type: 3}
+  enemyFourthObjects:
+  - {fileID: 1124876159237399022, guid: 08524ce7f172b1f40ab3eee041359683, type: 3}
+  - {fileID: 4288211827455112566, guid: 0306d1720a844fa4e9feb9b2b604d860, type: 3}
+  - {fileID: 2134151945780647761, guid: 61a60c4eb8936f94e8b91f35ae8c8991, type: 3}
+  - {fileID: 2679552619666515618, guid: c31f001e3aec46844ba4a4baf555cb76, type: 3}
+  - {fileID: 2264917539931701796, guid: be0acb9d5aeef374f9a9519fe1b90393, type: 3}
+  - {fileID: 4049568489955151096, guid: 9924de07a739d6e4caa5ddae8e2315fc, type: 3}
+  - {fileID: 2133012914156472325, guid: 72f0133ff64d426428014c76a2926d9c, type: 3}
+  - {fileID: 8949910313472600481, guid: 7e1e4c01a8efd1d4b89fc959204dafef, type: 3}
+  - {fileID: 4393876145780571537, guid: 70dac476223967e46b180fda0accefaa, type: 3}
+  - {fileID: 1124876159237399022, guid: b8bad723ca5a02947bddd66f50f0d411, type: 3}
+  - {fileID: 8967855359998218866, guid: d830058d07bf14b40ad3cbaca613fa1a, type: 3}
+  - {fileID: 8967855359998218866, guid: ab3ca2ef43192e44d9b42185d6cda213, type: 3}
+  - {fileID: 8967855359998218866, guid: db7e0b172b7b5b84588c0534061d1a51, type: 3}
+  - {fileID: 8967855359998218866, guid: 1bd0892715d26d74eb5b9a8100cc2a00, type: 3}
+  - {fileID: 1488839946682538327, guid: 406cd1a12e40a5544a310264f08b9bb7, type: 3}
+  - {fileID: 1488839946682538327, guid: 1dbed879eb27d4441a3d9e5a4f7ac80d, type: 3}
+  - {fileID: 1488839946682538327, guid: 6b1f0cf01150a844785d55fcb97cebeb, type: 3}
+  - {fileID: 1488839946682538327, guid: 99d2c8c18ff62554a9cf81b7166dcc22, type: 3}
+  enemyFifthObjects:
+  - {fileID: 1124876159237399022, guid: 08524ce7f172b1f40ab3eee041359683, type: 3}
+  - {fileID: 4288211827455112566, guid: 0306d1720a844fa4e9feb9b2b604d860, type: 3}
+  - {fileID: 2134151945780647761, guid: 61a60c4eb8936f94e8b91f35ae8c8991, type: 3}
+  - {fileID: 2679552619666515618, guid: c31f001e3aec46844ba4a4baf555cb76, type: 3}
+  - {fileID: 2264917539931701796, guid: be0acb9d5aeef374f9a9519fe1b90393, type: 3}
+  - {fileID: 4049568489955151096, guid: 9924de07a739d6e4caa5ddae8e2315fc, type: 3}
+  - {fileID: 2133012914156472325, guid: 72f0133ff64d426428014c76a2926d9c, type: 3}
+  - {fileID: 8949910313472600481, guid: 7e1e4c01a8efd1d4b89fc959204dafef, type: 3}
+  - {fileID: 4393876145780571537, guid: 70dac476223967e46b180fda0accefaa, type: 3}
+  - {fileID: 1124876159237399022, guid: b8bad723ca5a02947bddd66f50f0d411, type: 3}
+  - {fileID: 8967855359998218866, guid: d830058d07bf14b40ad3cbaca613fa1a, type: 3}
+  - {fileID: 8967855359998218866, guid: ab3ca2ef43192e44d9b42185d6cda213, type: 3}
+  - {fileID: 8967855359998218866, guid: db7e0b172b7b5b84588c0534061d1a51, type: 3}
+  - {fileID: 8967855359998218866, guid: 1bd0892715d26d74eb5b9a8100cc2a00, type: 3}
+  - {fileID: 1488839946682538327, guid: 406cd1a12e40a5544a310264f08b9bb7, type: 3}
+  - {fileID: 1488839946682538327, guid: 1dbed879eb27d4441a3d9e5a4f7ac80d, type: 3}
+  - {fileID: 1488839946682538327, guid: 6b1f0cf01150a844785d55fcb97cebeb, type: 3}
+  - {fileID: 1488839946682538327, guid: 99d2c8c18ff62554a9cf81b7166dcc22, type: 3}
+  enemyTransformsFirstMap: {fileID: 4800993404208530312, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+  enemyTransformsSecondMap: {fileID: 1263667095781669195, guid: ad26437bc9128a846aa39bf61721823b, type: 3}
+  enemyTransformsThirdMap: {fileID: 1648237712056192549, guid: cec4a0974b78bf34192878e0ef01c380, type: 3}
+  enemyTransformsFourthMap: {fileID: 1611781249427093311, guid: 123130910ec612642868fea7b0101736, type: 3}
+  enemyTransformsFifthMap: {fileID: 3630268105010323256, guid: acda9d0d06d6c664698e878a9f61914a, type: 3}
   currentStaticCoinValue: 1
   firstLevelStaticCoinValue: 1
   secondLevelStaticCoinValue: 2
   thirdLevelStaticCoinValue: 3
   fourthLevelStaticCoinValue: 4
+  fifthLevelStaticCoinValue: 5
   firstSkybox: {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
   secondMapSkyBox: {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
   thirdSkybox: {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
   fourthSkybox: {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
+  fifthSkybox: {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
   currentEnemyDetectionDistance: 2
   level1EnemyDetectionDistance: 2
   level2EnemyDetectionDistance: 3
   level3EnemyDetectionDistance: 4
   level4EnemyDetectionDistance: 5
-  currentEnemySpawnDelay: 2
+  level5EnemyDetectionDistance: 6
+  currentEnemySpawnDelay: 1
   firstMapEnemySpawnDelay: 1
   secondMapEnemySpawnDelay: 2
   thirdMapEnemySpawnDelay: 3
   fourthMapEnemySpawnDelay: 4
+  fifthMapEnemySpawnDelay: 5
   currentMirrorName: Mirror1
   _firstMapMirrorCouples:
   - {fileID: 9044617553140458651, guid: e7f4d5f6e375e4548a69d4d890e6ec8c, type: 3}
@@ -40,24 +163,29 @@ MonoBehaviour:
   - {fileID: 2808162707802702247, guid: ae0befe520627db47823e83467a22361, type: 3}
   _fourthMapMirrorCouples:
   - {fileID: 6022340288675348387, guid: 0e6ca9137dddb924fb941e3a65e4e1ac, type: 3}
-  currentFinishArea: {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
+  _fifthMapMirrorCouples:
+  - {fileID: 2738821458815677874, guid: 6d4781b31466160458f078fd3a07582f, type: 3}
+  currentFinishArea: {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
   level1FinishArea: {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
   level2FinishArea: {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
   level3FinishArea: {fileID: 5566931848723951372, guid: 4585e76964e5f6b47a170518135f316f, type: 3}
   level4FinishArea: {fileID: 1149033832906918883, guid: 14ee547a4dde40b4a8847f703ec8d8a9, type: 3}
+  level5FinishArea: {fileID: 3196894676368351631, guid: f977ff14ba82aa74c8bcf79f99d10a52, type: 3}
   isCompleteFirstMap: 0
   isCompleteSecondMap: 0
   isCompleteThirdMap: 0
   isCompleteFourthMap: 0
+  isCompleteFifthMap: 0
   isFirstMapTarget: 0
   isSecondMapTarget: 0
   isThirdMapTarget: 0
   isFourthMapTarget: 0
+  isFifthMapTarget: 0
   isLevelUp: 0
   firstTarget: {fileID: 0}
   secondTarget: {fileID: 0}
   thirdTarget: {fileID: 0}
   finishTarget: {fileID: 0}
   currentTarget: {fileID: 0}
-  currentMapName: 1
+  currentMapName: 0
   currentLevel: 0

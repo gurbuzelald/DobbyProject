@@ -27,6 +27,10 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
         {
             CreateFourthMapGiftBoxes();
         }
+        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
+        {
+            CreateFifthMapGiftBoxes();
+        }
     }
     void CreateFirstMapGiftBoxes()
     {
@@ -58,7 +62,7 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
 
         GameObject giftBox = Instantiate(bulletData.giftBoxes[1], gameObject.transform);
 
-        CreateWeaponGiftBox(bulletData.cowgunGiftBox, giftBox.transform.GetChild(0).transform);
+        CreateWeaponGiftBox(bulletData.currentGiftBox, giftBox.transform.GetChild(0).transform);
     }
     public void CreateThirdMapGiftBoxes()
     {
@@ -83,5 +87,16 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
 
         CreateWeaponGiftBox(bulletData.negevGiftBox, giftBox.transform.GetChild(0).transform);
     }
-    
+    public void CreateFifthMapGiftBoxes()
+    {
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Destroy(gameObject.transform.GetChild(i).gameObject);
+        }
+
+        GameObject giftBox = Instantiate(bulletData.giftBoxes[4], gameObject.transform);
+
+        CreateWeaponGiftBox(bulletData.axegunGiftBox, giftBox.transform.GetChild(0).transform);
+    }
+
 }
