@@ -580,11 +580,7 @@ public class BulletManager : AbstractBullet<BulletManager>
 
         BulletRotation(PlayerManager.GetInstance._currentCamera,
                        _bulletSpawnTransform);
-        if (_playerData.isSwording)
-        {
-            Debug.Log("Test");
-
-        }
+        
         if (_playerData.isSwording && !_playerData.isFireNonWalk && bulletData.bulletDelayCounter == 0 && _playerData.isSwordTime)
         {
            

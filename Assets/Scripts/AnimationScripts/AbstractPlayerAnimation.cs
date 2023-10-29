@@ -145,7 +145,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             (PlayerManager.GetInstance.GetXValue() < -0.05f) &&
             Mathf.Abs(PlayerManager.GetInstance.GetXValue()) > 2 * Mathf.Abs(PlayerManager.GetInstance.GetZValue()) &&
             PlayerManager.GetInstance.GetZValue() < 0.2f &&
-            !playerData.isRunning)
+            !playerData.isRunning && !playerData.isSwordAnimate)
         {
             _animator.SetBool(AnimatorParameters.isLeftWalk.ToString(), true);
 
@@ -178,7 +178,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             (PlayerManager.GetInstance.GetXValue() > 0.05f) &&
             Mathf.Abs(PlayerManager.GetInstance.GetXValue()) > 2 * Mathf.Abs(PlayerManager.GetInstance.GetZValue()) &&
             PlayerManager.GetInstance.GetZValue() < 0.2f &&
-            !playerData.isRunning)
+            !playerData.isRunning && !playerData.isSwordAnimate)
         {
             _animator.SetBool(AnimatorParameters.isRightWalk.ToString(), true);
             _animator.SetBool(AnimatorParameters.isLeftWalk.ToString(), false);
@@ -304,12 +304,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public virtual void SwordAnimation(PlayerData playerData, Animator _animator)
     {
-        if (playerData.isSwording && 
-            !playerData.isFireNonWalk && 
-            !playerData.isWalking && 
-            !playerData.isBackWalking && 
-            !playerData.isClimbing && 
-            playerData.isPlayable && 
+        if (playerData.isPlayable && 
             playerData.isSwordAnimate)
         {
             _animator.SetBool(AnimatorParameters.isSword.ToString(), true);

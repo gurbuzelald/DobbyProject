@@ -135,6 +135,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             iPlayerShoot.Fire(_playerData);
         }
+        iPlayerShoot.Sword(_playerData);
+
 
         if (_playerData.isPlayable && GetInstance._playerController.fire && !_playerData.isWinning)
         {

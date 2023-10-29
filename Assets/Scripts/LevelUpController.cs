@@ -64,6 +64,7 @@ public class LevelUpController : MonoBehaviour
     {
         CheckCompleteLevel();
         SetDetectionOfEnemyAtUpdate();
+        ArrowLevelRotation();
     }
     void CheckCompleteLevel()
     {
@@ -147,6 +148,29 @@ public class LevelUpController : MonoBehaviour
         {
             levelData.currentEnemyDetectionDistance = levelData.level5EnemyDetectionDistance;
             bulletData.currentGiftBox = bulletData.axegunGiftBox;
+        }
+    }
+    public void ArrowLevelRotation()
+    {
+        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
+        {
+            levelData.currentFinishArea = levelData.level1FinishArea;
+        }
+        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
+        {
+            levelData.currentFinishArea = levelData.level2FinishArea;
+        }
+        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
+        {
+            levelData.currentFinishArea = levelData.level3FinishArea;
+        }
+        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
+        {
+            levelData.currentFinishArea = levelData.level4FinishArea;
+        }
+        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
+        {
+            levelData.currentFinishArea = levelData.level5FinishArea;
         }
     }
 }

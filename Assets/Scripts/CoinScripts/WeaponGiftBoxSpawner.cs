@@ -32,6 +32,7 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
             CreateFifthMapGiftBoxes();
         }
     }
+
     void CreateFirstMapGiftBoxes()
     {
         for (int i = 0; i < gameObject.transform.childCount; i++)
