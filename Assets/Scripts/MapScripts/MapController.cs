@@ -22,37 +22,33 @@ public class MapController : MonoBehaviour
         if (levelData.currentMapName == LevelData.MapNames.FirstMap) {
 
             currentMap = Instantiate(levelData.Maps[0], gameObject.transform);
-            RenderSettings.skybox = levelData.firstSkybox;
+            RenderSettings.skybox = levelData.levelSkyboxes[0];
         }
         else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
         {
             currentMap = Instantiate(levelData.Maps[1], gameObject.transform);
-            RenderSettings.skybox = levelData.secondMapSkyBox;
+            RenderSettings.skybox = levelData.levelSkyboxes[1];
         }
         else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
         {
             currentMap = Instantiate(levelData.Maps[2], gameObject.transform);
-            RenderSettings.skybox = levelData.thirdSkybox;
+            RenderSettings.skybox = levelData.levelSkyboxes[2];
         }
         else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
         {
             currentMap = Instantiate(levelData.Maps[3], gameObject.transform);
-            RenderSettings.skybox = levelData.fourthSkybox;
+            RenderSettings.skybox = levelData.levelSkyboxes[3];
         }
         else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
         {
             currentMap = Instantiate(levelData.Maps[4], gameObject.transform);
-            RenderSettings.skybox = levelData.fourthSkybox;
+            RenderSettings.skybox = levelData.levelSkyboxes[4];
         }
 
 
 
         //DarknessCubesActivity();
         //currentMap.transform.GetChild(1).gameObject.SetActive(true);
-    }
-    void DarknessCubesActivity()
-    {
-        //StartCoroutine(DelayDarknesCubesClose());
     }
     IEnumerator DelayDarknesCubesClose()
     {
@@ -69,44 +65,31 @@ public class MapController : MonoBehaviour
     {
         readWrite.SavePlayerDataToJson();
     }
-    public void CreateSecondMap()
+    public void CreateMap(int levelCount)
     {
-        levelData.currentMapName = LevelData.MapNames.SecondMap;
+
+        switch (levelData.currentMapName)
+        {
+            case LevelData.MapNames.FirstMap:
+                levelCount = 0;
+                break;
+            case LevelData.MapNames.SecondMap:
+                levelCount = 1;
+                break;
+            case LevelData.MapNames.ThirdMap:
+                levelCount = 2;
+                break;
+            case LevelData.MapNames.FourthMap:
+                levelCount = 3;
+                break;
+            case LevelData.MapNames.FifthMap:
+                levelCount = 4;
+                break;
+        }
 
         playerData.isPlayable = false;
-        DarknessCubesActivity();
-        Destroy(currentMap, 1);
-        CreateMap(levelData.Maps[1], gameObject.transform);
-        StartCoroutine(DelayTruePlayable());
-    }
-    public void CreateThirdMap()
-    {
-        levelData.currentMapName = LevelData.MapNames.ThirdMap;
-
-        playerData.isPlayable = false;
-        DarknessCubesActivity();
-        Destroy(currentMap, 1);
-        CreateMap(levelData.Maps[2], gameObject.transform);
-        StartCoroutine(DelayTruePlayable());
-    }
-    public void CreateFourthMap()
-    {
-        levelData.currentMapName = LevelData.MapNames.FourthMap;
-
-        playerData.isPlayable = false;
-        DarknessCubesActivity();
-        Destroy(currentMap, 1);
-        CreateMap(levelData.Maps[3], gameObject.transform);
-        StartCoroutine(DelayTruePlayable());
-    }
-    public void CreateFifthMap()
-    {
-        levelData.currentMapName = LevelData.MapNames.FifthMap;
-
-        playerData.isPlayable = false;
-        DarknessCubesActivity();
-        Destroy(currentMap, 1);
-        CreateMap(levelData.Maps[4], gameObject.transform);
+        Destroy(currentMap, levelCount);
+        CreateMap(levelData.Maps[levelCount], gameObject.transform);
         StartCoroutine(DelayTruePlayable());
     }
     void CreateMap(GameObject mapObject, Transform mapTransform)
@@ -115,18 +98,18 @@ public class MapController : MonoBehaviour
     }
     public void SetSecondSkybox()
     {
-        RenderSettings.skybox = levelData.secondMapSkyBox;
+        RenderSettings.skybox = levelData.levelSkyboxes[1];
     }
     public void SetThirdSkyBox()
     {
-        RenderSettings.skybox = levelData.thirdSkybox;
+        RenderSettings.skybox = levelData.levelSkyboxes[2];
     }
     public void SetFourthSkybox()
     {
-        RenderSettings.skybox = levelData.fourthSkybox;
+        RenderSettings.skybox = levelData.levelSkyboxes[3];
     }
     public void SetFifthSkybox()
     {
-        RenderSettings.skybox = levelData.fifthSkybox;
+        RenderSettings.skybox = levelData.levelSkyboxes[4];
     }
 }

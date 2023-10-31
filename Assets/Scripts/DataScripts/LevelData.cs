@@ -19,42 +19,24 @@ public class LevelData : ScriptableObject
     public GameObject[] enemyThirdObjects;
     public GameObject[] enemyFourthObjects;
     public GameObject[] enemyFifthObjects;
-    public GameObject enemyTransformsFirstMap;
-    public GameObject enemyTransformsSecondMap;
-    public GameObject enemyTransformsThirdMap;
-    public GameObject enemyTransformsFourthMap;
-    public GameObject enemyTransformsFifthMap;
+
+    public GameObject[] enemyTransformsInMap;
 
     [Header("Coin Values")]
     public int currentStaticCoinValue;
-    public int firstLevelStaticCoinValue;
-    public int secondLevelStaticCoinValue;
-    public int thirdLevelStaticCoinValue;
-    public int fourthLevelStaticCoinValue;
-    public int fifthLevelStaticCoinValue;
+
+    public int[] coinlevelValues;
 
     [Header("Level SkyBoxes")]
-    public Material firstSkybox;
-    public Material secondMapSkyBox;
-    public Material thirdSkybox;
-    public Material fourthSkybox;
-    public Material fifthSkybox;
+    public Material[] levelSkyboxes;
 
     [Header("Level Difficulty")]
     public float currentEnemyDetectionDistance;
-    public float level1EnemyDetectionDistance;
-    public float level2EnemyDetectionDistance;
-    public float level3EnemyDetectionDistance;
-    public float level4EnemyDetectionDistance;
-    public float level5EnemyDetectionDistance;
+    public float[] enemyDetectionDistances;
 
     [Header("Enemy Spawn")]
     public int currentEnemySpawnDelay;
-    public int firstMapEnemySpawnDelay;
-    public int secondMapEnemySpawnDelay;
-    public int thirdMapEnemySpawnDelay;
-    public int fourthMapEnemySpawnDelay;
-    public int fifthMapEnemySpawnDelay;
+    public int[] enemySpawnDelaysByLevel;
 
     [Header("Mirror")]
     public string currentMirrorName;
@@ -67,33 +49,15 @@ public class LevelData : ScriptableObject
 
     [Header("Finishes")]
     public Transform currentFinishArea;
-    public Transform level1FinishArea;
-    public Transform level2FinishArea;
-    public Transform level3FinishArea;
-    public Transform level4FinishArea;
-    public Transform level5FinishArea;
+    public Transform[] finishTransforms;
 
     [Header("MapCompleteBools")]
-    public bool isCompleteFirstMap;
-    public bool isCompleteSecondMap;
-    public bool isCompleteThirdMap;
-    public bool isCompleteFourthMap;
-    public bool isCompleteFifthMap;
+    public bool[] isCompleteMaps;
 
     [Header("MapFinishTargetBools")]
-    public bool isFirstMapTarget;
-    public bool isSecondMapTarget;
-    public bool isThirdMapTarget;
-    public bool isFourthMapTarget;
-    public bool isFifthMapTarget;
+    public bool[] isMapTarget;
     public bool isLevelUp;
 
-    [Header("Clone Target")]
-    public Transform firstTarget;
-    public Transform secondTarget;
-    public Transform thirdTarget;
-    public Transform finishTarget;
-    public Transform currentTarget;
 
     [Header("Level SkyBoxes")]
     public MapNames currentMapName;

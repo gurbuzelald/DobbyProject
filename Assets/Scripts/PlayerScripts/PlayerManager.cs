@@ -523,31 +523,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         _playerData.damageHealthText = GameObject.Find("DamageHealthText").GetComponent<TextMeshProUGUI>();
         playerTransform = GetInstance.GetComponent<Transform>();
 
-        if (_levelData.currentMapName == LevelData.MapNames.FirstMap)
-        {
-            _levelData.currentEnemyDetectionDistance = _levelData.level1EnemyDetectionDistance;
-
-            //GetInstance.gameObject.transform.position = new Vector3(0f, 5f, 0f);
-            GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(0).transform.position;
-        }
-        else if (_levelData.currentMapName == LevelData.MapNames.SecondMap)
-        {
-            _levelData.currentEnemyDetectionDistance = _levelData.level2EnemyDetectionDistance;
-
-            GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(1).transform.position;
-        }
-        else if (_levelData.currentMapName == LevelData.MapNames.ThirdMap)
-        {
-            _levelData.currentEnemyDetectionDistance = _levelData.level3EnemyDetectionDistance;
-
-            GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(2).transform.position;
-        }
-        else if (_levelData.currentMapName == LevelData.MapNames.FourthMap)
-        {
-            _levelData.currentEnemyDetectionDistance = _levelData.level4EnemyDetectionDistance;
-
-            GetInstance.gameObject.transform.position = _playerData.playerSpawns.GetChild(3).transform.position;
-        }
+        
 
         iPlayerShoot = GetComponent<IPlayerShoot>();
         iPlayerCamera = GetComponent<IPlayerCamera>();

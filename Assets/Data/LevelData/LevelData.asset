@@ -126,34 +126,30 @@ MonoBehaviour:
   - {fileID: 1488839946682538327, guid: 1dbed879eb27d4441a3d9e5a4f7ac80d, type: 3}
   - {fileID: 1488839946682538327, guid: 6b1f0cf01150a844785d55fcb97cebeb, type: 3}
   - {fileID: 1488839946682538327, guid: 99d2c8c18ff62554a9cf81b7166dcc22, type: 3}
-  enemyTransformsFirstMap: {fileID: 4800993404208530312, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
-  enemyTransformsSecondMap: {fileID: 1263667095781669195, guid: ad26437bc9128a846aa39bf61721823b, type: 3}
-  enemyTransformsThirdMap: {fileID: 1648237712056192549, guid: cec4a0974b78bf34192878e0ef01c380, type: 3}
-  enemyTransformsFourthMap: {fileID: 1611781249427093311, guid: 123130910ec612642868fea7b0101736, type: 3}
-  enemyTransformsFifthMap: {fileID: 3630268105010323256, guid: acda9d0d06d6c664698e878a9f61914a, type: 3}
+  enemyTransformsInMap:
+  - {fileID: 4800993404208530312, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
+  - {fileID: 1263667095781669195, guid: ad26437bc9128a846aa39bf61721823b, type: 3}
+  - {fileID: 1648237712056192549, guid: cec4a0974b78bf34192878e0ef01c380, type: 3}
+  - {fileID: 1611781249427093311, guid: 123130910ec612642868fea7b0101736, type: 3}
+  - {fileID: 3630268105010323256, guid: acda9d0d06d6c664698e878a9f61914a, type: 3}
   currentStaticCoinValue: 1
-  firstLevelStaticCoinValue: 1
-  secondLevelStaticCoinValue: 2
-  thirdLevelStaticCoinValue: 3
-  fourthLevelStaticCoinValue: 4
-  fifthLevelStaticCoinValue: 5
-  firstSkybox: {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
-  secondMapSkyBox: {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
-  thirdSkybox: {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
-  fourthSkybox: {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
-  fifthSkybox: {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
+  coinlevelValues: 010000000200000003000000040000000500000006000000
+  levelSkyboxes:
+  - {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
+  - {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
+  - {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
+  - {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
+  - {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
   currentEnemyDetectionDistance: 2
-  level1EnemyDetectionDistance: 2
-  level2EnemyDetectionDistance: 3
-  level3EnemyDetectionDistance: 4
-  level4EnemyDetectionDistance: 5
-  level5EnemyDetectionDistance: 6
+  enemyDetectionDistances:
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
   currentEnemySpawnDelay: 1
-  firstMapEnemySpawnDelay: 1
-  secondMapEnemySpawnDelay: 2
-  thirdMapEnemySpawnDelay: 3
-  fourthMapEnemySpawnDelay: 4
-  fifthMapEnemySpawnDelay: 5
+  enemySpawnDelaysByLevel: 010000000200000003000000040000000500000006000000
   currentMirrorName: Mirror1
   _firstMapMirrorCouples:
   - {fileID: 9044617553140458651, guid: e7f4d5f6e375e4548a69d4d890e6ec8c, type: 3}
@@ -166,26 +162,14 @@ MonoBehaviour:
   _fifthMapMirrorCouples:
   - {fileID: 2738821458815677874, guid: 6d4781b31466160458f078fd3a07582f, type: 3}
   currentFinishArea: {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
-  level1FinishArea: {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
-  level2FinishArea: {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
-  level3FinishArea: {fileID: 5566931848723951372, guid: 4585e76964e5f6b47a170518135f316f, type: 3}
-  level4FinishArea: {fileID: 1149033832906918883, guid: 14ee547a4dde40b4a8847f703ec8d8a9, type: 3}
-  level5FinishArea: {fileID: 3196894676368351631, guid: f977ff14ba82aa74c8bcf79f99d10a52, type: 3}
-  isCompleteFirstMap: 0
-  isCompleteSecondMap: 0
-  isCompleteThirdMap: 0
-  isCompleteFourthMap: 0
-  isCompleteFifthMap: 0
-  isFirstMapTarget: 0
-  isSecondMapTarget: 0
-  isThirdMapTarget: 0
-  isFourthMapTarget: 0
-  isFifthMapTarget: 0
+  finishTransforms:
+  - {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
+  - {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
+  - {fileID: 5566931848723951372, guid: 4585e76964e5f6b47a170518135f316f, type: 3}
+  - {fileID: 1149033832906918883, guid: 14ee547a4dde40b4a8847f703ec8d8a9, type: 3}
+  - {fileID: 3196894676368351631, guid: f977ff14ba82aa74c8bcf79f99d10a52, type: 3}
+  isCompleteMaps: 0000000000
+  isMapTarget: 000000000000
   isLevelUp: 0
-  firstTarget: {fileID: 0}
-  secondTarget: {fileID: 0}
-  thirdTarget: {fileID: 0}
-  finishTarget: {fileID: 0}
-  currentTarget: {fileID: 0}
   currentMapName: 0
   currentLevel: 0

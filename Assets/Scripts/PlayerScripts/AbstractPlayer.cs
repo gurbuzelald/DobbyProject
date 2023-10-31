@@ -246,9 +246,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
             _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
-            levelData.isCompleteFirstMap = false;
-            levelData.isCompleteSecondMap = false;
-            levelData.isCompleteThirdMap = false;
+            for (int i = 0; i < levelData.isCompleteMaps.Length; i++)
+            {
+                levelData.isCompleteMaps[i] = false;
+            }
             //PlayerData.slaveCounter = 0;
             _bulletData.isRifle = false;
             _playerData.bulletAmount = _playerData.bulletPack;
@@ -1034,26 +1035,26 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         if (other.CompareTag(SceneController.Tags.FirstFinishArea.ToString()))
         {
             levelData.isLevelUp = true;
-            levelData.isCompleteFirstMap = true;
-            levelData.isSecondMapTarget = true;
+            levelData.isCompleteMaps[0] = true;
+            levelData.isMapTarget[1] = true;
         }
         else if (other.CompareTag(SceneController.Tags.SecondFinishArea.ToString()))
         {
             levelData.isLevelUp = true;
-            levelData.isCompleteSecondMap = true;
-            levelData.isThirdMapTarget = true;
+            levelData.isCompleteMaps[1] = true;
+            levelData.isMapTarget[2] = true;
         }
         else if (other.CompareTag(SceneController.Tags.ThirdFinishArea.ToString()))
         {
             levelData.isLevelUp = true;
-            levelData.isCompleteThirdMap = true;
-            levelData.isFourthMapTarget = true;
+            levelData.isCompleteMaps[2] = true;
+            levelData.isMapTarget[3] = true;
         }
         else if (other.CompareTag(SceneController.Tags.FourthFinishArea.ToString()))
         {
             levelData.isLevelUp = true;
-            levelData.isCompleteFourthMap = true;
-            levelData.isFifthMapTarget = true;
+            levelData.isCompleteMaps[3] = true;
+            levelData.isMapTarget[4] = true;
         }
         //PlayerData
         //_playerData.isLockedWalking = false;
