@@ -31,6 +31,25 @@ MonoBehaviour:
   - {fileID: 6719176771443135241, guid: ac0201e8cf62cb24eafe396cee8465c4, type: 3}
   - {fileID: 7138293202800543776, guid: b58971eee7eabb341a9e50612b070986, type: 3}
   - {fileID: 6995526888015887884, guid: 79af744eb362dbe45b39dfc062a6f120, type: 3}
+  currentEnemyObjects:
+  - {fileID: 1124876159237399022, guid: 08524ce7f172b1f40ab3eee041359683, type: 3}
+  - {fileID: 4288211827455112566, guid: 0306d1720a844fa4e9feb9b2b604d860, type: 3}
+  - {fileID: 2134151945780647761, guid: 61a60c4eb8936f94e8b91f35ae8c8991, type: 3}
+  - {fileID: 2679552619666515618, guid: c31f001e3aec46844ba4a4baf555cb76, type: 3}
+  - {fileID: 2264917539931701796, guid: be0acb9d5aeef374f9a9519fe1b90393, type: 3}
+  - {fileID: 4049568489955151096, guid: 9924de07a739d6e4caa5ddae8e2315fc, type: 3}
+  - {fileID: 2133012914156472325, guid: 72f0133ff64d426428014c76a2926d9c, type: 3}
+  - {fileID: 8949910313472600481, guid: 7e1e4c01a8efd1d4b89fc959204dafef, type: 3}
+  - {fileID: 4393876145780571537, guid: 70dac476223967e46b180fda0accefaa, type: 3}
+  - {fileID: 1124876159237399022, guid: b8bad723ca5a02947bddd66f50f0d411, type: 3}
+  - {fileID: 8967855359998218866, guid: d830058d07bf14b40ad3cbaca613fa1a, type: 3}
+  - {fileID: 8967855359998218866, guid: ab3ca2ef43192e44d9b42185d6cda213, type: 3}
+  - {fileID: 8967855359998218866, guid: db7e0b172b7b5b84588c0534061d1a51, type: 3}
+  - {fileID: 8967855359998218866, guid: 1bd0892715d26d74eb5b9a8100cc2a00, type: 3}
+  - {fileID: 1488839946682538327, guid: 406cd1a12e40a5544a310264f08b9bb7, type: 3}
+  - {fileID: 1488839946682538327, guid: 1dbed879eb27d4441a3d9e5a4f7ac80d, type: 3}
+  - {fileID: 1488839946682538327, guid: 6b1f0cf01150a844785d55fcb97cebeb, type: 3}
+  - {fileID: 1488839946682538327, guid: 99d2c8c18ff62554a9cf81b7166dcc22, type: 3}
   enemyFirstObjects:
   - {fileID: 1124876159237399022, guid: 08524ce7f172b1f40ab3eee041359683, type: 3}
   - {fileID: 4288211827455112566, guid: 0306d1720a844fa4e9feb9b2b604d860, type: 3}
@@ -140,7 +159,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
   - {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
   - {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
-  currentEnemyDetectionDistance: 2
+  currentEnemyDetectionDistance: 3
   enemyDetectionDistances:
   - 2
   - 3
@@ -148,20 +167,16 @@ MonoBehaviour:
   - 5
   - 6
   - 7
-  currentEnemySpawnDelay: 1
+  currentEnemySpawnDelay: 2
   enemySpawnDelaysByLevel: 010000000200000003000000040000000500000006000000
   currentMirrorName: Mirror1
-  _firstMapMirrorCouples:
+  mirrorCouples:
   - {fileID: 9044617553140458651, guid: e7f4d5f6e375e4548a69d4d890e6ec8c, type: 3}
-  _secondMapMirrorCouples:
   - {fileID: 6167717323233158170, guid: e039fe0c70ee28544a24b18517c302fe, type: 3}
-  _thirdMapMirrorCouples:
   - {fileID: 2808162707802702247, guid: ae0befe520627db47823e83467a22361, type: 3}
-  _fourthMapMirrorCouples:
   - {fileID: 6022340288675348387, guid: 0e6ca9137dddb924fb941e3a65e4e1ac, type: 3}
-  _fifthMapMirrorCouples:
   - {fileID: 2738821458815677874, guid: 6d4781b31466160458f078fd3a07582f, type: 3}
-  currentFinishArea: {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
+  currentFinishArea: {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
   finishTransforms:
   - {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
   - {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
@@ -169,7 +184,6 @@ MonoBehaviour:
   - {fileID: 1149033832906918883, guid: 14ee547a4dde40b4a8847f703ec8d8a9, type: 3}
   - {fileID: 3196894676368351631, guid: f977ff14ba82aa74c8bcf79f99d10a52, type: 3}
   isCompleteMaps: 0000000000
-  isMapTarget: 000000000000
+  isMapTarget: 000100000000
   isLevelUp: 0
-  currentMapName: 0
-  currentLevel: 0
+  currentLevel: 1

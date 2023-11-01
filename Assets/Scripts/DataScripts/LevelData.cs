@@ -14,6 +14,7 @@ public class LevelData : ScriptableObject
     public GameObject[] Maps;
 
     [Header("Enemy Level Objects")]
+    public GameObject[] currentEnemyObjects;
     public GameObject[] enemyFirstObjects;
     public GameObject[] enemySecondObjects;
     public GameObject[] enemyThirdObjects;

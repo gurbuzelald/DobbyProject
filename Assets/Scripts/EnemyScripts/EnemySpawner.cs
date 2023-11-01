@@ -32,105 +32,29 @@ public class EnemySpawner : MonoBehaviour
         enemyData.isActivateCreateEnemy = false;
         bulletCoinCount = 0;
 
-        CreateAwakeEnemies();
+        CreateAwakeEnemies(LevelUpController.levelCount);
 
         //Debug.Log(gameObject.transform.childCount);
     }
-    void CreateAwakeEnemies()
+    void CreateAwakeEnemies(int levelCount)
     {
-        if (levelData.currentLevel == LevelData.Levels.Level1)
+        enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[levelCount].gameObject, gameObject.transform);
+
+        for (int i = 0; i < levelData.enemyTransformsInMap[levelCount].transform.childCount; i++)
         {
-            enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[0].gameObject, gameObject.transform);
-
-            for (int i = 0; i < levelData.enemyTransformsInMap[0].transform.childCount; i++)
-            {
-                levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[0];
-                currentEnemyObjects = Instantiate(levelData.enemyFirstObjects[i],
-                                             enemyTransformObject.transform.GetChild(i).position,
-                                             Quaternion.identity,
-                                             enemyTransformObject.transform.GetChild(i).transform);
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                                     10f,
-                                                                     enemyTransformObject.transform.GetChild(i).position.z);
-            }
-        }
-       else if (levelData.currentLevel == LevelData.Levels.Level2)
-       {
-            enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[1].gameObject, gameObject.transform);
-
-            for (int i = 0; i < levelData.enemyTransformsInMap[1].transform.childCount; i++)
-            {
-                levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[1];
-                currentEnemyObjects = Instantiate(levelData.enemySecondObjects[i],
-                                             enemyTransformObject.transform.GetChild(i).position,
-                                             Quaternion.identity,
-                                             enemyTransformObject.transform.GetChild(i).transform);
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                                     10f,
-                                                                     enemyTransformObject.transform.GetChild(i).position.z);
-            }
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level3)
-        {
-            enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[2].gameObject, gameObject.transform);
-
-            for (int i = 0; i < levelData.enemyTransformsInMap[2].transform.childCount; i++)
-            {
-                levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[2];
-                currentEnemyObjects = Instantiate(levelData.enemyThirdObjects[i],
-                                             enemyTransformObject.transform.GetChild(i).position,
-                                             Quaternion.identity,
-                                             enemyTransformObject.transform.GetChild(i).transform);
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                                     10f,
-                                                                     enemyTransformObject.transform.GetChild(i).position.z);
-            }
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level4)
-        {
-            enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[3].gameObject, gameObject.transform);
-
-            for (int i = 0; i < levelData.enemyTransformsInMap[3].transform.childCount; i++)
-            {
-                levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[3];
-                currentEnemyObjects = Instantiate(levelData.enemyFourthObjects[i],
-                                             enemyTransformObject.transform.GetChild(i).position,
-                                             Quaternion.identity,
-                                             enemyTransformObject.transform.GetChild(i).transform);
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                                     10f,
-                                                                     enemyTransformObject.transform.GetChild(i).position.z);
-            }
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level5)
-        {
-            enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[4].gameObject, gameObject.transform);
-
-            for (int i = 0; i < levelData.enemyTransformsInMap[4].transform.childCount; i++)
-            {
-                levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[4];
-                currentEnemyObjects = Instantiate(levelData.enemyFourthObjects[i],
-                                             enemyTransformObject.transform.GetChild(i).position,
-                                             Quaternion.identity,
-                                             enemyTransformObject.transform.GetChild(i).transform);
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                                     10f,
-                                                                     enemyTransformObject.transform.GetChild(i).position.z);
-            }
+            levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[levelCount];
+            currentEnemyObjects = Instantiate(levelData.currentEnemyObjects[i],
+                                         enemyTransformObject.transform.GetChild(i).position,
+                                         Quaternion.identity,
+                                         enemyTransformObject.transform.GetChild(i).transform);
+            currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
+                                                                 10f,
+                                                                 enemyTransformObject.transform.GetChild(i).position.z);
         }
         //enemyCountText.text = gameObject.transform.GetChild(0).childCount.ToString();
     }
     IEnumerator CreateBulletCoin(int i)
     {
-        //if (bulletCoinCount <= 0)
-        //{
-        //    if (_bulletCoinSpawn.childCount <= 3)
-        //    {
-                
-        //    }
-
-        //    
-        //}
         yield return new WaitForSeconds(2);
 
         if (gameObject.transform.GetChild(0).GetChild(i).transform.childCount == 0)
@@ -185,7 +109,7 @@ public class EnemySpawner : MonoBehaviour
             {//if enemyTransformObject's childCount equals zero, destroy enemyTransformObject. This code is for getting enemies amount.
                 if (gameObject.transform.GetChild(0).GetChild(i).name == "BulletCoin(Clone)" || gameObject.transform.GetChild(0).GetChild(i).childCount == 0)
                 {
-                    CheckEnemyDeathForLevels(i);                    
+                    CheckEnemyDeathForLevels(i, levelData.currentEnemyObjects);                    
                 }
                 if (gameObject.transform.GetChild(0).GetChild(i).childCount == 0)
                 {
@@ -194,161 +118,41 @@ public class EnemySpawner : MonoBehaviour
             }
         }
     }
-    void CheckEnemyDeathForLevels(int i)
+    void CheckEnemyDeathForLevels(int i, GameObject[] enemyObjects)
     {
-        CheckEnemyDeathFirstMap(i);
-        CheckEnemyDeathSecondMap(i);
-        CheckEnemyDeathThirdMap(i);
-        CheckEnemyDeathFourthMap(i);
+        CheckEnemyDeathWithLevels(i, enemyObjects);
     }
-    void CheckEnemyDeathFirstMap(int i)
+    void CheckEnemyDeathWithLevels(int i, GameObject[] enemyObjects)
     {
         if (levelData.currentLevel == LevelData.Levels.Level1)
         {
 
             if (enemyData.isActivateCreateEnemy)
             {
-                currentEnemyObjects = Instantiate(levelData.enemyFirstObjects[i],
+                currentEnemyObjects = Instantiate(enemyObjects[i],
                                      enemyTransformObject.transform.GetChild(i).position,
                                      Quaternion.identity,
                                      enemyTransformObject.transform.GetChild(i).transform);
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                 10f,
-                                                 enemyTransformObject.transform.GetChild(i).position.z);
+                currentEnemyObjects.transform.position = 
+                    new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
+                                10f,
+                                enemyTransformObject.transform.GetChild(i).position.z);
                 enemyData.isActivateCreateEnemy = false;
             }
         }
     }
-    void CheckEnemyDeathSecondMap(int i)
+
+
+    public void CreateEnemiesByMap(int levelCount)
     {
-        if (levelData.currentLevel == LevelData.Levels.Level2)
-        {
-            if (enemyData.isActivateCreateEnemy)
-            {
-                currentEnemyObjects = Instantiate(levelData.enemySecondObjects[i],
-                                     enemyTransformObject.transform.GetChild(i).position,
-                                     Quaternion.identity,
-                                     enemyTransformObject.transform.GetChild(i).transform);
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                 10f,
-                                                 enemyTransformObject.transform.GetChild(i).position.z);
-                enemyData.isActivateCreateEnemy = false;
-            }
-        }
-    }
-    void CheckEnemyDeathThirdMap(int i)
-    {
-        if (levelData.currentLevel == LevelData.Levels.Level3)
-        {
-            if (enemyData.isActivateCreateEnemy)
-            {
-                currentEnemyObjects = Instantiate(levelData.enemyThirdObjects[i],
-                                     enemyTransformObject.transform.GetChild(i).position,
-                                     Quaternion.identity,
-                                     enemyTransformObject.transform.GetChild(i).transform);
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                 10f,
-                                                 enemyTransformObject.transform.GetChild(i).position.z);
-                enemyData.isActivateCreateEnemy = false;
-            }
-        }
-    }
-    void CheckEnemyDeathFourthMap(int i)
-    {
-        if (levelData.currentLevel == LevelData.Levels.Level4)
-        {
-            if (enemyData.isActivateCreateEnemy)
-            {
-                currentEnemyObjects = Instantiate(levelData.enemyFourthObjects[i],
-                                     enemyTransformObject.transform.GetChild(i).position,
-                                     Quaternion.identity,
-                                     enemyTransformObject.transform.GetChild(i).transform);
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                 10f,
-                                                 enemyTransformObject.transform.GetChild(i).position.z);
-                enemyData.isActivateCreateEnemy = false;
-            }
-        }
-    }
-    public void CreateSecondMapEnemies()
-    {
-        levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[1];
+        levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[levelCount];
 
         Destroy(enemyTransformObject);
-        enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[1].gameObject, gameObject.transform);
+        enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[levelCount].gameObject, 
+                                           gameObject.transform);
 
-        //for (int i = 0; i < enemyData.enemySecondObjects.Length; i++)
-        //{
-        //    currentEnemyObjects = Instantiate(enemyData.enemySecondObjects[i],
-        //                             enemyTransformObject.transform.GetChild(i).position,
-        //                             Quaternion.identity,
-        //                             enemyTransformObject.transform.GetChild(i).transform);
-        //    currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-        //                                                     10f,
-        //                                                     enemyTransformObject.transform.GetChild(i).position.z);
-        //}
-        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformObject, levelData.enemySecondObjects);
-    }
-   
-    public void CreateThirdMapEnemies()
-    {
-        levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[2];
 
-        Destroy(enemyTransformObject);
-        enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[2].gameObject, gameObject.transform);
-
-        //for (int i = 0; i < enemyData.enemyThirdObjects.Length; i++)
-        //{
-        //    currentEnemyObjects = Instantiate(enemyData.enemyThirdObjects[i],
-        //                             enemyTransformObject.transform.GetChild(i).position,
-        //                             Quaternion.identity,
-        //                             enemyTransformObject.transform.GetChild(i).transform);
-        //    currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-        //                                                     10f,
-        //                                                     enemyTransformObject.transform.GetChild(i).position.z);
-        //}
-        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformObject, levelData.enemyThirdObjects);
-
-    }
-    public void CreateFourthMapEnemies()
-    {
-        levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[3];
-
-        Destroy(enemyTransformObject);
-        enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[3].gameObject, gameObject.transform);
-
-        //for (int i = 0; i < enemyData.enemyFourthObjects.Length; i++)
-        //{
-        //    currentEnemyObjects = Instantiate(enemyData.enemyFourthObjects[i],
-        //                             enemyTransformObject.transform.GetChild(i).position,
-        //                             Quaternion.identity,
-        //                             enemyTransformObject.transform.GetChild(i).transform);
-        //    currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-        //                                                     10f,
-        //                                                     enemyTransformObject.transform.GetChild(i).position.z);
-        //}
-        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformObject, levelData.enemyFourthObjects);
-
-    }
-    public void CreateFifthMapEnemies()
-    {
-        levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[4];
-
-        Destroy(enemyTransformObject);
-        enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[4].gameObject, gameObject.transform);
-
-        //for (int i = 0; i < enemyData.enemyFourthObjects.Length; i++)
-        //{
-        //    currentEnemyObjects = Instantiate(enemyData.enemyFourthObjects[i],
-        //                             enemyTransformObject.transform.GetChild(i).position,
-        //                             Quaternion.identity,
-        //                             enemyTransformObject.transform.GetChild(i).transform);
-        //    currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-        //                                                     10f,
-        //                                                     enemyTransformObject.transform.GetChild(i).position.z);
-        //}
-        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformObject, levelData.enemyFifthObjects);
-
+        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformObject, levelData.currentEnemyObjects);
     }
     void CreateEnemyInUpdate(GameObject currentEnemyObjects, GameObject enemyTransformObject, GameObject[] enemyObjects)
     {

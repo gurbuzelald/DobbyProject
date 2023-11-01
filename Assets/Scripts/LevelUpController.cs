@@ -84,7 +84,7 @@ public class LevelUpController : MonoBehaviour
     {
         CheckCompleteLevel();
         
-        SetDetectionOfEnemyAtUpdate();
+        SetDetectionOfEnemyAtUpdate(levelCount);
         ArrowLevelRotation(levelCount);
     }
     void LevelCount()
@@ -117,13 +117,11 @@ public class LevelUpController : MonoBehaviour
     }
     void CheckCompleteLevel()
     {
-        if (levelData.currentLevel == LevelData.Levels.Level1)
-        {
-            bulletData.currentGiftBox = bulletData.bullDogGiftBox;
-        }
+        
         if (levelData.isCompleteMaps[0])
         {
             levelData.currentLevel = LevelData.Levels.Level2;
+            levelData.currentEnemyObjects = levelData.enemySecondObjects;
             bulletData.currentGiftBox = bulletData.cowgunGiftBox;
             LevelCount();
             weaponGiftBoxSpawner.CreateSecondMapGiftBoxes();
@@ -133,7 +131,7 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(levelCount);
             mapController.SetSkybox(levelCount);
             mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateSecondMapEnemies();
+            enemySpawner.CreateEnemiesByMap(levelCount);
 
             //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
 
@@ -142,6 +140,7 @@ public class LevelUpController : MonoBehaviour
         else if (levelData.isCompleteMaps[1])
         {
             levelData.currentLevel = LevelData.Levels.Level3;
+            levelData.currentEnemyObjects = levelData.enemyThirdObjects;
             bulletData.currentGiftBox = bulletData.demongunGiftBox;
             LevelCount();
             weaponGiftBoxSpawner.CreateThirdMapGiftBoxes();
@@ -151,7 +150,7 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(levelCount);
             mapController.SetSkybox(levelCount);
             mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateThirdMapEnemies();
+            enemySpawner.CreateEnemiesByMap(levelCount);
 
             //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
 
@@ -160,6 +159,7 @@ public class LevelUpController : MonoBehaviour
         else if (levelData.isCompleteMaps[2])
         {
             levelData.currentLevel = LevelData.Levels.Level4;
+            levelData.currentEnemyObjects = levelData.enemyFourthObjects;
             bulletData.currentGiftBox = bulletData.negevGiftBox;
             LevelCount();
             weaponGiftBoxSpawner.CreateFourthMapGiftBoxes();
@@ -169,7 +169,7 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(levelCount);
             mapController.SetSkybox(levelCount);
             mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateFourthMapEnemies();
+            enemySpawner.CreateEnemiesByMap(levelCount);
 
             //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
 
@@ -178,6 +178,7 @@ public class LevelUpController : MonoBehaviour
         else if (levelData.isCompleteMaps[3])
         {
             levelData.currentLevel = LevelData.Levels.Level5;
+            levelData.currentEnemyObjects = levelData.enemyFifthObjects;
             bulletData.currentGiftBox = bulletData.axegunGiftBox;
             LevelCount();
             weaponGiftBoxSpawner.CreateFifthMapGiftBoxes();
@@ -187,14 +188,19 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(levelCount);
             mapController.SetSkybox(levelCount);
             mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateFifthMapEnemies();
+            enemySpawner.CreateEnemiesByMap(levelCount);
 
             //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
 
             levelData.isCompleteMaps[3] = false;
         }
+        else
+        {//Level1 Condition
+            bulletData.currentGiftBox = bulletData.bullDogGiftBox;
+            levelData.currentEnemyObjects = levelData.enemyFirstObjects;
+        }
     }
-    void SetDetectionOfEnemyAtUpdate()
+    void SetDetectionOfEnemyAtUpdate(int levelCount)
     {
         levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[levelCount];
     }
