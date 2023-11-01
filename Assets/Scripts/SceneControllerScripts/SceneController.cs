@@ -91,7 +91,7 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        levelData.currentMapName = LevelData.MapNames.FirstMap;
+        levelData.currentLevel = LevelData.Levels.Level1;
 
         playAgain = true;
 
@@ -132,7 +132,7 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        levelData.currentMapName = LevelData.MapNames.FirstMap;
+        levelData.currentLevel = LevelData.Levels.Level1;
 
         DestroySingletonObjects();
 

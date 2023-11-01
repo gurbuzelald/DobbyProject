@@ -64,7 +64,9 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             !playerData.isSwordAnimate &&
             !playerData.isDying && !playerData.isPlayable
         */
-        if ((PlayerManager.GetInstance.GetZValue() >= 0.01 && !playerData.isClimbing && !playerData.isBackClimbing && !playerData.isSkateBoarding))
+        if (PlayerManager.GetInstance.GetZValue() >= 0.01 && 
+            !playerData.isClimbing && !playerData.isBackClimbing && 
+            !playerData.isSkateBoarding && !playerData.isSwordAnimate)
         {
             _animator.SetBool(AnimatorParameters.isWalking.ToString(), true);
             _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
@@ -124,7 +126,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public virtual void BackWalkAnimation(PlayerData playerData, Animator _animator)
     {
-        if (playerData.isBackWalking )
+        if (playerData.isBackWalking && !playerData.isSwordAnimate)
         {
             _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), true);
 

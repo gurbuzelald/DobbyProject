@@ -353,21 +353,25 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     void SetEnemySpeed()
     {
-        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
+        if (levelData.currentLevel == LevelData.Levels.Level1)
         {
             enemyData.enemySpeed = Random.Range(0.1f, 0.5f);
         }
-        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level2)
         {
             enemyData.enemySpeed = Random.Range(0.3f, 0.7f);
         }
-        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level3)
         {
             enemyData.enemySpeed = Random.Range(0.5f, 0.9f);
         }
-        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level4)
         {
             enemyData.enemySpeed = Random.Range(0.7f, 1.1f);
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level5)
+        {
+            enemyData.enemySpeed = Random.Range(0.9f, 1.3f);
         }
     }
     public void TriggerBullet(float bulletPower, Collider other)

@@ -40,11 +40,7 @@ public class LevelData : ScriptableObject
 
     [Header("Mirror")]
     public string currentMirrorName;
-    public GameObject[] _firstMapMirrorCouples;
-    public GameObject[] _secondMapMirrorCouples;
-    public GameObject[] _thirdMapMirrorCouples;
-    public GameObject[] _fourthMapMirrorCouples;
-    public GameObject[] _fifthMapMirrorCouples;
+    public GameObject[] mirrorCouples;
 
 
     [Header("Finishes")]
@@ -58,21 +54,8 @@ public class LevelData : ScriptableObject
     public bool[] isMapTarget;
     public bool isLevelUp;
 
-
-    [Header("Level SkyBoxes")]
-    public MapNames currentMapName;
-
     [Header("Current Level")]
     public Levels currentLevel;
-
-    public enum MapNames
-    {
-        FirstMap,
-        SecondMap,
-        ThirdMap,
-        FourthMap,
-        FifthMap
-    }
     public enum Levels
     {
         Level1,

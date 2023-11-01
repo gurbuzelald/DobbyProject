@@ -11,23 +11,23 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
 
     private void Awake()
     {
-        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
+        if (levelData.currentLevel == LevelData.Levels.Level1)
         {
             CreateFirstMapGiftBoxes();
         }
-        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level2)
         {
             CreateSecondMapGiftBoxes();
         }
-        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level3)
         {
             CreateThirdMapGiftBoxes();
         }
-        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level4)
         {
             CreateFourthMapGiftBoxes();
         }
-        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level5)
         {
             CreateFifthMapGiftBoxes();
         }

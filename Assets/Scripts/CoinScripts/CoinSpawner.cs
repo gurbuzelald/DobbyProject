@@ -11,49 +11,30 @@ public class CoinSpawner : MonoBehaviour
 
     void Start()
     {
-        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
+        if (levelData.currentLevel == LevelData.Levels.Level1)
         {
             currentMapCoins = Instantiate(levelData.mapCoins[0], gameObject.transform);
         }
-        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level2)
         {
             currentMapCoins = Instantiate(levelData.mapCoins[1], gameObject.transform);
         }
-        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level3)
         {
             currentMapCoins = Instantiate(levelData.mapCoins[2], gameObject.transform);
         }
-        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level4)
         {
             currentMapCoins = Instantiate(levelData.mapCoins[3], gameObject.transform);
         }
-        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level5)
         {
             currentMapCoins = Instantiate(levelData.mapCoins[4], gameObject.transform);
         }
     }
-    public void CreateSecondCoin()
+    public void CreateCoins(int levelCount)
     {
         Destroy(currentMapCoins);
-        currentMapCoins = Instantiate(levelData.mapCoins[1], gameObject.transform);
-
-    }
-    public void CreateThirdCoin()
-    {
-        Destroy(currentMapCoins);
-        currentMapCoins = Instantiate(levelData.mapCoins[2], gameObject.transform);
-
-    }
-    public void CreateFourthCoin()
-    {
-        Destroy(currentMapCoins);
-        currentMapCoins = Instantiate(levelData.mapCoins[3], gameObject.transform);
-
-    }
-    public void CreateFifthCoin()
-    {
-        Destroy(currentMapCoins);
-        currentMapCoins = Instantiate(levelData.mapCoins[4], gameObject.transform);
-
+        currentMapCoins = Instantiate(levelData.mapCoins[levelCount], gameObject.transform);
     }
 }

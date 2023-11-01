@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void CreateAwakeEnemies()
     {
-        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
+        if (levelData.currentLevel == LevelData.Levels.Level1)
         {
             enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[0].gameObject, gameObject.transform);
 
@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
                                                                      enemyTransformObject.transform.GetChild(i).position.z);
             }
         }
-       else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
+       else if (levelData.currentLevel == LevelData.Levels.Level2)
        {
             enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[1].gameObject, gameObject.transform);
 
@@ -70,7 +70,7 @@ public class EnemySpawner : MonoBehaviour
                                                                      enemyTransformObject.transform.GetChild(i).position.z);
             }
         }
-        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level3)
         {
             enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[2].gameObject, gameObject.transform);
 
@@ -86,7 +86,7 @@ public class EnemySpawner : MonoBehaviour
                                                                      enemyTransformObject.transform.GetChild(i).position.z);
             }
         }
-        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level4)
         {
             enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[3].gameObject, gameObject.transform);
 
@@ -102,7 +102,7 @@ public class EnemySpawner : MonoBehaviour
                                                                      enemyTransformObject.transform.GetChild(i).position.z);
             }
         }
-        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level5)
         {
             enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[4].gameObject, gameObject.transform);
 
@@ -203,7 +203,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void CheckEnemyDeathFirstMap(int i)
     {
-        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
+        if (levelData.currentLevel == LevelData.Levels.Level1)
         {
 
             if (enemyData.isActivateCreateEnemy)
@@ -221,7 +221,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void CheckEnemyDeathSecondMap(int i)
     {
-        if (levelData.currentMapName == LevelData.MapNames.SecondMap)
+        if (levelData.currentLevel == LevelData.Levels.Level2)
         {
             if (enemyData.isActivateCreateEnemy)
             {
@@ -238,7 +238,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void CheckEnemyDeathThirdMap(int i)
     {
-        if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
+        if (levelData.currentLevel == LevelData.Levels.Level3)
         {
             if (enemyData.isActivateCreateEnemy)
             {
@@ -255,7 +255,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void CheckEnemyDeathFourthMap(int i)
     {
-        if (levelData.currentMapName == LevelData.MapNames.FourthMap)
+        if (levelData.currentLevel == LevelData.Levels.Level4)
         {
             if (enemyData.isActivateCreateEnemy)
             {

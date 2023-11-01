@@ -19,27 +19,27 @@ public class MapController : MonoBehaviour
     {
         readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
 
-        if (levelData.currentMapName == LevelData.MapNames.FirstMap) {
+        if (levelData.currentLevel == LevelData.Levels.Level1) {
 
             currentMap = Instantiate(levelData.Maps[0], gameObject.transform);
             RenderSettings.skybox = levelData.levelSkyboxes[0];
         }
-        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level2)
         {
             currentMap = Instantiate(levelData.Maps[1], gameObject.transform);
             RenderSettings.skybox = levelData.levelSkyboxes[1];
         }
-        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level3)
         {
             currentMap = Instantiate(levelData.Maps[2], gameObject.transform);
             RenderSettings.skybox = levelData.levelSkyboxes[2];
         }
-        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level4)
         {
             currentMap = Instantiate(levelData.Maps[3], gameObject.transform);
             RenderSettings.skybox = levelData.levelSkyboxes[3];
         }
-        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level5)
         {
             currentMap = Instantiate(levelData.Maps[4], gameObject.transform);
             RenderSettings.skybox = levelData.levelSkyboxes[4];
@@ -67,49 +67,18 @@ public class MapController : MonoBehaviour
     }
     public void CreateMap(int levelCount)
     {
-
-        switch (levelData.currentMapName)
-        {
-            case LevelData.MapNames.FirstMap:
-                levelCount = 0;
-                break;
-            case LevelData.MapNames.SecondMap:
-                levelCount = 1;
-                break;
-            case LevelData.MapNames.ThirdMap:
-                levelCount = 2;
-                break;
-            case LevelData.MapNames.FourthMap:
-                levelCount = 3;
-                break;
-            case LevelData.MapNames.FifthMap:
-                levelCount = 4;
-                break;
-        }
-
         playerData.isPlayable = false;
         Destroy(currentMap, levelCount);
         CreateMap(levelData.Maps[levelCount], gameObject.transform);
         StartCoroutine(DelayTruePlayable());
     }
+
     void CreateMap(GameObject mapObject, Transform mapTransform)
     {
         currentMap  = Instantiate(mapObject, mapTransform);
     }
-    public void SetSecondSkybox()
+    public void SetSkybox(int levelCount)
     {
-        RenderSettings.skybox = levelData.levelSkyboxes[1];
-    }
-    public void SetThirdSkyBox()
-    {
-        RenderSettings.skybox = levelData.levelSkyboxes[2];
-    }
-    public void SetFourthSkybox()
-    {
-        RenderSettings.skybox = levelData.levelSkyboxes[3];
-    }
-    public void SetFifthSkybox()
-    {
-        RenderSettings.skybox = levelData.levelSkyboxes[4];
+        RenderSettings.skybox = levelData.levelSkyboxes[levelCount];
     }
 }

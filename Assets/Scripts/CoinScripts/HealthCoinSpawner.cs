@@ -10,23 +10,23 @@ public class HealthCoinSpawner : MonoBehaviour
     private GameObject _healtCoinTransform;
     void Awake()
     {
-        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
+        if (levelData.currentLevel == LevelData.Levels.Level1)
         {
             _healtCoinTransform = Instantiate(levelData._healtCoinTransform[0], gameObject.transform);
         }
-        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level2)
         {
             _healtCoinTransform = Instantiate(levelData._healtCoinTransform[1], gameObject.transform);
         }
-        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level3)
         {
             _healtCoinTransform = Instantiate(levelData._healtCoinTransform[2], gameObject.transform);
         }
-        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level4)
         {
             _healtCoinTransform = Instantiate(levelData._healtCoinTransform[3], gameObject.transform);
         }
-        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
+        else if (levelData.currentLevel == LevelData.Levels.Level5)
         {
             _healtCoinTransform = Instantiate(levelData._healtCoinTransform[4], gameObject.transform);
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LevelUpController : MonoBehaviour
 {
+    public static int levelCount;
     [SerializeField] PlayerData playerData;
     [SerializeField] LevelData levelData;
     [SerializeField] BulletData bulletData;
@@ -43,7 +44,7 @@ public class LevelUpController : MonoBehaviour
     }
     private void Start()
     {
-        SpawnPlayerObject();
+        SpawnPlayerObject(levelCount);
     }
     void InitStatements()
     {
@@ -82,59 +83,57 @@ public class LevelUpController : MonoBehaviour
     private void Update()
     {
         CheckCompleteLevel();
+        
         SetDetectionOfEnemyAtUpdate();
-        ArrowLevelRotation();
+        ArrowLevelRotation(levelCount);
     }
-    private void SpawnPlayerObject()
+    void LevelCount()
     {
-        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
+        switch (levelData.currentLevel)
         {
-            levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[0];
-
-            //GetInstance.gameObject.transform.position = new Vector3(0f, 5f, 0f);
-            PlayerManager.GetInstance.gameObject.transform.position = playerData.playerSpawns.GetChild(0).transform.position;
+            case LevelData.Levels.Level1:
+                levelCount = 0;
+                break;
+            case LevelData.Levels.Level2:
+                levelCount = 1;
+                break;
+            case LevelData.Levels.Level3:
+                levelCount = 2;
+                break;
+            case LevelData.Levels.Level4:
+                levelCount = 3;
+                break;
+            case LevelData.Levels.Level5:
+                levelCount = 4;
+                break;
         }
-        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
-        {
-            levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[1];
+    }
+    private void SpawnPlayerObject(int levelCount)
+    {
+        levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[levelCount];
 
-            PlayerManager.GetInstance.gameObject.transform.position = playerData.playerSpawns.GetChild(1).transform.position;
-        }
-        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
-        {
-            levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[2];
-
-            PlayerManager.GetInstance.gameObject.transform.position = playerData.playerSpawns.GetChild(2).transform.position;
-        }
-        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
-        {
-            levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[3];
-
-            PlayerManager.GetInstance.gameObject.transform.position = playerData.playerSpawns.GetChild(3).transform.position;
-        }
-        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
-        {
-            levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[4];
-
-            PlayerManager.GetInstance.gameObject.transform.position = playerData.playerSpawns.GetChild(4).transform.position;
-        }
+        PlayerManager.GetInstance.gameObject.transform.position = 
+            playerData.playerSpawns.GetChild(levelCount).transform.position;
     }
     void CheckCompleteLevel()
     {
+        if (levelData.currentLevel == LevelData.Levels.Level1)
+        {
+            bulletData.currentGiftBox = bulletData.bullDogGiftBox;
+        }
         if (levelData.isCompleteMaps[0])
         {
-            levelData.currentMapName = LevelData.MapNames.SecondMap;
-
+            levelData.currentLevel = LevelData.Levels.Level2;
+            bulletData.currentGiftBox = bulletData.cowgunGiftBox;
+            LevelCount();
             weaponGiftBoxSpawner.CreateSecondMapGiftBoxes();
             healthCoinSpawner.CreateSecondtMapHealthCoin();
-            coinSpawner.CreateSecondCoin();
+            coinSpawner.CreateCoins(levelCount);
             //mapController.CreateSecondMap();
-            mapController.CreateMap(1);
-            mapController.SetSecondSkybox();
-            mirrorSpawner.CreateSecondMapMirror();
+            mapController.CreateMap(levelCount);
+            mapController.SetSkybox(levelCount);
+            mirrorSpawner.CreateTransportMirror(levelCount);
             enemySpawner.CreateSecondMapEnemies();
-
-            
 
             //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
 
@@ -142,15 +141,16 @@ public class LevelUpController : MonoBehaviour
         }
         else if (levelData.isCompleteMaps[1])
         {
-            levelData.currentMapName = LevelData.MapNames.ThirdMap;
-
+            levelData.currentLevel = LevelData.Levels.Level3;
+            bulletData.currentGiftBox = bulletData.demongunGiftBox;
+            LevelCount();
             weaponGiftBoxSpawner.CreateThirdMapGiftBoxes();
             healthCoinSpawner.CreateThirdMapHealthCoin();
-            coinSpawner.CreateThirdCoin();
+            coinSpawner.CreateCoins(levelCount);
             //mapController.CreateThirdMap();
-            mapController.CreateMap(2);
-            mapController.SetThirdSkyBox();
-            mirrorSpawner.CreateThirdMapMirror();
+            mapController.CreateMap(levelCount);
+            mapController.SetSkybox(levelCount);
+            mirrorSpawner.CreateTransportMirror(levelCount);
             enemySpawner.CreateThirdMapEnemies();
 
             //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
@@ -159,15 +159,16 @@ public class LevelUpController : MonoBehaviour
         }
         else if (levelData.isCompleteMaps[2])
         {
-            levelData.currentMapName = LevelData.MapNames.FourthMap;
-
+            levelData.currentLevel = LevelData.Levels.Level4;
+            bulletData.currentGiftBox = bulletData.negevGiftBox;
+            LevelCount();
             weaponGiftBoxSpawner.CreateFourthMapGiftBoxes();
             healthCoinSpawner.CreateFourthMapHealthCoin();
-            coinSpawner.CreateFourthCoin();
+            coinSpawner.CreateCoins(levelCount);
             //mapController.CreateFourthMap();
-            mapController.CreateMap(3);
-            mapController.SetFourthSkybox();
-            mirrorSpawner.CreateFourthMapMirror();
+            mapController.CreateMap(levelCount);
+            mapController.SetSkybox(levelCount);
+            mirrorSpawner.CreateTransportMirror(levelCount);
             enemySpawner.CreateFourthMapEnemies();
 
             //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
@@ -176,15 +177,16 @@ public class LevelUpController : MonoBehaviour
         }
         else if (levelData.isCompleteMaps[3])
         {
-            levelData.currentMapName = LevelData.MapNames.FifthMap;
-
+            levelData.currentLevel = LevelData.Levels.Level5;
+            bulletData.currentGiftBox = bulletData.axegunGiftBox;
+            LevelCount();
             weaponGiftBoxSpawner.CreateFifthMapGiftBoxes();
             healthCoinSpawner.CreateFifthMapHealthCoin();
-            coinSpawner.CreateFifthCoin();
+            coinSpawner.CreateCoins(levelCount);
             //mapController.CreateFifthMap();
-            mapController.CreateMap(4);
-            mapController.SetFifthSkybox();
-            mirrorSpawner.CreateFifthMapMirror();
+            mapController.CreateMap(levelCount);
+            mapController.SetSkybox(levelCount);
+            mirrorSpawner.CreateTransportMirror(levelCount);
             enemySpawner.CreateFifthMapEnemies();
 
             //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
@@ -192,56 +194,12 @@ public class LevelUpController : MonoBehaviour
             levelData.isCompleteMaps[3] = false;
         }
     }
-
     void SetDetectionOfEnemyAtUpdate()
     {
-        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
-        {
-            levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[0];
-            bulletData.currentGiftBox = bulletData.bullDogGiftBox;
-        }
-        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
-        {
-            levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[1];
-            bulletData.currentGiftBox = bulletData.cowgunGiftBox;
-        }
-        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
-        {
-            levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[2];
-            bulletData.currentGiftBox = bulletData.demongunGiftBox;
-        }
-        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
-        {
-            levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[3];
-            bulletData.currentGiftBox = bulletData.negevGiftBox;
-        }
-        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
-        {
-            levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[4];
-            bulletData.currentGiftBox = bulletData.axegunGiftBox;
-        }
+        levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[levelCount];
     }
-    public void ArrowLevelRotation()
+    public void ArrowLevelRotation(int levelCount)
     {
-        if (levelData.currentMapName == LevelData.MapNames.FirstMap)
-        {
-            levelData.currentFinishArea = levelData.finishTransforms[0];
-        }
-        else if (levelData.currentMapName == LevelData.MapNames.SecondMap)
-        {
-            levelData.currentFinishArea = levelData.finishTransforms[1];
-        }
-        else if (levelData.currentMapName == LevelData.MapNames.ThirdMap)
-        {
-            levelData.currentFinishArea = levelData.finishTransforms[2];
-        }
-        else if (levelData.currentMapName == LevelData.MapNames.FourthMap)
-        {
-            levelData.currentFinishArea = levelData.finishTransforms[3];
-        }
-        else if (levelData.currentMapName == LevelData.MapNames.FifthMap)
-        {
-            levelData.currentFinishArea = levelData.finishTransforms[4];
-        }
+        levelData.currentFinishArea = levelData.finishTransforms[levelCount];
     }
 }
