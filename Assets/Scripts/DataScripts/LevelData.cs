@@ -20,6 +20,11 @@ public class LevelData : ScriptableObject
     public GameObject[] enemyThirdObjects;
     public GameObject[] enemyFourthObjects;
     public GameObject[] enemyFifthObjects;
+    public GameObject[] enemySixthObjects;
+    public GameObject[] enemySeventhObjects;
+    public GameObject[] enemyEightthObjects;
+    public GameObject[] enemyNinethObjects;
+    public GameObject[] enemyTenthObjects;
 
     public GameObject[] enemyTransformsInMap;
 
@@ -63,7 +68,12 @@ public class LevelData : ScriptableObject
         Level2,
         Level3,
         Level4,
-        Level5
+        Level5,
+        Level6,
+        Level7,
+        Level8,
+        Level9,
+        Level10,
     }
 
     

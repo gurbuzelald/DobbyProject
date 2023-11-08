@@ -14,6 +14,7 @@ public class MirrorSpawner : MonoBehaviour
     }
     public void CreateTransportMirror(int levelCount)
     {
+        Destroy(_currentMirrorCouple);
         _currentMirrorCouple = Instantiate(levelData.mirrorCouples[levelCount], gameObject.transform);
     }
     

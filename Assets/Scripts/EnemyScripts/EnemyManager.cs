@@ -373,6 +373,26 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             enemyData.enemySpeed = Random.Range(0.9f, 1.3f);
         }
+        else if (levelData.currentLevel == LevelData.Levels.Level6)
+        {
+            enemyData.enemySpeed = Random.Range(1.1f, 1.5f);
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level7)
+        {
+            enemyData.enemySpeed = Random.Range(1.3f, 1.7f);
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level8)
+        {
+            enemyData.enemySpeed = Random.Range(1.5f, 1.9f);
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level9)
+        {
+            enemyData.enemySpeed = Random.Range(1.7f, 2.1f);
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level10)
+        {
+            enemyData.enemySpeed = Random.Range(1.9f, 2.3f);
+        }
     }
     public void TriggerBullet(float bulletPower, Collider other)
     {

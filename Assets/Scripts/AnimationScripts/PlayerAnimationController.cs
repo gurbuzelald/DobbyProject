@@ -6,7 +6,6 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
 {
     [Header("Animator")]
     private Animator _animator;
-    private Animator _slaveAnimator;
 
     [Header("Data")]
     public PlayerData playerData;

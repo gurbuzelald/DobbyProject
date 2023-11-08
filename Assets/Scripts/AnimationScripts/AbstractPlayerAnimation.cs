@@ -156,7 +156,6 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
             _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
             _animator.SetBool(AnimatorParameters.isRightWalk.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isFireWalk.ToString(), false);
 
             _animator.SetLayerWeight(5, 1);
             _animator.SetLayerWeight(6, 0);
@@ -188,7 +187,6 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
             _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
             _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isFireWalk.ToString(), false);
 
             _animator.SetLayerWeight(6, 1);
             _animator.SetLayerWeight(5, 0);
@@ -277,7 +275,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             !playerData.isSwordAnimate && 
             !playerData.isSideWalking)
         {
-            _animator.SetBool(AnimatorParameters.isFireWalk.ToString(), true);
+            //_animator.SetBool(AnimatorParameters.isFireWalk.ToString(), true);
 
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
             _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
@@ -412,7 +410,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(1, 1);
 
             _animator.SetBool(AnimatorParameters.isWalking.ToString(), true);
-            _animator.SetBool(AnimatorParameters.isFireWalk.ToString(), false);
+            //_animator.SetBool(AnimatorParameters.isFireWalk.ToString(), false);
             _animator.SetBool(AnimatorParameters.isJumping.ToString(), false);
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
             _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
@@ -427,7 +425,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         {
             _animator.SetLayerWeight(16, 1);
 
-            _animator.SetBool(AnimatorParameters.isFireWalk.ToString(), true);
+            //_animator.SetBool(AnimatorParameters.isFireWalk.ToString(), true);
             _animator.SetBool(AnimatorParameters.isJumping.ToString(), false);
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
             _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);

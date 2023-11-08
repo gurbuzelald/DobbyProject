@@ -20,7 +20,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Transform enemySpawnTransform;
     private GameObject enemyTransformObject;
 
-    private static int bulletCoinCount;
     private GameObject playerBulletObject;
 
     [SerializeField] Transform _bulletCoinSpawn;
@@ -30,7 +29,6 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         enemyData.isActivateCreateEnemy = false;
-        bulletCoinCount = 0;
 
         CreateAwakeEnemies(LevelUpController.levelCount);
 
@@ -93,7 +91,6 @@ public class EnemySpawner : MonoBehaviour
                 
             //}
         }
-        bulletCoinCount = 0;
         Destroy(playerBulletObject);
 
     }

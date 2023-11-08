@@ -22,9 +22,9 @@ public class BulletData : ScriptableObject
     public GameObject rifleGiftBox;
     public GameObject bullDogGiftBox; //+
     public GameObject cowgunGiftBox; //+
-    public GameObject crsytalgunGiftBox;
+    public GameObject crsytalgunGiftBox; //+
     public GameObject demongunGiftBox; //+
-    public GameObject icegunGiftBox;
+    public GameObject icegunGiftBox; //+
     public GameObject negevGiftBox; //+
     public GameObject axegunGiftBox; //+
     public GameObject pistolGiftBox;

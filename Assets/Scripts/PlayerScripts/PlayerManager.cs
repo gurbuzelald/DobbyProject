@@ -124,11 +124,18 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         //Particle
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
 
-        
+        SpawnPlayerObject(LevelUpController.levelCount);
     }
 
 
+    private void SpawnPlayerObject(int levelCount)
+    {
+        _levelData.currentEnemyDetectionDistance = _levelData.enemyDetectionDistances[levelCount];
 
+
+        PlayerManager.GetInstance.gameObject.transform.position =
+            _playerData.playerSpawns.GetChild(levelCount).transform.position;
+    }
     void FixedUpdate()
     {
         if (!_playerData.isSwordAnimate)

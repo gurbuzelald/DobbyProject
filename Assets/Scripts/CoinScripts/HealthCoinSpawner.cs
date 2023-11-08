@@ -10,26 +10,8 @@ public class HealthCoinSpawner : MonoBehaviour
     private GameObject _healtCoinTransform;
     void Awake()
     {
-        if (levelData.currentLevel == LevelData.Levels.Level1)
-        {
-            _healtCoinTransform = Instantiate(levelData._healtCoinTransform[0], gameObject.transform);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level2)
-        {
-            _healtCoinTransform = Instantiate(levelData._healtCoinTransform[1], gameObject.transform);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level3)
-        {
-            _healtCoinTransform = Instantiate(levelData._healtCoinTransform[2], gameObject.transform);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level4)
-        {
-            _healtCoinTransform = Instantiate(levelData._healtCoinTransform[3], gameObject.transform);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level5)
-        {
-            _healtCoinTransform = Instantiate(levelData._healtCoinTransform[4], gameObject.transform);
-        }
+        _healtCoinTransform = Instantiate(levelData._healtCoinTransform[LevelUpController.levelCount], gameObject.transform);
+
         for (int i = 0; i < _healtCoinTransform.transform.childCount; i++)
         {
             Instantiate(levelData._healtCoinObject, _healtCoinTransform.transform.GetChild(i).position, Quaternion.identity, _healtCoinTransform.transform.GetChild(i));
@@ -39,48 +21,15 @@ public class HealthCoinSpawner : MonoBehaviour
     {
         KeepCleanGameScene();
     }
-    public void CreateSecondtMapHealthCoin()
+    public void CreateMapHealthCoins(int levelCount)
     {
         if (gameObject)
         {
             Destroy(gameObject.transform.GetChild(0).gameObject);
         }
-       
 
-        _healtCoinTransform = Instantiate(levelData._healtCoinTransform[1], gameObject.transform);
 
-        for (int i = 0; i < _healtCoinTransform.transform.childCount; i++)
-        {
-            Instantiate(levelData._healtCoinObject, _healtCoinTransform.transform.GetChild(i).position, Quaternion.identity, _healtCoinTransform.transform.GetChild(i));
-        }
-    }
-    public void CreateThirdMapHealthCoin()
-    {
-        Destroy(gameObject.transform.GetChild(0).gameObject);
-
-        _healtCoinTransform = Instantiate(levelData._healtCoinTransform[2], gameObject.transform);
-
-        for (int i = 0; i < _healtCoinTransform.transform.childCount; i++)
-        {
-            Instantiate(levelData._healtCoinObject, _healtCoinTransform.transform.GetChild(i).position, Quaternion.identity, _healtCoinTransform.transform.GetChild(i));
-        }
-    }
-    public void CreateFourthMapHealthCoin()
-    {
-        Destroy(gameObject.transform.GetChild(0).gameObject);
-
-        _healtCoinTransform = Instantiate(levelData._healtCoinTransform[3], gameObject.transform);
-
-        for (int i = 0; i < _healtCoinTransform.transform.childCount; i++)
-        {
-            Instantiate(levelData._healtCoinObject, _healtCoinTransform.transform.GetChild(i).position, Quaternion.identity, _healtCoinTransform.transform.GetChild(i));
-        }
-    }
-    public void CreateFifthMapHealthCoin()
-    {
-        Destroy(gameObject.transform.GetChild(0).gameObject);
-
-        _healtCoinTransform = Instantiate(levelData._healtCoinTransform[4], gameObject.transform);
+        _healtCoinTransform = Instantiate(levelData._healtCoinTransform[levelCount], gameObject.transform);
 
         for (int i = 0; i < _healtCoinTransform.transform.childCount; i++)
         {

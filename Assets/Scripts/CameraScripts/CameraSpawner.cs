@@ -5,7 +5,7 @@ public class CameraSpawner : MonoBehaviour
     [SerializeField] GameObject[] _cameraObjects;
     private GameObject cameraObjects;
 
-    public Camera camera;
+    public Camera cameraObject;
 
     private GameObject trees;
     private MeshRenderer[] treesMesh;
@@ -36,7 +36,7 @@ public class CameraSpawner : MonoBehaviour
         {
             cameraObjects = Instantiate(_cameraObjects[i], gameObject.transform);
         }
-        camera = cameraObjects.GetComponent<Camera>();
+        cameraObject = cameraObjects.GetComponent<Camera>();
 
 
         meshRenderers = FindObjectsOfType<MeshRenderer>();  
@@ -61,7 +61,7 @@ public class CameraSpawner : MonoBehaviour
 
         for (int i = 0; i < meshRenderers.Length; i++)
         {
-            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraObject);
             if (GeometryUtility.TestPlanesAABB(planes, meshRenderers[i].bounds))    
             {
                 meshRenderers[i].enabled = true;
@@ -145,11 +145,11 @@ public class CameraSpawner : MonoBehaviour
     }
     void TreeMeshState()
     {
-        if (camera)
+        if (cameraObject)
         {
             for (int i = 0; i < trees.transform.GetChild(0).childCount; i++)
             {
-                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraObject);
                 if (GeometryUtility.TestPlanesAABB(planes, treesMesh[i].bounds))
                 {
                     treesMesh[i].enabled = true;
@@ -162,7 +162,7 @@ public class CameraSpawner : MonoBehaviour
 
             for (int i = 0; i < trees.transform.GetChild(1).childCount; i++)
             {
-                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraObject);
                 if (GeometryUtility.TestPlanesAABB(planes, treesMesh1[i].bounds))
                 {
                     treesMesh1[i].enabled = true;
@@ -178,11 +178,11 @@ public class CameraSpawner : MonoBehaviour
 
     void StoneMeshState()
     {
-        if (camera)
+        if (cameraObject)
         {
             for (int i = 0; i < stones.transform.GetChild(0).childCount; i++)
             {
-                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraObject);
                 if (GeometryUtility.TestPlanesAABB(planes, stonesMesh[i].bounds))
                 {
                     stonesMesh[i].enabled = true;
@@ -195,7 +195,7 @@ public class CameraSpawner : MonoBehaviour
 
             for (int i = 0; i < stones.transform.GetChild(1).childCount; i++)
             {
-                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraObject);
                 if (GeometryUtility.TestPlanesAABB(planes, stonesMesh1[i].bounds))
                 {
                     stonesMesh1[i].enabled = true;
@@ -211,11 +211,11 @@ public class CameraSpawner : MonoBehaviour
 
     void GrassMeshState()
     {
-        if (camera)
+        if (cameraObject)
         {
             for (int i = 0; i < grasses.transform.GetChild(0).childCount; i++)
             {
-                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraObject);
                 if (GeometryUtility.TestPlanesAABB(planes, grassesMesh[i].bounds))
                 {
                     grassesMesh[i].enabled = true;
@@ -228,7 +228,7 @@ public class CameraSpawner : MonoBehaviour
 
             for (int i = 0; i < grasses.transform.GetChild(1).childCount; i++)
             {
-                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraObject);
                 if (GeometryUtility.TestPlanesAABB(planes, grassesMesh1[i].bounds))
                 {
                     grassesMesh1[i].enabled = true;
@@ -244,11 +244,11 @@ public class CameraSpawner : MonoBehaviour
 
     void GroundMeshState()
     {
-        if (camera)
+        if (cameraObject)
         {
             for (int i = 0; i < grounds.transform.childCount; i++)
             {
-                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraObject);
                 if (GeometryUtility.TestPlanesAABB(planes, groundMesh.bounds))
                 {
                     groundMesh.enabled = true;
@@ -261,7 +261,7 @@ public class CameraSpawner : MonoBehaviour
 
             for (int i = 0; i < grounds.transform.childCount; i++)
             {
-                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(camera);
+                Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraObject);
                 if (GeometryUtility.TestPlanesAABB(planes, groundMesh1.bounds))
                 {
                     groundMesh1.enabled = true;
