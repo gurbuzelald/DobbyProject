@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelUpController : MonoBehaviour
 {
-    public static int levelCount;
+    public static int currentLevelCount;
 
     [SerializeField] PlayerData playerData;
     [SerializeField] LevelData levelData;
@@ -86,42 +86,42 @@ public class LevelUpController : MonoBehaviour
     {
         CheckCompleteLevel();
         
-        SetDetectionOfEnemyAtUpdate(levelCount);
-        ArrowLevelRotation(levelCount);
+        SetDetectionOfEnemyAtUpdate(currentLevelCount);
+        ArrowLevelRotation(currentLevelCount);
     }
     void LevelCount()
     {
         switch (levelData.currentLevel)
         {
             case LevelData.Levels.Level1:
-                levelCount = 0;
+                currentLevelCount = 0;
                 break;
             case LevelData.Levels.Level2:
-                levelCount = 1;
+                currentLevelCount = 1;
                 break;
             case LevelData.Levels.Level3:
-                levelCount = 2;
+                currentLevelCount = 2;
                 break;
             case LevelData.Levels.Level4:
-                levelCount = 3;
+                currentLevelCount = 3;
                 break;
             case LevelData.Levels.Level5:
-                levelCount = 4;
+                currentLevelCount = 4;
                 break;
             case LevelData.Levels.Level6:
-                levelCount = 5;
+                currentLevelCount = 5;
                 break;
             case LevelData.Levels.Level7:
-                levelCount = 6;
+                currentLevelCount = 6;
                 break;
             case LevelData.Levels.Level8:
-                levelCount = 7;
+                currentLevelCount = 7;
                 break;
             case LevelData.Levels.Level9:
-                levelCount = 8;
+                currentLevelCount = 8;
                 break;
             case LevelData.Levels.Level10:
-                levelCount = 9;
+                currentLevelCount = 9;
                 break;
         }
     }
@@ -129,155 +129,155 @@ public class LevelUpController : MonoBehaviour
     void CheckCompleteLevel()
     {
         
-        if (levelData.isCompleteMaps[0])
+        if (levelData.isCompleteMaps[currentLevelCount])
         {
             levelData.currentLevel = LevelData.Levels.Level2;
             levelData.currentEnemyObjects = levelData.enemySecondObjects;
             bulletData.currentGiftBox = bulletData.cowgunGiftBox;
             LevelCount();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, levelCount);
-            healthCoinSpawner.CreateMapHealthCoins(levelCount);
-            coinSpawner.CreateCoins(levelCount);
+            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
+            healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
+            coinSpawner.CreateCoins(currentLevelCount);
             //mapController.CreateSecondMap();
-            mapController.CreateMap(levelCount);
-            mapController.SetSkybox(levelCount);
-            mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateEnemiesByMap(levelCount);
+            mapController.CreateMap(currentLevelCount);
+            mapController.SetSkybox(currentLevelCount);
+            mirrorSpawner.CreateTransportMirror(currentLevelCount);
+            enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
 
-            levelData.isCompleteMaps[0] = false;
+            levelData.isCompleteMaps[currentLevelCount] = false;
         }
-        else if (levelData.isCompleteMaps[1])
+        else if (levelData.isCompleteMaps[currentLevelCount])
         {
             levelData.currentLevel = LevelData.Levels.Level3;
             levelData.currentEnemyObjects = levelData.enemyThirdObjects;
             bulletData.currentGiftBox = bulletData.demongunGiftBox;
             LevelCount();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, levelCount);
-            healthCoinSpawner.CreateMapHealthCoins(levelCount);
-            coinSpawner.CreateCoins(levelCount);
-            mapController.CreateMap(levelCount);
-            mapController.SetSkybox(levelCount);
-            mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateEnemiesByMap(levelCount);
+            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
+            healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
+            coinSpawner.CreateCoins(currentLevelCount);
+            mapController.CreateMap(currentLevelCount);
+            mapController.SetSkybox(currentLevelCount);
+            mirrorSpawner.CreateTransportMirror(currentLevelCount);
+            enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
 
-            levelData.isCompleteMaps[1] = false;
+            levelData.isCompleteMaps[currentLevelCount] = false;
         }
-        else if (levelData.isCompleteMaps[2])
+        else if (levelData.isCompleteMaps[currentLevelCount])
         {
             levelData.currentLevel = LevelData.Levels.Level4;
             levelData.currentEnemyObjects = levelData.enemyFourthObjects;
             bulletData.currentGiftBox = bulletData.negevGiftBox;
             LevelCount();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, levelCount);
-            healthCoinSpawner.CreateMapHealthCoins(levelCount);
-            coinSpawner.CreateCoins(levelCount);
-            mapController.CreateMap(levelCount);
-            mapController.SetSkybox(levelCount);
-            mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateEnemiesByMap(levelCount);
+            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
+            healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
+            coinSpawner.CreateCoins(currentLevelCount);
+            mapController.CreateMap(currentLevelCount);
+            mapController.SetSkybox(currentLevelCount);
+            mirrorSpawner.CreateTransportMirror(currentLevelCount);
+            enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
 
-            levelData.isCompleteMaps[2] = false;
+            levelData.isCompleteMaps[currentLevelCount] = false;
         }
-        else if (levelData.isCompleteMaps[3])
+        else if (levelData.isCompleteMaps[currentLevelCount])
         {
             levelData.currentLevel = LevelData.Levels.Level5;
             levelData.currentEnemyObjects = levelData.enemyFifthObjects;
             bulletData.currentGiftBox = bulletData.axegunGiftBox;
             LevelCount();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, levelCount);
-            healthCoinSpawner.CreateMapHealthCoins(levelCount);
-            coinSpawner.CreateCoins(levelCount);
-            mapController.CreateMap(levelCount);
-            mapController.SetSkybox(levelCount);
-            mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateEnemiesByMap(levelCount);
+            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
+            healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
+            coinSpawner.CreateCoins(currentLevelCount);
+            mapController.CreateMap(currentLevelCount);
+            mapController.SetSkybox(currentLevelCount);
+            mirrorSpawner.CreateTransportMirror(currentLevelCount);
+            enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
             //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
 
-            levelData.isCompleteMaps[3] = false;
+            levelData.isCompleteMaps[currentLevelCount] = false;
         }
-        else if (levelData.isCompleteMaps[4])
+        else if (levelData.isCompleteMaps[currentLevelCount])
         {
             levelData.currentLevel = LevelData.Levels.Level6;
             levelData.currentEnemyObjects = levelData.enemySixthObjects;
             bulletData.currentGiftBox = bulletData.crsytalgunGiftBox;
             LevelCount();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, levelCount);
-            healthCoinSpawner.CreateMapHealthCoins(levelCount);
-            coinSpawner.CreateCoins(levelCount);
-            mapController.CreateMap(levelCount);
-            mapController.SetSkybox(levelCount);
-            mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateEnemiesByMap(levelCount);
+            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
+            healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
+            coinSpawner.CreateCoins(currentLevelCount);
+            mapController.CreateMap(currentLevelCount);
+            mapController.SetSkybox(currentLevelCount);
+            mirrorSpawner.CreateTransportMirror(currentLevelCount);
+            enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
-            levelData.isCompleteMaps[4] = false;
+            levelData.isCompleteMaps[currentLevelCount] = false;
         }
-        else if (levelData.isCompleteMaps[5])
+        else if (levelData.isCompleteMaps[currentLevelCount])
         {
             levelData.currentLevel = LevelData.Levels.Level7;
             levelData.currentEnemyObjects = levelData.enemySeventhObjects;
             bulletData.currentGiftBox = bulletData.icegunGiftBox;
             LevelCount();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, levelCount);
-            healthCoinSpawner.CreateMapHealthCoins(levelCount);
-            coinSpawner.CreateCoins(levelCount);
-            mapController.CreateMap(levelCount);
-            mapController.SetSkybox(levelCount);
-            mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateEnemiesByMap(levelCount);
+            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
+            healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
+            coinSpawner.CreateCoins(currentLevelCount);
+            mapController.CreateMap(currentLevelCount);
+            mapController.SetSkybox(currentLevelCount);
+            mirrorSpawner.CreateTransportMirror(currentLevelCount);
+            enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
-            levelData.isCompleteMaps[5] = false;
+            levelData.isCompleteMaps[currentLevelCount] = false;
         }
-        else if (levelData.isCompleteMaps[6])
+        else if (levelData.isCompleteMaps[currentLevelCount])
         {
             levelData.currentLevel = LevelData.Levels.Level8;
             levelData.currentEnemyObjects = levelData.enemyEightthObjects;
             bulletData.currentGiftBox = bulletData.pistolGiftBox;
             LevelCount();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, levelCount);
-            healthCoinSpawner.CreateMapHealthCoins(levelCount);
-            coinSpawner.CreateCoins(levelCount);
-            mapController.CreateMap(levelCount);
-            mapController.SetSkybox(levelCount);
-            mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateEnemiesByMap(levelCount);
+            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
+            healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
+            coinSpawner.CreateCoins(currentLevelCount);
+            mapController.CreateMap(currentLevelCount);
+            mapController.SetSkybox(currentLevelCount);
+            mirrorSpawner.CreateTransportMirror(currentLevelCount);
+            enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
-            levelData.isCompleteMaps[6] = false;
+            levelData.isCompleteMaps[currentLevelCount] = false;
         }
-        else if (levelData.isCompleteMaps[7])
+        else if (levelData.isCompleteMaps[currentLevelCount])
         {
             levelData.currentLevel = LevelData.Levels.Level9;
             levelData.currentEnemyObjects = levelData.enemyNinethObjects;
             bulletData.currentGiftBox = bulletData.ak47GiftBox;
             LevelCount();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, levelCount);
-            healthCoinSpawner.CreateMapHealthCoins(levelCount);
-            coinSpawner.CreateCoins(levelCount);
-            mapController.CreateMap(levelCount);
-            mapController.SetSkybox(levelCount);
-            mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateEnemiesByMap(levelCount);
+            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
+            healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
+            coinSpawner.CreateCoins(currentLevelCount);
+            mapController.CreateMap(currentLevelCount);
+            mapController.SetSkybox(currentLevelCount);
+            mirrorSpawner.CreateTransportMirror(currentLevelCount);
+            enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
-            levelData.isCompleteMaps[7] = false;
+            levelData.isCompleteMaps[currentLevelCount] = false;
         }
-        else if (levelData.isCompleteMaps[8])
+        else if (levelData.isCompleteMaps[currentLevelCount])
         {
             levelData.currentLevel = LevelData.Levels.Level10;
             levelData.currentEnemyObjects = levelData.enemyTenthObjects;
             bulletData.currentGiftBox = bulletData.rifleGiftBox;
             LevelCount();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, levelCount);
-            healthCoinSpawner.CreateMapHealthCoins(levelCount);
-            coinSpawner.CreateCoins(levelCount);
-            mapController.CreateMap(levelCount);
-            mapController.SetSkybox(levelCount);
-            mirrorSpawner.CreateTransportMirror(levelCount);
-            enemySpawner.CreateEnemiesByMap(levelCount);
+            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
+            healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
+            coinSpawner.CreateCoins(currentLevelCount);
+            mapController.CreateMap(currentLevelCount);
+            mapController.SetSkybox(currentLevelCount);
+            mirrorSpawner.CreateTransportMirror(currentLevelCount);
+            enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
-            levelData.isCompleteMaps[8] = false;
+            levelData.isCompleteMaps[currentLevelCount] = false;
         }
         else
         {//Level1 Condition

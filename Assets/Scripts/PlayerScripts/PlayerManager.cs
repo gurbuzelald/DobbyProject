@@ -124,7 +124,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         //Particle
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
 
-        SpawnPlayerObject(LevelUpController.levelCount);
+        SpawnPlayerObject(LevelUpController.currentLevelCount);
     }
 
 
@@ -277,7 +277,72 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
 
     
+    void TriggerFinishControl(Collider other)
+    {
+        if (other.gameObject.name == "FinishPlane")
+        {
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
 
+            _levelData.isCompleteMaps[LevelUpController.currentLevelCount] = true;
+
+            _levelData.isLevelUp = true;
+
+            healthBarSlider.value = 100;
+            _topCanvasHealthBarSlider.value = healthBarSlider.value;
+
+            StartCoroutine(iPlayerTrigger.DelayLevelUp(_levelData, 2f));
+        }
+    }
+    void TriggerCoinControl(Collider other)
+    {
+        if (other.CompareTag(SceneController.Tags.Coin.ToString()))
+        {
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.Coin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//GetScore
+            iPlayerScore.ScoreTextGrowing(0, 255, 0);
+        }
+        if (other.CompareTag(SceneController.Tags.CheeseCoin.ToString()))
+        {
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.CheeseCoin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//GetScore
+            iPlayerScore.ScoreTextGrowing(0, 255, 0);
+        }
+        if (other.CompareTag(SceneController.Tags.RotateCoin.ToString()))
+        {
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.RotateCoin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//GetScore
+            iPlayerScore.ScoreTextGrowing(0, 255, 0);
+        }
+        if (other.CompareTag(SceneController.Tags.MushroomCoin.ToString()))
+        {
+            iPlayerScore.DecreaseScore(10);
+
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.MushroomCoin, other, _playerData, ref _coinObject,
+                                      ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);
+            if (healthBarSlider.value > 0)
+            {
+                iPlayerHealth.DecreaseHealth(ref _playerData, 30, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+
+                iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject,
+                                          ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//FreshBulletAmount
+            }
+            else
+            {
+                iPlayerTrigger.GettingPoisonDamage(_playerData, ref _topCanvasHealthBarSlider, ref healthBarSlider);//Score
+                StartCoroutine(DelayDestroy(7f));
+            }
+        }
+        if (other.CompareTag(SceneController.Tags.BulletCoin.ToString()))
+        {
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData,
+                                      ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
+                                      ref bulletAmountText);//FreshBulletAmount
+        }
+        if (other.CompareTag(SceneController.Tags.HealthCoin.ToString()))
+        {
+            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.HealthCoin, other, _playerData,
+                                      ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
+                                      ref bulletAmountText);
+            iPlayerHealth.IncreaseHealth(50, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, other);
+        }
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(SceneController.Tags.EnemyBullet.ToString()))
@@ -301,83 +366,11 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             iPlayerTrigger.TriggerLadder(true, false, _playerData, ref playerRigidbody);
         }
 
-        if (other.CompareTag(SceneController.Tags.FirstFinishArea.ToString()))
-        {
+        TriggerFinishControl(other);
 
-            healthBarSlider.value = 100;
-            _topCanvasHealthBarSlider.value = healthBarSlider.value;
+        TriggerCoinControl(other);
 
-            StartCoroutine(iPlayerTrigger.DelayLevelUp(_levelData, 2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
-        }
-        else if (other.CompareTag(SceneController.Tags.SecondFinishArea.ToString()))
-        {
 
-            healthBarSlider.value = 100;
-            _topCanvasHealthBarSlider.value = healthBarSlider.value;
-
-            StartCoroutine(iPlayerTrigger.DelayLevelUp(_levelData, 2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
-        }
-        else if (other.CompareTag(SceneController.Tags.ThirdFinishArea.ToString()))
-        {
-            healthBarSlider.value = 100;
-            _topCanvasHealthBarSlider.value = healthBarSlider.value;
-
-            StartCoroutine(iPlayerTrigger.DelayLevelUp(_levelData, 2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
-        }
-        else if (other.CompareTag(SceneController.Tags.FourthFinishArea.ToString()))
-        {
-            healthBarSlider.value = 100;
-            _topCanvasHealthBarSlider.value = healthBarSlider.value;
-
-            StartCoroutine(iPlayerTrigger.DelayLevelUp(_levelData, 2f, _playerData.danceTime, _playerData, other));//LevelUpWithCoroutine
-        }
-        if (other.CompareTag(SceneController.Tags.Coin.ToString()))
-        {
-            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.Coin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText   );//GetScore
-            iPlayerScore.ScoreTextGrowing(0, 255, 0);
-        }
-        if (other.CompareTag(SceneController.Tags.CheeseCoin.ToString()))
-        {
-            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.CheeseCoin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//GetScore
-            iPlayerScore.ScoreTextGrowing(0, 255, 0);
-        }
-        if (other.CompareTag(SceneController.Tags.RotateCoin.ToString()))
-        {
-            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.RotateCoin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//GetScore
-            iPlayerScore.ScoreTextGrowing(0, 255, 0);
-        }
-        if (other.CompareTag(SceneController.Tags.MushroomCoin.ToString()))
-        {
-            iPlayerScore.DecreaseScore(10);
-
-            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.MushroomCoin, other, _playerData, ref _coinObject, 
-                                      ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);
-            if (healthBarSlider.value > 0)
-            {
-                iPlayerHealth.DecreaseHealth(ref _playerData, 30,ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
-
-                iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject,
-                                          ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText);//FreshBulletAmount
-            }
-            else
-            {
-                iPlayerTrigger.GettingPoisonDamage(_playerData, ref _topCanvasHealthBarSlider, ref healthBarSlider);//Score
-                StartCoroutine(DelayDestroy(7f));
-            }
-        }
-        if (other.CompareTag(SceneController.Tags.BulletCoin.ToString()))
-        {
-            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, 
-                                      ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, 
-                                      ref bulletAmountText);//FreshBulletAmount
-        }
-        if (other.CompareTag(SceneController.Tags.HealthCoin.ToString()))
-        {
-            iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.HealthCoin, other, _playerData,
-                                      ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
-                                      ref bulletAmountText);
-            iPlayerHealth.IncreaseHealth(50, ref _healthBarObject,ref healthBarSlider, ref _topCanvasHealthBarSlider, other);
-        }
 
         if (other.tag.ToString() == _bulletData.currentWeaponName)
         {

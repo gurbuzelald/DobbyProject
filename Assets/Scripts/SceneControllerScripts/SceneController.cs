@@ -264,10 +264,8 @@ public class SceneController : AbstractSceneController<SceneController>
         Player,
         Water,
         FanceWooden,
-        FirstFinishArea,
-        SecondFinishArea,
-        ThirdFinishArea,
-        FourthFinishArea,
+        
+
         Tree,
 
         //Coins
@@ -301,6 +299,19 @@ public class SceneController : AbstractSceneController<SceneController>
         //Speed
         NormalSpeed,
         ExtraSpeed
+    }
+    public enum LevelTags
+    {
+        FirstFinishArea = 1,
+        SecondFinishArea = 2,
+        ThirdFinishArea = 3,
+        FourthFinishArea = 4,
+        FifthFinishArea = 5,
+        SixthFinishArea = 6,
+        SeventhFinishArea = 7,
+        EighthFinishArea = 8,
+        NinethFinishArea = 9,
+        TenthFinishArea = 10,
     }
     public enum Scenes
     {

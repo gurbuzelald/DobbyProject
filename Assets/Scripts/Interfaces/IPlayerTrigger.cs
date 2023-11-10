@@ -38,7 +38,7 @@ internal interface IPlayerTrigger
 
     void GettingPoisonDamage(PlayerData _playerData, ref Slider _topCanvasHealthBarSlider, ref Slider _healthBarSlider);
 
-    IEnumerator DelayLevelUp(LevelData levelData, float delayWait, float delayDestroy, PlayerData _playerData, Collider other);
+    IEnumerator DelayLevelUp(LevelData levelData, float delayWait);
 
 
     IEnumerator DamageArrowIsLookAtEnemy(Collider other, GameObject _damageArrow);

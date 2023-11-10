@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
     {
         enemyData.isActivateCreateEnemy = false;
 
-        CreateAwakeEnemies(LevelUpController.levelCount);
+        CreateAwakeEnemies(LevelUpController.currentLevelCount);
 
         //Debug.Log(gameObject.transform.childCount);
     }

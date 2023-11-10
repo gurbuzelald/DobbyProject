@@ -57,7 +57,6 @@ public class LevelData : ScriptableObject
     public bool[] isCompleteMaps;
 
     [Header("MapFinishTargetBools")]
-    public bool[] isMapTarget;
     public bool isLevelUp;
 
     [Header("Current Level")]

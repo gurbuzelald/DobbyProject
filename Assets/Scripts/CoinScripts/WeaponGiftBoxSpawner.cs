@@ -11,13 +11,13 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
 
     private void Awake()
     {
-        CreateMapGiftBoxes(bulletData.currentGiftBox, LevelUpController.levelCount);
+        CreateMapGiftBoxes(bulletData.currentGiftBox, LevelUpController.currentLevelCount);
     }
     public void CreateMapGiftBoxes(GameObject weaponObject, int levelCount)
     {
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
-            Destroy(gameObject.transform.GetChild(i));
+            Destroy(gameObject.transform.GetChild(i).gameObject);
         }
 
         GameObject giftBox = Instantiate(bulletData.giftBoxes[levelCount], gameObject.transform);
@@ -30,7 +30,10 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
         for (int i = 0; i < weaponTransform.childCount; i++)
         {
 
-            GameObject _weaponObejct = Instantiate(weaponObject, weaponTransform.GetChild(i).position, Quaternion.identity, weaponTransform.GetChild(i));
+            GameObject _weaponObejct = Instantiate(weaponObject, 
+                                                   weaponTransform.GetChild(i).position, 
+                                                   Quaternion.identity, 
+                                                   weaponTransform.GetChild(i));
             _weaponObejct.transform.rotation = weaponTransform.GetChild(i).rotation;
         }
     }

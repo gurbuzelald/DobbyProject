@@ -1029,53 +1029,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
 
 
-    public virtual IEnumerator DelayLevelUp(LevelData levelData, float delayWait, float delayDestroy, PlayerData _playerData, Collider other)
+    public virtual IEnumerator DelayLevelUp(LevelData levelData, float delayWait)
     {
-
-        if (other.CompareTag(SceneController.Tags.FirstFinishArea.ToString()))
-        {
-            levelData.isLevelUp = true;
-            levelData.isCompleteMaps[0] = true;
-            levelData.isMapTarget[1] = true;
-        }
-        else if (other.CompareTag(SceneController.Tags.SecondFinishArea.ToString()))
-        {
-            levelData.isLevelUp = true;
-            levelData.isCompleteMaps[1] = true;
-            levelData.isMapTarget[2] = true;
-        }
-        else if (other.CompareTag(SceneController.Tags.ThirdFinishArea.ToString()))
-        {
-            levelData.isLevelUp = true;
-            levelData.isCompleteMaps[2] = true;
-            levelData.isMapTarget[3] = true;
-        }
-        else if (other.CompareTag(SceneController.Tags.FourthFinishArea.ToString()))
-        {
-            levelData.isLevelUp = true;
-            levelData.isCompleteMaps[3] = true;
-            levelData.isMapTarget[4] = true;
-        }
-        //PlayerData
-        //_playerData.isLockedWalking = false;
-        //_playerData.objects[3].transform.localScale = new Vector3(1f, _playerData.objects[3].transform.localScale.y, _playerData.objects[3].transform.localScale.z);
-        //DestroyImmediate(_playerData.healthBarObject, true);
-        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
-        //LevelUpSFX(_playerData);
-        //_playerData.isTouchFinish = true;
-
         yield return new WaitForSeconds(delayWait);
-        //_playerData.isLevelUp = false;
-        //PlayerData
-        //_playerData.isPlayable = false;
-        //_playerData.isWinning = true;
 
-        //JolleenAnimation
-        //CreateVictoryAnimation(_playerData);
+        levelData.isLevelUp = false;
 
-        yield return new WaitForSeconds(delayDestroy);
-        //Destroy(gameObject);
-        //SceneController.GetInstance.LevelUp();
     }
 
     public virtual IEnumerator DamageArrowIsLookAtEnemy(Collider other, GameObject _damageArrow)

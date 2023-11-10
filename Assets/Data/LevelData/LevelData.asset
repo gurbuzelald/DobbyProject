@@ -145,6 +145,11 @@ MonoBehaviour:
   - {fileID: 1488839946682538327, guid: 1dbed879eb27d4441a3d9e5a4f7ac80d, type: 3}
   - {fileID: 1488839946682538327, guid: 6b1f0cf01150a844785d55fcb97cebeb, type: 3}
   - {fileID: 1488839946682538327, guid: 99d2c8c18ff62554a9cf81b7166dcc22, type: 3}
+  enemySixthObjects: []
+  enemySeventhObjects: []
+  enemyEightthObjects: []
+  enemyNinethObjects: []
+  enemyTenthObjects: []
   enemyTransformsInMap:
   - {fileID: 4800993404208530312, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
   - {fileID: 1263667095781669195, guid: ad26437bc9128a846aa39bf61721823b, type: 3}
@@ -152,7 +157,7 @@ MonoBehaviour:
   - {fileID: 1611781249427093311, guid: 123130910ec612642868fea7b0101736, type: 3}
   - {fileID: 3630268105010323256, guid: acda9d0d06d6c664698e878a9f61914a, type: 3}
   currentStaticCoinValue: 1
-  coinlevelValues: 010000000200000003000000040000000500000006000000
+  coinlevelValues: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
   levelSkyboxes:
   - {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
   - {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
@@ -167,8 +172,11 @@ MonoBehaviour:
   - 5
   - 6
   - 7
-  currentEnemySpawnDelay: 2
-  enemySpawnDelaysByLevel: 010000000200000003000000040000000500000006000000
+  - 8
+  - 9
+  - 10
+  currentEnemySpawnDelay: 1
+  enemySpawnDelaysByLevel: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
   currentMirrorName: Mirror1
   mirrorCouples:
   - {fileID: 9044617553140458651, guid: e7f4d5f6e375e4548a69d4d890e6ec8c, type: 3}
@@ -183,7 +191,7 @@ MonoBehaviour:
   - {fileID: 5566931848723951372, guid: 4585e76964e5f6b47a170518135f316f, type: 3}
   - {fileID: 1149033832906918883, guid: 14ee547a4dde40b4a8847f703ec8d8a9, type: 3}
   - {fileID: 3196894676368351631, guid: f977ff14ba82aa74c8bcf79f99d10a52, type: 3}
-  isCompleteMaps: 0000000000
-  isMapTarget: 000100000000
+  isCompleteMaps: 00000000000000000000
+  isMapTarget: 00010000000000000000
   isLevelUp: 0
   currentLevel: 1
