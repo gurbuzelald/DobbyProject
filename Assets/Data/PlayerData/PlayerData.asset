@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  currentMessageText: {fileID: 0}
+  currentMessageObject: {fileID: 0}
   backgroundMap: {fileID: 1345883776023317691, guid: 515afb887ab870a43b53ea7d70cb9035, type: 3}
   currentEnemyAttackDamage: 15
   monsterEnemyAttackDamage: 5
@@ -21,7 +23,7 @@ MonoBehaviour:
   monsterEnemyTriggerDamage: 10
   prisonerEnemyTriggerDamage: 15
   clownEnemyTriggerDamage: 20
-  currentEnemyCollisionDamage: 12
+  currentEnemyCollisionDamage: 14
   monsterEnemyCollisionDamage: 10
   prisonerEnemyCollisionDamage: 12
   clownEnemyCollisionDamage: 14
@@ -41,18 +43,7 @@ MonoBehaviour:
   isDecreaseHealth: 0
   damageHealthText: {fileID: 0}
   decreaseCounter: 0
-  mapCoins:
-  - {fileID: 3880732843794124356, guid: 8afde6b0df00a404199392eae3715794, type: 3}
-  - {fileID: 1413783167371764476, guid: 5b53e633fa5f1eb408fa0f939e143a88, type: 3}
-  - {fileID: 5322124332606893326, guid: 8fb09cecb8edfca4d83ec9f7f6fa405c, type: 3}
-  - {fileID: 3947003817539995590, guid: dd1fc5b288f4fc04fbe488864f4a4dd6, type: 3}
-  _healtCoinTransform:
-  - {fileID: 1707016675134421311, guid: 06d257ec3674d9446806cfc13725069b, type: 3}
-  - {fileID: 2602705668131860869, guid: 16b30ccc6b22aee44b1deac6fb497ceb, type: 3}
-  - {fileID: 1198534576858581768, guid: b91f8c0951dc9aa419cdd62f0d11a1e3, type: 3}
-  - {fileID: 6848931167675852839, guid: 6ec948522583f334b9bdcc24159a6354, type: 3}
-  _healtCoinObject: {fileID: 9077765185764460176, guid: a275adbe230564749ac78dcd554d00e3, type: 3}
-  currentCharacterName: 1
+  currentCharacterName: 3
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
   glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
@@ -67,9 +58,9 @@ MonoBehaviour:
   ty: {fileID: 5945881725241583734, guid: 5dbe1f8c957aa354d8786aba50aaf083, type: 3}
   dobbyLock: 
   glassyLock: Locked
-  spartacusLock: Locked
+  spartacusLock: 
   guardLock: 
-  lusthLock: Locked
+  lusthLock: 
   eveLock: Locked
   michelleLock: Locked
   ajLock: 
@@ -103,7 +94,7 @@ MonoBehaviour:
   isLose: 0
   spartacusPrice: 0
   dobbyPrice: 100
-  glassyPrice: 100
+  glassyPrice: 200
   lusthPrice: 100
   guardPrice: 100
   michellePrice: 100
@@ -112,7 +103,7 @@ MonoBehaviour:
   bossPrice: 100
   tyPrice: 100
   mremirehPrice: 100
-  playerSpeed: 15
+  playerSpeed: 12
   skateBoardSpeed: 1
   slideWalkSpeed: 7
   backWalkingSpeed: 6
@@ -126,12 +117,12 @@ MonoBehaviour:
   ajSpeed: 9
   eveSpeed: 10
   mremirehSpeed: 11
-  lusthSpeed: 12
+  lusthSpeed: 18
   spartacusSpeed: 11
   bossSpeed: 10
   tySpeed: 9
   guardSpeed: 8
-  currentJumpForce: 6
+  currentJumpForce: 7
   dobbyJumpForce: 6
   michelleJumpForce: 7
   glassyJumpForce: 6
@@ -149,7 +140,7 @@ MonoBehaviour:
   - Guard
   - Boss
   - Aj
-  - 
+  - Lusth
   - 
   - 
   - 
@@ -179,14 +170,14 @@ MonoBehaviour:
   isSwording: 0
   isSwordTime: 1
   isJumping: 0
-  isClickable: 1
+  isClickable: 0
   jumpCount: 0
   clickDoubleSpeedCount: 0
   extraSpeed: 1
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 0
+  bulletAmount: 21
   bulletPack: 21
   isTouchableSkate: 1
   danceTime: 5

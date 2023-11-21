@@ -5,6 +5,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewLevelData", menuName = "LevelData")]
 public class LevelData : ScriptableObject
 {
+    [Header("Level Finish Area Names")]
+    public const string FirstFinishArea = "FirstFinishArea";
+    public const string SecondFinishArea = "SecondFinishArea";
+    public const string ThirdFinishArea = "ThirdFinishArea";
+    public const string FourthFinishArea = "FourthFinishArea";
+    public const string FifthFinishArea = "FifthFinishArea";
+    public const string SixthFinishArea = "SixthFinishArea";
+    public const string SeventhFinishArea = "SeventhFinishArea";
+    public const string EighthFinishArea = "EighthFinishArea";
+    public const string NinethFinishArea = "NinethFinishArea";
+    public const string TenthFinishArea = "TenthFinishArea";
+
     [Header("Coin Transforms")]
     public GameObject[] mapCoins;
     public GameObject[] _healtCoinTransform;

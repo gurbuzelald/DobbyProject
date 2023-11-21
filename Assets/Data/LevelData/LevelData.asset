@@ -18,12 +18,14 @@ MonoBehaviour:
   - {fileID: 5322124332606893326, guid: 8fb09cecb8edfca4d83ec9f7f6fa405c, type: 3}
   - {fileID: 3947003817539995590, guid: dd1fc5b288f4fc04fbe488864f4a4dd6, type: 3}
   - {fileID: 1353036755210376119, guid: 76df070d9d7c03d4682f5c394d4b04f1, type: 3}
+  - {fileID: 1211379421474568798, guid: c851027661fc1fd42a6549cc3cd6e0fe, type: 3}
   _healtCoinTransform:
   - {fileID: 1707016675134421311, guid: 06d257ec3674d9446806cfc13725069b, type: 3}
   - {fileID: 2602705668131860869, guid: 16b30ccc6b22aee44b1deac6fb497ceb, type: 3}
   - {fileID: 1198534576858581768, guid: b91f8c0951dc9aa419cdd62f0d11a1e3, type: 3}
   - {fileID: 6848931167675852839, guid: 6ec948522583f334b9bdcc24159a6354, type: 3}
   - {fileID: 1014725745505510010, guid: ffb435699512ea448bda3ab977722a0e, type: 3}
+  - {fileID: 7706149888603649641, guid: c5ca1f3a07e07ed45b2dc6cb3a31fea6, type: 3}
   _healtCoinObject: {fileID: 9077765185764460176, guid: a275adbe230564749ac78dcd554d00e3, type: 3}
   Maps:
   - {fileID: 5890090584550861642, guid: 53875437ff385384e89f23428ca8b5b0, type: 3}
@@ -31,6 +33,7 @@ MonoBehaviour:
   - {fileID: 6719176771443135241, guid: ac0201e8cf62cb24eafe396cee8465c4, type: 3}
   - {fileID: 7138293202800543776, guid: b58971eee7eabb341a9e50612b070986, type: 3}
   - {fileID: 6995526888015887884, guid: 79af744eb362dbe45b39dfc062a6f120, type: 3}
+  - {fileID: 7027907883889466725, guid: b20c320e397228c42b81eab8162a7969, type: 3}
   currentEnemyObjects:
   - {fileID: 1124876159237399022, guid: 08524ce7f172b1f40ab3eee041359683, type: 3}
   - {fileID: 4288211827455112566, guid: 0306d1720a844fa4e9feb9b2b604d860, type: 3}
@@ -145,7 +148,25 @@ MonoBehaviour:
   - {fileID: 1488839946682538327, guid: 1dbed879eb27d4441a3d9e5a4f7ac80d, type: 3}
   - {fileID: 1488839946682538327, guid: 6b1f0cf01150a844785d55fcb97cebeb, type: 3}
   - {fileID: 1488839946682538327, guid: 99d2c8c18ff62554a9cf81b7166dcc22, type: 3}
-  enemySixthObjects: []
+  enemySixthObjects:
+  - {fileID: 1124876159237399022, guid: 08524ce7f172b1f40ab3eee041359683, type: 3}
+  - {fileID: 4288211827455112566, guid: 0306d1720a844fa4e9feb9b2b604d860, type: 3}
+  - {fileID: 2134151945780647761, guid: 61a60c4eb8936f94e8b91f35ae8c8991, type: 3}
+  - {fileID: 2679552619666515618, guid: c31f001e3aec46844ba4a4baf555cb76, type: 3}
+  - {fileID: 2264917539931701796, guid: be0acb9d5aeef374f9a9519fe1b90393, type: 3}
+  - {fileID: 4049568489955151096, guid: 9924de07a739d6e4caa5ddae8e2315fc, type: 3}
+  - {fileID: 2133012914156472325, guid: 72f0133ff64d426428014c76a2926d9c, type: 3}
+  - {fileID: 8949910313472600481, guid: 7e1e4c01a8efd1d4b89fc959204dafef, type: 3}
+  - {fileID: 4393876145780571537, guid: 70dac476223967e46b180fda0accefaa, type: 3}
+  - {fileID: 1124876159237399022, guid: b8bad723ca5a02947bddd66f50f0d411, type: 3}
+  - {fileID: 8967855359998218866, guid: d830058d07bf14b40ad3cbaca613fa1a, type: 3}
+  - {fileID: 8967855359998218866, guid: ab3ca2ef43192e44d9b42185d6cda213, type: 3}
+  - {fileID: 8967855359998218866, guid: db7e0b172b7b5b84588c0534061d1a51, type: 3}
+  - {fileID: 8967855359998218866, guid: 1bd0892715d26d74eb5b9a8100cc2a00, type: 3}
+  - {fileID: 1488839946682538327, guid: 406cd1a12e40a5544a310264f08b9bb7, type: 3}
+  - {fileID: 1488839946682538327, guid: 1dbed879eb27d4441a3d9e5a4f7ac80d, type: 3}
+  - {fileID: 1488839946682538327, guid: 6b1f0cf01150a844785d55fcb97cebeb, type: 3}
+  - {fileID: 1488839946682538327, guid: 99d2c8c18ff62554a9cf81b7166dcc22, type: 3}
   enemySeventhObjects: []
   enemyEightthObjects: []
   enemyNinethObjects: []
@@ -156,6 +177,7 @@ MonoBehaviour:
   - {fileID: 1648237712056192549, guid: cec4a0974b78bf34192878e0ef01c380, type: 3}
   - {fileID: 1611781249427093311, guid: 123130910ec612642868fea7b0101736, type: 3}
   - {fileID: 3630268105010323256, guid: acda9d0d06d6c664698e878a9f61914a, type: 3}
+  - {fileID: 5837493608098216917, guid: 2b5da2bb21c7cc54fa0b86a587e7d2e0, type: 3}
   currentStaticCoinValue: 1
   coinlevelValues: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
   levelSkyboxes:
@@ -175,7 +197,7 @@ MonoBehaviour:
   - 8
   - 9
   - 10
-  currentEnemySpawnDelay: 1
+  currentEnemySpawnDelay: 2
   enemySpawnDelaysByLevel: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
   currentMirrorName: Mirror1
   mirrorCouples:
@@ -184,6 +206,7 @@ MonoBehaviour:
   - {fileID: 2808162707802702247, guid: ae0befe520627db47823e83467a22361, type: 3}
   - {fileID: 6022340288675348387, guid: 0e6ca9137dddb924fb941e3a65e4e1ac, type: 3}
   - {fileID: 2738821458815677874, guid: 6d4781b31466160458f078fd3a07582f, type: 3}
+  - {fileID: 2791360359372293479, guid: 5cbcdc42b8937414fa6a85dc0f501092, type: 3}
   currentFinishArea: {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
   finishTransforms:
   - {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
@@ -191,7 +214,7 @@ MonoBehaviour:
   - {fileID: 5566931848723951372, guid: 4585e76964e5f6b47a170518135f316f, type: 3}
   - {fileID: 1149033832906918883, guid: 14ee547a4dde40b4a8847f703ec8d8a9, type: 3}
   - {fileID: 3196894676368351631, guid: f977ff14ba82aa74c8bcf79f99d10a52, type: 3}
+  - {fileID: 9154957637249261400, guid: c49d3ecc4cc0b6547a5c457407d4c7c2, type: 3}
   isCompleteMaps: 00000000000000000000
-  isMapTarget: 00010000000000000000
   isLevelUp: 0
-  currentLevel: 1
+  currentLevel: 4

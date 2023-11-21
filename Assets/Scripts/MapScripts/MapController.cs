@@ -44,6 +44,31 @@ public class MapController : MonoBehaviour
             currentMap = Instantiate(levelData.Maps[4], gameObject.transform);
             RenderSettings.skybox = levelData.levelSkyboxes[4];
         }
+        else if (levelData.currentLevel == LevelData.Levels.Level6)
+        {
+            currentMap = Instantiate(levelData.Maps[5], gameObject.transform);
+            RenderSettings.skybox = levelData.levelSkyboxes[4];
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level7)
+        {
+            currentMap = Instantiate(levelData.Maps[6], gameObject.transform);
+            RenderSettings.skybox = levelData.levelSkyboxes[4];
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level8)
+        {
+            currentMap = Instantiate(levelData.Maps[7], gameObject.transform);
+            RenderSettings.skybox = levelData.levelSkyboxes[4];
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level9)
+        {
+            currentMap = Instantiate(levelData.Maps[8], gameObject.transform);
+            RenderSettings.skybox = levelData.levelSkyboxes[4];
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level10)
+        {
+            currentMap = Instantiate(levelData.Maps[9], gameObject.transform);
+            RenderSettings.skybox = levelData.levelSkyboxes[4];
+        }
 
 
 

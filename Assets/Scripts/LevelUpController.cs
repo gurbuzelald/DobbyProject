@@ -84,6 +84,8 @@ public class LevelUpController : MonoBehaviour
 
     private void Update()
     {
+        LevelCount();
+
         CheckCompleteLevel();
         
         SetDetectionOfEnemyAtUpdate(currentLevelCount);
@@ -128,8 +130,7 @@ public class LevelUpController : MonoBehaviour
     
     void CheckCompleteLevel()
     {
-        
-        if (levelData.isCompleteMaps[currentLevelCount])
+        if (levelData.isCompleteMaps[0])
         {
             levelData.currentLevel = LevelData.Levels.Level2;
             levelData.currentEnemyObjects = levelData.enemySecondObjects;
@@ -138,16 +139,15 @@ public class LevelUpController : MonoBehaviour
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
             coinSpawner.CreateCoins(currentLevelCount);
-            //mapController.CreateSecondMap();
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
             enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
 
-            levelData.isCompleteMaps[currentLevelCount] = false;
+            levelData.isCompleteMaps[0] = false;
         }
-        else if (levelData.isCompleteMaps[currentLevelCount])
+        else if (levelData.isCompleteMaps[1])
         {
             levelData.currentLevel = LevelData.Levels.Level3;
             levelData.currentEnemyObjects = levelData.enemyThirdObjects;
@@ -162,9 +162,9 @@ public class LevelUpController : MonoBehaviour
             enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
 
-            levelData.isCompleteMaps[currentLevelCount] = false;
+            levelData.isCompleteMaps[1] = false;
         }
-        else if (levelData.isCompleteMaps[currentLevelCount])
+        else if (levelData.isCompleteMaps[2])
         {
             levelData.currentLevel = LevelData.Levels.Level4;
             levelData.currentEnemyObjects = levelData.enemyFourthObjects;
@@ -179,9 +179,9 @@ public class LevelUpController : MonoBehaviour
             enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
 
-            levelData.isCompleteMaps[currentLevelCount] = false;
+            levelData.isCompleteMaps[2] = false;
         }
-        else if (levelData.isCompleteMaps[currentLevelCount])
+        else if (levelData.isCompleteMaps[3])
         {
             levelData.currentLevel = LevelData.Levels.Level5;
             levelData.currentEnemyObjects = levelData.enemyFifthObjects;
@@ -195,11 +195,10 @@ public class LevelUpController : MonoBehaviour
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
             enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
-            //cameraSpawner.colliders = FindObjectsOfType<MeshRenderer>();
 
-            levelData.isCompleteMaps[currentLevelCount] = false;
+            levelData.isCompleteMaps[3] = false;
         }
-        else if (levelData.isCompleteMaps[currentLevelCount])
+        else if (levelData.isCompleteMaps[4])
         {
             levelData.currentLevel = LevelData.Levels.Level6;
             levelData.currentEnemyObjects = levelData.enemySixthObjects;
@@ -213,9 +212,9 @@ public class LevelUpController : MonoBehaviour
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
             enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
-            levelData.isCompleteMaps[currentLevelCount] = false;
+            levelData.isCompleteMaps[4] = false;
         }
-        else if (levelData.isCompleteMaps[currentLevelCount])
+        else if (levelData.isCompleteMaps[5])
         {
             levelData.currentLevel = LevelData.Levels.Level7;
             levelData.currentEnemyObjects = levelData.enemySeventhObjects;
@@ -229,9 +228,9 @@ public class LevelUpController : MonoBehaviour
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
             enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
-            levelData.isCompleteMaps[currentLevelCount] = false;
+            levelData.isCompleteMaps[5] = false;
         }
-        else if (levelData.isCompleteMaps[currentLevelCount])
+        else if (levelData.isCompleteMaps[6])
         {
             levelData.currentLevel = LevelData.Levels.Level8;
             levelData.currentEnemyObjects = levelData.enemyEightthObjects;
@@ -245,9 +244,9 @@ public class LevelUpController : MonoBehaviour
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
             enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
-            levelData.isCompleteMaps[currentLevelCount] = false;
+            levelData.isCompleteMaps[6] = false;
         }
-        else if (levelData.isCompleteMaps[currentLevelCount])
+        else if (levelData.isCompleteMaps[7])
         {
             levelData.currentLevel = LevelData.Levels.Level9;
             levelData.currentEnemyObjects = levelData.enemyNinethObjects;
@@ -261,9 +260,9 @@ public class LevelUpController : MonoBehaviour
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
             enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
-            levelData.isCompleteMaps[currentLevelCount] = false;
+            levelData.isCompleteMaps[7] = false;
         }
-        else if (levelData.isCompleteMaps[currentLevelCount])
+        else if (levelData.isCompleteMaps[8])
         {
             levelData.currentLevel = LevelData.Levels.Level10;
             levelData.currentEnemyObjects = levelData.enemyTenthObjects;
@@ -277,7 +276,7 @@ public class LevelUpController : MonoBehaviour
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
             enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
-            levelData.isCompleteMaps[currentLevelCount] = false;
+            levelData.isCompleteMaps[8] = false;
         }
         else
         {//Level1 Condition

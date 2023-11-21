@@ -1,9 +1,9 @@
 {
     "currentMessageText": {
-        "instanceID": 1049596
+        "instanceID": 26330
     },
     "currentMessageObject": {
-        "instanceID": 1049592
+        "instanceID": 26326
     },
     "backgroundMap": {
         "instanceID": 26716
@@ -37,10 +37,10 @@
     },
     "isDecreaseHealth": false,
     "damageHealthText": {
-        "instanceID": 1025048
+        "instanceID": -22132
     },
     "decreaseCounter": 0,
-    "currentCharacterName": 1,
+    "currentCharacterName": 3,
     "characterObject": {
         "instanceID": 26720
     },
@@ -79,9 +79,9 @@
     },
     "dobbyLock": "",
     "glassyLock": "Locked",
-    "spartacusLock": "Locked",
+    "spartacusLock": "",
     "guardLock": "",
-    "lusthLock": "Locked",
+    "lusthLock": "",
     "eveLock": "Locked",
     "michelleLock": "Locked",
     "ajLock": "",
@@ -143,13 +143,13 @@
     "spawns": {
         "instanceID": 26774
     },
-    "sensivityX": 10.0,
-    "sensivityY": 10.0,
+    "sensivityX": 18.0,
+    "sensivityY": 5.0,
     "isTouchFinish": false,
     "isLose": false,
     "spartacusPrice": 0,
     "dobbyPrice": 100,
-    "glassyPrice": 100,
+    "glassyPrice": 200,
     "lusthPrice": 100,
     "guardPrice": 100,
     "michellePrice": 100,
@@ -158,7 +158,7 @@
     "bossPrice": 100,
     "tyPrice": 100,
     "mremirehPrice": 100,
-    "playerSpeed": 15.0,
+    "playerSpeed": 18.0,
     "skateBoardSpeed": 1.0,
     "slideWalkSpeed": 7.0,
     "backWalkingSpeed": 6.0,
@@ -172,12 +172,12 @@
     "ajSpeed": 9.0,
     "eveSpeed": 10.0,
     "mremirehSpeed": 11.0,
-    "lusthSpeed": 12.0,
+    "lusthSpeed": 18.0,
     "spartacusSpeed": 11.0,
     "bossSpeed": 10.0,
     "tySpeed": 9.0,
     "guardSpeed": 8.0,
-    "currentJumpForce": 6.0,
+    "currentJumpForce": 7.0,
     "dobbyJumpForce": 6.0,
     "michelleJumpForce": 7.0,
     "glassyJumpForce": 6.0,
@@ -195,7 +195,7 @@
         "Guard",
         "Boss",
         "Aj",
-        "",
+        "Lusth",
         "",
         "",
         "",
@@ -219,7 +219,7 @@
     "isSwordAnimate": false,
     "isLookingUp": false,
     "isDestroyed": false,
-    "isPlayable": true,
+    "isPlayable": false,
     "isFireNonWalk": false,
     "isFireWalk": false,
     "isFireTime": false,

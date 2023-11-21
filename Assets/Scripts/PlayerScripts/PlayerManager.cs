@@ -110,7 +110,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     void Start()
     {
         playerManager = gameObject.GetComponent<PlayerManager>(); 
-        PlayerManager.GetInstance.gameObject.GetComponent<Rigidbody>().isKinematic = false  ;
+        GetInstance.gameObject.GetComponent<Rigidbody>().isKinematic = false  ;
 
 
         _playerData.decreaseCounter = 0;
@@ -133,7 +133,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         _levelData.currentEnemyDetectionDistance = _levelData.enemyDetectionDistances[levelCount];
 
 
-        PlayerManager.GetInstance.gameObject.transform.position =
+        GetInstance.gameObject.transform.position =
             _playerData.playerSpawns.GetChild(levelCount).transform.position;
     }
     void FixedUpdate()
@@ -281,8 +281,10 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     {
         if (other.gameObject.name == "FinishPlane")
         {
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
+            GetLevelTag(other);
 
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
+            
             _levelData.isCompleteMaps[LevelUpController.currentLevelCount] = true;
 
             _levelData.isLevelUp = true;
@@ -291,6 +293,45 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             _topCanvasHealthBarSlider.value = healthBarSlider.value;
 
             StartCoroutine(iPlayerTrigger.DelayLevelUp(_levelData, 2f));
+        }
+    }
+    void GetLevelTag(Collider other)
+    {
+        switch (other.tag)
+        {
+            case (LevelData.FirstFinishArea):
+                LevelUpController.currentLevelCount = 0;
+                break;
+            case (LevelData.SecondFinishArea):
+                LevelUpController.currentLevelCount = 1;
+                break;
+            case (LevelData.ThirdFinishArea):
+                LevelUpController.currentLevelCount = 2;
+                break;
+            case (LevelData.FourthFinishArea):
+                LevelUpController.currentLevelCount = 3;
+                break;
+            case (LevelData.FifthFinishArea):
+                LevelUpController.currentLevelCount = 4;
+                break;
+            case (LevelData.SixthFinishArea):
+                LevelUpController.currentLevelCount = 5;
+                break;
+            case (LevelData.SeventhFinishArea):
+                LevelUpController.currentLevelCount = 6;
+                break;
+            case (LevelData.EighthFinishArea):
+                LevelUpController.currentLevelCount = 7;
+                break;
+            case (LevelData.NinethFinishArea):
+                LevelUpController.currentLevelCount = 8;
+                break;
+            case (LevelData.TenthFinishArea):
+                LevelUpController.currentLevelCount = 9;
+                break;
+            default:
+                LevelUpController.currentLevelCount = 0;
+                break;
         }
     }
     void TriggerCoinControl(Collider other)
