@@ -34,6 +34,7 @@ MonoBehaviour:
   - {fileID: 7138293202800543776, guid: b58971eee7eabb341a9e50612b070986, type: 3}
   - {fileID: 6995526888015887884, guid: 79af744eb362dbe45b39dfc062a6f120, type: 3}
   - {fileID: 7027907883889466725, guid: b20c320e397228c42b81eab8162a7969, type: 3}
+  - {fileID: 972172793346135744, guid: 66c5077f2d2e4e84bb0f24cf699b3235, type: 3}
   currentEnemyObjects:
   - {fileID: 1124876159237399022, guid: 08524ce7f172b1f40ab3eee041359683, type: 3}
   - {fileID: 4288211827455112566, guid: 0306d1720a844fa4e9feb9b2b604d860, type: 3}
@@ -186,7 +187,12 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
   - {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
   - {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
-  currentEnemyDetectionDistance: 3
+  - {fileID: 2100000, guid: a2f43e7219c51e14ab310c0be536fa14, type: 2}
+  - {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
+  - {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
+  - {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
+  - {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
+  currentEnemyDetectionDistance: 6
   enemyDetectionDistances:
   - 2
   - 3
@@ -197,7 +203,7 @@ MonoBehaviour:
   - 8
   - 9
   - 10
-  currentEnemySpawnDelay: 2
+  currentEnemySpawnDelay: 5
   enemySpawnDelaysByLevel: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
   currentMirrorName: Mirror1
   mirrorCouples:
@@ -207,7 +213,7 @@ MonoBehaviour:
   - {fileID: 6022340288675348387, guid: 0e6ca9137dddb924fb941e3a65e4e1ac, type: 3}
   - {fileID: 2738821458815677874, guid: 6d4781b31466160458f078fd3a07582f, type: 3}
   - {fileID: 2791360359372293479, guid: 5cbcdc42b8937414fa6a85dc0f501092, type: 3}
-  currentFinishArea: {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
+  currentFinishArea: {fileID: 3196894676368351631, guid: f977ff14ba82aa74c8bcf79f99d10a52, type: 3}
   finishTransforms:
   - {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
   - {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}

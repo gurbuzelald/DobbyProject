@@ -15,10 +15,8 @@ public class LevelUpPanelController : MonoBehaviour
         levelUpCanvasGroup = gameObject.GetComponent<CanvasGroup>();
 
         levelUpImage.enabled = true;
-        //gameObject.transform.GetComponent<CanvasGroup>().alpha = 1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (levelData.isLevelUp)

@@ -679,7 +679,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
                 //Sound Effect
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-                //DeathSFX(_playerData);
 
 
                 _playerData.isDestroyed = true;
@@ -708,11 +707,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
                 //SoundEffect
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetBulletHit);
-                //GetHitSFX(_playerData);
-
-                //PlayerData
-                //_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value -= 5;
-                //_topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
             }
         }
     }
@@ -728,7 +722,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         if (value == SceneController.Tags.Coin)
         {
             //Data
-            _playerData.playerSpeed = 0.5f;
             _playerData.isPicking = true;
 
             //_coinObject.SetActive(true);
@@ -742,19 +735,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             //Trigger
             Destroy(other.gameObject);
-            //other.gameObject.SetActive(false);
 
             //Score
             ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
-            //CreateSlaveObject();
         }
         else if (value == SceneController.Tags.RotateCoin)
         {
             //PlayerData
-            //_playerData.isPickRotateCoin = true;
 
             _playerData.isPicking = true;
-            _playerData.playerSpeed = 0.5f;
 
             //_coinObject.SetActive(true);
             _coinObject.transform.localScale = Vector3.one;
@@ -762,7 +751,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
-            //PickUpCoinSFX(_playerData);
 
 
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyRotateCoin, other.gameObject.transform);
@@ -772,13 +760,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             //SettingScore
             ScoreController.GetInstance.SetScore(1);
-            //CreateSlaveObject();
         }
         else if (value == SceneController.Tags.CheeseCoin)
         {
             //PlayerData
             _playerData.isPicking = true;
-            _playerData.playerSpeed = 0.5f;
 
             //_cheeseObject.SetActive(true);
             _cheeseObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
@@ -795,13 +781,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             //SettingScore
             ScoreController.GetInstance.SetScore(2);
-            //CreateSlaveObject();
         }
         else if (value == SceneController.Tags.MushroomCoin)
         {
             //PlayerData
             _playerData.isPicking = true;
-            _playerData.playerSpeed = 0.5f;
 
             //_coinObject.SetActive(true);
             _coinObject.transform.localScale = Vector3.one;
@@ -809,7 +793,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Poison);
-            //PickUpCoinSFX(_playerData);
 
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyMushroomCoin, other.gameObject.transform);
 
@@ -820,15 +803,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             //PlayerData
             _playerData.isPicking = true;
-            _playerData.playerSpeed /= 2f;
 
             //_coinObject.SetActive(true);
             _coinObject.transform.localScale = Vector3.one;
             
             StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(_coinObject));
-
-            //SoundEffect
-            //PickUpBulletCoinSFX(_playerData);
 
             //Trigger CoinObject
             if (_playerData.bulletAmount != _playerData.bulletPack)
@@ -851,7 +830,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.bulletAmount = _playerData.bulletPack;
             bulletAmountText.text = _playerData.bulletAmount.ToString();
 
-            //ScoreTextGrowing(0, 255, 0);
         }
         else if (value == SceneController.Tags.HealthCoin)
         {
@@ -995,8 +973,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
         //SoundEffect
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
-        //JumpToSeaSFX(_playerData);
-
     }
 
     public virtual void DestroyByLava(PlayerData _playerData, ref Transform _particleTransform)
@@ -1009,14 +985,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
         //ParticleEffect
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform.transform);
-
     }
 
     public virtual void GettingPoisonDamage(PlayerData _playerData, ref Slider _topCanvasHealthBarSlider, ref Slider _healthBarSlider)
     {
         //SoundEffect
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-        //DeathSFX(_playerData);
         _topCanvasHealthBarSlider.value = _healthBarSlider.value;
 
         //PlayerData
@@ -1025,7 +999,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         _playerData.isIdling = false;
         _playerData.isPlayable = false;
         _playerData.objects[3].transform.localScale = Vector3.zero;
-
     }
 
 
@@ -1064,7 +1037,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void CreateVictoryAnimation(PlayerData _playerData, ref Transform _jolleenTransform)
     {//InstantiatingDancerObject
-        //EnemyBulletManager.isFirable = false;
         GameObject jolleenObject = Instantiate(_playerData.jolleenObject, _jolleenTransform.transform);
         jolleenObject.transform.position = _jolleenTransform.transform.position;
         Destroy(jolleenObject, _playerData.danceTime);
@@ -1089,7 +1061,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         if (collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
         {
             collision.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
-            //collision.gameObject.GetComponent<EnemyManager>().enemyData.enemySpeed = 0;
         }
 
         _topCanvasHealthBarSlider.value = _healthBarSlider.value;
@@ -1337,10 +1308,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             //ParticleEffect
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Skateboard, _particleTransform.transform);
 
-            //_skateboardParticle.Play();
-            //GetInstance.GetComponent<Transform>().Translate(0f, 0f, _playerData.playerSpeed * Time.deltaTime * 4f);
             objectRigidbody.AddForce(transform.forward*_playerData.playerSpeed * Time.deltaTime * 1000f);
-            //Debug.Log(PlayerManager.GetInstance.transform.eulerAngles.y);
         }
 
     }
@@ -1432,8 +1400,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
 
             //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
-            //JumpSFX(_playerData);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);            
 
             //PlayerData
             _playerData.isJumping = true;

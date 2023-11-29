@@ -26,15 +26,13 @@ public class EnemySpawner : MonoBehaviour
 
 
    
-    private void Awake()
+    private void Start()
     {
         enemyData.isActivateCreateEnemy = false;
 
-        CreateAwakeEnemies(LevelUpController.currentLevelCount);
-
-        //Debug.Log(gameObject.transform.childCount);
+        CreateEnemiesAtStart(LevelUpController.currentLevelCount);
     }
-    void CreateAwakeEnemies(int levelCount)
+    void CreateEnemiesAtStart(int levelCount)
     {
         enemyTransformObject = Instantiate(levelData.enemyTransformsInMap[levelCount].gameObject, gameObject.transform);
 
@@ -49,7 +47,6 @@ public class EnemySpawner : MonoBehaviour
                                                                  10f,
                                                                  enemyTransformObject.transform.GetChild(i).position.z);
         }
-        //enemyCountText.text = gameObject.transform.GetChild(0).childCount.ToString();
     }
     IEnumerator CreateBulletCoin(int i)
     {
@@ -86,10 +83,6 @@ public class EnemySpawner : MonoBehaviour
         if (_bulletCoinSpawn.childCount != 0)
         {
             Destroy(_bulletCoinSpawn.transform.GetChild(0).gameObject);
-            //for (int i = 0; i < _bulletCoinSpawn.childCount; i++)
-            //{
-                
-            //}
         }
         Destroy(playerBulletObject);
 
@@ -103,8 +96,10 @@ public class EnemySpawner : MonoBehaviour
         if (gameObject.transform.childCount != 0)
         {
             for (int i = 0; i < gameObject.transform.GetChild(0).transform.childCount; i++)
-            {//if enemyTransformObject's childCount equals zero, destroy enemyTransformObject. This code is for getting enemies amount.
-                if (gameObject.transform.GetChild(0).GetChild(i).name == "BulletCoin(Clone)" || gameObject.transform.GetChild(0).GetChild(i).childCount == 0)
+            {//if enemyTransformObject's childCount equals zero, destroy enemyTransformObject.
+             //This code is for getting enemies amount.
+                if (gameObject.transform.GetChild(0).GetChild(i).name == "BulletCoin(Clone)" || 
+                    gameObject.transform.GetChild(0).GetChild(i).childCount == 0)
                 {
                     CheckEnemyDeathForLevels(i, levelData.currentEnemyObjects);                    
                 }

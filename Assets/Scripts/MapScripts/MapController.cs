@@ -19,67 +19,9 @@ public class MapController : MonoBehaviour
     {
         readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
 
-        if (levelData.currentLevel == LevelData.Levels.Level1) {
+        currentMap = Instantiate(levelData.Maps[LevelUpController.currentLevelCount], gameObject.transform);
+        RenderSettings.skybox = levelData.levelSkyboxes[LevelUpController.currentLevelCount];
 
-            currentMap = Instantiate(levelData.Maps[0], gameObject.transform);
-            RenderSettings.skybox = levelData.levelSkyboxes[0];
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level2)
-        {
-            currentMap = Instantiate(levelData.Maps[1], gameObject.transform);
-            RenderSettings.skybox = levelData.levelSkyboxes[1];
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level3)
-        {
-            currentMap = Instantiate(levelData.Maps[2], gameObject.transform);
-            RenderSettings.skybox = levelData.levelSkyboxes[2];
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level4)
-        {
-            currentMap = Instantiate(levelData.Maps[3], gameObject.transform);
-            RenderSettings.skybox = levelData.levelSkyboxes[3];
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level5)
-        {
-            currentMap = Instantiate(levelData.Maps[4], gameObject.transform);
-            RenderSettings.skybox = levelData.levelSkyboxes[4];
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level6)
-        {
-            currentMap = Instantiate(levelData.Maps[5], gameObject.transform);
-            RenderSettings.skybox = levelData.levelSkyboxes[4];
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level7)
-        {
-            currentMap = Instantiate(levelData.Maps[6], gameObject.transform);
-            RenderSettings.skybox = levelData.levelSkyboxes[4];
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level8)
-        {
-            currentMap = Instantiate(levelData.Maps[7], gameObject.transform);
-            RenderSettings.skybox = levelData.levelSkyboxes[4];
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level9)
-        {
-            currentMap = Instantiate(levelData.Maps[8], gameObject.transform);
-            RenderSettings.skybox = levelData.levelSkyboxes[4];
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level10)
-        {
-            currentMap = Instantiate(levelData.Maps[9], gameObject.transform);
-            RenderSettings.skybox = levelData.levelSkyboxes[4];
-        }
-
-
-
-        //DarknessCubesActivity();
-        //currentMap.transform.GetChild(1).gameObject.SetActive(true);
-    }
-    IEnumerator DelayDarknesCubesClose()
-    {
-        currentMap.transform.GetChild(1).gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        currentMap.transform.GetChild(1).gameObject.SetActive(false);
     }
     IEnumerator DelayTruePlayable()
     {
