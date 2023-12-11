@@ -182,7 +182,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         if (GetInstance.transform.position.y <= 0.9301061f && !_playerData.isGround)
         {
-            Debug.Log("Test");
+            Debug.Log("You didnt fall down!!");
             GetInstance.transform.position = new Vector3(GetInstance.transform.position.x,
                                                          0.93010632f,
                                                          GetInstance.transform.position.z);

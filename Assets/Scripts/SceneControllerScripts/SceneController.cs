@@ -130,7 +130,7 @@ public class SceneController : AbstractSceneController<SceneController>
 
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        if (CheckSceneName() != SceneController.Scenes.End.ToString())
+        if (CheckSceneName() != Scenes.End.ToString())
         {
             playAgain = true;
         }
@@ -152,10 +152,20 @@ public class SceneController : AbstractSceneController<SceneController>
         SceneManager.LoadScene(Scenes.Menu.ToString());
 
     }
+    public void LoadMenuSceneByWinScene()
+    {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+        DestroySingletonObjects();
+
+        SceneManager.LoadScene(Scenes.Menu.ToString());
+    }
 
     public void LoadWinScene()
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+        //levelData.currentLevel = LevelData.Levels.Level1;
 
         DestroySingletonObjects();
 

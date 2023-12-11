@@ -90,7 +90,9 @@ public class LevelUpController : MonoBehaviour
         
         SetDetectionOfEnemyAtUpdate(currentLevelCount);
         ArrowLevelRotation(currentLevelCount);
+        SetEnemySpeed();
     }
+    
     void LevelCount()
     {
         switch (levelData.currentLevel)
@@ -142,7 +144,11 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
-            enemySpawner.CreateEnemiesByMap(currentLevelCount);
+
+            if (enemySpawner)
+            {
+                enemySpawner.CreateEnemiesByMap(currentLevelCount);
+            }
 
 
             levelData.isCompleteMaps[0] = false;
@@ -159,8 +165,11 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
-            enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
+            if (enemySpawner)
+            {
+                enemySpawner.CreateEnemiesByMap(currentLevelCount);
+            }
 
             levelData.isCompleteMaps[1] = false;
         }
@@ -176,8 +185,11 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
-            enemySpawner.CreateEnemiesByMap(currentLevelCount);
 
+            if (enemySpawner)
+            {
+                enemySpawner.CreateEnemiesByMap(currentLevelCount);
+            }
 
             levelData.isCompleteMaps[2] = false;
         }
@@ -193,7 +205,11 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
-            enemySpawner.CreateEnemiesByMap(currentLevelCount);
+
+            if (enemySpawner)
+            {
+                enemySpawner.CreateEnemiesByMap(currentLevelCount);
+            }
 
 
             levelData.isCompleteMaps[3] = false;
@@ -210,7 +226,11 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
-            enemySpawner.CreateEnemiesByMap(currentLevelCount);
+
+            if (enemySpawner)
+            {
+                enemySpawner.CreateEnemiesByMap(currentLevelCount);
+            }
 
             levelData.isCompleteMaps[4] = false;
         }
@@ -226,7 +246,11 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
-            enemySpawner.CreateEnemiesByMap(currentLevelCount);
+
+            if (enemySpawner)
+            {
+                enemySpawner.CreateEnemiesByMap(currentLevelCount);
+            }
 
             levelData.isCompleteMaps[5] = false;
         }
@@ -242,7 +266,11 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
-            enemySpawner.CreateEnemiesByMap(currentLevelCount);
+
+            if (enemySpawner)
+            {
+                enemySpawner.CreateEnemiesByMap(currentLevelCount);
+            }
 
             levelData.isCompleteMaps[6] = false;
         }
@@ -258,7 +286,11 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
-            enemySpawner.CreateEnemiesByMap(currentLevelCount);
+
+            if (enemySpawner)
+            {
+                enemySpawner.CreateEnemiesByMap(currentLevelCount);
+            }
 
             levelData.isCompleteMaps[7] = false;
         }
@@ -274,9 +306,17 @@ public class LevelUpController : MonoBehaviour
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
-            enemySpawner.CreateEnemiesByMap(currentLevelCount);
+
+            if (enemySpawner)
+            {
+                enemySpawner.CreateEnemiesByMap(currentLevelCount);
+            }
 
             levelData.isCompleteMaps[8] = false;
+        }
+        else if (levelData.isCompleteMaps[levelData.isCompleteMaps.Length - 1])
+        {
+            SceneController.GetInstance.LoadWinScene();
         }
         else
         {//Level1 Condition
@@ -287,6 +327,42 @@ public class LevelUpController : MonoBehaviour
     void SetDetectionOfEnemyAtUpdate(int levelCount)
     {
         levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[levelCount];
+    }
+    void SetEnemySpeed()
+    {
+        switch (levelData.currentLevel)
+        {
+            case LevelData.Levels.Level1:
+                levelData.currentEnemySpeed = Random.Range(0.2f, 0.5f);
+                break;
+            case LevelData.Levels.Level2:
+                levelData.currentEnemySpeed = Random.Range(0.25f, 0.55f);
+                break;
+            case LevelData.Levels.Level3:
+                levelData.currentEnemySpeed = Random.Range(0.3f, 0.6f);
+                break;
+            case LevelData.Levels.Level4:
+                levelData.currentEnemySpeed = Random.Range(0.35f, 0.65f);
+                break;
+            case LevelData.Levels.Level5:
+                levelData.currentEnemySpeed = Random.Range(0.4f, 0.7f);
+                break;
+            case LevelData.Levels.Level6:
+                levelData.currentEnemySpeed = Random.Range(0.45f, 0.75f);
+                break;
+            case LevelData.Levels.Level7:
+                levelData.currentEnemySpeed = Random.Range(0.5f, 0.8f);
+                break;
+            case LevelData.Levels.Level8:
+                levelData.currentEnemySpeed = Random.Range(0.55f, 0.85f);
+                break;
+            case LevelData.Levels.Level9:
+                levelData.currentEnemySpeed = Random.Range(0.6f, 0.9f);
+                break;
+            case LevelData.Levels.Level10:
+                levelData.currentEnemySpeed = Random.Range(0.65f, 0.95f);
+                break;
+        }
     }
     public void ArrowLevelRotation(int levelCount)
     {

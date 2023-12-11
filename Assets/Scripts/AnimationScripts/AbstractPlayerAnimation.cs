@@ -557,7 +557,6 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     public virtual IEnumerator DelayAnimation(PlayerData playerData, Animator _animator, float delayValue, int layerOrder, float weightAmount)
     {
         yield return new WaitForSeconds(delayValue);
-        playerData.playerSpeed = 2f;
         _animator.SetBool(AnimatorParameters.isPickup.ToString(), false);
         _animator.SetBool(AnimatorParameters.isPickRotateCoin.ToString(), false);
         _animator.SetLayerWeight(layerOrder, weightAmount);

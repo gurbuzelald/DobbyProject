@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,10 +8,9 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
     [SerializeField] BulletData bulletData;
     [SerializeField] PlayerData playerData;
     [SerializeField] LevelData levelData;
-
-
-    private void Awake()
+    private IEnumerator Start()
     {
+        yield return new WaitForSeconds(1f);
         CreateMapGiftBoxes(bulletData.currentGiftBox, LevelUpController.currentLevelCount);
     }
     public void CreateMapGiftBoxes(GameObject weaponObject, int levelCount)

@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewLevelData", menuName = "LevelData")]
 public class LevelData : ScriptableObject
 {
+    [Header("Enemy Level Speeds Ranges")]
+    public float currentEnemySpeed;
+    public float[] levelEnemySpeed;
+
     [Header("Level Finish Area Names")]
     public const string FirstFinishArea = "FirstFinishArea";
     public const string SecondFinishArea = "SecondFinishArea";

@@ -79,9 +79,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         FollowPlayer();
 
-        SetEnemySpeed();
+        enemyData.enemySpeed = levelData.currentEnemySpeed;
     }
-    
+
     void FollowPlayer()
     {
         if (gameObject != null)
@@ -349,49 +349,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = _healthBarSlider.value;
 
             StartCoroutine(ShowDamage((int)bulletPower, 0.1f, 3f));
-        }
-    }
-    void SetEnemySpeed()
-    {
-        if (levelData.currentLevel == LevelData.Levels.Level1)
-        {
-            enemyData.enemySpeed = Random.Range(0.1f, 0.5f);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level2)
-        {
-            enemyData.enemySpeed = Random.Range(0.3f, 0.7f);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level3)
-        {
-            enemyData.enemySpeed = Random.Range(0.5f, 0.9f);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level4)
-        {
-            enemyData.enemySpeed = Random.Range(0.7f, 1.1f);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level5)
-        {
-            enemyData.enemySpeed = Random.Range(0.9f, 1.3f);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level6)
-        {
-            enemyData.enemySpeed = Random.Range(1.1f, 1.5f);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level7)
-        {
-            enemyData.enemySpeed = Random.Range(1.3f, 1.7f);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level8)
-        {
-            enemyData.enemySpeed = Random.Range(1.5f, 1.9f);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level9)
-        {
-            enemyData.enemySpeed = Random.Range(1.7f, 2.1f);
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level10)
-        {
-            enemyData.enemySpeed = Random.Range(1.9f, 2.3f);
         }
     }
     public void TriggerBullet(float bulletPower, Collider other)
