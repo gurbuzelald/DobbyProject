@@ -35,7 +35,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     [SerializeField] TextMeshProUGUI _damageText;
     private Rigidbody enemyRigidbody;
     private EnemyBulletManager enemyBulletManager;
-    private GameObject enemySpawnerObj;
+    private GameObject enemySpawnerObject;
     private EnemySpawner enemySpawner;
 
     void Start()
@@ -48,8 +48,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         enemyBulletManager = gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>();
 
-        enemySpawnerObj = GameObject.Find("EnemySpawner");
-        enemySpawner = enemySpawnerObj.GetComponent<EnemySpawner>();
+        enemySpawnerObject = GameObject.Find("EnemySpawner");
+        enemySpawner = enemySpawnerObject.GetComponent<EnemySpawner>();
 
         _damageText.text = "";
         _damageText.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);

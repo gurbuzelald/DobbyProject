@@ -443,7 +443,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         if (_playerData.isPlayable && PlayerManager.GetInstance._playerController.fire && !_playerData.isWinning)
         {
             //PlayerData
-            if (_playerData.bulletAmount <= 0)
+            if (_playerData.bulletAmount <= 0 && _playerData.bulletPackAmount <= 0)
             {
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
 
@@ -451,32 +451,43 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
                 _playerData.isFireWalk = false;
             }
-            else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && !_playerData.isWalking && !_playerData.isSideWalking)
+            else if (_playerData.bulletAmount <= 0 && _playerData.bulletPackAmount >= 0)
             {
-                _playerData.isFireNonWalk = true;
+                _playerData.bulletAmount = _playerData.bulletPack;
+
+                _playerData.bulletPackAmount--;
             }
-            else if (_playerData.bulletAmount > _playerData.bulletPack / 2f && !_playerData.isWalking && !_playerData.isSideWalking)
+            else if(_playerData.bulletPackAmount >= 0)
             {
-                _playerData.isFireNonWalk = true;
+                if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && !_playerData.isWalking && !_playerData.isSideWalking)
+                {
+                    _playerData.isFireNonWalk = true;
+                }
+                else if (_playerData.bulletAmount > _playerData.bulletPack / 2f && !_playerData.isWalking && !_playerData.isSideWalking)
+                {
+                    _playerData.isFireNonWalk = true;
+                }
+                else if (!_playerData.isWalking && _playerData.isSideWalking)
+                {
+                    _playerData.isFireNonWalk = true;
+                }
+                else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && _playerData.isWalking)
+                {
+                    _playerData.isFireWalk = true;
+                }
+                else if (_playerData.bulletAmount > _playerData.bulletPack / 2f && _playerData.isWalking)
+                {
+                    _playerData.isFireWalk = true;
+                }
+                if (_playerData.bulletAmount > 0 && BulletManager.isCreatedWeaponBullet)
+                {
+                    --_playerData.bulletAmount;
+                    PlayerManager.GetInstance._playerController.fire = false;
+                    BulletManager.isCreatedWeaponBullet = false;
+                }
             }
-            else if (!_playerData.isWalking && _playerData.isSideWalking)
-            {
-                _playerData.isFireNonWalk = true;
-            }
-            else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && _playerData.isWalking)
-            {
-                _playerData.isFireWalk = true;
-            }
-            else if (_playerData.bulletAmount > _playerData.bulletPack / 2f && _playerData.isWalking)
-            {
-                _playerData.isFireWalk = true;
-            }
-            if (_playerData.bulletAmount > 0 && BulletManager.isCreatedWeaponBullet)
-            {
-                --_playerData.bulletAmount;
-                PlayerManager.GetInstance._playerController.fire = false;
-                BulletManager.isCreatedWeaponBullet = false;
-            }
+            
+            
         }
         else
         {
@@ -717,12 +728,14 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                                     ref GameObject _coinObject, 
                                     ref GameObject _cheeseObject, 
                                     ref GameObject bulletAmountCanvas,
-                                    ref TextMeshProUGUI bulletAmountText)
+                                    ref TextMeshProUGUI bulletAmountText,
+                                    ref TextMeshProUGUI bulletPackAmountText)
     {
         if (value == SceneController.Tags.Coin)
         {
             //Data
             _playerData.isPicking = true;
+            
 
             //_coinObject.SetActive(true);
             _coinObject.transform.localScale = Vector3.one;
@@ -810,8 +823,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(_coinObject));
 
             //Trigger CoinObject
-            if (_playerData.bulletAmount != _playerData.bulletPack)
+            if (_playerData.bulletPackAmount < 2)
             {
+                _playerData.bulletPackAmount += 1;
+
                 _playerData.currentMessageText.text = PlayerData.pickBulletObjectMessage;
                 StartCoroutine(DelayMessageText(_playerData));
 
@@ -820,15 +835,34 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
                 other.gameObject.SetActive(false);
                 bulletAmountCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
+                bulletAmountCanvas.transform.GetChild(1).gameObject.transform.localScale = Vector3.one;
+            }
+            else if (_playerData.bulletPackAmount == 2)
+            {
+                if (_playerData.bulletAmount != _playerData.bulletPack)
+                {
+                    other.gameObject.SetActive(false);
+
+                    _playerData.bulletAmount = _playerData.bulletPack;
+                    PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
+
+                }
+                else
+                {
+                    PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin);
+                }
+
+                _playerData.currentMessageText.text = PlayerData.pickBulletObjectMessage;
+                StartCoroutine(DelayMessageText(_playerData));
+
+                //bulletAmountCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
+                //bulletAmountCanvas.transform.GetChild(1).gameObject.transform.localScale = Vector3.one;
+
             }
             else
             {
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin);
-            }
-
-            //SettingScore
-            _playerData.bulletAmount = _playerData.bulletPack;
-            bulletAmountText.text = _playerData.bulletAmount.ToString();
+            }           
 
         }
         else if (value == SceneController.Tags.HealthCoin)
@@ -955,10 +989,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         if (_playerData.bulletAmount <= _playerData.bulletPack / 2f)
         {
             bulletAmountCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            bulletAmountCanvas.transform.GetChild(1).transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         }
         else
         {
             bulletAmountCanvas.transform.GetChild(0).transform.localScale = Vector3.one;
+            bulletAmountCanvas.transform.GetChild(1).transform.localScale = Vector3.one;
         }
     }
 
@@ -1000,14 +1036,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         _playerData.isPlayable = false;
         _playerData.objects[3].transform.localScale = Vector3.zero;
     }
-
-
     public virtual IEnumerator DelayLevelUp(LevelData levelData, float delayWait)
     {
         yield return new WaitForSeconds(delayWait);
 
         levelData.isLevelUp = false;
-
     }
 
     public virtual IEnumerator DamageArrowIsLookAtEnemy(Collider other, GameObject _damageArrow)

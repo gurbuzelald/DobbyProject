@@ -201,6 +201,7 @@ public class PlayerData : ScriptableObject
     public int clickShiftCount;
     public int bulletAmount = 90;
     public int bulletPack = 90;
+    public int bulletPackAmount = 2;
     public bool isTouchableSkate;
 
     [Header("Dance")]
