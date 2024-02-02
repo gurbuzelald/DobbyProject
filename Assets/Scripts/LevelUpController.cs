@@ -333,34 +333,34 @@ public class LevelUpController : MonoBehaviour
         switch (levelData.currentLevel)
         {
             case LevelData.Levels.Level1:
-                levelData.currentEnemySpeed = Random.Range(0.2f, 0.5f);
+                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[0], levelData.levelEnemyMaxSpeed[0]);
                 break;
             case LevelData.Levels.Level2:
-                levelData.currentEnemySpeed = Random.Range(0.25f, 0.55f);
+                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[1], levelData.levelEnemyMaxSpeed[1]);
                 break;
             case LevelData.Levels.Level3:
-                levelData.currentEnemySpeed = Random.Range(0.3f, 0.6f);
+                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[2], levelData.levelEnemyMaxSpeed[2]);
                 break;
             case LevelData.Levels.Level4:
-                levelData.currentEnemySpeed = Random.Range(0.35f, 0.65f);
+                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[3], levelData.levelEnemyMaxSpeed[3]);
                 break;
             case LevelData.Levels.Level5:
-                levelData.currentEnemySpeed = Random.Range(0.4f, 0.7f);
+                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[4], levelData.levelEnemyMaxSpeed[4]);
                 break;
             case LevelData.Levels.Level6:
-                levelData.currentEnemySpeed = Random.Range(0.45f, 0.75f);
+                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[5], levelData.levelEnemyMaxSpeed[5]);
                 break;
             case LevelData.Levels.Level7:
-                levelData.currentEnemySpeed = Random.Range(0.5f, 0.8f);
+                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[6], levelData.levelEnemyMaxSpeed[6]);
                 break;
             case LevelData.Levels.Level8:
-                levelData.currentEnemySpeed = Random.Range(0.55f, 0.85f);
+                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[7], levelData.levelEnemyMaxSpeed[7]);
                 break;
             case LevelData.Levels.Level9:
-                levelData.currentEnemySpeed = Random.Range(0.6f, 0.9f);
+                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[8], levelData.levelEnemyMaxSpeed[8]);
                 break;
             case LevelData.Levels.Level10:
-                levelData.currentEnemySpeed = Random.Range(0.65f, 0.95f);
+                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[9], levelData.levelEnemyMaxSpeed[9]);
                 break;
         }
     }

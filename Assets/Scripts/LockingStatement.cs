@@ -155,34 +155,34 @@ public class LockingStatement : MonoBehaviour
         {
             switch (weaponNames[i])
             {
-                case BulletData.WeaponNames.AK47:
+                case BulletData.WeaponNames.ak47:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.ak47Lock.ToString();
                     break;
-                case BulletData.WeaponNames.Axegun:
+                case BulletData.WeaponNames.axegun:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.axeLock.ToString();
                     break;
-                case BulletData.WeaponNames.Bulldog:
+                case BulletData.WeaponNames.bulldog:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.bulldogLock.ToString();
                     break;
-                case BulletData.WeaponNames.Cowgun:
+                case BulletData.WeaponNames.cowgun:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.cowLock.ToString();
                     break;
-                case BulletData.WeaponNames.Crystalgun:
+                case BulletData.WeaponNames.crystalgun:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.crystalLock.ToString();
                     break;
-                case BulletData.WeaponNames.Demongun:
+                case BulletData.WeaponNames.demongun:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.demonLock.ToString();
                     break;
-                case BulletData.WeaponNames.Icegun:
+                case BulletData.WeaponNames.icegun:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.iceLock.ToString();
                     break;
-                case BulletData.WeaponNames.Negev:
+                case BulletData.WeaponNames.negev:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.negevLock.ToString();
                     break;
-                case BulletData.WeaponNames.Pistol:
+                case BulletData.WeaponNames.pistol:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.pistolLock.ToString();
                     break;
-                case BulletData.WeaponNames.Rifle:
+                case BulletData.WeaponNames.rifle:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.rifleLock.ToString();
                     break;
                 default:

@@ -8,7 +8,9 @@ public class BulletController : MonoBehaviour
     [Header("Raycast")]
     public LayerMask layerMask;
     public PlayerData playerData;
+    public BulletData bulletData;
     [SerializeField] float delayFalseBulletValue;
+   
     private void Update()
     {
         RaycastHit hit;

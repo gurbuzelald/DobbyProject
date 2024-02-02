@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 142570326731994010}
   - component: {fileID: 142570326731994011}
   - component: {fileID: 142570326731994012}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 16.5, y: 0, z: 0}
 --- !u!20 &142570326731994010
 Camera:
@@ -65,7 +65,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 33521655
+    m_Bits: 301957111
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

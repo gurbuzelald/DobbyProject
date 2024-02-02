@@ -19,7 +19,8 @@ public class CameraSpawner : MonoBehaviour
         {
             cameraObjects = Instantiate(_cameraObjects[i], gameObject.transform);
         }
-        cameraObject = cameraObjects.GetComponent<Camera>();
+        // cameraObject = cameraObjects.GetComponent<Camera>();
+        cameraObject = GameObject.Find("MiniMapCamera(Clone)").GetComponent<Camera>();
 
 
         meshRenderers = FindObjectsOfType<MeshRenderer>();  

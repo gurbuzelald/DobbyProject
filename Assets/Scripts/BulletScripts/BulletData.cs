@@ -13,7 +13,7 @@ public class BulletData : ScriptableObject
     public float weaponBulletDelay = 0.05f;
     public float bulletSpeed = 5f;
     public int bulletDelayCounter;
-    public GameObject _bulletObject;
+    //public GameObject[] _bulletObject;
     public GameObject _swordingObject;
 
     [Header("Weapon GiftBoxes")]
@@ -165,16 +165,15 @@ public class BulletData : ScriptableObject
 
     public enum WeaponNames
     {
-        AK47,
-        Bulldog,
-        Cowgun,
-        Crystalgun,
-        Demongun,
-        Icegun,
-        Negev,
-        Eve,
-        Axegun,
-        Pistol,
-        Rifle
+        ak47,
+        bulldog,
+        cowgun,
+        crystalgun,
+        demongun,
+        icegun,
+        negev,
+        axegun,
+        pistol,
+        rifle
     }
 }

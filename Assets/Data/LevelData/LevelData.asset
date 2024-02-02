@@ -12,8 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11bd5ee0fd3b6564f95fa990dbc67b4b, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
-  currentEnemySpeed: 0.39440894
-  levelEnemySpeed: []
+  currentEnemySpeed: 0.8072356
+  levelEnemyMinSpeed:
+  - 0.1
+  - 0.3
+  - 0.5
+  - 0.7
+  - 0.9
+  - 1.1
+  - 1.3
+  - 1.5
+  - 1.7
+  - 1.9
+  - 2.1
+  levelEnemyMaxSpeed:
+  - 0.3
+  - 0.5
+  - 0.7
+  - 0.9
+  - 1.1
+  - 1.3
+  - 1.5
+  - 1.7
+  - 1.9
+  - 2.1
+  - 2.3
   mapCoins:
   - {fileID: 3880732843794124356, guid: 8afde6b0df00a404199392eae3715794, type: 3}
   - {fileID: 1413783167371764476, guid: 5b53e633fa5f1eb408fa0f939e143a88, type: 3}
@@ -281,7 +304,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e3845d4fec0b91c4b9a84df32daf1e1e, type: 2}
   - {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
   - {fileID: 2100000, guid: af4761f39dd034440a3d259313185a42, type: 2}
-  currentEnemyDetectionDistance: 2
+  currentEnemyDetectionDistance: 5
   enemyDetectionDistances:
   - 2
   - 3
@@ -292,10 +315,10 @@ MonoBehaviour:
   - 8
   - 9
   - 10
-  - 5
-  - 5
-  currentEnemySpawnDelay: 1
-  enemySpawnDelaysByLevel: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
+  - 11
+  - 12
+  currentEnemySpawnDelay: 8
+  enemySpawnDelaysByLevel: 0f0000000e0000000d0000000c0000000b0000000a00000009000000080000000700000006000000
   currentMirrorName: Mirror1
   mirrorCouples:
   - {fileID: 9044617553140458651, guid: e7f4d5f6e375e4548a69d4d890e6ec8c, type: 3}
@@ -308,7 +331,7 @@ MonoBehaviour:
   - {fileID: 7739160499251517144, guid: 75dafef2553d8a5459878c981d1a1779, type: 3}
   - {fileID: 2266118862413915206, guid: 5c65a733b8e76f840b4a384e3969c4f1, type: 3}
   - {fileID: 1287685689511572656, guid: e9a6d20abff80c44683f9ae403b8eb46, type: 3}
-  currentFinishArea: {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
+  currentFinishArea: {fileID: 1149033832906918883, guid: 14ee547a4dde40b4a8847f703ec8d8a9, type: 3}
   finishTransforms:
   - {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
   - {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
@@ -322,4 +345,4 @@ MonoBehaviour:
   - {fileID: 9069361647760937000, guid: 89af43945948f3043b72818822d3fc05, type: 3}
   isCompleteMaps: 00000000000000000000
   isLevelUp: 0
-  currentLevel: 0
+  currentLevel: 3

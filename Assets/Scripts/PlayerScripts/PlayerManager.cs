@@ -439,6 +439,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         if (other.tag.ToString() == _bulletData.currentWeaponName)
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Poison);
+            StartCoroutine(DelayMessageText(_playerData, PlayerData.alreadyHaveThisWeaponMessage));
         }
         else if (other.tag.ToString() == BulletData.ak47 || other.tag.ToString() == BulletData.rifle ||
             other.tag.ToString() == BulletData.bulldog || other.tag.ToString() == BulletData.cowgun ||

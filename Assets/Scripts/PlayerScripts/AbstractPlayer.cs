@@ -823,12 +823,18 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(_coinObject));
 
             //Trigger CoinObject
-            if (_playerData.bulletPackAmount < 2)
+            if (_playerData.bulletPackAmount == 0 && _playerData.bulletAmount == 0)
+            {
+                other.gameObject.SetActive(false);
+
+                _playerData.bulletAmount = _playerData.bulletPack;
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
+            }
+            else if (_playerData.bulletPackAmount < 2)
             {
                 _playerData.bulletPackAmount += 1;
 
-                _playerData.currentMessageText.text = PlayerData.pickBulletObjectMessage;
-                StartCoroutine(DelayMessageText(_playerData));
+                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessage));
 
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyBulletCoin, other.gameObject.transform);
 
@@ -852,8 +858,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                     PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin);
                 }
 
-                _playerData.currentMessageText.text = PlayerData.pickBulletObjectMessage;
-                StartCoroutine(DelayMessageText(_playerData));
+                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessage));
 
                 //bulletAmountCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
                 //bulletAmountCanvas.transform.GetChild(1).gameObject.transform.localScale = Vector3.one;
@@ -867,8 +872,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (value == SceneController.Tags.HealthCoin)
         {
-            _playerData.currentMessageText.text = PlayerData.pickHealthObjectMessage;
-            StartCoroutine(DelayMessageText(_playerData));
+            StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessage));
 
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.IncreasingHealth);
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyHealthCoin, other.gameObject.transform);
@@ -877,100 +881,111 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void CheckWeaponCollect(Collider other, BulletData _bulletData)
     {
-        if (other.CompareTag(SceneController.Tags.Rifle.ToString()) && _bulletData.currentWeaponName != BulletData.rifle)
+        if (other.CompareTag(SceneController.Tags.rifle.ToString()) && _bulletData.currentWeaponName != BulletData.rifle)
         {
             Destroy(other.gameObject);
             _bulletData.isRifle = true;
         }
-        else if (other.CompareTag(SceneController.Tags.Rifle.ToString()) && _bulletData.currentWeaponName == BulletData.rifle)
+        else if (other.CompareTag(SceneController.Tags.rifle.ToString()) && _bulletData.currentWeaponName == BulletData.rifle)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.Ak47.ToString()) && _bulletData.currentWeaponName != BulletData.ak47)
+        if (other.CompareTag(SceneController.Tags.ak47.ToString()) && _bulletData.currentWeaponName != BulletData.ak47)
         {
             Destroy(other.gameObject);
             _bulletData.isAk47 = true;
         }
-        else if (other.CompareTag(SceneController.Tags.Ak47.ToString()) && _bulletData.currentWeaponName == BulletData.ak47)
+        else if (other.CompareTag(SceneController.Tags.ak47.ToString()) && _bulletData.currentWeaponName == BulletData.ak47)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.Axegun.ToString()) && _bulletData.currentWeaponName != BulletData.axegun)
+        if (other.CompareTag(SceneController.Tags.axegun.ToString()) && _bulletData.currentWeaponName != BulletData.axegun)
         {
             Destroy(other.gameObject);
             _bulletData.isAxegun = true;
         }
-        else if (other.CompareTag(SceneController.Tags.Axegun.ToString()) && _bulletData.currentWeaponName == BulletData.axegun)
+        else if (other.CompareTag(SceneController.Tags.axegun.ToString()) && _bulletData.currentWeaponName == BulletData.axegun)
         {
+            Debug.Log(other.gameObject.name);
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.Bulldog.ToString()) && _bulletData.currentWeaponName != BulletData.bulldog)
+        if (other.CompareTag(SceneController.Tags.bulldog.ToString()) && _bulletData.currentWeaponName != BulletData.bulldog)
         {
             Destroy(other.gameObject);
             _bulletData.isBulldog = true;
         }
-        else if (other.CompareTag(SceneController.Tags.Bulldog.ToString()) && _bulletData.currentWeaponName == BulletData.bulldog)
+        else if (other.CompareTag(SceneController.Tags.bulldog.ToString()) && _bulletData.currentWeaponName == BulletData.bulldog)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.Cowgun.ToString()) && _bulletData.currentWeaponName != BulletData.cowgun)
+        if (other.CompareTag(SceneController.Tags.cowgun.ToString()) && _bulletData.currentWeaponName != BulletData.cowgun)
         {
             Destroy(other.gameObject);
             _bulletData.isCowgun = true;
         }
-        else if (other.CompareTag(SceneController.Tags.Cowgun.ToString()) && _bulletData.currentWeaponName == BulletData.cowgun)
+        else if (other.CompareTag(SceneController.Tags.cowgun.ToString()) && _bulletData.currentWeaponName == BulletData.cowgun)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.Crystalgun.ToString()) && _bulletData.currentWeaponName != BulletData.crystalgun)
+        if (other.CompareTag(SceneController.Tags.crystalgun.ToString()) && _bulletData.currentWeaponName != BulletData.crystalgun)
         {
             Destroy(other.gameObject);
             _bulletData.isCrystalgun = true;
         }
-        else if (other.CompareTag(SceneController.Tags.Crystalgun.ToString()) && _bulletData.currentWeaponName == BulletData.crystalgun)
+        else if (other.CompareTag(SceneController.Tags.crystalgun.ToString()) && _bulletData.currentWeaponName == BulletData.crystalgun)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.Demongun.ToString()) && _bulletData.currentWeaponName != BulletData.demongun)
+        if (other.CompareTag(SceneController.Tags.demongun.ToString()) && _bulletData.currentWeaponName != BulletData.demongun)
         {
             Destroy(other.gameObject);
             _bulletData.isDemongun = true;
         }
-        else if (other.CompareTag(SceneController.Tags.Demongun.ToString()) && _bulletData.currentWeaponName != BulletData.demongun)
+        else if (other.CompareTag(SceneController.Tags.demongun.ToString()) && _bulletData.currentWeaponName != BulletData.demongun)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.Icegun.ToString()) && _bulletData.currentWeaponName != BulletData.icegun)
+        if (other.CompareTag(SceneController.Tags.icegun.ToString()) && _bulletData.currentWeaponName != BulletData.icegun)
         {
             Destroy(other.gameObject);
             _bulletData.isIcegun = true;
         }
-        else if (other.CompareTag(SceneController.Tags.Icegun.ToString()) && _bulletData.currentWeaponName == BulletData.icegun)
+        else if (other.CompareTag(SceneController.Tags.icegun.ToString()) && _bulletData.currentWeaponName == BulletData.icegun)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.Negev.ToString()) && _bulletData.currentWeaponName != BulletData.negev)
+        if (other.CompareTag(SceneController.Tags.icegun.ToString()) && _bulletData.currentWeaponName != BulletData.negev)
         {
             Destroy(other.gameObject);
             _bulletData.isNegev = true;
         }
-        else if (other.CompareTag(SceneController.Tags.Negev.ToString()) && _bulletData.currentWeaponName == BulletData.negev)
+        else if (other.CompareTag(SceneController.Tags.icegun.ToString()) && _bulletData.currentWeaponName == BulletData.negev)
+        {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
+        }
+        if (other.CompareTag(SceneController.Tags.pistol.ToString()) && _bulletData.currentWeaponName != BulletData.pistol)
+        {
+            Destroy(other.gameObject);
+            _bulletData.isPistol = true;
+        }
+        else if (other.CompareTag(SceneController.Tags.pistol.ToString()) && _bulletData.currentWeaponName == BulletData.pistol)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
@@ -1483,9 +1498,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             }
         }
     }
-    IEnumerator DelayMessageText(PlayerData _playerData)
+    public IEnumerator DelayMessageText(PlayerData _playerData, string messageValue)
     {
-        if (_playerData.currentMessageText.text != "")
+        _playerData.currentMessageText.text = messageValue;
+        if (_playerData.currentMessageText.text != PlayerData.emptyMessage)
         {
             yield return new WaitForSeconds(0.5f);
             _playerData.currentMessageText.text = PlayerData.emptyMessage;

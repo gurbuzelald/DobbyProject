@@ -7,7 +7,8 @@ public class LevelData : ScriptableObject
 {
     [Header("Enemy Level Speeds Ranges")]
     public float currentEnemySpeed;
-    public float[] levelEnemySpeed;
+    public float[] levelEnemyMinSpeed;
+    public float[] levelEnemyMaxSpeed;
 
     [Header("Level Finish Area Names")]
     public const string FirstFinishArea = "FirstFinishArea";

@@ -8,9 +8,10 @@ public class PlayerData : ScriptableObject
     [Header("Message Text")]
     public TextMeshProUGUI currentMessageText;
     public GameObject currentMessageObject;
-    public const string pickBulletObjectMessage = "Your Bullets are Full.";
-    public const string pickHealthObjectMessage = "You are Healthier.";
-    public const string pickWeaponObjectMessage = "Your Weapon is Better.";
+    public const string pickBulletObjectMessage = "It's a Bullet Pack!!";
+    public const string pickHealthObjectMessage = "Healthy!!";
+    public const string pickWeaponObjectMessage = "Picked a Weapon!!";
+    public const string alreadyHaveThisWeaponMessage = "You Already Have This!!";
     public const string emptyMessage = "";
 
     [Header("Background Maps")]
@@ -225,7 +226,7 @@ public class PlayerData : ScriptableObject
     
 
     [Header("BulletManager Data")]
-    public GameObject _bulletObject;//If ObjectPool is not using in project, this'll use
+    //public GameObject[] _bulletObject;//If ObjectPool is not using in project, this'll use
     public float bulletSpeed = 5f;
 
 

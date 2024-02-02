@@ -1,5 +1,102 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1675281258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1675281259}
+  - component: {fileID: 1675281262}
+  - component: {fileID: 1675281261}
+  - component: {fileID: 1675281260}
+  m_Layer: 25
+  m_Name: GroundMiniMap
+  m_TagString: Ground
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1675281259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675281258}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.744, y: 0, z: 12.2613}
+  m_LocalScale: {x: 28.512, y: 0.1, z: 40.464718}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8441785329800141543}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1675281262
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675281258}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1675281261
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675281258}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 0
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 7ab27b1fc36aca84b8155a7e9da4e7c4, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1675281260
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675281258}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &145616556860014880
 GameObject:
   m_ObjectHideFlags: 0
@@ -32917,8 +33014,8 @@ GameObject:
   - component: {fileID: 5366345179753157900}
   - component: {fileID: 1568781222250133904}
   - component: {fileID: 2374505828046916060}
-  m_Layer: 0
-  m_Name: Plane
+  m_Layer: 28
+  m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32967,7 +33064,7 @@ MeshRenderer:
   m_RenderingLayerMask: 0
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 09d191bfb4addac4fb4307c1949e26c6, type: 2}
+  - {fileID: 2100000, guid: 7ab27b1fc36aca84b8155a7e9da4e7c4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34085,8 +34182,8 @@ Transform:
   - {fileID: 5536805262548944180}
   - {fileID: 5536805263603584999}
   - {fileID: 2402269550220633011}
-  - {fileID: 145616558067970976}
   - {fileID: 145616556860014883}
+  - {fileID: 145616558067970976}
   m_Father: {fileID: 1984954211041085283}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -36851,6 +36948,7 @@ Transform:
   - {fileID: 8962141637274347381}
   - {fileID: 9217163035390663984}
   - {fileID: 3421859597011327094}
+  - {fileID: 1675281259}
   m_Father: {fileID: 7664785753994503350}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48847,34 +48945,34 @@ Transform:
   - {fileID: 4251642922381282475}
   - {fileID: 4578471729151964135}
   - {fileID: 7072343381916097113}
-  - {fileID: 1984954211282205037}
   - {fileID: 1984954211029617358}
+  - {fileID: 1984954211282205037}
   - {fileID: 1984954211798906108}
-  - {fileID: 1984954211366591539}
   - {fileID: 1984954211962113558}
+  - {fileID: 1984954211366591539}
   - {fileID: 1984954212226261740}
   - {fileID: 1984954210920492457}
   - {fileID: 1984954211399315067}
   - {fileID: 1984954212384476528}
   - {fileID: 1984954211401128563}
+  - {fileID: 1984954210970506351}
   - {fileID: 1984954211340270222}
   - {fileID: 1984954211462429714}
-  - {fileID: 1984954210970506351}
   - {fileID: 1984954212718145308}
   - {fileID: 1984954210998862368}
   - {fileID: 2602843960539594967}
-  - {fileID: 2602843959917738104}
   - {fileID: 2602843961119867924}
+  - {fileID: 2602843959917738104}
   - {fileID: 2602843961913555376}
-  - {fileID: 2602843959988507420}
   - {fileID: 2602843961703963265}
+  - {fileID: 2602843959988507420}
   - {fileID: 2602843960850716821}
   - {fileID: 2602843960545992010}
   - {fileID: 2602843961294869560}
   - {fileID: 2602843960948055189}
   - {fileID: 2602843960876665642}
-  - {fileID: 2602843960876352800}
   - {fileID: 2602843961240231699}
+  - {fileID: 2602843960876352800}
   - {fileID: 2602843961655822165}
   - {fileID: 2602843960862956377}
   - {fileID: 5536805263031896954}
@@ -55998,32 +56096,32 @@ Transform:
   - {fileID: 6625480387552698505}
   - {fileID: 6279984398289424915}
   - {fileID: 8022902324273834533}
+  - {fileID: 145616558310779337}
   - {fileID: 813506985749013647}
   - {fileID: 6075425760457449466}
   - {fileID: 7530660585563987181}
   - {fileID: 3709491795990849995}
   - {fileID: 1817177504133538601}
-  - {fileID: 3636470883023575979}
-  - {fileID: 8454979345925898259}
   - {fileID: 2602843961801711461}
+  - {fileID: 3636470883023575979}
   - {fileID: 2602843960707922216}
+  - {fileID: 8454979345925898259}
   - {fileID: 2602843960291154075}
   - {fileID: 2602843960894835207}
   - {fileID: 2602843961182627062}
   - {fileID: 2602843961107180808}
   - {fileID: 5536805263381143280}
   - {fileID: 5536805263090066090}
-  - {fileID: 5536805262763185525}
   - {fileID: 5536805264104768525}
+  - {fileID: 5536805262763185525}
   - {fileID: 5536805263663209738}
   - {fileID: 5536805262560956009}
   - {fileID: 5536805263284794875}
   - {fileID: 5536805263880037044}
-  - {fileID: 4038083238500346692}
-  - {fileID: 1388871652783272841}
-  - {fileID: 145616558310779337}
-  - {fileID: 145616557074685454}
   - {fileID: 145616558218401433}
+  - {fileID: 145616557074685454}
+  - {fileID: 1388871652783272841}
+  - {fileID: 4038083238500346692}
   m_Father: {fileID: 1984954211964102526}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -43,26 +43,23 @@ public class MiniMapController : MonoBehaviour
     void TouchMiniMap(Camera miniMapCamera)
     {
         growing = playerInput.GrowMap.GrowingStuate.IsPressed();
-        if (growing && _isMiniMapTouchable)
+        if (growing && _isMiniMapTouchable && miniMapMask.transform.localScale == new Vector3(0.25f, 0.25f, 0.25f))
         {
-            if (miniMapMask.transform.localScale == new Vector3(0.25f, 0.25f, 0.25f))
-            {
-                miniMapCamera.orthographicSize = 10;
-                miniMapMask.transform.localScale = Vector3.one;
+            miniMapCamera.depth = 2;
+            miniMapMask.transform.localScale = Vector3.one;
 
-                _isMiniMapTouchable = false;
+            _isMiniMapTouchable = false;
 
-                StartCoroutine(OpenSmoothMiniMap(delayTouching));
-            }
-            else
-            {
-                miniMapCamera.orthographicSize = 6;
-                miniMapMask.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+            StartCoroutine(OpenSmoothMiniMap(delayTouching));
+        }
+        else if (growing && _isMiniMapTouchable)
+        {
+            miniMapCamera.depth = 0;
+            miniMapMask.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
 
-                _isMiniMapTouchable = false;
+            _isMiniMapTouchable = false;
 
-                StartCoroutine(OpenSmoothMiniMap(delayTouching));
-            }
+            StartCoroutine(OpenSmoothMiniMap(delayTouching));
         }
     }
     IEnumerator OpenSmoothMiniMap(float delay)

@@ -11,7 +11,6 @@ public class EnemySpawner : MonoBehaviour
 
     public Transform targetTransform;
     public ObjectPool _objectPool;
-    public TextMeshProUGUI enemyCountText;   
     private GameObject currentEnemyObjects;
 
     public LayerMask layerMask;

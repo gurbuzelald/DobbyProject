@@ -308,15 +308,16 @@ public class SceneController : AbstractSceneController<SceneController>
         CloneDobby,
 
         //Weapons
-        Rifle,
-        Ak47,
-        Bulldog,
-        Cowgun,
-        Crystalgun,
-        Demongun,
-        Icegun,
-        Negev,
-        Axegun,
+        rifle,
+        ak47,
+        bulldog,
+        cowgun,
+        crystalgun,
+        demongun,
+        icegun,
+        negev,
+        axegun,
+        pistol,
         WeaponBox,
 
         //Speed

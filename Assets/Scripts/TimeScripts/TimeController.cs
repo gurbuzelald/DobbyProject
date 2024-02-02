@@ -5,18 +5,22 @@ using TMPro;
 
 public class TimeController : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI test;
+    //[SerializeField] TextMeshProUGUI test;
 
     private float _time;
     private float _swordTime;
     private float _weaponTime;
     private float _enemySpawnTime;
-    public PlayerData playerData;
+
     [SerializeField] TextMeshProUGUI _timeText;
     [SerializeField] TextMeshProUGUI _warmTimeText;
     [SerializeField] TextMeshProUGUI _swordTimeText;
+
     [SerializeField] EnemyData enemyData;
     [SerializeField] LevelData levelData;
+    public PlayerData playerData;
+
+    public int initialTimeValue = 300;
     void Start()
     {
         _warmTimeText.transform.localScale = Vector3.zero;
@@ -31,9 +35,9 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        test.text = _enemySpawnTime.ToString();
+        //test.text = _enemySpawnTime.ToString();
 
-        GetTime(900);
+        GetTime(initialTimeValue);
 
         SwordTimer(playerData, _swordTimeText);
 
@@ -50,11 +54,16 @@ public class TimeController : MonoBehaviour
 
         if ((int)_time > timeValue - 1)
         {
-            SceneController.GetInstance.LoadEndScene();
+            StartCoroutine(PlayerManager.GetInstance.DelayDestroy(0));
         }
         if ((((int)(timeValue - _time))) <= 10)
         {
             _warmTimeText.transform.localScale = Vector3.one;
+        }
+        if (levelData.isLevelUp)
+        {
+            timeValue = initialTimeValue;
+            _time = 0;
         }
     }
     public void SwordTimer(PlayerData playerData, TextMeshProUGUI _swordTimeText)

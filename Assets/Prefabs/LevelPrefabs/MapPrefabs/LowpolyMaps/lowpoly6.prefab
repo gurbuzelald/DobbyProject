@@ -1,5 +1,102 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1168979584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1168979585}
+  - component: {fileID: 1168979588}
+  - component: {fileID: 1168979587}
+  - component: {fileID: 1168979586}
+  m_Layer: 25
+  m_Name: GroundMiniMap
+  m_TagString: Ground
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1168979585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168979584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.744, y: 0, z: 12.2613}
+  m_LocalScale: {x: 28.512, y: 0.1, z: 40.464718}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8483094358882531726}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1168979588
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168979584}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1168979587
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168979584}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 0
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: f61de52f9133e244a9d412511e49cee7, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1168979586
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168979584}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &187017189122499145
 GameObject:
   m_ObjectHideFlags: 0
@@ -32542,8 +32639,8 @@ GameObject:
   - component: {fileID: 5396483172023563877}
   - component: {fileID: 1538067704362228473}
   - component: {fileID: 2337031895102237365}
-  m_Layer: 0
-  m_Name: Plane
+  m_Layer: 28
+  m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32592,7 +32689,7 @@ MeshRenderer:
   m_RenderingLayerMask: 0
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d1cd4e374989edf4a9cdf2626ff507da, type: 2}
+  - {fileID: 2100000, guid: f61de52f9133e244a9d412511e49cee7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -33496,29 +33593,29 @@ Transform:
   - {fileID: 2630689951993918502}
   - {fileID: 2630689951925954730}
   - {fileID: 2630689952557088905}
-  - {fileID: 2630689952862561634}
+  - {fileID: 9033167400741648585}
   - {fileID: 2630689952078060744}
   - {fileID: 2630689951667689523}
   - {fileID: 2630689952198601761}
+  - {fileID: 2630689952862561634}
   - {fileID: 2630689951888083558}
+  - {fileID: 187017189122499146}
   - {fileID: 5497647564772243077}
+  - {fileID: 5497647566113361142}
   - {fileID: 5497647566126650776}
   - {fileID: 5497647566424298375}
-  - {fileID: 5497647566113361142}
-  - {fileID: 5497647565837927511}
-  - {fileID: 5497647565545422170}
   - {fileID: 5497647564662075825}
   - {fileID: 5497647565870885394}
+  - {fileID: 5497647565837927511}
+  - {fileID: 5497647565545422170}
   - {fileID: 5497647565503554032}
-  - {fileID: 5497647564680344114}
-  - {fileID: 5497647564807990923}
   - {fileID: 5497647565355494556}
+  - {fileID: 5497647564680344114}
+  - {fileID: 187017190598840521}
+  - {fileID: 5497647564807990923}
   - {fileID: 5497647565421225565}
   - {fileID: 5497647566040181902}
   - {fileID: 2435230469724569818}
-  - {fileID: 187017190598840521}
-  - {fileID: 187017189122499146}
-  - {fileID: 9033167400741648585}
   - {fileID: 7151679125837080440}
   - {fileID: 7808986334207940517}
   - {fileID: 530555211633508544}
@@ -36553,6 +36650,7 @@ Transform:
   - {fileID: 8989978762716038172}
   - {fileID: 9184192770138783321}
   - {fileID: 3450282281348397855}
+  - {fileID: 1168979585}
   m_Father: {fileID: 7693261216131991519}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48545,11 +48643,13 @@ Transform:
   - {fileID: 5233538547851860649}
   - {fileID: 5568404618933349356}
   - {fileID: 6204344216692118102}
+  - {fileID: 9033167400977257025}
   - {fileID: 8436876878990764052}
   - {fileID: 493537314588281149}
   - {fileID: 4295836932821249986}
   - {fileID: 4545470814912385166}
   - {fileID: 7114346616629688624}
+  - {fileID: 9033167401902379612}
   - {fileID: 1951966353860811268}
   - {fileID: 1951966354648164775}
   - {fileID: 1951966355418191765}
@@ -48567,10 +48667,10 @@ Transform:
   - {fileID: 2630689950877393854}
   - {fileID: 2630689951497165585}
   - {fileID: 2630689952447686525}
-  - {fileID: 2630689952251763417}
   - {fileID: 2630689951433732213}
-  - {fileID: 2630689951924484584}
+  - {fileID: 2630689952251763417}
   - {fileID: 2630689951104138236}
+  - {fileID: 2630689951924484584}
   - {fileID: 2630689950933859875}
   - {fileID: 2630689952874575697}
   - {fileID: 2630689952678232060}
@@ -48578,11 +48678,9 @@ Transform:
   - {fileID: 2630689951079540297}
   - {fileID: 2630689952936623226}
   - {fileID: 2630689951909635132}
-  - {fileID: 2630689951083575344}
-  - {fileID: 5497647564394129427}
-  - {fileID: 9033167400977257025}
-  - {fileID: 9033167401902379612}
   - {fileID: 9033167401045624962}
+  - {fileID: 5497647564394129427}
+  - {fileID: 2630689951083575344}
   m_Father: {fileID: 1951966355314852887}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -55507,35 +55605,35 @@ Transform:
   - {fileID: 6588573939291784160}
   - {fileID: 6321860707978457466}
   - {fileID: 8055300842774333772}
-  - {fileID: 853174926181992422}
+  - {fileID: 9033167400928509478}
   - {fileID: 6110542272658783379}
+  - {fileID: 9033167401992893725}
+  - {fileID: 9033167401438826982}
+  - {fileID: 853174926181992422}
+  - {fileID: 187017190422088352}
   - {fileID: 7502849367264788356}
   - {fileID: 3740236717337463458}
+  - {fileID: 8487913876362027898}
   - {fileID: 1849527094098427968}
   - {fileID: 3668860675258366146}
-  - {fileID: 8487913876362027898}
-  - {fileID: 2630689952306920460}
   - {fileID: 2630689951314041409}
+  - {fileID: 2630689952306920460}
   - {fileID: 2630689951736118258}
   - {fileID: 2630689951132363118}
   - {fileID: 2630689952912426911}
-  - {fileID: 2630689952519097953}
   - {fileID: 5497647566271020441}
+  - {fileID: 2630689952519097953}
   - {fileID: 5497647564888490435}
   - {fileID: 5497647565199652380}
   - {fileID: 5497647565484402532}
   - {fileID: 5497647566519533155}
   - {fileID: 5497647565416623360}
   - {fileID: 5497647564681189010}
+  - {fileID: 187017190514537968}
   - {fileID: 5497647565695500765}
+  - {fileID: 187017189455134055}
   - {fileID: 4077755576896112685}
   - {fileID: 1430874955813671136}
-  - {fileID: 187017190422088352}
-  - {fileID: 187017189455134055}
-  - {fileID: 187017190514537968}
-  - {fileID: 9033167400928509478}
-  - {fileID: 9033167401992893725}
-  - {fileID: 9033167401438826982}
   - {fileID: 1951966354059851922}
   - {fileID: 1951966354036080324}
   - {fileID: 1951966355410389115}
