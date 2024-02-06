@@ -40,12 +40,15 @@ public class PriceSetting : MonoBehaviour
     }
     void SetWeaponNames()
     {
+
         if (weaponStaffs)
         {
             for (int i = 0; i < weaponStaffs.transform.childCount; i++)
             {
                 weaponNames[i] = Enum.Parse<BulletData.WeaponNames>(weaponStaffs.transform.GetChild(i).GetChild(0).name);
             }
+            
+
         }
     }
     void SetWeaponPrices()
@@ -57,7 +60,7 @@ public class PriceSetting : MonoBehaviour
                 switch (weaponNames[i])
                 {
                     case BulletData.WeaponNames.ak47:
-                        if (bulletData.locked == bulletData.ak47Lock)
+                        if (BulletData.locked == bulletData.ak47Lock)
                         {
                             gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.ak47Price.ToString() + " Coin";
                         }
@@ -67,7 +70,7 @@ public class PriceSetting : MonoBehaviour
                         }
                         break;
                     case BulletData.WeaponNames.axegun:
-                        if (bulletData.locked == bulletData.axeLock)
+                        if (BulletData.locked == bulletData.axeLock)
                         {
                             gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.axegunPrice.ToString() + " Coin";
                         }
@@ -77,7 +80,7 @@ public class PriceSetting : MonoBehaviour
                         }
                         break;
                     case BulletData.WeaponNames.bulldog:
-                        if (bulletData.locked == bulletData.bulldogLock)
+                        if (BulletData.locked == bulletData.bulldogLock)
                         {
                             gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.bulldogPrice.ToString() + " Coin";
                         }
@@ -87,7 +90,7 @@ public class PriceSetting : MonoBehaviour
                         }
                         break;
                     case BulletData.WeaponNames.cowgun:
-                        if (bulletData.locked == bulletData.cowLock)
+                        if (BulletData.locked == bulletData.cowLock)
                         {
                             gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.cowgunPrice.ToString() + " Coin";
                         }
@@ -97,7 +100,7 @@ public class PriceSetting : MonoBehaviour
                         }
                         break;
                     case BulletData.WeaponNames.crystalgun:
-                        if (bulletData.locked == bulletData.crystalLock)
+                        if (BulletData.locked == bulletData.crystalLock)
                         {
                             gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.crystalgunPrice.ToString() + " Coin";
                         }
@@ -107,7 +110,7 @@ public class PriceSetting : MonoBehaviour
                         }
                         break;
                     case BulletData.WeaponNames.demongun:
-                        if (bulletData.locked == bulletData.demonLock)
+                        if (BulletData.locked == bulletData.demonLock)
                         {
                             gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.demongunPrice.ToString() + " Coin";
                         }
@@ -117,7 +120,7 @@ public class PriceSetting : MonoBehaviour
                         }
                         break;
                     case BulletData.WeaponNames.icegun:
-                        if (bulletData.locked == bulletData.iceLock)
+                        if (BulletData.locked == bulletData.iceLock)
                         {
                             gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.icegunPrice.ToString() + " Coin";
                         }
@@ -127,7 +130,7 @@ public class PriceSetting : MonoBehaviour
                         }
                         break;
                     case BulletData.WeaponNames.negev:
-                        if (bulletData.locked == bulletData.negevLock)
+                        if (BulletData.locked == bulletData.negevLock)
                         {
                             gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.negevPrice.ToString() + " Coin";
                         }
@@ -137,7 +140,7 @@ public class PriceSetting : MonoBehaviour
                         }
                         break;
                     case BulletData.WeaponNames.pistol:
-                        if (bulletData.locked == bulletData.pistolLock)
+                        if (BulletData.locked == bulletData.pistolLock)
                         {
                             gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.pistolPrice.ToString() + " Coin";
                         }
@@ -147,7 +150,7 @@ public class PriceSetting : MonoBehaviour
                         }
                         break;
                     case BulletData.WeaponNames.rifle:
-                        if (bulletData.locked == bulletData.rifleLock)
+                        if (BulletData.locked == bulletData.rifleLock)
                         {
                             gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.riflePrice.ToString() + " Coin";
                         }

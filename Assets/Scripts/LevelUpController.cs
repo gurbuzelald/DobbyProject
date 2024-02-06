@@ -46,7 +46,6 @@ public class LevelUpController : MonoBehaviour
     }
     private void Start()
     {
-        
     }
     void InitStatements()
     {
@@ -317,11 +316,6 @@ public class LevelUpController : MonoBehaviour
         else if (levelData.isCompleteMaps[levelData.isCompleteMaps.Length - 1])
         {
             SceneController.GetInstance.LoadWinScene();
-        }
-        else
-        {//Level1 Condition
-            bulletData.currentGiftBox = bulletData.cowgunGiftBox;
-            levelData.currentEnemyObjects = levelData.enemyFirstObjects;
         }
     }
     void SetDetectionOfEnemyAtUpdate(int levelCount)

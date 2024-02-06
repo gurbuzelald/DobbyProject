@@ -83,7 +83,7 @@ public class BulletData : ScriptableObject
     public string pistolLock = "locked";
     public string rifleLock = "locked";
     public string resetLocks = "locked";
-    public string locked = "locked";
+    public const string locked = "locked";
     public string unLocked = "";
 
 

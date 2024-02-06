@@ -1659,7 +1659,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982927493096765728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChooseCharacterController, Assembly-CSharp
         m_MethodName: ChoosedMichelle
         m_Mode: 1
@@ -2519,7 +2519,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982927493096765728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChooseCharacterController, Assembly-CSharp
         m_MethodName: ChoosedGuard
         m_Mode: 1
@@ -3567,7 +3567,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982927493096765728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChooseCharacterController, Assembly-CSharp
         m_MethodName: ChoosedTy
         m_Mode: 1
@@ -5641,7 +5641,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982927493096765728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChooseCharacterController, Assembly-CSharp
         m_MethodName: ChoosedGlassy
         m_Mode: 1
@@ -6412,7 +6412,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982927493096765728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChooseCharacterController, Assembly-CSharp
         m_MethodName: ChoosedSpartacus
         m_Mode: 1
@@ -7790,7 +7790,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982927493096765728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChooseCharacterController, Assembly-CSharp
         m_MethodName: ChoosedEve
         m_Mode: 1
@@ -9649,7 +9649,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982927493096765728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChooseCharacterController, Assembly-CSharp
         m_MethodName: ChoosedBoss
         m_Mode: 1
@@ -9917,7 +9917,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982927493096765728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChooseCharacterController, Assembly-CSharp
         m_MethodName: ChoosedDobby
         m_Mode: 1
@@ -10076,7 +10076,6 @@ GameObject:
   - component: {fileID: 982927493096765731}
   - component: {fileID: 982927493096765730}
   - component: {fileID: 982927493096765733}
-  - component: {fileID: 982927493096765728}
   - component: {fileID: 982927493096765729}
   - component: {fileID: 982927493096765758}
   - component: {fileID: 982927493096765759}
@@ -10127,6 +10126,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
@@ -10170,21 +10170,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &982927493096765728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 982927493096765735}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 631d502cd39e7a442a9d86d49cb6f7b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _panelObject: {fileID: 982927491604634114}
-  playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
-  playerCoinData: {fileID: 11400000, guid: 853c688538b9c714f8661972da059616, type: 2}
 --- !u!114 &982927493096765729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10878,7 +10863,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982927493096765728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChooseCharacterController, Assembly-CSharp
         m_MethodName: ChoosedLusth
         m_Mode: 1
@@ -11011,7 +10996,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982927493096765728}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChooseCharacterController, Assembly-CSharp
         m_MethodName: ChoosedAj
         m_Mode: 1
@@ -19274,6 +19259,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 982927493501143930}
     m_Modifications:
     - target: {fileID: 1044629300286657162, guid: 21788765404628840a013ba85ef9bc18, type: 3}
@@ -19334,9 +19320,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4045390288470663321, guid: 21788765404628840a013ba85ef9bc18, type: 3}
       propertyPath: m_Name
-      value: Cowgun
+      value: cowgun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 21788765404628840a013ba85ef9bc18, type: 3}
 --- !u!4 &277898853141322532 stripped
 Transform:
@@ -19348,6 +19335,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 982927492228198496}
     m_Modifications:
     - target: {fileID: 1285122605500150654, guid: b339fba6c87e1284296b951ba41f28ad, type: 3}
@@ -19408,9 +19396,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1285122605500510046, guid: b339fba6c87e1284296b951ba41f28ad, type: 3}
       propertyPath: m_Name
-      value: AK47
+      value: ak47
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: b339fba6c87e1284296b951ba41f28ad, type: 3}
 --- !u!4 &2049598988689703773 stripped
 Transform:
@@ -19422,11 +19411,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 982927492751835102}
     m_Modifications:
     - target: {fileID: 2171148302848499809, guid: 63a007e6a0d63be42ae9e8aadda4784f, type: 3}
       propertyPath: m_Name
-      value: Demongun
+      value: demongun
       objectReference: {fileID: 0}
     - target: {fileID: 2916694527776182898, guid: 63a007e6a0d63be42ae9e8aadda4784f, type: 3}
       propertyPath: m_RootOrder
@@ -19485,6 +19475,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 63a007e6a0d63be42ae9e8aadda4784f, type: 3}
 --- !u!4 &2728655122838848847 stripped
 Transform:
@@ -19496,6 +19487,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 982927493303244565}
     m_Modifications:
     - target: {fileID: 3942794519422053725, guid: 39aa8c7ebaa670646b7147b6d3cfdd63, type: 3}
@@ -19572,9 +19564,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8853850299777618421, guid: 39aa8c7ebaa670646b7147b6d3cfdd63, type: 3}
       propertyPath: m_Name
-      value: Pistol
+      value: pistol
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 39aa8c7ebaa670646b7147b6d3cfdd63, type: 3}
 --- !u!4 &4692864543314327900 stripped
 Transform:
@@ -19586,11 +19579,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 982927492349080928}
     m_Modifications:
     - target: {fileID: 1492883090361208011, guid: 6e1df7167d924f94f85f18de66dd6675, type: 3}
       propertyPath: m_Name
-      value: Negev
+      value: negev
       objectReference: {fileID: 0}
     - target: {fileID: 2516545283894820568, guid: 6e1df7167d924f94f85f18de66dd6675, type: 3}
       propertyPath: m_RootOrder
@@ -19649,6 +19643,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e1df7167d924f94f85f18de66dd6675, type: 3}
 --- !u!4 &3407148777877920451 stripped
 Transform:
@@ -19660,11 +19655,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 982927492064273089}
     m_Modifications:
     - target: {fileID: 576073428898831781, guid: 0963f4d0c58abf04bb05b0993ba61424, type: 3}
       propertyPath: m_Name
-      value: Icegun
+      value: icegun
       objectReference: {fileID: 0}
     - target: {fileID: 3577483611036233654, guid: 0963f4d0c58abf04bb05b0993ba61424, type: 3}
       propertyPath: m_RootOrder
@@ -19723,6 +19719,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0963f4d0c58abf04bb05b0993ba61424, type: 3}
 --- !u!4 &4323958372937291623 stripped
 Transform:
@@ -19734,6 +19731,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 982927493508396060}
     m_Modifications:
     - target: {fileID: 4907868468083396716, guid: f7cbed3675ac52e459a75f65deb30f1c, type: 3}
@@ -19794,9 +19792,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4907868468083396717, guid: f7cbed3675ac52e459a75f65deb30f1c, type: 3}
       propertyPath: m_Name
-      value: Rifle
+      value: rifle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: f7cbed3675ac52e459a75f65deb30f1c, type: 3}
 --- !u!4 &5312082650719930966 stripped
 Transform:
@@ -19808,11 +19807,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 982927492039141719}
     m_Modifications:
     - target: {fileID: 6090247001165047854, guid: f063e9ac4a8a0da47abeb4ea6b35b9e3, type: 3}
       propertyPath: m_Name
-      value: Crystalgun
+      value: crystalgun
       objectReference: {fileID: 0}
     - target: {fileID: 7124622840074230333, guid: f063e9ac4a8a0da47abeb4ea6b35b9e3, type: 3}
       propertyPath: m_RootOrder
@@ -19871,6 +19871,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: f063e9ac4a8a0da47abeb4ea6b35b9e3, type: 3}
 --- !u!4 &8033209941484521664 stripped
 Transform:
@@ -19882,11 +19883,12 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 982927493337946655}
     m_Modifications:
     - target: {fileID: 1684248174472265961, guid: a331718668949cc43b683202d1396a03, type: 3}
       propertyPath: m_Name
-      value: Axegun
+      value: axegun
       objectReference: {fileID: 0}
     - target: {fileID: 2379306957653930746, guid: a331718668949cc43b683202d1396a03, type: 3}
       propertyPath: m_RootOrder
@@ -19945,6 +19947,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: a331718668949cc43b683202d1396a03, type: 3}
 --- !u!4 &3215834337200657388 stripped
 Transform:
@@ -19956,6 +19959,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 982927492345684990}
     m_Modifications:
     - target: {fileID: 1326295415220779069, guid: e2a7ba7e091c8a64d89f057926284f5e, type: 3}
@@ -20016,9 +20020,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2611150449622927918, guid: e2a7ba7e091c8a64d89f057926284f5e, type: 3}
       propertyPath: m_Name
-      value: Bulldog
+      value: bulldog
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: e2a7ba7e091c8a64d89f057926284f5e, type: 3}
 --- !u!4 &2288952310732989221 stripped
 Transform:

@@ -10,6 +10,7 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
     [SerializeField] LevelData levelData;
     private IEnumerator Start()
     {
+        GiftBoxControllerAtStart();
         yield return new WaitForSeconds(1f);
         CreateMapGiftBoxes(bulletData.currentGiftBox, LevelUpController.currentLevelCount);
     }
@@ -37,5 +38,45 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
             _weaponObejct.transform.rotation = weaponTransform.GetChild(i).rotation;
         }
     }
+    void GiftBoxControllerAtStart()
+    {
+        if (levelData.currentLevel == LevelData.Levels.Level1)
+        {
+            bulletData.currentGiftBox = bulletData.cowgunGiftBox;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level3)
+        {
+            bulletData.currentGiftBox = bulletData.demongunGiftBox;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level4)
+        {
+            bulletData.currentGiftBox = bulletData.negevGiftBox;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level5)
+        {
+            bulletData.currentGiftBox = bulletData.axegunGiftBox;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level6)
+        {
+            bulletData.currentGiftBox = bulletData.crsytalgunGiftBox;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level7)
+        {
+            bulletData.currentGiftBox = bulletData.icegunGiftBox;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level8)
+        {
+            bulletData.currentGiftBox = bulletData.pistolGiftBox;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level9)
+        {
+            bulletData.currentGiftBox = bulletData.ak47GiftBox;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level10)
+        {
+            bulletData.currentGiftBox = bulletData.rifleGiftBox;
+        }
+    }
+
 
 }

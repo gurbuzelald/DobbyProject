@@ -27,9 +27,8 @@ MonoBehaviour:
   weaponBulletDelay: 0.05
   bulletSpeed: 5
   bulletDelayCounter: 0
-  _bulletObject: {fileID: 4568481270464940624, guid: 98dbc9cb5ce9f68458cb04a08252b6ac, type: 3}
   _swordingObject: {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
-  currentGiftBox: {fileID: 0}
+  currentGiftBox: {fileID: 8957379851250910510, guid: 9892378f7235cce4d9f03984a358c0db, type: 3}
   ak47GiftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
   rifleGiftBox: {fileID: 4850221878147488263, guid: 2b9e216addade824fb41b7bc668a5101, type: 3}
   bullDogGiftBox: {fileID: 6750732745314709050, guid: 3443f60ab08db384aaa3b04a8b272456, type: 3}
@@ -50,16 +49,16 @@ MonoBehaviour:
   negevObject: {fileID: 1492883090361208011, guid: 6e1df7167d924f94f85f18de66dd6675, type: 3}
   axegunObject: {fileID: 1684248174472265961, guid: a331718668949cc43b683202d1396a03, type: 3}
   pistolObject: {fileID: 8853850299777618421, guid: 39aa8c7ebaa670646b7147b6d3cfdd63, type: 3}
-  ak47Power: 1
-  axegunPower: 2
-  bulldogPower: 3
-  cowgunPower: 4
-  crystalgunPower: 5
-  demongunPower: 6
-  icegunPower: 7
-  negevPower: 8
-  pistolPower: 9
-  riflePower: 10
+  ak47Power: 2
+  axegunPower: 3
+  bulldogPower: 4
+  cowgunPower: 5
+  crystalgunPower: 6
+  demongunPower: 7
+  icegunPower: 8
+  negevPower: 9
+  pistolPower: 10
+  riflePower: 11
   ak47Price: 0
   axegunPrice: 100
   bulldogPrice: 150
@@ -71,8 +70,8 @@ MonoBehaviour:
   pistolPrice: 0
   riflePrice: 800
   avaliableWeapons:
-  - PISTOL
-  - AK47
+  - 
+  - 
   - 
   - 
   - 
@@ -89,10 +88,9 @@ MonoBehaviour:
   demonLock: locked
   iceLock: locked
   negevLock: locked
-  pistolLock: 
+  pistolLock: locked
   rifleLock: locked
   resetLocks: locked
-  locked: locked
   unLocked: 
   isRifle: 0
   isPistol: 0
@@ -127,7 +125,7 @@ MonoBehaviour:
   isLongHummer: 0
   isClub: 0
   currentSwordName: LowSword
-  currentWeaponName: cowgun
+  currentWeaponName: ak47
   enemyFireFrequency: 5
   enemyBulletDelayCounter: 0
   enemyBulletDelay: 0.05

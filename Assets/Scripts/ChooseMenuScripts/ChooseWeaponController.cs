@@ -49,29 +49,29 @@ public class ChooseWeaponController : MonoBehaviour
             ResetTheWeapons();
 
 
-            bulletData.ak47Lock = bulletData.locked;
-            bulletData.axeLock = bulletData.locked;
-            bulletData.bulldogLock = bulletData.locked;
-            bulletData.cowLock = bulletData.locked;
-            bulletData.crystalLock = bulletData.locked;
-            bulletData.iceLock = bulletData.locked;
-            bulletData.negevLock = bulletData.locked;
-            bulletData.demonLock = bulletData.locked;
-            bulletData.pistolLock = bulletData.locked;
-            bulletData.rifleLock = bulletData.locked;
-            bulletData.resetLocks = bulletData.locked;
+            bulletData.ak47Lock = BulletData.locked;
+            bulletData.axeLock = BulletData.locked;
+            bulletData.bulldogLock = BulletData.locked;
+            bulletData.cowLock = BulletData.locked;
+            bulletData.crystalLock = BulletData.locked;
+            bulletData.iceLock = BulletData.locked;
+            bulletData.negevLock = BulletData.locked;
+            bulletData.demonLock = BulletData.locked;
+            bulletData.pistolLock = BulletData.locked;
+            bulletData.rifleLock = BulletData.locked;
+            bulletData.resetLocks = BulletData.locked;
         }
-        else if (bulletData.ak47Lock == bulletData.locked &&
-            bulletData.axeLock == bulletData.locked &&
-            bulletData.bulldogLock == bulletData.locked &&
-            bulletData.cowLock == bulletData.locked &&
-            bulletData.crystalLock == bulletData.locked &&
-            bulletData.demonLock == bulletData.locked &&
-            bulletData.iceLock == bulletData.locked &&
-            bulletData.negevLock == bulletData.locked &&
-            bulletData.pistolLock == bulletData.locked &&
-            bulletData.rifleLock == bulletData.locked &&
-            bulletData.resetLocks == bulletData.locked)
+        else if (bulletData.ak47Lock == BulletData.locked &&
+            bulletData.axeLock == BulletData.locked &&
+            bulletData.bulldogLock == BulletData.locked &&
+            bulletData.cowLock == BulletData.locked &&
+            bulletData.crystalLock == BulletData.locked &&
+            bulletData.demonLock == BulletData.locked &&
+            bulletData.iceLock == BulletData.locked &&
+            bulletData.negevLock == BulletData.locked &&
+            bulletData.pistolLock == BulletData.locked &&
+            bulletData.rifleLock == BulletData.locked &&
+            bulletData.resetLocks == BulletData.locked)
         {
             bulletData.currentWeaponName = BulletData.ak47;
         }
@@ -231,9 +231,9 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.ak47Lock == bulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" && bulletData.ak47Lock == BulletData.locked)
                 {
-                    bulletData.avaliableWeapons[i] = "AK47";
+                    bulletData.avaliableWeapons[i] = "ak47";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
@@ -243,6 +243,7 @@ public class ChooseWeaponController : MonoBehaviour
             }
 
             bulletData.currentWeaponName = BulletData.ak47;
+
 
             weaponPriceErrorTextObjectChilds[0].text = "";
 
@@ -255,7 +256,7 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.ak47Lock == bulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.ak47Lock == BulletData.locked)
         {
             bulletData.currentWeaponName = BulletData.ak47;
 
@@ -276,9 +277,9 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.axeLock == bulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" && bulletData.axeLock == BulletData.locked)
                 {
-                    bulletData.avaliableWeapons[i] = "AXE";
+                    bulletData.avaliableWeapons[i] = "axe";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
@@ -300,7 +301,7 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.axeLock == bulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.axeLock == BulletData.locked)
         {
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
@@ -318,9 +319,9 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.bulldogLock == bulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" && bulletData.bulldogLock == BulletData.locked)
                 {
-                    bulletData.avaliableWeapons[i] = "BULLDOG";
+                    bulletData.avaliableWeapons[i] = "bulldog";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
@@ -341,11 +342,11 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.bulldogLock == bulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.bulldogLock == BulletData.locked)
         {
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
-                bulletData.currentWeaponName = BulletData.bulldog;
+                //bulletData.currentWeaponName = BulletData.bulldog;
 
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "BULLDOGPriceErrorText")
                 {
@@ -361,9 +362,9 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.cowLock == bulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" && bulletData.cowLock == BulletData.locked)
                 {
-                    bulletData.avaliableWeapons[i] = "COW";
+                    bulletData.avaliableWeapons[i] = "cow";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
@@ -384,9 +385,9 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.cowLock == bulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.cowLock == BulletData.locked)
         {
-            bulletData.currentWeaponName = BulletData.cowgun;
+            //bulletData.currentWeaponName = BulletData.cowgun;
 
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
@@ -404,9 +405,9 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.crystalLock == bulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" && bulletData.crystalLock == BulletData.locked)
                 {
-                    bulletData.avaliableWeapons[i] = "CRYSTAL";
+                    bulletData.avaliableWeapons[i] = "crystal";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
@@ -427,9 +428,9 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.crystalLock == bulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.crystalLock == BulletData.locked)
         {
-            bulletData.currentWeaponName = BulletData.crystalgun;
+            //bulletData.currentWeaponName = BulletData.crystalgun;
 
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
@@ -447,9 +448,9 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.demonLock == bulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" && bulletData.demonLock == BulletData.locked)
                 {
-                    bulletData.avaliableWeapons[i] = "DEMON";
+                    bulletData.avaliableWeapons[i] = "demon";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
@@ -469,9 +470,9 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.demonLock == bulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.demonLock == BulletData.locked)
         {
-            bulletData.currentWeaponName = BulletData.demongun;
+            //bulletData.currentWeaponName = BulletData.demongun;
 
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
@@ -489,9 +490,9 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.iceLock == bulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" && bulletData.iceLock == BulletData.locked)
                 {
-                    bulletData.avaliableWeapons[i] = "ICE";
+                    bulletData.avaliableWeapons[i] = "icegun";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
@@ -511,9 +512,9 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.iceLock == bulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.iceLock == BulletData.locked)
         {
-            bulletData.currentWeaponName = BulletData.icegun;
+            //bulletData.currentWeaponName = BulletData.icegun;
 
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
@@ -531,9 +532,9 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.negevLock == bulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" && bulletData.negevLock == BulletData.locked)
                 {
-                    bulletData.avaliableWeapons[i] = "NEGEV";
+                    bulletData.avaliableWeapons[i] = "negev";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
@@ -554,9 +555,9 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.negevLock == bulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.negevLock == BulletData.locked)
         {
-            bulletData.currentWeaponName = BulletData.negev;
+            //bulletData.currentWeaponName = BulletData.negev;
 
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
@@ -575,9 +576,9 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.pistolLock == bulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" && bulletData.pistolLock == BulletData.locked)
                 {
-                    bulletData.avaliableWeapons[i] = "PISTOL";
+                    bulletData.avaliableWeapons[i] = "pistol";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
@@ -598,11 +599,11 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.pistolLock == bulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.pistolLock == BulletData.locked)
         {
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
-                bulletData.currentWeaponName = BulletData.pistol;
+                //bulletData.currentWeaponName = BulletData.pistol;
 
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "PISTOLPriceErrorText")
                 {
@@ -619,9 +620,9 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.rifleLock == bulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" && bulletData.rifleLock == BulletData.locked)
                 {
-                    bulletData.avaliableWeapons[i] = "RIFLE";
+                    bulletData.avaliableWeapons[i] = "rifle";
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
@@ -629,7 +630,8 @@ public class ChooseWeaponController : MonoBehaviour
                     break;
                 }
             }
-            bulletData.currentWeaponName = BulletData.rifle;
+
+            //bulletData.currentWeaponName = BulletData.rifle;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
 
@@ -642,9 +644,9 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.rifleLock == bulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.rifleLock == BulletData.locked)
         {
-            bulletData.currentWeaponName = BulletData.rifle;
+            //bulletData.currentWeaponName = BulletData.rifle;
 
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {

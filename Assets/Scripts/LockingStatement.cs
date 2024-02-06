@@ -29,7 +29,10 @@ public class LockingStatement : MonoBehaviour
         SetCharacterLockingMode();
         SetWeaponLockingMode(bulletData);
     }
-
+    private void OnDisable()
+    {
+        gameObject.GetComponent<LockingStatement>().enabled = true;
+    }
     void ResetCharactersLocks()
     {
         chooseCharacterController = FindObjectOfType<ChooseCharacterController>();

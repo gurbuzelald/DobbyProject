@@ -885,6 +885,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isRifle = true;
+            _bulletData.rifleLock = _bulletData.unLocked;
         }
         else if (other.CompareTag(SceneController.Tags.rifle.ToString()) && _bulletData.currentWeaponName == BulletData.rifle)
         {
@@ -896,6 +897,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isAk47 = true;
+            _bulletData.ak47Lock = _bulletData.unLocked;
+
         }
         else if (other.CompareTag(SceneController.Tags.ak47.ToString()) && _bulletData.currentWeaponName == BulletData.ak47)
         {
@@ -907,10 +910,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isAxegun = true;
+            _bulletData.axeLock = _bulletData.unLocked;
         }
         else if (other.CompareTag(SceneController.Tags.axegun.ToString()) && _bulletData.currentWeaponName == BulletData.axegun)
         {
-            Debug.Log(other.gameObject.name);
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
@@ -919,6 +922,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isBulldog = true;
+            _bulletData.bulldogLock = _bulletData.unLocked;
         }
         else if (other.CompareTag(SceneController.Tags.bulldog.ToString()) && _bulletData.currentWeaponName == BulletData.bulldog)
         {
@@ -930,6 +934,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isCowgun = true;
+            _bulletData.cowLock = _bulletData.unLocked;
+
         }
         else if (other.CompareTag(SceneController.Tags.cowgun.ToString()) && _bulletData.currentWeaponName == BulletData.cowgun)
         {
@@ -941,6 +947,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isCrystalgun = true;
+            _bulletData.crystalLock = _bulletData.unLocked;
+
         }
         else if (other.CompareTag(SceneController.Tags.crystalgun.ToString()) && _bulletData.currentWeaponName == BulletData.crystalgun)
         {
@@ -952,6 +960,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isDemongun = true;
+            _bulletData.demonLock = _bulletData.unLocked;
+
         }
         else if (other.CompareTag(SceneController.Tags.demongun.ToString()) && _bulletData.currentWeaponName != BulletData.demongun)
         {
@@ -963,6 +973,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isIcegun = true;
+            _bulletData.iceLock = _bulletData.unLocked;
+
         }
         else if (other.CompareTag(SceneController.Tags.icegun.ToString()) && _bulletData.currentWeaponName == BulletData.icegun)
         {
@@ -974,6 +986,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isNegev = true;
+            _bulletData.negevLock = _bulletData.unLocked;
+
         }
         else if (other.CompareTag(SceneController.Tags.icegun.ToString()) && _bulletData.currentWeaponName == BulletData.negev)
         {
@@ -984,6 +998,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isPistol = true;
+            _bulletData.pistolLock = _bulletData.unLocked;
+
         }
         else if (other.CompareTag(SceneController.Tags.pistol.ToString()) && _bulletData.currentWeaponName == BulletData.pistol)
         {
