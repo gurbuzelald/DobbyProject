@@ -42,11 +42,11 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
     {
         if (levelData.currentLevel == LevelData.Levels.Level1)
         {
-            bulletData.currentGiftBox = bulletData.cowgunGiftBox;
+            bulletData.currentGiftBox = bulletData.cowGiftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level3)
         {
-            bulletData.currentGiftBox = bulletData.demongunGiftBox;
+            bulletData.currentGiftBox = bulletData.demonGiftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level4)
         {
@@ -54,15 +54,15 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
         }
         else if (levelData.currentLevel == LevelData.Levels.Level5)
         {
-            bulletData.currentGiftBox = bulletData.axegunGiftBox;
+            bulletData.currentGiftBox = bulletData.axeGiftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level6)
         {
-            bulletData.currentGiftBox = bulletData.crsytalgunGiftBox;
+            bulletData.currentGiftBox = bulletData.crsytalGiftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level7)
         {
-            bulletData.currentGiftBox = bulletData.icegunGiftBox;
+            bulletData.currentGiftBox = bulletData.iceGiftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level8)
         {
@@ -74,7 +74,7 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
         }
         else if (levelData.currentLevel == LevelData.Levels.Level10)
         {
-            bulletData.currentGiftBox = bulletData.rifleGiftBox;
+            bulletData.currentGiftBox = bulletData.m4a4GiftBox;
         }
     }
 

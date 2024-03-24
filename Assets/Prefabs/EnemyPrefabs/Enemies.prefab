@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 373697535263641945}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8253522798183780917
 PrefabInstance:
@@ -40,6 +40,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 373697536177982832}
     m_Modifications:
+    - target: {fileID: 1538928405, guid: fb3f6f63c0d21bc45a04ada5207e1bbb, type: 3}
+      propertyPath: levelData
+      value: 
+      objectReference: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
     - target: {fileID: 8621513305380422508, guid: fb3f6f63c0d21bc45a04ada5207e1bbb, type: 3}
       propertyPath: m_RootOrder
       value: 1

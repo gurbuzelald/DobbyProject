@@ -9,6 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Green
   m_Shader: {fileID: 4800000, guid: 045772399bb678644aa0b9dcdf6546c9, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 1
@@ -17,6 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -110,7 +113,7 @@ Material:
     - _CarSmoothnessMin: 0.36406696
     - _ClearCoatSmoothness: 0.95
     - _Coat: 0.3
-    - _CoatAmount: 7.76
+    - _CoatAmount: 28.4
     - _CoatBump: 0.266
     - _CoatSmoothness: 0
     - _FlakeColorVariationAmount: 0.6750107
@@ -138,12 +141,12 @@ Material:
     - _BaseColor2: {r: 0.5, g: 0.56551623, b: 1, a: 0}
     - _CarColor: {r: 0.08832457, g: 0.07493501, b: 0.46323526, a: 0}
     - _CarPaintColor: {r: 0.088324, g: 0.074934505, b: 0.46323526, a: 0}
-    - _Color0: {r: 0.3032606, g: 0.8867924, b: 0.17986828, a: 0}
+    - _Color0: {r: 0.09903332, g: 0.4716981, b: 0.08677466, a: 0}
     - _Color1: {r: 0.021626277, g: 0.056079105, b: 0.7352942, a: 0.953}
     - _Color3: {r: 0.035034638, g: 0.08247225, b: 0.39705884, a: 0}
-    - _ColorIn: {r: 1, g: 0.17260073, b: 0, a: 0}
+    - _ColorIn: {r: 1, g: 1, b: 1, a: 0}
     - _ColorO: {r: 0.5, g: 0.56551623, b: 1, a: 0}
-    - _ColorOut: {r: 0.6221068, g: 1, b: 0, a: 0}
+    - _ColorOut: {r: 0.23529202, g: 0.3679245, b: 0.01561943, a: 0}
     - _FlakesColor: {r: 0.73529416, g: 0.021626318, b: 0.36123332, a: 0.953}
     - _FlakesColor1: {r: 0.7794118, g: 0.9361055, b: 1, a: 0}
     - _FlakesColor2: {r: 0.74264705, g: 0.89350915, b: 1, a: 0}

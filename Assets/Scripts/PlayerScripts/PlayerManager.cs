@@ -106,7 +106,11 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     [SerializeField] GameObject _topCanvasHealthBarObject;
     [SerializeField] Slider _topCanvasHealthBarSlider;
 
-    
+    float timer = 0;
+    public static float randomEnemyXPos;
+    public static float randomEnemyZPos;
+
+
 
 
 
@@ -122,11 +126,12 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     void Start()
     {
+        RandomEnemySpawnDistance(10);
         inputMovement = new InputMovement();
         playerInterfaces = new PlayerInterfaces();
 
         playerManager = gameObject.GetComponent<PlayerManager>(); 
-        GetInstance.gameObject.GetComponent<Rigidbody>().isKinematic = false  ;
+        GetInstance.gameObject.GetComponent<Rigidbody>().isKinematic = false ;
 
 
         _playerData.decreaseCounter = 0;
@@ -141,6 +146,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
 
         SpawnPlayerObject(LevelUpController.currentLevelCount);
+
+        playerInterfaces.iPlayerTrigger.CheckAllWeaponsLocked(_bulletData);
     }
 
 
@@ -180,7 +187,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             
         }
         bulletAmountText.text = _playerData.bulletAmount.ToString();
-        bulletPackAmountText.text = "x" + (_playerData.bulletPackAmount + 1).ToString();
+        bulletPackAmountText.text = "x" + (_playerData.bulletPackAmount).ToString();
     }
 
     void Update()
@@ -194,11 +201,63 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         Rotation(_playerData);
         GetAttackFromEnemy(ref _playerData, ref _topCanvasHealthBarSlider, ref playerObjects.healthBarSlider, ref _healthBarObject, ref _particleTransform);
         DontFallDown();
+
+        //RandomEnemySpawnDistance(10);
+
+    }
+    public void RandomEnemySpawnDistance(float enemySpawnableDistance)
+    {
+        timer += Time.deltaTime;
+        if (timer>=5)
+        {
+            randomEnemyXPos = Random.Range(gameObject.transform.position.x - enemySpawnableDistance,
+                                   gameObject.transform.position.x + enemySpawnableDistance);
+            randomEnemyZPos = Random.Range(gameObject.transform.position.z - enemySpawnableDistance,
+                                       gameObject.transform.position.z + enemySpawnableDistance);
+            Debug.Log("X:" + randomEnemyXPos);
+            Debug.Log("Y:" + randomEnemyZPos);
+            timer = 0;
+        }        
     }
 
-    void DontFallDown()
+    void LimitCurrentMap()
     {
+        if (Mathf.Abs(gameObject.transform.position.x) < Mathf.Abs(MapController.currentMap.transform.position.x / 2 + 1f))
+        {
+            Debug.Log(gameObject.transform.position);
 
+            gameObject.transform.position = new Vector3(MapController.currentMap.transform.position.x / 2 + 1.1f,
+                                                        gameObject.transform.position.y,
+                                                        gameObject.transform.position.z);
+        }
+        else if (Mathf.Abs(gameObject.transform.position.x) > Mathf.Abs(MapController.currentMap.transform.position.x * 2 - 1f))
+        {
+            Debug.Log(gameObject.transform.position);
+            gameObject.transform.position = new Vector3(MapController.currentMap.transform.position.x * 2 - 1.1f,
+                                                        gameObject.transform.position.y,
+                                                        gameObject.transform.position.z);
+        }
+
+        if (Mathf.Abs(gameObject.transform.position.z) > Mathf.Abs(MapController.currentMap.transform.position.z * 2 - 1f))
+        {
+            Debug.Log(gameObject.transform.position);
+            Debug.Log("Büyük");
+
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x,
+                                                        gameObject.transform.position.y,
+                                                        MapController.currentMap.transform.position.z * 2 - 1.1f);
+        }
+        else if (Mathf.Abs(gameObject.transform.position.z) < Mathf.Abs(MapController.currentMap.transform.position.z / 2 - 1f))
+        {
+            Debug.Log(gameObject.transform.position);
+            Debug.Log("Küçük");
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x,
+                                                        gameObject.transform.position.y,
+                                                        MapController.currentMap.transform.position.z / 2 - 1.1f);
+        }
+    }
+    void DontFallDown()
+    {        
         if (GetInstance.transform.position.y <= 0.9301061f && !_playerData.isGround)
         {
             Debug.Log("You didnt fall down!!");
@@ -420,7 +479,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             StartCoroutine(playerInterfaces.iPlayerTrigger.DamageArrowIsLookAtEnemy(other, _damageArrow));
 
-            playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData, _playerData.currentEnemyTriggerDamage, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+            playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData, _playerData.currentEnemyBulletDamage, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
             //Touch ParticleEffect
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
@@ -441,11 +500,11 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Poison);
             StartCoroutine(DelayMessageText(_playerData, PlayerData.alreadyHaveThisWeaponMessage));
         }
-        else if (other.tag.ToString() == BulletData.ak47 || other.tag.ToString() == BulletData.rifle ||
-            other.tag.ToString() == BulletData.bulldog || other.tag.ToString() == BulletData.cowgun ||
-            other.tag.ToString() == BulletData.crystalgun || other.tag.ToString() == BulletData.demongun ||
-            other.tag.ToString() == BulletData.icegun || other.tag.ToString() == BulletData.negev ||
-            other.tag.ToString() == BulletData.axegun)
+        else if (other.tag.ToString() == BulletData.ak47 || other.tag.ToString() == BulletData.m4a4 ||
+            other.tag.ToString() == BulletData.bulldog || other.tag.ToString() == BulletData.cow ||
+            other.tag.ToString() == BulletData.crystal || other.tag.ToString() == BulletData.demon ||
+            other.tag.ToString() == BulletData.ice || other.tag.ToString() == BulletData.negev ||
+            other.tag.ToString() == BulletData.axe)
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
             playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject, 
@@ -482,7 +541,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             StartCoroutine(DelayDestroy(3f));
         }
         playerInterfaces.iPlayerTrigger.CheckWeaponCollect(other, _bulletData);
-
     }
 
     void OnTriggerExit(Collider other)
@@ -534,12 +592,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             iPlayerMovement.SkateBoard(_playerData, _particleTransform.transform, ref playerTransform);
             iPlayerMovement.Run(_playerData, _particleTransform.transform, 0.05f, playerObjects.playerRigidbody);
             iPlayerMovement.Jump(_playerData, ref playerObjects.playerRigidbody);
-        }
-        
-
-
-        //SetFalseBullet
-        StartCoroutine(playerInterfaces.iPlayerShoot.DelayShowingCrosshairAlpha(crosshairImage, 2f));
+        }        
     }
 
     private void Rotation(PlayerData _playerData)

@@ -9,12 +9,16 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
     private int _animationCount;
 
     [Header("Data")]
-    public EnemyData _enemyData;
+    private EnemyData _enemyData;
     public PlayerData _playerData;
-    private GameObject enemySpawner;
+    private EnemyManager _enemyManager;
 
     void Start()
     {
+        _enemyManager = gameObject.transform.parent.GetComponent<EnemyManager>();
+
+        _enemyData = _enemyManager.enemyData;
+
         _enemyData.isDying = false;
         _enemyData.isWalking = true;
         _animationCount = 0;

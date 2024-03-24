@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2892904039195626456
 MonoBehaviour:
@@ -49,6 +49,7 @@ MonoBehaviour:
   _playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   playerCoinData: {fileID: 11400000, guid: 853c688538b9c714f8661972da059616, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
+  bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
 --- !u!114 &1283124263
 MonoBehaviour:
   m_ObjectHideFlags: 0

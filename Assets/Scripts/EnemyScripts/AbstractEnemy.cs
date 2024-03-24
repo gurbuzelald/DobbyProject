@@ -11,13 +11,13 @@ public abstract class AbstractEnemy<T> : MonoBehaviour where T : MonoBehaviour
     {
         get
         {
-            //if (_instance == null)
-            //{
-            //    _instance = FindObjectOfType<T>();
-            //    GameObject objectOfGame = new GameObject();
-            //    objectOfGame.name = typeof(T).Name;
-            //    _instance = objectOfGame.AddComponent<T>();
-            //}
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<T>();
+                GameObject objectOfGame = new GameObject();
+                objectOfGame.name = typeof(T).Name;
+                _instance = objectOfGame.AddComponent<T>();
+            }
             return _instance;
         }
     }

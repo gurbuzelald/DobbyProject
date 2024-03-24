@@ -315,7 +315,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Spartacus"",
+                    ""name"": ""Joleen"",
                     ""type"": ""Button"",
                     ""id"": ""b0eb42be-0b5a-4e0c-99f6-6d832c2f9eb4"",
                     ""expectedControlType"": ""Button"",
@@ -433,7 +433,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Spartacus"",
+                    ""action"": ""Joleen"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -644,7 +644,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Rifle"",
+                    ""name"": ""M4a4"",
                     ""type"": ""Button"",
                     ""id"": ""5fdc0c96-661b-4c0e-b213-c3b0d07a6bf3"",
                     ""expectedControlType"": ""Button"",
@@ -771,7 +771,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Rifle"",
+                    ""action"": ""M4a4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -821,7 +821,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         // CharacterMenuInput
         m_CharacterMenuInput = asset.FindActionMap("CharacterMenuInput", throwIfNotFound: true);
         m_CharacterMenuInput_CharacterStick = m_CharacterMenuInput.FindAction("CharacterStick", throwIfNotFound: true);
-        m_CharacterMenuInput_Spartacus = m_CharacterMenuInput.FindAction("Spartacus", throwIfNotFound: true);
+        m_CharacterMenuInput_Joleen = m_CharacterMenuInput.FindAction("Joleen", throwIfNotFound: true);
         m_CharacterMenuInput_Glassy = m_CharacterMenuInput.FindAction("Glassy", throwIfNotFound: true);
         m_CharacterMenuInput_Dobby = m_CharacterMenuInput.FindAction("Dobby", throwIfNotFound: true);
         m_CharacterMenuInput_Guard = m_CharacterMenuInput.FindAction("Guard", throwIfNotFound: true);
@@ -844,7 +844,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_WeaponMenuInput_Ice = m_WeaponMenuInput.FindAction("Ice", throwIfNotFound: true);
         m_WeaponMenuInput_Negev = m_WeaponMenuInput.FindAction("Negev", throwIfNotFound: true);
         m_WeaponMenuInput_Pistol = m_WeaponMenuInput.FindAction("Pistol", throwIfNotFound: true);
-        m_WeaponMenuInput_Rifle = m_WeaponMenuInput.FindAction("Rifle", throwIfNotFound: true);
+        m_WeaponMenuInput_M4a4 = m_WeaponMenuInput.FindAction("M4a4", throwIfNotFound: true);
         // GrowMap
         m_GrowMap = asset.FindActionMap("GrowMap", throwIfNotFound: true);
         m_GrowMap_GrowingStuate = m_GrowMap.FindAction("GrowingStuate", throwIfNotFound: true);
@@ -997,7 +997,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_CharacterMenuInput;
     private ICharacterMenuInputActions m_CharacterMenuInputActionsCallbackInterface;
     private readonly InputAction m_CharacterMenuInput_CharacterStick;
-    private readonly InputAction m_CharacterMenuInput_Spartacus;
+    private readonly InputAction m_CharacterMenuInput_Joleen;
     private readonly InputAction m_CharacterMenuInput_Glassy;
     private readonly InputAction m_CharacterMenuInput_Dobby;
     private readonly InputAction m_CharacterMenuInput_Guard;
@@ -1013,7 +1013,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         private @Player m_Wrapper;
         public CharacterMenuInputActions(@Player wrapper) { m_Wrapper = wrapper; }
         public InputAction @CharacterStick => m_Wrapper.m_CharacterMenuInput_CharacterStick;
-        public InputAction @Spartacus => m_Wrapper.m_CharacterMenuInput_Spartacus;
+        public InputAction @Joleen => m_Wrapper.m_CharacterMenuInput_Joleen;
         public InputAction @Glassy => m_Wrapper.m_CharacterMenuInput_Glassy;
         public InputAction @Dobby => m_Wrapper.m_CharacterMenuInput_Dobby;
         public InputAction @Guard => m_Wrapper.m_CharacterMenuInput_Guard;
@@ -1036,9 +1036,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @CharacterStick.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnCharacterStick;
                 @CharacterStick.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnCharacterStick;
                 @CharacterStick.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnCharacterStick;
-                @Spartacus.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnSpartacus;
-                @Spartacus.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnSpartacus;
-                @Spartacus.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnSpartacus;
+                @Joleen.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnJoleen;
+                @Joleen.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnJoleen;
+                @Joleen.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnJoleen;
                 @Glassy.started -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnGlassy;
                 @Glassy.performed -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnGlassy;
                 @Glassy.canceled -= m_Wrapper.m_CharacterMenuInputActionsCallbackInterface.OnGlassy;
@@ -1076,9 +1076,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @CharacterStick.started += instance.OnCharacterStick;
                 @CharacterStick.performed += instance.OnCharacterStick;
                 @CharacterStick.canceled += instance.OnCharacterStick;
-                @Spartacus.started += instance.OnSpartacus;
-                @Spartacus.performed += instance.OnSpartacus;
-                @Spartacus.canceled += instance.OnSpartacus;
+                @Joleen.started += instance.OnJoleen;
+                @Joleen.performed += instance.OnJoleen;
+                @Joleen.canceled += instance.OnJoleen;
                 @Glassy.started += instance.OnGlassy;
                 @Glassy.performed += instance.OnGlassy;
                 @Glassy.canceled += instance.OnGlassy;
@@ -1127,7 +1127,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputAction m_WeaponMenuInput_Ice;
     private readonly InputAction m_WeaponMenuInput_Negev;
     private readonly InputAction m_WeaponMenuInput_Pistol;
-    private readonly InputAction m_WeaponMenuInput_Rifle;
+    private readonly InputAction m_WeaponMenuInput_M4a4;
     public struct WeaponMenuInputActions
     {
         private @Player m_Wrapper;
@@ -1142,7 +1142,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         public InputAction @Ice => m_Wrapper.m_WeaponMenuInput_Ice;
         public InputAction @Negev => m_Wrapper.m_WeaponMenuInput_Negev;
         public InputAction @Pistol => m_Wrapper.m_WeaponMenuInput_Pistol;
-        public InputAction @Rifle => m_Wrapper.m_WeaponMenuInput_Rifle;
+        public InputAction @M4a4 => m_Wrapper.m_WeaponMenuInput_M4a4;
         public InputActionMap Get() { return m_Wrapper.m_WeaponMenuInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1182,9 +1182,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Pistol.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnPistol;
                 @Pistol.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnPistol;
                 @Pistol.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnPistol;
-                @Rifle.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnRifle;
-                @Rifle.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnRifle;
-                @Rifle.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnRifle;
+                @M4a4.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnM4a4;
+                @M4a4.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnM4a4;
+                @M4a4.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnM4a4;
             }
             m_Wrapper.m_WeaponMenuInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -1219,9 +1219,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Pistol.started += instance.OnPistol;
                 @Pistol.performed += instance.OnPistol;
                 @Pistol.canceled += instance.OnPistol;
-                @Rifle.started += instance.OnRifle;
-                @Rifle.performed += instance.OnRifle;
-                @Rifle.canceled += instance.OnRifle;
+                @M4a4.started += instance.OnM4a4;
+                @M4a4.performed += instance.OnM4a4;
+                @M4a4.canceled += instance.OnM4a4;
             }
         }
     }
@@ -1273,7 +1273,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     public interface ICharacterMenuInputActions
     {
         void OnCharacterStick(InputAction.CallbackContext context);
-        void OnSpartacus(InputAction.CallbackContext context);
+        void OnJoleen(InputAction.CallbackContext context);
         void OnGlassy(InputAction.CallbackContext context);
         void OnDobby(InputAction.CallbackContext context);
         void OnGuard(InputAction.CallbackContext context);
@@ -1297,7 +1297,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         void OnIce(InputAction.CallbackContext context);
         void OnNegev(InputAction.CallbackContext context);
         void OnPistol(InputAction.CallbackContext context);
-        void OnRifle(InputAction.CallbackContext context);
+        void OnM4a4(InputAction.CallbackContext context);
     }
     public interface IGrowMapActions
     {

@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1868c7cd3d74059489101668855dfd21, type: 3}
+  m_Name: GoblinBulletData 16
+  m_EditorClassIdentifier: 
+  giftBoxes: []
+  swordBulletDelay: 0.05
+  weaponBulletDelay: 0.05
+  bulletSpeed: 0.5
+  bulletDelayCounter: 0
+  _swordingObject: {fileID: 0}
+  currentGiftBox: {fileID: 0}
+  ak47GiftBox: {fileID: 0}
+  rifleGiftBox: {fileID: 0}
+  bullDogGiftBox: {fileID: 0}
+  cowgunGiftBox: {fileID: 0}
+  crsytalgunGiftBox: {fileID: 0}
+  demongunGiftBox: {fileID: 0}
+  icegunGiftBox: {fileID: 0}
+  negevGiftBox: {fileID: 0}
+  axegunGiftBox: {fileID: 0}
+  pistolGiftBox: {fileID: 0}
+  ak47Object: {fileID: 0}
+  rifleObject: {fileID: 0}
+  bullDogObject: {fileID: 0}
+  cowgunObject: {fileID: 0}
+  crsytalgunObject: {fileID: 0}
+  demongunObject: {fileID: 0}
+  icegunObject: {fileID: 0}
+  negevObject: {fileID: 0}
+  axegunObject: {fileID: 0}
+  pistolObject: {fileID: 0}
+  ak47Power: 0
+  axegunPower: 0
+  bulldogPower: 0
+  cowgunPower: 0
+  crystalgunPower: 0
+  demongunPower: 0
+  icegunPower: 0
+  negevPower: 0
+  pistolPower: 0
+  riflePower: 0
+  ak47Price: 0
+  axegunPrice: 0
+  bulldogPrice: 0
+  cowgunPrice: 0
+  crystalgunPrice: 0
+  demongunPrice: 0
+  icegunPrice: 0
+  negevPrice: 0
+  pistolPrice: 0
+  riflePrice: 0
+  avaliableWeapons:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  ak47Lock: locked
+  axeLock: locked
+  bulldogLock: locked
+  cowLock: locked
+  crystalLock: locked
+  demonLock: locked
+  iceLock: locked
+  negevLock: locked
+  pistolLock: locked
+  rifleLock: locked
+  resetLocks: locked
+  unLocked: 
+  isRifle: 0
+  isPistol: 0
+  isAk47: 0
+  isBulldog: 0
+  isCowgun: 0
+  isCrystalgun: 0
+  isDemongun: 0
+  isIcegun: 0
+  isNegev: 0
+  isAxegun: 0
+  lowSwordObject: {fileID: 0}
+  warriorSwordObject: {fileID: 0}
+  hummerObject: {fileID: 0}
+  orcSwordObject: {fileID: 0}
+  axeObject: {fileID: 0}
+  axeKnightObject: {fileID: 0}
+  barbarianSwordObject: {fileID: 0}
+  demonSwordObject: {fileID: 0}
+  magicWeaponObject: {fileID: 0}
+  longHummerObject: {fileID: 0}
+  clubObject: {fileID: 0}
+  isLowSword: 0
+  isWarriorSword: 0
+  isHummer: 0
+  isOrcSword: 0
+  isAxeSword: 0
+  isAxeKnight: 0
+  isBarbarianSword: 0
+  isDemonSword: 0
+  isMagicSword: 0
+  isLongHummer: 0
+  isClub: 0
+  currentSwordName: WarriorSword
+  currentWeaponName: Ak47
+  enemyFireFrequency: 0.1
+  enemyBulletDelayCounter: 0
+  enemyBulletDelay: 0.05
+  enemyBulletSpeed: 100
+  isFirable: 1

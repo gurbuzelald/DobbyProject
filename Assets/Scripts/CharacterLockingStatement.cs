@@ -13,15 +13,12 @@ public class CharacterLockingStatement : MonoBehaviour
     private PlayerData.CharacterNames[] characterNames = new PlayerData.CharacterNames[12];
     private BulletData.WeaponNames[] weaponNames = new BulletData.WeaponNames[10];
 
-    private GameObject characterStaffs;
-    private GameObject weaponStaffs;
+    public GameObject[] characterStaffs;
+    public GameObject[] weaponStaffs;
 
     void Awake()
     {
         ResetCharactersLocks();
-
-        characterStaffs = GameObject.Find("CharacterStaffs");
-        weaponStaffs = GameObject.Find("WeaponStaffs");
 
         SetCharacterNames();
         SetWeaponNames();
@@ -36,7 +33,7 @@ public class CharacterLockingStatement : MonoBehaviour
 
         if (playerData.dobbyLock == playerData.unLocked &&
             playerData.glassyLock == playerData.unLocked &&
-            playerData.spartacusLock == playerData.unLocked &&
+            playerData.joleenLock == playerData.unLocked &&
             playerData.guardLock == playerData.unLocked &&
             playerData.lusthLock == playerData.unLocked &&
             playerData.eveLock == playerData.unLocked &&
@@ -52,7 +49,7 @@ public class CharacterLockingStatement : MonoBehaviour
 
             playerData.dobbyLock = playerData.locked;
             playerData.glassyLock = playerData.locked;
-            playerData.spartacusLock = playerData.locked;
+            playerData.joleenLock = playerData.locked;
             playerData.lusthLock = playerData.locked;
             playerData.eveLock = playerData.locked;
             playerData.guardLock = playerData.locked;
@@ -65,7 +62,7 @@ public class CharacterLockingStatement : MonoBehaviour
         }
         else if (playerData.dobbyLock == playerData.locked &&
             playerData.glassyLock == playerData.locked &&
-            playerData.spartacusLock == playerData.locked &&
+            playerData.joleenLock == playerData.locked &&
             playerData.guardLock == playerData.locked &&
             playerData.lusthLock == playerData.locked &&
             playerData.eveLock == playerData.locked &&
@@ -76,42 +73,42 @@ public class CharacterLockingStatement : MonoBehaviour
             playerData.tyLock == playerData.locked &&
             playerData.resetLocks == playerData.locked)
         {
-            playerData.currentCharacterName = PlayerData.CharacterNames.Spartacus;
+            playerData.currentCharacterName = PlayerData.CharacterNames.Joleen;
         }
     }
     
 
     void SetCharacterNames()
     {
-        if (characterStaffs)
+        if (characterStaffs.Length != 0)
         {
-            for (int i = 0; i < characterStaffs.transform.childCount; i++)
+            for (int i = 0; i < characterStaffs.Length; i++)
             {
-                characterNames[i] = Enum.Parse<PlayerData.CharacterNames>(characterStaffs.transform.GetChild(i).GetChild(0).name);
+                characterNames[i] = Enum.Parse<PlayerData.CharacterNames>(characterStaffs[i].transform.GetChild(0).name);
             }
         }        
     }
     void SetWeaponNames()
     {
-        if (weaponStaffs)
+        if (weaponStaffs.Length != 0)
         {
-            for (int i = 0; i < weaponStaffs.transform.childCount; i++)
+            for (int i = 0; i < weaponStaffs.Length; i++)
             {
-                weaponNames[i] = Enum.Parse<BulletData.WeaponNames>(weaponStaffs.transform.GetChild(i).GetChild(0).name);
+                weaponNames[i] = Enum.Parse<BulletData.WeaponNames>(weaponStaffs[i].transform.GetChild(0).name);
             }
         }
     }
 
     void SetCharacterLockingMode()
     {
-        if (characterStaffs)
+        if (characterStaffs.Length != 0)
         {
             for (int i = 0; i < gameObject.transform.childCount; i++)
             {
                 switch (characterNames[i])
                 {
-                    case PlayerData.CharacterNames.Spartacus:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.spartacusLock.ToString();
+                    case PlayerData.CharacterNames.Joleen:
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.joleenLock.ToString();
                         break;
                     case PlayerData.CharacterNames.Dobby:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.dobbyLock.ToString();
@@ -154,7 +151,7 @@ public class CharacterLockingStatement : MonoBehaviour
     }
     void SetWeaponLockingMode(BulletData bulletData)
     {
-        if (weaponStaffs)
+        if (weaponStaffs.Length != 0)
         {
             for (int i = 0; i < gameObject.transform.childCount; i++)
             {
@@ -163,22 +160,22 @@ public class CharacterLockingStatement : MonoBehaviour
                     case BulletData.WeaponNames.ak47:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.ak47Lock.ToString();
                         break;
-                    case BulletData.WeaponNames.axegun:
+                    case BulletData.WeaponNames.axe:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.axeLock.ToString();
                         break;
                     case BulletData.WeaponNames.bulldog:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.bulldogLock.ToString();
                         break;
-                    case BulletData.WeaponNames.cowgun:
+                    case BulletData.WeaponNames.cow:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.cowLock.ToString();
                         break;
-                    case BulletData.WeaponNames.crystalgun:
+                    case BulletData.WeaponNames.crystal:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.crystalLock.ToString();
                         break;
-                    case BulletData.WeaponNames.demongun:
+                    case BulletData.WeaponNames.demon:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.demonLock.ToString();
                         break;
-                    case BulletData.WeaponNames.icegun:
+                    case BulletData.WeaponNames.ice:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.iceLock.ToString();
                         break;
                     case BulletData.WeaponNames.negev:
@@ -187,8 +184,8 @@ public class CharacterLockingStatement : MonoBehaviour
                     case BulletData.WeaponNames.pistol:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.pistolLock.ToString();
                         break;
-                    case BulletData.WeaponNames.rifle:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.rifleLock.ToString();
+                    case BulletData.WeaponNames.m4a4:
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.m4a4Lock.ToString();
                         break;
                     default:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "No Valid";

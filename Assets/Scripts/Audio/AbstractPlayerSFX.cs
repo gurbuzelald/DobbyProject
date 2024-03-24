@@ -101,37 +101,37 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.Ak47Clip);
         }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Rifle)
+        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.M4a4)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.RifleClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.M4a4Clip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Bulldog)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.BulldogClip);
         }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Cowgun)
+        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Cow)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.CowgunClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.CowClip);
         }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Crystalgun)
+        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Crystal)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.CrystalgunClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.CrystalClip);
         }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Demongun)
+        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Demon)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.DemongunClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.DemonClip);
         }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Icegun)
+        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Ice)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.IcegunClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.IceClip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Negev)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.NegevClip);
         }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Axegun)
+        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Axe)
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.AxegunClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.AxeClip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Pistol)
         {

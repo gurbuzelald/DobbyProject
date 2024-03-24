@@ -102,7 +102,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1124876160035113316
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -119,7 +119,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1124876160035113307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbab17b44bf9a0458fac80563059cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyData: {fileID: 11400000, guid: 2ec953bd33674444e80302b31b7d5964, type: 2}
   _playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
 --- !u!1 &465555122002307541
 GameObject:
@@ -339,9 +338,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 4446688504359761093}
+  enemyListData:
+  - {fileID: 11400000, guid: 2ec953bd33674444e80302b31b7d5964, type: 2}
+  - {fileID: 11400000, guid: bda5deb3bb04c744a84434c050de529c, type: 2}
+  - {fileID: 11400000, guid: 10d2fa4aea7967445b331dcc427a1a32, type: 2}
+  - {fileID: 11400000, guid: e55a32368732a2d4cae4672f7e3385f4, type: 2}
+  - {fileID: 11400000, guid: e7cf65197d191a44d8b50fdfd110f694, type: 2}
+  - {fileID: 11400000, guid: 81c01c6c37338574582eeb1daabd695d, type: 2}
+  - {fileID: 11400000, guid: 6c26347e78a01c24cae2072e1fac9c82, type: 2}
+  - {fileID: 11400000, guid: 496ca4b1854423040a8176038b5e2f4b, type: 2}
+  - {fileID: 11400000, guid: 5aa397cfd2c6255468540b2a58a0bf3b, type: 2}
+  - {fileID: 11400000, guid: 3e70f91f88e24fe4a89f6f0165f8358d, type: 2}
+  - {fileID: 11400000, guid: 24217530d54585346ad7f69e23784fa6, type: 2}
+  - {fileID: 11400000, guid: 834029821e49884418ae81b60508b817, type: 2}
+  - {fileID: 11400000, guid: 157ca7b3f70ae2344a573d472c72c28d, type: 2}
+  - {fileID: 11400000, guid: e650a597ffa17ed4d816e219a8a78234, type: 2}
+  - {fileID: 11400000, guid: 4b9e4c0cd184e4942b56c8a57ed99c72, type: 2}
+  - {fileID: 11400000, guid: 4b01dda6bd0cbe54e9d13af29765ac8c, type: 2}
+  - {fileID: 11400000, guid: 1952b4ea2dc914044b52cfcf3e4f83c6, type: 2}
+  - {fileID: 11400000, guid: 422299b8ff5674444a50d65cc622a0ed, type: 2}
   enemyData: {fileID: 11400000, guid: 2ec953bd33674444e80302b31b7d5964, type: 2}
+  enemyListBulletData:
+  - {fileID: 11400000, guid: 3fd032307984f944e8ca4e82a1209ffb, type: 2}
+  - {fileID: 11400000, guid: 67da89c1de4557b45bedfe113cf1eae3, type: 2}
+  - {fileID: 11400000, guid: 4e0e031b059582d4f80c49c9200315a9, type: 2}
+  - {fileID: 11400000, guid: dc6cf65fa33aa4a42b82d69e2148c07f, type: 2}
+  - {fileID: 11400000, guid: 9b99661c9d38a1843a27a7439b1355c7, type: 2}
+  - {fileID: 11400000, guid: e2444d997169fca469e5f4fe526f3ccf, type: 2}
+  - {fileID: 11400000, guid: aae052688956f5a4ea42c7c720f49ec5, type: 2}
+  - {fileID: 11400000, guid: 061e71772f4c7e14ba0399dd97f5742f, type: 2}
+  - {fileID: 11400000, guid: 0b65810d356b5cb45a82e1368ded8dc4, type: 2}
+  - {fileID: 11400000, guid: 973e4669b3e37a4408058ba2d22dae17, type: 2}
+  - {fileID: 11400000, guid: 62ed4de4da1a13a4991176cff1dcbba3, type: 2}
+  - {fileID: 11400000, guid: 2c8f27d08c965204e806aa3770c69693, type: 2}
+  - {fileID: 11400000, guid: 625f6ddbc1fc317499254e55b529c7bc, type: 2}
+  - {fileID: 11400000, guid: 30e096c321502564d8d0f05c8dfb4676, type: 2}
+  - {fileID: 11400000, guid: 532683546b6b1dd478d5e20a344d015c, type: 2}
+  - {fileID: 11400000, guid: 77d06473b0f0ec04cb10baea6ee705b7, type: 2}
+  - {fileID: 11400000, guid: 4e2fc178e26b205418dbca4273e2aa52, type: 2}
+  - {fileID: 11400000, guid: ac1320990af85ce4f8dbb0a8b08fa389, type: 2}
+  bulletData: {fileID: 11400000, guid: 3fd032307984f944e8ca4e82a1209ffb, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
+  enemyDataNumber: 0
+  enemyBulletDataNumber: 0
   bottomParticle: {fileID: 5887213100640264874}
   middleParticle: {fileID: 8663122777169559917}
   topParticle: {fileID: 8663122777952017208}
@@ -2552,6 +2592,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 10
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -5957,6 +5998,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -8166,6 +8208,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 10
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -11571,6 +11614,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -12443,8 +12487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60d5b47d7aaf24449d132e00a7c1ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 11400000, guid: 2ec953bd33674444e80302b31b7d5964, type: 2}
-  bulletData: {fileID: 11400000, guid: 3fd032307984f944e8ca4e82a1209ffb, type: 2}
   _bulletSpawnTransform: {fileID: 1207222380784698013}
 --- !u!1 &8663122777952017191
 GameObject:
@@ -13029,6 +13071,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 10
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -16434,6 +16477,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -17298,6 +17342,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1124876159237399021}
     m_Modifications:
     - target: {fileID: 5399223550856757910, guid: 0deb3fefa2e32d340a6fb8e21e0c60ba, type: 3}
@@ -17357,6 +17402,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0deb3fefa2e32d340a6fb8e21e0c60ba, type: 3}
 --- !u!1 &4446688504359761093 stripped
 GameObject:
@@ -17373,6 +17419,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 1124876159237399021}
     m_Modifications:
     - target: {fileID: 3297127169752797060, guid: faf224e7760b66543a2ca83f005d09f6, type: 3}
@@ -17464,6 +17511,7 @@ PrefabInstance:
       value: DamageCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: faf224e7760b66543a2ca83f005d09f6, type: 3}
 --- !u!224 &5188363020660505794 stripped
 RectTransform:

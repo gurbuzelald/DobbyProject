@@ -83,7 +83,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6652434628059302895}
   m_Layer: 0
-  m_Name: CowgunTransform
+  m_Name: CowTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5082172805877433179}
   m_Layer: 0
-  m_Name: RifleTransform
+  m_Name: M4a4Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -522,7 +522,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &602852197543427256
 Animator:
-  serializedVersion: 5
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -539,7 +539,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1664736317486929553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -925,7 +925,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7981523530138606652}
   m_Layer: 0
-  m_Name: IcegunTransform
+  m_Name: IceTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1502,7 +1502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 789045932665453531}
   m_Layer: 0
-  m_Name: DemongunTransform
+  m_Name: DemonTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1879,7 +1879,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1900689953224496625}
   m_Layer: 0
-  m_Name: AxegunTransform
+  m_Name: AxeTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2035,7 +2035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 806740575810897981}
   m_Layer: 0
-  m_Name: CrystalgunTransform
+  m_Name: CrystalTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -127,8 +127,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7355036, y: 0.30181694, z: 0.85634196}
-  m_Center: {x: -0.027001917, y: 0.055144995, z: 0.7381709}
+  m_Size: {x: 1.7355036, y: 0.30181694, z: 1.0566998}
+  m_Center: {x: -0.027001947, y: 0.055144995, z: 0.83834994}
 --- !u!1 &2527072223971666673
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,6 +797,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 20
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -4202,6 +4203,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -5046,7 +5048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2745993775848025919
 Transform:
   m_ObjectHideFlags: 0
@@ -5613,6 +5615,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 20
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -9018,6 +9021,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0
@@ -9965,6 +9969,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
+  bulletData: {fileID: 0}
   delayFalseBulletValue: 0
 --- !u!1 &4303203405244050151
 GameObject:
@@ -9982,7 +9987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6220244579372731751
 Transform:
   m_ObjectHideFlags: 0
@@ -10640,6 +10645,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
+    gravitySource: 0
     maxNumParticles: 20
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
@@ -14045,6 +14051,7 @@ ParticleSystem:
         m_RotationOrder: 4
     minVertexDistance: 0.2
     textureMode: 0
+    textureScale: {x: 1, y: 1}
     ribbonCount: 1
     shadowBias: 0.5
     worldSpace: 0

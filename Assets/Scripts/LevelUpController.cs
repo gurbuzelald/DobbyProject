@@ -135,7 +135,7 @@ public class LevelUpController : MonoBehaviour
         {
             levelData.currentLevel = LevelData.Levels.Level2;
             levelData.currentEnemyObjects = levelData.enemySecondObjects;
-            bulletData.currentGiftBox = bulletData.cowgunGiftBox;
+            bulletData.currentGiftBox = bulletData.cowGiftBox;
             LevelCount();
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
@@ -156,7 +156,7 @@ public class LevelUpController : MonoBehaviour
         {
             levelData.currentLevel = LevelData.Levels.Level3;
             levelData.currentEnemyObjects = levelData.enemyThirdObjects;
-            bulletData.currentGiftBox = bulletData.demongunGiftBox;
+            bulletData.currentGiftBox = bulletData.demonGiftBox;
             LevelCount();
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
@@ -196,7 +196,7 @@ public class LevelUpController : MonoBehaviour
         {
             levelData.currentLevel = LevelData.Levels.Level5;
             levelData.currentEnemyObjects = levelData.enemyFifthObjects;
-            bulletData.currentGiftBox = bulletData.axegunGiftBox;
+            bulletData.currentGiftBox = bulletData.axeGiftBox;
             LevelCount();
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
@@ -217,7 +217,7 @@ public class LevelUpController : MonoBehaviour
         {
             levelData.currentLevel = LevelData.Levels.Level6;
             levelData.currentEnemyObjects = levelData.enemySixthObjects;
-            bulletData.currentGiftBox = bulletData.crsytalgunGiftBox;
+            bulletData.currentGiftBox = bulletData.crsytalGiftBox;
             LevelCount();
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
@@ -237,7 +237,7 @@ public class LevelUpController : MonoBehaviour
         {
             levelData.currentLevel = LevelData.Levels.Level7;
             levelData.currentEnemyObjects = levelData.enemySeventhObjects;
-            bulletData.currentGiftBox = bulletData.icegunGiftBox;
+            bulletData.currentGiftBox = bulletData.iceGiftBox;
             LevelCount();
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
@@ -297,7 +297,7 @@ public class LevelUpController : MonoBehaviour
         {
             levelData.currentLevel = LevelData.Levels.Level10;
             levelData.currentEnemyObjects = levelData.enemyTenthObjects;
-            bulletData.currentGiftBox = bulletData.rifleGiftBox;
+            bulletData.currentGiftBox = bulletData.m4a4GiftBox;
             LevelCount();
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);

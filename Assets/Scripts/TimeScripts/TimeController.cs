@@ -60,6 +60,10 @@ public class TimeController : MonoBehaviour
         {
             _warmTimeText.transform.localScale = Vector3.one;
         }
+        else
+        {
+            _warmTimeText.transform.localScale = Vector3.zero;
+        }
         if (levelData.isLevelUp)
         {
             timeValue = initialTimeValue;

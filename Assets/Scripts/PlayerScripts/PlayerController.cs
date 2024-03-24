@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public static bool run;
 
     public Vector2 characterStick;
-    public bool Spartacus;
+    public bool Joleen;
     public bool Glassy;
     public bool Dobby;
     public bool Guard;
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     public bool Ice;
     public bool Negev;
     public bool Pistol;
-    public bool Rifle;
+    public bool M4A4;
 
     private void Awake() 
     {
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
     }
     void ChooseCharacter()
     {
-        Spartacus = playerInput.CharacterMenuInput.Spartacus.IsPressed();
+        Joleen = playerInput.CharacterMenuInput.Joleen.IsPressed();
         Glassy = playerInput.CharacterMenuInput.Glassy.IsPressed();
         Dobby = playerInput.CharacterMenuInput.Dobby.IsPressed();
         Guard = playerInput.CharacterMenuInput.Guard.IsPressed();
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour
         Ice = playerInput.WeaponMenuInput.Ice.IsPressed();
         Negev = playerInput.WeaponMenuInput.Negev.IsPressed();
         Pistol = playerInput.WeaponMenuInput.Pistol.IsPressed();
-        Rifle = playerInput.WeaponMenuInput.Rifle.IsPressed();
+        M4A4 = playerInput.WeaponMenuInput.M4a4.IsPressed();
 
 
         weaponStick = playerInput.WeaponMenuInput.WeaponStick.ReadValue<Vector2>();

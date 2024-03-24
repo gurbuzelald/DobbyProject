@@ -17,26 +17,46 @@ public class PlayerData : ScriptableObject
     [Header("Background Maps")]
     public GameObject backgroundMap;
 
-    [Header("Enemy Damages")]
+    [Header("Enemy Attack Damages")]
     public int currentEnemyAttackDamage;
+    public int clownEnemyAttackDamage;
     public int monsterEnemyAttackDamage;
     public int prisonerEnemyAttackDamage;
-    public int clownEnemyAttackDamage;
+    public int pedrosoEnemyAttackDamage;
+    public int morakEnemyAttackDamage;
+    public int ortizEnemyAttackDamage;
+    public int skeletonEnemyAttackDamage;
+    public int urielEnemyAttackDamage;
+    public int goblinEnemyAttackDamage;
 
-    public int currentEnemyTriggerDamage;
-    public int monsterEnemyTriggerDamage;
-    public int prisonerEnemyTriggerDamage;
-    public int clownEnemyTriggerDamage;
+    [Header("Enemy Bullet Damages")]
+    public int currentEnemyBulletDamage;
+    public int clownEnemyBulletDamage;
+    public int monsterEnemyBulletDamage;
+    public int prisonerEnemyBulletDamage;
+    public int pedrosoEnemyBulletDamage;
+    public int morakEnemyBulletDamage;
+    public int ortizEnemyBulletDamage;
+    public int skeletonEnemyBulletDamage;
+    public int urielEnemyBulletDamage;
+    public int goblinEnemyBulletDamage;
 
+    [Header("Enemy Collision Damages")]
     public int currentEnemyCollisionDamage;
+    public int clownEnemyCollisionDamage;
     public int monsterEnemyCollisionDamage;
     public int prisonerEnemyCollisionDamage;
-    public int clownEnemyCollisionDamage;
+    public int pedrosoEnemyCollisionDamage;
+    public int morakEnemyCollisionDamage;
+    public int ortizEnemyCollisionDamage;
+    public int skeletonEnemyCollisionDamage;
+    public int urielEnemyCollisionDamage;
+    public int goblinEnemyCollisionDamage;
 
     [Header("Player Durability")]
     public int dobbyDurability;
     public int glassyDurability;
-    public int spartacusDurability;
+    public int joleenDurability;
     public int guardDurability;
     public int lusthDurability;
     public int eveDurability;
@@ -48,7 +68,19 @@ public class PlayerData : ScriptableObject
 
 
     [Header("Enemy Tag")]
-    public char enemyTag;
+    public string currentEnemyName;
+
+    [Header("Enemy Names")]
+    public const string clown = "Clown(Clone)";
+    public const string monster = "Monster(Clone)";
+    public const string prisoner = "PrisonerZombie(Clone)";
+    public const string pedroso = "Pedroso(Clone)";
+    public const string morak = "Morak(Clone)";
+    public const string ortiz = "Ortiz(Clone)";
+    public const string skeleton = "Skeleton(Clone)";
+    public const string uriel = "Uriel(Clone)";
+    public const string goblin = "Goblin(Clone)";
+
 
     [Header("Player Level Spawns")]
     public Transform playerSpawns;     
@@ -63,7 +95,7 @@ public class PlayerData : ScriptableObject
     public GameObject characterObject;
     public GameObject dobby;
     public GameObject glassy;
-    public GameObject spartacus;
+    public GameObject joleen;
     public GameObject guard;
     public GameObject lusth;
     public GameObject eve;
@@ -76,7 +108,7 @@ public class PlayerData : ScriptableObject
     [Header("Character Locking Modes")]
     public string dobbyLock = "locked";
     public string glassyLock = "locked";
-    public string spartacusLock = "locked";
+    public string joleenLock = "locked";
     public string guardLock = "locked";
     public string lusthLock = "locked";
     public string eveLock = "locked";
@@ -104,7 +136,7 @@ public class PlayerData : ScriptableObject
     public bool isLose;
 
     [Header("Character Prices")]
-    public int spartacusPrice;
+    public int joleenPrice;
     public int dobbyPrice;
     public int glassyPrice;
     public int lusthPrice;
@@ -135,7 +167,7 @@ public class PlayerData : ScriptableObject
     public float eveSpeed;
     public float mremirehSpeed;
     public float lusthSpeed;
-    public float spartacusSpeed;
+    public float joleenSpeed;
     public float bossSpeed;
     public float tySpeed;
     public float guardSpeed;
@@ -151,7 +183,7 @@ public class PlayerData : ScriptableObject
     public float eveJumpForce;
     public float mremirehJumpForce;
     public float lusthJumpForce;
-    public float spartacusJumpForce;
+    public float joleenJumpForce;
     public float bossJumpForce;
     public float tyJumpForce;
     public float guardJumpForce;
@@ -251,7 +283,7 @@ public class PlayerData : ScriptableObject
     {
         Glassy,
         Dobby,
-        Spartacus,
+        Joleen,
         Lusth,
         Guard,
         Eve,

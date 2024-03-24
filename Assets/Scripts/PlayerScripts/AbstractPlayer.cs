@@ -51,37 +51,37 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _gunTransform = GameObject.Find("Ak47Transform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.rifle)
+        else if (_bulletData.currentWeaponName == BulletData.m4a4)
         {
-            _gunTransform = GameObject.Find("RifleTransform");
+            _gunTransform = GameObject.Find("M4a4Transform");
         }
         else if (_bulletData.currentWeaponName == BulletData.bulldog)
         {
             _gunTransform = GameObject.Find("BulldogTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.cowgun)
+        else if (_bulletData.currentWeaponName == BulletData.cow)
         {
-            _gunTransform = GameObject.Find("CowgunTransform");
+            _gunTransform = GameObject.Find("CowTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.crystalgun)
+        else if (_bulletData.currentWeaponName == BulletData.crystal)
         {
-            _gunTransform = GameObject.Find("CrystalgunTransform");
+            _gunTransform = GameObject.Find("CrystalTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.demongun)
+        else if (_bulletData.currentWeaponName == BulletData.demon)
         {
-            _gunTransform = GameObject.Find("DemongunTransform");
+            _gunTransform = GameObject.Find("DemonTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.icegun)
+        else if (_bulletData.currentWeaponName == BulletData.ice)
         {
-            _gunTransform = GameObject.Find("IcegunTransform");
+            _gunTransform = GameObject.Find("IceTransform");
         }
         else if (_bulletData.currentWeaponName == BulletData.negev)
         {
             _gunTransform = GameObject.Find("NegevTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.axegun)
+        else if (_bulletData.currentWeaponName == BulletData.axe)
         {
-            _gunTransform = GameObject.Find("AxegunTransform");
+            _gunTransform = GameObject.Find("AxeTransform");
         }
     }
     public virtual void GetSwordTransform(BulletData _bulletData, ref GameObject _swordTransform)
@@ -148,9 +148,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             current = _playerData.guard;
         }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Joleen)
         {
-            current = _playerData.spartacus;
+            current = _playerData.joleen;
         }
         else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
         {
@@ -251,7 +251,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 levelData.isCompleteMaps[i] = false;
             }
             //PlayerData.slaveCounter = 0;
-            _bulletData.isRifle = false;
+            _bulletData.isM4a4 = false;
             _playerData.bulletAmount = _playerData.bulletPack;
             bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
             _playerData.objects[4].GetComponent<MeshRenderer>().enabled = true;
@@ -316,9 +316,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.currentJumpForce = _playerData.lusthJumpForce;
         }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Joleen)
         {
-            _playerData.currentJumpForce = _playerData.spartacusJumpForce;
+            _playerData.currentJumpForce = _playerData.joleenJumpForce;
         }
         else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Boss)
         {
@@ -363,9 +363,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.playerSpeed = _playerData.lusthSpeed;
         }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Spartacus)
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Joleen)
         {
-            _playerData.playerSpeed = _playerData.spartacusSpeed;
+            _playerData.playerSpeed = _playerData.joleenSpeed;
         }
         else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Boss)
         {
@@ -378,6 +378,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
         {
             _playerData.playerSpeed = _playerData.guardSpeed;
+        }
+        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Eve)
+        {
+            _playerData.playerSpeed = _playerData.eveSpeed;
         }
         else
         {
@@ -417,17 +421,41 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
     public virtual void CheckEnemyAttackDamage(ref PlayerData _playerData)
     {
-        if (_playerData.enemyTag == 'C')
+        if (_playerData.currentEnemyName == PlayerData.clown)
         {
             _playerData.currentEnemyAttackDamage = _playerData.clownEnemyAttackDamage;
         }
-        else if (_playerData.enemyTag == 'M')
+        else if (_playerData.currentEnemyName == PlayerData.monster)
         {
             _playerData.currentEnemyAttackDamage = _playerData.monsterEnemyAttackDamage;
         }
-        else if (_playerData.enemyTag == 'P')
+        else if (_playerData.currentEnemyName == PlayerData.prisoner)
         {
             _playerData.currentEnemyAttackDamage = _playerData.prisonerEnemyAttackDamage;
+        }
+        else if (_playerData.currentEnemyName == PlayerData.pedroso)
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.pedrosoEnemyAttackDamage;
+        }
+        else if (_playerData.currentEnemyName == PlayerData.morak)
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.morakEnemyAttackDamage;
+        }
+        else if (_playerData.currentEnemyName == PlayerData.ortiz)
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.ortizEnemyAttackDamage;
+        }
+        else if (_playerData.currentEnemyName == PlayerData.skeleton)
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.skeletonEnemyAttackDamage;
+        }
+        else if (_playerData.currentEnemyName == PlayerData.uriel)
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.urielEnemyAttackDamage;
+        }
+        else if (_playerData.currentEnemyName == PlayerData.goblin)
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.goblinEnemyAttackDamage;
         }
     }
     IEnumerator DelayDecreaseCounterZero(PlayerData _playerData)
@@ -878,16 +906,27 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyHealthCoin, other.gameObject.transform);
         }
     }
+    public void CheckAllWeaponsLocked(BulletData bulletData)
+    {
+        if (bulletData.ak47Lock == BulletData.locked && bulletData.m4a4Lock == BulletData.locked && 
+            bulletData.axeLock == BulletData.locked && bulletData.bulldogLock == BulletData.locked &&
+            bulletData.cowLock == BulletData.locked && bulletData.crystalLock == BulletData.locked &&
+            bulletData.demonLock == BulletData.locked && bulletData.iceLock == BulletData.locked &&
+            bulletData.negevLock == BulletData.locked && bulletData.pistolLock == BulletData.locked)
+        {
+            bulletData.currentWeaponName = BulletData.ak47;
+        }
+    }
 
     public virtual void CheckWeaponCollect(Collider other, BulletData _bulletData)
     {
-        if (other.CompareTag(SceneController.Tags.rifle.ToString()) && _bulletData.currentWeaponName != BulletData.rifle)
+        if (other.CompareTag(SceneController.Tags.m4a4.ToString()) && _bulletData.currentWeaponName != BulletData.m4a4)
         {
             Destroy(other.gameObject);
-            _bulletData.isRifle = true;
-            _bulletData.rifleLock = _bulletData.unLocked;
+            _bulletData.isM4a4 = true;
+            _bulletData.m4a4Lock = _bulletData.unLocked;
         }
-        else if (other.CompareTag(SceneController.Tags.rifle.ToString()) && _bulletData.currentWeaponName == BulletData.rifle)
+        else if (other.CompareTag(SceneController.Tags.m4a4.ToString()) && _bulletData.currentWeaponName == BulletData.m4a4)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
@@ -906,13 +945,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.axegun.ToString()) && _bulletData.currentWeaponName != BulletData.axegun)
+        if (other.CompareTag(SceneController.Tags.axe.ToString()) && _bulletData.currentWeaponName != BulletData.axe)
         {
             Destroy(other.gameObject);
-            _bulletData.isAxegun = true;
+            _bulletData.isAxe = true;
             _bulletData.axeLock = _bulletData.unLocked;
         }
-        else if (other.CompareTag(SceneController.Tags.axegun.ToString()) && _bulletData.currentWeaponName == BulletData.axegun)
+        else if (other.CompareTag(SceneController.Tags.axe.ToString()) && _bulletData.currentWeaponName == BulletData.axe)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
@@ -930,70 +969,71 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.cowgun.ToString()) && _bulletData.currentWeaponName != BulletData.cowgun)
+        if (other.CompareTag(SceneController.Tags.cow.ToString()) && _bulletData.currentWeaponName != BulletData.cow)
         {
             Destroy(other.gameObject);
-            _bulletData.isCowgun = true;
+            _bulletData.isCow = true;
             _bulletData.cowLock = _bulletData.unLocked;
 
         }
-        else if (other.CompareTag(SceneController.Tags.cowgun.ToString()) && _bulletData.currentWeaponName == BulletData.cowgun)
+        else if (other.CompareTag(SceneController.Tags.cow.ToString()) && _bulletData.currentWeaponName == BulletData.cow)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.crystalgun.ToString()) && _bulletData.currentWeaponName != BulletData.crystalgun)
+        if (other.CompareTag(SceneController.Tags.crystal.ToString()) && _bulletData.currentWeaponName != BulletData.crystal)
         {
             Destroy(other.gameObject);
-            _bulletData.isCrystalgun = true;
+            _bulletData.isCrystal = true;
             _bulletData.crystalLock = _bulletData.unLocked;
 
         }
-        else if (other.CompareTag(SceneController.Tags.crystalgun.ToString()) && _bulletData.currentWeaponName == BulletData.crystalgun)
+        else if (other.CompareTag(SceneController.Tags.crystal.ToString()) && _bulletData.currentWeaponName == BulletData.crystal)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.demongun.ToString()) && _bulletData.currentWeaponName != BulletData.demongun)
+        if (other.CompareTag(SceneController.Tags.demon.ToString()) && _bulletData.currentWeaponName != BulletData.demon)
         {
             Destroy(other.gameObject);
-            _bulletData.isDemongun = true;
+            _bulletData.isDemon = true;
             _bulletData.demonLock = _bulletData.unLocked;
 
         }
-        else if (other.CompareTag(SceneController.Tags.demongun.ToString()) && _bulletData.currentWeaponName != BulletData.demongun)
+        else if (other.CompareTag(SceneController.Tags.demon.ToString()) && _bulletData.currentWeaponName != BulletData.demon)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.icegun.ToString()) && _bulletData.currentWeaponName != BulletData.icegun)
+        if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName != BulletData.ice)
         {
             Destroy(other.gameObject);
-            _bulletData.isIcegun = true;
+            _bulletData.isIce = true;
             _bulletData.iceLock = _bulletData.unLocked;
 
         }
-        else if (other.CompareTag(SceneController.Tags.icegun.ToString()) && _bulletData.currentWeaponName == BulletData.icegun)
+        else if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName == BulletData.ice)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.icegun.ToString()) && _bulletData.currentWeaponName != BulletData.negev)
+        if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName != BulletData.negev)
         {
             Destroy(other.gameObject);
             _bulletData.isNegev = true;
             _bulletData.negevLock = _bulletData.unLocked;
 
         }
-        else if (other.CompareTag(SceneController.Tags.icegun.ToString()) && _bulletData.currentWeaponName == BulletData.negev)
+        else if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName == BulletData.negev)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
         }
+
         if (other.CompareTag(SceneController.Tags.pistol.ToString()) && _bulletData.currentWeaponName != BulletData.pistol)
         {
             Destroy(other.gameObject);
@@ -1141,19 +1181,43 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     public virtual void CheckEnemyCollisionDamage(Collision collision, ref PlayerData _playerData)
     {
 
-        _playerData.enemyTag = collision.gameObject.name[0];
+        _playerData.currentEnemyName = collision.gameObject.name;
 
-        if (_playerData.enemyTag == 'C')
+        if (_playerData.currentEnemyName == PlayerData.clown)
         {
             _playerData.currentEnemyCollisionDamage = _playerData.clownEnemyCollisionDamage;
         }
-        else if (_playerData.enemyTag == 'M')
+        else if (_playerData.currentEnemyName == PlayerData.monster)
         {
             _playerData.currentEnemyCollisionDamage = _playerData.monsterEnemyCollisionDamage;
         }
-        else if (_playerData.enemyTag == 'P')
+        else if (_playerData.currentEnemyName == PlayerData.prisoner)
         {
             _playerData.currentEnemyCollisionDamage = _playerData.prisonerEnemyCollisionDamage;
+        }
+        else if (_playerData.currentEnemyName == PlayerData.pedroso)
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.pedrosoEnemyCollisionDamage;
+        }
+        else if (_playerData.currentEnemyName == PlayerData.morak)
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.morakEnemyCollisionDamage;
+        }
+        else if (_playerData.currentEnemyName == PlayerData.ortiz)
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.ortizEnemyCollisionDamage;
+        }
+        else if (_playerData.currentEnemyName == PlayerData.skeleton)
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.skeletonEnemyCollisionDamage;
+        }
+        else if (_playerData.currentEnemyName == PlayerData.uriel)
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.urielEnemyCollisionDamage;
+        }
+        else if (_playerData.currentEnemyName == PlayerData.goblin)
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.goblinEnemyCollisionDamage;
         }
     }
     #endregion
@@ -1255,9 +1319,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             damageHealthValue -= playerData.dobbyDurability;
         }
-        else if (PlayerData.CharacterNames.Spartacus == playerData.currentCharacterName)
+        else if (PlayerData.CharacterNames.Joleen == playerData.currentCharacterName)
         {
-            damageHealthValue -= playerData.spartacusDurability;
+            damageHealthValue -= playerData.joleenDurability;
         }
         else if (PlayerData.CharacterNames.Lusth == playerData.currentCharacterName)
         {
@@ -1433,7 +1497,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.isSideWalking = false;
         }
         if ((!_playerData.isClimbing && !_playerData.isBackClimbing) && 
-            (PlayerManager.GetInstance.GetXValue() < -0.05f || PlayerManager.GetInstance.GetXValue() > 0.05f) &&
+            (PlayerManager.GetInstance.GetXValue() < -0.001f || PlayerManager.GetInstance.GetXValue() > 0.001f) &&
             Mathf.Abs(PlayerManager.GetInstance.GetXValue()) > 2 * Mathf.Abs(PlayerManager.GetInstance.GetZValue()) &&
             PlayerManager.GetInstance.GetZValue() < 0.2f)
         {

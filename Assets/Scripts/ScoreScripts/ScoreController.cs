@@ -6,7 +6,7 @@ using TMPro;
 public class ScoreController : AbstractPlayer<ScoreController>
 {
     public TextMeshProUGUI _scoreText;
-    public TextMeshProUGUI avaliableCoinText;
+    private TextMeshProUGUI avaliableCoinText;
     public static int _scoreAmount;
     private bool _scored;
     [SerializeField] PlayerCoinData playerCoinData;
@@ -14,6 +14,10 @@ public class ScoreController : AbstractPlayer<ScoreController>
     private JsonReadAndWriteSystem readWrite;
     void Start()
     {
+        if (GameObject.Find("AvaliableCoinTextValue"))
+        {
+            avaliableCoinText = GameObject.Find("AvaliableCoinTextValue").transform.GetComponent<TextMeshProUGUI>();
+        }           
         readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
         
         if (SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.CharacterChoose.ToString() ||
@@ -25,7 +29,10 @@ public class ScoreController : AbstractPlayer<ScoreController>
     }
     void Update()
     {
-        avaliableCoinText.text = playerCoinData.avaliableCoin.ToString();
+        if (avaliableCoinText)
+        {
+            avaliableCoinText.text = playerCoinData.avaliableCoin.ToString();
+        }
         readWrite.SaveCoinToJson();
 
         //Debug.Log(playerCoinData.avaliableCoin);
@@ -33,7 +40,6 @@ public class ScoreController : AbstractPlayer<ScoreController>
         {
             _scoreAmount = 0;
             PlayerPrefs.SetInt("ScoreAmount", 0);
-            _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
         }
         else if (SceneController.playAgain)
         {
@@ -42,17 +48,16 @@ public class ScoreController : AbstractPlayer<ScoreController>
 
             _scoreAmount = 0;
             PlayerPrefs.SetInt("ScoreAmount", 0);
-            _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
             SceneController.playAgain = false;
         }
         else
         {
             if (_scored)
             {
-                _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
                 _scored = false;
             }
         }
+        _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
     }
     public int SetScore(int scoreAmount)
     {

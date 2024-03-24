@@ -6,7 +6,7 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
 {
     public AudioData dobbyAudioData;
     public AudioData glassyAudioData;
-    public AudioData spartacusAudioData;
+    public AudioData joleenAudioData;
     public AudioData guardAudioData;
     public AudioData lusthAudioData;
     public AudioData eveAudioData;
@@ -34,9 +34,9 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         {
             currentAudioData = glassyAudioData;
         }
-        else if (PlayerData.CharacterNames.Spartacus == playerData.currentCharacterName)
+        else if (PlayerData.CharacterNames.Joleen == playerData.currentCharacterName)
         {
-            currentAudioData = spartacusAudioData;
+            currentAudioData = joleenAudioData;
         }
         else if (PlayerData.CharacterNames.Guard == playerData.currentCharacterName)
         {
@@ -79,7 +79,7 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
-        else if (PlayerSoundEffect.ShootSoundEffectTypes.Rifle == shootSoundEffectType)
+        else if (PlayerSoundEffect.ShootSoundEffectTypes.M4a4 == shootSoundEffectType)
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
@@ -87,19 +87,19 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
-        else if (PlayerSoundEffect.ShootSoundEffectTypes.Cowgun == shootSoundEffectType)
+        else if (PlayerSoundEffect.ShootSoundEffectTypes.Cow == shootSoundEffectType)
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
-        else if (PlayerSoundEffect.ShootSoundEffectTypes.Crystalgun == shootSoundEffectType)
+        else if (PlayerSoundEffect.ShootSoundEffectTypes.Crystal == shootSoundEffectType)
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
-        else if (PlayerSoundEffect.ShootSoundEffectTypes.Demongun == shootSoundEffectType)
+        else if (PlayerSoundEffect.ShootSoundEffectTypes.Demon == shootSoundEffectType)
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
-        else if (PlayerSoundEffect.ShootSoundEffectTypes.Icegun == shootSoundEffectType)
+        else if (PlayerSoundEffect.ShootSoundEffectTypes.Ice == shootSoundEffectType)
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
@@ -107,7 +107,7 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
-        else if (PlayerSoundEffect.ShootSoundEffectTypes.Axegun == shootSoundEffectType)
+        else if (PlayerSoundEffect.ShootSoundEffectTypes.Axe == shootSoundEffectType)
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
@@ -168,14 +168,14 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
     public enum ShootSoundEffectTypes
     {
         Ak47,
-        Rifle,
+        M4a4,
         Bulldog,
-        Cowgun,
-        Crystalgun,
-        Demongun,
-        Icegun,
+        Cow,
+        Crystal,
+        Demon,
+        Ice,
         Negev,
-        Axegun,
+        Axe,
         Pistol
     }
     public enum SwordSoundEffectTypes

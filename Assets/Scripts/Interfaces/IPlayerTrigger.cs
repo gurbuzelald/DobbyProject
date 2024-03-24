@@ -29,6 +29,8 @@ internal interface IPlayerTrigger
 
     void CheckWeaponCollect(Collider other, BulletData _bulletData);
 
+    void CheckAllWeaponsLocked(BulletData bulletData);
+
     void DamageArrowDirection(ref GameObject _damageArrow);
 
     void BulletPackGrow(PlayerData _playerData, ref GameObject bulletAmountCanvas);

@@ -15,10 +15,12 @@ public class ChooseCharacterController : MonoBehaviour
 
     private PlayerController _playerController;
 
-    private GameObject characterPriceErrorTextObjects;
+    public GameObject[] characterPriceErrorTextObjects;
     private TextMeshProUGUI[] characterPriceErrorTextObjectChilds;
 
-    
+    [SerializeField] float menuSlideSpeed;
+
+
     private void Start()
     {
 
@@ -28,7 +30,7 @@ public class ChooseCharacterController : MonoBehaviour
             playerCoinData.avaliableCoin = 0;
         }
         //ResetTheCharacters();
-        playerData.avaliableCharacters[0] = "Spartacus";
+        playerData.avaliableCharacters[0] = "Dobby";
         _playerController = FindObjectOfType<PlayerController>();
 
 
@@ -47,15 +49,14 @@ public class ChooseCharacterController : MonoBehaviour
     }
     void CharacterPriceError()
     {
-        characterPriceErrorTextObjects = GameObject.Find("CharacterPriceErrorTexts");
 
-        if (characterPriceErrorTextObjects)
+        if (characterPriceErrorTextObjects.Length != 0)
         {
-            characterPriceErrorTextObjectChilds = new TextMeshProUGUI[characterPriceErrorTextObjects.transform.childCount];
+            characterPriceErrorTextObjectChilds = new TextMeshProUGUI[characterPriceErrorTextObjects.Length];
 
-            for (int i = 0; i < characterPriceErrorTextObjects.transform.childCount; i++)
+            for (int i = 0; i < characterPriceErrorTextObjects.Length; i++)
             {
-                characterPriceErrorTextObjectChilds[i] = characterPriceErrorTextObjects.transform.GetChild(i).GetComponent<TextMeshProUGUI>();
+                characterPriceErrorTextObjectChilds[i] = characterPriceErrorTextObjects[i].transform.GetComponent<TextMeshProUGUI>();
             }
         }
 
@@ -76,15 +77,15 @@ public class ChooseCharacterController : MonoBehaviour
 
             for (int i = 0; i < playerData.characterStaffs.Count; i++)
             {
-                if (playerData.characterStaffs[i].name == "SpartacusStaff")
+                if (playerData.characterStaffs[i].name == "JoleenStaff")
                 {
                     playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
 
-                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.spartacusSpeed.ToString();
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.joleenSpeed.ToString();
 
-                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.spartacusJumpForce.ToString();
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.joleenJumpForce.ToString();
 
-                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = playerData.spartacusDurability.ToString();
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = playerData.joleenDurability.ToString();
                 }
                 else if (playerData.characterStaffs[i].name == "DobbyStaff")
                 {
@@ -200,9 +201,9 @@ public class ChooseCharacterController : MonoBehaviour
     }
     void CharacterChooseStates()
     {
-        if (characterPriceErrorTextObjects)
+        if (characterPriceErrorTextObjects.Length != 0)
         {
-            ChoosedSpartacus(playerData.spartacusPrice);
+            ChoosedJoleen(playerData.joleenPrice);
             ChoosedGlassy(playerData.glassyPrice);
             ChoosedDobby(playerData.dobbyPrice);
             ChoosedLusth(playerData.lusthPrice);
@@ -219,21 +220,15 @@ public class ChooseCharacterController : MonoBehaviour
     {
         if (_playerController.characterStick.x < 0f)
         {
-            for (int i = 0; i < playerData.characterStaffs.Count; i++)
-            {
-                _panelObject.transform.position = new Vector3(_panelObject.transform.position.x - 1.5f * Time.deltaTime,
+            _panelObject.transform.position = new Vector3(_panelObject.transform.position.x - menuSlideSpeed * Time.deltaTime,
                                                              _panelObject.transform.position.y,
                                                              _panelObject.transform.position.z);
-            }
         }
         if (_playerController.characterStick.x > 0f)
         {
-            for (int i = 0; i < playerData.characterStaffs.Count; i++)
-            {
-                _panelObject.transform.position = new Vector3(_panelObject.transform.position.x + 1.5f * Time.deltaTime,
+            _panelObject.transform.position = new Vector3(_panelObject.transform.position.x + menuSlideSpeed * Time.deltaTime,
                                                              _panelObject.transform.position.y,
                                                              _panelObject.transform.position.z);
-            }
         }
         if (_panelObject.transform.localPosition.x > 0)
         {
@@ -251,13 +246,13 @@ public class ChooseCharacterController : MonoBehaviour
             playerData.avaliableCharacters[i] = playerData.unLocked;
         }
     }
-    public void ChoosedSpartacus(int avaliableCoinAmount)
+    public void ChoosedJoleen(int avaliableCoinAmount)
     {
-        if (_playerController.Spartacus && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-            playerData.currentCharacterName != PlayerData.CharacterNames.Spartacus)
+        if (_playerController.Joleen && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            playerData.currentCharacterName != PlayerData.CharacterNames.Joleen)
         {
             
-            playerData.currentCharacterName = PlayerData.CharacterNames.Spartacus;
+            playerData.currentCharacterName = PlayerData.CharacterNames.Joleen;
 
             playerCoinData.avaliableCoin -= 0;
 
@@ -265,20 +260,20 @@ public class ChooseCharacterController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
 
-            playerData.spartacusLock = playerData.unLocked;
+            playerData.joleenLock = playerData.unLocked;
 
         }
-        else if (_playerController.Spartacus && playerData.spartacusLock == playerData.unLocked)
+        else if (_playerController.Joleen && playerData.joleenLock == playerData.unLocked)
         {
-            playerData.currentCharacterName = PlayerData.CharacterNames.Spartacus;
+            playerData.currentCharacterName = PlayerData.CharacterNames.Joleen;
 
             SceneController.GetInstance.LoadMenuScene();
         }
-        else if((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.spartacusLock == playerData.locked)
+        else if((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.joleenLock == playerData.locked)
         {
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "SpartacusPriceErrorText")
+                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "JoleenPriceErrorText")
                 {
                     characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }

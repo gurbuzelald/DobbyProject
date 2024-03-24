@@ -59,14 +59,14 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
         else if (BulletData.orcSword == bulletData.currentSwordName)
         {
-            _currentSwordObject = Instantiate(bulletData.orcSwordObject,
+            _currentSwordObject = Instantiate(bulletData.orcObject,
                                    _bulletSpawnTransform.position,
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform.transform);
         }
         else if (BulletData.axeSword == bulletData.currentSwordName)
         {
-            _currentSwordObject = Instantiate(bulletData.axeObject,
+            _currentSwordObject = Instantiate(bulletData.axeSwordObject,
                                    _bulletSpawnTransform.position,
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform.transform);
@@ -129,9 +129,9 @@ public class BulletManager : AbstractBullet<BulletManager>
                                                Quaternion.identity,
                                                PlayerManager.GetInstance._gunTransform.transform);
         }
-        else if (bulletData.currentWeaponName == BulletData.rifle)
+        else if (bulletData.currentWeaponName == BulletData.m4a4)
         {
-            _currentWeaponObject = Instantiate(bulletData.rifleObject,
+            _currentWeaponObject = Instantiate(bulletData.m4a4Object,
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
@@ -143,30 +143,31 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
         }
-        else if (bulletData.currentWeaponName == BulletData.cowgun)
+        else if (bulletData.currentWeaponName == BulletData.cow)
         {
-            _currentWeaponObject = Instantiate(bulletData.cowgunObject,
+            _currentWeaponObject = Instantiate(bulletData.cowObject,
+                                    _bulletSpawnTransform.position,
+                                    Quaternion.identity,
+                                    PlayerManager.GetInstance._gunTransform.transform);
+
+        }
+        else if (bulletData.currentWeaponName == BulletData.crystal)
+        {
+            _currentWeaponObject = Instantiate(bulletData.crsytalObject,
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
         }
-        else if (bulletData.currentWeaponName == BulletData.crystalgun)
+        else if (bulletData.currentWeaponName == BulletData.demon)
         {
-            _currentWeaponObject = Instantiate(bulletData.crsytalgunObject,
+            _currentWeaponObject = Instantiate(bulletData.demonObject,
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
         }
-        else if (bulletData.currentWeaponName == BulletData.demongun)
+        else if (bulletData.currentWeaponName == BulletData.ice)
         {
-            _currentWeaponObject = Instantiate(bulletData.demongunObject,
-                                    _bulletSpawnTransform.position,
-                                    Quaternion.identity,
-                                    PlayerManager.GetInstance._gunTransform.transform);
-        }
-        else if (bulletData.currentWeaponName == BulletData.icegun)
-        {
-            _currentWeaponObject = Instantiate(bulletData.icegunObject,
+            _currentWeaponObject = Instantiate(bulletData.iceObject,
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
@@ -178,9 +179,9 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
         }
-        else if (bulletData.currentWeaponName == BulletData.axegun)
+        else if (bulletData.currentWeaponName == BulletData.axe)
         {
-            _currentWeaponObject = Instantiate(bulletData.axegunObject,
+            _currentWeaponObject = Instantiate(bulletData.axeObject,
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
@@ -209,37 +210,37 @@ public class BulletManager : AbstractBullet<BulletManager>
         {
             PlayerManager.GetInstance._gunTransform = GameObject.Find("Ak47Transform");
         }
-        else if (bulletData.currentWeaponName == BulletData.rifle)
+        else if (bulletData.currentWeaponName == BulletData.m4a4)
         {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("RifleTransform");
+            PlayerManager.GetInstance._gunTransform = GameObject.Find("M4a4Transform");
         }
         else if (bulletData.currentWeaponName == BulletData.bulldog)
         {
             PlayerManager.GetInstance._gunTransform = GameObject.Find("BulldogTransform");
         }
-        else if (bulletData.currentWeaponName == BulletData.cowgun)
+        else if (bulletData.currentWeaponName == BulletData.cow)
         {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("CowgunTransform");
+            PlayerManager.GetInstance._gunTransform = GameObject.Find("CowTransform");
         }
-        else if (bulletData.currentWeaponName == BulletData.crystalgun)
+        else if (bulletData.currentWeaponName == BulletData.crystal)
         {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("CrystalgunTransform");
+            PlayerManager.GetInstance._gunTransform = GameObject.Find("CrystalTransform");
         }
-        else if (bulletData.currentWeaponName == BulletData.demongun)
+        else if (bulletData.currentWeaponName == BulletData.demon)
         {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("DemongunTransform");
+            PlayerManager.GetInstance._gunTransform = GameObject.Find("DemonTransform");
         }
-        else if (bulletData.currentWeaponName == BulletData.icegun)
+        else if (bulletData.currentWeaponName == BulletData.ice)
         {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("IcegunTransform");
+            PlayerManager.GetInstance._gunTransform = GameObject.Find("IceTransform");
         }
         else if (bulletData.currentWeaponName == BulletData.negev)
         {
             PlayerManager.GetInstance._gunTransform = GameObject.Find("NegevTransform");
         }
-        else if (bulletData.currentWeaponName == BulletData.axegun)
+        else if (bulletData.currentWeaponName == BulletData.axe)
         {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("AxegunTransform");
+            PlayerManager.GetInstance._gunTransform = GameObject.Find("AxeTransform");
         }
         else if (bulletData.currentWeaponName == BulletData.pistol)
         {
@@ -295,24 +296,24 @@ public class BulletManager : AbstractBullet<BulletManager>
     }
     public void DestroyWeaponObject()
     {   
-        if (bulletData.isRifle)
+        if (bulletData.isM4a4)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.axegun
-                || bulletData.currentWeaponName == BulletData.crystalgun || bulletData.currentWeaponName == BulletData.demongun || 
-                bulletData.currentWeaponName == BulletData.icegun || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cowgun ||
+            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.axe
+                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon || 
+                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
                 bulletData.currentWeaponName == BulletData.pistol)
             {
                 Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.rifle;
+                bulletData.currentWeaponName = BulletData.m4a4;
                 CreateWeaponObject();
             }
-            bulletData.isRifle = false;
+            bulletData.isM4a4 = false;
         }
         else if (bulletData.isAk47)
         {
-            if (bulletData.currentWeaponName == BulletData.rifle || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.axegun
-                || bulletData.currentWeaponName == BulletData.crystalgun || bulletData.currentWeaponName == BulletData.demongun ||
-                bulletData.currentWeaponName == BulletData.icegun || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cowgun ||
+            if (bulletData.currentWeaponName == BulletData.m4a4 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.axe
+                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
+                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
                 bulletData.currentWeaponName == BulletData.pistol)
             {
                 Destroy(_currentWeaponObject);
@@ -321,24 +322,24 @@ public class BulletManager : AbstractBullet<BulletManager>
             }
             bulletData.isAk47 = false;
         }
-        else if (bulletData.isAxegun)
+        else if (bulletData.isAxe)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.rifle
-                || bulletData.currentWeaponName == BulletData.crystalgun || bulletData.currentWeaponName == BulletData.demongun ||
-                bulletData.currentWeaponName == BulletData.icegun || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cowgun ||
+            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.m4a4
+                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
+                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
                 bulletData.currentWeaponName == BulletData.pistol)
             {
                 Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.axegun;
+                bulletData.currentWeaponName = BulletData.axe;
                 CreateWeaponObject();
             }
-            bulletData.isAxegun = false;
+            bulletData.isAxe = false;
         }
         else if (bulletData.isNegev)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.axegun || bulletData.currentWeaponName == BulletData.rifle
-                || bulletData.currentWeaponName == BulletData.crystalgun || bulletData.currentWeaponName == BulletData.demongun ||
-                bulletData.currentWeaponName == BulletData.icegun || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cowgun ||
+            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.axe || bulletData.currentWeaponName == BulletData.m4a4
+                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
+                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
                 bulletData.currentWeaponName == BulletData.pistol)
             {
                 Destroy(_currentWeaponObject);
@@ -347,50 +348,50 @@ public class BulletManager : AbstractBullet<BulletManager>
             }
             bulletData.isNegev = false;
         }
-        else if (bulletData.isCrystalgun)
+        else if (bulletData.isCrystal)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.rifle
-                || bulletData.currentWeaponName == BulletData.axegun || bulletData.currentWeaponName == BulletData.demongun ||
-                bulletData.currentWeaponName == BulletData.icegun || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cowgun ||
+            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.m4a4
+                || bulletData.currentWeaponName == BulletData.axe || bulletData.currentWeaponName == BulletData.demon ||
+                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
                 bulletData.currentWeaponName == BulletData.pistol)
             {
                 Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.crystalgun;
+                bulletData.currentWeaponName = BulletData.crystal;
                 CreateWeaponObject();
             }
-            bulletData.isCrystalgun = false;
+            bulletData.isCrystal = false;
         }
-        else if (bulletData.isDemongun)
+        else if (bulletData.isDemon)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.rifle
-                || bulletData.currentWeaponName == BulletData.crystalgun || bulletData.currentWeaponName == BulletData.axegun ||
-                bulletData.currentWeaponName == BulletData.icegun || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cowgun ||
+            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.m4a4
+                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.axe ||
+                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
                 bulletData.currentWeaponName == BulletData.pistol)
             {
                 Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.demongun;
+                bulletData.currentWeaponName = BulletData.demon;
                 CreateWeaponObject();
             }
-            bulletData.isDemongun = false;
+            bulletData.isDemon = false;
         }
-        else if (bulletData.isIcegun)
+        else if (bulletData.isIce)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.rifle
-                || bulletData.currentWeaponName == BulletData.crystalgun || bulletData.currentWeaponName == BulletData.demongun ||
-                bulletData.currentWeaponName == BulletData.axegun || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cowgun ||
+            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.m4a4
+                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
+                bulletData.currentWeaponName == BulletData.axe || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
                 bulletData.currentWeaponName == BulletData.pistol)
             {
                 Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.icegun;
+                bulletData.currentWeaponName = BulletData.ice;
                 CreateWeaponObject();
             }
-            bulletData.isIcegun = false;
+            bulletData.isIce = false;
         }
         else if (bulletData.isBulldog)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.rifle
-                || bulletData.currentWeaponName == BulletData.crystalgun || bulletData.currentWeaponName == BulletData.demongun ||
-                bulletData.currentWeaponName == BulletData.icegun || bulletData.currentWeaponName == BulletData.axegun || bulletData.currentWeaponName == BulletData.cowgun ||
+            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.m4a4
+                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
+                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.axe || bulletData.currentWeaponName == BulletData.cow ||
                 bulletData.currentWeaponName == BulletData.pistol)
             {
                 Destroy(_currentWeaponObject);
@@ -399,25 +400,25 @@ public class BulletManager : AbstractBullet<BulletManager>
             }
             bulletData.isBulldog = false;
         }
-        else if (bulletData.isCowgun)
+        else if (bulletData.isCow)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.rifle
-                || bulletData.currentWeaponName == BulletData.crystalgun || bulletData.currentWeaponName == BulletData.demongun ||
-                bulletData.currentWeaponName == BulletData.icegun || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.axegun ||
+            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.m4a4
+                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
+                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.axe ||
                 bulletData.currentWeaponName == BulletData.pistol)
             {
                 Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.cowgun;
+                bulletData.currentWeaponName = BulletData.cow;
                 CreateWeaponObject();
             }
-            bulletData.isCowgun = false;
+            bulletData.isCow = false;
         }
         else if (bulletData.isPistol)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.rifle
-                || bulletData.currentWeaponName == BulletData.crystalgun || bulletData.currentWeaponName == BulletData.demongun ||
-                bulletData.currentWeaponName == BulletData.icegun || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.axegun ||
-                bulletData.currentWeaponName == BulletData.cowgun)
+            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.negev || bulletData.currentWeaponName == BulletData.m4a4
+                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
+                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.axe ||
+                bulletData.currentWeaponName == BulletData.cow)
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.pistol;
@@ -607,37 +608,37 @@ public class BulletManager : AbstractBullet<BulletManager>
         {
             PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Ak47);
         }
-        else if (bulletData.currentWeaponName == BulletData.rifle)
+        else if (bulletData.currentWeaponName == BulletData.m4a4)
         {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Rifle);
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.M4a4);
         }
         else if (bulletData.currentWeaponName == BulletData.bulldog)
         {
             PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Bulldog);
         }
-        else if (bulletData.currentWeaponName == BulletData.cowgun)
+        else if (bulletData.currentWeaponName == BulletData.cow)
         {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Cowgun);
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Cow);
         }
-        else if (bulletData.currentWeaponName == BulletData.crystalgun)
+        else if (bulletData.currentWeaponName == BulletData.crystal)
         {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Crystalgun);
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Crystal);
         }
-        else if (bulletData.currentWeaponName == BulletData.demongun)
+        else if (bulletData.currentWeaponName == BulletData.demon)
         {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Demongun);
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Demon);
         }
-        else if (bulletData.currentWeaponName == BulletData.icegun)
+        else if (bulletData.currentWeaponName == BulletData.ice)
         {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Icegun);
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Ice);
         }
         else if (bulletData.currentWeaponName == BulletData.negev)
         {
             PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Negev);
         }
-        else if (bulletData.currentWeaponName == BulletData.axegun)
+        else if (bulletData.currentWeaponName == BulletData.axe)
         {            
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Axegun);
+            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Axe);
         }
         else if (bulletData.currentWeaponName == BulletData.pistol)
         {

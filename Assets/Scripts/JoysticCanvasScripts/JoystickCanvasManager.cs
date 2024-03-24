@@ -30,7 +30,7 @@ public class JoystickCanvasManager : MonoBehaviour
     }
     void FiringMode()
     {
-        if (PlayerManager.GetInstance.bulletAmountText.text == "0")
+        if (PlayerManager.GetInstance.bulletAmountText.text == "0" && playerData.bulletPackAmount == 0)
         {
             fireButton.SetActive(false);
             fire2Button.SetActive(false);

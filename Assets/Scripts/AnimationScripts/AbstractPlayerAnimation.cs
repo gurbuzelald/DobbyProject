@@ -131,7 +131,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     public virtual void LeftWalkAnimation(PlayerData playerData, Animator _animator)
     {
         if ((!playerData.isClimbing && !playerData.isBackClimbing) &&
-            (PlayerManager.GetInstance.GetXValue() < -0.05f) &&
+            (PlayerManager.GetInstance.GetXValue() < -0.001f) &&
             Mathf.Abs(PlayerManager.GetInstance.GetXValue()) > 2 * Mathf.Abs(PlayerManager.GetInstance.GetZValue()) &&
             PlayerManager.GetInstance.GetZValue() < 0.2f &&
             !playerData.isRunning && !playerData.isSwordAnimate)
@@ -163,7 +163,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     public virtual void RightWalkAnimation(PlayerData playerData, Animator _animator)
     {
         if ((!playerData.isClimbing && !playerData.isBackClimbing) &&
-            (PlayerManager.GetInstance.GetXValue() > 0.05f) &&
+            (PlayerManager.GetInstance.GetXValue() > 0.001f) &&
             Mathf.Abs(PlayerManager.GetInstance.GetXValue()) > 2 * Mathf.Abs(PlayerManager.GetInstance.GetZValue()) &&
             PlayerManager.GetInstance.GetZValue() < 0.2f &&
             !playerData.isRunning && !playerData.isSwordAnimate)
@@ -443,6 +443,14 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(7, 0);
             _animator.SetLayerWeight(7, 1);
             _animator.SetLayerWeight(0, 0);
+            _animator.SetLayerWeight(1, 0);
+            _animator.SetLayerWeight(2, 0);
+            _animator.SetLayerWeight(3, 0);
+            _animator.SetLayerWeight(4, 0);
+            _animator.SetLayerWeight(5, 0);
+            _animator.SetLayerWeight(6, 0);
+            _animator.SetLayerWeight(8, 0);
+            _animator.SetLayerWeight(9, 0);
         }
     }
     public virtual void VictoryAnimation(PlayerData playerData, Animator _animator)

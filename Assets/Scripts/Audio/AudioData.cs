@@ -34,14 +34,14 @@ public class AudioData : ScriptableObject
 
     [Header("Weapons")]
     public AudioClip Ak47Clip;
-    public AudioClip RifleClip;
+    public AudioClip M4a4Clip;
     public AudioClip BulldogClip;
-    public AudioClip CowgunClip;
-    public AudioClip CrystalgunClip;
-    public AudioClip DemongunClip;
-    public AudioClip IcegunClip;
+    public AudioClip CowClip;
+    public AudioClip CrystalClip;
+    public AudioClip DemonClip;
+    public AudioClip IceClip;
     public AudioClip NegevClip;
-    public AudioClip AxegunClip;
+    public AudioClip AxeClip;
     public AudioClip PistolClip;
 
     [Header("Swords")]

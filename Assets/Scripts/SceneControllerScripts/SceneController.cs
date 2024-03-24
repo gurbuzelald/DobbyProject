@@ -13,6 +13,7 @@ public class SceneController : AbstractSceneController<SceneController>
     public PlayerData _playerData;
     [SerializeField] PlayerCoinData playerCoinData;
     [SerializeField] LevelData levelData;
+    [SerializeField] BulletData bulletData;
 
     private GameObject pausePanel;
     private bool pauseGame = false;
@@ -27,11 +28,89 @@ public class SceneController : AbstractSceneController<SceneController>
 
     private GameObject lockWalking;
     private TextMeshProUGUI lockWalkingText;
+
+    private TextMeshProUGUI currentLevelText;
+    private TextMeshProUGUI currentWeaponText;
+    private TextMeshProUGUI currentCharacterText;
     void Start()
     {
         DefaulthVariableValues();
+        SetCurrentLevelAtStart();
+        SetCurrentWeaponAtStart();
+        SetCurrentCharacterAtStart();
     }
-    
+
+    private void Update()
+    {
+        SetCurrentLevelAtUpdate();
+        SetCurrentWeaponAtUpdate();
+        SetCurrentCharacterAtUpdate();
+    }
+
+    void SetCurrentLevelAtStart()
+    {
+        if (GameObject.Find("CurrentLevelText"))
+        {
+            currentLevelText = GameObject.Find("CurrentLevelText").transform.GetComponent<TextMeshProUGUI>();
+
+        }
+        if (currentLevelText && levelData)
+        {
+            currentLevelText.text = levelData.currentLevel.ToString();
+        }
+    }
+    void SetCurrentLevelAtUpdate()
+    {
+        if (currentLevelText && levelData)
+        {
+            if (levelData.isLevelUp)
+            {
+                currentLevelText.text = levelData.currentLevel.ToString();
+            }
+        }
+    }
+
+    void SetCurrentWeaponAtStart()
+    {
+        if (GameObject.Find("CurrentWeaponText"))
+        {
+            currentWeaponText = GameObject.Find("CurrentWeaponText").transform.GetComponent<TextMeshProUGUI>();
+
+        }
+        if (currentWeaponText && bulletData)
+        {
+            currentWeaponText.text = bulletData.currentWeaponName.ToString();
+        }
+    }
+
+    void SetCurrentWeaponAtUpdate()
+    {
+        if (currentWeaponText && bulletData)
+        {
+            currentWeaponText.text = bulletData.currentWeaponName.ToString();
+        }
+    }
+
+    void SetCurrentCharacterAtStart()
+    {
+        if (GameObject.Find("CurrentCharacterText"))
+        {
+            currentCharacterText = GameObject.Find("CurrentCharacterText").transform.GetComponent<TextMeshProUGUI>();
+
+        }
+        if (currentCharacterText && _playerData)
+        {
+            currentCharacterText.text = _playerData.currentCharacterName.ToString();
+        }
+    }
+
+    void SetCurrentCharacterAtUpdate()
+    {
+        if (currentCharacterText && _playerData)
+        {
+            currentCharacterText.text = _playerData.currentCharacterName.ToString();
+        }
+    }
 
     void OnEnable()
     {
@@ -52,6 +131,7 @@ public class SceneController : AbstractSceneController<SceneController>
         mouseOrTouch = GameObject.Find("MouseOrTouchText");
         lockWalking = GameObject.Find("LockWalkingText");
         pausePanel = GameObject.Find("PausePanel");
+
         if (mouseOrTouch != null && lockWalking != null && _playerData != null)
         {
             mouseOrTouchText= mouseOrTouch.GetComponent<TextMeshProUGUI>();
@@ -98,8 +178,92 @@ public class SceneController : AbstractSceneController<SceneController>
         DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Level1.ToString());
-    }
 
+        DecreaseWeaponUsageLimit();
+    }
+    void DecreaseWeaponUsageLimit()
+    {
+        if (bulletData.currentWeaponName == BulletData.axe && bulletData.axeUsageLimit > 0)
+        {
+            bulletData.axeUsageLimit -= 1;
+        }
+        else if(bulletData.currentWeaponName == BulletData.axe && bulletData.axeUsageLimit == 0)
+        {
+            bulletData.currentWeaponName = BulletData.pistol;
+        }
+
+        if (bulletData.currentWeaponName == BulletData.bulldog && bulletData.bulldogUsageLimit > 0)
+        {
+            bulletData.bulldogUsageLimit -= 1;
+        }
+        else if (bulletData.currentWeaponName == BulletData.bulldog && bulletData.bulldogUsageLimit == 0)
+        {
+            bulletData.currentWeaponName = BulletData.pistol;
+        }
+
+        if (bulletData.currentWeaponName == BulletData.cow && bulletData.cowUsageLimit > 0)
+        {
+            bulletData.cowUsageLimit -= 1;
+        }
+        else if (bulletData.currentWeaponName == BulletData.cow && bulletData.cowUsageLimit == 0)
+        {
+            bulletData.currentWeaponName = BulletData.pistol;
+        }
+
+        if (bulletData.currentWeaponName == BulletData.crystal && bulletData.crystalUsageLimit > 0)
+        {
+            bulletData.crystalUsageLimit -= 1;
+        }
+        else if (bulletData.currentWeaponName == BulletData.crystal && bulletData.crystalUsageLimit == 0)
+        {
+            bulletData.currentWeaponName = BulletData.pistol;
+        }
+
+        if (bulletData.currentWeaponName == BulletData.demon && bulletData.demonUsageLimit > 0)
+        {
+            bulletData.demonUsageLimit -= 1;
+        }
+        else if (bulletData.currentWeaponName == BulletData.demon && bulletData.demonUsageLimit == 0)
+        {
+            bulletData.currentWeaponName = BulletData.pistol;
+        }
+
+        if (bulletData.currentWeaponName == BulletData.ice && bulletData.iceUsageLimit > 0)
+        {
+            bulletData.iceUsageLimit -= 1;
+        }
+        else if (bulletData.currentWeaponName == BulletData.ice && bulletData.iceUsageLimit == 0)
+        {
+            bulletData.currentWeaponName = BulletData.pistol;
+        }
+
+        if (bulletData.currentWeaponName == BulletData.negev && bulletData.negevUsageLimit > 0)
+        {
+            bulletData.negevUsageLimit -= 1;
+        }
+        else if (bulletData.currentWeaponName == BulletData.negev && bulletData.negevUsageLimit == 0)
+        {
+            bulletData.currentWeaponName = BulletData.pistol;
+        }
+
+        if (bulletData.currentWeaponName == BulletData.ak47 && bulletData.ak47UsageLimit > 0)
+        {
+            bulletData.ak47UsageLimit -= 1;
+        }
+        else if (bulletData.currentWeaponName == BulletData.ak47 && bulletData.ak47UsageLimit == 0)
+        {
+            bulletData.currentWeaponName = BulletData.pistol;
+        }
+
+        if (bulletData.currentWeaponName == BulletData.m4a4 && bulletData.m4a4UsageLimit > 0)
+        {
+            bulletData.m4a4UsageLimit -= 1;
+        }
+        else if (bulletData.currentWeaponName == BulletData.m4a4 && bulletData.m4a4UsageLimit == 0)
+        {
+            bulletData.currentWeaponName = BulletData.pistol;
+        }
+    }
     public void PlayAgainInLevel()
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
@@ -111,14 +275,20 @@ public class SceneController : AbstractSceneController<SceneController>
         DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Level1.ToString());
+
+        DecreaseWeaponUsageLimit();
     }
     public void ContinueLastLevel()
     {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         playAgain = true;
 
         DestroySingletonObjects();
 
-        SceneManager.LoadScene(Scenes.Level1.ToString());        
+        SceneManager.LoadScene(Scenes.Level1.ToString());
+
+        DecreaseWeaponUsageLimit();
     }
     public string CheckSceneName()
     {
@@ -308,15 +478,15 @@ public class SceneController : AbstractSceneController<SceneController>
         CloneDobby,
 
         //Weapons
-        rifle,
+        m4a4,
         ak47,
         bulldog,
-        cowgun,
-        crystalgun,
-        demongun,
-        icegun,
+        cow,
+        crystal,
+        demon,
+        ice,
         negev,
-        axegun,
+        axe,
         pistol,
         WeaponBox,
 
