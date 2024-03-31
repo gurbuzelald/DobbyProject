@@ -1,29 +1,29 @@
 fileFormatVersion: 2
 guid: c7e08e6d4f04f8f488e65e9893c6a5ac
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22103
   internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Guard_02
-    second: {fileID: 2100000, guid: 1015b9e02a0c91f4ab6580de30e7508e, type: 2}
+    second: {fileID: 2100000, guid: 19d68cc4c2328e948ae2469f60fc0dc0, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Guard_02__diffuse
-    second: {fileID: 2800000, guid: 25820b75cab4b45458a45bd89dd2f344, type: 3}
+    second: {fileID: 2800000, guid: 57d932d61c0aa57459f5809ef0ef44b9, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Guard_02__normal
-    second: {fileID: 2800000, guid: 03232436a0e434b4eb6d0fd17aa32f5f, type: 3}
+    second: {fileID: 2800000, guid: ebb760ceca767af42bfb21e8bd0ff6d1, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Guard_02__specular
-    second: {fileID: 2800000, guid: 1584de4f0eba28e499ab2f9caaea34ea, type: 3}
+    second: {fileID: 2800000, guid: e29dae861457c3a44bc5c242d062cf7e, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -87,6 +87,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -119,6 +120,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 

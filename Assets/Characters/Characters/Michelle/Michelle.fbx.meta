@@ -1,29 +1,34 @@
 fileFormatVersion: 2
 guid: 6a3df7a87592a814db5ab24052ac7a87
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22103
   internalIDToNameTable: []
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Ch03_Body
+    second: {fileID: 2100000, guid: 2820f181d17b780418b76eac69afdd8a, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Ch03_1001_Diffuse
-    second: {fileID: 2800000, guid: 735cfbecaa12b4240962bf617dc3fd52, type: 3}
+    second: {fileID: 2800000, guid: eec617d01cdd7b144979cdccfe97937b, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Ch03_1001_Glossiness
-    second: {fileID: 2800000, guid: 3265ff1eaecd96645b226dd929b70dc3, type: 3}
+    second: {fileID: 2800000, guid: 72b614ec6559d9940bf70e3e40faff8b, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Ch03_1001_Normal
-    second: {fileID: 2800000, guid: 4e2a7814c67100b44aa7ba89a8d0cded, type: 3}
+    second: {fileID: 2800000, guid: 8cf062123c0531749a2111b6559db544, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Ch03_1001_Specular
-    second: {fileID: 2800000, guid: 00e859bfef1951f439de6402575c8aa1, type: 3}
+    second: {fileID: 2800000, guid: aa5ac2da465d3644daa6c3cf92514aff, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -87,6 +92,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -119,6 +125,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 

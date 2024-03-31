@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &454347541 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2910071427216625845, guid: 54bf7b4b7523cb74891bb9c6a51eb0bc, type: 3}
-  m_PrefabInstance: {fileID: 2910071426798459808}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &548503343
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,7 +398,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 1618633676}
-  avaliableCoinText: {fileID: 454347541}
   playerCoinData: {fileID: 11400000, guid: 853c688538b9c714f8661972da059616, type: 2}
 --- !u!4 &1589476126
 Transform:

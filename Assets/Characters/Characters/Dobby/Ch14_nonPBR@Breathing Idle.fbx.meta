@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: e346fb823342b6140ad7453ac650bc4b
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22103
   internalIDToNameTable:
   - first:
       74: -203655887218126122
@@ -11,27 +11,27 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Ch14_Body
-    second: {fileID: 2100000, guid: 10b562255afa4c44eb8de37c072e6f7c, type: 2}
+    second: {fileID: 2100000, guid: d5896e0056f1b4f43a131eb7c460da44, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Ch14_1001_Diffuse
-    second: {fileID: 2800000, guid: 3cadd55e43021f9469ff9ee4eb689cf5, type: 3}
+    second: {fileID: 2800000, guid: 579fd9d9810a47b4c8668c9e515429e5, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Ch14_1001_Glossiness
-    second: {fileID: 2800000, guid: c84ded831db63bc4e94a5bba83c6bc71, type: 3}
+    second: {fileID: 2800000, guid: 464f8292b1725b3408350c16ea3b6e33, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Ch14_1001_Normal
-    second: {fileID: 2800000, guid: 6e6f859bac3de0147a6d29a883c4af51, type: 3}
+    second: {fileID: 2800000, guid: d28fcb15847357249be95477862f7d79, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Ch14_1001_Specular
-    second: {fileID: 2800000, guid: 353b838ff0b1f4f4f9207a83856f525c, type: 3}
+    second: {fileID: 2800000, guid: 29a4f34f69af506429fcb564bb3fae44, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -124,6 +124,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -156,6 +157,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 

@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 05682cd867ef28245829d773ad5b75cc
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22103
   internalIDToNameTable:
   - first:
       74: -203655887218126122
@@ -11,27 +11,27 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: WhiteClown_material
-    second: {fileID: 2100000, guid: 1e2ac3c8545045b4aacd67833840fcdc, type: 2}
+    second: {fileID: 2100000, guid: fb8fb74eb69e61e49b9ce6a716b45964, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: whiteclown_diffuse
-    second: {fileID: 2800000, guid: 9c4243eab28c4bf4f8bf5c4c3ab15144, type: 3}
+    second: {fileID: 2800000, guid: 8f5e5f30c31e7da4b8532b3161085167, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: whiteclown_normal
-    second: {fileID: 2800000, guid: 378608b6f8dd7cc4a8d69c188c4a562f, type: 3}
+    second: {fileID: 2800000, guid: d5caf5b0ed8906843906fb5c7c846b01, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: whiteclown_specular
-    second: {fileID: 2800000, guid: ea62a09f6f042a34ab9a7b1025c8be85, type: 3}
+    second: {fileID: 2800000, guid: 996dd51575b887045858591b3a577e05, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -119,6 +119,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -151,6 +152,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 

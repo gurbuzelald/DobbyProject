@@ -8,9 +8,13 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
     private Animator _animator;
 
     [Header("Data")]
-    public PlayerData playerData;
-    public PlayerData cloneData;
+    private PlayerData playerData;
 
+
+    private void Start()
+    {
+        playerData = this.gameObject.transform.parent.transform.parent.GetComponent<PlayerManager>()._playerData;
+    }
     void OnEnable()
     {
         _animator = GetComponent<Animator>();
@@ -33,7 +37,7 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
         ClimbAnimation(playerData, _animator);
         FireNonWalkAnimation(playerData, _animator);
         SwordAnimation(playerData, _animator);
-        DeathAnimation(playerData, _animator, cloneData);
+        DeathAnimation(playerData, _animator);
         VictoryAnimation(playerData, _animator);
         SkateBoardAnimation(playerData, _animator);
         RunAnimation(playerData, _animator);

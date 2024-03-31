@@ -10,11 +10,13 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
 
     [Header("Data")]
     private EnemyData _enemyData;
-    public PlayerData _playerData;
+    private PlayerData _playerData;
     private EnemyManager _enemyManager;
 
     void Start()
     {
+        _playerData = gameObject.transform.parent.GetComponent<EnemyManager>().playerData;
+
         _enemyManager = gameObject.transform.parent.GetComponent<EnemyManager>();
 
         _enemyData = _enemyManager.enemyData;

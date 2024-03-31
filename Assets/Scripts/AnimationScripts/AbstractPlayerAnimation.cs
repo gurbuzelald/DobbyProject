@@ -434,7 +434,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(1, 0);
         }
     }
-    public virtual void DeathAnimation(PlayerData playerData, Animator _animator, PlayerData cloneData)
+    public virtual void DeathAnimation(PlayerData playerData, Animator _animator)
     {
         if (playerData.isDying && 
             !playerData.isSwordAnimate)

@@ -1,39 +1,39 @@
 fileFormatVersion: 2
 guid: 88033f40d3fd0b24ea6c835150b0ff8d
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22103
   internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: survivor_MAT
-    second: {fileID: 2100000, guid: 419fa93b435122349ba465129ce2a502, type: 2}
+    second: {fileID: 2100000, guid: b43a4089578d6dd4087c6e6415aa8377, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: survivor_MAT1
-    second: {fileID: 2100000, guid: 935e2df13ba873c4493762e69415acee, type: 2}
+    second: {fileID: 2100000, guid: 1a10f7997bf3a7d40a8926885b375cec, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Survivor_body_diffuse
-    second: {fileID: 2800000, guid: b1ddb985879aaca41a5ac394dacdd6bf, type: 3}
+    second: {fileID: 2800000, guid: 05b75804d5e4a4c4994c9e9c0df02442, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Survivor_diffuse
-    second: {fileID: 2800000, guid: 3438a95a07381044093e1177d13fa8ee, type: 3}
+    second: {fileID: 2800000, guid: e17c7b003090b5b4cb76078d848ab229, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Survivor_normal
-    second: {fileID: 2800000, guid: a9dd63ef71b6dab41a582a8c32cce240, type: 3}
+    second: {fileID: 2800000, guid: 1eb9a2e8df7f17049b4de945bd5335ad, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: Survivor_specular
-    second: {fileID: 2800000, guid: d9f70611a4548214587d96a6abd70660, type: 3}
+    second: {fileID: 2800000, guid: 1f997274ca2428c4191fb684d2e4b9ae, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -97,6 +97,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -129,6 +130,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 

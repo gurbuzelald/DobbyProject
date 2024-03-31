@@ -1,29 +1,29 @@
 fileFormatVersion: 2
 guid: cb288b8f5a125b44cab9a2e77fbd729f
 ModelImporter:
-  serializedVersion: 21300
+  serializedVersion: 22103
   internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: FitGrandma_Brows_MAT1
-    second: {fileID: 2100000, guid: 05ad7bc62d3c43a4dbd0d6a14c3b5d44, type: 2}
+    second: {fileID: 2100000, guid: a98ce3b67937e1948a7cbb6d1bae3f3f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: FitGrandma_Eyes_MAT1
-    second: {fileID: 2100000, guid: 7a5fa89a937b9d34397c5dab80cc2f97, type: 2}
+    second: {fileID: 2100000, guid: 76a2ed379beea0149baff02c21e71822, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: FitGrandma_Mouth_MAT1
-    second: {fileID: 2100000, guid: 43540300bc026e344a10effb99f0ba91, type: 2}
+    second: {fileID: 2100000, guid: e8d5bbadf05a73d4497ab40a2563a7ff, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Grandma_MAT
-    second: {fileID: 2100000, guid: 05511d617621029489a9da8a204fc9ee, type: 2}
+    second: {fileID: 2100000, guid: 34ac51bf0dfd15a4a8902dc87f03456f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -33,22 +33,22 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: FitnessGrandma_FaceAnimMap
-    second: {fileID: 2800000, guid: 97702125fd922dc4fbff272842365813, type: 3}
+    second: {fileID: 2800000, guid: a5590ebb4fe766c4c80c6c5b9f85e563, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: FitnessGrandma_diffuse
-    second: {fileID: 2800000, guid: d23d3711336e39e47a957570a54d9c52, type: 3}
+    second: {fileID: 2800000, guid: 8b9f8db912b4659429500769ee3e9532, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: FitnessGrandma_normal
-    second: {fileID: 2800000, guid: 7b864193bcfc4174a941cc7c2f01d470, type: 3}
+    second: {fileID: 2800000, guid: 82651ba0b610b534388c619fa523d173, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: FitnessGrandma_spec
-    second: {fileID: 2800000, guid: c29694e95ea87a04da3062150b3a473f, type: 3}
+    second: {fileID: 2800000, guid: f82d6228761f1144e87ab38789789df5, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -112,6 +112,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -144,6 +145,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
