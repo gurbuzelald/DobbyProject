@@ -114,7 +114,10 @@ public class BulletManager : AbstractBullet<BulletManager>
                                    Quaternion.identity,
                                    PlayerManager.GetInstance._swordTransform.transform);
         }
-        _currentSwordObject.SetActive(false);
+        if (_currentSwordObject)
+        {
+            _currentSwordObject.SetActive(true);
+        }
 
         _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.transform.position;
 
@@ -581,15 +584,19 @@ public class BulletManager : AbstractBullet<BulletManager>
 
         BulletRotation(PlayerManager.GetInstance._currentCamera,
                        _bulletSpawnTransform);
-        
+
+        SwordFire();
+        WeaponFire();
+    }
+    public void SwordFire()
+    {
         if (_playerData.isSwording && !_playerData.isFireNonWalk && bulletData.bulletDelayCounter == 0 && _playerData.isSwordTime)
         {
-           
+
             bulletData.bulletDelayCounter++;
 
-            StartCoroutine(Delay(bulletData.weaponBulletDelay, 2));
+            StartCoroutine(Delay(bulletData.swordBulletDelay, 2));
         }
-        WeaponFire();
     }
 
     public void WeaponFire()
