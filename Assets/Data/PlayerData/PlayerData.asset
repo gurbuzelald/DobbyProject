@@ -121,10 +121,10 @@ MonoBehaviour:
   bossPrice: 800
   tyPrice: 900
   mremirehPrice: 1000
-  playerSpeed: 2
+  playerSpeed: 50
   skateBoardSpeed: 1
-  slideWalkSpeed: 7
-  backWalkingSpeed: 6
+  slideWalkSpeed: 30
+  backWalkingSpeed: 30
   fireWalkSpeed: 3
   climbSpeed: 3
   lockedSpeed: 3
@@ -133,7 +133,7 @@ MonoBehaviour:
   michelleSpeed: 8
   glassySpeed: 10
   ajSpeed: 9
-  eveSpeed: 15
+  eveSpeed: 50
   mremirehSpeed: 7
   lusthSpeed: 13
   joleenSpeed: 10
@@ -195,9 +195,9 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 21
+  bulletAmount: 0
   bulletPack: 21
-  bulletPackAmount: 2
+  bulletPackAmount: 0
   isTouchableSkate: 1
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

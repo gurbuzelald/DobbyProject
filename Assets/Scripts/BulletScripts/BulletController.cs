@@ -9,7 +9,7 @@ public class BulletController : MonoBehaviour
     public LayerMask layerMask;
     public PlayerData playerData;
     public BulletData bulletData;
-    [SerializeField] float delayFalseBulletValue;
+    [SerializeField] float delayFalseWhenTriggerEnemy;
    
     private void Update()
     {
@@ -56,10 +56,9 @@ public class BulletController : MonoBehaviour
         if (gameObject.transform.name == "WeaponBullet(Clone)")
         {
             if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) || 
-                other.gameObject.CompareTag(SceneController.Tags.WeaponBox.ToString()) ||
-                other.gameObject.CompareTag(SceneController.Tags.Ground.ToString()))
+                other.gameObject.CompareTag(SceneController.Tags.WeaponBox.ToString()))
             {
-                StartCoroutine(DelayFalseBulletObject(delayFalseBulletValue));
+                StartCoroutine(DelayFalseBulletObject(delayFalseWhenTriggerEnemy));
             }
         }
     }
