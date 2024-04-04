@@ -18,6 +18,7 @@ public class TimeController : MonoBehaviour
 
     [SerializeField] EnemyData enemyData;
     [SerializeField] LevelData levelData;
+    [SerializeField] BulletData bulletData;
     public PlayerData playerData;
 
     public int initialTimeValue = 300;
@@ -93,7 +94,7 @@ public class TimeController : MonoBehaviour
     }
     public void WeaponTimer(PlayerData playerData)
     {
-        if ((playerData.isFireNonWalk || playerData.isFireWalk) && _weaponTime >= 0f)
+        if ((playerData.isFireNonWalk || playerData.isFireWalk) && _weaponTime >= bulletData.currentShootFrequency)
         {
             playerData.isFireTime = true;
             _weaponTime = 0;

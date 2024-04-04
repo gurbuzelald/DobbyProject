@@ -177,7 +177,7 @@ public class SceneController : AbstractSceneController<SceneController>
 
         DestroySingletonObjects();
 
-        SceneManager.LoadScene(Scenes.Level1.ToString());
+        SceneManager.LoadScene(Scenes.Game.ToString());
 
         DecreaseWeaponUsageLimit();
     }
@@ -274,7 +274,7 @@ public class SceneController : AbstractSceneController<SceneController>
 
         DestroySingletonObjects();
 
-        SceneManager.LoadScene(Scenes.Level1.ToString());
+        SceneManager.LoadScene(Scenes.Game.ToString());
 
         DecreaseWeaponUsageLimit();
     }
@@ -286,7 +286,7 @@ public class SceneController : AbstractSceneController<SceneController>
 
         DestroySingletonObjects();
 
-        SceneManager.LoadScene(Scenes.Level1.ToString());
+        SceneManager.LoadScene(Scenes.Game.ToString());
 
         DecreaseWeaponUsageLimit();
     }
@@ -496,6 +496,6 @@ public class SceneController : AbstractSceneController<SceneController>
     }
     public enum Scenes
     {
-        Menu, End, Win, Level1, CharacterChoose, SwordChoose, WeaponChoose
+        Menu, End, Win, Game, CharacterChoose, SwordChoose, WeaponChoose
     }
 }

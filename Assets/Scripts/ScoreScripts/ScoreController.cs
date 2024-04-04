@@ -36,7 +36,10 @@ public class ScoreController : AbstractPlayer<ScoreController>
         readWrite.SaveCoinToJson();
 
         //Debug.Log(playerCoinData.avaliableCoin);
-        if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())
+        if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString() ||
+            SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.CharacterChoose.ToString() ||
+            SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.End.ToString() ||
+            SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Win.ToString())
         {
             _scoreAmount = 0;
             PlayerPrefs.SetInt("ScoreAmount", 0);
@@ -44,7 +47,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
         else if (SceneController.playAgain)
         {
             playerCoinData.avaliableCoin -= PlayerPrefs.GetInt("ScoreAmount");
-            //Buraya PlayerCoinData koyulacak. (Json için)
+            //Buraya PlayerCoinData koyulacak. (Json i?in)
 
             _scoreAmount = 0;
             PlayerPrefs.SetInt("ScoreAmount", 0);

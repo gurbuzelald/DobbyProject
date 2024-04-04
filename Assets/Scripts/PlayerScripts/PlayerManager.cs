@@ -1,9 +1,11 @@
 using Cinemachine;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PlayerManager : AbstractPlayer<PlayerManager>
 {
@@ -241,7 +243,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         if (Mathf.Abs(gameObject.transform.position.z) > Mathf.Abs(MapController.currentMap.transform.position.z * 2 - 1f))
         {
             Debug.Log(gameObject.transform.position);
-            Debug.Log("Büyük");
+            Debug.Log("B?y?k");
 
             gameObject.transform.position = new Vector3(gameObject.transform.position.x,
                                                         gameObject.transform.position.y,
@@ -250,7 +252,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         else if (Mathf.Abs(gameObject.transform.position.z) < Mathf.Abs(MapController.currentMap.transform.position.z / 2 - 1f))
         {
             Debug.Log(gameObject.transform.position);
-            Debug.Log("Küçük");
+            Debug.Log("K???k");
             gameObject.transform.position = new Vector3(gameObject.transform.position.x,
                                                         gameObject.transform.position.y,
                                                         MapController.currentMap.transform.position.z / 2 - 1.1f);

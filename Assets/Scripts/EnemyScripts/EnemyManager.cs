@@ -90,6 +90,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         FollowPlayer();
 
         enemyData.enemySpeed = levelData.currentEnemySpeed;
+
+        if (levelData.isLevelUp)
+        {
+            enemyData = enemyListData[enemyDataNumber];
+            bulletData = enemyListBulletData[enemyBulletDataNumber];
+        }
     }
 
     void FollowPlayer()

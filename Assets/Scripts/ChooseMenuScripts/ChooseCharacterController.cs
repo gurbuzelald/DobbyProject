@@ -18,6 +18,8 @@ public class ChooseCharacterController : MonoBehaviour
     public GameObject[] characterPriceErrorTextObjects;
     private TextMeshProUGUI[] characterPriceErrorTextObjectChilds;
 
+    public GameObject[] characterStaffs;
+
     [SerializeField] float menuSlideSpeed;
 
 
@@ -66,18 +68,29 @@ public class ChooseCharacterController : MonoBehaviour
     
     void SetCharacterInfos()
     {
-        if (gameObject.transform.GetChild(1).gameObject.name == "Panel")
+        if (gameObject.transform.GetChild(1).gameObject.name == "CharacterPanel")
         {
             playerData.characterStaffs = new Dictionary<int, GameObject>();
 
-            for (int i = 0; i < gameObject.transform.GetChild(1).GetChild(0).childCount; i++)
+            //Debug.Log(characterStaffs.Length);
+            for (int i = 0; i < characterStaffs.Length; i++)
             {
-                playerData.characterStaffs[i] = gameObject.transform.GetChild(1).GetChild(1).GetChild(i).gameObject;
+                playerData.characterStaffs[i] = characterStaffs[i];
             }
 
             for (int i = 0; i < playerData.characterStaffs.Count; i++)
             {
-                if (playerData.characterStaffs[i].name == "JoleenStaff")
+                
+                if (playerData.characterStaffs[i].name == "DobbyStaff")
+                {
+                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.dobbySpeed.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.dobbyJumpForce.ToString();
+
+                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = playerData.dobbyDurability.ToString();
+                }
+                else if (playerData.characterStaffs[i].name == "JoleenStaff")
                 {
                     playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
 
@@ -86,16 +99,6 @@ public class ChooseCharacterController : MonoBehaviour
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.joleenJumpForce.ToString();
 
                     playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = playerData.joleenDurability.ToString();
-                }
-                else if (playerData.characterStaffs[i].name == "DobbyStaff")
-                {
-                    playerData.characterStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
-
-                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = playerData.dobbySpeed.ToString();
-
-                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(1).GetComponent<TextMeshProUGUI>().text = playerData.dobbyJumpForce.ToString();
-
-                    playerData.characterStaffs[i].transform.GetChild(1).GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = playerData.dobbyDurability.ToString();
                 }
                 else if (playerData.characterStaffs[i].name == "GlassyStaff")
                 {

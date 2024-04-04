@@ -131,6 +131,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                                _bulletSpawnTransform.position,
                                                Quaternion.identity,
                                                PlayerManager.GetInstance._gunTransform.transform);
+
+            bulletData.currentShootFrequency = bulletData.ak47ShootFrequency;
         }
         else if (bulletData.currentWeaponName == BulletData.m4a4)
         {
@@ -138,6 +140,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
+
+            bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
         }
         else if (bulletData.currentWeaponName == BulletData.bulldog)
         {
@@ -145,6 +149,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
+
+            bulletData.currentShootFrequency = bulletData.bulldogShootFrequency;
         }
         else if (bulletData.currentWeaponName == BulletData.cow)
         {
@@ -153,6 +159,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
 
+            bulletData.currentShootFrequency = bulletData.cowShootFrequency;
+
         }
         else if (bulletData.currentWeaponName == BulletData.crystal)
         {
@@ -160,6 +168,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
+
+            bulletData.currentShootFrequency = bulletData.crystalShootFrequency;
         }
         else if (bulletData.currentWeaponName == BulletData.demon)
         {
@@ -167,6 +177,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
+
+            bulletData.currentShootFrequency = bulletData.demonShootFrequency;
         }
         else if (bulletData.currentWeaponName == BulletData.ice)
         {
@@ -174,6 +186,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
+
+            bulletData.currentShootFrequency = bulletData.iceShootFrequency;
         }
         else if (bulletData.currentWeaponName == BulletData.negev)
         {
@@ -181,6 +195,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
+
+            bulletData.currentShootFrequency = bulletData.negevShootFrequency;
         }
         else if (bulletData.currentWeaponName == BulletData.axe)
         {
@@ -188,6 +204,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
+
+            bulletData.currentShootFrequency = bulletData.axeShootFrequency;
         }
         else if (bulletData.currentWeaponName == BulletData.pistol)
         {
@@ -195,6 +213,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     _bulletSpawnTransform.position,
                                     Quaternion.identity,
                                     PlayerManager.GetInstance._gunTransform.transform);
+
+            bulletData.currentShootFrequency = bulletData.pistolShootFrequency;
         }
         else
         {
@@ -308,6 +328,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.m4a4;
+                bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
                 CreateWeaponObject();
             }
             bulletData.isM4a4 = false;
@@ -321,6 +342,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.ak47;
+                bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
                 CreateWeaponObject();
             }
             bulletData.isAk47 = false;
@@ -334,6 +356,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.axe;
+                bulletData.currentShootFrequency = bulletData.axeShootFrequency;
                 CreateWeaponObject();
             }
             bulletData.isAxe = false;
@@ -347,6 +370,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.negev;
+                bulletData.currentShootFrequency = bulletData.negevShootFrequency;
                 CreateWeaponObject();
             }
             bulletData.isNegev = false;
@@ -360,6 +384,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.crystal;
+                bulletData.currentShootFrequency = bulletData.crystalShootFrequency;
                 CreateWeaponObject();
             }
             bulletData.isCrystal = false;
@@ -373,6 +398,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.demon;
+                bulletData.currentShootFrequency = bulletData.demonShootFrequency;
                 CreateWeaponObject();
             }
             bulletData.isDemon = false;
@@ -386,6 +412,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.ice;
+                bulletData.currentShootFrequency = bulletData.iceShootFrequency;
                 CreateWeaponObject();
             }
             bulletData.isIce = false;
@@ -399,6 +426,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.bulldog;
+                bulletData.currentShootFrequency = bulletData.bulldogShootFrequency;
                 CreateWeaponObject();
             }
             bulletData.isBulldog = false;
@@ -412,6 +440,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.cow;
+                bulletData.currentShootFrequency = bulletData.cowShootFrequency;
                 CreateWeaponObject();
             }
             bulletData.isCow = false;
@@ -425,6 +454,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.pistol;
+                bulletData.currentShootFrequency = bulletData.pistolShootFrequency;
                 CreateWeaponObject();
             }
             bulletData.isPistol = false;

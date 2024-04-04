@@ -206,6 +206,8 @@ public class EnemySpawner : MonoBehaviour
             currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
                                                              10f,
                                                              enemyTransformObject.transform.GetChild(i).position.z);
+            currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
+            currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
         }
     }
 }

@@ -35,7 +35,7 @@ MonoBehaviour:
   skeletonEnemyBulletDamage: 30
   urielEnemyBulletDamage: 33
   goblinEnemyBulletDamage: 35
-  currentEnemyCollisionDamage: 14
+  currentEnemyCollisionDamage: 22
   clownEnemyCollisionDamage: 10
   monsterEnemyCollisionDamage: 15
   prisonerEnemyCollisionDamage: 20
@@ -60,8 +60,8 @@ MonoBehaviour:
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
   isDecreaseHealth: 0
   damageHealthText: {fileID: 0}
-  decreaseCounter: 0
-  currentCharacterName: 5
+  decreaseCounter: 1
+  currentCharacterName: 2
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
   glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
@@ -74,17 +74,17 @@ MonoBehaviour:
   aj: {fileID: 2416847389608877635, guid: a700b507a30e0be4ead42ca0bfc5c998, type: 3}
   mremireh: {fileID: 3269665489637412912, guid: cc265cd48b1f31c4cbb86e276d4a94d0, type: 3}
   ty: {fileID: 5945881725241583734, guid: 5dbe1f8c957aa354d8786aba50aaf083, type: 3}
-  dobbyLock: 
-  glassyLock: 
-  joleenLock: 
-  guardLock: 
-  lusthLock: 
-  eveLock: 
-  michelleLock: 
-  ajLock: 
-  bossLock: 
-  mremirehLock: 
-  tyLock: 
+  dobbyLock: Locked
+  glassyLock: Locked
+  joleenLock: Locked
+  guardLock: Locked
+  lusthLock: Locked
+  eveLock: Locked
+  michelleLock: Locked
+  ajLock: Locked
+  bossLock: Locked
+  mremirehLock: Locked
+  tyLock: Locked
   resetLocks: Locked
   locked: Locked
   unLocked: 
@@ -110,8 +110,8 @@ MonoBehaviour:
   sensivityY: 5
   isTouchFinish: 0
   isLose: 0
-  joleenPrice: 0
-  dobbyPrice: 100
+  joleenPrice: 100
+  dobbyPrice: 0
   glassyPrice: 200
   lusthPrice: 300
   guardPrice: 400
@@ -129,17 +129,17 @@ MonoBehaviour:
   climbSpeed: 3
   lockedSpeed: 3
   rotateSpeed: 6
-  dobbySpeed: 12
-  michelleSpeed: 8
-  glassySpeed: 10
-  ajSpeed: 9
+  dobbySpeed: 50
+  michelleSpeed: 43
+  glassySpeed: 44
+  ajSpeed: 45
   eveSpeed: 50
-  mremirehSpeed: 7
-  lusthSpeed: 13
-  joleenSpeed: 10
-  bossSpeed: 10
-  tySpeed: 9
-  guardSpeed: 8
+  mremirehSpeed: 41
+  lusthSpeed: 42
+  joleenSpeed: 48
+  bossSpeed: 40
+  tySpeed: 45
+  guardSpeed: 40
   currentJumpForce: 6
   dobbyJumpForce: 6
   michelleJumpForce: 7
@@ -181,7 +181,7 @@ MonoBehaviour:
   isSwordAnimate: 0
   isLookingUp: 0
   isDestroyed: 0
-  isPlayable: 1
+  isPlayable: 0
   isFireNonWalk: 0
   isFireWalk: 0
   isFireTime: 0
@@ -195,9 +195,9 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 0
+  bulletAmount: 21
   bulletPack: 21
-  bulletPackAmount: 0
+  bulletPackAmount: 2
   isTouchableSkate: 1
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}
