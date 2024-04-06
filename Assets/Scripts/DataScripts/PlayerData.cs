@@ -23,6 +23,7 @@ public class PlayerData : ScriptableObject
     public int monsterEnemyAttackDamage;
     public int prisonerEnemyAttackDamage;
     public int pedrosoEnemyAttackDamage;
+    public int copEnemyAttackDamage;
     public int morakEnemyAttackDamage;
     public int ortizEnemyAttackDamage;
     public int skeletonEnemyAttackDamage;
@@ -35,6 +36,7 @@ public class PlayerData : ScriptableObject
     public int monsterEnemyBulletDamage;
     public int prisonerEnemyBulletDamage;
     public int pedrosoEnemyBulletDamage;
+    public int copEnemyBulletDamage;
     public int morakEnemyBulletDamage;
     public int ortizEnemyBulletDamage;
     public int skeletonEnemyBulletDamage;
@@ -45,8 +47,9 @@ public class PlayerData : ScriptableObject
     public int currentEnemyCollisionDamage;
     public int clownEnemyCollisionDamage;
     public int monsterEnemyCollisionDamage;
-    public int prisonerEnemyCollisionDamage;
+    public int prisonerEnemyCollisionDamage;    
     public int pedrosoEnemyCollisionDamage;
+    public int copEnemyCollisionDamage;
     public int morakEnemyCollisionDamage;
     public int ortizEnemyCollisionDamage;
     public int skeletonEnemyCollisionDamage;
@@ -80,6 +83,7 @@ public class PlayerData : ScriptableObject
     public const string skeleton = "Skeleton(Clone)";
     public const string uriel = "Uriel(Clone)";
     public const string goblin = "Goblin(Clone)";
+    public const string cop = "Cop(Clone)";
 
 
     [Header("Player Level Spawns")]

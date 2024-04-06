@@ -66,6 +66,10 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
         {
             _playerData.currentEnemyBulletDamage = _playerData.goblinEnemyBulletDamage;
         }
+        else if (_playerData.currentEnemyName == PlayerData.cop)
+        {
+            _playerData.currentEnemyBulletDamage = _playerData.copEnemyBulletDamage;
+        }
     }
     private void Start()
     {
@@ -77,10 +81,8 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     }
     void RayBullet(float enemyFireFrequency)
     {
-        if (!enemyData.isDying && bulletData.enemyBulletDelayCounter < 1 &&
-            bulletData.enemyBulletDelayCounter >= 0 && 
-            enemyData.isActivateMagnet && bulletData.isFirable &&
-            !playerData.isDying)
+        if (!enemyData.isDying && bulletData.isFirable &&
+            !playerData.isDying && bulletData.enemyBulletDelayCounter == 0)
         {
             GameObject enemySpawner = GameObject.Find("EnemySpawner");
 

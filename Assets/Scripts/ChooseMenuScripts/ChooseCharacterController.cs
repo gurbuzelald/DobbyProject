@@ -28,7 +28,6 @@ public class ChooseCharacterController : MonoBehaviour
 
         if (playerCoinData.avaliableCoin < 0)
         {
-            Debug.Log("Coin is lower then zero");
             playerCoinData.avaliableCoin = 0;
         }
         //ResetTheCharacters();

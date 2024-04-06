@@ -14,6 +14,10 @@ public class ScoreController : AbstractPlayer<ScoreController>
     private JsonReadAndWriteSystem readWrite;
     void Start()
     {
+        if (playerCoinData.avaliableCoin < 0)
+        {
+            playerCoinData.avaliableCoin = 0;
+        }
         if (GameObject.Find("AvaliableCoinTextValue"))
         {
             avaliableCoinText = GameObject.Find("AvaliableCoinTextValue").transform.GetComponent<TextMeshProUGUI>();
@@ -36,10 +40,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
         readWrite.SaveCoinToJson();
 
         //Debug.Log(playerCoinData.avaliableCoin);
-        if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString() ||
-            SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.CharacterChoose.ToString() ||
-            SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.End.ToString() ||
-            SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Win.ToString())
+        if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())
         {
             _scoreAmount = 0;
             PlayerPrefs.SetInt("ScoreAmount", 0);

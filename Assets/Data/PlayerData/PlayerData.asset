@@ -20,6 +20,7 @@ MonoBehaviour:
   monsterEnemyAttackDamage: 5
   prisonerEnemyAttackDamage: 10
   pedrosoEnemyAttackDamage: 15
+  copEnemyAttackDamage: 18
   morakEnemyAttackDamage: 20
   ortizEnemyAttackDamage: 23
   skeletonEnemyAttackDamage: 25
@@ -30,6 +31,7 @@ MonoBehaviour:
   monsterEnemyBulletDamage: 11
   prisonerEnemyBulletDamage: 16
   pedrosoEnemyBulletDamage: 21
+  copEnemyBulletDamage: 23
   morakEnemyBulletDamage: 25
   ortizEnemyBulletDamage: 28
   skeletonEnemyBulletDamage: 30
@@ -40,6 +42,7 @@ MonoBehaviour:
   monsterEnemyCollisionDamage: 15
   prisonerEnemyCollisionDamage: 20
   pedrosoEnemyCollisionDamage: 22
+  copEnemyCollisionDamage: 24
   morakEnemyCollisionDamage: 25
   ortizEnemyCollisionDamage: 27
   skeletonEnemyCollisionDamage: 29
@@ -56,9 +59,9 @@ MonoBehaviour:
   ajDurability: 2
   mremirehDurability: 9
   tyDurability: 2
-  currentEnemyName: Clown(Clone)
+  currentEnemyName: Cop(Clone)
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
-  isDecreaseHealth: 0
+  isDecreaseHealth: 1
   damageHealthText: {fileID: 0}
   decreaseCounter: 1
   currentCharacterName: 2
@@ -121,7 +124,7 @@ MonoBehaviour:
   bossPrice: 800
   tyPrice: 900
   mremirehPrice: 1000
-  playerSpeed: 50
+  playerSpeed: 48
   skateBoardSpeed: 1
   slideWalkSpeed: 30
   backWalkingSpeed: 30
@@ -140,7 +143,7 @@ MonoBehaviour:
   bossSpeed: 40
   tySpeed: 45
   guardSpeed: 40
-  currentJumpForce: 6
+  currentJumpForce: 8
   dobbyJumpForce: 6
   michelleJumpForce: 7
   glassyJumpForce: 6
@@ -181,7 +184,7 @@ MonoBehaviour:
   isSwordAnimate: 0
   isLookingUp: 0
   isDestroyed: 0
-  isPlayable: 0
+  isPlayable: 1
   isFireNonWalk: 0
   isFireWalk: 0
   isFireTime: 0

@@ -457,6 +457,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.currentEnemyAttackDamage = _playerData.goblinEnemyAttackDamage;
         }
+        else if (_playerData.currentEnemyName == PlayerData.cop)
+        {
+            _playerData.currentEnemyAttackDamage = _playerData.copEnemyAttackDamage;
+        }
     }
     IEnumerator DelayDecreaseCounterZero(PlayerData _playerData)
     {
@@ -1219,6 +1223,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.currentEnemyCollisionDamage = _playerData.goblinEnemyCollisionDamage;
         }
+        else if (_playerData.currentEnemyName == PlayerData.cop)
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.copEnemyCollisionDamage;
+        }
     }
     #endregion
 
@@ -1297,7 +1305,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                                        ref TextMeshProUGUI damageHealthText)
     {
         _healthBarSlider.value -= CharacterDurability(damageHealthValue, ref playerData);
-        _topCanvasHealthBarSlider.value = _healthBarSlider.value;
+        _topCanvasHealthBarSlider.value -= _healthBarSlider.value;
 
         damageHealthText.enabled = true;
 
