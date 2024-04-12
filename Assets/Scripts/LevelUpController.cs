@@ -78,7 +78,7 @@ public class LevelUpController : MonoBehaviour
         {
             mapController = mapControllerObject.GetComponent<MapController>();
         }
-        
+        coinSpawner.SetCoinValue(currentLevelCount);
     }
 
     private void Update()
@@ -91,6 +91,8 @@ public class LevelUpController : MonoBehaviour
         ArrowLevelRotation(currentLevelCount);
         SetEnemySpeed();
     }
+
+    
     
     void LevelCount()
     {
@@ -140,6 +142,7 @@ public class LevelUpController : MonoBehaviour
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
             coinSpawner.CreateCoins(currentLevelCount);
+            coinSpawner.SetCoinValue(currentLevelCount);
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
@@ -161,6 +164,7 @@ public class LevelUpController : MonoBehaviour
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
             coinSpawner.CreateCoins(currentLevelCount);
+            coinSpawner.SetCoinValue(currentLevelCount);
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
@@ -181,6 +185,7 @@ public class LevelUpController : MonoBehaviour
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
             coinSpawner.CreateCoins(currentLevelCount);
+            coinSpawner.SetCoinValue(currentLevelCount);
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
@@ -201,6 +206,7 @@ public class LevelUpController : MonoBehaviour
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
             coinSpawner.CreateCoins(currentLevelCount);
+            coinSpawner.SetCoinValue(currentLevelCount);
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
@@ -222,6 +228,7 @@ public class LevelUpController : MonoBehaviour
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
             coinSpawner.CreateCoins(currentLevelCount);
+            coinSpawner.SetCoinValue(currentLevelCount);
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
@@ -242,6 +249,7 @@ public class LevelUpController : MonoBehaviour
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
             coinSpawner.CreateCoins(currentLevelCount);
+            coinSpawner.SetCoinValue(currentLevelCount);
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
@@ -262,6 +270,7 @@ public class LevelUpController : MonoBehaviour
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
             coinSpawner.CreateCoins(currentLevelCount);
+            coinSpawner.SetCoinValue(currentLevelCount);
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
@@ -282,6 +291,7 @@ public class LevelUpController : MonoBehaviour
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
             coinSpawner.CreateCoins(currentLevelCount);
+            coinSpawner.SetCoinValue(currentLevelCount);
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);
@@ -302,6 +312,7 @@ public class LevelUpController : MonoBehaviour
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(currentLevelCount);
             coinSpawner.CreateCoins(currentLevelCount);
+            coinSpawner.SetCoinValue(currentLevelCount);
             mapController.CreateMap(currentLevelCount);
             mapController.SetSkybox(currentLevelCount);
             mirrorSpawner.CreateTransportMirror(currentLevelCount);

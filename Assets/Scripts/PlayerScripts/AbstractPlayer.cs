@@ -804,7 +804,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             other.gameObject.SetActive(false);
 
             //SettingScore
-            ScoreController.GetInstance.SetScore(1);
+            ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
         }
         else if (value == SceneController.Tags.CheeseCoin)
         {

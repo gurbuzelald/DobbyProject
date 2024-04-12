@@ -19,4 +19,8 @@ public class CoinSpawner : MonoBehaviour
         Destroy(currentMapCoins);
         currentMapCoins = Instantiate(levelData.mapCoins[levelCount], gameObject.transform);
     }
+    public void SetCoinValue(int levelCount)
+    {
+        levelData.currentStaticCoinValue = levelData.coinlevelValues[levelCount];
+    }
 }

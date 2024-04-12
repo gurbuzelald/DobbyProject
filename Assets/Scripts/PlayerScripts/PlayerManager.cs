@@ -330,7 +330,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 collision.collider.gameObject.SetActive(false);
 
                 //SettingScore
-                ScoreController.GetInstance.SetScore(2);
+                ScoreController.GetInstance.SetScore(_levelData.currentStaticCoinValue * 2);
                 playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
                 //CreateSlaveObject();
             }

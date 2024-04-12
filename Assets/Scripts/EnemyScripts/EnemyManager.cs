@@ -338,7 +338,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isSpeedZero = true;
                 StartCoroutine(DelayStopEnemy(5f));
                 Destroy(_healthBar);
-                ScoreController.GetInstance.SetScore(10);
+                ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue * 2);
                 PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
                 StartCoroutine(DelayDestroy(2f));
             }
@@ -392,7 +392,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isSpeedZero = true;
                 StartCoroutine(DelayStopEnemy(5f));
                 Destroy(_healthBar);
-                ScoreController.GetInstance.SetScore(10);
+                ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue * 2);
                 PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
                 StartCoroutine(DelayDestroy(2f));                
             }
