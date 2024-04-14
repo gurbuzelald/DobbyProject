@@ -147,7 +147,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         //Particle
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
 
-        SpawnPlayerObject(LevelUpController.currentLevelCount);
+        SpawnPlayerObject(LevelData.currentLevelCount);
 
         playerInterfaces.iPlayerTrigger.CheckAllWeaponsLocked(_bulletData);
     }
@@ -364,7 +364,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
             
-            _levelData.isCompleteMaps[LevelUpController.currentLevelCount] = true;
+            _levelData.isCompleteMaps[LevelData.currentLevelCount] = true;
 
             _levelData.isLevelUp = true;
 
@@ -379,37 +379,37 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         switch (other.tag)
         {
             case (LevelData.FirstFinishArea):
-                LevelUpController.currentLevelCount = 0;
+                LevelData.currentLevelCount = 0;
                 break;
             case (LevelData.SecondFinishArea):
-                LevelUpController.currentLevelCount = 1;
+                LevelData.currentLevelCount = 1;
                 break;
             case (LevelData.ThirdFinishArea):
-                LevelUpController.currentLevelCount = 2;
+                LevelData.currentLevelCount = 2;
                 break;
             case (LevelData.FourthFinishArea):
-                LevelUpController.currentLevelCount = 3;
+                LevelData.currentLevelCount = 3;
                 break;
             case (LevelData.FifthFinishArea):
-                LevelUpController.currentLevelCount = 4;
+                LevelData.currentLevelCount = 4;
                 break;
             case (LevelData.SixthFinishArea):
-                LevelUpController.currentLevelCount = 5;
+                LevelData.currentLevelCount = 5;
                 break;
             case (LevelData.SeventhFinishArea):
-                LevelUpController.currentLevelCount = 6;
+                LevelData.currentLevelCount = 6;
                 break;
             case (LevelData.EighthFinishArea):
-                LevelUpController.currentLevelCount = 7;
+                LevelData.currentLevelCount = 7;
                 break;
             case (LevelData.NinethFinishArea):
-                LevelUpController.currentLevelCount = 8;
+                LevelData.currentLevelCount = 8;
                 break;
             case (LevelData.TenthFinishArea):
-                LevelUpController.currentLevelCount = 9;
+                LevelData.currentLevelCount = 9;
                 break;
             default:
-                LevelUpController.currentLevelCount = 0;
+                LevelData.currentLevelCount = 0;
                 break;
         }
     }

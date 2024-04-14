@@ -11,7 +11,7 @@ public class CoinSpawner : MonoBehaviour
 
     void Start()
     {
-        currentMapCoins = Instantiate(levelData.mapCoins[LevelUpController.currentLevelCount], gameObject.transform);
+        currentMapCoins = Instantiate(levelData.mapCoins[LevelData.currentLevelCount], gameObject.transform);
         
     }
     public void CreateCoins(int levelCount)

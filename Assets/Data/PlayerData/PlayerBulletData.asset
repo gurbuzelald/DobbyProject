@@ -28,7 +28,7 @@ MonoBehaviour:
   bulletSpeed: 5
   bulletDelayCounter: 0
   _swordingObject: {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
-  currentGiftBox: {fileID: 8947880313132611291, guid: 43147d81d9fef8f4d9beda636a63dc03, type: 3}
+  currentGiftBox: {fileID: 8957379851250910510, guid: 9892378f7235cce4d9f03984a358c0db, type: 3}
   pistolGiftBox: {fileID: 5953932990381375704, guid: 769e388e892fa6f47add655d24d29ce0, type: 3}
   m4a4GiftBox: {fileID: 4850221878147488263, guid: 2b9e216addade824fb41b7bc668a5101, type: 3}
   bullDogGiftBox: {fileID: 6750732745314709050, guid: 3443f60ab08db384aaa3b04a8b272456, type: 3}
@@ -39,7 +39,7 @@ MonoBehaviour:
   negevGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
   ak47GiftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
   axeGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
-  currentShootFrequency: 0.2
+  currentShootFrequency: 0.28
   pistolShootFrequency: 0.4
   axeShootFrequency: 0.35
   bulldogShootFrequency: 0.3
@@ -60,13 +60,13 @@ MonoBehaviour:
   negevObject: {fileID: 1492883090361208011, guid: 6e1df7167d924f94f85f18de66dd6675, type: 3}
   axeObject: {fileID: 1684248174472265961, guid: a331718668949cc43b683202d1396a03, type: 3}
   pistolObject: {fileID: 8853850299777618421, guid: 39aa8c7ebaa670646b7147b6d3cfdd63, type: 3}
-  pistolPower: 7
-  axePower: 10
+  pistolPower: 12
+  axePower: 13
   bulldogPower: 14
-  cowPower: 13
-  crystalPower: 12
+  cowPower: 14
+  crystalPower: 13
   demonPower: 15
-  icePower: 9
+  icePower: 16
   negevPower: 17
   ak47Power: 16
   m4a4Power: 18
@@ -146,7 +146,7 @@ MonoBehaviour:
   isLongHummer: 0
   isClub: 0
   currentSwordName: LowSword
-  currentWeaponName: demon
+  currentWeaponName: pistol
   swordDamageValue: 30
   enemyFireFrequency: 5
   enemyBulletDelayCounter: 0

@@ -78,6 +78,7 @@ public class LevelData : ScriptableObject
 
     [Header("Current Level")]
     public Levels currentLevel;
+    public static int currentLevelCount;
     public enum Levels
     {
         Level1,

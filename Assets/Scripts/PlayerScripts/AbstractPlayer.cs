@@ -918,7 +918,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             bulletData.demonLock == BulletData.locked && bulletData.iceLock == BulletData.locked &&
             bulletData.negevLock == BulletData.locked && bulletData.pistolLock == BulletData.locked)
         {
-            bulletData.currentWeaponName = BulletData.ak47;
+            bulletData.currentWeaponName = BulletData.pistol;
         }
     }
 

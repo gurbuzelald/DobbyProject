@@ -12,7 +12,7 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
     {
         GiftBoxControllerAtStart();
         yield return new WaitForSeconds(1f);
-        CreateMapGiftBoxes(bulletData.currentGiftBox, LevelUpController.currentLevelCount);
+        CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelCount);
     }
     public void CreateMapGiftBoxes(GameObject weaponObject, int levelCount)
     {

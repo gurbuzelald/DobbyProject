@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
     {
         enemyData.isActivateCreateEnemy = false;
 
-        CreateEnemiesAtStart(LevelUpController.currentLevelCount);
+        CreateEnemiesAtStart(LevelData.currentLevelCount);
     }
     void CreateEnemiesAtStart(int levelCount)
     {

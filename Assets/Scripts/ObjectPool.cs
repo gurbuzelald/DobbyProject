@@ -9,14 +9,90 @@ public class ObjectPool : MonoBehaviour
     public struct Pool
     {
         public Queue<GameObject> pooledObjects;
-        public GameObject objectPrefab;
+        public GameObject[] objectPrefab;
         public Transform objectTransform;
         public int poolSize;
+        public BulletData bulletData;
     }
 
     [SerializeField] private Pool[] pools = null;
 
-    private void Awake()
+    void Awake()
+    {        
+        CreateAndEnqueueObject();
+    }
+    private void Update()
+    {
+        if (pools.Length != 0)
+        {
+            if (pools[0].bulletData != null)
+            {
+                CreateWeaponBullet();
+            }
+        }
+    }
+    void DeleteWeaponBulletObjects()
+    {
+        
+    }
+    void CreateWeaponBullet()
+    {
+        if (pools[0].bulletData.isPistol)
+        {
+            BulletData.currentWeaponID = 0;
+            Debug.Log("TEst");
+            CreateAndEnqueueObject();
+        }
+        else if (pools[0].bulletData.isAxe)
+        {
+            BulletData.currentWeaponID = 1;
+            Debug.Log("TEst");
+            CreateAndEnqueueObject();
+        }
+        else if (pools[0].bulletData.isBulldog)
+        {
+            BulletData.currentWeaponID = 3;
+            Debug.Log("TEst");
+            CreateAndEnqueueObject();
+        }
+        else if (pools[0].bulletData.isCow)
+        {
+            BulletData.currentWeaponID = 4;
+            Debug.Log("TEst");
+            CreateAndEnqueueObject();
+        }
+        else if (pools[0].bulletData.isCrystal)
+        {
+            Debug.Log("TEst");
+            CreateAndEnqueueObject();
+        }
+        else if (pools[0].bulletData.isDemon)
+        {
+            Debug.Log("TEst");
+            CreateAndEnqueueObject();
+        }
+        else if (pools[0].bulletData.isIce)
+        {
+            CreateAndEnqueueObject();
+        }
+        else if (pools[0].bulletData.isNegev)
+        {
+            Debug.Log("TEst");
+            CreateAndEnqueueObject();
+        }
+        else if (pools[0].bulletData.isAk47)
+        {
+            CreateAndEnqueueObject();
+        }
+        else if (pools[0].bulletData.isM4a4)
+        {
+            Debug.Log("TEst");
+            CreateAndEnqueueObject();
+        }
+
+    }
+
+    public void CreateAndEnqueueObject()
     {
         for (int j = 0; j < pools.Length; j++)
         {
@@ -24,13 +100,27 @@ public class ObjectPool : MonoBehaviour
 
             for (int i = 0; i < pools[j].poolSize; i++)
             {
-                GameObject obj = Instantiate(pools[j].objectPrefab, 
-                                             pools[j].objectTransform.position, 
-                                             pools[j].objectTransform.rotation, 
+                if (j == 0)
+                {
+                    GameObject obj = Instantiate(pools[j].objectPrefab[BulletData.currentWeaponID],
+                                             pools[j].objectTransform.position,
+                                             pools[j].objectTransform.rotation,
                                              pools[j].objectTransform);
-                obj.SetActive(false);
+                    obj.SetActive(false);
 
-                pools[j].pooledObjects.Enqueue(obj);
+                    pools[j].pooledObjects.Enqueue(obj);
+                }
+                else
+                {
+                    GameObject obj = Instantiate(pools[j].objectPrefab[0],
+                                             pools[j].objectTransform.position,
+                                             pools[j].objectTransform.rotation,
+                                             pools[j].objectTransform);
+                    obj.SetActive(false);
+
+                    pools[j].pooledObjects.Enqueue(obj);
+                }
+                
             }
         }
     }

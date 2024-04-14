@@ -125,7 +125,8 @@ public class BulletData : ScriptableObject
     public bool isM4a4;
     public bool isAk47;
 
-
+    [Header("Weapon Names")]
+    public static int currentWeaponID = 0;
     public const string pistol = "pistol";
     public const string axe = "axe";
     public const string bulldog = "bulldog";
@@ -136,6 +137,8 @@ public class BulletData : ScriptableObject
     public const string negev = "negev";
     public const string ak47 = "ak47";
     public const string m4a4 = "m4a4";
+
+
     public enum WeaponNames
     {
         pistol,
@@ -165,6 +168,8 @@ public class BulletData : ScriptableObject
     public GameObject longHummerObject;
     public GameObject clubObject;
 
+    [Header("Sword Names")]
+    public static int currentSwordID = 0;
     public const string lowSword = "LowSword";
     public const string warriorSword = "WarriorSword";
     public const string hummer = "Hummer";

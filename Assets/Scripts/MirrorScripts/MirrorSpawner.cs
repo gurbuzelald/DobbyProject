@@ -10,7 +10,7 @@ public class MirrorSpawner : MonoBehaviour
     private GameObject _currentMirrorCouple;
     void Awake()
     {
-        CreateTransportMirror(LevelUpController.currentLevelCount);
+        CreateTransportMirror(LevelData.currentLevelCount);
     }
     public void CreateTransportMirror(int levelCount)
     {

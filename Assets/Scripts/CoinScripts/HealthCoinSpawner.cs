@@ -10,7 +10,7 @@ public class HealthCoinSpawner : MonoBehaviour
     private GameObject _healtCoinTransform;
     void Awake()
     {
-        _healtCoinTransform = Instantiate(levelData._healtCoinTransform[LevelUpController.currentLevelCount], gameObject.transform);
+        _healtCoinTransform = Instantiate(levelData._healtCoinTransform[LevelData.currentLevelCount], gameObject.transform);
 
         for (int i = 0; i < _healtCoinTransform.transform.childCount; i++)
         {

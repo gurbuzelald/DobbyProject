@@ -470,7 +470,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                 || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentWeaponName = BulletData.lowSword;
+                bulletData.currentSwordName = BulletData.lowSword;
                 CreateSwordObject();
             }
             bulletData.isLowSword = false;
@@ -483,7 +483,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                 || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentWeaponName = BulletData.warriorSword;
+                bulletData.currentSwordName = BulletData.warriorSword;
                 CreateSwordObject();
             }
             bulletData.isWarriorSword = false;
@@ -496,7 +496,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                 || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentWeaponName = BulletData.hummer;
+                bulletData.currentSwordName = BulletData.hummer;
                 CreateSwordObject();
             }
             bulletData.isHummer = false;
@@ -509,7 +509,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                 || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentWeaponName = BulletData.orcSword;
+                bulletData.currentSwordName = BulletData.orcSword;
                 CreateSwordObject();
             }
             bulletData.isOrcSword = false;
@@ -522,7 +522,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                 || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentWeaponName = BulletData.axeSword;
+                bulletData.currentSwordName = BulletData.axeSword;
                 CreateSwordObject();
             }
             bulletData.isAxeSword = false;
@@ -535,7 +535,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                 || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentWeaponName = BulletData.axeKnight;
+                bulletData.currentSwordName = BulletData.axeKnight;
                 CreateSwordObject();
             }
             bulletData.isAxeKnight = false;
@@ -548,7 +548,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                 || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentWeaponName = BulletData.barbarianSword;
+                bulletData.currentSwordName = BulletData.barbarianSword;
                 CreateSwordObject();
             }
             bulletData.isBarbarianSword = false;
@@ -561,7 +561,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                 || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentWeaponName = BulletData.demonSword;
+                bulletData.currentSwordName = BulletData.demonSword;
                 CreateSwordObject();
             }
             bulletData.isDemonSword = false;
@@ -574,7 +574,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                 || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentWeaponName = BulletData.magicSword;
+                bulletData.currentSwordName = BulletData.magicSword;
                 CreateSwordObject();
             }
             bulletData.isMagicSword = false;
@@ -587,7 +587,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                 || bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.club)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentWeaponName = BulletData.longHummer;
+                bulletData.currentSwordName = BulletData.longHummer;
                 CreateSwordObject();
             }
             bulletData.isLongHummer = false;
@@ -600,7 +600,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                 || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.lowSword)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentWeaponName = BulletData.club;
+                bulletData.currentSwordName = BulletData.club;
                 CreateSwordObject();
             }
             bulletData.isClub = false;
@@ -617,7 +617,104 @@ public class BulletManager : AbstractBullet<BulletManager>
 
         SwordFire();
         WeaponFire();
+
+        SetCurrentWeaponID();
+        SetCurrentSwordID();
     }
+
+    public void SetCurrentWeaponID()
+    {
+        if (bulletData.currentWeaponName == BulletData.pistol)
+        {
+            BulletData.currentWeaponID = 0;
+        }
+        else if (bulletData.currentWeaponName == BulletData.axe)
+        {
+            BulletData.currentWeaponID = 1;
+        }
+        else if (bulletData.currentWeaponName == BulletData.bulldog)
+        {
+            BulletData.currentWeaponID = 2;
+        }
+        else if (bulletData.currentWeaponName == BulletData.cow)
+        {
+            BulletData.currentWeaponID = 3;
+        }
+        else if (bulletData.currentWeaponName == BulletData.crystal)
+        {
+            BulletData.currentWeaponID = 4;
+        }
+        else if (bulletData.currentWeaponName == BulletData.demon)
+        {
+            BulletData.currentWeaponID = 5;
+        }
+        else if (bulletData.currentWeaponName == BulletData.ice)
+        {
+            BulletData.currentWeaponID = 6;
+        }
+        else if (bulletData.currentWeaponName == BulletData.negev)
+        {
+            BulletData.currentWeaponID = 7;
+        }
+        else if (bulletData.currentWeaponName == BulletData.ak47)
+        {
+            BulletData.currentWeaponID = 8;
+        }
+        else if (bulletData.currentWeaponName == BulletData.m4a4)
+        {
+            BulletData.currentWeaponID = 9;
+        }
+    }
+
+
+    public void SetCurrentSwordID()
+    {
+        if (bulletData.currentSwordName == BulletData.lowSword)
+        {
+            BulletData.currentSwordID = 0;
+        }
+        else if (bulletData.currentSwordName == BulletData.warriorSword)
+        {
+            BulletData.currentWeaponID = 1;
+        }
+        else if (bulletData.currentSwordName == BulletData.hummer)
+        {
+            BulletData.currentWeaponID = 2;
+        }
+        else if (bulletData.currentSwordName == BulletData.orcSword)
+        {
+            BulletData.currentWeaponID = 3;
+        }
+        else if (bulletData.currentSwordName == BulletData.axeSword)
+        {
+            BulletData.currentWeaponID = 4;
+        }
+        else if (bulletData.currentSwordName == BulletData.axeKnight)
+        {
+            BulletData.currentWeaponID = 5;
+        }
+        else if (bulletData.currentSwordName == BulletData.barbarianSword)
+        {
+            BulletData.currentWeaponID = 6;
+        }
+        else if (bulletData.currentSwordName == BulletData.demonSword)
+        {
+            BulletData.currentWeaponID = 7;
+        }
+        else if (bulletData.currentSwordName == BulletData.magicSword)
+        {
+            BulletData.currentWeaponID = 8;
+        }
+        else if (bulletData.currentSwordName == BulletData.longHummer)
+        {
+            BulletData.currentWeaponID = 9;
+        }
+        else if (bulletData.currentSwordName == BulletData.club)
+        {
+            BulletData.currentWeaponID = 10;
+        }
+    }
+
     public void SwordFire()
     {
         if (_playerData.isSwording && !_playerData.isFireNonWalk && bulletData.bulletDelayCounter == 0 && _playerData.isSwordTime)

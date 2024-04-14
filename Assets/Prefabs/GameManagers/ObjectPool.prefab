@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4371192747629300294
 MonoBehaviour:
@@ -45,12 +45,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
-  - objectPrefab: {fileID: 4568481270464940624, guid: 98dbc9cb5ce9f68458cb04a08252b6ac, type: 3}
+  - objectPrefab:
+    - {fileID: 1909073336618291390, guid: b7695403ddc774c4091d84bc56f787bb, type: 3}
+    - {fileID: 5851249046904561453, guid: bf946ab65b67694479fb7a4a3f8da5d7, type: 3}
+    - {fileID: 4003127254632040958, guid: 9943a0711d22ae44e865dbc952b83fd8, type: 3}
+    - {fileID: 5176671975488193012, guid: 351bd27ac1cb38d44aeb2c070e54ecc8, type: 3}
+    - {fileID: 6092724848995886242, guid: 9419197d42e5a624599f71e72f2df2e0, type: 3}
+    - {fileID: 4929793438697359993, guid: 4e9165f6675efe044924bc720a9c3c53, type: 3}
+    - {fileID: 6893855574279549006, guid: 8d53197387c8cc84b929ec23d39c1ce8, type: 3}
+    - {fileID: 1298455323346986048, guid: c6338ffb40c7f5c408750f2d2e7f31b3, type: 3}
+    - {fileID: 4299486794394585338, guid: 48882e0557a3a8d4fadc8cd50ff511ca, type: 3}
+    - {fileID: 8425098538945327761, guid: 3b0e63e296aac3241aad532e5a748ddf, type: 3}
     objectTransform: {fileID: 0}
     poolSize: 10
-  - objectPrefab: {fileID: 1214174750890122878, guid: 5d9d6e06774664c45b966e7b7ffcd439, type: 3}
+  - objectPrefab:
+    - {fileID: 1214174750890122878, guid: 5d9d6e06774664c45b966e7b7ffcd439, type: 3}
     objectTransform: {fileID: 0}
     poolSize: 6
-  - objectPrefab: {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
+  - objectPrefab:
+    - {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
     objectTransform: {fileID: 0}
     poolSize: 10

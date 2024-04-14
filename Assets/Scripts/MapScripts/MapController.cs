@@ -19,8 +19,8 @@ public class MapController : MonoBehaviour
     {
         readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
 
-        currentMap = Instantiate(levelData.Maps[LevelUpController.currentLevelCount], gameObject.transform);
-        RenderSettings.skybox = levelData.levelSkyboxes[LevelUpController.currentLevelCount];
+        currentMap = Instantiate(levelData.Maps[LevelData.currentLevelCount], gameObject.transform);
+        RenderSettings.skybox = levelData.levelSkyboxes[LevelData.currentLevelCount];
 
     }
     IEnumerator DelayTruePlayable()
