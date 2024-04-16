@@ -15,7 +15,7 @@ MonoBehaviour:
   currentMessageText: {fileID: 0}
   currentMessageObject: {fileID: 0}
   backgroundMap: {fileID: 1345883776023317691, guid: 515afb887ab870a43b53ea7d70cb9035, type: 3}
-  currentEnemyAttackDamage: 5
+  currentEnemyAttackDamage: 15
   clownEnemyAttackDamage: 5
   monsterEnemyAttackDamage: 10
   prisonerEnemyAttackDamage: 12
@@ -26,7 +26,7 @@ MonoBehaviour:
   skeletonEnemyAttackDamage: 25
   urielEnemyAttackDamage: 27
   goblinEnemyAttackDamage: 30
-  currentEnemyBulletDamage: 11
+  currentEnemyBulletDamage: 21
   clownEnemyBulletDamage: 6
   monsterEnemyBulletDamage: 11
   prisonerEnemyBulletDamage: 16
@@ -50,7 +50,7 @@ MonoBehaviour:
   goblinEnemyCollisionDamage: 33
   dobbyDurability: 1
   glassyDurability: 3
-  joleenDurability: 10
+  joleenDurability: 5
   guardDurability: 7
   lusthDurability: 6
   eveDurability: 4
@@ -59,11 +59,11 @@ MonoBehaviour:
   ajDurability: 2
   mremirehDurability: 8
   tyDurability: 2
-  currentEnemyName: Monster(Clone)
+  currentEnemyName: Pedroso(Clone)
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
-  isDecreaseHealth: 1
+  isDecreaseHealth: 0
   damageHealthText: {fileID: 0}
-  decreaseCounter: 1
+  decreaseCounter: 0
   currentCharacterName: 2
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}

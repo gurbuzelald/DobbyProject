@@ -30,7 +30,7 @@
     "skeletonEnemyBulletDamage": 30,
     "urielEnemyBulletDamage": 33,
     "goblinEnemyBulletDamage": 35,
-    "currentEnemyCollisionDamage": 10,
+    "currentEnemyCollisionDamage": 22,
     "clownEnemyCollisionDamage": 10,
     "monsterEnemyCollisionDamage": 15,
     "prisonerEnemyCollisionDamage": 20,
@@ -56,7 +56,7 @@
     "playerSpawns": {
         "instanceID": 26214
     },
-    "isDecreaseHealth": true,
+    "isDecreaseHealth": false,
     "damageHealthText": {
         "instanceID": -40398
     },
@@ -231,7 +231,7 @@
     "isClimbing": false,
     "isBackClimbing": false,
     "isIdling": false,
-    "isDying": true,
+    "isDying": false,
     "isWinning": false,
     "isSkateBoarding": false,
     "isRunning": false,
@@ -240,7 +240,7 @@
     "isSwordAnimate": false,
     "isLookingUp": false,
     "isDestroyed": false,
-    "isPlayable": false,
+    "isPlayable": true,
     "isFireNonWalk": false,
     "isFireWalk": false,
     "isFireTime": false,
