@@ -1304,12 +1304,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     public virtual void DecreaseHealth(ref PlayerData playerData, int damageHealthValue, ref GameObject _healthBarObject, ref Slider _healthBarSlider, ref Slider _topCanvasHealthBarSlider,
                                        ref TextMeshProUGUI damageHealthText)
     {
-        _healthBarSlider.value -= CharacterDurability(damageHealthValue, ref playerData);
-        _topCanvasHealthBarSlider.value -= _healthBarSlider.value;
+        _healthBarSlider.value -= (-CharacterDurability(ref playerData)) + damageHealthValue;
+        _topCanvasHealthBarSlider.value = _healthBarSlider.value;
 
         damageHealthText.enabled = true;
 
-        damageHealthText.text = "-" + damageHealthValue.ToString();
+        damageHealthText.text = "-" + (damageHealthValue - CharacterDurability(ref playerData)).ToString();
 
 
         _healthBarObject.transform.localScale = new Vector3(1f, 0.3f, 0.3f);
@@ -1317,53 +1317,53 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         StartCoroutine(DelayHealthSizeBack(_healthBarObject));
         StartCoroutine(DelayDamageHealthTextEnableFalse(damageHealthText));
     }
-    public virtual int CharacterDurability(int damageHealthValue, ref PlayerData playerData)
+    public virtual int CharacterDurability(ref PlayerData playerData)
     {
         if (PlayerData.CharacterNames.Glassy == playerData.currentCharacterName)
         {
-            damageHealthValue -= playerData.glassyDurability;
+            PlayerData.currentCharacterDurability = playerData.glassyDurability;
         }
         else if (PlayerData.CharacterNames.Dobby == playerData.currentCharacterName)
         {
-            damageHealthValue -= playerData.dobbyDurability;
+            PlayerData.currentCharacterDurability = playerData.dobbyDurability;
         }
         else if (PlayerData.CharacterNames.Joleen == playerData.currentCharacterName)
         {
-            damageHealthValue -= playerData.joleenDurability;
+            PlayerData.currentCharacterDurability = playerData.joleenDurability;
         }
         else if (PlayerData.CharacterNames.Lusth == playerData.currentCharacterName)
         {
-            damageHealthValue -= playerData.lusthDurability;
+            PlayerData.currentCharacterDurability = playerData.lusthDurability;
         }
         else if (PlayerData.CharacterNames.Guard == playerData.currentCharacterName)
         {
-            damageHealthValue -= playerData.guardDurability;
+            PlayerData.currentCharacterDurability = playerData.guardDurability;
         }
         else if (PlayerData.CharacterNames.Eve == playerData.currentCharacterName)
         {
-            damageHealthValue -= playerData.eveDurability;
+            PlayerData.currentCharacterDurability = playerData.eveDurability;
         }
         else if (PlayerData.CharacterNames.Michelle == playerData.currentCharacterName)
         {
-            damageHealthValue -= playerData.michelleDurability;
+            PlayerData.currentCharacterDurability = playerData.michelleDurability;
         }
         else if (PlayerData.CharacterNames.Boss == playerData.currentCharacterName)
         {
-            damageHealthValue -= playerData.bossDurability;
+            PlayerData.currentCharacterDurability = playerData.bossDurability;
         }
         else if (PlayerData.CharacterNames.Aj == playerData.currentCharacterName)
         {
-            damageHealthValue -= playerData.ajDurability;
+            PlayerData.currentCharacterDurability = playerData.ajDurability;
         }
         else if (PlayerData.CharacterNames.Mremireh == playerData.currentCharacterName)
         {
-            damageHealthValue -= playerData.mremirehDurability;
+            PlayerData.currentCharacterDurability = playerData.mremirehDurability;
         }
         else if (PlayerData.CharacterNames.Ty == playerData.currentCharacterName)
         {
-            damageHealthValue -= playerData.tyDurability;
+            PlayerData.currentCharacterDurability = playerData.tyDurability;
         }
-        return damageHealthValue;
+        return PlayerData.currentCharacterDurability;
     }
 
     public virtual IEnumerator DelayHealthSizeBack(GameObject _healthBarObject)

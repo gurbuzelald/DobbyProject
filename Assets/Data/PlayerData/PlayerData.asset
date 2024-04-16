@@ -17,8 +17,8 @@ MonoBehaviour:
   backgroundMap: {fileID: 1345883776023317691, guid: 515afb887ab870a43b53ea7d70cb9035, type: 3}
   currentEnemyAttackDamage: 5
   clownEnemyAttackDamage: 5
-  monsterEnemyAttackDamage: 5
-  prisonerEnemyAttackDamage: 10
+  monsterEnemyAttackDamage: 10
+  prisonerEnemyAttackDamage: 12
   pedrosoEnemyAttackDamage: 15
   copEnemyAttackDamage: 18
   morakEnemyAttackDamage: 20
@@ -26,7 +26,7 @@ MonoBehaviour:
   skeletonEnemyAttackDamage: 25
   urielEnemyAttackDamage: 27
   goblinEnemyAttackDamage: 30
-  currentEnemyBulletDamage: 6
+  currentEnemyBulletDamage: 11
   clownEnemyBulletDamage: 6
   monsterEnemyBulletDamage: 11
   prisonerEnemyBulletDamage: 16
@@ -37,7 +37,7 @@ MonoBehaviour:
   skeletonEnemyBulletDamage: 30
   urielEnemyBulletDamage: 33
   goblinEnemyBulletDamage: 35
-  currentEnemyCollisionDamage: 22
+  currentEnemyCollisionDamage: 10
   clownEnemyCollisionDamage: 10
   monsterEnemyCollisionDamage: 15
   prisonerEnemyCollisionDamage: 20
@@ -50,16 +50,16 @@ MonoBehaviour:
   goblinEnemyCollisionDamage: 33
   dobbyDurability: 1
   glassyDurability: 3
-  joleenDurability: 8
+  joleenDurability: 10
   guardDurability: 7
   lusthDurability: 6
   eveDurability: 4
   michelleDurability: 3
   bossDurability: 5
   ajDurability: 2
-  mremirehDurability: 9
+  mremirehDurability: 8
   tyDurability: 2
-  currentEnemyName: Cop(Clone)
+  currentEnemyName: Monster(Clone)
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
   isDecreaseHealth: 1
   damageHealthText: {fileID: 0}
@@ -77,9 +77,9 @@ MonoBehaviour:
   aj: {fileID: 2416847389608877635, guid: a700b507a30e0be4ead42ca0bfc5c998, type: 3}
   mremireh: {fileID: 3269665489637412912, guid: cc265cd48b1f31c4cbb86e276d4a94d0, type: 3}
   ty: {fileID: 5945881725241583734, guid: 5dbe1f8c957aa354d8786aba50aaf083, type: 3}
-  dobbyLock: Locked
-  glassyLock: Locked
-  joleenLock: Locked
+  dobbyLock: 
+  glassyLock: 
+  joleenLock: 
   guardLock: Locked
   lusthLock: Locked
   eveLock: Locked
@@ -157,7 +157,7 @@ MonoBehaviour:
   guardJumpForce: 5
   avaliableCharacters:
   - Dobby
-  - 
+  - Dobby
   - 
   - 
   - 

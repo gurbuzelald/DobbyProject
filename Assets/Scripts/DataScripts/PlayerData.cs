@@ -54,9 +54,10 @@ public class PlayerData : ScriptableObject
     public int ortizEnemyCollisionDamage;
     public int skeletonEnemyCollisionDamage;
     public int urielEnemyCollisionDamage;
-    public int goblinEnemyCollisionDamage;
+    public int goblinEnemyCollisionDamage;   
+    
 
-    [Header("Player Durability")]
+    [Header("Character Durabilities")]
     public int dobbyDurability;
     public int glassyDurability;
     public int joleenDurability;
@@ -68,6 +69,7 @@ public class PlayerData : ScriptableObject
     public int ajDurability;
     public int mremirehDurability;
     public int tyDurability;
+    public static int currentCharacterDurability;
 
 
     [Header("Enemy Tag")]

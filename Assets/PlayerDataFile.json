@@ -6,12 +6,12 @@
         "instanceID": 25814
     },
     "backgroundMap": {
-        "instanceID": 26208
+        "instanceID": 26212
     },
-    "currentEnemyAttackDamage": 5,
+    "currentEnemyAttackDamage": 15,
     "clownEnemyAttackDamage": 5,
-    "monsterEnemyAttackDamage": 5,
-    "prisonerEnemyAttackDamage": 10,
+    "monsterEnemyAttackDamage": 10,
+    "prisonerEnemyAttackDamage": 12,
     "pedrosoEnemyAttackDamage": 15,
     "copEnemyAttackDamage": 18,
     "morakEnemyAttackDamage": 20,
@@ -19,7 +19,7 @@
     "skeletonEnemyAttackDamage": 25,
     "urielEnemyAttackDamage": 27,
     "goblinEnemyAttackDamage": 30,
-    "currentEnemyBulletDamage": 6,
+    "currentEnemyBulletDamage": 21,
     "clownEnemyBulletDamage": 6,
     "monsterEnemyBulletDamage": 11,
     "prisonerEnemyBulletDamage": 16,
@@ -30,7 +30,7 @@
     "skeletonEnemyBulletDamage": 30,
     "urielEnemyBulletDamage": 33,
     "goblinEnemyBulletDamage": 35,
-    "currentEnemyCollisionDamage": 22,
+    "currentEnemyCollisionDamage": 10,
     "clownEnemyCollisionDamage": 10,
     "monsterEnemyCollisionDamage": 15,
     "prisonerEnemyCollisionDamage": 20,
@@ -43,64 +43,64 @@
     "goblinEnemyCollisionDamage": 33,
     "dobbyDurability": 1,
     "glassyDurability": 3,
-    "joleenDurability": 8,
+    "joleenDurability": 5,
     "guardDurability": 7,
     "lusthDurability": 6,
     "eveDurability": 4,
     "michelleDurability": 3,
     "bossDurability": 5,
     "ajDurability": 2,
-    "mremirehDurability": 9,
+    "mremirehDurability": 8,
     "tyDurability": 2,
-    "currentEnemyName": "Clown(Clone)",
+    "currentEnemyName": "Pedroso(Clone)",
     "playerSpawns": {
-        "instanceID": 26210
+        "instanceID": 26214
     },
-    "isDecreaseHealth": false,
+    "isDecreaseHealth": true,
     "damageHealthText": {
-        "instanceID": -45312
+        "instanceID": -40398
     },
     "decreaseCounter": 0,
     "currentCharacterName": 2,
     "characterObject": {
-        "instanceID": 26212
-    },
-    "dobby": {
-        "instanceID": 26214
-    },
-    "glassy": {
         "instanceID": 26216
     },
-    "joleen": {
+    "dobby": {
         "instanceID": 26218
     },
-    "guard": {
+    "glassy": {
         "instanceID": 26220
     },
-    "lusth": {
+    "joleen": {
         "instanceID": 26222
     },
-    "eve": {
+    "guard": {
         "instanceID": 26224
     },
-    "michelle": {
+    "lusth": {
         "instanceID": 26226
     },
-    "boss": {
+    "eve": {
         "instanceID": 26228
     },
-    "aj": {
+    "michelle": {
         "instanceID": 26230
     },
-    "mremireh": {
+    "boss": {
         "instanceID": 26232
     },
-    "ty": {
+    "aj": {
         "instanceID": 26234
     },
-    "dobbyLock": "Locked",
-    "glassyLock": "Locked",
-    "joleenLock": "Locked",
+    "mremireh": {
+        "instanceID": 26236
+    },
+    "ty": {
+        "instanceID": 26238
+    },
+    "dobbyLock": "",
+    "glassyLock": "",
+    "joleenLock": "",
     "guardLock": "Locked",
     "lusthLock": "Locked",
     "eveLock": "Locked",
@@ -113,12 +113,6 @@
     "locked": "Locked",
     "unLocked": "",
     "objects": [
-        {
-            "instanceID": 26236
-        },
-        {
-            "instanceID": 26238
-        },
         {
             "instanceID": 26240
         },
@@ -133,15 +127,15 @@
         },
         {
             "instanceID": 26248
-        }
-    ],
-    "slaveObjects": [
+        },
         {
             "instanceID": 26250
         },
         {
             "instanceID": 26252
-        },
+        }
+    ],
+    "slaveObjects": [
         {
             "instanceID": 26254
         },
@@ -159,10 +153,16 @@
         },
         {
             "instanceID": 26264
+        },
+        {
+            "instanceID": 26266
+        },
+        {
+            "instanceID": 26268
         }
     ],
     "spawns": {
-        "instanceID": 26266
+        "instanceID": 26270
     },
     "sensivityX": 18.0,
     "sensivityY": 5.0,
@@ -212,7 +212,7 @@
     "guardJumpForce": 5.0,
     "avaliableCharacters": [
         "Dobby",
-        "",
+        "Dobby",
         "",
         "",
         "",
@@ -231,7 +231,7 @@
     "isClimbing": false,
     "isBackClimbing": false,
     "isIdling": false,
-    "isDying": false,
+    "isDying": true,
     "isWinning": false,
     "isSkateBoarding": false,
     "isRunning": false,
@@ -240,7 +240,7 @@
     "isSwordAnimate": false,
     "isLookingUp": false,
     "isDestroyed": false,
-    "isPlayable": true,
+    "isPlayable": false,
     "isFireNonWalk": false,
     "isFireWalk": false,
     "isFireTime": false,
@@ -254,46 +254,46 @@
     "normalSpeed": true,
     "clickTabCount": 0,
     "clickShiftCount": 0,
-    "bulletAmount": 1,
+    "bulletAmount": 21,
     "bulletPack": 21,
     "bulletPackAmount": 2,
     "isTouchableSkate": true,
     "danceTime": 5.0,
     "jolleenObject": {
-        "instanceID": 26268
-    },
-    "skateboardParticle": {
-        "instanceID": 26270
-    },
-    "touchParticle": {
         "instanceID": 26272
     },
-    "birthParticle": {
+    "skateboardParticle": {
         "instanceID": 26274
     },
-    "deathParticle": {
+    "touchParticle": {
         "instanceID": 26276
     },
-    "burningParticle": {
+    "birthParticle": {
         "instanceID": 26278
     },
-    "burningTouchParticle": {
-        "instanceID": 26278
-    },
-    "destroyRotateCoinParticle": {
+    "deathParticle": {
         "instanceID": 26280
     },
-    "destroyHealthCoinParticle": {
+    "burningParticle": {
         "instanceID": 26282
     },
-    "destroyBulletCoinParticle": {
+    "burningTouchParticle": {
+        "instanceID": 26282
+    },
+    "destroyRotateCoinParticle": {
         "instanceID": 26284
     },
-    "destroyMushroomCoinParticle": {
+    "destroyHealthCoinParticle": {
         "instanceID": 26286
     },
-    "playerWalkingParticle": {
+    "destroyBulletCoinParticle": {
         "instanceID": 26288
+    },
+    "destroyMushroomCoinParticle": {
+        "instanceID": 26290
+    },
+    "playerWalkingParticle": {
+        "instanceID": 26292
     },
     "particleCount": 0,
     "bulletSpeed": 5.0,

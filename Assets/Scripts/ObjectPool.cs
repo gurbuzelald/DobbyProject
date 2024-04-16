@@ -40,53 +40,61 @@ public class ObjectPool : MonoBehaviour
         if (pools[0].bulletData.isPistol)
         {
             BulletData.currentWeaponID = 0;
-            Debug.Log("TEst");
+
             CreateAndEnqueueObject();
         }
         else if (pools[0].bulletData.isAxe)
         {
             BulletData.currentWeaponID = 1;
-            Debug.Log("TEst");
+
             CreateAndEnqueueObject();
         }
         else if (pools[0].bulletData.isBulldog)
         {
             BulletData.currentWeaponID = 3;
-            Debug.Log("TEst");
+
             CreateAndEnqueueObject();
         }
         else if (pools[0].bulletData.isCow)
         {
             BulletData.currentWeaponID = 4;
-            Debug.Log("TEst");
+
             CreateAndEnqueueObject();
         }
         else if (pools[0].bulletData.isCrystal)
         {
-            Debug.Log("TEst");
+            BulletData.currentWeaponID = 5;
+
             CreateAndEnqueueObject();
         }
         else if (pools[0].bulletData.isDemon)
         {
-            Debug.Log("TEst");
+            BulletData.currentWeaponID = 6;
+
             CreateAndEnqueueObject();
         }
         else if (pools[0].bulletData.isIce)
         {
+            BulletData.currentWeaponID = 7;
+
             CreateAndEnqueueObject();
         }
         else if (pools[0].bulletData.isNegev)
         {
-            Debug.Log("TEst");
+            BulletData.currentWeaponID = 8;
+
             CreateAndEnqueueObject();
         }
         else if (pools[0].bulletData.isAk47)
         {
+            BulletData.currentWeaponID = 9;
+
             CreateAndEnqueueObject();
         }
         else if (pools[0].bulletData.isM4a4)
         {
-            Debug.Log("TEst");
+            BulletData.currentWeaponID = 10;
+
             CreateAndEnqueueObject();
         }
 
