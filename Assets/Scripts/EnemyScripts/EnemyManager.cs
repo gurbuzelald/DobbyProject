@@ -25,12 +25,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     public int enemyBulletDataNumber;
 
     [Header("Initial Situations")]
-    private float _initSpeed;
-
-    [Header("Particle Burning Effect")]
-    public ParticleSystem bottomParticle;
-    public ParticleSystem middleParticle;
-    public ParticleSystem topParticle;
+    private float _initSpeed;    
 
     private Transform _initTransform;
     [SerializeField] GameObject _enemyIcon;
@@ -43,6 +38,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     private EnemyBulletManager enemyBulletManager;
     private GameObject enemySpawnerObject;
     private EnemySpawner enemySpawner;
+
+    [SerializeField] Transform burnParticleTransformObject;
+
+    private ParticleSystem bottomParticleSystem;
+    private ParticleSystem middleParticleSystem;
+    private ParticleSystem topParticleSystem;
 
 
     void Start()
@@ -69,6 +70,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         _initTransform = gameObject.transform;
         DataStatesOnInitial();
         _audioSource = GetComponent<AudioSource>();
+
+        CreateEnemyTouchParticle();
+
+        SetWeaponExplosionParticle();
     }   
     void Update()
     {
@@ -95,7 +100,64 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             enemyData = enemyListData[enemyDataNumber];
             bulletData = enemyListBulletData[enemyBulletDataNumber];
+
+            CreateEnemyTouchParticle();
+        }       
+    }
+
+    void SetWeaponExplosionParticle()
+    {
+        if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.pistol)
+        {
+            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[0];
         }
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.axe)
+        {
+            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[1];
+        }
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.bulldog)
+        {
+            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[2];
+        }
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.cow)
+        {
+            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[3];
+        }
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.crystal)
+        {
+            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[4];
+        }
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.demon)
+        {
+            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[5];
+        }
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.ice)
+        {
+            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[6];
+        }
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.negev)
+        {
+            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[7];
+        }
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.ak47)
+        {
+            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[8];
+        }
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.m4a4)
+        {
+            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[9];
+        }
+        else
+        {
+            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[0];
+        }
+    }
+
+    public void CreateEnemyTouchParticle()
+    {
+        bottomParticleSystem = Instantiate(enemyData.currentBottomParticle, burnParticleTransformObject.transform.GetChild(0));
+        middleParticleSystem = Instantiate(enemyData.currentMiddleParticle, burnParticleTransformObject.transform.GetChild(1));
+        topParticleSystem = Instantiate(enemyData.currentTopParticle, burnParticleTransformObject.transform.GetChild(2));
     }
 
     void FollowPlayer()
@@ -328,9 +390,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (_healthBarSlider.value <= 0)
             {
-                bottomParticle.Play();
-                middleParticle.Play();
-                topParticle.Play();
+                bottomParticleSystem.Play();
+                middleParticleSystem.Play();
+                middleParticleSystem.Play();
                 enemyData.isTouchable = false;
                 enemyData.isDying = true;
                 //enemyData.isWalking = false;
@@ -347,12 +409,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                
                 if (_healthBarSlider.value <= 50)
                 {
-                    bottomParticle.Play();
-                    middleParticle.Play();
+                    bottomParticleSystem.Play();
+                    middleParticleSystem.Play();
                 }
                 else if (_healthBarSlider.value > 50)
                 {
-                    middleParticle.Play();
+                    middleParticleSystem.Play();
                 }
                 //enemyData.isWalking = false;
                 enemyData.isFiring = false;
@@ -382,9 +444,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (_healthBarSlider.value <= 0)
             {
-                bottomParticle.Play();
-                middleParticle.Play();
-                topParticle.Play();
+                bottomParticleSystem.Play();
+                middleParticleSystem.Play();
+                enemyData.currentTopParticle.Play();
                 enemyData.isTouchable = false;
                 enemyData.isDying = true;
                 //enemyData.isWalking = false;
@@ -401,12 +463,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 if (_healthBarSlider.value <= 50 &&
                     _healthBarSlider.value > 0)
                 {
-                    bottomParticle.Play();
-                    middleParticle.Play();
+                    bottomParticleSystem.Play();
+                    middleParticleSystem.Play();
                 }
                 if (_healthBarSlider.value > 50)
                 {
-                    middleParticle.Play();
+                    middleParticleSystem.Play();
                 }
                 //enemyData.isWalking = false;
                 enemyData.isFiring = false;
@@ -426,13 +488,14 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     IEnumerator TriggerBulletParticleCreater(Collider other)
     {
         yield return new WaitForSeconds(0.0002f);
-        GameObject touchParticle = Instantiate(enemyData._enemyTouchParticle, 
+        GameObject touchParticle = Instantiate(enemyData.currentBulletExplosionParticle, 
                                                new Vector3(other.gameObject.transform.position.x, 
                                                            other.gameObject.transform.position.y + .08f,
                                                            other.gameObject.transform.position.z), 
                                                Quaternion.identity, 
                                                gameObject.transform);
         enemyData.isWalkable = false;
+
 
         yield return new WaitForSeconds(1f);
 

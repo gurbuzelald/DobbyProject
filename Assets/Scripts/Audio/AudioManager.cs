@@ -6,7 +6,7 @@ using UnityEngine;
 public class AudioManager : AbstractPlayer<AudioManager>
 {
     [Header("Data")]
-    public AudioData _audioData;
+    public AudioData audioData;
 
     [Header("Audio Components")]
     public AudioMixer _audiomixer;
@@ -22,19 +22,19 @@ public class AudioManager : AbstractPlayer<AudioManager>
         _audioSource = GetComponent<AudioSource>();
         if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())
         {
-            _audioSource.clip = _audioData.menuMusic;
+            _audioSource.clip = audioData.menuMusic;
         }
         else if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.End.ToString())
         {
-            _audioSource.clip = _audioData.endMusic;
+            _audioSource.clip = audioData.endMusic;
         }
         else if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Win.ToString())
         {
-            _audioSource.clip = _audioData.winMusic;
+            _audioSource.clip = audioData.winMusic;
         }
         else
         {
-            _audioSource.clip = _audioData.gameMusic;
+            _audioSource.clip = audioData.gameMusic;
         }
         _audioSource.Play();
     }

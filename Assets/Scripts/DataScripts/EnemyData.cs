@@ -7,7 +7,7 @@ public class EnemyData : ScriptableObject
 {
     [Header("Particles")]
     public GameObject _enemyDestroyParticle;
-    public GameObject _enemyTouchParticle;
+    public GameObject currentBulletExplosionParticle;    
 
     [Header("Bullet Object")]
     public GameObject _playerBulletObject;
@@ -37,4 +37,9 @@ public class EnemyData : ScriptableObject
     public bool isWalkable;
 
     public bool isActivateCreateEnemy;
+
+    [Header("Particle Burning Effect")]
+    public ParticleSystem currentBottomParticle;
+    public ParticleSystem currentMiddleParticle;
+    public ParticleSystem currentTopParticle;
 }

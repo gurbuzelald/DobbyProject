@@ -268,23 +268,14 @@ public class PlayerData : ScriptableObject
     public float bulletSpeed = 5f;
 
 
-    [Header("Clone Data")]
-    public bool isCloneWalking;
-    public bool isCloneDying;
-    public bool isCloneDancing;
-    public int idlingCount;
-
     [Header("Destination Touch Control")]
     public bool isTouchFirst;
     public bool isTouchSecond;
     public bool isTouchThird;
 
-    public float cloneSpeed;
+    [Header("Bullet Explosions")]
+    public GameObject[] weaponBulletExplosionParticles;
 
-    [Header("Clone Transform")]
-    public Transform[] cloneTransforms;
-    public GameObject[] cloneObjects;
-    
     public enum CharacterNames
     {
         Glassy,
