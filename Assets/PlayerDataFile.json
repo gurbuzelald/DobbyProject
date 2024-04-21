@@ -8,7 +8,7 @@
     "backgroundMap": {
         "instanceID": 26528
     },
-    "currentEnemyAttackDamage": 23,
+    "currentEnemyAttackDamage": 5,
     "clownEnemyAttackDamage": 5,
     "monsterEnemyAttackDamage": 10,
     "prisonerEnemyAttackDamage": 12,
@@ -19,7 +19,7 @@
     "skeletonEnemyAttackDamage": 25,
     "urielEnemyAttackDamage": 27,
     "goblinEnemyAttackDamage": 30,
-    "currentEnemyBulletDamage": 28,
+    "currentEnemyBulletDamage": 16,
     "clownEnemyBulletDamage": 6,
     "monsterEnemyBulletDamage": 11,
     "prisonerEnemyBulletDamage": 16,
@@ -30,7 +30,7 @@
     "skeletonEnemyBulletDamage": 30,
     "urielEnemyBulletDamage": 33,
     "goblinEnemyBulletDamage": 35,
-    "currentEnemyCollisionDamage": 27,
+    "currentEnemyCollisionDamage": 10,
     "clownEnemyCollisionDamage": 10,
     "monsterEnemyCollisionDamage": 15,
     "prisonerEnemyCollisionDamage": 20,
@@ -52,7 +52,7 @@
     "ajDurability": 2,
     "mremirehDurability": 8,
     "tyDurability": 2,
-    "currentEnemyName": "Ortiz(Clone)",
+    "currentEnemyName": "PrisonerZombie(Clone)",
     "playerSpawns": {
         "instanceID": 26530
     },
@@ -227,11 +227,11 @@
     "isWalking": true,
     "isSideWalking": false,
     "isLockedWalking": false,
-    "isBackWalking": true,
+    "isBackWalking": false,
     "isClimbing": false,
     "isBackClimbing": false,
     "isIdling": false,
-    "isDying": true,
+    "isDying": false,
     "isWinning": false,
     "isSkateBoarding": false,
     "isRunning": false,
@@ -239,8 +239,8 @@
     "isPickRotateCoin": false,
     "isSwordAnimate": false,
     "isLookingUp": false,
-    "isDestroyed": true,
-    "isPlayable": false,
+    "isDestroyed": false,
+    "isPlayable": true,
     "isFireNonWalk": false,
     "isFireWalk": false,
     "isFireTime": false,
@@ -254,7 +254,7 @@
     "normalSpeed": true,
     "clickTabCount": 0,
     "clickShiftCount": 0,
-    "bulletAmount": 18,
+    "bulletAmount": 15,
     "bulletPack": 21,
     "bulletPackAmount": 2,
     "isTouchableSkate": true,
@@ -312,6 +312,24 @@
         },
         {
             "instanceID": 26616
+        },
+        {
+            "instanceID": 104082
+        },
+        {
+            "instanceID": 104084
+        },
+        {
+            "instanceID": 104086
+        },
+        {
+            "instanceID": 104090
+        },
+        {
+            "instanceID": 104080
+        },
+        {
+            "instanceID": 104088
         }
     ]
 }
