@@ -8,7 +8,7 @@
     "backgroundMap": {
         "instanceID": 26528
     },
-    "currentEnemyAttackDamage": 5,
+    "currentEnemyAttackDamage": 10,
     "clownEnemyAttackDamage": 5,
     "monsterEnemyAttackDamage": 10,
     "prisonerEnemyAttackDamage": 12,
@@ -19,7 +19,7 @@
     "skeletonEnemyAttackDamage": 25,
     "urielEnemyAttackDamage": 27,
     "goblinEnemyAttackDamage": 30,
-    "currentEnemyBulletDamage": 16,
+    "currentEnemyBulletDamage": 11,
     "clownEnemyBulletDamage": 6,
     "monsterEnemyBulletDamage": 11,
     "prisonerEnemyBulletDamage": 16,
@@ -52,7 +52,7 @@
     "ajDurability": 2,
     "mremirehDurability": 8,
     "tyDurability": 2,
-    "currentEnemyName": "PrisonerZombie(Clone)",
+    "currentEnemyName": "Monster(Clone)",
     "playerSpawns": {
         "instanceID": 26530
     },
@@ -180,12 +180,12 @@
     "tyPrice": 900,
     "mremirehPrice": 1000,
     "playerSpeed": 48.0,
-    "skateBoardSpeed": 1.0,
+    "skateBoardSpeed": 40.0,
     "slideWalkSpeed": 30.0,
     "backWalkingSpeed": 30.0,
-    "fireWalkSpeed": 3.0,
+    "fireWalkSpeed": 40.0,
     "climbSpeed": 3.0,
-    "lockedSpeed": 3.0,
+    "lockedSpeed": 40.0,
     "rotateSpeed": 6.0,
     "dobbySpeed": 50.0,
     "michelleSpeed": 43.0,
@@ -254,9 +254,9 @@
     "normalSpeed": true,
     "clickTabCount": 0,
     "clickShiftCount": 0,
-    "bulletAmount": 15,
+    "bulletAmount": 19,
     "bulletPack": 21,
-    "bulletPackAmount": 2,
+    "bulletPackAmount": 1,
     "isTouchableSkate": true,
     "danceTime": 5.0,
     "jolleenObject": {
@@ -314,22 +314,22 @@
             "instanceID": 26616
         },
         {
-            "instanceID": 104082
+            "instanceID": 26618
         },
         {
-            "instanceID": 104084
+            "instanceID": 26620
         },
         {
-            "instanceID": 104086
+            "instanceID": 26622
         },
         {
-            "instanceID": 104090
+            "instanceID": 26624
         },
         {
-            "instanceID": 104080
+            "instanceID": 26626
         },
         {
-            "instanceID": 104088
+            "instanceID": 26628
         }
     ]
 }

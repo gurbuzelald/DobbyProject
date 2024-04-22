@@ -65,6 +65,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         _damageText.text = "";
         _damageText.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
+        enemyData.isSpeedZero = false;
+
         clownSpawner = FindObjectOfType<EnemySpawner>();
         _enemyIcon.GetComponent<MeshRenderer>().enabled = true;
         _initTransform = gameObject.transform;
@@ -74,15 +76,23 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         CreateEnemyTouchParticle();
 
         SetWeaponExplosionParticle();
+
+        SetCurrentBackToWalkingValueForStart();
     }   
     void Update()
     {
         WeaponBulletPower(); 
 
         if (!enemyData.isFiring && !enemyData.isDying && 
-            (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.5f))
+            (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.5f)
+            && !enemyData.isSpeedZero)
         {
             enemyData.isWalking = true;
+        }
+        if (!enemyData.isSpeedZero)
+        {
+            enemyData.isWalking = true;
+            enemyData.isWalkable = true;
         }
         if (!enemyData.isGround)
         {
@@ -102,7 +112,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             bulletData = enemyListBulletData[enemyBulletDataNumber];
 
             CreateEnemyTouchParticle();
-        }       
+        }
+        if (levelData)
+        {
+            SetCurrentBackToWalkingValueForUpdate();
+        }
     }
 
     void SetWeaponExplosionParticle()
@@ -153,6 +167,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
     }
 
+
+
     public void CreateEnemyTouchParticle()
     {
         bottomParticleSystem = Instantiate(enemyData.currentBottomParticle, burnParticleTransformObject.transform.GetChild(0));
@@ -172,7 +188,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
                 if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.1f) &&
                     (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < levelData.currentEnemyDetectionDistance) &&
-                    enemyData.isWalkable && !enemyData.isDying)
+                    enemyData.isWalkable && !enemyData.isDying && !enemyData.isSpeedZero)
                 {
                     enemyData.enemySpeed = _initSpeed;
                     enemyData.isWalking = true;
@@ -434,7 +450,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     public void TriggerBullet(float bulletPower, Collider other)
     {
-        StartCoroutine(TriggerBulletParticleCreater(other));
+        StartCoroutine(TriggerBulletParticleCreater(other, enemyData.currentBulletExplosionParticle));
 
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
         //enemyData.isWalking = false;
@@ -474,7 +490,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isFiring = false;
                 
                 enemyData.isSpeedZero = true;
-                StartCoroutine(DelayStopEnemy(3f));
+                StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
                 PlaySoundEffect(SoundEffectTypes.BulletHit, _audioSource);
                 _healthBarSlider.value -= bulletPower;
@@ -484,11 +500,24 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
             StartCoroutine(ShowDamage((int)bulletPower, 0.1f, 3f));
         }
-    }   
-    IEnumerator TriggerBulletParticleCreater(Collider other)
+    }
+
+    void SetCurrentBackToWalkingValueForStart()
+    {
+        levelData.currentBackToWalkingValue = levelData.backToWalkingDelays[LevelData.currentLevelCount];
+    }
+    void SetCurrentBackToWalkingValueForUpdate()
+    {
+        if (levelData.isLevelUp)
+        {
+            levelData.currentBackToWalkingValue = LevelData.currentLevelCount;
+        }
+    }
+
+    IEnumerator TriggerBulletParticleCreater(Collider other, GameObject bulletExplosionParticle)
     {
         yield return new WaitForSeconds(0.0002f);
-        GameObject touchParticle = Instantiate(enemyData.currentBulletExplosionParticle, 
+        bulletExplosionParticle = Instantiate(bulletExplosionParticle, 
                                                new Vector3(other.gameObject.transform.position.x, 
                                                            other.gameObject.transform.position.y + .08f,
                                                            other.gameObject.transform.position.z), 
@@ -499,15 +528,19 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         yield return new WaitForSeconds(1f);
 
-        enemyData.isWalkable = true;
+        if (!enemyData.isSpeedZero)
+        {
+            enemyData.isWalkable = true;
+        }
+        Destroy(bulletExplosionParticle, levelData.currentBackToWalkingValue);
 
-        Destroy(touchParticle, 0.01f);
     }
 
 
-    public IEnumerator DelayStopEnemy(float value)
+
+    public IEnumerator DelayStopEnemy(float backToWalkingValue)
     {
-        yield return new WaitForSeconds(value);
+        yield return new WaitForSeconds(backToWalkingValue);
         //enemyData.isWalking = true;
         enemyData.isSpeedZero = false;
 

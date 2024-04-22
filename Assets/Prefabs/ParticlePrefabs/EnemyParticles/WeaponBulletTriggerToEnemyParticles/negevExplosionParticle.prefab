@@ -591,7 +591,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: -0.0004
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3922,7 +3922,7 @@ ParticleSystem:
         m_RotationOrder: 4
     maxLights: 60
   TrailModule:
-    enabled: 1
+    enabled: 0
     mode: 0
     ratio: 1
     lifetime:
@@ -4757,8 +4757,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 550179200f98e5743867fd712275154e, type: 2}
-  - {fileID: 2100000, guid: 8dced36040afa4343a9b6c6ea449d5e5, type: 2}
+  - {fileID: 2100000, guid: 05aa541f9ef2df64eadd0f6e6097cb0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4779,7 +4778,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 0
+  m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 1
   m_MinParticleSize: 0

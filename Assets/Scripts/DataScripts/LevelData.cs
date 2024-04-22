@@ -30,6 +30,10 @@ public class LevelData : ScriptableObject
     [Header("Map Objects")]
     public GameObject[] Maps;
 
+    [Header("Enemy Back To Walking")]
+    public float currentBackToWalkingValue;
+    public float[] backToWalkingDelays; 
+
     [Header("Enemy Level Objects")]
     public GameObject[] currentEnemyObjects;
     public GameObject[] enemyFirstObjects;

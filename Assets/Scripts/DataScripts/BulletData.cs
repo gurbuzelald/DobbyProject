@@ -133,7 +133,7 @@ public class BulletData : ScriptableObject
     public const string cow = "cow";
     public const string crystal = "crystal";
     public const string demon = "demon";
-    public const string ice = "iceun";
+    public const string ice = "ice";
     public const string negev = "negev";
     public const string ak47 = "ak47";
     public const string m4a4 = "m4a4";
