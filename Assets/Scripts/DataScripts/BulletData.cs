@@ -138,6 +138,19 @@ public class BulletData : ScriptableObject
     public const string ak47 = "ak47";
     public const string m4a4 = "m4a4";
 
+    [Header("Enemy Weapon Names")]
+    public static int currentEnemyBulletID = 0;
+    public const string clownBullet = "ClownBullet(Clone)";
+    public const string monsterBullet = "MonsterBullet(Clone)";
+    public const string prisonerBullet = "PrisonerBullet(Clone)";
+    public const string pedrosoBullet = "PedrosoBullet(Clone)";
+    public const string copBullet = "CopBullet(Clone)";
+    public const string morakBullet = "MorakBullet(Clone)";
+    public const string ortizBullet = "OrtizBullet(Clone)";
+    public const string skeletonBullet = "SkeletonBullet(Clone)";
+    public const string urielBullet = "UrielBullet(Clone)";
+    public const string goblinBullet = "GoblinBullet(Clone)";
+
 
     public enum WeaponNames
     {

@@ -644,7 +644,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 16
+    type: 5
     angle: 1
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -2663,7 +2663,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 0
+    enabled: 1
     strength:
       serializedVersion: 2
       minMaxState: 0
@@ -2823,7 +2823,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    separateAxes: 1
+    separateAxes: 0
     frequency: 5
     damping: 1
     octaves: 1
@@ -2833,7 +2833,7 @@ ParticleSystem:
     scrollSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1.17
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3152,7 +3152,7 @@ ParticleSystem:
     sizeAmount:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 0.81
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4757,7 +4757,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 26b07dfc13e9dfb45a6c1e0d4316c1ff, type: 2}
+  - {fileID: 2100000, guid: 65af560ad44bd23428ba33151510e9b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

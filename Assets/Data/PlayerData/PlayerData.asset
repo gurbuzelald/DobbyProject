@@ -15,7 +15,7 @@ MonoBehaviour:
   currentMessageText: {fileID: 0}
   currentMessageObject: {fileID: 0}
   backgroundMap: {fileID: 1345883776023317691, guid: 515afb887ab870a43b53ea7d70cb9035, type: 3}
-  currentEnemyAttackDamage: 10
+  currentEnemyAttackDamage: 25
   clownEnemyAttackDamage: 5
   monsterEnemyAttackDamage: 10
   prisonerEnemyAttackDamage: 12
@@ -26,9 +26,9 @@ MonoBehaviour:
   skeletonEnemyAttackDamage: 25
   urielEnemyAttackDamage: 27
   goblinEnemyAttackDamage: 30
-  currentEnemyBulletDamage: 11
-  clownEnemyBulletDamage: 6
-  monsterEnemyBulletDamage: 11
+  currentEnemyBulletDamage: 35
+  clownEnemyBulletDamage: 12
+  monsterEnemyBulletDamage: 13
   prisonerEnemyBulletDamage: 16
   pedrosoEnemyBulletDamage: 21
   copEnemyBulletDamage: 23
@@ -37,7 +37,7 @@ MonoBehaviour:
   skeletonEnemyBulletDamage: 30
   urielEnemyBulletDamage: 33
   goblinEnemyBulletDamage: 35
-  currentEnemyCollisionDamage: 10
+  currentEnemyCollisionDamage: 15
   clownEnemyCollisionDamage: 10
   monsterEnemyCollisionDamage: 15
   prisonerEnemyCollisionDamage: 20
@@ -59,7 +59,7 @@ MonoBehaviour:
   ajDurability: 2
   mremirehDurability: 8
   tyDurability: 2
-  currentEnemyName: Monster(Clone)
+  currentEnemyName: Goblin(Clone)
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
   isDecreaseHealth: 0
   damageHealthText: {fileID: 0}
@@ -81,7 +81,7 @@ MonoBehaviour:
   glassyLock: 
   joleenLock: 
   guardLock: Locked
-  lusthLock: Locked
+  lusthLock: 
   eveLock: Locked
   michelleLock: Locked
   ajLock: Locked
@@ -109,14 +109,14 @@ MonoBehaviour:
   - {fileID: 7971067666596210365, guid: 48f6891f360c67a488d3fe548e1e8d5f, type: 3}
   - {fileID: 7971067666596210365, guid: 0ba857b35eeb15e4da33c0bc95bc1357, type: 3}
   spawns: {fileID: 2359986759738939504, guid: aabf96d4f82bfd84cadaf35e1afe1e4b, type: 3}
-  sensivityX: 18
+  sensivityX: 15
   sensivityY: 5
   isTouchFinish: 0
   isLose: 0
   joleenPrice: 100
   dobbyPrice: 0
   glassyPrice: 200
-  lusthPrice: 300
+  lusthPrice: 0
   guardPrice: 400
   michellePrice: 500
   evePrice: 600
@@ -124,25 +124,25 @@ MonoBehaviour:
   bossPrice: 800
   tyPrice: 900
   mremirehPrice: 1000
-  playerSpeed: 48
-  skateBoardSpeed: 40
-  slideWalkSpeed: 30
-  backWalkingSpeed: 30
-  fireWalkSpeed: 40
+  playerSpeed: 13
+  skateBoardSpeed: 14
+  slideWalkSpeed: 11
+  backWalkingSpeed: 11
+  fireWalkSpeed: 13
   climbSpeed: 3
-  lockedSpeed: 40
+  lockedSpeed: 12
   rotateSpeed: 6
-  dobbySpeed: 50
-  michelleSpeed: 43
-  glassySpeed: 44
-  ajSpeed: 45
-  eveSpeed: 50
-  mremirehSpeed: 41
-  lusthSpeed: 42
-  joleenSpeed: 48
-  bossSpeed: 40
-  tySpeed: 45
-  guardSpeed: 40
+  dobbySpeed: 10
+  michelleSpeed: 15
+  glassySpeed: 12
+  ajSpeed: 14
+  eveSpeed: 13
+  mremirehSpeed: 11
+  lusthSpeed: 15
+  joleenSpeed: 13
+  bossSpeed: 11
+  tySpeed: 15
+  guardSpeed: 11
   currentJumpForce: 8
   dobbyJumpForce: 6
   michelleJumpForce: 7
@@ -158,7 +158,7 @@ MonoBehaviour:
   avaliableCharacters:
   - Dobby
   - Dobby
-  - 
+  - Lusth
   - 
   - 
   - 
@@ -198,9 +198,9 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 18
+  bulletAmount: 21
   bulletPack: 21
-  bulletPackAmount: 1
+  bulletPackAmount: 2
   isTouchableSkate: 1
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 028cfef6a7284aa4ba1ac69a720fc540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   pools:
   - objectPrefab:
     - {fileID: 1909073336618291390, guid: b7695403ddc774c4091d84bc56f787bb, type: 3}
@@ -58,11 +59,23 @@ MonoBehaviour:
     - {fileID: 8425098538945327761, guid: 3b0e63e296aac3241aad532e5a748ddf, type: 3}
     objectTransform: {fileID: 0}
     poolSize: 10
+    bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
   - objectPrefab:
-    - {fileID: 1214174750890122878, guid: 5d9d6e06774664c45b966e7b7ffcd439, type: 3}
+    - {fileID: 1214174750890122878, guid: 407ed3164bbd648b191585f29cc121ce, type: 3}
+    - {fileID: 1214174750890122878, guid: aeaf4c8f2d4ca4729837def6a0002cfe, type: 3}
+    - {fileID: 1214174750890122878, guid: 27e4788eb82d74eb894c7b1fa2cd5b0a, type: 3}
+    - {fileID: 1214174750890122878, guid: 5399926804c674a2da44d921eff931a7, type: 3}
+    - {fileID: 1214174750890122878, guid: 914f31cb5a68746eb9e478659960e1e8, type: 3}
+    - {fileID: 1214174750890122878, guid: 4c535b6bc34ff48e9b30502a70e89bbc, type: 3}
+    - {fileID: 1214174750890122878, guid: b3541f29d2e044b4c970814cb2f9d220, type: 3}
+    - {fileID: 1214174750890122878, guid: 9a331930d9f32401e9738eeba31e6288, type: 3}
+    - {fileID: 1214174750890122878, guid: 8e9bfd33390c94878a4fd6f9fc72166a, type: 3}
+    - {fileID: 1214174750890122878, guid: 05ba40ff6090a4856a48c93a11357ad7, type: 3}
     objectTransform: {fileID: 0}
     poolSize: 6
+    bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
   - objectPrefab:
     - {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
     objectTransform: {fileID: 0}
     poolSize: 10
+    bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
