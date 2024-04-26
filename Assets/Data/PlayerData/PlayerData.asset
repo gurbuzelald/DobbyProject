@@ -15,7 +15,7 @@ MonoBehaviour:
   currentMessageText: {fileID: 0}
   currentMessageObject: {fileID: 0}
   backgroundMap: {fileID: 1345883776023317691, guid: 515afb887ab870a43b53ea7d70cb9035, type: 3}
-  currentEnemyAttackDamage: 25
+  currentEnemyAttackDamage: 5
   clownEnemyAttackDamage: 5
   monsterEnemyAttackDamage: 10
   prisonerEnemyAttackDamage: 12
@@ -26,7 +26,7 @@ MonoBehaviour:
   skeletonEnemyAttackDamage: 25
   urielEnemyAttackDamage: 27
   goblinEnemyAttackDamage: 30
-  currentEnemyBulletDamage: 35
+  currentEnemyBulletDamage: 12
   clownEnemyBulletDamage: 12
   monsterEnemyBulletDamage: 13
   prisonerEnemyBulletDamage: 16
@@ -59,9 +59,9 @@ MonoBehaviour:
   ajDurability: 2
   mremirehDurability: 8
   tyDurability: 2
-  currentEnemyName: Goblin(Clone)
+  currentEnemyName: Clown(Clone)
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
-  isDecreaseHealth: 0
+  isDecreaseHealth: 1
   damageHealthText: {fileID: 0}
   decreaseCounter: 0
   currentCharacterName: 2
@@ -124,25 +124,25 @@ MonoBehaviour:
   bossPrice: 800
   tyPrice: 900
   mremirehPrice: 1000
-  playerSpeed: 13
+  playerSpeed: 9
   skateBoardSpeed: 14
-  slideWalkSpeed: 11
-  backWalkingSpeed: 11
+  slideWalkSpeed: 7
+  backWalkingSpeed: 7
   fireWalkSpeed: 13
   climbSpeed: 3
   lockedSpeed: 12
   rotateSpeed: 6
-  dobbySpeed: 10
-  michelleSpeed: 15
-  glassySpeed: 12
-  ajSpeed: 14
-  eveSpeed: 13
-  mremirehSpeed: 11
-  lusthSpeed: 15
-  joleenSpeed: 13
-  bossSpeed: 11
-  tySpeed: 15
-  guardSpeed: 11
+  dobbySpeed: 11
+  michelleSpeed: 8
+  glassySpeed: 9
+  ajSpeed: 7
+  eveSpeed: 6
+  mremirehSpeed: 7
+  lusthSpeed: 8
+  joleenSpeed: 9
+  bossSpeed: 7
+  tySpeed: 8
+  guardSpeed: 9
   currentJumpForce: 8
   dobbyJumpForce: 6
   michelleJumpForce: 7
@@ -198,9 +198,9 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 21
+  bulletAmount: 3
   bulletPack: 21
-  bulletPackAmount: 2
+  bulletPackAmount: 1
   isTouchableSkate: 1
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

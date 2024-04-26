@@ -437,10 +437,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.currentEnemyAttackDamage = _playerData.pedrosoEnemyAttackDamage;
         }
-        else if (_playerData.currentEnemyName == PlayerData.morak)
+        /*else if (_playerData.currentEnemyName == PlayerData.morak)
         {
             _playerData.currentEnemyAttackDamage = _playerData.morakEnemyAttackDamage;
-        }
+        }*/
         else if (_playerData.currentEnemyName == PlayerData.ortiz)
         {
             _playerData.currentEnemyAttackDamage = _playerData.ortizEnemyAttackDamage;
@@ -1203,9 +1203,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.currentEnemyCollisionDamage = _playerData.pedrosoEnemyCollisionDamage;
         }
-        else if (_playerData.currentEnemyName == PlayerData.morak)
+        /*else if (_playerData.currentEnemyName == PlayerData.morak)
         {
             _playerData.currentEnemyCollisionDamage = _playerData.morakEnemyCollisionDamage;
+        }*/
+        else if (_playerData.currentEnemyName == PlayerData.cop)
+        {
+            _playerData.currentEnemyCollisionDamage = _playerData.copEnemyCollisionDamage;
         }
         else if (_playerData.currentEnemyName == PlayerData.ortiz)
         {
@@ -1223,10 +1227,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.currentEnemyCollisionDamage = _playerData.goblinEnemyCollisionDamage;
         }
-        else if (_playerData.currentEnemyName == PlayerData.cop)
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.copEnemyCollisionDamage;
-        }
+        
     }
     #endregion
 

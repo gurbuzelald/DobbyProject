@@ -46,10 +46,10 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
         {
             _playerData.currentEnemyBulletDamage = _playerData.pedrosoEnemyBulletDamage;
         }
-        else if (_playerData.currentEnemyName == PlayerData.morak)
+        /*else if (_playerData.currentEnemyName == PlayerData.morak)
         {
             _playerData.currentEnemyBulletDamage = _playerData.morakEnemyBulletDamage;
-        }
+        }*/
         else if (_playerData.currentEnemyName == PlayerData.ortiz)
         {
             _playerData.currentEnemyBulletDamage = _playerData.ortizEnemyBulletDamage;

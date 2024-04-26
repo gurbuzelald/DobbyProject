@@ -74,12 +74,12 @@ public class ObjectPool : MonoBehaviour
 
             CreateAndEnqueueObject();
         }
-        else if (playerData.currentEnemyName == PlayerData.morak)
+        /*else if (playerData.currentEnemyName == PlayerData.morak)
         {
             BulletData.currentEnemyBulletID = 5;
 
             CreateAndEnqueueObject();
-        }
+        }*/
         else if (playerData.currentEnemyName == PlayerData.ortiz)
         {
             BulletData.currentEnemyBulletID = 6;
@@ -242,10 +242,10 @@ public class ObjectPool : MonoBehaviour
         {
             BulletData.currentEnemyBulletID = 4;
         }
-        else if (playerData.currentEnemyName == PlayerData.morak)
+        /*else if (playerData.currentEnemyName == PlayerData.morak)
         {
             BulletData.currentEnemyBulletID = 5;
-        }
+        }*/
         else if (playerData.currentEnemyName == PlayerData.ortiz)
         {
             BulletData.currentEnemyBulletID = 6;

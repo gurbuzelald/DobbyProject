@@ -38,7 +38,7 @@ public class CameraSpawner : MonoBehaviour
             }
             else
             {
-                if (meshRenderers[i].name != "Arrow")
+                if (meshRenderers[i].name != "Arrow" || meshRenderers[i].gameObject.name != "SM_Pistol_Trigger")
                 {
                     meshRenderers[i].enabled = false;
                 }
