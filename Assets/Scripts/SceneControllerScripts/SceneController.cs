@@ -167,6 +167,14 @@ public class SceneController : AbstractSceneController<SceneController>
             lockWalkingText.text = "Locked";
         }
     }
+    public void LevelUpGame()
+    {
+        playAgain = true;
+
+        DestroySingletonObjects();
+
+        SceneManager.LoadScene(Scenes.Game.ToString());
+    }
     public void PlayAgain()
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);

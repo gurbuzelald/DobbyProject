@@ -30,6 +30,8 @@ public class LevelUpController : MonoBehaviour
     private GameObject mapControllerObject;
     private MapController mapController;
 
+    private SceneController _sceneController;
+
     void Awake()
     {
         LevelCount();
@@ -40,11 +42,10 @@ public class LevelUpController : MonoBehaviour
         mirrorSpawnerObject = GameObject.Find("MirrorSpawner");
         cameraSpawnerObject = GameObject.Find("CameraSpawner");
         mapControllerObject = GameObject.Find("MapController");
-        
+        _sceneController = GameObject.FindObjectOfType<SceneController>();
+
+
         InitStatements();
-    }
-    private void Start()
-    {
     }
     void InitStatements()
     {
@@ -84,11 +85,13 @@ public class LevelUpController : MonoBehaviour
     {
         LevelCount();
 
-        CheckCompleteLevel();
+        
         
         SetDetectionOfEnemyAtUpdate(LevelData.currentLevelCount);
         ArrowLevelRotation(LevelData.currentLevelCount);
         SetEnemySpeed();
+
+        CheckCompleteLevel();
     }
 
     
@@ -151,6 +154,7 @@ public class LevelUpController : MonoBehaviour
                 enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
             }
 
+            _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[0] = false;
         }
@@ -173,6 +177,8 @@ public class LevelUpController : MonoBehaviour
                 enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
             }
 
+            _sceneController.LevelUpGame();
+
             levelData.isCompleteMaps[1] = false;
         }
         else if (levelData.isCompleteMaps[2])
@@ -193,6 +199,8 @@ public class LevelUpController : MonoBehaviour
             {
                 enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
             }
+
+            _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[2] = false;
         }
@@ -215,6 +223,7 @@ public class LevelUpController : MonoBehaviour
                 enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
             }
 
+            _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[3] = false;
         }
@@ -237,6 +246,8 @@ public class LevelUpController : MonoBehaviour
                 enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
             }
 
+            _sceneController.LevelUpGame();
+
             levelData.isCompleteMaps[4] = false;
         }
         else if (levelData.isCompleteMaps[5])
@@ -257,6 +268,8 @@ public class LevelUpController : MonoBehaviour
             {
                 enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
             }
+
+            _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[5] = false;
         }
@@ -279,6 +292,8 @@ public class LevelUpController : MonoBehaviour
                 enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
             }
 
+            _sceneController.LevelUpGame();
+
             levelData.isCompleteMaps[6] = false;
         }
         else if (levelData.isCompleteMaps[7])
@@ -300,6 +315,8 @@ public class LevelUpController : MonoBehaviour
                 enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
             }
 
+            _sceneController.LevelUpGame();
+
             levelData.isCompleteMaps[7] = false;
         }
         else if (levelData.isCompleteMaps[8])
@@ -320,6 +337,8 @@ public class LevelUpController : MonoBehaviour
             {
                 enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
             }
+
+            _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[8] = false;
         }

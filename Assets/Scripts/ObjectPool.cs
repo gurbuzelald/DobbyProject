@@ -182,45 +182,41 @@ public class ObjectPool : MonoBehaviour
         {
             if (pools[0].bulletData != null)
             {
-                if (pools[0].bulletData.currentWeaponName == BulletData.pistol)
+                switch (pools[0].bulletData.currentWeaponName)
                 {
-                    BulletData.currentWeaponID = 0;
-                }
-                else if (pools[0].bulletData.currentWeaponName == BulletData.axe)
-                {
-                    BulletData.currentWeaponID = 1;
-                }
-                else if (pools[0].bulletData.currentWeaponName == BulletData.bulldog)
-                {
-                    BulletData.currentWeaponID = 2;
-                }
-                else if (pools[0].bulletData.currentWeaponName == BulletData.cow)
-                {
-                    BulletData.currentWeaponID = 3;
-                }
-                else if (pools[0].bulletData.currentWeaponName == BulletData.crystal)
-                {
-                    BulletData.currentWeaponID = 4;
-                }
-                else if (pools[0].bulletData.currentWeaponName == BulletData.demon)
-                {
-                    BulletData.currentWeaponID = 5;
-                }
-                else if (pools[0].bulletData.currentWeaponName == BulletData.ice)
-                {
-                    BulletData.currentWeaponID = 6;
-                }
-                else if (pools[0].bulletData.currentWeaponName == BulletData.negev)
-                {
-                    BulletData.currentWeaponID = 7;
-                }
-                else if (pools[0].bulletData.currentWeaponName == BulletData.ak47)
-                {
-                    BulletData.currentWeaponID = 8;
-                }
-                else if (pools[0].bulletData.currentWeaponName == BulletData.m4a4)
-                {
-                    BulletData.currentWeaponID = 9;
+                    case BulletData.pistol:
+                        BulletData.currentWeaponID = 0;
+                        break;
+                    case BulletData.axe:
+                        BulletData.currentWeaponID = 1;
+                        break;
+                    case BulletData.bulldog:
+                        BulletData.currentWeaponID = 2;
+                        break;
+                    case BulletData.cow:
+                        BulletData.currentWeaponID = 3;
+                        break;
+                    case BulletData.crystal:
+                        BulletData.currentWeaponID = 4;
+                        break;
+                    case BulletData.demon:
+                        BulletData.currentWeaponID = 5;
+                        break;
+                    case BulletData.ice:
+                        BulletData.currentWeaponID = 6;
+                        break;
+                    case BulletData.negev:
+                        BulletData.currentWeaponID = 7;
+                        break;
+                    case BulletData.ak47:
+                        BulletData.currentWeaponID = 8;
+                        break;
+                    case BulletData.m4a4:
+                        BulletData.currentWeaponID = 9;
+                        break;
+                    default:
+                        BulletData.currentEnemyBulletID = 0;
+                        break;
                 }
             }
         }
