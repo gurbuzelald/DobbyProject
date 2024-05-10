@@ -2294,6 +2294,10 @@ PrefabInstance:
       propertyPath: pools.Array.data[2].objectTransform
       value: 
       objectReference: {fileID: 1966716591}
+    - target: {fileID: 4371192747629300294, guid: 8c41a3ade5a4f16468dd22b6887e2acf, type: 3}
+      propertyPath: pools.Array.data[2].objectPrefab.Array.data[0]
+      value: 
+      objectReference: {fileID: 5176671975488193012, guid: 351bd27ac1cb38d44aeb2c070e54ecc8, type: 3}
     - target: {fileID: 4371192747629300295, guid: 8c41a3ade5a4f16468dd22b6887e2acf, type: 3}
       propertyPath: m_Name
       value: ObjectPool

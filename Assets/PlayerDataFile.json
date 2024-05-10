@@ -1,14 +1,14 @@
 {
     "currentMessageText": {
-        "instanceID": 917080
+        "instanceID": 96990
     },
     "currentMessageObject": {
-        "instanceID": 917076
+        "instanceID": 96986
     },
     "backgroundMap": {
-        "instanceID": 26418
+        "instanceID": 11486
     },
-    "currentEnemyAttackDamage": 30,
+    "currentEnemyAttackDamage": 10,
     "clownEnemyAttackDamage": 5,
     "monsterEnemyAttackDamage": 10,
     "prisonerEnemyAttackDamage": 12,
@@ -19,7 +19,7 @@
     "skeletonEnemyAttackDamage": 25,
     "urielEnemyAttackDamage": 27,
     "goblinEnemyAttackDamage": 30,
-    "currentEnemyBulletDamage": 35,
+    "currentEnemyBulletDamage": 13,
     "clownEnemyBulletDamage": 12,
     "monsterEnemyBulletDamage": 13,
     "prisonerEnemyBulletDamage": 16,
@@ -52,51 +52,51 @@
     "ajDurability": 2,
     "mremirehDurability": 8,
     "tyDurability": 2,
-    "currentEnemyName": "Goblin(Clone)",
+    "currentEnemyName": "Monster(Clone)",
     "playerSpawns": {
-        "instanceID": 26420
+        "instanceID": 11488
     },
-    "isDecreaseHealth": true,
+    "isDecreaseHealth": false,
     "damageHealthText": {
-        "instanceID": 917550
+        "instanceID": -2382
     },
     "decreaseCounter": 0,
     "currentCharacterName": 2,
     "characterObject": {
-        "instanceID": 26422
+        "instanceID": 11490
     },
     "dobby": {
-        "instanceID": 26424
+        "instanceID": 11492
     },
     "glassy": {
-        "instanceID": 26426
+        "instanceID": 11494
     },
     "joleen": {
-        "instanceID": 26428
+        "instanceID": 11496
     },
     "guard": {
-        "instanceID": 26430
+        "instanceID": 11498
     },
     "lusth": {
-        "instanceID": 26432
+        "instanceID": 11500
     },
     "eve": {
-        "instanceID": 26434
+        "instanceID": 11502
     },
     "michelle": {
-        "instanceID": 26436
+        "instanceID": 11504
     },
     "boss": {
-        "instanceID": 26438
+        "instanceID": 11506
     },
     "aj": {
-        "instanceID": 26440
+        "instanceID": 11508
     },
     "mremireh": {
-        "instanceID": 26442
+        "instanceID": 11510
     },
     "ty": {
-        "instanceID": 26444
+        "instanceID": 11512
     },
     "dobbyLock": "",
     "glassyLock": "",
@@ -114,55 +114,55 @@
     "unLocked": "",
     "objects": [
         {
-            "instanceID": 26446
+            "instanceID": 11514
         },
         {
-            "instanceID": 26448
+            "instanceID": 11516
         },
         {
-            "instanceID": 26450
+            "instanceID": 11518
         },
         {
-            "instanceID": 26452
+            "instanceID": 11520
         },
         {
-            "instanceID": 26454
+            "instanceID": 11522
         },
         {
-            "instanceID": 26456
+            "instanceID": 11524
         },
         {
-            "instanceID": 26458
+            "instanceID": 11526
         }
     ],
     "slaveObjects": [
         {
-            "instanceID": 26460
+            "instanceID": 11528
         },
         {
-            "instanceID": 26462
+            "instanceID": 11530
         },
         {
-            "instanceID": 26464
+            "instanceID": 11532
         },
         {
-            "instanceID": 26466
+            "instanceID": 11534
         },
         {
-            "instanceID": 26468
+            "instanceID": 11536
         },
         {
-            "instanceID": 26470
+            "instanceID": 11538
         },
         {
-            "instanceID": 26472
+            "instanceID": 11540
         },
         {
-            "instanceID": 26474
+            "instanceID": 11542
         }
     ],
     "spawns": {
-        "instanceID": 26476
+        "instanceID": 11544
     },
     "sensivityX": 15.0,
     "sensivityY": 5.0,
@@ -224,14 +224,14 @@
         ""
     ],
     "isGround": true,
-    "isWalking": false,
-    "isSideWalking": true,
+    "isWalking": true,
+    "isSideWalking": false,
     "isLockedWalking": false,
     "isBackWalking": false,
     "isClimbing": false,
     "isBackClimbing": false,
     "isIdling": false,
-    "isDying": true,
+    "isDying": false,
     "isWinning": false,
     "isSkateBoarding": false,
     "isRunning": false,
@@ -240,7 +240,7 @@
     "isSwordAnimate": false,
     "isLookingUp": false,
     "isDestroyed": false,
-    "isPlayable": false,
+    "isPlayable": true,
     "isFireNonWalk": false,
     "isFireWalk": false,
     "isFireTime": false,
@@ -254,46 +254,46 @@
     "normalSpeed": true,
     "clickTabCount": 0,
     "clickShiftCount": 0,
-    "bulletAmount": 13,
+    "bulletAmount": 21,
     "bulletPack": 21,
-    "bulletPackAmount": 1,
+    "bulletPackAmount": 2,
     "isTouchableSkate": true,
     "danceTime": 5.0,
     "jolleenObject": {
-        "instanceID": 26478
+        "instanceID": 11546
     },
     "skateboardParticle": {
-        "instanceID": 26480
+        "instanceID": 11548
     },
     "touchParticle": {
-        "instanceID": 26482
+        "instanceID": 11550
     },
     "birthParticle": {
-        "instanceID": 26484
+        "instanceID": 11552
     },
     "deathParticle": {
-        "instanceID": 26486
+        "instanceID": 11554
     },
     "burningParticle": {
-        "instanceID": 26488
+        "instanceID": 11556
     },
     "burningTouchParticle": {
-        "instanceID": 26488
+        "instanceID": 11556
     },
     "destroyRotateCoinParticle": {
-        "instanceID": 26490
+        "instanceID": 11558
     },
     "destroyHealthCoinParticle": {
-        "instanceID": 26492
+        "instanceID": 11560
     },
     "destroyBulletCoinParticle": {
-        "instanceID": 26494
+        "instanceID": 11562
     },
     "destroyMushroomCoinParticle": {
-        "instanceID": 26496
+        "instanceID": 11564
     },
     "playerWalkingParticle": {
-        "instanceID": 26498
+        "instanceID": 11566
     },
     "particleCount": 0,
     "bulletSpeed": 5.0,
@@ -302,34 +302,34 @@
     "isTouchThird": false,
     "weaponBulletExplosionParticles": [
         {
-            "instanceID": 26500
+            "instanceID": 11568
         },
         {
-            "instanceID": 26502
+            "instanceID": 11570
         },
         {
-            "instanceID": 26504
+            "instanceID": 11572
         },
         {
-            "instanceID": 26506
+            "instanceID": 11574
         },
         {
-            "instanceID": 26508
+            "instanceID": 11576
         },
         {
-            "instanceID": 26510
+            "instanceID": 11578
         },
         {
-            "instanceID": 26512
+            "instanceID": 11580
         },
         {
-            "instanceID": 26514
+            "instanceID": 11582
         },
         {
-            "instanceID": 26516
+            "instanceID": 11584
         },
         {
-            "instanceID": 26518
+            "instanceID": 11586
         }
     ]
 }

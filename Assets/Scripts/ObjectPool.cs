@@ -19,6 +19,12 @@ public class ObjectPool : MonoBehaviour
 
     [SerializeField] private Pool[] pools = null;
 
+    private GameObject _playerBulletObject;
+    private GameObject _enemyBulletObject;
+    private GameObject _playerSwordObject;
+
+    private GameObject _poolUpdateObject;
+
     void Start()
     {
         if (playerData)
@@ -222,45 +228,38 @@ public class ObjectPool : MonoBehaviour
 
     void SetEnemyBulletID()
     {
-        if (playerData.currentEnemyName  == PlayerData.clown)
+        switch (playerData.currentEnemyName)
         {
-            BulletData.currentEnemyBulletID = 0;
-        }
-        else if (playerData.currentEnemyName == PlayerData.monster)
-        {
-            BulletData.currentEnemyBulletID = 1;
-        }
-        else if (playerData.currentEnemyName == PlayerData.prisoner)
-        {
-            BulletData.currentEnemyBulletID = 2;
-        }
-        else if (playerData.currentEnemyName == PlayerData.pedroso)
-        {
-            BulletData.currentEnemyBulletID = 3;
-        }
-        else if (playerData.currentEnemyName == PlayerData.cop)
-        {
-            BulletData.currentEnemyBulletID = 4;
-        }
-        /*else if (playerData.currentEnemyName == PlayerData.morak)
-        {
-            BulletData.currentEnemyBulletID = 5;
-        }*/
-        else if (playerData.currentEnemyName == PlayerData.ortiz)
-        {
-            BulletData.currentEnemyBulletID = 6;
-        }
-        else if (playerData.currentEnemyName == PlayerData.skeleton)
-        {
-            BulletData.currentEnemyBulletID = 7;
-        }
-        else if (playerData.currentEnemyName == PlayerData.uriel)
-        {
-            BulletData.currentEnemyBulletID = 8;
-        }
-        else if (playerData.currentEnemyName == PlayerData.goblin)
-        {
-            BulletData.currentEnemyBulletID = 9;
+            case PlayerData.clown:
+                BulletData.currentEnemyBulletID = 0;
+                break;
+            case PlayerData.monster:
+                BulletData.currentEnemyBulletID = 1;
+                break;
+            case PlayerData.prisoner:
+                BulletData.currentEnemyBulletID = 2;
+                break;
+            case PlayerData.pedroso:
+                BulletData.currentEnemyBulletID = 3;
+                break;
+            case PlayerData.cop:
+                BulletData.currentEnemyBulletID = 4;
+                break;
+            case PlayerData.ortiz:
+                BulletData.currentEnemyBulletID = 5;
+                break;
+            case PlayerData.skeleton:
+                BulletData.currentEnemyBulletID = 6;
+                break;
+            case PlayerData.uriel:
+                BulletData.currentEnemyBulletID = 7;
+                break;
+            case PlayerData.goblin:
+                BulletData.currentEnemyBulletID = 8;
+                break;
+            default:
+                BulletData.currentEnemyBulletID = 0;
+                break;
         }
     }
 
@@ -275,33 +274,33 @@ public class ObjectPool : MonoBehaviour
             {
                 if (j == 0)
                 {
-                    GameObject obj = Instantiate(pools[j].objectPrefab[BulletData.currentWeaponID],
+                    _playerBulletObject= Instantiate(pools[j].objectPrefab[BulletData.currentWeaponID],
                                              pools[j].objectTransform.position,
                                              pools[j].objectTransform.rotation,
                                              pools[j].objectTransform);
-                    obj.SetActive(false);
+                    _playerBulletObject.SetActive(false);
 
-                    pools[j].pooledObjects.Enqueue(obj);
+                    pools[j].pooledObjects.Enqueue(_playerBulletObject);
                 }
                 else if(j == 1)
                 {
-                    GameObject obj = Instantiate(pools[j].objectPrefab[BulletData.currentEnemyBulletID],
+                    _enemyBulletObject = Instantiate(pools[j].objectPrefab[BulletData.currentEnemyBulletID],
                                              pools[j].objectTransform.position,
                                              pools[j].objectTransform.rotation,
                                              pools[j].objectTransform);
-                    obj.SetActive(false);
+                    _enemyBulletObject.SetActive(false);
 
-                    pools[j].pooledObjects.Enqueue(obj);
+                    pools[j].pooledObjects.Enqueue(_enemyBulletObject);
                 }
                 else
                 {
-                    GameObject obj = Instantiate(pools[j].objectPrefab[0],
+                    _playerSwordObject = Instantiate(pools[j].objectPrefab[0],
                                              pools[j].objectTransform.position,
                                              pools[j].objectTransform.rotation,
                                              pools[j].objectTransform);
-                    obj.SetActive(false);
+                    _playerSwordObject.SetActive(false);
 
-                    pools[j].pooledObjects.Enqueue(obj);
+                    pools[j].pooledObjects.Enqueue(_playerSwordObject);
                 }
                 
             }
@@ -315,12 +314,12 @@ public class ObjectPool : MonoBehaviour
             return null;
         }
 
-        GameObject obj = pools[objectType].pooledObjects.Dequeue();
+        _poolUpdateObject = pools[objectType].pooledObjects.Dequeue();
 
-        obj.SetActive(true);
+        _poolUpdateObject.SetActive(true);
 
-        pools[objectType].pooledObjects.Enqueue(obj);
+        pools[objectType].pooledObjects.Enqueue(_poolUpdateObject);
 
-        return obj;
+        return _poolUpdateObject;
     }
 }
