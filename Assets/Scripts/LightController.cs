@@ -38,5 +38,6 @@ public class LightController : MonoBehaviour
         lights[1].SetActive(false);
         lights[0].SetActive(true);
         levelData.isLevelUp = false;
+        LevelData.levelCanUp = false;
     }
 }

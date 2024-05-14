@@ -19,7 +19,7 @@ public class LevelUpPanelController : MonoBehaviour
 
     void Update()
     {
-        if (levelData.isLevelUp)
+        if (levelData.isLevelUp && LevelData.levelCanUp)
         {
             levelUpCanvasGroup.alpha = 1;
             levelUpImage.enabled = true;
@@ -29,7 +29,7 @@ public class LevelUpPanelController : MonoBehaviour
                 levelUpImage.enabled = false;
             }
         }
-        else if (levelUpImage && !levelData.isLevelUp)
+        else if (levelUpImage && !levelData.isLevelUp && !LevelData.levelCanUp)
         {
             levelUpCanvasGroup.alpha -= 0.05f;
             if (levelUpCanvasGroup.alpha == 0)

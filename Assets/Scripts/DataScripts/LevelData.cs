@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewLevelData", menuName = "LevelData")]
 public class LevelData : ScriptableObject
 {
+    [Serializable]
+    public struct LevelUpRequirements
+    {
+        public int EnemyKills;
+        public int CoinCollectAmount;
+    }
+    public static int currentLevelUpRequirement;
+    public static bool levelCanUp;
+
     [Header("Enemy Level Speeds Ranges")]
     public float currentEnemySpeed;
     public float[] levelEnemyMinSpeed;

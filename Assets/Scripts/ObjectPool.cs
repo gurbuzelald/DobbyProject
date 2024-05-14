@@ -17,7 +17,7 @@ public class ObjectPool : MonoBehaviour
 
     [SerializeField] PlayerData playerData;
 
-    [SerializeField] private Pool[] pools = null;
+    [SerializeField] Pool[] pools = null;
 
     private GameObject _playerBulletObject;
     private GameObject _enemyBulletObject;
@@ -27,11 +27,6 @@ public class ObjectPool : MonoBehaviour
 
     void Start()
     {
-        if (playerData)
-        {
-            SetEnemyBulletID();
-        }
-        SetWeaponId();
         CreateAndEnqueueObject();
     }
     private void Update()
@@ -40,224 +35,69 @@ public class ObjectPool : MonoBehaviour
         {
             if (pools[0].bulletData != null)
             {
-                CreateWeaponBullet();
+                CreateWeaponBulletAtUpdate(0);
             }
             if (pools[1].bulletData != null && playerData)
             {
-                CreateEnemyBullet();
+                CreateEnemyBulletAtUpdate();
             }
         }
     }
-    void CreateEnemyBullet()
+    
+    void CreateWeaponBulletAtUpdate(int objectPoolLine)
     {
-        if (playerData.currentEnemyName == PlayerData.clown)
+        if (pools[0].bulletData != null)
         {
-            BulletData.currentEnemyBulletID = 0;
-
-            CreateAndEnqueueObject();
-        }
-        else if (playerData.currentEnemyName == PlayerData.monster)
-        {
-            BulletData.currentEnemyBulletID = 1;
-
-            CreateAndEnqueueObject();
-        }
-        else if (playerData.currentEnemyName == PlayerData.prisoner)
-        {
-            BulletData.currentEnemyBulletID = 2;
-
-            CreateAndEnqueueObject();
-        }
-        else if (playerData.currentEnemyName == PlayerData.pedroso)
-        {
-            BulletData.currentEnemyBulletID = 3;
-
-            CreateAndEnqueueObject();
-        }
-        else if (playerData.currentEnemyName == PlayerData.cop)
-        {
-            BulletData.currentEnemyBulletID = 4;
-
-            CreateAndEnqueueObject();
-        }
-        /*else if (playerData.currentEnemyName == PlayerData.morak)
-        {
-            BulletData.currentEnemyBulletID = 5;
-
-            CreateAndEnqueueObject();
-        }*/
-        else if (playerData.currentEnemyName == PlayerData.ortiz)
-        {
-            BulletData.currentEnemyBulletID = 6;
-
-            CreateAndEnqueueObject();
-        }
-        else if (playerData.currentEnemyName == PlayerData.skeleton)
-        {
-            BulletData.currentEnemyBulletID = 7;
-
-            CreateAndEnqueueObject();
-        }
-        else if (playerData.currentEnemyName == PlayerData.uriel)
-        {
-            BulletData.currentEnemyBulletID = 8;
-
-            CreateAndEnqueueObject();
-        }
-        else if (playerData.currentEnemyName == PlayerData.goblin)
-        {
-            BulletData.currentEnemyBulletID = 9;
-
-            CreateAndEnqueueObject();
-        }
-    }
-    void CreateWeaponBullet()
-    {
-        if (pools[0].bulletData.isPistol)
-        {
-            BulletData.currentWeaponID = 0;
-
-            CreateAndEnqueueObject();
-        }
-        else if (pools[0].bulletData.isAxe)
-        {
-            BulletData.currentWeaponID = 1;
-
-            CreateAndEnqueueObject();
-        }
-        else if (pools[0].bulletData.isBulldog)
-        {
-            BulletData.currentWeaponID = 2;
-
-            CreateAndEnqueueObject();
-        }
-        else if (pools[0].bulletData.isCow)
-        {
-            BulletData.currentWeaponID = 3;
-
-            CreateAndEnqueueObject();
-        }
-        else if (pools[0].bulletData.isCrystal)
-        {
-            BulletData.currentWeaponID = 4;
-
-            CreateAndEnqueueObject();
-        }
-        else if (pools[0].bulletData.isDemon)
-        {
-            BulletData.currentWeaponID = 5;
-
-            CreateAndEnqueueObject();
-        }
-        else if (pools[0].bulletData.isIce)
-        {
-            BulletData.currentWeaponID = 6;
-
-            CreateAndEnqueueObject();
-        }
-        else if (pools[0].bulletData.isNegev)
-        {
-            BulletData.currentWeaponID = 7;
-
-            CreateAndEnqueueObject();
-        }
-        else if (pools[0].bulletData.isAk47)
-        {
-            BulletData.currentWeaponID = 8;
-
-            CreateAndEnqueueObject();
-        }
-        else if (pools[0].bulletData.isM4a4)
-        {
-            BulletData.currentWeaponID = 9;
-
-            CreateAndEnqueueObject();
-        }
-
-    }
-
-    void SetWeaponId()
-    {
-        if (pools != null)
-        {
-            if (pools[0].bulletData != null)
+            int weaponId = GetPlayerWeaponId(pools[objectPoolLine].bulletData);
+            if (weaponId != -1)
             {
-                switch (pools[0].bulletData.currentWeaponName)
-                {
-                    case BulletData.pistol:
-                        BulletData.currentWeaponID = 0;
-                        break;
-                    case BulletData.axe:
-                        BulletData.currentWeaponID = 1;
-                        break;
-                    case BulletData.bulldog:
-                        BulletData.currentWeaponID = 2;
-                        break;
-                    case BulletData.cow:
-                        BulletData.currentWeaponID = 3;
-                        break;
-                    case BulletData.crystal:
-                        BulletData.currentWeaponID = 4;
-                        break;
-                    case BulletData.demon:
-                        BulletData.currentWeaponID = 5;
-                        break;
-                    case BulletData.ice:
-                        BulletData.currentWeaponID = 6;
-                        break;
-                    case BulletData.negev:
-                        BulletData.currentWeaponID = 7;
-                        break;
-                    case BulletData.ak47:
-                        BulletData.currentWeaponID = 8;
-                        break;
-                    case BulletData.m4a4:
-                        BulletData.currentWeaponID = 9;
-                        break;
-                    default:
-                        BulletData.currentEnemyBulletID = 0;
-                        break;
-                }
+                BulletData.currentWeaponID = weaponId;
+                CreateAndEnqueueObject();
+            }
+        }
+    }
+    void CreateEnemyBulletAtUpdate()
+    {
+        if (pools[1].bulletData != null)
+        {
+            int bulletID = GetEnemyWeaponId(playerData);
+            if (bulletID != -1)
+            {
+                BulletData.currentEnemyBulletID = bulletID;
+                CreateAndEnqueueObject();
             }
         }
     }
 
-    void SetEnemyBulletID()
+    private int GetEnemyWeaponId(PlayerData playerData)
     {
-        switch (playerData.currentEnemyName)
-        {
-            case PlayerData.clown:
-                BulletData.currentEnemyBulletID = 0;
-                break;
-            case PlayerData.monster:
-                BulletData.currentEnemyBulletID = 1;
-                break;
-            case PlayerData.prisoner:
-                BulletData.currentEnemyBulletID = 2;
-                break;
-            case PlayerData.pedroso:
-                BulletData.currentEnemyBulletID = 3;
-                break;
-            case PlayerData.cop:
-                BulletData.currentEnemyBulletID = 4;
-                break;
-            case PlayerData.ortiz:
-                BulletData.currentEnemyBulletID = 5;
-                break;
-            case PlayerData.skeleton:
-                BulletData.currentEnemyBulletID = 6;
-                break;
-            case PlayerData.uriel:
-                BulletData.currentEnemyBulletID = 7;
-                break;
-            case PlayerData.goblin:
-                BulletData.currentEnemyBulletID = 8;
-                break;
-            default:
-                BulletData.currentEnemyBulletID = 0;
-                break;
-        }
+        if (playerData.currentEnemyName == PlayerData.clown) return 0;
+        if (playerData.currentEnemyName == PlayerData.monster) return 1;
+        if (playerData.currentEnemyName == PlayerData.prisoner) return 2;
+        if (playerData.currentEnemyName == PlayerData.pedroso) return 3;
+        if (playerData.currentEnemyName == PlayerData.cop) return 4;
+        if (playerData.currentEnemyName == PlayerData.ortiz) return 5;
+        if (playerData.currentEnemyName == PlayerData.skeleton) return 6;
+        if (playerData.currentEnemyName == PlayerData.uriel) return 7;
+        if (playerData.currentEnemyName == PlayerData.goblin) return 8;
+        return -1;
     }
+
+    private int GetPlayerWeaponId(BulletData bulletData)
+    {
+        if (bulletData.isPistol) return 0;
+        if (bulletData.isAxe) return 1;
+        if (bulletData.isBulldog) return 2;
+        if (bulletData.isCow) return 3;
+        if (bulletData.isCrystal) return 4;
+        if (bulletData.isDemon) return 5;
+        if (bulletData.isIce) return 6;
+        if (bulletData.isNegev) return 7;
+        if (bulletData.isAk47) return 8;
+        if (bulletData.isM4a4) return 9;
+        return -1;
+    }
+
 
     public void CreateAndEnqueueObject()
     {

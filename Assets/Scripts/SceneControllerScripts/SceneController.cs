@@ -63,9 +63,10 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         if (currentLevelText && levelData)
         {
-            if (levelData.isLevelUp)
+            if (levelData.isLevelUp && LevelData.levelCanUp)
             {
                 currentLevelText.text = levelData.currentLevel.ToString();
+                EnemyData.enemyDeathCount = 0;
             }
         }
     }
@@ -276,8 +277,6 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        //levelData.currentLevel = LevelData.Levels.Level1;
-
         playAgain = true;
 
         DestroySingletonObjects();
@@ -431,8 +430,6 @@ public class SceneController : AbstractSceneController<SceneController>
     }
     public void LevelUp()
     {
-        //Debug.Log(SceneManager.sceneCountInBuildSettings - 3);
-        //Debug.Log(SceneManager.GetActiveScene().buildIndex);
         if (SceneManager.sceneCountInBuildSettings - 3 == SceneManager.GetActiveScene().buildIndex)
         {
             LoadWinScene();

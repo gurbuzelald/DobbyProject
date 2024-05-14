@@ -358,7 +358,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     
     void TriggerFinishControl(Collider other)
     {
-        if (other.gameObject.name == "FinishPlane")
+        if (other.gameObject.name == "FinishPlane" && LevelData.levelCanUp)
         {
             GetLevelTag(other);
 
@@ -370,6 +370,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             playerObjects.healthBarSlider.value = 100;
             _topCanvasHealthBarSlider.value = playerObjects.healthBarSlider.value;
+
+            ScoreController.GetInstance.SetScoreWithLevelUp();
 
             StartCoroutine(playerInterfaces.iPlayerTrigger.DelayLevelUp(_levelData, 2f));
         }

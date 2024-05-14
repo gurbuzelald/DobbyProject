@@ -106,7 +106,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         enemyData.enemySpeed = levelData.currentEnemySpeed;
 
-        if (levelData.isLevelUp)
+        if (levelData.isLevelUp && LevelData.levelCanUp)
         {
             enemyData = enemyListData[enemyDataNumber];
             bulletData = enemyListBulletData[enemyBulletDataNumber];
@@ -406,6 +406,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (_healthBarSlider.value <= 0)
             {
+                EnemyData.enemyDeathCount++;
                 bottomParticleSystem.Play();
                 middleParticleSystem.Play();
                 middleParticleSystem.Play();
@@ -460,6 +461,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (_healthBarSlider.value <= 0)
             {
+                EnemyData.enemyDeathCount++;
                 bottomParticleSystem.Play();
                 middleParticleSystem.Play();
                 enemyData.currentTopParticle.Play();
@@ -508,7 +510,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     void SetCurrentBackToWalkingValueForUpdate()
     {
-        if (levelData.isLevelUp)
+        if (levelData.isLevelUp && LevelData.levelCanUp)
         {
             levelData.currentBackToWalkingValue = LevelData.currentLevelCount;
         }

@@ -239,6 +239,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.isFireNonWalk = false;
             _playerData.isFireWalk = false;
             levelData.isLevelUp = false;
+            LevelData.levelCanUp = false;
 
             _playerData.isClickable = true;
             _playerData.normalSpeed = true;
@@ -825,7 +826,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             other.gameObject.SetActive(false);
 
             //SettingScore
-            ScoreController.GetInstance.SetScore(2);
+            ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
         }
         else if (value == SceneController.Tags.MushroomCoin)
         {
@@ -1116,6 +1117,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         yield return new WaitForSeconds(delayWait);
 
         levelData.isLevelUp = false;
+        LevelData.levelCanUp = false;
     }
 
     public virtual IEnumerator DamageArrowIsLookAtEnemy(Collider other, GameObject _damageArrow)

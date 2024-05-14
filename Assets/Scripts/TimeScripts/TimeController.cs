@@ -65,7 +65,7 @@ public class TimeController : MonoBehaviour
         {
             _warmTimeText.transform.localScale = Vector3.zero;
         }
-        if (levelData.isLevelUp)
+        if (levelData.isLevelUp && LevelData.levelCanUp)
         {
             timeValue = initialTimeValue;
             _time = 0;

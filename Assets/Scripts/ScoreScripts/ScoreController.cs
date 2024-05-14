@@ -7,6 +7,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
 {
     public TextMeshProUGUI _scoreText;
     private TextMeshProUGUI avaliableCoinText;
+    private TextMeshProUGUI enemyKillValueText;
     public static int _scoreAmount;
     private bool _scored;
     [SerializeField] PlayerCoinData playerCoinData;
@@ -21,7 +22,11 @@ public class ScoreController : AbstractPlayer<ScoreController>
         if (GameObject.Find("AvaliableCoinTextValue"))
         {
             avaliableCoinText = GameObject.Find("AvaliableCoinTextValue").transform.GetComponent<TextMeshProUGUI>();
-        }           
+        }
+        if (GameObject.Find("EnemyKillValueText"))
+        {
+            enemyKillValueText = GameObject.Find("EnemyKillValueText").transform.GetComponent<TextMeshProUGUI>();
+        }
         readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
         
         if (SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.CharacterChoose.ToString() ||
@@ -36,6 +41,10 @@ public class ScoreController : AbstractPlayer<ScoreController>
         if (avaliableCoinText)
         {
             avaliableCoinText.text = playerCoinData.avaliableCoin.ToString();
+        }
+        if (enemyKillValueText)
+        {
+            enemyKillValueText.text = EnemyData.enemyDeathCount.ToString();
         }
         readWrite.SaveCoinToJson();
 
@@ -71,5 +80,10 @@ public class ScoreController : AbstractPlayer<ScoreController>
         playerCoinData.avaliableCoin += scoreAmount;
         avaliableCoinText.text = playerCoinData.avaliableCoin.ToString();
         return _scoreAmount;
+    }
+
+    public void SetScoreWithLevelUp()
+    {
+        PlayerPrefs.SetInt("ScoreAmount", 0);
     }
 }

@@ -24,9 +24,11 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Transform _bulletCoinSpawn;
 
 
+
    
     private void Start()
     {
+        EnemyData.enemyDeathCount = 0;
         enemyData.isActivateCreateEnemy = false;
 
         CreateEnemiesAtStart(LevelData.currentLevelCount);

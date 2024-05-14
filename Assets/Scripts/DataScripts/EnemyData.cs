@@ -12,7 +12,9 @@ public class EnemyData : ScriptableObject
     [Header("Bullet Object")]
     public GameObject _playerBulletObject;
 
-    
+    [Header("Enemy Death Count")]
+    public static int enemyDeathCount;
+
 
     [Header("Sounds")]
     //public AudioClip shootClip;
