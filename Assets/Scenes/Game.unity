@@ -1263,7 +1263,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 0.859421, b: 0, a: 0.3254902}
+  m_fontColor: {r: 1, g: 0.859421, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1280,8 +1280,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2795,6 +2795,78 @@ PrefabInstance:
     - target: {fileID: 8342395684045271081, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: m_Name
       value: LevelUpController
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[1].EnemyKills
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[2].EnemyKills
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[3].EnemyKills
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[4].EnemyKills
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[5].EnemyKills
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[6].EnemyKills
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[7].EnemyKills
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[8].EnemyKills
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[9].EnemyKills
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[1].CoinCollectAmount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[2].CoinCollectAmount
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[3].CoinCollectAmount
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[4].CoinCollectAmount
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[5].CoinCollectAmount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[6].CoinCollectAmount
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[7].CoinCollectAmount
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[8].CoinCollectAmount
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[9].CoinCollectAmount
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []

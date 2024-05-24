@@ -933,8 +933,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (other.CompareTag(SceneController.Tags.m4a4.ToString()) && _bulletData.currentWeaponName == BulletData.m4a4)
         {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
+            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
         if (other.CompareTag(SceneController.Tags.ak47.ToString()) && _bulletData.currentWeaponName != BulletData.ak47)
@@ -946,8 +945,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (other.CompareTag(SceneController.Tags.ak47.ToString()) && _bulletData.currentWeaponName == BulletData.ak47)
         {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
+            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
         if (other.CompareTag(SceneController.Tags.axe.ToString()) && _bulletData.currentWeaponName != BulletData.axe)
@@ -958,8 +956,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (other.CompareTag(SceneController.Tags.axe.ToString()) && _bulletData.currentWeaponName == BulletData.axe)
         {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
+            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
         if (other.CompareTag(SceneController.Tags.bulldog.ToString()) && _bulletData.currentWeaponName != BulletData.bulldog)
@@ -971,7 +968,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         else if (other.CompareTag(SceneController.Tags.bulldog.ToString()) && _bulletData.currentWeaponName == BulletData.bulldog)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
+            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
         if (other.CompareTag(SceneController.Tags.cow.ToString()) && _bulletData.currentWeaponName != BulletData.cow)
@@ -983,8 +980,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (other.CompareTag(SceneController.Tags.cow.ToString()) && _bulletData.currentWeaponName == BulletData.cow)
         {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
+            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
         if (other.CompareTag(SceneController.Tags.crystal.ToString()) && _bulletData.currentWeaponName != BulletData.crystal)
@@ -996,8 +992,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (other.CompareTag(SceneController.Tags.crystal.ToString()) && _bulletData.currentWeaponName == BulletData.crystal)
         {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
+            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
         if (other.CompareTag(SceneController.Tags.demon.ToString()) && _bulletData.currentWeaponName != BulletData.demon)
@@ -1009,8 +1004,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (other.CompareTag(SceneController.Tags.demon.ToString()) && _bulletData.currentWeaponName != BulletData.demon)
         {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
+            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
         if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName != BulletData.ice)
@@ -1022,8 +1016,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName == BulletData.ice)
         {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
+            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
         if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName != BulletData.negev)
@@ -1036,7 +1029,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         else if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName == BulletData.negev)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
+            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
         if (other.CompareTag(SceneController.Tags.pistol.ToString()) && _bulletData.currentWeaponName != BulletData.pistol)
@@ -1048,8 +1041,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (other.CompareTag(SceneController.Tags.pistol.ToString()) && _bulletData.currentWeaponName == BulletData.pistol)
         {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarmText(other));
+            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
     }
     public virtual void DamageArrowDirection(ref GameObject _damageArrow)
@@ -1139,8 +1131,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         coinObject.transform.localScale = Vector3.zero;
     }
 
-    public virtual IEnumerator DelayTransformOneGiftBoxWarmText(Collider other)
+    public virtual IEnumerator DelayTransformOneGiftBoxWarnText(Collider other)
     {
+        other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
         yield return new WaitForSeconds(1f);
         other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.zero;
     }

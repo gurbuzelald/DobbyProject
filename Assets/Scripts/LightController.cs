@@ -25,7 +25,7 @@ public class LightController : MonoBehaviour
     }
     void LevelUpLight(PlayerData playerData, float delayLevelUpLight)
     {
-        if (levelData.isLevelUp)
+        if (levelData.isLevelUp && LevelData.levelCanUp)
         {
             lights[1].SetActive(true);//Dark Light isActivated
             lights[0].SetActive(false);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LevelUpController : MonoBehaviour
 {
-    [SerializeField] LevelData.LevelUpRequirements[] levelUpRequirements = null;
+    public LevelData.LevelUpRequirements[] levelUpRequirements = null;
 
     [SerializeField] PlayerData playerData;
     [SerializeField] LevelData levelData;
@@ -32,6 +32,8 @@ public class LevelUpController : MonoBehaviour
     private MapController mapController;
 
     private SceneController _sceneController;
+
+    public static string requirementMessage;
 
 
     void Awake()
@@ -124,11 +126,40 @@ public class LevelUpController : MonoBehaviour
     void CheckLevelUpRequirements()
     {
         LevelData.currentLevelUpRequirement = GetCurrentLevelID(levelData);
-        if (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills <= EnemyData.enemyDeathCount &&
-            levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount <= ScoreController._scoreAmount)
+        if (levelUpRequirements != null)
         {
-            LevelData.levelCanUp = true;
-        }
+            if (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills <= EnemyData.enemyDeathCount &&
+            levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount <= ScoreController._scoreAmount)
+            {
+                LevelData.levelCanUp = true;
+            }
+            else if (!(levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills <= EnemyData.enemyDeathCount) &&
+            levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount <= ScoreController._scoreAmount)
+            {
+                requirementMessage = "You Need To Kill" +
+                    (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills - EnemyData.enemyDeathCount).ToString() +
+                    "More Enemy";
+            }
+            else if (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills <= EnemyData.enemyDeathCount &&
+            !(levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount <= ScoreController._scoreAmount))
+            {
+                requirementMessage = "You Need To Collect" +
+                    (levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount - ScoreController._scoreAmount).ToString() +
+                    "More Coin";
+            }
+            else if (!(levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills <= EnemyData.enemyDeathCount) &&
+            !(levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount <= ScoreController._scoreAmount))
+            {
+                requirementMessage = "You Need To Kill " +
+                    (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills - EnemyData.enemyDeathCount).ToString() +
+                    " More Enemy" +
+                    " " +
+                    " " +
+                    " You Need To Collect " +
+                    (levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount - ScoreController._scoreAmount).ToString() +
+                    " More Coin"; ;
+            }
+        }        
     }
     
     void CheckCompleteLevel()

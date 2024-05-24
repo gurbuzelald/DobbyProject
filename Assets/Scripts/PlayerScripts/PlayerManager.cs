@@ -14,7 +14,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     [HideInInspector]
     public ArrowRotationController _arrowRotationController;
 
-
     struct PlayerInterfaces
     {
         public IPlayerShoot iPlayerShoot;
@@ -113,7 +112,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public static float randomEnemyZPos;
 
 
-
+    private TextMeshProUGUI messageText;
 
 
     private PlayerManager playerManager;
@@ -134,6 +133,11 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         playerManager = gameObject.GetComponent<PlayerManager>(); 
         GetInstance.gameObject.GetComponent<Rigidbody>().isKinematic = false ;
+
+        if (GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>())
+        {
+            messageText = GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>();
+        }
 
 
         _playerData.decreaseCounter = 0;
@@ -375,6 +379,23 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             StartCoroutine(playerInterfaces.iPlayerTrigger.DelayLevelUp(_levelData, 2f));
         }
+        else if (other.gameObject.name == "FinishPlane")
+        {
+            StartCoroutine(ShowRequirements());
+        }
+    }
+
+    IEnumerator ShowRequirements()
+    {
+        if (messageText)
+        {
+            messageText.text = LevelUpController.requirementMessage;
+
+            yield return new WaitForSeconds(1f);
+
+            messageText.text = "";
+
+        }        
     }
     void GetLevelTag(Collider other)
     {

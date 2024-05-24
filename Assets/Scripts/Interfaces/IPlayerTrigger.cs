@@ -50,7 +50,7 @@ internal interface IPlayerTrigger
 
     IEnumerator DelayDestroyCoinObject(GameObject coinObject);
 
-    IEnumerator DelayTransformOneGiftBoxWarmText(Collider other);
+    IEnumerator DelayTransformOneGiftBoxWarnText(Collider other);
 
 
 
