@@ -8,7 +8,7 @@ public class LockingStatement : MonoBehaviour
 {
     [SerializeField] PlayerData playerData;
     [SerializeField] BulletData bulletData;
-    private ChooseCharacterController chooseCharacterController;
+    private ChooseCharacterController pickCharacterController;
 
     private PlayerData.CharacterNames[] characterNames = new PlayerData.CharacterNames[12];
     private BulletData.WeaponNames[] weaponNames = new BulletData.WeaponNames[10];
@@ -35,7 +35,7 @@ public class LockingStatement : MonoBehaviour
     }
     void ResetCharactersLocks()
     {
-        chooseCharacterController = FindObjectOfType<ChooseCharacterController>();
+        pickCharacterController = FindObjectOfType<ChooseCharacterController>();
 
         if (playerData.dobbyLock == playerData.unLocked &&
             playerData.glassyLock == playerData.unLocked &&
@@ -50,7 +50,7 @@ public class LockingStatement : MonoBehaviour
             playerData.tyLock == playerData.unLocked &&
             playerData.resetLocks == playerData.unLocked)
         {
-            chooseCharacterController.ResetTheCharacters();
+            pickCharacterController.ResetTheCharacters();
 
 
             playerData.dobbyLock = playerData.locked;

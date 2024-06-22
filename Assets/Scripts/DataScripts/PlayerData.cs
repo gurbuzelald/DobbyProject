@@ -96,7 +96,7 @@ public class PlayerData : ScriptableObject
     public TextMeshProUGUI damageHealthText;
     public int decreaseCounter;
 
-    [Header("ChooseCharacter")]
+    [Header("Pick Character")]
     public CharacterNames currentCharacterName;
     public GameObject characterObject;
     public GameObject dobby;

@@ -155,8 +155,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
                  !playerData.isSwordAnimate)
         {
             _animator.SetLayerWeight(5, 0);
-            _animator.SetLayerWeight(6, 0);
-            _animator.SetLayerWeight(7, 0);
+            //_animator.SetLayerWeight(6, 0);
+            //_animator.SetLayerWeight(7, 0);
             //_animator.SetLayerWeight(0, 1);        
         }
     }
@@ -187,10 +187,10 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             if (!playerData.isLockedWalking)
             {
                 _animator.SetLayerWeight(6, 0);
-                _animator.SetLayerWeight(5, 0);
-                _animator.SetLayerWeight(7, 0);
+                //_animator.SetLayerWeight(5, 0);
+                //_animator.SetLayerWeight(7, 0);
                 //_animator.SetLayerWeight(0, 1);
-            }            
+            }
         }
     }
 

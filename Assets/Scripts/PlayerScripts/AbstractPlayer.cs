@@ -1539,12 +1539,41 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             //AddForceForJump
             playerRigidbody.AddForce(transform.up * _playerData.currentJumpForce, ForceMode.Impulse);
+
+            JumpDirectionZ(_playerData, ref playerRigidbody);
+            JumpDirectionX(_playerData, ref playerRigidbody);
             _playerData.jumpCount++;
         }
         else
         {
             //PlayerData
             _playerData.isJumping = false;
+        }
+
+    }
+
+    void JumpDirectionZ(PlayerData _playerData, ref Rigidbody playerRigidbody)
+    {
+        if (PlayerManager.GetInstance.GetZValue() <= 0.01)
+        {
+            playerRigidbody.AddForce(transform.forward * -1 * _playerData.currentJumpForce / 3, ForceMode.Impulse);
+        }
+        else
+        {
+            playerRigidbody.AddForce(transform.forward * _playerData.currentJumpForce / 3, ForceMode.Impulse);
+        }
+
+    }
+    void JumpDirectionX(PlayerData _playerData, ref Rigidbody playerRigidbody)
+    {
+        if (PlayerManager.GetInstance.GetXValue() <= 0.01 && _playerData.isSideWalking)
+        {
+            playerRigidbody.AddForce(transform.right * -1 * _playerData.currentJumpForce / 3, ForceMode.Impulse);
+
+        }
+        else if (PlayerManager.GetInstance.GetXValue() >= 0.01 && _playerData.isSideWalking)
+        {
+            playerRigidbody.AddForce(transform.right * _playerData.currentJumpForce / 3, ForceMode.Impulse);
         }
 
     }

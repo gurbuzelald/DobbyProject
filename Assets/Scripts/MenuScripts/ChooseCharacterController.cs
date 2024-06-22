@@ -199,23 +199,23 @@ public class ChooseCharacterController : MonoBehaviour
     void Update()
     {
         SlideMenu();
-        CharacterChooseStates();
+        CharacterPickStates();
     }
-    void CharacterChooseStates()
+    void CharacterPickStates()
     {
         if (characterPriceErrorTextObjects.Length != 0)
         {
-            ChoosedJoleen(playerData.joleenPrice);
-            ChoosedGlassy(playerData.glassyPrice);
-            ChoosedDobby(playerData.dobbyPrice);
-            ChoosedLusth(playerData.lusthPrice);
-            ChoosedGuard(playerData.guardPrice);
-            ChoosedEve(playerData.evePrice);
-            ChoosedMichelle(playerData.michellePrice);
-            ChoosedBoss(playerData.bossPrice);
-            ChoosedAj(playerData.ajPrice);
-            ChoosedMremireh(playerData.mremirehPrice);
-            ChoosedTy(playerData.tyPrice);
+            PickJoleen(playerData.joleenPrice);
+            PickGlassy(playerData.glassyPrice);
+            PickDobby(playerData.dobbyPrice);
+            PickLusth(playerData.lusthPrice);
+            PickGuard(playerData.guardPrice);
+            PickEve(playerData.evePrice);
+            PickMichelle(playerData.michellePrice);
+            PickBoss(playerData.bossPrice);
+            PickAj(playerData.ajPrice);
+            PickMremireh(playerData.mremirehPrice);
+            PickTy(playerData.tyPrice);
         }       
     }
     void SlideMenu()
@@ -248,7 +248,7 @@ public class ChooseCharacterController : MonoBehaviour
             playerData.avaliableCharacters[i] = playerData.unLocked;
         }
     }
-    public void ChoosedJoleen(int avaliableCoinAmount)
+    public void PickJoleen(int avaliableCoinAmount)
     {
         if (_playerController.Joleen && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Joleen)
@@ -283,7 +283,7 @@ public class ChooseCharacterController : MonoBehaviour
         }
     }
     
-    public void ChoosedDobby(int avaliableCoinAmount)
+    public void PickDobby(int avaliableCoinAmount)
     {
         if (_playerController.Dobby && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Dobby)
@@ -325,7 +325,7 @@ public class ChooseCharacterController : MonoBehaviour
         }
 
     }
-    public void ChoosedGlassy(int avaliableCoinAmount)
+    public void PickGlassy(int avaliableCoinAmount)
     {
         if (_playerController.Glassy && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Glassy)
@@ -369,7 +369,7 @@ public class ChooseCharacterController : MonoBehaviour
             }
         }
     }
-    public void ChoosedLusth(int avaliableCoinAmount)
+    public void PickLusth(int avaliableCoinAmount)
     {
         if ((_playerController.Lusth) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Lusth )
@@ -411,7 +411,7 @@ public class ChooseCharacterController : MonoBehaviour
             }
         }
     }
-    public void ChoosedGuard(int avaliableCoinAmount)
+    public void PickGuard(int avaliableCoinAmount)
     {
         if ((_playerController.Guard) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Guard)
@@ -453,7 +453,7 @@ public class ChooseCharacterController : MonoBehaviour
             }
         }
     }
-    public void ChoosedEve(int avaliableCoinAmount)
+    public void PickEve(int avaliableCoinAmount)
     {
         if ((_playerController.Eve) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Eve)
@@ -495,7 +495,7 @@ public class ChooseCharacterController : MonoBehaviour
             }
         }
     }
-    public void ChoosedMichelle(int avaliableCoinAmount)
+    public void PickMichelle(int avaliableCoinAmount)
     {
         if ((_playerController.Michelle) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Michelle)
@@ -537,7 +537,7 @@ public class ChooseCharacterController : MonoBehaviour
             }
         }
     }
-    public void ChoosedBoss(int avaliableCoinAmount)
+    public void PickBoss(int avaliableCoinAmount)
     {
         if ((_playerController.Boss) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Boss)
@@ -579,7 +579,7 @@ public class ChooseCharacterController : MonoBehaviour
             }
         }
     }
-    public void ChoosedAj(int avaliableCoinAmount)
+    public void PickAj(int avaliableCoinAmount)
     {
         if ((_playerController.Aj) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Aj)
@@ -621,7 +621,7 @@ public class ChooseCharacterController : MonoBehaviour
         }
     }
 
-    public void ChoosedMremireh(int avaliableCoinAmount)
+    public void PickMremireh(int avaliableCoinAmount)
     {
         if ((_playerController.Mremireh) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Mremireh)
@@ -666,7 +666,7 @@ public class ChooseCharacterController : MonoBehaviour
         }
     }
 
-    public void ChoosedTy(int avaliableCoinAmount)
+    public void PickTy(int avaliableCoinAmount)
     {
         if ((_playerController.Ty) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Ty)

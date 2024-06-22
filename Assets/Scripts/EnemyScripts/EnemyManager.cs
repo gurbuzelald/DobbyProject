@@ -117,6 +117,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             SetCurrentBackToWalkingValueForUpdate();
         }
+        if (PlayerManager.GetInstance._bulletData != null && enemyData != null)
+        {
+            SetWeaponExplosionParticle();
+        }
     }
 
     void SetWeaponExplosionParticle()
@@ -303,7 +307,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         if (other.CompareTag(SceneController.Tags.Sword.ToString()))
         {
-            TriggerSword(PlayerManager.GetInstance._bulletData.swordDamageValue);
+            TriggerSword(PlayerManager.GetInstance._bulletData.swordDamageValue, other);
             other.gameObject.SetActive(false);
         }
     }
@@ -398,8 +402,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             gameObject.transform.Rotate(0f, 180f, 0f);
         }
     }
-    public void TriggerSword(float swordPower)
+    public void TriggerSword(float swordPower, Collider other)
     {
+        StartCoroutine(TriggerBulletParticleCreater(other, enemyData.currentSwordBulletExplosionParticle));
+
+
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
         StartCoroutine(DelayStopEnemy(3f));
         if (_healthBar != null)

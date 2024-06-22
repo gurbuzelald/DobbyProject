@@ -36,7 +36,7 @@ public class ChooseWeaponController : MonoBehaviour
     private void Update()
     {
         SlideMenu();
-        WeaponChooseStates();
+        WeaponPickStates();
         WeaponUsageLimit();
     }
     public void WeaponUsageLimit()
@@ -222,20 +222,20 @@ public class ChooseWeaponController : MonoBehaviour
             bulletData.avaliableWeapons[i] = "";
         }
     }
-    void WeaponChooseStates()
+    void WeaponPickStates()
     {
         if (weaponPriceErrorTextObjects.Length != 0)
         {
-            ChoosedAK47(bulletData.ak47Price);
-            ChoosedAxe(bulletData.axePrice);
-            ChoosedBulldog(bulletData.bulldogPrice);
-            ChoosedCow(bulletData.cowPrice);
-            ChoosedCrystal(bulletData.crystalPrice);
-            ChoosedDemon(bulletData.demonPrice);
-            ChoosedIce(bulletData.icePrice);
-            ChoosedNegev(bulletData.negevPrice);
-            ChoosedPistol(bulletData.pistolPrice);
-            ChoosedM4a4(bulletData.m4a4Price);
+            PickAK47(bulletData.ak47Price);
+            PickAxe(bulletData.axePrice);
+            PickBulldog(bulletData.bulldogPrice);
+            PickCow(bulletData.cowPrice);
+            PickCrystal(bulletData.crystalPrice);
+            PickDemon(bulletData.demonPrice);
+            PickIce(bulletData.icePrice);
+            PickNegev(bulletData.negevPrice);
+            PickPistol(bulletData.pistolPrice);
+            PickM4a4(bulletData.m4a4Price);
         }
     }
     void WeaponPriceError()
@@ -356,7 +356,7 @@ public class ChooseWeaponController : MonoBehaviour
         }
     }
 
-    public void ChoosedAK47(int avaliableCoinAmount)
+    public void PickAK47(int avaliableCoinAmount)
     {
         if (bulletData.ak47UsageLimit <= 0)
         {
@@ -411,7 +411,7 @@ public class ChooseWeaponController : MonoBehaviour
         }
     }
 
-    public void ChoosedAxe(int avaliableCoinAmount)
+    public void PickAxe(int avaliableCoinAmount)
     {
         if (bulletData.axeUsageLimit <= 0)
         {
@@ -466,7 +466,7 @@ public class ChooseWeaponController : MonoBehaviour
             }
         }
     }
-    public void ChoosedBulldog(int avaliableCoinAmount)
+    public void PickBulldog(int avaliableCoinAmount)
     {
         if (bulletData.bulldogUsageLimit <= 0)
         {
@@ -519,7 +519,7 @@ public class ChooseWeaponController : MonoBehaviour
             }
         }
     }
-    public void ChoosedCow(int avaliableCoinAmount)
+    public void PickCow(int avaliableCoinAmount)
     {
         if (bulletData.cowUsageLimit <= 0)
         {
@@ -571,7 +571,7 @@ public class ChooseWeaponController : MonoBehaviour
             }
         }
     }
-    public void ChoosedCrystal(int avaliableCoinAmount)
+    public void PickCrystal(int avaliableCoinAmount)
     {
         if (bulletData.crystalUsageLimit <= 0)
         {
@@ -624,7 +624,7 @@ public class ChooseWeaponController : MonoBehaviour
             }
         }
     }
-    public void ChoosedDemon(int avaliableCoinAmount)
+    public void PickDemon(int avaliableCoinAmount)
     {
         if (bulletData.demonUsageLimit <= 0)
         {
@@ -676,7 +676,7 @@ public class ChooseWeaponController : MonoBehaviour
             }
         }
     }
-    public void ChoosedIce(int avaliableCoinAmount)
+    public void PickIce(int avaliableCoinAmount)
     {
         if (bulletData.iceUsageLimit <= 0)
         {
@@ -728,7 +728,7 @@ public class ChooseWeaponController : MonoBehaviour
             }
         }
     }
-    public void ChoosedNegev(int avaliableCoinAmount)
+    public void PickNegev(int avaliableCoinAmount)
     {
         if (bulletData.negevUsageLimit <= 0)
         {
@@ -782,7 +782,7 @@ public class ChooseWeaponController : MonoBehaviour
         }
     }
 
-    public void ChoosedPistol(int avaliableCoinAmount)
+    public void PickPistol(int avaliableCoinAmount)
     {
         if (bulletData.pistolUsageLimit <= 0)
         {
@@ -836,7 +836,7 @@ public class ChooseWeaponController : MonoBehaviour
         }
     }
 
-    public void ChoosedM4a4(int avaliableCoinAmount)
+    public void PickM4a4(int avaliableCoinAmount)
     {
         if (bulletData.m4a4UsageLimit <= 0)
         {

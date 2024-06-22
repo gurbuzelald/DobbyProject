@@ -21,7 +21,7 @@ public class BulletData : ScriptableObject
     public GameObject m4a4GiftBox;
     public GameObject bullDogGiftBox; //+
     public GameObject cowGiftBox; //+
-    public GameObject crsytalGiftBox; //+
+    public GameObject crystalGiftBox; //+
     public GameObject demonGiftBox; //+
     public GameObject iceGiftBox; //+
     public GameObject negevGiftBox; //+
@@ -209,7 +209,7 @@ public class BulletData : ScriptableObject
 
 
 
-    [Header("ChooseSword")]
+    [Header("Pick Sword")]
     public string currentSwordName = warriorSword;
     public string currentWeaponName = pistol;
 

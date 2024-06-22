@@ -12,14 +12,32 @@ public class JoystickCanvasManager : MonoBehaviour
 
     void Start()
     {
-        swordButton = GameObject.Find("Sword");
-        fireButton = GameObject.Find("Fire");
-        fire2Button = GameObject.Find("Fire2");
-        runButton = GameObject.Find("Run");
-        fireButton.SetActive(true);
-        fire2Button.SetActive(true);
-        runButton.SetActive(true);
-        //swordButton.SetActive(false);
+        if (GameObject.Find("Sword"))
+        {
+            swordButton = GameObject.Find("Sword");
+
+            //swordButton.SetActive(false);
+
+        }
+        if (GameObject.Find("Fire"))
+        {
+            fireButton = GameObject.Find("Fire");
+
+            fireButton.SetActive(true);
+
+        }
+        if (GameObject.Find("Fire2"))
+        {
+            fire2Button = GameObject.Find("Fire2");
+
+            fire2Button.SetActive(true);
+        }
+        if (GameObject.Find("Run"))
+        {
+            runButton = GameObject.Find("Run");
+
+            runButton.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -32,20 +50,34 @@ public class JoystickCanvasManager : MonoBehaviour
     {
         if (PlayerManager.GetInstance.bulletAmountText.text == "0" && playerData.bulletPackAmount == 0)
         {
-            fireButton.SetActive(false);
-            fire2Button.SetActive(false);
+            if (fireButton)
+            {
+                fireButton.SetActive(false);
+            }
+            if (fire2Button)
+            {
+                fire2Button.SetActive(false);
+            }
+
             //swordButton.SetActive(true);
         }
         else
         {
-            fireButton.SetActive(true);
-            fire2Button.SetActive(true);
+            if (fireButton)
+            {
+                fireButton.SetActive(true);
+            }
+
+            if (fire2Button)
+            {
+                fire2Button.SetActive(true);
+            }
             //swordButton.SetActive(false);
         }
     }
     void RunMode()
     {
-        if (playerData.isRunning)
+        if (playerData.isRunning && runButton)
         {
             runButton.SetActive(false);
             StartCoroutine(RunDelay());

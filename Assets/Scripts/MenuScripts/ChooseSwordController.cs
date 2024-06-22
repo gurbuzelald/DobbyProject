@@ -32,7 +32,7 @@ public class ChooseSwordController : MonoBehaviour
             }
         }
     }
-    public void ChoosedSword(string swordName)
+    public void PickSword(string swordName)
     {
         if (bulletData.currentSwordName == swordName)
         {

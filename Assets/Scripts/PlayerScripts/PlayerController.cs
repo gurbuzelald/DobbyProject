@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         ControlStates();
-        ChooseCharacter();
+        PickCharacter();
         WwaponCharacter();
     }
     public void ControlStates()
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         skateBoard = playerInput.PlayerMain.Skate.IsPressed();
         run = playerInput.PlayerMain.Run.IsPressed();       
     }
-    void ChooseCharacter()
+    void PickCharacter()
     {
         Joleen = playerInput.CharacterMenuInput.Joleen.IsPressed();
         Glassy = playerInput.CharacterMenuInput.Glassy.IsPressed();

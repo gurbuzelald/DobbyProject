@@ -29,9 +29,10 @@ public class ScoreController : AbstractPlayer<ScoreController>
         }
         readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
         
-        if (SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.CharacterChoose.ToString() ||
-            SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.WeaponChoose.ToString())
+        if (SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.PickCharacter.ToString() ||
+            SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.PickWeapon.ToString())
         {
+            
             _scoreText = gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
             _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
         }

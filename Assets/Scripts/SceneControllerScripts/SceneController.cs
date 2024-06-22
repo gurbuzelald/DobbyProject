@@ -354,7 +354,7 @@ public class SceneController : AbstractSceneController<SceneController>
 
         DestroySingletonObjects();
 
-        SceneManager.LoadScene(Scenes.CharacterChoose.ToString());
+        SceneManager.LoadScene(Scenes.PickCharacter.ToString());
     }
     public void LoadSwordChoosingScene()
     {
@@ -362,7 +362,7 @@ public class SceneController : AbstractSceneController<SceneController>
 
         DestroySingletonObjects();
 
-        SceneManager.LoadScene(Scenes.SwordChoose.ToString());
+        SceneManager.LoadScene(Scenes.PickSword.ToString());
     }
     public void LoadWeaponChoosingScene()
     {
@@ -370,7 +370,7 @@ public class SceneController : AbstractSceneController<SceneController>
 
         DestroySingletonObjects();
 
-        SceneManager.LoadScene(Scenes.WeaponChoose.ToString());
+        SceneManager.LoadScene(Scenes.PickWeapon.ToString());
     }
     public void LoadEndScene()
     {
@@ -501,6 +501,6 @@ public class SceneController : AbstractSceneController<SceneController>
     }
     public enum Scenes
     {
-        Menu, End, Win, Game, CharacterChoose, SwordChoose, WeaponChoose
+        Menu, End, Win, Game, PickCharacter, PickSword, PickWeapon
     }
 }

@@ -10,8 +10,8 @@ public class SettingController : MonoBehaviour
     [SerializeField] RectTransform _soundSettingsPanel;
     [SerializeField] RectTransform _sensivitySettingsPanel;
 
-    private GameObject _chooseCharacterButton;
-    private RectTransform _chooseCharacterButtonRectTransform;
+    private GameObject _pickCharacterButton;
+    private RectTransform _pickCharacterButtonRectTransform;
 
     private GameObject _playButton;
     private RectTransform _playButtonRectTransform;
@@ -65,9 +65,9 @@ public class SettingController : MonoBehaviour
     }
     void ButtonRectTrasforms()
     {
-        if (_chooseCharacterButton)
+        if (_pickCharacterButton)
         {
-            _chooseCharacterButtonRectTransform = _chooseCharacterButton.GetComponent<RectTransform>();
+            _pickCharacterButtonRectTransform = _pickCharacterButton.GetComponent<RectTransform>();
         }
         if (_playButton)
         {
@@ -104,7 +104,7 @@ public class SettingController : MonoBehaviour
             _soundSettingsPanel.localScale = Vector3.one;
             _sensivitySettingsPanel.localScale = Vector3.one;
 
-            _chooseCharacterButtonRectTransform.localScale = Vector3.zero;
+            _pickCharacterButtonRectTransform.localScale = Vector3.zero;
             _playButtonRectTransform.localScale = Vector3.zero;
             _quitButtonRectTransform.localScale = Vector3.zero;
             _continueButtonRectTransform.localScale = Vector3.zero;
@@ -116,7 +116,7 @@ public class SettingController : MonoBehaviour
             _soundSettingsPanel.localScale = Vector3.zero;
             _sensivitySettingsPanel.localScale = Vector3.zero;
 
-            _chooseCharacterButtonRectTransform.localScale = Vector3.one;
+            _pickCharacterButtonRectTransform.localScale = Vector3.one;
             _playButtonRectTransform.localScale = Vector3.one;
             _quitButtonRectTransform.localScale = Vector3.one;
             if (levelData.currentLevel != LevelData.Levels.Level1)
@@ -133,7 +133,7 @@ public class SettingController : MonoBehaviour
 
     void FindButtonObjects()
     {
-        _chooseCharacterButton = GameObject.Find("ChooseCharacterButton");
+        _pickCharacterButton = GameObject.Find("PickCharacterButton");
         _playButton = GameObject.Find("PlayButton");
         _quitButton = GameObject.Find("QuitButton");
         _continueButton = GameObject.Find("ContinueButton");

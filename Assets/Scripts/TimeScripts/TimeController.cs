@@ -13,7 +13,7 @@ public class TimeController : MonoBehaviour
     private float _enemySpawnTime;
 
     [SerializeField] TextMeshProUGUI _timeText;
-    [SerializeField] TextMeshProUGUI _warmTimeText;
+    [SerializeField] TextMeshProUGUI _warnTimeText;
     [SerializeField] TextMeshProUGUI _swordTimeText;
 
     [SerializeField] EnemyData enemyData;
@@ -24,7 +24,7 @@ public class TimeController : MonoBehaviour
     public int initialTimeValue = 300;
     void Start()
     {
-        _warmTimeText.transform.localScale = Vector3.zero;
+        _warnTimeText.transform.localScale = Vector3.zero;
         //_swordTimeText.transform.localScale = Vector3.zero;
         _timeText.text = "0";
         _time = 0;
@@ -51,7 +51,7 @@ public class TimeController : MonoBehaviour
         _time += Time.deltaTime;
         //Debug.Log(_time);
         _timeText.text = (((int)(timeValue - _time))).ToString();
-        _warmTimeText.text = ((int)(timeValue - _time)).ToString();
+        _warnTimeText.text = ((int)(timeValue - _time)).ToString();
 
         if ((int)_time > timeValue - 1)
         {
@@ -59,11 +59,11 @@ public class TimeController : MonoBehaviour
         }
         if ((((int)(timeValue - _time))) <= 10)
         {
-            _warmTimeText.transform.localScale = Vector3.one;
+            _warnTimeText.transform.localScale = Vector3.one;
         }
         else
         {
-            _warmTimeText.transform.localScale = Vector3.zero;
+            _warnTimeText.transform.localScale = Vector3.zero;
         }
         if (levelData.isLevelUp && LevelData.levelCanUp)
         {

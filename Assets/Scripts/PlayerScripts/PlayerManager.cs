@@ -381,20 +381,15 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         else if (other.gameObject.name == "FinishPlane")
         {
-            StartCoroutine(ShowRequirements());
+            ShowRequirements();
         }
     }
 
-    IEnumerator ShowRequirements()
+    void ShowRequirements()
     {
         if (messageText)
         {
             messageText.text = LevelUpController.requirementMessage;
-
-            yield return new WaitForSeconds(1f);
-
-            messageText.text = "";
-
         }        
     }
     void GetLevelTag(Collider other)
