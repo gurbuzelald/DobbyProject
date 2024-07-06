@@ -1121,6 +1121,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -4604,7 +4605,7 @@ GameObject:
   - component: {fileID: 5889377280168332988}
   - component: {fileID: 5889377280168332989}
   m_Layer: 5
-  m_Name: ChooseCharacterButton
+  m_Name: PickCharacterButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6126,7 +6127,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 6976350886141616231}
-  avaliableCoinText: {fileID: 341367832935263677}
   playerCoinData: {fileID: 11400000, guid: 853c688538b9c714f8661972da059616, type: 2}
 --- !u!114 &5889377279205821901
 MonoBehaviour:
