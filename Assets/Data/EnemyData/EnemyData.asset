@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
-  currentBulletExplosionParticle: {fileID: 0}
+  currentBulletExplosionParticle: {fileID: 2689552222238927185, guid: 3d4521ca9e6a94bd2a9a4e107b87100f, type: 3}
   currentSwordBulletExplosionParticle: {fileID: 2689552222238927185, guid: 76a9d0317209b42d5a4e6704c3561791, type: 3}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
   getHitClip: {fileID: 8300000, guid: a6519293710bb5749a4734619dd06379, type: 3}
@@ -32,7 +32,7 @@ MonoBehaviour:
   bulletDamageValue: 0
   isSpeedZero: 0
   isWalkable: 0
-  isActivateCreateEnemy: 0
+  isActivateCreateEnemy: 1
   currentBottomParticle: {fileID: 0}
   currentMiddleParticle: {fileID: 0}
   currentTopParticle: {fileID: 0}

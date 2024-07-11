@@ -41,6 +41,7 @@ public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehavi
             {
                 _animator.SetBool("isFiring", true);
 
+
                 _animator.SetLayerWeight(3, 1);
                 _animator.SetLayerWeight(1, 0);
                 _animator.SetLayerWeight(2, 0);

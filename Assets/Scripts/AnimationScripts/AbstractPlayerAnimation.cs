@@ -265,7 +265,6 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         {
             _animator.SetBool(AnimatorParameters.isFireWalk.ToString(), false);
 
-
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), true);
         }
         else if (!playerData.isFireNonWalk && 

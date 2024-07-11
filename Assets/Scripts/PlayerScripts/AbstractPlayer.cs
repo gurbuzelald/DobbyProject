@@ -519,8 +519,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                     BulletManager.isCreatedWeaponBullet = false;
                 }
             }
-            
-            
         }
         else
         {

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MonsterData 5
   m_EditorClassIdentifier: 
   _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
-  currentBulletTriggerParticle: {fileID: 2689552222238927185, guid: 0286d92a545234a6184211b5095a14ae, type: 3}
-  bulletTriggerParticles: []
+  currentBulletExplosionParticle: {fileID: 0}
+  currentSwordBulletExplosionParticle: {fileID: 2689552222238927185, guid: 76a9d0317209b42d5a4e6704c3561791, type: 3}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
   getHitClip: {fileID: 8300000, guid: a6519293710bb5749a4734619dd06379, type: 3}
   giveHitClip: {fileID: 8300000, guid: cf10e1f403c454c47a380a649fc10e7d, type: 3}

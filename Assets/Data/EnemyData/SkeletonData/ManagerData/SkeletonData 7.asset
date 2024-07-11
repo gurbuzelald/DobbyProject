@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: SkeletonData 7
   m_EditorClassIdentifier: 
   _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
-  _enemyTouchParticle: {fileID: 2689552222238927185, guid: 632812bd72b786d4c937d25598e0498d, type: 3}
+  currentBulletExplosionParticle: {fileID: 0}
+  currentSwordBulletExplosionParticle: {fileID: 2689552222238927185, guid: 76a9d0317209b42d5a4e6704c3561791, type: 3}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
   getHitClip: {fileID: 8300000, guid: a6519293710bb5749a4734619dd06379, type: 3}
   giveHitClip: {fileID: 8300000, guid: cf10e1f403c454c47a380a649fc10e7d, type: 3}
@@ -35,6 +36,3 @@ MonoBehaviour:
   currentBottomParticle: {fileID: 6847440653780713590, guid: 54b95b008a4da472fad9094e21768081, type: 3}
   currentMiddleParticle: {fileID: 971248542662641292, guid: 2f7ae11e5481b4410980b7b91fdc3dff, type: 3}
   currentTopParticle: {fileID: 2336971284181270886, guid: fec8603a8201643e4ae2590b1c017295, type: 3}
-  bottomParticles: []
-  middleParticles: []
-  topParticles: []
