@@ -171,7 +171,6 @@ public class EnemySpawner : MonoBehaviour
         }
         if (enemyData.isActivateCreateEnemy)
         {
-
             currentEnemyObjects = Instantiate(enemyObjects[i],
                                  enemyTransformsObject.transform.GetChild(i).position,
                                  Quaternion.identity,

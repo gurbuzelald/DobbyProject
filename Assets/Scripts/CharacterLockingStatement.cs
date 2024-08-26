@@ -73,7 +73,8 @@ public class CharacterLockingStatement : MonoBehaviour
             playerData.tyLock == playerData.locked &&
             playerData.resetLocks == playerData.locked)
         {
-            playerData.currentCharacterName = PlayerData.CharacterNames.Joleen;
+            playerData.dobbyLock = playerData.unLocked;
+            playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
         }
     }
     

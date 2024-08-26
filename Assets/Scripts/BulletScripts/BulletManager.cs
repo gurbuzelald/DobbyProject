@@ -330,6 +330,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                 bulletData.currentWeaponName = BulletData.m4a4;
                 bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
                 CreateWeaponObject();
+
+                PlayerData.currentBulletExplosionIsChanged = true;
             }
             bulletData.isM4a4 = false;
         }
@@ -344,6 +346,10 @@ public class BulletManager : AbstractBullet<BulletManager>
                 bulletData.currentWeaponName = BulletData.ak47;
                 bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
                 CreateWeaponObject();
+
+                PlayerData.currentBulletExplosionIsChanged = true;
+
+                
             }
             bulletData.isAk47 = false;
         }
@@ -358,6 +364,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                 bulletData.currentWeaponName = BulletData.axe;
                 bulletData.currentShootFrequency = bulletData.axeShootFrequency;
                 CreateWeaponObject();
+
+                PlayerData.currentBulletExplosionIsChanged = true;
             }
             bulletData.isAxe = false;
         }
@@ -372,6 +380,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                 bulletData.currentWeaponName = BulletData.negev;
                 bulletData.currentShootFrequency = bulletData.negevShootFrequency;
                 CreateWeaponObject();
+
+                PlayerData.currentBulletExplosionIsChanged = true;
             }
             bulletData.isNegev = false;
         }
@@ -386,6 +396,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                 bulletData.currentWeaponName = BulletData.crystal;
                 bulletData.currentShootFrequency = bulletData.crystalShootFrequency;
                 CreateWeaponObject();
+
+                PlayerData.currentBulletExplosionIsChanged = true;
             }
             bulletData.isCrystal = false;
         }
@@ -400,6 +412,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                 bulletData.currentWeaponName = BulletData.demon;
                 bulletData.currentShootFrequency = bulletData.demonShootFrequency;
                 CreateWeaponObject();
+
+                PlayerData.currentBulletExplosionIsChanged = true;
             }
             bulletData.isDemon = false;
         }
@@ -414,6 +428,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                 bulletData.currentWeaponName = BulletData.ice;
                 bulletData.currentShootFrequency = bulletData.iceShootFrequency;
                 CreateWeaponObject();
+
+                PlayerData.currentBulletExplosionIsChanged = true;
             }
             bulletData.isIce = false;
         }
@@ -428,6 +444,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                 bulletData.currentWeaponName = BulletData.bulldog;
                 bulletData.currentShootFrequency = bulletData.bulldogShootFrequency;
                 CreateWeaponObject();
+
+                PlayerData.currentBulletExplosionIsChanged = true;
             }
             bulletData.isBulldog = false;
         }
@@ -442,6 +460,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                 bulletData.currentWeaponName = BulletData.cow;
                 bulletData.currentShootFrequency = bulletData.cowShootFrequency;
                 CreateWeaponObject();
+
+                PlayerData.currentBulletExplosionIsChanged = true;
             }
             bulletData.isCow = false;
         }
@@ -456,6 +476,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                 bulletData.currentWeaponName = BulletData.pistol;
                 bulletData.currentShootFrequency = bulletData.pistolShootFrequency;
                 CreateWeaponObject();
+
+                PlayerData.currentBulletExplosionIsChanged = true;
             }
             bulletData.isPistol = false;
         }

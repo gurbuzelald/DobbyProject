@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+
+    [Header("Weapon Changed")]
+    public static bool currentBulletExplosionIsChanged;
+
     [Header("Message Text")]
     public TextMeshProUGUI currentMessageText;
     public GameObject currentMessageObject;
@@ -158,9 +162,6 @@ public class PlayerData : ScriptableObject
 
     public float playerSpeed;
     public float skateBoardSpeed;
-    public float slideWalkSpeed;
-    public float backWalkingSpeed;
-    public float fireWalkSpeed;
     public float climbSpeed;
     public float lockedSpeed;
     public float rotateSpeed;

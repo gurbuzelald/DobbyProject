@@ -15,7 +15,7 @@ public class ObjectPool : MonoBehaviour
         public BulletData bulletData;
     }
 
-    [SerializeField] PlayerData playerData;
+    [SerializeField] LevelData levelData;
 
     [SerializeField] Pool[] pools = null;
 
@@ -25,6 +25,11 @@ public class ObjectPool : MonoBehaviour
 
     private GameObject _poolUpdateObject;
 
+
+    public static bool creatablePlayerBullet;
+    public static bool creatableEnemyBullet;
+    public static bool creatableSwordBullet;
+
     void Start()
     {
         CreateAndEnqueueObject();
@@ -33,18 +38,22 @@ public class ObjectPool : MonoBehaviour
     {
         if (pools.Length != 0)
         {
-            if (pools[0].bulletData != null)
+            if (pools[0].bulletData != null && creatablePlayerBullet)
             {
-                CreateWeaponBulletAtUpdate(0);
+                CreateAndEnqueueObject();
+
+                creatablePlayerBullet = false;
             }
-            if (pools[1].bulletData != null && playerData)
+            if (pools[1].bulletData != null && levelData && creatableEnemyBullet)
             {
-                CreateEnemyBulletAtUpdate();
+                CreateAndEnqueueObject();
+
+                creatableEnemyBullet = false;
             }
         }
     }
     
-    void CreateWeaponBulletAtUpdate(int objectPoolLine)
+    void SetPlayerBulletID(int objectPoolLine)
     {
         if (pools[0].bulletData != null)
         {
@@ -52,34 +61,33 @@ public class ObjectPool : MonoBehaviour
             if (weaponId != -1)
             {
                 BulletData.currentWeaponID = weaponId;
-                CreateAndEnqueueObject();
             }
         }
     }
-    void CreateEnemyBulletAtUpdate()
+    void SetEnemyBulletID()
     {
         if (pools[1].bulletData != null)
         {
-            int bulletID = GetEnemyWeaponId(playerData);
+            int bulletID = GetEnemyWeaponId(levelData);
             if (bulletID != -1)
             {
                 BulletData.currentEnemyBulletID = bulletID;
-                CreateAndEnqueueObject();
             }
         }
     }
 
-    private int GetEnemyWeaponId(PlayerData playerData)
+    private int GetEnemyWeaponId(LevelData levelData)
     {
-        if (playerData.currentEnemyName == PlayerData.clown) return 0;
-        if (playerData.currentEnemyName == PlayerData.monster) return 1;
-        if (playerData.currentEnemyName == PlayerData.prisoner) return 2;
-        if (playerData.currentEnemyName == PlayerData.pedroso) return 3;
-        if (playerData.currentEnemyName == PlayerData.cop) return 4;
-        if (playerData.currentEnemyName == PlayerData.ortiz) return 5;
-        if (playerData.currentEnemyName == PlayerData.skeleton) return 6;
-        if (playerData.currentEnemyName == PlayerData.uriel) return 7;
-        if (playerData.currentEnemyName == PlayerData.goblin) return 8;
+        if (levelData.currentLevel == LevelData.Levels.Level1) return 0;
+        if (levelData.currentLevel == LevelData.Levels.Level2) return 1;
+        if (levelData.currentLevel == LevelData.Levels.Level3) return 2;
+        if (levelData.currentLevel == LevelData.Levels.Level4) return 3;
+        if (levelData.currentLevel == LevelData.Levels.Level5) return 4;
+        if (levelData.currentLevel == LevelData.Levels.Level6) return 5;
+        if (levelData.currentLevel == LevelData.Levels.Level7) return 6;
+        if (levelData.currentLevel == LevelData.Levels.Level8) return 7;
+        if (levelData.currentLevel == LevelData.Levels.Level9) return 8;
+        if (levelData.currentLevel == LevelData.Levels.Level10) return 9;
         return -1;
     }
 
@@ -110,7 +118,9 @@ public class ObjectPool : MonoBehaviour
             {
                 if (j == 0)
                 {
-                    _playerBulletObject= Instantiate(pools[j].objectPrefab[BulletData.currentWeaponID],
+                    SetPlayerBulletID(0);
+
+                    _playerBulletObject = Instantiate(pools[j].objectPrefab[BulletData.currentWeaponID],
                                              pools[j].objectTransform.position,
                                              pools[j].objectTransform.rotation,
                                              pools[j].objectTransform);
@@ -120,6 +130,9 @@ public class ObjectPool : MonoBehaviour
                 }
                 else if(j == 1)
                 {
+                    SetEnemyBulletID();
+
+
                     _enemyBulletObject = Instantiate(pools[j].objectPrefab[BulletData.currentEnemyBulletID],
                                              pools[j].objectTransform.position,
                                              pools[j].objectTransform.rotation,

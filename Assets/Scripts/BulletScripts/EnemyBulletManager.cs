@@ -46,10 +46,6 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
         {
             _playerData.currentEnemyBulletDamage = _playerData.pedrosoEnemyBulletDamage;
         }
-        /*else if (_playerData.currentEnemyName == PlayerData.morak)
-        {
-            _playerData.currentEnemyBulletDamage = _playerData.morakEnemyBulletDamage;
-        }*/
         else if (_playerData.currentEnemyName == PlayerData.ortiz)
         {
             _playerData.currentEnemyBulletDamage = _playerData.ortizEnemyBulletDamage;
@@ -77,7 +73,14 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     }
     void FixedUpdate()
     {
-        RayBullet(bulletData.enemyFireFrequency);
+        if (!SceneController.pauseGame)
+        {
+            RayBullet(bulletData.enemyFireFrequency);
+        }
+        else
+        {
+            enemyData.isFiring = false;
+        }
     }
     void RayBullet(float enemyFireFrequency)
     {

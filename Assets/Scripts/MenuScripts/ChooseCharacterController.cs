@@ -290,7 +290,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.dobbyLock == playerData.locked)
+                if (playerData.avaliableCharacters[i] == "" || playerData.dobbyLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Dobby";
 
@@ -332,7 +332,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.glassyLock == playerData.locked)
+                if (playerData.avaliableCharacters[i] == "" || playerData.glassyLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Glassy";
 
@@ -376,7 +376,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.lusthLock == playerData.locked)
+                if (playerData.avaliableCharacters[i] == "" || playerData.lusthLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Lusth";
 
@@ -418,7 +418,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.guardLock == playerData.locked)
+                if (playerData.avaliableCharacters[i] == "" || playerData.guardLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Guard";
 
@@ -460,7 +460,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.eveLock == playerData.locked)
+                if (playerData.avaliableCharacters[i] == "" || playerData.eveLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Eve";
 
@@ -502,7 +502,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.michelleLock == playerData.locked)
+                if (playerData.avaliableCharacters[i] == "" || playerData.michelleLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Michelle";
 
@@ -544,7 +544,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.bossLock == playerData.locked)
+                if (playerData.avaliableCharacters[i] == "" || playerData.bossLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Boss";
 
@@ -586,7 +586,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.ajLock == playerData.locked)
+                if (playerData.avaliableCharacters[i] == "" || playerData.ajLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Aj";
 
@@ -628,7 +628,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.mremirehLock == playerData.locked)
+                if (playerData.avaliableCharacters[i] == "" || playerData.mremirehLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Mremireh";
 
@@ -673,7 +673,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
             {
-                if (playerData.avaliableCharacters[i] == "" && playerData.tyLock == playerData.locked)
+                if (playerData.avaliableCharacters[i] == "" || playerData.tyLock == playerData.locked)
                 {
                     playerData.avaliableCharacters[i] = "Ty";
 

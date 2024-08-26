@@ -189,7 +189,8 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
 
     public void MenuSFX(MenuSoundEffect.MenuSoundEffectTypes soundEffect, AudioData audioData)
     {
-        if (soundEffect == MenuSoundEffect.MenuSoundEffectTypes.MenuClick)
+        if (soundEffect == MenuSoundEffect.MenuSoundEffectTypes.MenuClick &&
+            MenuSoundEffect.GetInstance.audioSource && audioData)
         {
             MenuSoundEffect.GetInstance.audioSource.PlayOneShot(audioData.menuClickClip);
         }

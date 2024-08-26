@@ -8,7 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LightBlue
-  m_Shader: {fileID: 4800000, guid: 045772399bb678644aa0b9dcdf6546c9, type: 3}
+  m_Shader: {fileID: 4800000, guid: 5e4cdb9d2d26c2844ac7c733faa9e7ff, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 1
@@ -17,6 +19,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -51,6 +54,10 @@ Material:
     - _FlakesRGBcolorvariationAmask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 4, y: 4}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskFlaks:
         m_Texture: {fileID: 2800000, guid: 21a6bd9b3f2c90047b38cea2fe37f5bb, type: 3}

@@ -438,10 +438,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.currentEnemyAttackDamage = _playerData.pedrosoEnemyAttackDamage;
         }
-        /*else if (_playerData.currentEnemyName == PlayerData.morak)
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.morakEnemyAttackDamage;
-        }*/
         else if (_playerData.currentEnemyName == PlayerData.ortiz)
         {
             _playerData.currentEnemyAttackDamage = _playerData.ortizEnemyAttackDamage;
@@ -927,10 +923,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isM4a4 = true;
+
+            ObjectPool.creatablePlayerBullet = true;
+
             _bulletData.m4a4Lock = _bulletData.unLocked;
+
+            PlayerData.currentBulletExplosionIsChanged = true;
         }
         else if (other.CompareTag(SceneController.Tags.m4a4.ToString()) && _bulletData.currentWeaponName == BulletData.m4a4)
         {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
@@ -938,11 +941,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isAk47 = true;
+
+            ObjectPool.creatablePlayerBullet = true;
+
             _bulletData.ak47Lock = _bulletData.unLocked;
 
+            PlayerData.currentBulletExplosionIsChanged = true;
         }
         else if (other.CompareTag(SceneController.Tags.ak47.ToString()) && _bulletData.currentWeaponName == BulletData.ak47)
         {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
@@ -950,10 +959,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isAxe = true;
+
+            ObjectPool.creatablePlayerBullet = true;
+
             _bulletData.axeLock = _bulletData.unLocked;
+
+            PlayerData.currentBulletExplosionIsChanged = true;
         }
         else if (other.CompareTag(SceneController.Tags.axe.ToString()) && _bulletData.currentWeaponName == BulletData.axe)
         {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
@@ -961,7 +977,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isBulldog = true;
+
+            ObjectPool.creatablePlayerBullet = true;
+
             _bulletData.bulldogLock = _bulletData.unLocked;
+
+            PlayerData.currentBulletExplosionIsChanged = true;
         }
         else if (other.CompareTag(SceneController.Tags.bulldog.ToString()) && _bulletData.currentWeaponName == BulletData.bulldog)
         {
@@ -973,11 +994,18 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isCow = true;
+
+            ObjectPool.creatablePlayerBullet = true;
+
             _bulletData.cowLock = _bulletData.unLocked;
+
+            PlayerData.currentBulletExplosionIsChanged = true;
 
         }
         else if (other.CompareTag(SceneController.Tags.cow.ToString()) && _bulletData.currentWeaponName == BulletData.cow)
         {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
@@ -985,11 +1013,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isCrystal = true;
+
+            ObjectPool.creatablePlayerBullet = true;
+
             _bulletData.crystalLock = _bulletData.unLocked;
+
+            PlayerData.currentBulletExplosionIsChanged = true;
 
         }
         else if (other.CompareTag(SceneController.Tags.crystal.ToString()) && _bulletData.currentWeaponName == BulletData.crystal)
         {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
@@ -997,11 +1031,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isDemon = true;
+
+            ObjectPool.creatablePlayerBullet = true;
+
             _bulletData.demonLock = _bulletData.unLocked;
+
+            PlayerData.currentBulletExplosionIsChanged = true;
 
         }
         else if (other.CompareTag(SceneController.Tags.demon.ToString()) && _bulletData.currentWeaponName != BulletData.demon)
         {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
@@ -1009,11 +1049,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isIce = true;
+
+            ObjectPool.creatablePlayerBullet = true;
+
             _bulletData.iceLock = _bulletData.unLocked;
+
+            PlayerData.currentBulletExplosionIsChanged = true;
 
         }
         else if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName == BulletData.ice)
         {
+            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
@@ -1021,8 +1067,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isNegev = true;
+
+            ObjectPool.creatablePlayerBullet = true;
+
             _bulletData.negevLock = _bulletData.unLocked;
 
+            PlayerData.currentBulletExplosionIsChanged = true;
         }
         else if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName == BulletData.negev)
         {
@@ -1034,7 +1084,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             Destroy(other.gameObject);
             _bulletData.isPistol = true;
+
+            ObjectPool.creatablePlayerBullet = true;
+
             _bulletData.pistolLock = _bulletData.unLocked;
+
+            PlayerData.currentBulletExplosionIsChanged = true;
 
         }
         else if (other.CompareTag(SceneController.Tags.pistol.ToString()) && _bulletData.currentWeaponName == BulletData.pistol)
@@ -1196,10 +1251,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.currentEnemyCollisionDamage = _playerData.pedrosoEnemyCollisionDamage;
         }
-        /*else if (_playerData.currentEnemyName == PlayerData.morak)
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.morakEnemyCollisionDamage;
-        }*/
         else if (_playerData.currentEnemyName == PlayerData.cop)
         {
             _playerData.currentEnemyCollisionDamage = _playerData.copEnemyCollisionDamage;
@@ -1454,7 +1505,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
                 if (characterAnimator.GetLayerWeight(16) == 1)
                 {//When fireWalk Animation is active, player speed will lower then original speed
-                    playerTransform.Translate(0f, 0f, PlayerManager.GetInstance.GetZValue() * _playerData.fireWalkSpeed * Time.deltaTime);
+                    playerTransform.Translate(0f, 0f, PlayerManager.GetInstance.GetZValue() * _playerData.playerSpeed * Time.deltaTime);
                 }
                 else
                 {
@@ -1465,7 +1516,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             if (PlayerManager.GetInstance.GetZValue() < -0.01 && !_playerData.isClimbing && !_playerData.isBackClimbing)
             {
                 //PlayerData
-                playerTransform.Translate(0f, 0f, PlayerManager.GetInstance.GetZValue() * _playerData.backWalkingSpeed * Time.deltaTime);
+                playerTransform.Translate(0f, 0f, PlayerManager.GetInstance.GetZValue() * (_playerData.playerSpeed / 2)* Time.deltaTime);
                 _playerData.isBackWalking = true;
                 _playerData.isWalking = false;
                 _playerData.isBackClimbing = false;
@@ -1505,7 +1556,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.isSideWalking = true;
 
-            playerTransform.Translate(PlayerManager.GetInstance.GetXValue() * _playerData.slideWalkSpeed * Time.deltaTime, 0f, 0f);
+            playerTransform.Translate(PlayerManager.GetInstance.GetXValue() * (_playerData.playerSpeed / 3 )* Time.deltaTime, 0f, 0f);
         }
         if (PlayerManager.GetInstance.GetXValue() == 0f)
         {

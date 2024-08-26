@@ -48,28 +48,31 @@ public class TimeController : MonoBehaviour
     }
     private void GetTime(int timeValue)
     {
-        _time += Time.deltaTime;
-        //Debug.Log(_time);
-        _timeText.text = (((int)(timeValue - _time))).ToString();
-        _warnTimeText.text = ((int)(timeValue - _time)).ToString();
+        if (!SceneController.pauseGame)
+        {
+            _time += Time.deltaTime;
+            //Debug.Log(_time);
+            _timeText.text = (((int)(timeValue - _time))).ToString();
+            _warnTimeText.text = ((int)(timeValue - _time)).ToString();
 
-        if ((int)_time > timeValue - 1)
-        {
-            StartCoroutine(PlayerManager.GetInstance.DelayDestroy(0));
-        }
-        if ((((int)(timeValue - _time))) <= 10)
-        {
-            _warnTimeText.transform.localScale = Vector3.one;
-        }
-        else
-        {
-            _warnTimeText.transform.localScale = Vector3.zero;
-        }
-        if (levelData.isLevelUp && LevelData.levelCanUp)
-        {
-            timeValue = initialTimeValue;
-            _time = 0;
-        }
+            if ((int)_time > timeValue - 1)
+            {
+                StartCoroutine(PlayerManager.GetInstance.DelayDestroy(0));
+            }
+            if ((((int)(timeValue - _time))) <= 10)
+            {
+                _warnTimeText.transform.localScale = Vector3.one;
+            }
+            else
+            {
+                _warnTimeText.transform.localScale = Vector3.zero;
+            }
+            if (levelData.isLevelUp && LevelData.levelCanUp)
+            {
+                timeValue = initialTimeValue;
+                _time = 0;
+            }
+        }        
     }
     public void SwordTimer(PlayerData playerData, TextMeshProUGUI _swordTimeText)
     {

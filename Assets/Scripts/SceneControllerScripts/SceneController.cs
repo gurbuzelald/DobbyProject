@@ -16,7 +16,7 @@ public class SceneController : AbstractSceneController<SceneController>
     [SerializeField] BulletData bulletData;
 
     private GameObject pausePanel;
-    private bool pauseGame = false;
+    public static bool pauseGame = false;
     [HideInInspector]
     public static bool playAgain;
 

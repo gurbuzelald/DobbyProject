@@ -75,7 +75,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         CreateEnemyTouchParticle();
 
-        SetWeaponExplosionParticle();
+        SetPlayerWeaponExplosionParticle();
 
         SetCurrentBackToWalkingValueForStart();
     }   
@@ -84,24 +84,15 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         WeaponBulletPower(); 
 
         if (!enemyData.isFiring && !enemyData.isDying && 
-            (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.5f)
+            (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) <= levelData.enemyDetectionDistances[LevelData.currentLevelCount])
             && !enemyData.isSpeedZero)
-        {
-            enemyData.isWalking = true;
-        }
-        if (!enemyData.isSpeedZero)
         {
             enemyData.isWalking = true;
             enemyData.isWalkable = true;
         }
-        if (!enemyData.isGround)
-        {
-            enemyRigidbody.constraints = RigidbodyConstraints.FreezePositionY;
-        }
-        if (enemyData.isGround)
-        {
-            enemyRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
-        }
+
+        CheckGroundEnemy();
+        
         FollowPlayer();
 
         enemyData.enemySpeed = levelData.currentEnemySpeed;
@@ -119,12 +110,30 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         if (PlayerManager.GetInstance._bulletData != null && enemyData != null)
         {
-            SetWeaponExplosionParticle();
+            SetPlayerWeaponExplosionParticle();
         }
     }
 
-    void SetWeaponExplosionParticle()
+
+    void CheckGroundEnemy()
     {
+        if (!enemyData.isGround)
+        {
+            enemyRigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+        }
+        if (enemyData.isGround)
+        {
+            enemyRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+    }
+    void SetPlayerWeaponExplosionParticle()
+    {
+        if (PlayerData.currentBulletExplosionIsChanged)
+        {
+            
+
+            PlayerData.currentBulletExplosionIsChanged = false;
+        }
         if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.pistol)
         {
             enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[0];
@@ -187,7 +196,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             if (playerData.isPlayable && gameObject != null && enemyBulletManager != null)
             {
                 bulletData.isFirable = true;
-                //enemyData.isFiring = true;
 
 
                 if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.1f) &&
@@ -221,7 +229,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 }
                 else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.4f) &&
                     (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 10f) &&
-                    !enemyData.isDying && !playerData.isDying)
+                    !enemyData.isDying && !playerData.isDying && !SceneController.pauseGame)
                 {
                     enemyData.isFiring = true;
                     enemyData.isAttacking = false;
@@ -243,39 +251,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isAttacking = false;
                 enemyData.isWalking = false;
                 enemyData.isDying = false;
-            }
-        }
-    }
-    
-    void FixedUpdate()
-    {
-        //RayBullet();
-    }
-    void RayBullet()
-    {
-        if (!enemyData.isDying)
-        {
-            
-            RaycastHit hit;
-            if (bulletData.isFirable)
-            {
-                if (Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward),
-                    out hit, 10f, enemySpawner.layerMask))
-                {
-                    Debug.DrawRay(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
-
-                    enemyData.isFiring = true;
-                    enemyData.isWalking = false;
-
-                    StartCoroutine(gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>()
-                                   .Delay(bulletData.enemyBulletDelay, 2f));
-
-                    StartCoroutine(gameObject.transform.GetChild(2).GetComponent<EnemyBulletManager>().FiringFalse(bulletData.enemyFireFrequency));
-                }
-                else
-                {
-                    Debug.DrawRay(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
-                }
             }
         }
     }

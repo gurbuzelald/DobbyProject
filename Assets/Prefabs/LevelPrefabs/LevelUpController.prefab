@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8342395684045271081}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8342395684045271087
 MonoBehaviour:
@@ -45,26 +45,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelUpRequirements:
-  - EnemyKills: 5
-    CoinCollectAmount: 10
-  - EnemyKills: 5
+  - EnemyKills: 1
+    CoinCollectAmount: 2
+  - EnemyKills: 1
+    CoinCollectAmount: 2
+  - EnemyKills: 1
+    CoinCollectAmount: 2
+  - EnemyKills: 14
+    CoinCollectAmount: 60
+  - EnemyKills: 16
+    CoinCollectAmount: 80
+  - EnemyKills: 16
     CoinCollectAmount: 100
-  - EnemyKills: 10
-    CoinCollectAmount: 50
-  - EnemyKills: 10
-    CoinCollectAmount: 50
-  - EnemyKills: 10
-    CoinCollectAmount: 50
-  - EnemyKills: 10
-    CoinCollectAmount: 50
-  - EnemyKills: 10
-    CoinCollectAmount: 50
-  - EnemyKills: 10
-    CoinCollectAmount: 50
-  - EnemyKills: 10
-    CoinCollectAmount: 50
-  - EnemyKills: 10
-    CoinCollectAmount: 50
+  - EnemyKills: 18
+    CoinCollectAmount: 120
+  - EnemyKills: 20
+    CoinCollectAmount: 140
+  - EnemyKills: 20
+    CoinCollectAmount: 160
+  - EnemyKills: 20
+    CoinCollectAmount: 180
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
   bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
+  scoreMissionCompletedImage: {fileID: 0}
+  enemyKillMissionCompletedImage: {fileID: 0}

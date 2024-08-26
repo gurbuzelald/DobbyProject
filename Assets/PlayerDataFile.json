@@ -1,12 +1,12 @@
 {
     "currentMessageText": {
-        "instanceID": 171512
+        "instanceID": 28758
     },
     "currentMessageObject": {
-        "instanceID": 171508
+        "instanceID": 28754
     },
     "backgroundMap": {
-        "instanceID": 36452
+        "instanceID": 29200
     },
     "currentEnemyAttackDamage": 5,
     "clownEnemyAttackDamage": 5,
@@ -30,7 +30,7 @@
     "skeletonEnemyBulletDamage": 30,
     "urielEnemyBulletDamage": 33,
     "goblinEnemyBulletDamage": 35,
-    "currentEnemyCollisionDamage": 10,
+    "currentEnemyCollisionDamage": 15,
     "clownEnemyCollisionDamage": 10,
     "monsterEnemyCollisionDamage": 15,
     "prisonerEnemyCollisionDamage": 20,
@@ -54,55 +54,55 @@
     "tyDurability": 2,
     "currentEnemyName": "Clown(Clone)",
     "playerSpawns": {
-        "instanceID": 36454
+        "instanceID": 29202
     },
     "isDecreaseHealth": false,
     "damageHealthText": {
-        "instanceID": -993046
+        "instanceID": -1976
     },
     "decreaseCounter": 0,
     "currentCharacterName": 3,
     "characterObject": {
-        "instanceID": 36456
+        "instanceID": 29204
     },
     "dobby": {
-        "instanceID": 36458
+        "instanceID": 29206
     },
     "glassy": {
-        "instanceID": 36460
+        "instanceID": 29208
     },
     "joleen": {
-        "instanceID": 36462
+        "instanceID": 29210
     },
     "guard": {
-        "instanceID": 36464
+        "instanceID": 29212
     },
     "lusth": {
-        "instanceID": 36466
+        "instanceID": 29214
     },
     "eve": {
-        "instanceID": 36468
+        "instanceID": 29216
     },
     "michelle": {
-        "instanceID": 36470
+        "instanceID": 29218
     },
     "boss": {
-        "instanceID": 36472
+        "instanceID": 29220
     },
     "aj": {
-        "instanceID": 36474
+        "instanceID": 29222
     },
     "mremireh": {
-        "instanceID": 36476
+        "instanceID": 29224
     },
     "ty": {
-        "instanceID": 36478
+        "instanceID": 29226
     },
     "dobbyLock": "Locked",
     "glassyLock": "Locked",
     "joleenLock": "Locked",
     "guardLock": "Locked",
-    "lusthLock": "",
+    "lusthLock": "Locked",
     "eveLock": "Locked",
     "michelleLock": "Locked",
     "ajLock": "Locked",
@@ -114,57 +114,57 @@
     "unLocked": "",
     "objects": [
         {
-            "instanceID": 36480
+            "instanceID": 29228
         },
         {
-            "instanceID": 36482
+            "instanceID": 29230
         },
         {
-            "instanceID": 36484
+            "instanceID": 29232
         },
         {
-            "instanceID": 36486
+            "instanceID": 29234
         },
         {
-            "instanceID": 36488
+            "instanceID": 29236
         },
         {
-            "instanceID": 36490
+            "instanceID": 29238
         },
         {
-            "instanceID": 36492
+            "instanceID": 29240
         }
     ],
     "slaveObjects": [
         {
-            "instanceID": 36494
+            "instanceID": 29242
         },
         {
-            "instanceID": 36496
+            "instanceID": 29244
         },
         {
-            "instanceID": 36498
+            "instanceID": 29246
         },
         {
-            "instanceID": 36500
+            "instanceID": 29248
         },
         {
-            "instanceID": 36502
+            "instanceID": 29250
         },
         {
-            "instanceID": 36504
+            "instanceID": 29252
         },
         {
-            "instanceID": 36506
+            "instanceID": 29254
         },
         {
-            "instanceID": 36508
+            "instanceID": 29256
         }
     ],
     "spawns": {
-        "instanceID": 36510
+        "instanceID": 29258
     },
-    "sensivityX": 15.0,
+    "sensivityX": 5.0,
     "sensivityY": 5.0,
     "isTouchFinish": false,
     "isLose": false,
@@ -181,9 +181,6 @@
     "mremirehPrice": 1,
     "playerSpeed": 38.0,
     "skateBoardSpeed": 14.0,
-    "slideWalkSpeed": 30.0,
-    "backWalkingSpeed": 25.0,
-    "fireWalkSpeed": 13.0,
     "climbSpeed": 3.0,
     "lockedSpeed": 12.0,
     "rotateSpeed": 6.0,
@@ -215,13 +212,13 @@
         "Dobby",
         "Lusth",
         "Boss",
+        "Dobby",
+        "Glassy",
         "Lusth",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
+        "Guard",
+        "Michelle",
+        "Eve",
+        "Aj"
     ],
     "isGround": true,
     "isWalking": true,
@@ -254,46 +251,46 @@
     "normalSpeed": true,
     "clickTabCount": 0,
     "clickShiftCount": 0,
-    "bulletAmount": 6,
+    "bulletAmount": 18,
     "bulletPack": 21,
     "bulletPackAmount": 2,
     "isTouchableSkate": true,
     "danceTime": 5.0,
     "jolleenObject": {
-        "instanceID": 36512
+        "instanceID": 29260
     },
     "skateboardParticle": {
-        "instanceID": 36514
+        "instanceID": 29262
     },
     "touchParticle": {
-        "instanceID": 36516
+        "instanceID": 29264
     },
     "birthParticle": {
-        "instanceID": 36518
+        "instanceID": 29266
     },
     "deathParticle": {
-        "instanceID": 36520
+        "instanceID": 29268
     },
     "burningParticle": {
-        "instanceID": 36522
+        "instanceID": 29270
     },
     "burningTouchParticle": {
-        "instanceID": 36522
+        "instanceID": 29270
     },
     "destroyRotateCoinParticle": {
-        "instanceID": 36524
+        "instanceID": 29272
     },
     "destroyHealthCoinParticle": {
-        "instanceID": 36526
+        "instanceID": 29274
     },
     "destroyBulletCoinParticle": {
-        "instanceID": 36528
+        "instanceID": 29276
     },
     "destroyMushroomCoinParticle": {
-        "instanceID": 36530
+        "instanceID": 29278
     },
     "playerWalkingParticle": {
-        "instanceID": 36532
+        "instanceID": 29280
     },
     "particleCount": 0,
     "bulletSpeed": 5.0,
@@ -302,34 +299,34 @@
     "isTouchThird": false,
     "weaponBulletExplosionParticles": [
         {
-            "instanceID": 36534
+            "instanceID": 29282
         },
         {
-            "instanceID": 36536
+            "instanceID": 29284
         },
         {
-            "instanceID": 36538
+            "instanceID": 29286
         },
         {
-            "instanceID": 36540
+            "instanceID": 29288
         },
         {
-            "instanceID": 36542
+            "instanceID": 29290
         },
         {
-            "instanceID": 36544
+            "instanceID": 29292
         },
         {
-            "instanceID": 36546
+            "instanceID": 29294
         },
         {
-            "instanceID": 36548
+            "instanceID": 29296
         },
         {
-            "instanceID": 36550
+            "instanceID": 29298
         },
         {
-            "instanceID": 36552
+            "instanceID": 29300
         }
     ]
 }

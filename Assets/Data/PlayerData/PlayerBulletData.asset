@@ -39,11 +39,11 @@ MonoBehaviour:
   negevGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
   ak47GiftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
   axeGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
-  currentShootFrequency: 0.4
+  currentShootFrequency: 0.33
   pistolShootFrequency: 0.4
   axeShootFrequency: 0.35
   bulldogShootFrequency: 0.3
-  cowShootFrequency: 0.28
+  cowShootFrequency: 0.33
   crystalShootFrequency: 0.25
   demonShootFrequency: 0.23
   iceShootFrequency: 0.2
@@ -86,21 +86,21 @@ MonoBehaviour:
   - cow
   - crystal
   - crystal
-  - 
-  - 
-  - 
-  - 
-  - 
+  - ak47
+  - m4a4
+  - m4a4
+  - m4a4
+  - m4a4
   pistolLock: 
   axeLock: 
   bulldogLock: locked
-  cowLock: locked
+  cowLock: 
   crystalLock: locked
   demonLock: locked
-  iceLock: locked
-  negevLock: locked
+  iceLock: 
+  negevLock: 
   ak47Lock: locked
-  m4a4Lock: locked
+  m4a4Lock: 
   resetLocks: locked
   unLocked: 
   pistolUsageLimit: 3
@@ -110,8 +110,8 @@ MonoBehaviour:
   demonUsageLimit: 0
   iceUsageLimit: 0
   negevUsageLimit: 0
-  axeUsageLimit: 0
-  m4a4UsageLimit: 0
+  axeUsageLimit: 1
+  m4a4UsageLimit: 3
   ak47UsageLimit: 0
   isPistol: 0
   isBulldog: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   isLongHummer: 0
   isClub: 0
   currentSwordName: LowSword
-  currentWeaponName: pistol
+  currentWeaponName: cow
   swordDamageValue: 30
   enemyFireFrequency: 5
   enemyBulletDelayCounter: 0

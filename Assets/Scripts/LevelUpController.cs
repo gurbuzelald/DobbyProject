@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 public class LevelUpController : MonoBehaviour
 {
     public LevelData.LevelUpRequirements[] levelUpRequirements = null;
@@ -33,10 +35,16 @@ public class LevelUpController : MonoBehaviour
 
     private SceneController _sceneController;
 
+    private GameObject scoreControllerObject;
+    private ScoreController scoreController;
+
     public static string requirementMessage;
 
     private TextMeshProUGUI enemyKillLevelUpRequirementText;
     private TextMeshProUGUI pickUpCoinLevelUpRequirementText;
+
+    public Image scoreMissionCompletedImage;
+    public Image enemyKillMissionCompletedImage;
 
 
     void Awake()
@@ -49,6 +57,7 @@ public class LevelUpController : MonoBehaviour
         mirrorSpawnerObject = GameObject.Find("MirrorSpawner");
         cameraSpawnerObject = GameObject.Find("CameraSpawner");
         mapControllerObject = GameObject.Find("MapController");
+        scoreControllerObject = GameObject.Find("ScoreController");
         _sceneController = GameObject.FindObjectOfType<SceneController>();
 
 
@@ -102,6 +111,27 @@ public class LevelUpController : MonoBehaviour
 
     void InitStatements()
     {
+        if (GameObject.Find("ScoreMissionCompletedImage"))
+        {
+            //scoreMissionCompletedImage = GameObject.Find("ScoreMissionCompletedImage").GetComponent<Image>();
+
+            if (levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount >= ScoreController._scoreAmount)
+            {
+                scoreMissionCompletedImage.gameObject.SetActive(false);
+            }
+        }
+
+        if (GameObject.Find("EnemyKillMissionCompletedImage"))
+        {
+            //enemyKillMissionCompletedImage = GameObject.Find("EnemyKillMissionCompletedImage").GetComponent<Image>();
+
+            if (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills >= EnemyData.enemyDeathCount)
+            {
+                enemyKillMissionCompletedImage.gameObject.SetActive(false);
+            }
+        }
+
+
         LevelData.levelCanUp = false;
 
         if (weaponGiftBoxSpawnerObject)
@@ -133,6 +163,10 @@ public class LevelUpController : MonoBehaviour
         {
             mapController = mapControllerObject.GetComponent<MapController>();
         }
+        if (scoreControllerObject)
+        {
+            scoreController = scoreControllerObject.GetComponent<ScoreController>();
+        }
         coinSpawner.SetCoinValue(LevelData.currentLevelCount);
     }
 
@@ -147,8 +181,6 @@ public class LevelUpController : MonoBehaviour
         SetEnemySpeed();
 
         CheckCompleteLevel();
-
-
     }
 
     IEnumerator AbleToLevelUpMessageText()
@@ -210,35 +242,47 @@ public class LevelUpController : MonoBehaviour
             {
                 LevelData.levelCanUp = true;
                 StartCoroutine(AbleToLevelUpMessageText());
+
+                scoreMissionCompletedImage.gameObject.SetActive(true);
+
+                enemyKillMissionCompletedImage.gameObject.SetActive(true);
+
             }
-            else if (!(levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills <= EnemyData.enemyDeathCount) &&
+             if ((levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills >= EnemyData.enemyDeathCount) &&
             levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount <= ScoreController._scoreAmount)
             {
                 requirementMessage = "You Need To Kill  " +
                     (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills - EnemyData.enemyDeathCount).ToString() +
                     "  More Enemy For Level Up";
 
+                scoreMissionCompletedImage.gameObject.SetActive(true);
+
                 yield return new WaitForSeconds(3f);
 
                 requirementMessage = "";
             }
-            else if (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills <= EnemyData.enemyDeathCount &&
-            !(levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount <= ScoreController._scoreAmount))
+             if (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills <= EnemyData.enemyDeathCount &&
+            (levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount >= ScoreController._scoreAmount))
             {
                 requirementMessage = "You Need To Collect  " +
                     (levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount - ScoreController._scoreAmount).ToString() +
                     "  More Coin  For Level Up";
 
+                enemyKillMissionCompletedImage.gameObject.SetActive(true);
+
                 yield return new WaitForSeconds(3f);
 
                 requirementMessage = "";
             }
-            else if (!(levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills <= EnemyData.enemyDeathCount) &&
-            !(levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount <= ScoreController._scoreAmount))
+            /*else if ((levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills > EnemyData.enemyDeathCount) &&
+            (levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount > ScoreController._scoreAmount))
             {
                 requirementMessage = "You Need To Kill  " +
                     (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills - EnemyData.enemyDeathCount).ToString() +
                     "  More Enemy ";
+
+                scoreMissionCompletedImage.gameObject.SetActive(true);
+                enemyKillMissionCompletedImage.gameObject.SetActive(true);
 
                 yield return new WaitForSeconds(2f);
 
@@ -250,7 +294,7 @@ public class LevelUpController : MonoBehaviour
 
                 requirementMessage = "";
 
-            }
+            }*/
         }        
     }
     
@@ -258,6 +302,8 @@ public class LevelUpController : MonoBehaviour
     {
         if (levelData.isCompleteMaps[0])
         {
+            ObjectPool.creatableEnemyBullet = true;
+
             levelData.currentLevel = LevelData.Levels.Level2;
             levelData.currentEnemyObjects = levelData.enemySecondObjects;
             bulletData.currentGiftBox = bulletData.cowGiftBox;
@@ -281,6 +327,8 @@ public class LevelUpController : MonoBehaviour
         }
         else if (levelData.isCompleteMaps[1])
         {
+            ObjectPool.creatableEnemyBullet = true;
+
             levelData.currentLevel = LevelData.Levels.Level3;
             levelData.currentEnemyObjects = levelData.enemyThirdObjects;
             bulletData.currentGiftBox = bulletData.demonGiftBox;
@@ -304,6 +352,8 @@ public class LevelUpController : MonoBehaviour
         }
         else if (levelData.isCompleteMaps[2])
         {
+            ObjectPool.creatableEnemyBullet = true;
+
             levelData.currentLevel = LevelData.Levels.Level4;
             levelData.currentEnemyObjects = levelData.enemyFourthObjects;
             bulletData.currentGiftBox = bulletData.negevGiftBox;
@@ -327,6 +377,8 @@ public class LevelUpController : MonoBehaviour
         }
         else if (levelData.isCompleteMaps[3])
         {
+            ObjectPool.creatableEnemyBullet = true;
+
             levelData.currentLevel = LevelData.Levels.Level5;
             levelData.currentEnemyObjects = levelData.enemyFifthObjects;
             bulletData.currentGiftBox = bulletData.axeGiftBox;
@@ -350,6 +402,8 @@ public class LevelUpController : MonoBehaviour
         }
         else if (levelData.isCompleteMaps[4])
         {
+            ObjectPool.creatableEnemyBullet = true;
+
             levelData.currentLevel = LevelData.Levels.Level6;
             levelData.currentEnemyObjects = levelData.enemySixthObjects;
             bulletData.currentGiftBox = bulletData.crystalGiftBox;
@@ -373,6 +427,8 @@ public class LevelUpController : MonoBehaviour
         }
         else if (levelData.isCompleteMaps[5])
         {
+            ObjectPool.creatableEnemyBullet = true;
+
             levelData.currentLevel = LevelData.Levels.Level7;
             levelData.currentEnemyObjects = levelData.enemySeventhObjects;
             bulletData.currentGiftBox = bulletData.iceGiftBox;
@@ -396,6 +452,8 @@ public class LevelUpController : MonoBehaviour
         }
         else if (levelData.isCompleteMaps[6])
         {
+            ObjectPool.creatableEnemyBullet = true;
+
             levelData.currentLevel = LevelData.Levels.Level8;
             levelData.currentEnemyObjects = levelData.enemyEightthObjects;
             bulletData.currentGiftBox = bulletData.pistolGiftBox;
@@ -419,6 +477,8 @@ public class LevelUpController : MonoBehaviour
         }
         else if (levelData.isCompleteMaps[7])
         {
+            ObjectPool.creatableEnemyBullet = true;
+
             levelData.currentLevel = LevelData.Levels.Level9;
             levelData.currentEnemyObjects = levelData.enemyNinethObjects;
             bulletData.currentGiftBox = bulletData.ak47GiftBox;
@@ -442,6 +502,8 @@ public class LevelUpController : MonoBehaviour
         }
         else if (levelData.isCompleteMaps[8])
         {
+            ObjectPool.creatableEnemyBullet = true;
+
             levelData.currentLevel = LevelData.Levels.Level10;
             levelData.currentEnemyObjects = levelData.enemyTenthObjects;
             bulletData.currentGiftBox = bulletData.m4a4GiftBox;

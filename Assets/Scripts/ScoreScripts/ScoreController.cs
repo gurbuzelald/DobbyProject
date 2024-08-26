@@ -11,10 +11,13 @@ public class ScoreController : AbstractPlayer<ScoreController>
     public static int _scoreAmount;
     private bool _scored;
     [SerializeField] PlayerCoinData playerCoinData;
-
     private JsonReadAndWriteSystem readWrite;
+
+
+
     void Start()
     {
+
         if (playerCoinData.avaliableCoin < 0)
         {
             playerCoinData.avaliableCoin = 0;
@@ -29,13 +32,22 @@ public class ScoreController : AbstractPlayer<ScoreController>
         }
         readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
         
-        if (SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.PickCharacter.ToString() ||
-            SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.PickWeapon.ToString())
+        
+    }
+    private void OnEnable()
+    {
+
+        if (gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>())
         {
-            
-            _scoreText = gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>();
-            _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
+            if (SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.PickCharacter.ToString() ||
+             SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.PickWeapon.ToString())
+            {
+
+                _scoreText = gameObject.transform.GetChild(0).gameObject.transform.GetComponent<TextMeshProUGUI>();
+                _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
+            }
         }
+        
     }
     void Update()
     {

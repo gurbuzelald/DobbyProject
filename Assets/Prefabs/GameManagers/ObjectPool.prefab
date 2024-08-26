@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4371192747629300295}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4371192747629300294
 MonoBehaviour:
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 028cfef6a7284aa4ba1ac69a720fc540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
+  levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
   pools:
   - objectPrefab:
     - {fileID: 1909073336618291390, guid: b7695403ddc774c4091d84bc56f787bb, type: 3}
@@ -58,7 +58,7 @@ MonoBehaviour:
     - {fileID: 4299486794394585338, guid: 48882e0557a3a8d4fadc8cd50ff511ca, type: 3}
     - {fileID: 8425098538945327761, guid: 3b0e63e296aac3241aad532e5a748ddf, type: 3}
     objectTransform: {fileID: 0}
-    poolSize: 1
+    poolSize: 5
     bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
   - objectPrefab:
     - {fileID: 1214174750890122878, guid: 407ed3164bbd648b191585f29cc121ce, type: 3}

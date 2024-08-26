@@ -23,6 +23,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Albedo:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _AlbedoEmision:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _CarNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -33,6 +41,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _CoatlNormal:
         m_Texture: {fileID: 2800000, guid: b3d940e75e1f5d24684cd93a2758e1bf, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emision1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emision2:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emision3:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _FlakeColorMask:
@@ -55,13 +75,25 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MaskFlaks:
         m_Texture: {fileID: 2800000, guid: 21a6bd9b3f2c90047b38cea2fe37f5bb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OrangePeelNormal:
         m_Texture: {fileID: 2800000, guid: b3d940e75e1f5d24684cd93a2758e1bf, type: 3}
         m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _Specular:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _T_FlakeMask:
         m_Texture: {fileID: 2800000, guid: f3337d1b16764ec4b94b4e148a2192e0, type: 3}
@@ -116,6 +148,10 @@ Material:
     - _CoatAmount: 7.76
     - _CoatBump: 0.266
     - _CoatSmoothness: 0
+    - _EimisionContrast3: 0
+    - _EmisionBase: 0
+    - _EmisionContrast1: 0
+    - _EmisionContrast2: 0
     - _FlakeColorVariationAmount: 0.6750107
     - _FlakesBrightness: 1
     - _FlakesBump: 0.455

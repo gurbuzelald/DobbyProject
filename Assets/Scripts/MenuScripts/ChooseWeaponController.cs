@@ -367,7 +367,7 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.ak47Lock == BulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" || bulletData.ak47Lock == BulletData.locked)
                 {
                     bulletData.avaliableWeapons[i] = BulletData.ak47;
 
@@ -423,7 +423,7 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "")
+                if (bulletData.avaliableWeapons[i] == "" || bulletData.axeLock == BulletData.locked)
                 {
                     bulletData.avaliableWeapons[i] = BulletData.axe;
 
@@ -477,7 +477,7 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.bulldogLock == BulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" || bulletData.bulldogLock == BulletData.locked)
                 {
                     bulletData.avaliableWeapons[i] = BulletData.bulldog;
 
@@ -530,7 +530,7 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.cowLock == BulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" || bulletData.cowLock == BulletData.locked)
                 {
                     bulletData.avaliableWeapons[i] = BulletData.cow;
 
@@ -582,7 +582,7 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.crystalLock == BulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" || bulletData.crystalLock == BulletData.locked)
                 {
                     bulletData.avaliableWeapons[i] = BulletData.crystal;
 
@@ -635,7 +635,7 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.demonLock == BulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" || bulletData.demonLock == BulletData.locked)
                 {
                     bulletData.avaliableWeapons[i] = BulletData.demon;
 
@@ -687,7 +687,7 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.iceLock == BulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" || bulletData.iceLock == BulletData.locked)
                 {
                     bulletData.avaliableWeapons[i] = BulletData.ice;
 
@@ -739,7 +739,7 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.negevLock == BulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" || bulletData.negevLock == BulletData.locked)
                 {
                     bulletData.avaliableWeapons[i] = BulletData.negev;
 
@@ -793,7 +793,7 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.pistolLock == BulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" || bulletData.pistolLock == BulletData.locked)
                 {
                     bulletData.avaliableWeapons[i] = BulletData.pistol;
 
@@ -847,7 +847,7 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" && bulletData.m4a4Lock == BulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" || bulletData.m4a4Lock == BulletData.locked)
                 {
                     bulletData.avaliableWeapons[i] = BulletData.m4a4;
 

@@ -226,42 +226,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }        
     }
 
-    void LimitCurrentMap()
-    {
-        if (Mathf.Abs(gameObject.transform.position.x) < Mathf.Abs(MapController.currentMap.transform.position.x / 2 + 1f))
-        {
-            Debug.Log(gameObject.transform.position);
-
-            gameObject.transform.position = new Vector3(MapController.currentMap.transform.position.x / 2 + 1.1f,
-                                                        gameObject.transform.position.y,
-                                                        gameObject.transform.position.z);
-        }
-        else if (Mathf.Abs(gameObject.transform.position.x) > Mathf.Abs(MapController.currentMap.transform.position.x * 2 - 1f))
-        {
-            Debug.Log(gameObject.transform.position);
-            gameObject.transform.position = new Vector3(MapController.currentMap.transform.position.x * 2 - 1.1f,
-                                                        gameObject.transform.position.y,
-                                                        gameObject.transform.position.z);
-        }
-
-        if (Mathf.Abs(gameObject.transform.position.z) > Mathf.Abs(MapController.currentMap.transform.position.z * 2 - 1f))
-        {
-            Debug.Log(gameObject.transform.position);
-            Debug.Log("B?y?k");
-
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x,
-                                                        gameObject.transform.position.y,
-                                                        MapController.currentMap.transform.position.z * 2 - 1.1f);
-        }
-        else if (Mathf.Abs(gameObject.transform.position.z) < Mathf.Abs(MapController.currentMap.transform.position.z / 2 - 1f))
-        {
-            Debug.Log(gameObject.transform.position);
-            Debug.Log("K???k");
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x,
-                                                        gameObject.transform.position.y,
-                                                        MapController.currentMap.transform.position.z / 2 - 1.1f);
-        }
-    }
+    
     void DontFallDown()
     {        
         if (GetInstance.transform.position.y <= 0.9301061f && !_playerData.isGround)
@@ -528,6 +493,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
             playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject, 
                                       ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText);//FreshBulletAmount
+
+            PlayerData.currentBulletExplosionIsChanged = true;
         }
 
         if (other.tag.ToString() == _bulletData.currentSwordName)

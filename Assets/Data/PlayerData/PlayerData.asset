@@ -26,7 +26,7 @@ MonoBehaviour:
   skeletonEnemyAttackDamage: 25
   urielEnemyAttackDamage: 27
   goblinEnemyAttackDamage: 30
-  currentEnemyBulletDamage: 12
+  currentEnemyBulletDamage: 21
   clownEnemyBulletDamage: 12
   monsterEnemyBulletDamage: 13
   prisonerEnemyBulletDamage: 16
@@ -37,7 +37,7 @@ MonoBehaviour:
   skeletonEnemyBulletDamage: 30
   urielEnemyBulletDamage: 33
   goblinEnemyBulletDamage: 35
-  currentEnemyCollisionDamage: 33
+  currentEnemyCollisionDamage: 22
   clownEnemyCollisionDamage: 10
   monsterEnemyCollisionDamage: 15
   prisonerEnemyCollisionDamage: 20
@@ -59,12 +59,12 @@ MonoBehaviour:
   ajDurability: 2
   mremirehDurability: 8
   tyDurability: 2
-  currentEnemyName: Clown(Clone)
+  currentEnemyName: Pedroso(Clone)
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
   isDecreaseHealth: 0
   damageHealthText: {fileID: 0}
   decreaseCounter: 0
-  currentCharacterName: 7
+  currentCharacterName: 3
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
   glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
@@ -124,7 +124,7 @@ MonoBehaviour:
   bossPrice: 1
   tyPrice: 1
   mremirehPrice: 1
-  playerSpeed: 32
+  playerSpeed: 38
   skateBoardSpeed: 14
   slideWalkSpeed: 30
   backWalkingSpeed: 25
@@ -143,7 +143,7 @@ MonoBehaviour:
   bossSpeed: 30
   tySpeed: 33
   guardSpeed: 31
-  currentJumpForce: 6
+  currentJumpForce: 7
   dobbyJumpForce: 6
   michelleJumpForce: 7
   glassyJumpForce: 6
@@ -160,13 +160,13 @@ MonoBehaviour:
   - Dobby
   - Lusth
   - Boss
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Dobby
+  - Glassy
+  - Lusth
+  - Guard
+  - Michelle
+  - Eve
+  - Aj
   isGround: 1
   isWalking: 1
   isSideWalking: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
   isSwordAnimate: 0
   isLookingUp: 0
   isDestroyed: 0
-  isPlayable: 0
+  isPlayable: 1
   isFireNonWalk: 0
   isFireWalk: 0
   isFireTime: 0
