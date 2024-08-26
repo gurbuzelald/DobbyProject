@@ -375,6 +375,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                     bulletData.ak47Lock = bulletData.unLocked;
 
+                    ObjectPool.creatablePlayerBullet = true;
+
                     bulletData.ak47UsageLimit = 3;
 
                     break;
@@ -395,6 +397,8 @@ public class ChooseWeaponController : MonoBehaviour
                 bulletData.currentWeaponName = BulletData.ak47;
 
                 SceneController.GetInstance.LoadMenuScene();
+
+                ObjectPool.creatablePlayerBullet = true;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.ak47Lock == BulletData.locked)
@@ -431,6 +435,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                     bulletData.axeLock = bulletData.unLocked;
 
+                    ObjectPool.creatablePlayerBullet = true;
+
                     bulletData.axeUsageLimit = 3;
 
                     break;
@@ -452,6 +458,8 @@ public class ChooseWeaponController : MonoBehaviour
                 bulletData.currentWeaponName = BulletData.axe;
 
                 SceneController.GetInstance.LoadMenuScene();
+
+                ObjectPool.creatablePlayerBullet = true;
             }            
             
         }
@@ -485,6 +493,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                     bulletData.bulldogLock = bulletData.unLocked;
 
+                    ObjectPool.creatablePlayerBullet = true;
+
                     bulletData.bulldogUsageLimit = 3;
 
                     break;
@@ -504,6 +514,8 @@ public class ChooseWeaponController : MonoBehaviour
                 bulletData.currentWeaponName = BulletData.bulldog;
 
                 SceneController.GetInstance.LoadMenuScene();
+
+                ObjectPool.creatablePlayerBullet = true;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.bulldogLock == BulletData.locked)
@@ -538,6 +550,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                     bulletData.cowLock = bulletData.unLocked;
 
+                    ObjectPool.creatablePlayerBullet = true;
+
                     bulletData.cowUsageLimit = 3;
 
                     break;
@@ -557,6 +571,8 @@ public class ChooseWeaponController : MonoBehaviour
                 bulletData.currentWeaponName = BulletData.cow;
 
                 SceneController.GetInstance.LoadMenuScene();
+
+                ObjectPool.creatablePlayerBullet = true;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.cowLock == BulletData.locked)
@@ -590,6 +606,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                     bulletData.crystalLock = bulletData.unLocked;
 
+                    ObjectPool.creatablePlayerBullet = true;
+
                     bulletData.crystalUsageLimit = 3;
 
                     break;
@@ -609,6 +627,8 @@ public class ChooseWeaponController : MonoBehaviour
                 bulletData.currentWeaponName = BulletData.crystal;
 
                 SceneController.GetInstance.LoadMenuScene();
+
+                ObjectPool.creatablePlayerBullet = true;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.crystalLock == BulletData.locked)
@@ -643,6 +663,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                     bulletData.demonLock = bulletData.unLocked;
 
+                    ObjectPool.creatablePlayerBullet = true;
+
                     bulletData.demonUsageLimit = 3;
 
                     break;
@@ -661,6 +683,8 @@ public class ChooseWeaponController : MonoBehaviour
                 bulletData.currentWeaponName = BulletData.demon;
 
                 SceneController.GetInstance.LoadMenuScene();
+
+                ObjectPool.creatablePlayerBullet = true;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.demonLock == BulletData.locked)
@@ -695,6 +719,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                     bulletData.iceLock = bulletData.unLocked;
 
+                    ObjectPool.creatablePlayerBullet = true;
+
                     bulletData.iceUsageLimit = 3;
 
                     break;
@@ -713,6 +739,8 @@ public class ChooseWeaponController : MonoBehaviour
                 bulletData.currentWeaponName = BulletData.ice;
 
                 SceneController.GetInstance.LoadMenuScene();
+
+                ObjectPool.creatablePlayerBullet = true;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.iceLock == BulletData.locked)
@@ -747,6 +775,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                     bulletData.negevLock = bulletData.unLocked;
 
+                    ObjectPool.creatablePlayerBullet = true;
+
                     bulletData.negevUsageLimit = 3;
 
                     break;
@@ -766,6 +796,8 @@ public class ChooseWeaponController : MonoBehaviour
                 bulletData.currentWeaponName = BulletData.negev;
 
                 SceneController.GetInstance.LoadMenuScene();
+
+                ObjectPool.creatablePlayerBullet = true;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.negevLock == BulletData.locked)
@@ -801,6 +833,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                     bulletData.pistolLock = bulletData.unLocked;
 
+                    ObjectPool.creatablePlayerBullet = true;
+
                     bulletData.pistolUsageLimit = 3;
 
                     break;
@@ -820,6 +854,8 @@ public class ChooseWeaponController : MonoBehaviour
                 bulletData.currentWeaponName = BulletData.pistol;
 
                 SceneController.GetInstance.LoadMenuScene();
+
+                ObjectPool.creatablePlayerBullet = true;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.pistolLock == BulletData.locked)
@@ -855,6 +891,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                     bulletData.m4a4Lock = bulletData.unLocked;
 
+                    ObjectPool.creatablePlayerBullet = true;
+
                     bulletData.m4a4UsageLimit = 3;
 
                     break;
@@ -874,6 +912,8 @@ public class ChooseWeaponController : MonoBehaviour
                 bulletData.currentWeaponName = BulletData.m4a4;
 
                 SceneController.GetInstance.LoadMenuScene();
+
+                ObjectPool.creatablePlayerBullet = true;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.m4a4Lock == BulletData.locked)

@@ -2313,14 +2313,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 844188062}
     m_Modifications:
-    - target: {fileID: 5825324642944601048, guid: 57a8c6dd37ce5c94aa440d57ae97bc20, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1367
-      objectReference: {fileID: 0}
-    - target: {fileID: 5825324642944601048, guid: 57a8c6dd37ce5c94aa440d57ae97bc20, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 160
-      objectReference: {fileID: 0}
     - target: {fileID: 6682709555612667720, guid: 57a8c6dd37ce5c94aa440d57ae97bc20, type: 3}
       propertyPath: m_Name
       value: JoystickCanvas
@@ -2404,10 +2396,6 @@ PrefabInstance:
     - target: {fileID: 6682709555612667828, guid: 57a8c6dd37ce5c94aa440d57ae97bc20, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7309052968625548173, guid: 57a8c6dd37ce5c94aa440d57ae97bc20, type: 3}
-      propertyPath: m_Color.a
-      value: 0.6745098
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2810,6 +2798,74 @@ PrefabInstance:
       propertyPath: enemyKillMissionCompletedImage
       value: 
       objectReference: {fileID: 2118712754}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[0].EnemyKills
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[1].EnemyKills
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[2].EnemyKills
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[3].EnemyKills
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[4].EnemyKills
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[8].EnemyKills
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[9].EnemyKills
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[0].CoinCollectAmount
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[1].CoinCollectAmount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[2].CoinCollectAmount
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[3].CoinCollectAmount
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[4].CoinCollectAmount
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[5].CoinCollectAmount
+      value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[6].CoinCollectAmount
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[7].CoinCollectAmount
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[8].CoinCollectAmount
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[9].CoinCollectAmount
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
