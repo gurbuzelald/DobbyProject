@@ -1516,7 +1516,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             if (PlayerManager.GetInstance.GetZValue() < -0.01 && !_playerData.isClimbing && !_playerData.isBackClimbing)
             {
                 //PlayerData
-                playerTransform.Translate(0f, 0f, PlayerManager.GetInstance.GetZValue() * (_playerData.playerSpeed / 2)* Time.deltaTime);
+                playerTransform.Translate(0f, 0f, PlayerManager.GetInstance.GetZValue() * (_playerData.playerSpeed * 2 / 3)* Time.deltaTime);
                 _playerData.isBackWalking = true;
                 _playerData.isWalking = false;
                 _playerData.isBackClimbing = false;
@@ -1556,7 +1556,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.isSideWalking = true;
 
-            playerTransform.Translate(PlayerManager.GetInstance.GetXValue() * (_playerData.playerSpeed / 3 )* Time.deltaTime, 0f, 0f);
+            playerTransform.Translate(PlayerManager.GetInstance.GetXValue() * (_playerData.playerSpeed / 2 )* Time.deltaTime, 0f, 0f);
         }
         if (PlayerManager.GetInstance.GetXValue() == 0f)
         {

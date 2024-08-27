@@ -187,27 +187,14 @@ public class LevelUpController : MonoBehaviour
     {
         if (enemyKillLevelUpRequirementText)
         {
-            
+            enemyKillLevelUpRequirementText.text = "You Can Level Up!!";
+
+            yield return new WaitForSeconds(2f);
+
+            enemyKillLevelUpRequirementText.text = "";
+
+            enemyKillLevelUpRequirementText.gameObject.SetActive(false);
         }
-        enemyKillLevelUpRequirementText.text = "You Can Level Up!!";
-
-        yield return new WaitForSeconds(2f);
-
-        enemyKillLevelUpRequirementText.text = "Go To Finish Area!!";
-
-        yield return new WaitForSeconds(2f);
-
-        enemyKillLevelUpRequirementText.text = "Or You Can Pick Up More Coins!!";
-
-        yield return new WaitForSeconds(2f);
-
-        enemyKillLevelUpRequirementText.text = "For Buying New Characters And Weapons!!";
-
-        yield return new WaitForSeconds(3f);
-
-        enemyKillLevelUpRequirementText.text = "";
-
-        enemyKillLevelUpRequirementText.gameObject.SetActive(false);
     }
 
     int GetCurrentLevelID(LevelData levelData)
@@ -274,27 +261,6 @@ public class LevelUpController : MonoBehaviour
 
                 requirementMessage = "";
             }
-            /*else if ((levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills > EnemyData.enemyDeathCount) &&
-            (levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount > ScoreController._scoreAmount))
-            {
-                requirementMessage = "You Need To Kill  " +
-                    (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills - EnemyData.enemyDeathCount).ToString() +
-                    "  More Enemy ";
-
-                scoreMissionCompletedImage.gameObject.SetActive(true);
-                enemyKillMissionCompletedImage.gameObject.SetActive(true);
-
-                yield return new WaitForSeconds(2f);
-
-                requirementMessage = "You Need To Collect  " +
-                    (levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount - ScoreController._scoreAmount).ToString() +
-                    "  More Coin For Level Up";
-
-                yield return new WaitForSeconds(3f);
-
-                requirementMessage = "";
-
-            }*/
         }        
     }
     
