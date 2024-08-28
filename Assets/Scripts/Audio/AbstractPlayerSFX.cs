@@ -99,42 +99,62 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
     {
         if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Ak47)
         {
+            audioData.currentBulletHitClip = audioData.ak47HitClip;
+
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.Ak47Clip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.M4a4)
         {
+            audioData.currentBulletHitClip = audioData.m4a4HitClip;
+
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.M4a4Clip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Bulldog)
         {
+            audioData.currentBulletHitClip = audioData.bulldogHitClip;
+
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.BulldogClip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Cow)
         {
+            audioData.currentBulletHitClip = audioData.cowHitClip;
+
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.CowClip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Crystal)
         {
+            audioData.currentBulletHitClip = audioData.crystalHitClip;
+
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.CrystalClip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Demon)
         {
+            audioData.currentBulletHitClip = audioData.demonHitClip;
+
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.DemonClip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Ice)
         {
+            audioData.currentBulletHitClip = audioData.iceHitClip;
+
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.IceClip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Negev)
         {
+            audioData.currentBulletHitClip = audioData.negevHitClip;
+
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.NegevClip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Axe)
         {
+            audioData.currentBulletHitClip = audioData.axeHitClip;
+
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.AxeClip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Pistol)
         {
+            audioData.currentBulletHitClip = audioData.pistolHitClip;
+
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.PistolClip);
         }
     }

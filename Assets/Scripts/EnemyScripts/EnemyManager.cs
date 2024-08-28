@@ -45,9 +45,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     private ParticleSystem middleParticleSystem;
     private ParticleSystem topParticleSystem;
 
+    private PlayerSoundEffect playerSFX;
+
 
     void Start()
     {
+        playerSFX = GameObject.FindAnyObjectByType<PlayerSoundEffect>();
+
         enemyData = enemyListData[enemyDataNumber];
         bulletData = enemyListBulletData[enemyBulletDataNumber];
 
@@ -571,11 +575,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         else if (soundEffect == SoundEffectTypes.BulletHit)
         {
-            audioSource.PlayOneShot(enemyData.bulletHitClip);
+            audioSource.PlayOneShot(playerSFX.weaponAudioData.currentBulletHitClip);
         }
         else if (soundEffect == SoundEffectTypes.SwordHit)
         {
-            audioSource.PlayOneShot(enemyData.swordHitClip);
+            audioSource.PlayOneShot(playerSFX.swordAudioData.currentSwordHitClip);
         }
     }
     public enum SoundEffectTypes

@@ -32,6 +32,21 @@ public class AudioData : ScriptableObject
     public AudioClip teleportClip;
     public AudioClip healthClip;
 
+    public AudioClip currentBulletHitClip;
+    public AudioClip currentSwordHitClip;
+
+    [Header("BulletHits")]
+    public AudioClip pistolHitClip;
+    public AudioClip axeHitClip;
+    public AudioClip bulldogHitClip;
+    public AudioClip cowHitClip;
+    public AudioClip crystalHitClip;
+    public AudioClip demonHitClip;
+    public AudioClip iceHitClip;
+    public AudioClip negevHitClip;
+    public AudioClip ak47HitClip;
+    public AudioClip m4a4HitClip;
+
     [Header("Weapons")]
     public AudioClip Ak47Clip;
     public AudioClip M4a4Clip;
