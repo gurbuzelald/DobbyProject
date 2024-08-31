@@ -1556,7 +1556,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.isSideWalking = true;
 
-            playerTransform.Translate(PlayerManager.GetInstance.GetXValue() * (_playerData.playerSpeed / 2 )* Time.deltaTime, 0f, 0f);
+            playerTransform.Translate(PlayerManager.GetInstance.GetXValue() * (_playerData.playerSpeed / 3 )* Time.deltaTime, 0f, 0f);
         }
         if (PlayerManager.GetInstance.GetXValue() == 0f)
         {

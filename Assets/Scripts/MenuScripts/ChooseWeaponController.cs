@@ -360,6 +360,7 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (bulletData.ak47UsageLimit <= 0)
         {
+            ObjectPool.creatablePlayerBullet = true;
             bulletData.ak47Lock = BulletData.locked;
         }
         if (_playerController.AK47 && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
@@ -419,6 +420,7 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (bulletData.axeUsageLimit <= 0)
         {
+            ObjectPool.creatablePlayerBullet = true;
             bulletData.axeLock = BulletData.locked;
         }
 
@@ -478,6 +480,7 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (bulletData.bulldogUsageLimit <= 0)
         {
+            ObjectPool.creatablePlayerBullet = true;
             bulletData.bulldogLock = BulletData.locked;
         }
         if (_playerController.Bulldog && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
@@ -535,6 +538,7 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (bulletData.cowUsageLimit <= 0)
         {
+            ObjectPool.creatablePlayerBullet = true;
             bulletData.cowLock = BulletData.locked;
         }
         if (_playerController.Cow && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
@@ -591,6 +595,7 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (bulletData.crystalUsageLimit <= 0)
         {
+            ObjectPool.creatablePlayerBullet = true;
             bulletData.crystalLock = BulletData.locked;
         }
         if (_playerController.Crystal && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
@@ -648,6 +653,7 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (bulletData.demonUsageLimit <= 0)
         {
+            ObjectPool.creatablePlayerBullet = true;
             bulletData.demonLock = BulletData.locked;
         }
         if (_playerController.Demon && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
@@ -704,6 +710,7 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (bulletData.iceUsageLimit <= 0)
         {
+            ObjectPool.creatablePlayerBullet = true;
             bulletData.iceLock = BulletData.locked;
         }
         if (_playerController.Ice && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
@@ -760,6 +767,7 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (bulletData.negevUsageLimit <= 0)
         {
+            ObjectPool.creatablePlayerBullet = true;
             bulletData.negevLock = BulletData.locked;
         }
         if (_playerController.Negev && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
@@ -818,6 +826,7 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (bulletData.pistolUsageLimit <= 0)
         {
+            ObjectPool.creatablePlayerBullet = true;
             bulletData.pistolLock = BulletData.locked;
         }
         if (_playerController.Pistol && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
@@ -862,8 +871,6 @@ public class ChooseWeaponController : MonoBehaviour
         {
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
-                //bulletData.currentWeaponName = BulletData.pistol;
-
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "PISTOLPriceErrorText")
                 {
                     weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
@@ -876,6 +883,7 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (bulletData.m4a4UsageLimit <= 0)
         {
+            ObjectPool.creatablePlayerBullet = true;
             bulletData.m4a4Lock = BulletData.locked;
         }
         if (_playerController.M4A4 && playerCoinData.avaliableCoin >= avaliableCoinAmount &&

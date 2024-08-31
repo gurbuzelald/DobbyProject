@@ -15,7 +15,7 @@ MonoBehaviour:
   currentMessageText: {fileID: 0}
   currentMessageObject: {fileID: 0}
   backgroundMap: {fileID: 1345883776023317691, guid: 515afb887ab870a43b53ea7d70cb9035, type: 3}
-  currentEnemyAttackDamage: 15
+  currentEnemyAttackDamage: 23
   clownEnemyAttackDamage: 5
   monsterEnemyAttackDamage: 10
   prisonerEnemyAttackDamage: 12
@@ -26,7 +26,7 @@ MonoBehaviour:
   skeletonEnemyAttackDamage: 25
   urielEnemyAttackDamage: 27
   goblinEnemyAttackDamage: 30
-  currentEnemyBulletDamage: 21
+  currentEnemyBulletDamage: 28
   clownEnemyBulletDamage: 12
   monsterEnemyBulletDamage: 13
   prisonerEnemyBulletDamage: 16
@@ -37,7 +37,7 @@ MonoBehaviour:
   skeletonEnemyBulletDamage: 30
   urielEnemyBulletDamage: 33
   goblinEnemyBulletDamage: 35
-  currentEnemyCollisionDamage: 22
+  currentEnemyCollisionDamage: 27
   clownEnemyCollisionDamage: 10
   monsterEnemyCollisionDamage: 15
   prisonerEnemyCollisionDamage: 20
@@ -59,12 +59,12 @@ MonoBehaviour:
   ajDurability: 2
   mremirehDurability: 8
   tyDurability: 2
-  currentEnemyName: Pedroso(Clone)
+  currentEnemyName: Ortiz(Clone)
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
   isDecreaseHealth: 0
   damageHealthText: {fileID: 0}
   decreaseCounter: 0
-  currentCharacterName: 3
+  currentCharacterName: 6
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
   glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
@@ -77,13 +77,13 @@ MonoBehaviour:
   aj: {fileID: 2416847389608877635, guid: a700b507a30e0be4ead42ca0bfc5c998, type: 3}
   mremireh: {fileID: 3269665489637412912, guid: cc265cd48b1f31c4cbb86e276d4a94d0, type: 3}
   ty: {fileID: 5945881725241583734, guid: 5dbe1f8c957aa354d8786aba50aaf083, type: 3}
-  dobbyLock: Locked
-  glassyLock: Locked
-  joleenLock: Locked
-  guardLock: Locked
-  lusthLock: Locked
+  dobbyLock: 
+  glassyLock: 
+  joleenLock: 
+  guardLock: 
+  lusthLock: 
   eveLock: Locked
-  michelleLock: Locked
+  michelleLock: 
   ajLock: Locked
   bossLock: Locked
   mremirehLock: Locked
@@ -109,7 +109,7 @@ MonoBehaviour:
   - {fileID: 7971067666596210365, guid: 48f6891f360c67a488d3fe548e1e8d5f, type: 3}
   - {fileID: 7971067666596210365, guid: 0ba857b35eeb15e4da33c0bc95bc1357, type: 3}
   spawns: {fileID: 2359986759738939504, guid: aabf96d4f82bfd84cadaf35e1afe1e4b, type: 3}
-  sensivityX: 15
+  sensivityX: 7
   sensivityY: 5
   isTouchFinish: 0
   isLose: 0
@@ -124,11 +124,8 @@ MonoBehaviour:
   bossPrice: 1
   tyPrice: 1
   mremirehPrice: 1
-  playerSpeed: 38
+  playerSpeed: 35
   skateBoardSpeed: 14
-  slideWalkSpeed: 30
-  backWalkingSpeed: 25
-  fireWalkSpeed: 13
   climbSpeed: 3
   lockedSpeed: 12
   rotateSpeed: 6
@@ -175,7 +172,7 @@ MonoBehaviour:
   isClimbing: 0
   isBackClimbing: 0
   isIdling: 0
-  isDying: 0
+  isDying: 1
   isWinning: 0
   isSkateBoarding: 0
   isRunning: 0
@@ -184,7 +181,7 @@ MonoBehaviour:
   isSwordAnimate: 0
   isLookingUp: 0
   isDestroyed: 0
-  isPlayable: 1
+  isPlayable: 0
   isFireNonWalk: 0
   isFireWalk: 0
   isFireTime: 0
@@ -198,7 +195,7 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 21
+  bulletAmount: 3
   bulletPack: 21
   bulletPackAmount: 2
   isTouchableSkate: 1

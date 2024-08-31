@@ -1,12 +1,12 @@
 {
     "currentMessageText": {
-        "instanceID": 28760
+        "instanceID": 525800
     },
     "currentMessageObject": {
-        "instanceID": 28756
+        "instanceID": 525796
     },
     "backgroundMap": {
-        "instanceID": 29192
+        "instanceID": 29194
     },
     "currentEnemyAttackDamage": 5,
     "clownEnemyAttackDamage": 5,
@@ -30,7 +30,7 @@
     "skeletonEnemyBulletDamage": 30,
     "urielEnemyBulletDamage": 33,
     "goblinEnemyBulletDamage": 35,
-    "currentEnemyCollisionDamage": 22,
+    "currentEnemyCollisionDamage": 27,
     "clownEnemyCollisionDamage": 10,
     "monsterEnemyCollisionDamage": 15,
     "prisonerEnemyCollisionDamage": 20,
@@ -54,57 +54,57 @@
     "tyDurability": 2,
     "currentEnemyName": "Clown(Clone)",
     "playerSpawns": {
-        "instanceID": 29194
+        "instanceID": 29196
     },
     "isDecreaseHealth": false,
     "damageHealthText": {
-        "instanceID": -1996
+        "instanceID": -867926
     },
     "decreaseCounter": 0,
     "currentCharacterName": 1,
     "characterObject": {
-        "instanceID": 29196
-    },
-    "dobby": {
         "instanceID": 29198
     },
-    "glassy": {
+    "dobby": {
         "instanceID": 29200
     },
-    "joleen": {
+    "glassy": {
         "instanceID": 29202
     },
-    "guard": {
+    "joleen": {
         "instanceID": 29204
     },
-    "lusth": {
+    "guard": {
         "instanceID": 29206
     },
-    "eve": {
+    "lusth": {
         "instanceID": 29208
     },
-    "michelle": {
+    "eve": {
         "instanceID": 29210
     },
-    "boss": {
+    "michelle": {
         "instanceID": 29212
     },
-    "aj": {
+    "boss": {
         "instanceID": 29214
     },
-    "mremireh": {
+    "aj": {
         "instanceID": 29216
     },
-    "ty": {
+    "mremireh": {
         "instanceID": 29218
     },
+    "ty": {
+        "instanceID": 29220
+    },
     "dobbyLock": "",
-    "glassyLock": "Locked",
-    "joleenLock": "Locked",
-    "guardLock": "Locked",
-    "lusthLock": "Locked",
+    "glassyLock": "",
+    "joleenLock": "",
+    "guardLock": "",
+    "lusthLock": "",
     "eveLock": "Locked",
-    "michelleLock": "Locked",
+    "michelleLock": "",
     "ajLock": "Locked",
     "bossLock": "Locked",
     "mremirehLock": "Locked",
@@ -113,9 +113,6 @@
     "locked": "Locked",
     "unLocked": "",
     "objects": [
-        {
-            "instanceID": 29220
-        },
         {
             "instanceID": 29222
         },
@@ -133,12 +130,12 @@
         },
         {
             "instanceID": 29232
+        },
+        {
+            "instanceID": 29234
         }
     ],
     "slaveObjects": [
-        {
-            "instanceID": 29234
-        },
         {
             "instanceID": 29236
         },
@@ -159,12 +156,15 @@
         },
         {
             "instanceID": 29248
+        },
+        {
+            "instanceID": 29250
         }
     ],
     "spawns": {
-        "instanceID": 29250
+        "instanceID": 29252
     },
-    "sensivityX": 5.0,
+    "sensivityX": 7.0,
     "sensivityY": 5.0,
     "isTouchFinish": false,
     "isLose": false,
@@ -251,46 +251,46 @@
     "normalSpeed": true,
     "clickTabCount": 0,
     "clickShiftCount": 0,
-    "bulletAmount": 8,
+    "bulletAmount": 19,
     "bulletPack": 21,
     "bulletPackAmount": 2,
     "isTouchableSkate": true,
     "danceTime": 5.0,
     "jolleenObject": {
-        "instanceID": 29252
-    },
-    "skateboardParticle": {
         "instanceID": 29254
     },
-    "touchParticle": {
+    "skateboardParticle": {
         "instanceID": 29256
     },
-    "birthParticle": {
+    "touchParticle": {
         "instanceID": 29258
     },
-    "deathParticle": {
+    "birthParticle": {
         "instanceID": 29260
     },
+    "deathParticle": {
+        "instanceID": 29262
+    },
     "burningParticle": {
-        "instanceID": 29262
-    },
-    "burningTouchParticle": {
-        "instanceID": 29262
-    },
-    "destroyRotateCoinParticle": {
         "instanceID": 29264
     },
-    "destroyHealthCoinParticle": {
+    "burningTouchParticle": {
+        "instanceID": 29264
+    },
+    "destroyRotateCoinParticle": {
         "instanceID": 29266
     },
-    "destroyBulletCoinParticle": {
+    "destroyHealthCoinParticle": {
         "instanceID": 29268
     },
-    "destroyMushroomCoinParticle": {
+    "destroyBulletCoinParticle": {
         "instanceID": 29270
     },
-    "playerWalkingParticle": {
+    "destroyMushroomCoinParticle": {
         "instanceID": 29272
+    },
+    "playerWalkingParticle": {
+        "instanceID": 29274
     },
     "particleCount": 0,
     "bulletSpeed": 5.0,
@@ -298,9 +298,6 @@
     "isTouchSecond": false,
     "isTouchThird": false,
     "weaponBulletExplosionParticles": [
-        {
-            "instanceID": 29274
-        },
         {
             "instanceID": 29276
         },
@@ -327,6 +324,9 @@
         },
         {
             "instanceID": 29292
+        },
+        {
+            "instanceID": 29294
         }
     ]
 }

@@ -33,6 +33,61 @@ public class BulletManager : AbstractBullet<BulletManager>
         bulletData.bulletDelayCounter = 0;
         _initTransform = gameObject.transform;
         _initTransform.eulerAngles = gameObject.transform.eulerAngles;
+
+
+        if (bulletData)
+        {
+            CheckWeaponUsageLimitAtStart();
+        }
+    }
+
+    void CheckWeaponUsageLimitAtStart()
+    {
+        if (bulletData.axeUsageLimit <= 0)
+        {
+            ObjectPool.creatablePlayerBullet = true;
+            bulletData.axeLock = BulletData.locked;
+        }
+        if (bulletData.bulldogUsageLimit <= 0)
+        {
+            ObjectPool.creatablePlayerBullet = true;
+            bulletData.bulldogLock = BulletData.locked;
+        }
+        if (bulletData.cowUsageLimit <= 0)
+        {
+            ObjectPool.creatablePlayerBullet = true;
+            bulletData.cowLock = BulletData.locked;
+        }
+        if (bulletData.crystalUsageLimit <= 0)
+        {
+            ObjectPool.creatablePlayerBullet = true;
+            bulletData.crystalLock = BulletData.locked;
+        }
+        if (bulletData.demonUsageLimit <= 0)
+        {
+            ObjectPool.creatablePlayerBullet = true;
+            bulletData.demonLock = BulletData.locked;
+        }
+        if (bulletData.iceUsageLimit <= 0)
+        {
+            ObjectPool.creatablePlayerBullet = true;
+            bulletData.iceLock = BulletData.locked;
+        }
+        if (bulletData.negevUsageLimit <= 0)
+        {
+            ObjectPool.creatablePlayerBullet = true;
+            bulletData.negevLock = BulletData.locked;
+        }
+        if (bulletData.ak47UsageLimit <= 0)
+        {
+            ObjectPool.creatablePlayerBullet = true;
+            bulletData.ak47Lock = BulletData.locked;
+        }
+        if (bulletData.m4a4UsageLimit <= 0)
+        {
+            ObjectPool.creatablePlayerBullet = true;
+            bulletData.m4a4Lock = BulletData.locked;
+        }
     }
     public void CreateSwordObject()
     {
