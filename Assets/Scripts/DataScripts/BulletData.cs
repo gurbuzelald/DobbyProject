@@ -12,6 +12,7 @@ public class BulletData : ScriptableObject
     public float swordBulletDelay = 0.05f;
     public float weaponBulletDelay = 0.05f;
     public float bulletSpeed = 5f;
+    public float swordSpeed = 1f;
     public int bulletDelayCounter;
     public GameObject _swordingObject;
 

@@ -18,8 +18,7 @@ public class AudioData : ScriptableObject
     //public AudioClip shootClip;
     public AudioClip nonShootClip;
     public AudioClip poisonClip;
-    public AudioClip getEnemyHitClip;
-    public AudioClip getBulletHitClip;
+    public AudioClip getEnemyHitClip;    
     public AudioClip jumpingClip;
     public AudioClip dyingClip;
     public AudioClip pickupCoinClip;

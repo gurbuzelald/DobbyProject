@@ -116,6 +116,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             SetPlayerWeaponExplosionParticle();
         }
+
+        if (playerData.enemyBulletHitActivate)
+        {
+            PlaySoundEffect(SoundEffectTypes.GiveBulletHit, _audioSource);
+
+            playerData.enemyBulletHitActivate = false;
+        }
     }
 
 
@@ -581,6 +588,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             audioSource.PlayOneShot(playerSFX.swordAudioData.currentSwordHitClip);
         }
+        else if (soundEffect == SoundEffectTypes.GiveBulletHit)
+        {
+            audioSource.PlayOneShot(enemyData.giveBulletHitClip);
+        }
     }
     public enum SoundEffectTypes
     {
@@ -589,6 +600,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         Death,
         BulletHit,
         SwordHit,
+        GiveBulletHit
     }
 
     private void DataStatesOnInitial()

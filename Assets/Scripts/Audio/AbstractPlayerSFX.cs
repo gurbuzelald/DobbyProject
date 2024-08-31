@@ -45,10 +45,6 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.getEnemyHitClip);
         }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetBulletHit)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.getBulletHitClip);
-        }
         else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Jump)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.jumpingClip);

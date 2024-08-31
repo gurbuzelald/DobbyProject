@@ -1,14 +1,15 @@
 {
     "currentMessageText": {
-        "instanceID": 525800
+        "instanceID": 727610
     },
     "currentMessageObject": {
-        "instanceID": 525796
+        "instanceID": 727606
     },
     "backgroundMap": {
         "instanceID": 29194
     },
-    "currentEnemyAttackDamage": 5,
+    "enemyBulletHitActivate": false,
+    "currentEnemyAttackDamage": 23,
     "clownEnemyAttackDamage": 5,
     "monsterEnemyAttackDamage": 10,
     "prisonerEnemyAttackDamage": 12,
@@ -58,10 +59,10 @@
     },
     "isDecreaseHealth": false,
     "damageHealthText": {
-        "instanceID": -867926
+        "instanceID": -1274392
     },
     "decreaseCounter": 0,
-    "currentCharacterName": 1,
+    "currentCharacterName": 6,
     "characterObject": {
         "instanceID": 29198
     },
@@ -179,7 +180,7 @@
     "bossPrice": 1,
     "tyPrice": 1,
     "mremirehPrice": 1,
-    "playerSpeed": 40.0,
+    "playerSpeed": 35.0,
     "skateBoardSpeed": 14.0,
     "climbSpeed": 3.0,
     "lockedSpeed": 12.0,
@@ -195,7 +196,7 @@
     "bossSpeed": 30.0,
     "tySpeed": 33.0,
     "guardSpeed": 31.0,
-    "currentJumpForce": 6.0,
+    "currentJumpForce": 7.0,
     "dobbyJumpForce": 6.0,
     "michelleJumpForce": 7.0,
     "glassyJumpForce": 6.0,
@@ -251,7 +252,7 @@
     "normalSpeed": true,
     "clickTabCount": 0,
     "clickShiftCount": 0,
-    "bulletAmount": 19,
+    "bulletAmount": 21,
     "bulletPack": 21,
     "bulletPackAmount": 2,
     "isTouchableSkate": true,
@@ -293,7 +294,6 @@
         "instanceID": 29274
     },
     "particleCount": 0,
-    "bulletSpeed": 5.0,
     "isTouchFirst": false,
     "isTouchSecond": false,
     "isTouchThird": false,

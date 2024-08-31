@@ -21,6 +21,9 @@ public class PlayerData : ScriptableObject
     [Header("Background Maps")]
     public GameObject backgroundMap;
 
+    [Header("Is Enemy Bullet Hit Activate For Sound Effect")]
+    public bool enemyBulletHitActivate;
+
     [Header("Enemy Attack Damages")]
     public int currentEnemyAttackDamage;
     public int clownEnemyAttackDamage;
@@ -266,7 +269,7 @@ public class PlayerData : ScriptableObject
 
     [Header("BulletManager Data")]
     //public GameObject[] _bulletObject;//If ObjectPool is not using in project, this'll use
-    public float bulletSpeed = 5f;
+    //public float bulletSpeed = 5f;
 
 
     [Header("Destination Touch Control")]

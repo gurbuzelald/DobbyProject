@@ -196,7 +196,6 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
     {
         NonShoot,
         GetEnemyHit,
-        GetBulletHit,
         Poison,
         Jump,
         JumpToSea,
