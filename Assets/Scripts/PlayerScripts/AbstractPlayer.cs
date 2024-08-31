@@ -418,6 +418,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.isPlayable = false;
             _playerData.isDying = true;
             StartCoroutine(PlayerManager.GetInstance.DelayDestroy(7f));
+
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
         }
     }
     public virtual void CheckEnemyAttackDamage(ref PlayerData _playerData)
@@ -1221,6 +1223,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             collision.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
         }
+        
 
         _topCanvasHealthBarSlider.value = _healthBarSlider.value;
 
