@@ -327,7 +327,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     
     void TriggerFinishControl(Collider other)
     {
-        if (other.gameObject.name == "FinishPlane" && LevelData.levelCanUp)
+        if (other.gameObject.name == "FinishPlane" && LevelData.levelCanBeSkipped)
         {
             GetLevelTag(other);
 

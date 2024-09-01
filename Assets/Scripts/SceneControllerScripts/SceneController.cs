@@ -32,8 +32,14 @@ public class SceneController : AbstractSceneController<SceneController>
     private TextMeshProUGUI currentLevelText;
     private TextMeshProUGUI currentWeaponText;
     private TextMeshProUGUI currentCharacterText;
+
+
+    [SerializeField] GameObject levelButton;
+    [SerializeField] GameObject levelsObject;
     void Start()
     {
+        CreateLevelButtons();
+
         DefaulthVariableValues();
         SetCurrentLevelAtStart();
         SetCurrentWeaponAtStart();
@@ -63,7 +69,7 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         if (currentLevelText && levelData)
         {
-            if (levelData.isLevelUp && LevelData.levelCanUp)
+            if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
             {
                 currentLevelText.text = levelData.currentLevel.ToString();
                 EnemyData.enemyDeathCount = 0;
@@ -297,6 +303,68 @@ public class SceneController : AbstractSceneController<SceneController>
 
         DecreaseWeaponUsageLimit();
     }
+
+    void CreateLevelButtons()
+    {
+        if (levelData && CheckSceneName() == Scenes.Levels.ToString())
+        {
+            for(int i = 0; i < GetCurrentLevelID(levelData) + 1; i++)
+            {
+                GameObject levelButtonObject = Instantiate(levelButton, new Vector3(levelButton.transform.localPosition.x,
+                    levelButton.transform.localPosition.y,
+                    levelButton.transform.localPosition.z),
+                    Quaternion.identity, levelsObject.transform);
+                if (i < 5)
+                {
+                    levelButtonObject.transform.localPosition = new Vector3(-800 + 400 * i, 300, 0);
+                }
+                else if (i >= 5)
+                {
+                    levelButtonObject.transform.localPosition = new Vector3(2800 - 400 * i, -100, 0);
+                }
+
+                levelButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level " + (i + 1).ToString();
+            }
+        }
+    }
+
+    public void OpenCurrentLevel()
+    {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+        playAgain = true;
+
+        DestroySingletonObjects();
+
+        SceneManager.LoadScene(Scenes.Game.ToString());
+
+        DecreaseWeaponUsageLimit();
+    }
+
+    public void LoadLevelsScene()
+    {
+        DestroySingletonObjects();
+        SceneManager.LoadScene(Scenes.Levels.ToString());
+    }
+
+    public int GetCurrentLevelID(LevelData levelData)
+    {
+        if (levelData.currentLevel == LevelData.Levels.Level1) return 0;
+        if (levelData.currentLevel == LevelData.Levels.Level2) return 1;
+        if (levelData.currentLevel == LevelData.Levels.Level3) return 2;
+        if (levelData.currentLevel == LevelData.Levels.Level4) return 3;
+        if (levelData.currentLevel == LevelData.Levels.Level5) return 4;
+        if (levelData.currentLevel == LevelData.Levels.Level6) return 5;
+        if (levelData.currentLevel == LevelData.Levels.Level7) return 6;
+        if (levelData.currentLevel == LevelData.Levels.Level8) return 7;
+        if (levelData.currentLevel == LevelData.Levels.Level9) return 8;
+        if (levelData.currentLevel == LevelData.Levels.Level9) return 9;
+        return -1;
+    }
+
+
+
+    
     public string CheckSceneName()
     {
         string _sceneName = SceneManager.GetActiveScene().name;
@@ -501,6 +569,6 @@ public class SceneController : AbstractSceneController<SceneController>
     }
     public enum Scenes
     {
-        Menu, End, Win, Game, PickCharacter, PickSword, PickWeapon
+        Menu, End, Win, Game, PickCharacter, PickSword, PickWeapon, Levels
     }
 }

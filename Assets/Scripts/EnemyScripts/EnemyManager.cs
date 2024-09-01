@@ -101,7 +101,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         enemyData.enemySpeed = levelData.currentEnemySpeed;
 
-        if (levelData.isLevelUp && LevelData.levelCanUp)
+        if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
         {
             enemyData = enemyListData[enemyDataNumber];
             bulletData = enemyListBulletData[enemyBulletDataNumber];
@@ -503,7 +503,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     void SetCurrentBackToWalkingValueForUpdate()
     {
-        if (levelData.isLevelUp && LevelData.levelCanUp)
+        if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
         {
             levelData.currentBackToWalkingValue = LevelData.currentLevelCount;
         }

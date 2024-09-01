@@ -25,7 +25,7 @@ public class LightController : MonoBehaviour
     }
     void LevelUpLight(PlayerData playerData, float delayLevelUpLight)
     {
-        if (levelData.isLevelUp && LevelData.levelCanUp)
+        if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
         {
             lights[1].SetActive(true);//Dark Light isActivated
             lights[0].SetActive(false);
@@ -38,6 +38,6 @@ public class LightController : MonoBehaviour
         lights[1].SetActive(false);
         lights[0].SetActive(true);
         levelData.isLevelUp = false;
-        LevelData.levelCanUp = false;
+        LevelData.levelCanBeSkipped = false;
     }
 }

@@ -11,7 +11,7 @@ public class LevelData : ScriptableObject
         public int CoinCollectAmount;
     }
     public static int currentLevelUpRequirement;
-    public static bool levelCanUp;
+    public static bool levelCanBeSkipped;
 
     [Header("Enemy Level Speeds Ranges")]
     public float currentEnemySpeed;

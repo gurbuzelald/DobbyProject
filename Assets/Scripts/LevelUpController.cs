@@ -132,7 +132,7 @@ public class LevelUpController : MonoBehaviour
         }
 
 
-        LevelData.levelCanUp = false;
+        LevelData.levelCanBeSkipped = false;
 
         if (weaponGiftBoxSpawnerObject)
         {
@@ -227,7 +227,7 @@ public class LevelUpController : MonoBehaviour
             if (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills <= EnemyData.enemyDeathCount &&
             levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount <= ScoreController._scoreAmount)
             {
-                LevelData.levelCanUp = true;
+                LevelData.levelCanBeSkipped = true;
                 StartCoroutine(AbleToLevelUpMessageText());
 
                 scoreMissionCompletedImage.gameObject.SetActive(true);

@@ -17,7 +17,7 @@ public class PostProcessingLevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (levelData.isLevelUp && LevelData.levelCanUp)
+        if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
         {
             gameObject.transform.GetComponent<PostProcessVolume>().profile = postProcessingData.postProcessingObjects[LevelData.currentLevelCount];
         }

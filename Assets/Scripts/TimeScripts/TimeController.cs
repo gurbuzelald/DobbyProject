@@ -67,7 +67,7 @@ public class TimeController : MonoBehaviour
             {
                 _warnTimeText.transform.localScale = Vector3.zero;
             }
-            if (levelData.isLevelUp && LevelData.levelCanUp)
+            if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
             {
                 timeValue = initialTimeValue;
                 _time = 0;
