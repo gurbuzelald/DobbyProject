@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Get Current Killing Enemy For Increase Health")]
+    public bool getCurrentEnemyDead;
 
     [Header("Weapon Changed")]
     public static bool currentBulletExplosionIsChanged;

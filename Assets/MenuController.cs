@@ -45,15 +45,15 @@ public class MenuController : MonoBehaviour
     int GetCurrentLevelID(LevelData levelData)
     {
         if (levelData.currentLevel == LevelData.Levels.Level1) return 0;
-        if (levelData.currentLevel == LevelData.Levels.Level2) return 1;
-        if (levelData.currentLevel == LevelData.Levels.Level3) return 2;
-        if (levelData.currentLevel == LevelData.Levels.Level4) return 3;
-        if (levelData.currentLevel == LevelData.Levels.Level5) return 4;
-        if (levelData.currentLevel == LevelData.Levels.Level6) return 5;
-        if (levelData.currentLevel == LevelData.Levels.Level7) return 6;
-        if (levelData.currentLevel == LevelData.Levels.Level8) return 7;
-        if (levelData.currentLevel == LevelData.Levels.Level9) return 8;
-        if (levelData.currentLevel == LevelData.Levels.Level9) return 9;
+        else if (levelData.currentLevel == LevelData.Levels.Level2) return 1;
+        else if (levelData.currentLevel == LevelData.Levels.Level3) return 2;
+        else if (levelData.currentLevel == LevelData.Levels.Level4) return 3;
+        else if (levelData.currentLevel == LevelData.Levels.Level5) return 4;
+        else if (levelData.currentLevel == LevelData.Levels.Level6) return 5;
+        else if (levelData.currentLevel == LevelData.Levels.Level7) return 6;
+        else if (levelData.currentLevel == LevelData.Levels.Level8) return 7;
+        else if (levelData.currentLevel == LevelData.Levels.Level9) return 8;
+        else if (levelData.currentLevel == LevelData.Levels.Level10) return 9;
         return -1;
     }
 }

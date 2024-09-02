@@ -88,7 +88,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         WeaponBulletPower(); 
 
         if (!enemyData.isFiring && !enemyData.isDying && 
-            (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) <= levelData.enemyDetectionDistances[LevelData.currentLevelCount])
+            (Vector3.Distance(gameObject.transform.position,
+            PlayerManager.GetInstance.gameObject.transform.position) <= levelData.enemyDetectionDistances[LevelData.currentLevelCount])
             && !enemyData.isSpeedZero)
         {
             enemyData.isWalking = true;
@@ -454,6 +455,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (_healthBarSlider.value <= 0)
             {
+                playerData.getCurrentEnemyDead = true;
+
                 EnemyData.enemyDeathCount++;
                 bottomParticleSystem.Play();
                 middleParticleSystem.Play();

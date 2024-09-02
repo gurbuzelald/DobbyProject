@@ -117,6 +117,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
     private PlayerManager playerManager;
 
+    private Collider characterCollider;
+
     public float GetZValue()
     {
         return inputMovement._zValue;
@@ -127,6 +129,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     void Start()
     {
+        characterCollider = gameObject.transform.GetComponent<Collider>();
+
         RandomEnemySpawnDistance(10);
         inputMovement = new InputMovement();
         playerInterfaces = new PlayerInterfaces();
@@ -208,8 +212,16 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         GetAttackFromEnemy(ref _playerData, ref _topCanvasHealthBarSlider, ref playerObjects.healthBarSlider, ref _healthBarObject, ref _particleTransform);
         DontFallDown();
 
-        //RandomEnemySpawnDistance(10);
+        IncreaseHealthWhenEnemyKilledAtUpdate(30);
+    }
 
+    void IncreaseHealthWhenEnemyKilledAtUpdate(int increasedAmount)
+    {
+        if (_playerData.getCurrentEnemyDead)
+        {
+            playerInterfaces.iPlayerHealth.IncreaseHealth(increasedAmount, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider);
+            _playerData.getCurrentEnemyDead = false;
+        }
     }
     public void RandomEnemySpawnDistance(float enemySpawnableDistance)
     {

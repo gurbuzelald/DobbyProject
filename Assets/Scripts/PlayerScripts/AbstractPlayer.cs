@@ -1336,10 +1336,14 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     #endregion
 
     #region //Health
-    public virtual void IncreaseHealth(int damageHealthValue, ref GameObject _healthBarObject, ref Slider _healthBarSlider, ref Slider _topCanvasHealthBarSlider, Collider other)
+    public virtual void IncreaseHealth(int damageHealthValue, ref GameObject _healthBarObject,
+        ref Slider _healthBarSlider, ref Slider _topCanvasHealthBarSlider,
+        Collider other = null)
     {
         if (_healthBarSlider.value < 75)
         {
+            Debug.Log("in");
+
             _healthBarSlider.value += damageHealthValue;
 
             _healthBarObject.transform.localScale = new Vector3(1f,
@@ -1349,7 +1353,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             StartCoroutine(DelayHealthSizeBack(_healthBarObject));
 
-            Destroy(other.gameObject, 1f);
+            if (other != null)
+            {
+                Destroy(other.gameObject, 1f);
+            }
         }
     }
     public virtual void DecreaseHealth(ref PlayerData playerData, int damageHealthValue, ref GameObject _healthBarObject, ref Slider _healthBarSlider, ref Slider _topCanvasHealthBarSlider,
