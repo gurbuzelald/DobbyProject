@@ -1551,6 +1551,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1599955467, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
   m_PrefabInstance: {fileID: 3561150236717394727}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1605399130 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4552187101574283615, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
+  m_PrefabInstance: {fileID: 3561150236717394727}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!225 &1613447922 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 6204946202897914083, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
@@ -2127,6 +2138,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 844188062}
     m_Modifications:
+    - target: {fileID: 910948553, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 910948553, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 910948553, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1723833432, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2799,72 +2822,200 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2118712754}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpKeyMissionCompletedImage
+      value: 
+      objectReference: {fileID: 1605399130}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[0].EnemyKills
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[0].enemyKills
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[1].EnemyKills
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[1].enemyKills
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[2].EnemyKills
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[2].enemyKills
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[3].EnemyKills
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[3].enemyKills
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[4].EnemyKills
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[4].enemyKills
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[5].enemyKills
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[6].enemyKills
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[7].enemyKills
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[8].EnemyKills
       value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[8].enemyKills
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[9].EnemyKills
-      value: 25
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[9].enemyKills
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[0].levelUpKeys
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[1].levelUpKeys
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[2].levelUpKeys
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[3].levelUpKeys
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[4].levelUpKeys
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[5].levelUpKeys
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[6].levelUpKeys
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[7].levelUpKeys
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[8].levelUpKeys
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[9].levelUpKeys
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[0].CoinCollectAmount
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[0].coinCollectAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[1].CoinCollectAmount
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[1].coinCollectAmount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[2].CoinCollectAmount
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[2].coinCollectAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[3].CoinCollectAmount
       value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[3].coinCollectAmount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[4].CoinCollectAmount
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[4].coinCollectAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[5].CoinCollectAmount
       value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[5].coinCollectAmount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[6].CoinCollectAmount
       value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[6].coinCollectAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[7].CoinCollectAmount
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[7].coinCollectAmount
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[8].CoinCollectAmount
       value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[8].coinCollectAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
       propertyPath: levelUpRequirements.Array.data[9].CoinCollectAmount
-      value: 150
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342395684045271087, guid: fba6440ee27884eb59230b5d31ec5efd, type: 3}
+      propertyPath: levelUpRequirements.Array.data[9].coinCollectAmount
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

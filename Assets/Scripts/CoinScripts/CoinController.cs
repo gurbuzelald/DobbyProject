@@ -24,6 +24,11 @@ public class CoinController : MonoBehaviour
 
     public GameObject _yellowFlowerObject;
     public Transform[] _yellowFlowerTransformList;
+
+    public GameObject _levelUpKeyObject;
+    public Transform[] _levelUpKeyTransformList;
+
+
     private void Start()
     {
         CreateCoinObject(_rotaterCoinObject, _rotaterCoinTransformList);
@@ -33,19 +38,22 @@ public class CoinController : MonoBehaviour
         CreateCoinObject(_cheeseObject, _cheeseTransformList);
         CreateCoinObject(_mushroomObject, _mushroomTransformList);
         CreateCoinObject(_yellowFlowerObject, _yellowFlowerTransformList);
+        CreateCoinObject(_levelUpKeyObject, _levelUpKeyTransformList);
     }
 
     void CreateCoinObject(GameObject coinObject, Transform[] coinTransforms)
     {
         for (int i = 0; i < coinTransforms.Length; i++)
         {
-            Instantiate(coinObject, coinTransforms[i].position, Quaternion.identity, coinTransforms[i].transform);
+            GameObject _coinObject = Instantiate(coinObject, coinTransforms[i].position, Quaternion.identity, coinTransforms[i].transform);
+            _coinObject.transform.rotation = coinObject.transform.rotation;
         }
     }
     void Update()
     {
         RotaterCoin(_rotaterCoinTransformList, 90f, 90f, 90f);
         RotaterCoin(_rotaterBulletCoinTransformList, 90f, 0f, 0f);
+        RotaterCoin(_levelUpKeyTransformList, 0f, 0f, 90f);
     }
     void RotaterCoin(Transform[] rotaterTransformList, float speedX, float speedY, float speedZ)
     {

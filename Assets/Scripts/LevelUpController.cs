@@ -42,9 +42,12 @@ public class LevelUpController : MonoBehaviour
 
     private TextMeshProUGUI enemyKillLevelUpRequirementText;
     private TextMeshProUGUI pickUpCoinLevelUpRequirementText;
+    private TextMeshProUGUI levelUpKeysRequirementText;
+    private TextMeshProUGUI currentLevelUpKeysText;
 
     public Image scoreMissionCompletedImage;
     public Image enemyKillMissionCompletedImage;
+    public Image levelUpKeyMissionCompletedImage;
 
 
     void Awake()
@@ -79,6 +82,15 @@ public class LevelUpController : MonoBehaviour
         {
             pickUpCoinLevelUpRequirementText = GameObject.Find("PickUpCoinLevelUpRequirementWarnText").GetComponent<TextMeshProUGUI>();
         }
+        if (GameObject.Find("LevelUpKeysRequirementText").GetComponent<TextMeshProUGUI>())
+        {
+            levelUpKeysRequirementText = GameObject.Find("LevelUpKeysRequirementText").GetComponent<TextMeshProUGUI>();
+        }
+
+        if (GameObject.Find("LevelUpKeysText").GetComponent<TextMeshProUGUI>())
+        {
+            currentLevelUpKeysText = GameObject.Find("LevelUpKeysText").GetComponent<TextMeshProUGUI>();
+        }
 
         StartCoroutine(SetLevelUpRequirementWarnTextMessages());
     }
@@ -90,7 +102,7 @@ public class LevelUpController : MonoBehaviour
             pickUpCoinLevelUpRequirementText.text = "";
 
             enemyKillLevelUpRequirementText.text = "You Need To Take  " +
-                levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills.ToString() +
+                levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills.ToString() +
                 "  Kills...";
             
             yield return new WaitForSeconds(2f);
@@ -98,13 +110,22 @@ public class LevelUpController : MonoBehaviour
             enemyKillLevelUpRequirementText.text = "";
 
             pickUpCoinLevelUpRequirementText.text = "Pick Up  " +
-                levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount.ToString() +
-                "  Coins For Level Up!!!";
+                levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount.ToString() +
+                "  Coins...";
+
+            yield return new WaitForSeconds(2f);
+
+            pickUpCoinLevelUpRequirementText.text = "";
+
+            levelUpKeysRequirementText.text = "Pick Up  " +
+                levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys.ToString() +
+                "  Keys For Level Up!!!";
 
             yield return new WaitForSeconds(3f);
 
             enemyKillLevelUpRequirementText.text = "";
             pickUpCoinLevelUpRequirementText.text = "";
+            levelUpKeysRequirementText.text = "";
         }
 
     }
@@ -113,9 +134,7 @@ public class LevelUpController : MonoBehaviour
     {
         if (GameObject.Find("ScoreMissionCompletedImage"))
         {
-            //scoreMissionCompletedImage = GameObject.Find("ScoreMissionCompletedImage").GetComponent<Image>();
-
-            if (levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount >= ScoreController._scoreAmount)
+            if (levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount >= ScoreController._scoreAmount)
             {
                 scoreMissionCompletedImage.gameObject.SetActive(false);
             }
@@ -123,14 +142,21 @@ public class LevelUpController : MonoBehaviour
 
         if (GameObject.Find("EnemyKillMissionCompletedImage"))
         {
-            //enemyKillMissionCompletedImage = GameObject.Find("EnemyKillMissionCompletedImage").GetComponent<Image>();
-
-            if (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills >= EnemyData.enemyDeathCount)
+            if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills >= EnemyData.enemyDeathCount)
             {
                 enemyKillMissionCompletedImage.gameObject.SetActive(false);
             }
         }
 
+        if (GameObject.Find("LevelUpKeyMissionCompletedImage"))
+        {
+            if (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys >= LevelData.currentOwnedLevelUpKeys)
+            {
+                levelUpKeyMissionCompletedImage.gameObject.SetActive(false);
+            }
+        }
+
+        LevelData.currentOwnedLevelUpKeys = 0;
 
         LevelData.levelCanBeSkipped = false;
 
@@ -174,7 +200,6 @@ public class LevelUpController : MonoBehaviour
     {
         CurrentLevelID();
 
-        
         
         SetDetectionOfEnemyAtUpdate(LevelData.currentLevelCount);
         ArrowLevelRotation(LevelData.currentLevelCount);
@@ -224,8 +249,9 @@ public class LevelUpController : MonoBehaviour
         LevelData.currentLevelUpRequirement = GetCurrentLevelID(levelData);
         if (levelUpRequirements != null)
         {
-            if (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills <= EnemyData.enemyDeathCount &&
-            levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount <= ScoreController._scoreAmount)
+            if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
+            levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
+            levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys)
             {
                 LevelData.levelCanBeSkipped = true;
                 StartCoroutine(AbleToLevelUpMessageText());
@@ -234,13 +260,18 @@ public class LevelUpController : MonoBehaviour
 
                 enemyKillMissionCompletedImage.gameObject.SetActive(true);
 
+                levelUpKeyMissionCompletedImage.gameObject.SetActive(true);
+
+                requirementMessage = "You Can Level Up!!!";
+
+                yield return new WaitForSeconds(3f);
+
+                requirementMessage = "";
             }
-             if ((levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills >= EnemyData.enemyDeathCount) &&
-            levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount <= ScoreController._scoreAmount)
+             if ((levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills >= EnemyData.enemyDeathCount) &&
+            levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount)
             {
-                requirementMessage = "You Need To Kill  " +
-                    (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills - EnemyData.enemyDeathCount).ToString() +
-                    "  More Enemy For Level Up";
+                requirementMessage = "You Have Pretty Enough Coins!!!";
 
                 scoreMissionCompletedImage.gameObject.SetActive(true);
 
@@ -248,18 +279,35 @@ public class LevelUpController : MonoBehaviour
 
                 requirementMessage = "";
             }
-             if (levelUpRequirements[LevelData.currentLevelUpRequirement].EnemyKills <= EnemyData.enemyDeathCount &&
-            (levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount >= ScoreController._scoreAmount))
+             if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
+            (levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount >= ScoreController._scoreAmount))
             {
-                requirementMessage = "You Need To Collect  " +
-                    (levelUpRequirements[LevelData.currentLevelUpRequirement].CoinCollectAmount - ScoreController._scoreAmount).ToString() +
-                    "  More Coin  For Level Up";
+                requirementMessage = "Enemy Kills Are Completed!!!";
 
                 enemyKillMissionCompletedImage.gameObject.SetActive(true);
 
                 yield return new WaitForSeconds(3f);
 
                 requirementMessage = "";
+            }
+            if (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys &&
+                currentLevelUpKeysText)
+            {
+                currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString();
+
+                requirementMessage = "Level Up Keys Are Completed!!!";
+
+                levelUpKeyMissionCompletedImage.gameObject.SetActive(true);
+
+                yield return new WaitForSeconds(3f);
+
+                requirementMessage = "";
+            }
+            else if (levelUpKeysRequirementText &&
+                levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
+                currentLevelUpKeysText)
+            {
+                currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString();
             }
         }        
     }

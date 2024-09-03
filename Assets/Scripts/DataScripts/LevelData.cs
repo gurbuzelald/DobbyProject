@@ -7,10 +7,12 @@ public class LevelData : ScriptableObject
     [Serializable]
     public struct LevelUpRequirements
     {
-        public int EnemyKills;
-        public int CoinCollectAmount;
+        public int enemyKills;
+        public int coinCollectAmount;
+        public int levelUpKeys;
     }
     public static int currentLevelUpRequirement;
+    public static int currentOwnedLevelUpKeys;
     public static bool levelCanBeSkipped;
 
     [Header("Enemy Level Speeds Ranges")]

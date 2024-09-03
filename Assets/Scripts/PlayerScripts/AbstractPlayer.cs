@@ -909,6 +909,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.IncreasingHealth);
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyHealthCoin, other.gameObject.transform);
         }
+
+        else if (value == SceneController.Tags.LevelUpKey)
+        {
+            LevelData.currentOwnedLevelUpKeys++;
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
+            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyBulletCoin, other.gameObject.transform);
+
+            other.gameObject.SetActive(false);
+        }
     }
     public void CheckAllWeaponsLocked(BulletData bulletData)
     {
@@ -1342,8 +1351,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         if (_healthBarSlider.value < 75)
         {
-            Debug.Log("in");
-
             _healthBarSlider.value += damageHealthValue;
 
             _healthBarObject.transform.localScale = new Vector3(1f,

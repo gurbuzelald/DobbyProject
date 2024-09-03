@@ -530,6 +530,7 @@ public class SceneController : AbstractSceneController<SceneController>
         Player,
         Water,
         FanceWooden,
+        LevelUpKey,
         
 
         Tree,

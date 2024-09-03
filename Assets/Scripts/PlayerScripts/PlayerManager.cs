@@ -424,7 +424,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         if (other.CompareTag(SceneController.Tags.RotateCoin.ToString()))
         {
-            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.RotateCoin, other, _playerData, ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText);//GetScore
+            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.RotateCoin, other, _playerData,
+                ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText);//GetScore
             playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
             playerInterfaces.iPlayerHealth.IncreaseHealth(5, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, other);
 
@@ -460,6 +461,12 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                                       ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
                                       ref bulletAmountText, ref bulletPackAmountText);
             playerInterfaces.iPlayerHealth.IncreaseHealth(50, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, other);
+        }
+        if (other.CompareTag(SceneController.Tags.LevelUpKey.ToString()))
+        {
+            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.LevelUpKey, other, _playerData,
+                                      ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
+                                      ref bulletAmountText, ref bulletPackAmountText);
         }
     }
     void OnTriggerEnter(Collider other)
