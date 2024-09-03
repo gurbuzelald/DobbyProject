@@ -75,9 +75,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _gunTransform = GameObject.Find("IceTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.negev)
+        else if (_bulletData.currentWeaponName == BulletData.electro)
         {
-            _gunTransform = GameObject.Find("NegevTransform");
+            _gunTransform = GameObject.Find("ElectroTransform");
         }
         else if (_bulletData.currentWeaponName == BulletData.axe)
         {
@@ -925,7 +925,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             bulletData.axeLock == BulletData.locked && bulletData.bulldogLock == BulletData.locked &&
             bulletData.cowLock == BulletData.locked && bulletData.crystalLock == BulletData.locked &&
             bulletData.demonLock == BulletData.locked && bulletData.iceLock == BulletData.locked &&
-            bulletData.negevLock == BulletData.locked && bulletData.pistolLock == BulletData.locked)
+            bulletData.electroLock == BulletData.locked && bulletData.pistolLock == BulletData.locked)
         {
             bulletData.currentWeaponName = BulletData.pistol;
         }
@@ -1077,18 +1077,18 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
 
-        if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName != BulletData.negev)
+        if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName != BulletData.electro)
         {
             Destroy(other.gameObject);
-            _bulletData.isNegev = true;
+            _bulletData.isElectro = true;
 
             ObjectPool.creatablePlayerBullet = true;
 
-            _bulletData.negevLock = _bulletData.unLocked;
+            _bulletData.electroLock = _bulletData.unLocked;
 
             PlayerData.currentBulletExplosionIsChanged = true;
         }
-        else if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName == BulletData.negev)
+        else if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName == BulletData.electro)
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));

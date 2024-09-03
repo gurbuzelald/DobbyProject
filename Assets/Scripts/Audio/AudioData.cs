@@ -42,7 +42,7 @@ public class AudioData : ScriptableObject
     public AudioClip crystalHitClip;
     public AudioClip demonHitClip;
     public AudioClip iceHitClip;
-    public AudioClip negevHitClip;
+    public AudioClip electroHitClip;
     public AudioClip ak47HitClip;
     public AudioClip m4a4HitClip;
 
@@ -54,7 +54,7 @@ public class AudioData : ScriptableObject
     public AudioClip CrystalClip;
     public AudioClip DemonClip;
     public AudioClip IceClip;
-    public AudioClip NegevClip;
+    public AudioClip ElectroClip;
     public AudioClip AxeClip;
     public AudioClip PistolClip;
 

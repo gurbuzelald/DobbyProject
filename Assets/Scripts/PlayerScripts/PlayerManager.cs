@@ -506,7 +506,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         else if (other.tag.ToString() == BulletData.ak47 || other.tag.ToString() == BulletData.m4a4 ||
             other.tag.ToString() == BulletData.bulldog || other.tag.ToString() == BulletData.cow ||
             other.tag.ToString() == BulletData.crystal || other.tag.ToString() == BulletData.demon ||
-            other.tag.ToString() == BulletData.ice || other.tag.ToString() == BulletData.negev ||
+            other.tag.ToString() == BulletData.ice || other.tag.ToString() == BulletData.electro ||
             other.tag.ToString() == BulletData.axe)
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);

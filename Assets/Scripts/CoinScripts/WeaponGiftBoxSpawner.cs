@@ -54,7 +54,7 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
         }
         else if (levelData.currentLevel == LevelData.Levels.Level4)
         {
-            bulletData.currentGiftBox = bulletData.negevGiftBox;
+            bulletData.currentGiftBox = bulletData.electroGiftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level5)
         {

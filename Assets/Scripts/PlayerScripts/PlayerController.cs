@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     public bool Crystal;
     public bool Demon;
     public bool Ice;
-    public bool Negev;
+    public bool Electro;
     public bool Pistol;
     public bool M4A4;
 
@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
         Crystal = playerInput.WeaponMenuInput.Crystal.IsPressed();
         Demon = playerInput.WeaponMenuInput.Demon.IsPressed();
         Ice = playerInput.WeaponMenuInput.Ice.IsPressed();
-        Negev = playerInput.WeaponMenuInput.Negev.IsPressed();
+        Electro = playerInput.WeaponMenuInput.Electro.IsPressed();
         Pistol = playerInput.WeaponMenuInput.Pistol.IsPressed();
         M4A4 = playerInput.WeaponMenuInput.M4a4.IsPressed();
 

@@ -129,12 +129,12 @@ public class ChooseWeaponController : MonoBehaviour
                         weaponUsageLimits[i].enabled = false;
                     }
                     break;
-                case "NEGEVUsageLimit":
-                    if (bulletData.negevLock == "")
+                case "ELECTROUsageLimit":
+                    if (bulletData.electroLock == "")
                     {
                         weaponUsageLimits[i].enabled = true;
 
-                        weaponUsageLimits[i].text = "Usage Limit: " + bulletData.negevUsageLimit.ToString();
+                        weaponUsageLimits[i].text = "Usage Limit: " + bulletData.electroUsageLimit.ToString();
                     }
                     else
                     {
@@ -180,7 +180,7 @@ public class ChooseWeaponController : MonoBehaviour
             bulletData.crystalLock == bulletData.unLocked &&
             bulletData.demonLock == bulletData.unLocked &&
             bulletData.iceLock == bulletData.unLocked &&
-            bulletData.negevLock == bulletData.unLocked &&
+            bulletData.electroLock == bulletData.unLocked &&
             bulletData.pistolLock == bulletData.unLocked &&
             bulletData.m4a4Lock == bulletData.unLocked &&
             bulletData.resetLocks == bulletData.unLocked)
@@ -194,7 +194,7 @@ public class ChooseWeaponController : MonoBehaviour
             bulletData.cowLock = BulletData.locked;
             bulletData.crystalLock = BulletData.locked;
             bulletData.iceLock = BulletData.locked;
-            bulletData.negevLock = BulletData.locked;
+            bulletData.electroLock = BulletData.locked;
             bulletData.demonLock = BulletData.locked;
             bulletData.pistolLock = BulletData.locked;
             bulletData.m4a4Lock = BulletData.locked;
@@ -207,7 +207,7 @@ public class ChooseWeaponController : MonoBehaviour
             bulletData.crystalLock == BulletData.locked &&
             bulletData.demonLock == BulletData.locked &&
             bulletData.iceLock == BulletData.locked &&
-            bulletData.negevLock == BulletData.locked &&
+            bulletData.electroLock == BulletData.locked &&
             bulletData.pistolLock == BulletData.locked &&
             bulletData.m4a4Lock == BulletData.locked &&
             bulletData.resetLocks == BulletData.locked)
@@ -233,7 +233,7 @@ public class ChooseWeaponController : MonoBehaviour
             PickCrystal(bulletData.crystalPrice);
             PickDemon(bulletData.demonPrice);
             PickIce(bulletData.icePrice);
-            PickNegev(bulletData.negevPrice);
+            PickElectro(bulletData.electroPrice);
             PickPistol(bulletData.pistolPrice);
             PickM4a4(bulletData.m4a4Price);
         }
@@ -310,11 +310,11 @@ public class ChooseWeaponController : MonoBehaviour
 
                     bulletData.weaponStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = bulletData.icePower.ToString();
                 }
-                else if (bulletData.weaponStaffs[i].name == "NegevStaff")
+                else if (bulletData.weaponStaffs[i].name == "ElectroStaff")
                 {
                     bulletData.weaponStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
 
-                    bulletData.weaponStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = bulletData.negevPower.ToString();
+                    bulletData.weaponStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = bulletData.electroPower.ToString();
                 }
                 else if (bulletData.weaponStaffs[i].name == "PistolStaff")
                 {
@@ -763,58 +763,56 @@ public class ChooseWeaponController : MonoBehaviour
             }
         }
     }
-    public void PickNegev(int avaliableCoinAmount)
+    public void PickElectro(int avaliableCoinAmount)
     {
-        if (bulletData.negevUsageLimit <= 0)
+        if (bulletData.electroUsageLimit <= 0)
         {
             ObjectPool.creatablePlayerBullet = true;
-            bulletData.negevLock = BulletData.locked;
+            bulletData.electroLock = BulletData.locked;
         }
-        if (_playerController.Negev && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-          bulletData.currentWeaponName != BulletData.negev)
+        if (_playerController.Electro && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+          bulletData.currentWeaponName != BulletData.electro)
         {
             for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
             {
-                if (bulletData.avaliableWeapons[i] == "" || bulletData.negevLock == BulletData.locked)
+                if (bulletData.avaliableWeapons[i] == "" || bulletData.electroLock == BulletData.locked)
                 {
-                    bulletData.avaliableWeapons[i] = BulletData.negev;
+                    bulletData.avaliableWeapons[i] = BulletData.electro;
 
                     playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-                    bulletData.negevLock = bulletData.unLocked;
+                    bulletData.electroLock = bulletData.unLocked;
 
                     ObjectPool.creatablePlayerBullet = true;
 
-                    bulletData.negevUsageLimit = 3;
+                    bulletData.electroUsageLimit = 3;
 
                     break;
                 }
             }
-            bulletData.currentWeaponName = BulletData.negev;
+            bulletData.currentWeaponName = BulletData.electro;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
 
             SceneController.GetInstance.LoadMenuScene();
 
         }
-        else if (_playerController.Negev && bulletData.negevLock == bulletData.unLocked)
+        else if (_playerController.Electro && bulletData.electroLock == bulletData.unLocked)
         {
-            if (bulletData.negevUsageLimit > 0 && bulletData.currentWeaponName != BulletData.negev)
+            if (bulletData.electroUsageLimit > 0 && bulletData.currentWeaponName != BulletData.electro)
             {
-                bulletData.currentWeaponName = BulletData.negev;
+                bulletData.currentWeaponName = BulletData.electro;
 
                 SceneController.GetInstance.LoadMenuScene();
 
                 ObjectPool.creatablePlayerBullet = true;
             }
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.negevLock == BulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.electroLock == BulletData.locked)
         {
-            //bulletData.currentWeaponName = BulletData.negev;
-
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "NEGEVPriceErrorText")
+                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "ELECTROPriceErrorText")
                 {
                     weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }

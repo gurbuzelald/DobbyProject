@@ -103,7 +103,7 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
-        else if (PlayerSoundEffect.ShootSoundEffectTypes.Negev == shootSoundEffectType)
+        else if (PlayerSoundEffect.ShootSoundEffectTypes.Electro == shootSoundEffectType)
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
@@ -174,7 +174,7 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
         Crystal,
         Demon,
         Ice,
-        Negev,
+        Electro,
         Axe,
         Pistol
     }

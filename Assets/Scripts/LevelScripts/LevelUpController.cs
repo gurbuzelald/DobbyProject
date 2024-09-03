@@ -370,7 +370,7 @@ public class LevelUpController : MonoBehaviour
 
             levelData.currentLevel = LevelData.Levels.Level4;
             levelData.currentEnemyObjects = levelData.enemyFourthObjects;
-            bulletData.currentGiftBox = bulletData.negevGiftBox;
+            bulletData.currentGiftBox = bulletData.electroGiftBox;
             CurrentLevelID();
             weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelCount);
             healthCoinSpawner.CreateMapHealthCoins(LevelData.currentLevelCount);

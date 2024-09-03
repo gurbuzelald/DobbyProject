@@ -626,7 +626,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Negev"",
+                    ""name"": ""Electro"",
                     ""type"": ""Button"",
                     ""id"": ""c03923cc-015e-4b80-8dd8-67bc21a63772"",
                     ""expectedControlType"": ""Button"",
@@ -749,7 +749,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Negev"",
+                    ""action"": ""Electro"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -842,7 +842,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_WeaponMenuInput_Crystal = m_WeaponMenuInput.FindAction("Crystal", throwIfNotFound: true);
         m_WeaponMenuInput_Demon = m_WeaponMenuInput.FindAction("Demon", throwIfNotFound: true);
         m_WeaponMenuInput_Ice = m_WeaponMenuInput.FindAction("Ice", throwIfNotFound: true);
-        m_WeaponMenuInput_Negev = m_WeaponMenuInput.FindAction("Negev", throwIfNotFound: true);
+        m_WeaponMenuInput_Electro = m_WeaponMenuInput.FindAction("Electro", throwIfNotFound: true);
         m_WeaponMenuInput_Pistol = m_WeaponMenuInput.FindAction("Pistol", throwIfNotFound: true);
         m_WeaponMenuInput_M4a4 = m_WeaponMenuInput.FindAction("M4a4", throwIfNotFound: true);
         // GrowMap
@@ -1125,7 +1125,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputAction m_WeaponMenuInput_Crystal;
     private readonly InputAction m_WeaponMenuInput_Demon;
     private readonly InputAction m_WeaponMenuInput_Ice;
-    private readonly InputAction m_WeaponMenuInput_Negev;
+    private readonly InputAction m_WeaponMenuInput_Electro;
     private readonly InputAction m_WeaponMenuInput_Pistol;
     private readonly InputAction m_WeaponMenuInput_M4a4;
     public struct WeaponMenuInputActions
@@ -1140,7 +1140,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         public InputAction @Crystal => m_Wrapper.m_WeaponMenuInput_Crystal;
         public InputAction @Demon => m_Wrapper.m_WeaponMenuInput_Demon;
         public InputAction @Ice => m_Wrapper.m_WeaponMenuInput_Ice;
-        public InputAction @Negev => m_Wrapper.m_WeaponMenuInput_Negev;
+        public InputAction Electro => m_Wrapper.m_WeaponMenuInput_Electro;
         public InputAction @Pistol => m_Wrapper.m_WeaponMenuInput_Pistol;
         public InputAction @M4a4 => m_Wrapper.m_WeaponMenuInput_M4a4;
         public InputActionMap Get() { return m_Wrapper.m_WeaponMenuInput; }
@@ -1176,9 +1176,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Ice.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnIce;
                 @Ice.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnIce;
                 @Ice.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnIce;
-                @Negev.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnNegev;
-                @Negev.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnNegev;
-                @Negev.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnNegev;
+                Electro.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnElectro;
+                Electro.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnElectro;
+                Electro.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnElectro;
                 @Pistol.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnPistol;
                 @Pistol.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnPistol;
                 @Pistol.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnPistol;
@@ -1213,9 +1213,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Ice.started += instance.OnIce;
                 @Ice.performed += instance.OnIce;
                 @Ice.canceled += instance.OnIce;
-                @Negev.started += instance.OnNegev;
-                @Negev.performed += instance.OnNegev;
-                @Negev.canceled += instance.OnNegev;
+                Electro.started += instance.OnElectro;
+                Electro.performed += instance.OnElectro;
+                Electro.canceled += instance.OnElectro;
                 @Pistol.started += instance.OnPistol;
                 @Pistol.performed += instance.OnPistol;
                 @Pistol.canceled += instance.OnPistol;
@@ -1295,7 +1295,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         void OnCrystal(InputAction.CallbackContext context);
         void OnDemon(InputAction.CallbackContext context);
         void OnIce(InputAction.CallbackContext context);
-        void OnNegev(InputAction.CallbackContext context);
+        void OnElectro(InputAction.CallbackContext context);
         void OnPistol(InputAction.CallbackContext context);
         void OnM4a4(InputAction.CallbackContext context);
     }

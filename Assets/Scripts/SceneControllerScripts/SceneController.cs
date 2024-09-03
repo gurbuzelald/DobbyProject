@@ -252,11 +252,11 @@ public class SceneController : AbstractSceneController<SceneController>
             bulletData.currentWeaponName = BulletData.pistol;
         }
 
-        if (bulletData.currentWeaponName == BulletData.negev && bulletData.negevUsageLimit > 0)
+        if (bulletData.currentWeaponName == BulletData.electro && bulletData.electroUsageLimit > 0)
         {
-            bulletData.negevUsageLimit -= 1;
+            bulletData.electroUsageLimit -= 1;
         }
-        else if (bulletData.currentWeaponName == BulletData.negev && bulletData.negevUsageLimit == 0)
+        else if (bulletData.currentWeaponName == BulletData.electro && bulletData.electroUsageLimit == 0)
         {
             bulletData.currentWeaponName = BulletData.pistol;
         }
@@ -559,7 +559,7 @@ public class SceneController : AbstractSceneController<SceneController>
         crystal,
         demon,
         ice,
-        negev,
+        electro,
         axe,
         pistol,
         WeaponBox,

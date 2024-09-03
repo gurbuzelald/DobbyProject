@@ -128,10 +128,10 @@ public class PriceSetting : MonoBehaviour
                             weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "";
                         }
                         break;
-                    case BulletData.WeaponNames.negev:
-                        if (BulletData.locked == bulletData.negevLock)
+                    case BulletData.WeaponNames.electro:
+                        if (BulletData.locked == bulletData.electroLock)
                         {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.negevPrice.ToString() + " Coin";
+                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.electroPrice.ToString() + " Coin";
                         }
                         else
                         {

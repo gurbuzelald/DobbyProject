@@ -19,7 +19,6 @@ MonoBehaviour:
   nonShootClip: {fileID: 0}
   poisonClip: {fileID: 0}
   getEnemyHitClip: {fileID: 0}
-  getBulletHitClip: {fileID: 0}
   jumpingClip: {fileID: 0}
   dyingClip: {fileID: 0}
   pickupCoinClip: {fileID: 0}
@@ -31,7 +30,7 @@ MonoBehaviour:
   jumpingSeaClip: {fileID: 0}
   teleportClip: {fileID: 0}
   healthClip: {fileID: 0}
-  currentBulletHitClip: {fileID: 8300000, guid: bb338f5dee6254f798807d775b347a9b, type: 3}
+  currentBulletHitClip: {fileID: 0}
   currentSwordHitClip: {fileID: 8300000, guid: 28c27e828e8b6b540baa9afb526d529e, type: 3}
   pistolHitClip: {fileID: 8300000, guid: 04a7f8cf5c8d66242bb0f2a26a78a22b, type: 3}
   axeHitClip: {fileID: 8300000, guid: 3f46ff71947174020a87dc836d9c1bc4, type: 3}
@@ -40,7 +39,7 @@ MonoBehaviour:
   crystalHitClip: {fileID: 8300000, guid: 0a2b306d6e7554474a0692b44f87c514, type: 3}
   demonHitClip: {fileID: 8300000, guid: bb338f5dee6254f798807d775b347a9b, type: 3}
   iceHitClip: {fileID: 8300000, guid: d6c86dc9f7e384b6ebdb68d60b76b47f, type: 3}
-  negevHitClip: {fileID: 8300000, guid: 9af0f4d9dc9434d0eae9e447add97502, type: 3}
+  electroHitClip: {fileID: 8300000, guid: 9af0f4d9dc9434d0eae9e447add97502, type: 3}
   ak47HitClip: {fileID: 8300000, guid: 37ca78aa1cce9ed4496db0b4fd17ac74, type: 3}
   m4a4HitClip: {fileID: 8300000, guid: ae04e9287d4c3da45beb4cf5404346ac, type: 3}
   Ak47Clip: {fileID: 8300000, guid: d1f2b15d8a6bf465898dee70970bdf4b, type: 3}
@@ -50,7 +49,7 @@ MonoBehaviour:
   CrystalClip: {fileID: 8300000, guid: 6bd939b24c96a40179c0cdc4455b2793, type: 3}
   DemonClip: {fileID: 8300000, guid: 58c4b07aeabad4303b04487e9f53ebb7, type: 3}
   IceClip: {fileID: 8300000, guid: 28b73a70ea4ee43beb52ed8d14c92475, type: 3}
-  NegevClip: {fileID: 8300000, guid: 480f14cb597e14f82849826b3f9161d2, type: 3}
+  ElectroClip: {fileID: 8300000, guid: 480f14cb597e14f82849826b3f9161d2, type: 3}
   AxeClip: {fileID: 8300000, guid: afa69f9317b9e4dd4bdce29796b6991b, type: 3}
   PistolClip: {fileID: 8300000, guid: d9cbd1973c2024949bbeb78a50c17929, type: 3}
   LowSwordClip: {fileID: 0}

@@ -37,10 +37,10 @@ MonoBehaviour:
   crystalGiftBox: {fileID: 4022412064357964157, guid: 028d4e3f0249529499c5a8c81d29ea0b, type: 3}
   demonGiftBox: {fileID: 8947880313132611291, guid: 43147d81d9fef8f4d9beda636a63dc03, type: 3}
   iceGiftBox: {fileID: 1107915910439118714, guid: ca5ee588c6380b74080b876dbde97c21, type: 3}
-  negevGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
+  electroGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
   ak47GiftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
   axeGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
-  currentShootFrequency: 0.4
+  currentShootFrequency: 0
   pistolShootFrequency: 0.4
   axeShootFrequency: 0.35
   bulldogShootFrequency: 0.3
@@ -48,7 +48,7 @@ MonoBehaviour:
   crystalShootFrequency: 0.25
   demonShootFrequency: 0.23
   iceShootFrequency: 0.2
-  negevShootFrequency: 0.18
+  electroShootFrequency: 0
   ak47ShootFrequency: 0.15
   m4a4ShootFrequency: 0.12
   ak47Object: {fileID: 1285122605500510046, guid: b339fba6c87e1284296b951ba41f28ad, type: 3}
@@ -58,7 +58,7 @@ MonoBehaviour:
   crsytalObject: {fileID: 6090247001165047854, guid: f063e9ac4a8a0da47abeb4ea6b35b9e3, type: 3}
   demonObject: {fileID: 2171148302848499809, guid: 63a007e6a0d63be42ae9e8aadda4784f, type: 3}
   iceObject: {fileID: 576073428898831781, guid: 0963f4d0c58abf04bb05b0993ba61424, type: 3}
-  negevObject: {fileID: 1492883090361208011, guid: 6e1df7167d924f94f85f18de66dd6675, type: 3}
+  electroObject: {fileID: 1492883090361208011, guid: 6e1df7167d924f94f85f18de66dd6675, type: 3}
   axeObject: {fileID: 1684248174472265961, guid: a331718668949cc43b683202d1396a03, type: 3}
   pistolObject: {fileID: 8853850299777618421, guid: 39aa8c7ebaa670646b7147b6d3cfdd63, type: 3}
   pistolPower: 12
@@ -68,7 +68,7 @@ MonoBehaviour:
   crystalPower: 18
   demonPower: 15
   icePower: 14
-  negevPower: 16
+  electroPower: 0
   ak47Power: 16
   m4a4Power: 18
   pistolPrice: 0
@@ -78,11 +78,11 @@ MonoBehaviour:
   crystalPrice: 1
   demonPrice: 1
   icePrice: 1
-  negevPrice: 1
+  electroPrice: 0
   ak47Price: 1
   m4a4Price: 1
   avaliableWeapons:
-  - axe
+  - electro
   - bulldog
   - cow
   - crystal
@@ -99,8 +99,8 @@ MonoBehaviour:
   crystalLock: locked
   demonLock: locked
   iceLock: locked
-  negevLock: locked
-  ak47Lock: locked
+  electroLock: 
+  ak47Lock: 
   m4a4Lock: 
   resetLocks: locked
   unLocked: 
@@ -110,17 +110,17 @@ MonoBehaviour:
   crystalUsageLimit: 0
   demonUsageLimit: 0
   iceUsageLimit: 0
-  negevUsageLimit: 0
+  electroUsageLimit: 1
   axeUsageLimit: 1
   m4a4UsageLimit: 3
-  ak47UsageLimit: 0
+  ak47UsageLimit: 3
   isPistol: 0
   isBulldog: 0
   isCow: 0
   isCrystal: 0
   isDemon: 0
   isIce: 0
-  isNegev: 0
+  isElectro: 0
   isAxe: 0
   isM4a4: 0
   isAk47: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
   isLongHummer: 0
   isClub: 0
   currentSwordName: LowSword
-  currentWeaponName: pistol
+  currentWeaponName: electro
   swordDamageValue: 30
   enemyFireFrequency: 5
   enemyBulletDelayCounter: 0

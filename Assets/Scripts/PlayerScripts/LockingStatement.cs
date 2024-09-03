@@ -183,8 +183,8 @@ public class LockingStatement : MonoBehaviour
                 case BulletData.WeaponNames.ice:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.iceLock.ToString();
                     break;
-                case BulletData.WeaponNames.negev:
-                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.negevLock.ToString();
+                case BulletData.WeaponNames.electro:
+                    gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.electroLock.ToString();
                     break;
                 case BulletData.WeaponNames.pistol:
                     gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.pistolLock.ToString();

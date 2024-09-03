@@ -25,7 +25,7 @@ public class BulletData : ScriptableObject
     public GameObject crystalGiftBox; //+
     public GameObject demonGiftBox; //+
     public GameObject iceGiftBox; //+
-    public GameObject negevGiftBox; //+
+    public GameObject electroGiftBox; //+
     public GameObject ak47GiftBox;
     public GameObject axeGiftBox; //+
 
@@ -40,7 +40,7 @@ public class BulletData : ScriptableObject
     public float crystalShootFrequency;
     public float demonShootFrequency;
     public float iceShootFrequency;
-    public float negevShootFrequency;
+    public float electroShootFrequency;
     public float ak47ShootFrequency;
     public float m4a4ShootFrequency;
 
@@ -53,7 +53,7 @@ public class BulletData : ScriptableObject
     public GameObject crsytalObject;
     public GameObject demonObject;
     public GameObject iceObject;
-    public GameObject negevObject;
+    public GameObject electroObject;
     public GameObject axeObject;
     public GameObject pistolObject;
 
@@ -65,7 +65,7 @@ public class BulletData : ScriptableObject
     public int crystalPower;
     public int demonPower;
     public int icePower;
-    public int negevPower;
+    public int electroPower;
     public int ak47Power;
     public int m4a4Power;
 
@@ -77,7 +77,7 @@ public class BulletData : ScriptableObject
     public int crystalPrice;
     public int demonPrice;
     public int icePrice;
-    public int negevPrice;
+    public int electroPrice;
     public int ak47Price;
     public int m4a4Price;
 
@@ -95,7 +95,7 @@ public class BulletData : ScriptableObject
     public string crystalLock = "locked";
     public string demonLock = "locked";
     public string iceLock = "locked";
-    public string negevLock = "locked";
+    public string electroLock = "locked";
     public string ak47Lock = "locked";
     public string m4a4Lock = "locked";
     public string resetLocks = "locked";
@@ -109,7 +109,7 @@ public class BulletData : ScriptableObject
     public int crystalUsageLimit = 0;
     public int demonUsageLimit = 0;
     public int iceUsageLimit = 0;
-    public int negevUsageLimit = 0;
+    public int electroUsageLimit = 0;
     public int axeUsageLimit = 0;
     public int m4a4UsageLimit = 0;
     public int ak47UsageLimit = 0;
@@ -121,7 +121,7 @@ public class BulletData : ScriptableObject
     public bool isCrystal;
     public bool isDemon;
     public bool isIce;
-    public bool isNegev;
+    public bool isElectro;
     public bool isAxe;
     public bool isM4a4;
     public bool isAk47;
@@ -135,7 +135,7 @@ public class BulletData : ScriptableObject
     public const string crystal = "crystal";
     public const string demon = "demon";
     public const string ice = "ice";
-    public const string negev = "negev";
+    public const string electro = "electro";
     public const string ak47 = "ak47";
     public const string m4a4 = "m4a4";
 
@@ -162,7 +162,7 @@ public class BulletData : ScriptableObject
         crystal,
         demon,
         ice,
-        negev,
+        electro,
         ak47,
         m4a4
     }

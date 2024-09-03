@@ -174,7 +174,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[6];
         }
-        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.negev)
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.electro)
         {
             enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[7];
         }
@@ -328,9 +328,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.icePower;
         }
-        else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.negev)
+        else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.electro)
         {
-            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.negevPower;
+            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.electroPower;
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.axe)
         {

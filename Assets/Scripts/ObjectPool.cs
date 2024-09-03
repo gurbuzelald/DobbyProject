@@ -100,7 +100,7 @@ public class ObjectPool : MonoBehaviour
         if (bulletData.isCrystal) return 4;
         if (bulletData.isDemon) return 5;
         if (bulletData.isIce) return 6;
-        if (bulletData.isNegev) return 7;
+        if (bulletData.isElectro) return 7;
         if (bulletData.isAk47) return 8;
         if (bulletData.isM4a4) return 9;
         return -1;

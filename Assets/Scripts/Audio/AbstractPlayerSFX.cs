@@ -135,11 +135,11 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
 
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.IceClip);
         }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Negev)
+        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Electro)
         {
-            audioData.currentBulletHitClip = audioData.negevHitClip;
+            audioData.currentBulletHitClip = audioData.electroHitClip;
 
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.NegevClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ElectroClip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Axe)
         {
