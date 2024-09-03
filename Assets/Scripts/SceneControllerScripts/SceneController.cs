@@ -304,11 +304,86 @@ public class SceneController : AbstractSceneController<SceneController>
         DecreaseWeaponUsageLimit();
     }
 
+    void SetHighestLevel()
+    {
+        if (levelData)
+        {
+            if (levelData.currentLevel == LevelData.Levels.Level1)
+            {
+                LevelData.highestLevel = 0;
+            }
+            if (levelData.currentLevel == LevelData.Levels.Level2)
+            {
+                if (LevelData.highestLevel <= 1)
+                {
+                    LevelData.highestLevel = 1;
+                }
+            }
+            else if (levelData.currentLevel == LevelData.Levels.Level3)
+            {
+                if (LevelData.highestLevel <= 2)
+                {
+                    LevelData.highestLevel = 2;
+                }
+            }
+            else if (levelData.currentLevel == LevelData.Levels.Level4)
+            {
+                if (LevelData.highestLevel <= 3)
+                {
+                    LevelData.highestLevel = 3;
+                }
+            }
+            else if (levelData.currentLevel == LevelData.Levels.Level5)
+            {
+                if (LevelData.highestLevel <= 4)
+                {
+                    LevelData.highestLevel = 4;
+                }
+            }
+            else if (levelData.currentLevel == LevelData.Levels.Level6)
+            {
+                if (LevelData.highestLevel <= 5)
+                {
+                    LevelData.highestLevel = 5;
+                }
+            }
+            else if (levelData.currentLevel == LevelData.Levels.Level7)
+            {
+                if (LevelData.highestLevel <= 6)
+                {
+                    LevelData.highestLevel = 6;
+                }
+            }
+            else if (levelData.currentLevel == LevelData.Levels.Level8)
+            {
+                if (LevelData.highestLevel <= 7)
+                {
+                    LevelData.highestLevel = 7;
+                }
+            }
+            else if (levelData.currentLevel == LevelData.Levels.Level9)
+            {
+                if (LevelData.highestLevel <= 8)
+                {
+                    LevelData.highestLevel = 8;
+                }
+            }
+            else if (levelData.currentLevel == LevelData.Levels.Level10)
+            {
+                if (LevelData.highestLevel <= 9)
+                {
+                    LevelData.highestLevel = 9;
+                }
+            }
+        }
+    }
+
     void CreateLevelButtons()
     {
+        SetHighestLevel();
         if (levelData && CheckSceneName() == Scenes.Levels.ToString())
         {
-            for(int i = 0; i < GetCurrentLevelID(levelData) + 1; i++)
+            for (int i = 0; i < LevelData.highestLevel + 1; i++)
             {
                 GameObject levelButtonObject = Instantiate(levelButton, new Vector3(levelButton.transform.localPosition.x,
                     levelButton.transform.localPosition.y,
@@ -345,21 +420,6 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         DestroySingletonObjects();
         SceneManager.LoadScene(Scenes.Levels.ToString());
-    }
-
-    int GetCurrentLevelID(LevelData levelData)
-    {
-        if (levelData.currentLevel == LevelData.Levels.Level1) return 0;
-        else if (levelData.currentLevel == LevelData.Levels.Level2) return 1;
-        else if (levelData.currentLevel == LevelData.Levels.Level3) return 2;
-        else if (levelData.currentLevel == LevelData.Levels.Level4) return 3;
-        else if (levelData.currentLevel == LevelData.Levels.Level5) return 4;
-        else if (levelData.currentLevel == LevelData.Levels.Level6) return 5;
-        else if (levelData.currentLevel == LevelData.Levels.Level7) return 6;
-        else if (levelData.currentLevel == LevelData.Levels.Level8) return 7;
-        else if (levelData.currentLevel == LevelData.Levels.Level9) return 8;
-        else if (levelData.currentLevel == LevelData.Levels.Level10) return 9;
-        return -1;
     }
 
 

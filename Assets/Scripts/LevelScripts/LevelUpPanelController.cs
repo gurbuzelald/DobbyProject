@@ -21,6 +21,7 @@ public class LevelUpPanelController : MonoBehaviour
     {
         if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
         {
+            //LevelData.highestLevel++;
             levelUpCanvasGroup.alpha = 1;
             levelUpImage.enabled = true;
             levelUpCanvasGroup.alpha -= 0.01f;

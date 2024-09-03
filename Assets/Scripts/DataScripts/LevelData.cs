@@ -11,6 +11,9 @@ public class LevelData : ScriptableObject
         public int coinCollectAmount;
         public int levelUpKeys;
     }
+
+    public static int highestLevel = 0;
+
     public static int currentLevelUpRequirement;
     public static int currentOwnedLevelUpKeys;
     public static bool levelCanBeSkipped;
