@@ -794,7 +794,7 @@ public class BulletManager : AbstractBullet<BulletManager>
 
     public void SwordFire()
     {
-        if (_playerData.isSwording && !_playerData.isFireNonWalk && bulletData.bulletDelayCounter == 0 && _playerData.isSwordTime)
+        if (_playerData.isSwording && !_playerData.isFire && bulletData.bulletDelayCounter == 0 && _playerData.isSwordTime)
         {
 
             bulletData.bulletDelayCounter++;
@@ -805,7 +805,7 @@ public class BulletManager : AbstractBullet<BulletManager>
 
     public void WeaponFire()
     {
-        if ((_playerData.isFireNonWalk || _playerData.isFireWalk) && !_playerData.isSwording && bulletData.bulletDelayCounter == 0 && _playerData.isFireTime)
+        if ((_playerData.isFire || _playerData.isFire) && !_playerData.isSwording && bulletData.bulletDelayCounter == 0 && _playerData.isFireTime)
         {
             bulletData.bulletDelayCounter++;
 

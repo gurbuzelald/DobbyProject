@@ -17,7 +17,7 @@ MonoBehaviour:
   currentMessageObject: {fileID: 0}
   backgroundMap: {fileID: 1345883776023317691, guid: 515afb887ab870a43b53ea7d70cb9035, type: 3}
   enemyBulletHitActivate: 0
-  currentEnemyAttackDamage: 23
+  currentEnemyAttackDamage: 5
   clownEnemyAttackDamage: 5
   monsterEnemyAttackDamage: 10
   prisonerEnemyAttackDamage: 12
@@ -28,7 +28,7 @@ MonoBehaviour:
   skeletonEnemyAttackDamage: 25
   urielEnemyAttackDamage: 27
   goblinEnemyAttackDamage: 30
-  currentEnemyBulletDamage: 30
+  currentEnemyBulletDamage: 12
   clownEnemyBulletDamage: 12
   monsterEnemyBulletDamage: 13
   prisonerEnemyBulletDamage: 16
@@ -39,7 +39,7 @@ MonoBehaviour:
   skeletonEnemyBulletDamage: 30
   urielEnemyBulletDamage: 33
   goblinEnemyBulletDamage: 35
-  currentEnemyCollisionDamage: 20
+  currentEnemyCollisionDamage: 10
   clownEnemyCollisionDamage: 10
   monsterEnemyCollisionDamage: 15
   prisonerEnemyCollisionDamage: 20
@@ -61,12 +61,12 @@ MonoBehaviour:
   ajDurability: 2
   mremirehDurability: 5
   tyDurability: 2
-  currentEnemyName: Skeleton(Clone)
+  currentEnemyName: Clown(Clone)
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
   isDecreaseHealth: 0
   damageHealthText: {fileID: 0}
   decreaseCounter: 0
-  currentCharacterName: 4
+  currentCharacterName: 1
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
   glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
@@ -126,7 +126,7 @@ MonoBehaviour:
   bossPrice: 1
   tyPrice: 1
   mremirehPrice: 1
-  playerSpeed: 31
+  playerSpeed: 40
   skateBoardSpeed: 14
   climbSpeed: 3
   lockedSpeed: 12
@@ -142,7 +142,7 @@ MonoBehaviour:
   bossSpeed: 30
   tySpeed: 33
   guardSpeed: 31
-  currentJumpForce: 5
+  currentJumpForce: 6
   dobbyJumpForce: 6
   michelleJumpForce: 7
   glassyJumpForce: 6
@@ -167,7 +167,7 @@ MonoBehaviour:
   - Eve
   - Aj
   isGround: 1
-  isWalking: 1
+  isWalking: 0
   isSideWalking: 0
   isLockedWalking: 0
   isBackWalking: 0
@@ -184,8 +184,9 @@ MonoBehaviour:
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 1
-  isFireNonWalk: 0
-  isFireWalk: 0
+  isFire: 0
+  isFireWalkAnimation: 0
+  isFireAnimation: 0
   isFireTime: 0
   isSwording: 0
   isSwordTime: 1
@@ -197,9 +198,9 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 16
+  bulletAmount: 4
   bulletPack: 21
-  bulletPackAmount: 1
+  bulletPackAmount: 2
   isTouchableSkate: 1
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

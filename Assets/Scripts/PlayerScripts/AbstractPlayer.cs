@@ -236,8 +236,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             {
                 _playerData.currentMessageText = _playerData.currentMessageObject.GetComponent<TextMeshProUGUI>();
             }
-            _playerData.isFireNonWalk = false;
-            _playerData.isFireWalk = false;
+            _playerData.isFireWalkAnimation = false;
+            _playerData.isFire = false;
             levelData.isLevelUp = false;
             LevelData.levelCanBeSkipped = false;
 
@@ -275,7 +275,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             CharacterJumpForce(_playerData);
             _initPlayerSpeed = _playerData.playerSpeed;
             _playerData.isDying = false;
-            _playerData.isFireNonWalk = false;
+            _playerData.isFireWalkAnimation = false;
             _playerData.isWalking = false;
             _playerData.isClimbing = false;
             _playerData.isBackWalking = false;
@@ -413,13 +413,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.decreaseCounter++;
             StartCoroutine(DelayDecreaseCounterZero(_playerData));
         }
-        else if (healthBarSlider.value <= 0)
+        else if (healthBarSlider.value <= 0 && _playerData.isDecreaseHealth)
         {
             _playerData.isPlayable = false;
             _playerData.isDying = true;
             StartCoroutine(PlayerManager.GetInstance.DelayDestroy(7f));
 
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
+
+            _playerData.isDecreaseHealth = false;
         }
     }
     public virtual void CheckEnemyAttackDamage(ref PlayerData _playerData)
@@ -478,9 +480,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             {
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
 
-                _playerData.isFireNonWalk = false;
+                _playerData.isFireWalkAnimation = false;
 
-                _playerData.isFireWalk = false;
+                _playerData.isFire = false;
             }
             else if (_playerData.bulletAmount <= 0 && _playerData.bulletPackAmount >= 0)
             {
@@ -490,25 +492,31 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             }
             else if(_playerData.bulletPackAmount >= 0)
             {
-                if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && !_playerData.isWalking && !_playerData.isSideWalking)
+                if (_playerData.isSideWalking && !_playerData.isWalking || _playerData.isBackWalking)
                 {
-                    _playerData.isFireNonWalk = true;
+                    _playerData.isFire = true;
+                    _playerData.isFireAnimation = false;
+                    _playerData.isFireWalkAnimation = false;
                 }
-                else if (_playerData.bulletAmount > _playerData.bulletPack / 2f && !_playerData.isWalking && !_playerData.isSideWalking)
+                if (!_playerData.isWalking && !_playerData.isSideWalking && !_playerData.isBackWalking)
                 {
-                    _playerData.isFireNonWalk = true;
+                    _playerData.isFire = true;
+                    _playerData.isFireAnimation = true;
+                    _playerData.isFireWalkAnimation = false;
                 }
-                else if (!_playerData.isWalking && _playerData.isSideWalking)
+                if (_playerData.isWalking && !_playerData.isSideWalking && !_playerData.isBackWalking)
                 {
-                    _playerData.isFireNonWalk = true;
+                    _playerData.isFire = true;
+                    _playerData.isFireAnimation = false;
+                    _playerData.isFireWalkAnimation = true;
                 }
                 else if (_playerData.bulletAmount <= _playerData.bulletPack / 2f && _playerData.isWalking)
                 {
-                    _playerData.isFireWalk = true;
+                    _playerData.isFire = true;
                 }
                 else if (_playerData.bulletAmount > _playerData.bulletPack / 2f && _playerData.isWalking)
                 {
-                    _playerData.isFireWalk = true;
+                    _playerData.isFire = true;
                 }
                 if (_playerData.bulletAmount > 0 && BulletManager.isCreatedWeaponBullet)
                 {
@@ -520,7 +528,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else
         {
-            _playerData.isFireNonWalk = false;
+            _playerData.isFire = false;
+            _playerData.isFireAnimation = false;
+            _playerData.isFireWalkAnimation = false;
         }
     }
     IEnumerator DelayDisactivateFire()
@@ -547,7 +557,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else
         {
-            _playerData.isFireNonWalk = false;
+            _playerData.isFireWalkAnimation = false;
         }
     }
     IEnumerator DelayPlayableTrue(PlayerData _playerData)
@@ -568,7 +578,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     public virtual IEnumerator delayFireWalkDisactivity(PlayerData _playerData, float delay)
     {
         yield return new WaitForSeconds(delay);
-        _playerData.isFireWalk = false;
+        _playerData.isFire = false;
     }
 
     #endregion
@@ -738,6 +748,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 _playerData.isPlayable = false;
 
                 _playerData.objects[3].transform.localScale = Vector3.zero;
+
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
+
                 StartCoroutine(PlayerManager.GetInstance.DelayDestroy(3f));
             }
             else if (!_playerData.isWinning)
@@ -1563,7 +1576,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     public virtual void SideWalk(PlayerData _playerData, ref Transform playerTransform)
     {//LeftAndRightWalking
 
-        if (Mathf.Abs(PlayerManager.GetInstance.GetXValue()) <= Mathf.Abs(PlayerManager.GetInstance.GetZValue()) || (PlayerManager.GetInstance.GetZValue() > 0.1f &&
+        if (Mathf.Abs(PlayerManager.GetInstance.GetXValue()) < Mathf.Abs(PlayerManager.GetInstance.GetZValue()) || (PlayerManager.GetInstance.GetZValue() > 0.1f &&
             PlayerManager.GetInstance.GetXValue() > 0.1f))
         {
             _playerData.isWalking = true;

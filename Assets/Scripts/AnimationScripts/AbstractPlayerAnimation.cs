@@ -64,8 +64,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(7, 0);          
 
         }
-        else if ((playerData.isLockedWalking && playerData.isFireWalk) || 
-            (playerData.isWalking && playerData.isFireWalk && 
+        else if ((playerData.isLockedWalking && playerData.isFire) || 
+            (playerData.isWalking && playerData.isFire && 
             !playerData.isBackWalking && !playerData.isJumping && !playerData.isClimbing) && 
             !playerData.isSwordAnimate && !playerData.isSideWalking &&
             !playerData.isDying && !playerData.isPlayable)
@@ -233,7 +233,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         }
         if ((playerData.isClimbing || !playerData.isClimbing) && 
             PlayerManager.GetInstance.GetZValue() == 0 && 
-            !playerData.isFireNonWalk && 
+            !playerData.isFire && 
             !playerData.isJumping && 
             !playerData.isSwordAnimate &&
             !playerData.isLockedWalking)
@@ -255,7 +255,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
     }
     public virtual void FireNonWalkAnimation(PlayerData playerData, Animator _animator)
     {
-        if (playerData.isFireNonWalk && 
+        if (playerData.isFire && 
             playerData.isPlayable && 
             !playerData.isSwording && 
             !playerData.isBackWalking && 
@@ -265,24 +265,84 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         {
             _animator.SetBool(AnimatorParameters.isFireWalk.ToString(), false);
 
-            _animator.SetBool(AnimatorParameters.isIdling.ToString(), true);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
         }
-        else if (!playerData.isFireNonWalk && 
-                !playerData.isSwording && 
-                PlayerManager.GetInstance.GetZValue() == 0 && 
-                PlayerManager.GetInstance.GetXValue() == 0 && 
-                !playerData.isClimbing && 
-                !playerData.isLockedWalking && 
+
+
+        FireAnimation(playerData, _animator);
+
+
+        FireWalkAnimation(playerData, _animator);
+    }
+
+    void FireAnimation(PlayerData playerData, Animator _animator)
+    {
+        if (playerData.isFire &&
+                playerData.isFireAnimation &&
+                !playerData.isSwording &&
+                PlayerManager.GetInstance.GetZValue() == 0 &&
+                PlayerManager.GetInstance.GetXValue() == 0 &&
+                !playerData.isClimbing &&
+                !playerData.isLockedWalking &&
                 !playerData.isSwordAnimate &&
-                !playerData.isSideWalking)
+                !playerData.isSideWalking &&
+                !playerData.isWalking &&
+                !playerData.isBackWalking)
         {
-            _animator.SetBool(AnimatorParameters.isIdling.ToString(), true);
+            _animator.SetLayerWeight(17, 1);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
 
             _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
             _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
             _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
             _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);                 
+            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
+        }
+        else if ((!playerData.isFire &&
+                !playerData.isFireAnimation) && (PlayerManager.GetInstance.GetZValue() != 0 ||
+                PlayerManager.GetInstance.GetXValue() != 0))
+        {
+            _animator.SetLayerWeight(17, 0);
+
+            _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
+        }
+    }
+
+    void FireWalkAnimation(PlayerData playerData, Animator _animator)
+    {
+        if (!playerData.isJumping &&
+                 playerData.isWalking &&
+                 playerData.isFire &&
+                 !playerData.isSwordAnimate &&
+                 playerData.isFireWalkAnimation)
+        {
+            _animator.SetLayerWeight(16, 1);
+
+            //_animator.SetBool(AnimatorParameters.isFireWalk.ToString(), true);
+            _animator.SetBool(AnimatorParameters.isJumping.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
+        }
+        else if (!playerData.isFire &&
+                 !playerData.isFireWalkAnimation && playerData.isWalking)
+        {
+            _animator.SetLayerWeight(16, 0);
+            _animator.SetLayerWeight(1, 1);
+
+            _animator.SetBool(AnimatorParameters.isWalking.ToString(), true);
+            _animator.SetBool(AnimatorParameters.isJumping.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
+            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
         }
     }
     public virtual void SwordAnimation(PlayerData playerData, Animator _animator)
@@ -302,7 +362,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetLayerWeight(0, 0);
         }
         else if (!playerData.isSwording && 
-                 !playerData.isFireNonWalk && 
+                 !playerData.isFire && 
                  PlayerManager.GetInstance.GetZValue() == 0 && 
                  PlayerManager.GetInstance.GetXValue() == 0 && 
                  !playerData.isClimbing && 
@@ -389,29 +449,15 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         }
         else if (!playerData.isJumping && 
                  playerData.isWalking && 
-                 !playerData.isFireWalk && 
+                 !playerData.isFire && 
                  !playerData.isSwordAnimate &&
-                 !playerData.isFireNonWalk)
+                 !playerData.isFireWalkAnimation &&
+                 !playerData.isFireAnimation)
         {
             _animator.SetLayerWeight(1, 1);
 
             _animator.SetBool(AnimatorParameters.isWalking.ToString(), true);
             //_animator.SetBool(AnimatorParameters.isFireWalk.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isJumping.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
-            _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
-        }
-        else if (!playerData.isJumping && 
-                 playerData.isWalking && 
-                 playerData.isFireWalk && 
-                 !playerData.isSwordAnimate)
-        {
-            _animator.SetLayerWeight(16, 1);
-
-            //_animator.SetBool(AnimatorParameters.isFireWalk.ToString(), true);
             _animator.SetBool(AnimatorParameters.isJumping.ToString(), false);
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
             _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);

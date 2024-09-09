@@ -581,7 +581,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         else
         {
             //PlayerData
-            _playerData.isFireNonWalk = false;
+            _playerData.isFire = false;
         }
     }
     private void Moves(IPlayerMovement iPlayerMovement, IPlayerShoot iPlayerShoot)

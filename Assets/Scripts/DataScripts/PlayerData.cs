@@ -231,8 +231,9 @@ public class PlayerData : ScriptableObject
     public bool isPlayable;
 
     [Header("Input")]
-    public bool isFireNonWalk;
-    public bool isFireWalk;
+    public bool isFire;
+    public bool isFireWalkAnimation;
+    public bool isFireAnimation;
     public bool isFireTime;
     public bool isSwording;
     public bool isSwordTime;
