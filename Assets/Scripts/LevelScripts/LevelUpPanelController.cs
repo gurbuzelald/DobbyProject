@@ -30,7 +30,7 @@ public class LevelUpPanelController : MonoBehaviour
                 levelUpImage.enabled = false;
             }
         }
-        else if (levelUpImage && !levelData.isLevelUp && !LevelData.levelCanBeSkipped)
+        else if (levelUpImage && !levelData.isLevelUp)
         {
             levelUpCanvasGroup.alpha -= 0.05f;
             if (levelUpCanvasGroup.alpha == 0)

@@ -533,11 +533,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.isFireWalkAnimation = false;
         }
     }
-    IEnumerator DelayDisactivateFire()
-    {
-        yield return new WaitForSeconds(0.01f);
-        PlayerManager.GetInstance._playerController.fire = false;
-    }
     public virtual void Sword(PlayerData _playerData)
     {
         if (_playerData.isPlayable)

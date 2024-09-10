@@ -373,7 +373,11 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
     }
     public void DestroyWeaponObject()
-    {   
+    {
+        if (_playerData.isWinning)
+        {
+            Destroy(_currentWeaponObject);
+        }
         if (bulletData.isM4a4)
         {
             if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.electro || bulletData.currentWeaponName == BulletData.axe
@@ -539,6 +543,10 @@ public class BulletManager : AbstractBullet<BulletManager>
     }
     public void DestroySwordObject()
     {
+        if (_playerData.isWinning)
+        {
+            Destroy(_currentSwordObject);
+        }
         if (bulletData.isLowSword)
         {
             if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword

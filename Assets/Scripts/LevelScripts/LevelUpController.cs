@@ -249,66 +249,74 @@ public class LevelUpController : MonoBehaviour
         LevelData.currentLevelUpRequirement = GetCurrentLevelID(levelData);
         if (levelUpRequirements != null)
         {
-            if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
-            levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
-            levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys)
+            if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills != 0 &&
+            levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount != 0 &&
+            levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys != 0)
+            {
+                if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
+                    levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
+                    levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys)
+                {
+                    LevelData.levelCanBeSkipped = true;
+                    StartCoroutine(AbleToLevelUpMessageText());
+
+                    scoreMissionCompletedImage.gameObject.SetActive(true);
+
+                    enemyKillMissionCompletedImage.gameObject.SetActive(true);
+
+                    levelUpKeyMissionCompletedImage.gameObject.SetActive(true);
+
+                    requirementMessage = "You Can Level Up!!!";
+
+                    yield return new WaitForSeconds(3f);
+
+                    requirementMessage = "";
+                }
+                if (levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount)
+                {
+                    requirementMessage = "You Have Pretty Enough Coins!!!";
+
+                    scoreMissionCompletedImage.gameObject.SetActive(true);
+
+                    yield return new WaitForSeconds(3f);
+
+                    requirementMessage = "";
+                }
+                if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount)
+                {
+                    requirementMessage = "Enemy Kills Are Completed!!!";
+
+                    enemyKillMissionCompletedImage.gameObject.SetActive(true);
+
+                    yield return new WaitForSeconds(3f);
+
+                    requirementMessage = "";
+                }
+                if (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys &&
+                    currentLevelUpKeysText)
+                {
+                    currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString();
+
+                    requirementMessage = "Level Up Keys Are Completed!!!";
+
+                    levelUpKeyMissionCompletedImage.gameObject.SetActive(true);
+
+                    yield return new WaitForSeconds(3f);
+
+                    requirementMessage = "";
+                }
+                else if (levelUpKeysRequirementText &&
+                    levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
+                    currentLevelUpKeysText)
+                {
+                    currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString();
+                }
+            }
+            else
             {
                 LevelData.levelCanBeSkipped = true;
-                StartCoroutine(AbleToLevelUpMessageText());
-
-                scoreMissionCompletedImage.gameObject.SetActive(true);
-
-                enemyKillMissionCompletedImage.gameObject.SetActive(true);
-
-                levelUpKeyMissionCompletedImage.gameObject.SetActive(true);
-
-                requirementMessage = "You Can Level Up!!!";
-
-                yield return new WaitForSeconds(3f);
-
-                requirementMessage = "";
             }
-             if ((levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills >= EnemyData.enemyDeathCount) &&
-            levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount)
-            {
-                requirementMessage = "You Have Pretty Enough Coins!!!";
-
-                scoreMissionCompletedImage.gameObject.SetActive(true);
-
-                yield return new WaitForSeconds(3f);
-
-                requirementMessage = "";
-            }
-             if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
-            (levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount >= ScoreController._scoreAmount))
-            {
-                requirementMessage = "Enemy Kills Are Completed!!!";
-
-                enemyKillMissionCompletedImage.gameObject.SetActive(true);
-
-                yield return new WaitForSeconds(3f);
-
-                requirementMessage = "";
-            }
-            if (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys &&
-                currentLevelUpKeysText)
-            {
-                currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString();
-
-                requirementMessage = "Level Up Keys Are Completed!!!";
-
-                levelUpKeyMissionCompletedImage.gameObject.SetActive(true);
-
-                yield return new WaitForSeconds(3f);
-
-                requirementMessage = "";
-            }
-            else if (levelUpKeysRequirementText &&
-                levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
-                currentLevelUpKeysText)
-            {
-                currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString();
-            }
+            
         }        
     }
     
@@ -540,8 +548,9 @@ public class LevelUpController : MonoBehaviour
             levelData.isCompleteMaps[8] = false;
         }
         else if (levelData.isCompleteMaps[levelData.isCompleteMaps.Length - 1])
-        {
-            SceneController.GetInstance.LoadWinScene();
+        {//When last level is passed
+            playerData.isWinning = true;
+            //SceneController.GetInstance.LoadWinScene();
         }
     }
     void SetDetectionOfEnemyAtUpdate(int levelCount)

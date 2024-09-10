@@ -426,7 +426,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Firing Rifle 1
+  m_Name: GunPlay
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -441,7 +441,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 9694b6dc74df8534b85538454b748455, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 32e4ab539191d4d6da5277947e080cd5, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -1940,9 +1940,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.31246638
   m_TransitionOffset: 0
-  m_ExitTime: 0.75
+  m_ExitTime: 0.59383404
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -2813,11 +2813,11 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -6124043936688161542}
-    m_Position: {x: 420, y: 30, z: 0}
+    m_Position: {x: 320, y: 40, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 2082940929869712358}
-    m_Position: {x: 473.24454, y: 155.17554, z: 0}
+    m_Position: {x: 470, y: 160, z: 0}
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
