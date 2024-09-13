@@ -295,7 +295,8 @@ public class LevelUpController : MonoBehaviour
                 if (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys &&
                     currentLevelUpKeysText)
                 {
-                    currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString();
+                    currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString() + "/" +
+                                                  levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys;
 
                     requirementMessage = "Level Up Keys Are Completed!!!";
 
@@ -309,7 +310,8 @@ public class LevelUpController : MonoBehaviour
                     levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
                     currentLevelUpKeysText)
                 {
-                    currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString();
+                    currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString() + "/" +
+                                                  levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys; ;
                 }
             }
             else

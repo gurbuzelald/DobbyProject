@@ -155,19 +155,16 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         //Particle
         ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
 
-        SpawnPlayerObject(LevelData.currentLevelCount);
+        SpawnPlayerObject();
 
         playerInterfaces.iPlayerTrigger.CheckAllWeaponsLocked(_bulletData);
     }
 
 
-    private void SpawnPlayerObject(int levelCount)
+    private void SpawnPlayerObject()
     {
-        _levelData.currentEnemyDetectionDistance = _levelData.enemyDetectionDistances[levelCount];
-
-
-        GetInstance.gameObject.transform.position =
-            _playerData.playerSpawns.GetChild(levelCount).transform.position;
+        transform.position =
+            _playerData.playerSpawns.GetChild(LevelData.currentLevelCount).transform.position;
     }
     void FixedUpdate()
     {
@@ -641,10 +638,10 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     //Init
     private void InitStates()
     {
+        _levelData.currentEnemyDetectionDistance = _levelData.enemyDetectionDistances[LevelData.currentLevelCount];
+
         _playerData.damageHealthText = GameObject.Find("DamageHealthText").GetComponent<TextMeshProUGUI>();
         playerTransform = GetInstance.GetComponent<Transform>();
-
-
 
         playerInterfaces.iPlayerShoot = GetComponent<IPlayerShoot>();
         playerInterfaces.iPlayerCamera = GetComponent<IPlayerCamera>();

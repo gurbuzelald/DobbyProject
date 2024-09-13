@@ -13,10 +13,16 @@ public class ScoreController : AbstractPlayer<ScoreController>
     [SerializeField] PlayerCoinData playerCoinData;
     private JsonReadAndWriteSystem readWrite;
 
+    private LevelUpController levelUpController;
+
 
 
     void Start()
     {
+        if (GameObject.Find("LevelUpController"))
+        {
+            levelUpController = GameObject.Find("LevelUpController").GetComponent<LevelUpController>();
+        }
 
         if (playerCoinData.avaliableCoin < 0)
         {
@@ -44,7 +50,16 @@ public class ScoreController : AbstractPlayer<ScoreController>
             {
 
                 _scoreText = gameObject.transform.GetChild(0).gameObject.transform.GetComponent<TextMeshProUGUI>();
-                _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
+                if (levelUpController)
+                {
+                    _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString() + "/" +
+                                  levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount;
+                }
+                else
+                {
+                    _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
+                }
+                
             }
         }
         
@@ -57,7 +72,8 @@ public class ScoreController : AbstractPlayer<ScoreController>
         }
         if (enemyKillValueText)
         {
-            enemyKillValueText.text = EnemyData.enemyDeathCount.ToString();
+            enemyKillValueText.text = EnemyData.enemyDeathCount.ToString() + "/" +
+                                     levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills; ;
         }
         readWrite.SaveCoinToJson();
 
@@ -83,7 +99,15 @@ public class ScoreController : AbstractPlayer<ScoreController>
                 _scored = false;
             }
         }
-        _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
+        if (levelUpController)
+        {
+            _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString() + "/" +
+                          levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount;
+        }
+        else
+        {
+            _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString();
+        }
     }
     public int SetScore(int scoreAmount)
     {
