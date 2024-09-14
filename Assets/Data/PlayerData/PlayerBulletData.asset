@@ -29,7 +29,7 @@ MonoBehaviour:
   swordSpeed: 1
   bulletDelayCounter: 0
   _swordingObject: {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
-  currentGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
+  currentGiftBox: {fileID: 8957379851250910510, guid: 9892378f7235cce4d9f03984a358c0db, type: 3}
   pistolGiftBox: {fileID: 5953932990381375704, guid: 769e388e892fa6f47add655d24d29ce0, type: 3}
   m4a4GiftBox: {fileID: 4850221878147488263, guid: 2b9e216addade824fb41b7bc668a5101, type: 3}
   bullDogGiftBox: {fileID: 6750732745314709050, guid: 3443f60ab08db384aaa3b04a8b272456, type: 3}
@@ -40,7 +40,7 @@ MonoBehaviour:
   electroGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
   ak47GiftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
   axeGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
-  currentShootFrequency: 0.4
+  currentShootFrequency: 0.23
   pistolShootFrequency: 0.4
   axeShootFrequency: 0.35
   bulldogShootFrequency: 0.3
@@ -72,17 +72,17 @@ MonoBehaviour:
   ak47Power: 16
   m4a4Power: 18
   pistolPrice: 0
-  axePrice: 1
-  bulldogPrice: 1
-  cowPrice: 1
-  crystalPrice: 1
-  demonPrice: 1
-  icePrice: 1
-  electroPrice: 1
-  ak47Price: 1
-  m4a4Price: 1
+  axePrice: 170
+  bulldogPrice: 140
+  cowPrice: 130
+  crystalPrice: 180
+  demonPrice: 150
+  icePrice: 140
+  electroPrice: 150
+  ak47Price: 160
+  m4a4Price: 180
   avaliableWeapons:
-  - electro
+  - demon
   - bulldog
   - cow
   - crystal
@@ -92,28 +92,28 @@ MonoBehaviour:
   - m4a4
   - m4a4
   - m4a4
-  pistolLock: 
-  axeLock: 
+  pistolLock: locked
+  axeLock: locked
   bulldogLock: locked
   cowLock: locked
   crystalLock: locked
   demonLock: locked
   iceLock: locked
   electroLock: locked
-  ak47Lock: 
-  m4a4Lock: 
+  ak47Lock: locked
+  m4a4Lock: locked
   resetLocks: locked
   unLocked: 
-  pistolUsageLimit: 3
+  pistolUsageLimit: 0
   bulldogUsageLimit: 0
   cowUsageLimit: 0
   crystalUsageLimit: 0
   demonUsageLimit: 0
   iceUsageLimit: 0
   electroUsageLimit: 0
-  axeUsageLimit: 1
-  m4a4UsageLimit: 3
-  ak47UsageLimit: 3
+  axeUsageLimit: 0
+  m4a4UsageLimit: 0
+  ak47UsageLimit: 0
   isPistol: 0
   isBulldog: 0
   isCow: 0
@@ -148,7 +148,7 @@ MonoBehaviour:
   isClub: 0
   currentSwordName: LowSword
   currentWeaponName: pistol
-  swordDamageValue: 30
+  swordDamageValue: 50
   enemyFireFrequency: 5
   enemyBulletDelayCounter: 0
   enemyBulletDelay: 0.05

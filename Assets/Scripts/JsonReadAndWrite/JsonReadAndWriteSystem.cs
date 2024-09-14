@@ -6,7 +6,10 @@ public class JsonReadAndWriteSystem : MonoBehaviour
 {
     public PlayerCoinData playerCoinData;
     public PlayerData playerData;
- 
+
+    private PlayerCoinData data;
+
+
     public void SaveCoinToJson()
     {
         playerCoinData.avaliableCoinJson = playerCoinData.avaliableCoin.ToString();
@@ -23,9 +26,18 @@ public class JsonReadAndWriteSystem : MonoBehaviour
 
     public void LoadFromJson()
     {
-        string json = File.ReadAllText(Application.dataPath + "/PlayerCoinDataFile.json");
+        //string json = File.ReadAllText(Application.dataPath + "/PlayerCoinDataFile.json");
 
-        PlayerCoinData data = JsonUtility.FromJson<PlayerCoinData>(json);
-        playerCoinData.avaliableCoin = data.avaliableCoin;
+        /*if (json != null)
+        {
+            
+        }*/
+        //data = JsonUtility.FromJson<PlayerCoinData>(json);
+        data = playerCoinData;
+        if (data)
+        {
+            playerCoinData.avaliableCoin += Convert.ToInt32(playerCoinData.avaliableCoinJson);
+        }
+
     }
 }

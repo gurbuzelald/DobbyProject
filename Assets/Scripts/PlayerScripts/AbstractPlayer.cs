@@ -1560,7 +1560,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if(_playerData.isLockedWalking)
         {
-            playerTransform.Translate(0f, 0f, _playerData.lockedSpeed * Time.deltaTime);
+            playerTransform.Translate(0f, 0f, _playerData.playerSpeed / 2 * Time.deltaTime);
         }
         else
         {

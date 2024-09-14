@@ -168,7 +168,6 @@ public class PlayerData : ScriptableObject
     public float playerSpeed;
     public float skateBoardSpeed;
     public float climbSpeed;
-    public float lockedSpeed;
     public float rotateSpeed;
 
     [Header("Character Speeds")]
