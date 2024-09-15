@@ -105,7 +105,12 @@ public class ScoreController : AbstractPlayer<ScoreController>
 
         PlayerPrefs.SetInt("ScoreAmount", _scoreAmount);
         PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
-        avaliableCoinText.text = playerCoinData.avaliableCoin.ToString();
+
+        if (avaliableCoinText
+)
+        {
+            avaliableCoinText.text = playerCoinData.avaliableCoin.ToString();
+        }
 
         if (levelUpController)
         {

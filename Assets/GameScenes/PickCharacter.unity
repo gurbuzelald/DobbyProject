@@ -400,8 +400,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 1618633676}
+  avaliableCoinText: {fileID: 2910071426798459809}
+  enemyKillValueText: {fileID: 0}
   playerCoinData: {fileID: 11400000, guid: 853c688538b9c714f8661972da059616, type: 2}
-  _completedImage: {fileID: 0}
 --- !u!4 &1589476126
 Transform:
   m_ObjectHideFlags: 0
@@ -790,6 +791,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54bf7b4b7523cb74891bb9c6a51eb0bc, type: 3}
+--- !u!114 &2910071426798459809 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2910071427216625845, guid: 54bf7b4b7523cb74891bb9c6a51eb0bc, type: 3}
+  m_PrefabInstance: {fileID: 2910071426798459808}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4478270237955056469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -938,10 +950,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8042373582000692747, guid: d45c3a8cdde8d4f419cd40c4d777d2dc, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8042373582000692747, guid: d45c3a8cdde8d4f419cd40c4d777d2dc, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
@@ -1017,10 +1025,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1724788851}
-    - target: {fileID: 8042373582568886648, guid: d45c3a8cdde8d4f419cd40c4d777d2dc, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

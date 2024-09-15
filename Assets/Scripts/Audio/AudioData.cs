@@ -73,5 +73,6 @@ public class AudioData : ScriptableObject
 
     [Header("Menu Sounds")]
     public AudioClip menuClickClip;
+    public AudioClip menuNotClickClip;
 
 }

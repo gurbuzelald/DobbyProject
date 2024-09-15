@@ -1306,14 +1306,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         if (ScoreController._scoreAmount > scoreDamageValue)
         {
             ScoreController.GetInstance.SetScore(-scoreDamageValue);
+            ScoreController.GetInstance._scoreText.text = ScoreController._scoreAmount.ToString();
         }
         else if (ScoreController._scoreAmount < scoreDamageValue && ScoreController._scoreAmount > 0)
         {
             ScoreController.GetInstance.SetScore(-ScoreController._scoreAmount);
-        }
-        else if (ScoreController._scoreAmount <= 0)
-        {
-            ScoreController._scoreAmount = 0;
             ScoreController.GetInstance._scoreText.text = ScoreController._scoreAmount.ToString();
         }
     }
@@ -1329,11 +1326,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         else if (ScoreController._scoreAmount < scoreDamageValue && ScoreController._scoreAmount > 0)
         {
             ScoreController.GetInstance.SetScore(ScoreController._scoreAmount);
-        }
-        else if (ScoreController._scoreAmount <= 0)
-        {
-            ScoreController._scoreAmount = 0;
-            ScoreController.GetInstance._scoreText.text = ScoreController._scoreAmount.ToString();
         }
     }
     public virtual void ScoreTextGrowing(int r, int g, int b)

@@ -31,7 +31,7 @@ public class ChooseCharacterController : MonoBehaviour
             playerCoinData.avaliableCoin = 0;
         }
         //ResetTheCharacters();
-        playerData.avaliableCharacters[0] = "Dobby";
+        //playerData.avaliableCharacters[0] = "Dobby";
         _playerController = FindObjectOfType<PlayerController>();
 
 
@@ -243,26 +243,31 @@ public class ChooseCharacterController : MonoBehaviour
     }
     public void ResetTheCharacters()
     {
-        for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+        /*for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
         {
             playerData.avaliableCharacters[i] = playerData.unLocked;
-        }
+        }*/
     }
     public void PickJoleen(int avaliableCoinAmount)
     {
         if (_playerController.Joleen && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Joleen)
         {
-            
-            playerData.currentCharacterName = PlayerData.CharacterNames.Joleen;
+            if (playerData.joleenLock == playerData.locked)
+            {
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-            playerCoinData.avaliableCoin -= 0;
+                playerData.joleenLock = playerData.unLocked;
+            }
+
+            playerData.currentCharacterName = PlayerData.CharacterNames.Joleen;
 
             characterPriceErrorTextObjectChilds[0].text = "";
 
-            SceneController.GetInstance.LoadMenuScene();
+            SceneController.GetInstance.LoadMenuScene();            
 
-            playerData.joleenLock = playerData.unLocked;
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
         }
         else if (_playerController.Joleen && playerData.joleenLock == playerData.unLocked)
@@ -270,9 +275,15 @@ public class ChooseCharacterController : MonoBehaviour
             playerData.currentCharacterName = PlayerData.CharacterNames.Joleen;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.joleenLock == playerData.locked)
         {
+            if (_playerController.Joleen)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
                 if (characterPriceErrorTextObjectChilds[i].gameObject.name == "JoleenPriceErrorText")
@@ -288,33 +299,34 @@ public class ChooseCharacterController : MonoBehaviour
         if (_playerController.Dobby && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Dobby)
         {
-            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            if (playerData.dobbyLock == playerData.locked)
             {
-                if (playerData.avaliableCharacters[i] == "" || playerData.dobbyLock == playerData.locked)
-                {
-                    playerData.avaliableCharacters[i] = "Dobby";
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
-
-                    playerData.dobbyLock = playerData.unLocked;
-                    break;
-                }
+                playerData.dobbyLock = playerData.unLocked;
             }
-
-            characterPriceErrorTextObjectChilds[1].text = "";
 
             playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Dobby && playerData.dobbyLock == playerData.unLocked)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.dobbyLock == playerData.locked)
         {
+            if (_playerController.Dobby)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
                 if (characterPriceErrorTextObjectChilds[i].gameObject.name == "DobbyPriceErrorText")
@@ -330,36 +342,36 @@ public class ChooseCharacterController : MonoBehaviour
         if (_playerController.Glassy && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Glassy)
         {
-            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            if (playerData.glassyLock == playerData.locked)
             {
-                if (playerData.avaliableCharacters[i] == "" || playerData.glassyLock == playerData.locked)
-                {
-                    playerData.avaliableCharacters[i] = "Glassy";
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
-
-                    playerData.glassyLock = playerData.unLocked;
-
-                    break;
-                }
+                playerData.glassyLock = playerData.unLocked;
             }
 
             characterPriceErrorTextObjectChilds[2].text = "";
 
             playerData.currentCharacterName = PlayerData.CharacterNames.Glassy;
 
-
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Glassy && playerData.glassyLock == playerData.unLocked)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Glassy;
 
-
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.glassyLock == playerData.locked)
         {
+            if (_playerController.Glassy)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
                 if (characterPriceErrorTextObjectChilds[i].gameObject.name == "GlassyPriceErrorText")
@@ -374,18 +386,13 @@ public class ChooseCharacterController : MonoBehaviour
         if ((_playerController.Lusth) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Lusth )
         {
-            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            if (playerData.lusthLock == playerData.locked)
             {
-                if (playerData.avaliableCharacters[i] == "" || playerData.lusthLock == playerData.locked)
-                {
-                    playerData.avaliableCharacters[i] = "Lusth";
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
 
-                    playerData.lusthLock = playerData.unLocked;
-
-                    break;
-                }
+                playerData.lusthLock = playerData.unLocked;
             }
 
             characterPriceErrorTextObjectChilds[3].text = "";
@@ -393,15 +400,23 @@ public class ChooseCharacterController : MonoBehaviour
             playerData.currentCharacterName = PlayerData.CharacterNames.Lusth;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Lusth && playerData.lusthLock == playerData.unLocked)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Lusth;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.lusthLock == playerData.locked)
         {
+            if (_playerController.Lusth)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
                 if (characterPriceErrorTextObjectChilds[i].gameObject.name == "LusthPriceErrorText")
@@ -416,18 +431,12 @@ public class ChooseCharacterController : MonoBehaviour
         if ((_playerController.Guard) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Guard)
         {
-            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            if (playerData.guardLock == playerData.locked)
             {
-                if (playerData.avaliableCharacters[i] == "" || playerData.guardLock == playerData.locked)
-                {
-                    playerData.avaliableCharacters[i] = "Guard";
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
-
-                    playerData.guardLock = playerData.unLocked;
-
-                    break;
-                }
+                playerData.guardLock = playerData.unLocked;
             }
 
             characterPriceErrorTextObjectChilds[4].text = "";
@@ -435,15 +444,23 @@ public class ChooseCharacterController : MonoBehaviour
             playerData.currentCharacterName = PlayerData.CharacterNames.Guard;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Guard && playerData.guardLock == playerData.unLocked)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Guard;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.guardLock == playerData.locked)
         {
+            if (_playerController.Guard)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
                 if (characterPriceErrorTextObjectChilds[i].gameObject.name == "GuardPriceErrorText")
@@ -458,18 +475,12 @@ public class ChooseCharacterController : MonoBehaviour
         if ((_playerController.Eve) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Eve)
         {
-            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            if (playerData.eveLock == playerData.locked)
             {
-                if (playerData.avaliableCharacters[i] == "" || playerData.eveLock == playerData.locked)
-                {
-                    playerData.avaliableCharacters[i] = "Eve";
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
-
-                    playerData.eveLock = playerData.unLocked;
-
-                    break;
-                }
+                playerData.eveLock = playerData.unLocked;
             }
 
             characterPriceErrorTextObjectChilds[5].text = "";
@@ -477,15 +488,23 @@ public class ChooseCharacterController : MonoBehaviour
             playerData.currentCharacterName = PlayerData.CharacterNames.Eve;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Eve && playerData.eveLock == playerData.unLocked)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Eve;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.eveLock == playerData.locked)
         {
+            if (_playerController.Eve)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
                 if (characterPriceErrorTextObjectChilds[i].gameObject.name == "EvePriceErrorText")
@@ -500,18 +519,12 @@ public class ChooseCharacterController : MonoBehaviour
         if ((_playerController.Michelle) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Michelle)
         {
-            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            if (playerData.michelleLock == playerData.locked)
             {
-                if (playerData.avaliableCharacters[i] == "" || playerData.michelleLock == playerData.locked)
-                {
-                    playerData.avaliableCharacters[i] = "Michelle";
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
-
-                    playerData.michelleLock = playerData.unLocked;
-
-                    break;
-                }
+                playerData.michelleLock = playerData.unLocked;
             }
 
             characterPriceErrorTextObjectChilds[6].text = "";
@@ -519,15 +532,24 @@ public class ChooseCharacterController : MonoBehaviour
             playerData.currentCharacterName = PlayerData.CharacterNames.Michelle;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Michelle && playerData.michelleLock == playerData.unLocked)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Michelle;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.michelleLock == playerData.locked)
         {
+            if (_playerController.Michelle)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
+
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
                 if (characterPriceErrorTextObjectChilds[i].gameObject.name == "MichellePriceErrorText")
@@ -542,18 +564,12 @@ public class ChooseCharacterController : MonoBehaviour
         if ((_playerController.Boss) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Boss)
         {
-            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            if (playerData.bossLock == playerData.locked)
             {
-                if (playerData.avaliableCharacters[i] == "" || playerData.bossLock == playerData.locked)
-                {
-                    playerData.avaliableCharacters[i] = "Boss";
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
-
-                    playerData.bossLock = playerData.unLocked;
-
-                    break;
-                }
+                playerData.bossLock = playerData.unLocked;
             }
 
             characterPriceErrorTextObjectChilds[7].text = "";
@@ -561,15 +577,23 @@ public class ChooseCharacterController : MonoBehaviour
             playerData.currentCharacterName = PlayerData.CharacterNames.Boss;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Boss && playerData.bossLock == playerData.unLocked)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Boss;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.bossLock == playerData.locked)
         {
+            if (_playerController.Boss)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
                 if (characterPriceErrorTextObjectChilds[i].gameObject.name == "BossPriceErrorText")
@@ -584,33 +608,36 @@ public class ChooseCharacterController : MonoBehaviour
         if ((_playerController.Aj) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Aj)
         {
-            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            if (playerData.ajLock == playerData.locked)
             {
-                if (playerData.avaliableCharacters[i] == "" || playerData.ajLock == playerData.locked)
-                {
-                    playerData.avaliableCharacters[i] = "Aj";
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
-
-                    playerData.ajLock = playerData.unLocked;
-
-                    break;
-                }
+                playerData.ajLock = playerData.unLocked;
             }
+
             characterPriceErrorTextObjectChilds[8].text = "";
 
             playerData.currentCharacterName = PlayerData.CharacterNames.Aj;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Aj && playerData.ajLock == playerData.unLocked)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Aj;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }       
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.ajLock == playerData.locked)
         {
+            if (_playerController.Aj)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
                 if (characterPriceErrorTextObjectChilds[i].gameObject.name == "AjPriceErrorText")
@@ -626,18 +653,12 @@ public class ChooseCharacterController : MonoBehaviour
         if ((_playerController.Mremireh) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Mremireh)
         {
-            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            if (playerData.mremirehLock == playerData.locked)
             {
-                if (playerData.avaliableCharacters[i] == "" || playerData.mremirehLock == playerData.locked)
-                {
-                    playerData.avaliableCharacters[i] = "Mremireh";
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
-
-                    playerData.mremirehLock = playerData.unLocked;
-
-                    break;
-                }
+                playerData.mremirehLock = playerData.unLocked;
             }
 
             characterPriceErrorTextObjectChilds[9].text = "";
@@ -646,16 +667,23 @@ public class ChooseCharacterController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
 
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Mremireh && playerData.mremirehLock == playerData.unLocked)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Mremireh;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
        
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.mremirehLock == playerData.locked)
         {
+            if (_playerController.Mremireh)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
                 if (characterPriceErrorTextObjectChilds[i].gameObject.name == "MremirehPriceErrorText")
@@ -671,18 +699,12 @@ public class ChooseCharacterController : MonoBehaviour
         if ((_playerController.Ty) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Ty)
         {
-            for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
+            if (playerData.tyLock == playerData.locked)
             {
-                if (playerData.avaliableCharacters[i] == "" || playerData.tyLock == playerData.locked)
-                {
-                    playerData.avaliableCharacters[i] = "Ty";
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
-
-                    playerData.tyLock = playerData.unLocked;
-
-                    break;
-                }
+                playerData.tyLock = playerData.unLocked;
             }
 
             characterPriceErrorTextObjectChilds[10].text = "";
@@ -690,15 +712,23 @@ public class ChooseCharacterController : MonoBehaviour
             playerData.currentCharacterName = PlayerData.CharacterNames.Ty;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Ty && playerData.tyLock == playerData.unLocked)
         {
             playerData.currentCharacterName = PlayerData.CharacterNames.Ty;
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.tyLock == playerData.locked)
         {
+            if (_playerController.Ty)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
             {
                 if (characterPriceErrorTextObjectChilds[i].gameObject.name == "TyPriceErrorText")

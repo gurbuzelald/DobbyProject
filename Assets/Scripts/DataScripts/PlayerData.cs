@@ -201,7 +201,7 @@ public class PlayerData : ScriptableObject
 
 
     [Header("Avaliable Characters")]
-    public string[] avaliableCharacters = new string[11];
+    //public string[] avaliableCharacters = new string[11];
 
     [Header("Animation Bools")]
     public bool isGround;

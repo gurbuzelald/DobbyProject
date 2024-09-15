@@ -40,7 +40,7 @@ MonoBehaviour:
   electroGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
   ak47GiftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
   axeGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
-  currentShootFrequency: 0.23
+  currentShootFrequency: 0.35
   pistolShootFrequency: 0.4
   axeShootFrequency: 0.35
   bulldogShootFrequency: 0.3
@@ -81,18 +81,7 @@ MonoBehaviour:
   electroPrice: 150
   ak47Price: 160
   m4a4Price: 180
-  avaliableWeapons:
-  - demon
-  - bulldog
-  - cow
-  - crystal
-  - crystal
-  - ak47
-  - m4a4
-  - m4a4
-  - m4a4
-  - m4a4
-  pistolLock: locked
+  pistolLock: 
   axeLock: locked
   bulldogLock: locked
   cowLock: locked
@@ -104,14 +93,14 @@ MonoBehaviour:
   m4a4Lock: locked
   resetLocks: locked
   unLocked: 
-  pistolUsageLimit: 0
+  pistolUsageLimit: 3
   bulldogUsageLimit: 0
   cowUsageLimit: 0
   crystalUsageLimit: 0
   demonUsageLimit: 0
   iceUsageLimit: 0
   electroUsageLimit: 0
-  axeUsageLimit: 0
+  axeUsageLimit: 2
   m4a4UsageLimit: 0
   ak47UsageLimit: 0
   isPistol: 0
@@ -147,7 +136,7 @@ MonoBehaviour:
   isLongHummer: 0
   isClub: 0
   currentSwordName: LowSword
-  currentWeaponName: pistol
+  currentWeaponName: axe
   swordDamageValue: 50
   enemyFireFrequency: 5
   enemyBulletDelayCounter: 0

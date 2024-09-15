@@ -324,6 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 1402798735533504941}
   avaliableCoinText: {fileID: 633135107914487643}
+  enemyKillValueText: {fileID: 0}
   playerCoinData: {fileID: 11400000, guid: 853c688538b9c714f8661972da059616, type: 2}
 --- !u!114 &2457840877350101097
 MonoBehaviour:
@@ -1778,7 +1779,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
-  menuAudioData: {fileID: 11400000, guid: 2f785863c6f659f4fb84526d229cb3ed, type: 2}
+  menuAudioData: {fileID: 11400000, guid: 6222c5c94cbd848a0be0379733a8d48e, type: 2}
   audioSource: {fileID: 0}
 --- !u!82 &6757365315119664656
 AudioSource:

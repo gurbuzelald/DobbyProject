@@ -85,7 +85,7 @@ public class BulletData : ScriptableObject
     public Dictionary<int, GameObject> weaponStaffs;
 
     [Header("Avaliable Weapons")]
-    public string[] avaliableWeapons= new string[10];
+    //public string[] avaliableWeapons= new string[10];
 
     [Header("Weapon Locking Modes")]
     public string pistolLock = "locked";

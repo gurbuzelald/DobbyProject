@@ -64,6 +64,12 @@ public class SceneController : AbstractSceneController<SceneController>
         {
             currentLevelText.text = levelData.currentLevel.ToString();
         }
+        if (pausePanel)
+        {
+            pausePanel.transform.localPosition = new Vector3(5000,
+                                                             pausePanel.transform.localPosition.y,
+                                                             pausePanel.transform.localPosition.z);
+        }
     }
     void SetCurrentLevelAtUpdate()
     {
@@ -418,6 +424,8 @@ public class SceneController : AbstractSceneController<SceneController>
 
     public void LoadLevelsScene()
     {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         DestroySingletonObjects();
         SceneManager.LoadScene(Scenes.Levels.ToString());
     }
@@ -525,7 +533,9 @@ public class SceneController : AbstractSceneController<SceneController>
             GameObject.Find("Look").transform.localScale = Vector3.one;
             //_lookStick.transform.localScale = Vector3.one;
             pauseGame = false;
-            pausePanel.transform.localScale = Vector3.zero;
+            pausePanel.transform.localPosition = new Vector3(5000,
+                                                             pausePanel.transform.localPosition.y,
+                                                             pausePanel.transform.localPosition.z);
             _playerData.isPlayable = true;
         }
         else if (!pauseGame) {
@@ -536,7 +546,9 @@ public class SceneController : AbstractSceneController<SceneController>
 
             //_lookStick.transform.localScale = Vector3.zero;
             pauseGame = true;
-            pausePanel.transform.localScale = Vector3.one;
+            pausePanel.transform.localPosition = new Vector3(0,
+                                                             pausePanel.transform.localPosition.y,
+                                                             pausePanel.transform.localPosition.z);
             _playerData.isPlayable = false;
 
         }
@@ -572,10 +584,7 @@ public class SceneController : AbstractSceneController<SceneController>
     }
     public void QuitGame()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-        PlayerManager.GetInstance._bulletData.currentWeaponName = BulletData.ak47;
-        PlayerManager.GetInstance._bulletData.currentSwordName = BulletData.lowSword;
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);     
 
         Application.Quit();
     }

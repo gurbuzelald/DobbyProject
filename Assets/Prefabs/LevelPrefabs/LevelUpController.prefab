@@ -45,28 +45,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelUpRequirements:
-  - EnemyKills: 1
-    CoinCollectAmount: 2
-  - EnemyKills: 1
-    CoinCollectAmount: 2
-  - EnemyKills: 1
-    CoinCollectAmount: 2
-  - EnemyKills: 14
-    CoinCollectAmount: 60
-  - EnemyKills: 16
-    CoinCollectAmount: 80
-  - EnemyKills: 16
-    CoinCollectAmount: 100
-  - EnemyKills: 18
-    CoinCollectAmount: 120
-  - EnemyKills: 20
-    CoinCollectAmount: 140
-  - EnemyKills: 20
-    CoinCollectAmount: 160
-  - EnemyKills: 20
-    CoinCollectAmount: 180
+  - enemyKills: 5
+    coinCollectAmount: 50
+    levelUpKeys: 1
+  - enemyKills: 15
+    coinCollectAmount: 100
+    levelUpKeys: 2
+  - enemyKills: 17
+    coinCollectAmount: 150
+    levelUpKeys: 2
+  - enemyKills: 20
+    coinCollectAmount: 200
+    levelUpKeys: 2
+  - enemyKills: 22
+    coinCollectAmount: 250
+    levelUpKeys: 2
+  - enemyKills: 24
+    coinCollectAmount: 300
+    levelUpKeys: 2
+  - enemyKills: 26
+    coinCollectAmount: 350
+    levelUpKeys: 2
+  - enemyKills: 28
+    coinCollectAmount: 400
+    levelUpKeys: 2
+  - enemyKills: 30
+    coinCollectAmount: 450
+    levelUpKeys: 2
+  - enemyKills: 32
+    coinCollectAmount: 500
+    levelUpKeys: 2
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
   bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
   scoreMissionCompletedImage: {fileID: 0}
   enemyKillMissionCompletedImage: {fileID: 0}
+  levelUpKeyMissionCompletedImage: {fileID: 0}

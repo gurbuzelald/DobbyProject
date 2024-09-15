@@ -217,10 +217,10 @@ public class ChooseWeaponController : MonoBehaviour
     }
     public void ResetTheWeapons()
     {
-        for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
+        /*for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
         {
             bulletData.avaliableWeapons[i] = "";
-        }
+        }*/
     }
     void WeaponPickStates()
     {
@@ -366,22 +366,16 @@ public class ChooseWeaponController : MonoBehaviour
         if (_playerController.AK47 && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             bulletData.currentWeaponName != BulletData.ak47)
         {
-            for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
+            if (bulletData.ak47Lock == BulletData.locked)
             {
-                if (bulletData.avaliableWeapons[i] == "" || bulletData.ak47Lock == BulletData.locked)
-                {
-                    bulletData.avaliableWeapons[i] = BulletData.ak47;
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                bulletData.ak47Lock = bulletData.unLocked;
 
-                    bulletData.ak47Lock = bulletData.unLocked;
+                ObjectPool.creatablePlayerBullet = true;
 
-                    ObjectPool.creatablePlayerBullet = true;
-
-                    bulletData.ak47UsageLimit = 3;
-
-                    break;
-                }
+                bulletData.ak47UsageLimit = 3;
             }
 
             bulletData.currentWeaponName = BulletData.ak47;
@@ -390,6 +384,7 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
 
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.AK47 && bulletData.ak47Lock == bulletData.unLocked)
         {
@@ -400,11 +395,16 @@ public class ChooseWeaponController : MonoBehaviour
                 SceneController.GetInstance.LoadMenuScene();
 
                 ObjectPool.creatablePlayerBullet = true;
+
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.ak47Lock == BulletData.locked)
         {
-            //bulletData.currentWeaponName = BulletData.ak47;
+            if (_playerController.AK47)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
 
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
@@ -427,22 +427,16 @@ public class ChooseWeaponController : MonoBehaviour
         if (_playerController.Axe && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
            bulletData.currentWeaponName != BulletData.axe && bulletData.axeLock == BulletData.locked)
         {
-            for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
+            if (bulletData.axeLock == BulletData.locked)
             {
-                if (bulletData.avaliableWeapons[i] == "" || bulletData.axeLock == BulletData.locked)
-                {
-                    bulletData.avaliableWeapons[i] = BulletData.axe;
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                bulletData.axeLock = bulletData.unLocked;
 
-                    bulletData.axeLock = bulletData.unLocked;
+                ObjectPool.creatablePlayerBullet = true;
 
-                    ObjectPool.creatablePlayerBullet = true;
-
-                    bulletData.axeUsageLimit = 3;
-
-                    break;
-                }
+                bulletData.axeUsageLimit = 3;
             }
 
             bulletData.currentWeaponName = BulletData.axe;
@@ -451,10 +445,10 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
 
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Axe && bulletData.axeLock == bulletData.unLocked)
         {
-
             if (bulletData.axeUsageLimit > 0 && bulletData.currentWeaponName != BulletData.axe)
             {
                 bulletData.currentWeaponName = BulletData.axe;
@@ -462,11 +456,16 @@ public class ChooseWeaponController : MonoBehaviour
                 SceneController.GetInstance.LoadMenuScene();
 
                 ObjectPool.creatablePlayerBullet = true;
-            }            
-            
+
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+            }  
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.axeLock == BulletData.locked)
         {
+            if (_playerController.Axe)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "AXEPriceErrorText")
@@ -486,22 +485,16 @@ public class ChooseWeaponController : MonoBehaviour
         if (_playerController.Bulldog && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
           bulletData.currentWeaponName != BulletData.bulldog)
         {
-            for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
+            if (bulletData.bulldogLock == BulletData.locked)
             {
-                if (bulletData.avaliableWeapons[i] == "" || bulletData.bulldogLock == BulletData.locked)
-                {
-                    bulletData.avaliableWeapons[i] = BulletData.bulldog;
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                bulletData.bulldogLock = bulletData.unLocked;
 
-                    bulletData.bulldogLock = bulletData.unLocked;
+                ObjectPool.creatablePlayerBullet = true;
 
-                    ObjectPool.creatablePlayerBullet = true;
-
-                    bulletData.bulldogUsageLimit = 3;
-
-                    break;
-                }
+                bulletData.bulldogUsageLimit = 3;
             }
             bulletData.currentWeaponName = BulletData.bulldog;
 
@@ -509,6 +502,7 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
 
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Bulldog && bulletData.bulldogLock == bulletData.unLocked)
         {
@@ -519,14 +513,18 @@ public class ChooseWeaponController : MonoBehaviour
                 SceneController.GetInstance.LoadMenuScene();
 
                 ObjectPool.creatablePlayerBullet = true;
+
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.bulldogLock == BulletData.locked)
         {
+            if (_playerController.Bulldog)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
-                //bulletData.currentWeaponName = BulletData.bulldog;
-
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "BULLDOGPriceErrorText")
                 {
                     weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
@@ -544,29 +542,25 @@ public class ChooseWeaponController : MonoBehaviour
         if (_playerController.Cow && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
           bulletData.currentWeaponName != BulletData.cow)
         {
-            for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
+            if (bulletData.cowLock == BulletData.locked)
             {
-                if (bulletData.avaliableWeapons[i] == "" || bulletData.cowLock == BulletData.locked)
-                {
-                    bulletData.avaliableWeapons[i] = BulletData.cow;
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                bulletData.cowLock = bulletData.unLocked;
 
-                    bulletData.cowLock = bulletData.unLocked;
+                ObjectPool.creatablePlayerBullet = true;
 
-                    ObjectPool.creatablePlayerBullet = true;
-
-                    bulletData.cowUsageLimit = 3;
-
-                    break;
-                }
+                bulletData.cowUsageLimit = 3;
             }
+
             bulletData.currentWeaponName = BulletData.cow;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
 
             SceneController.GetInstance.LoadMenuScene();
 
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Cow && bulletData.cowLock == bulletData.unLocked)
         {
@@ -577,11 +571,16 @@ public class ChooseWeaponController : MonoBehaviour
                 SceneController.GetInstance.LoadMenuScene();
 
                 ObjectPool.creatablePlayerBullet = true;
+
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.cowLock == BulletData.locked)
         {
-
+            if (_playerController.Cow)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "COWPriceErrorText")
@@ -601,22 +600,16 @@ public class ChooseWeaponController : MonoBehaviour
         if (_playerController.Crystal && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
             bulletData.currentWeaponName != BulletData.crystal)
         {
-            for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
+            if (bulletData.crystalLock == BulletData.locked)
             {
-                if (bulletData.avaliableWeapons[i] == "" || bulletData.crystalLock == BulletData.locked)
-                {
-                    bulletData.avaliableWeapons[i] = BulletData.crystal;
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                bulletData.crystalLock = bulletData.unLocked;
 
-                    bulletData.crystalLock = bulletData.unLocked;
+                ObjectPool.creatablePlayerBullet = true;
 
-                    ObjectPool.creatablePlayerBullet = true;
-
-                    bulletData.crystalUsageLimit = 3;
-
-                    break;
-                }
+                bulletData.crystalUsageLimit = 3;
             }
             bulletData.currentWeaponName = BulletData.crystal;
 
@@ -624,6 +617,7 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
 
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Crystal && bulletData.crystalLock == bulletData.unLocked)
         {
@@ -634,12 +628,16 @@ public class ChooseWeaponController : MonoBehaviour
                 SceneController.GetInstance.LoadMenuScene();
 
                 ObjectPool.creatablePlayerBullet = true;
+
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.crystalLock == BulletData.locked)
         {
-            //bulletData.currentWeaponName = BulletData.crystalgun;
-
+            if (_playerController.Crystal)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "CRYSTALPriceErrorText")
@@ -659,28 +657,25 @@ public class ChooseWeaponController : MonoBehaviour
         if (_playerController.Demon && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
           bulletData.currentWeaponName != BulletData.demon)
         {
-            for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
+            if (bulletData.demonLock == BulletData.locked)
             {
-                if (bulletData.avaliableWeapons[i] == "" || bulletData.demonLock == BulletData.locked)
-                {
-                    bulletData.avaliableWeapons[i] = BulletData.demon;
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                bulletData.demonLock = bulletData.unLocked;
 
-                    bulletData.demonLock = bulletData.unLocked;
+                ObjectPool.creatablePlayerBullet = true;
 
-                    ObjectPool.creatablePlayerBullet = true;
-
-                    bulletData.demonUsageLimit = 3;
-
-                    break;
-                }
+                bulletData.demonUsageLimit = 3;
             }
+
             bulletData.currentWeaponName = BulletData.demon;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Demon && bulletData.demonLock == bulletData.unLocked)
         {
@@ -691,12 +686,16 @@ public class ChooseWeaponController : MonoBehaviour
                 SceneController.GetInstance.LoadMenuScene();
 
                 ObjectPool.creatablePlayerBullet = true;
+
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.demonLock == BulletData.locked)
         {
-            //bulletData.currentWeaponName = BulletData.demongun;
-
+            if (_playerController.Demon)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "DEMONPriceErrorText")
@@ -716,28 +715,25 @@ public class ChooseWeaponController : MonoBehaviour
         if (_playerController.Ice && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
           bulletData.currentWeaponName != BulletData.ice)
         {
-            for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
+            if (bulletData.iceLock == BulletData.locked)
             {
-                if (bulletData.avaliableWeapons[i] == "" || bulletData.iceLock == BulletData.locked)
-                {
-                    bulletData.avaliableWeapons[i] = BulletData.ice;
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                bulletData.iceLock = bulletData.unLocked;
 
-                    bulletData.iceLock = bulletData.unLocked;
+                ObjectPool.creatablePlayerBullet = true;
 
-                    ObjectPool.creatablePlayerBullet = true;
-
-                    bulletData.iceUsageLimit = 3;
-
-                    break;
-                }
+                bulletData.iceUsageLimit = 3;
             }
+
             bulletData.currentWeaponName = BulletData.ice;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Ice && bulletData.iceLock == bulletData.unLocked)
         {
@@ -748,12 +744,16 @@ public class ChooseWeaponController : MonoBehaviour
                 SceneController.GetInstance.LoadMenuScene();
 
                 ObjectPool.creatablePlayerBullet = true;
+
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.iceLock == BulletData.locked)
         {
-            //bulletData.currentWeaponName = BulletData.icegun;
-
+            if (_playerController.Ice)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "ICEPriceErrorText")
@@ -773,22 +773,16 @@ public class ChooseWeaponController : MonoBehaviour
         if (_playerController.Electro && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
           bulletData.currentWeaponName != BulletData.electro)
         {
-            for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
+            if (bulletData.electroLock == BulletData.locked)
             {
-                if (bulletData.avaliableWeapons[i] == "" || bulletData.electroLock == BulletData.locked)
-                {
-                    bulletData.avaliableWeapons[i] = BulletData.electro;
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                bulletData.electroLock = bulletData.unLocked;
 
-                    bulletData.electroLock = bulletData.unLocked;
+                ObjectPool.creatablePlayerBullet = true;
 
-                    ObjectPool.creatablePlayerBullet = true;
-
-                    bulletData.electroUsageLimit = 3;
-
-                    break;
-                }
+                bulletData.electroUsageLimit = 3;
             }
             bulletData.currentWeaponName = BulletData.electro;
 
@@ -796,6 +790,7 @@ public class ChooseWeaponController : MonoBehaviour
 
             SceneController.GetInstance.LoadMenuScene();
 
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Electro && bulletData.electroLock == bulletData.unLocked)
         {
@@ -806,10 +801,16 @@ public class ChooseWeaponController : MonoBehaviour
                 SceneController.GetInstance.LoadMenuScene();
 
                 ObjectPool.creatablePlayerBullet = true;
+
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.electroLock == BulletData.locked)
         {
+            if (_playerController.Electro)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "ELECTROPriceErrorText")
@@ -824,28 +825,22 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (bulletData.pistolUsageLimit <= 0)
         {
-            ObjectPool.creatablePlayerBullet = true;
-            bulletData.pistolLock = BulletData.locked;
+            //ObjectPool.creatablePlayerBullet = true;
+            //bulletData.pistolLock = BulletData.locked;
         }
         if (_playerController.Pistol && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
           bulletData.currentWeaponName != BulletData.pistol)
         {
-            for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
+            if (bulletData.pistolLock == BulletData.locked)
             {
-                if (bulletData.avaliableWeapons[i] == "" || bulletData.pistolLock == BulletData.locked)
-                {
-                    bulletData.avaliableWeapons[i] = BulletData.pistol;
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                bulletData.pistolLock = bulletData.unLocked;
 
-                    bulletData.pistolLock = bulletData.unLocked;
+                ObjectPool.creatablePlayerBullet = true;
 
-                    ObjectPool.creatablePlayerBullet = true;
-
-                    bulletData.pistolUsageLimit = 3;
-
-                    break;
-                }
+                bulletData.pistolUsageLimit = 3;
             }
 
             bulletData.currentWeaponName = BulletData.pistol;
@@ -853,6 +848,8 @@ public class ChooseWeaponController : MonoBehaviour
             weaponPriceErrorTextObjectChilds[0].text = "";
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if (_playerController.Pistol && bulletData.pistolLock == bulletData.unLocked)
         {
@@ -863,10 +860,16 @@ public class ChooseWeaponController : MonoBehaviour
                 SceneController.GetInstance.LoadMenuScene();
 
                 ObjectPool.creatablePlayerBullet = true;
+
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.pistolLock == BulletData.locked)
         {
+            if (_playerController.Pistol)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "PISTOLPriceErrorText")
@@ -887,28 +890,23 @@ public class ChooseWeaponController : MonoBehaviour
         if (_playerController.M4A4 && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
           bulletData.currentWeaponName != BulletData.m4a4)
         {
-            for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
+            if (bulletData.m4a4Lock == BulletData.locked)
             {
-                if (bulletData.avaliableWeapons[i] == "" || bulletData.m4a4Lock == BulletData.locked)
-                {
-                    bulletData.avaliableWeapons[i] = BulletData.m4a4;
+                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                bulletData.m4a4Lock = bulletData.unLocked;
 
-                    bulletData.m4a4Lock = bulletData.unLocked;
+                ObjectPool.creatablePlayerBullet = true;
 
-                    ObjectPool.creatablePlayerBullet = true;
-
-                    bulletData.m4a4UsageLimit = 3;
-
-                    break;
-                }
+                bulletData.m4a4UsageLimit = 3;
             }
-
 
             weaponPriceErrorTextObjectChilds[0].text = "";
 
             SceneController.GetInstance.LoadMenuScene();
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
         }
         else if (_playerController.M4A4 && bulletData.m4a4Lock == bulletData.unLocked)
@@ -920,11 +918,16 @@ public class ChooseWeaponController : MonoBehaviour
                 SceneController.GetInstance.LoadMenuScene();
 
                 ObjectPool.creatablePlayerBullet = true;
+
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.m4a4Lock == BulletData.locked)
         {
-
+            if (_playerController.M4A4)
+            {
+                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
+            }
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "M4A4PriceErrorText")

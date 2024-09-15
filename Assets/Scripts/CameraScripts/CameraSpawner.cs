@@ -10,6 +10,9 @@ public class CameraSpawner : MonoBehaviour
 
     public MeshRenderer[] meshRenderers;
 
+    [SerializeField] LevelData levelData;
+    [SerializeField] PlayerData playerData;
+
 
 
     private void Start()
@@ -27,24 +30,31 @@ public class CameraSpawner : MonoBehaviour
     }
     void Update()
     {
-        meshRenderers = FindObjectsOfType<MeshRenderer>();
+        if (meshRenderers == null || meshRenderers.Length == 0) return; // Early exit if there are no mesh renderers
 
-        for (int i = 0; i < meshRenderers.Length; i++)
+        // Calculate the camera frustum planes once per frame
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraObject);
+
+        // Loop through all cached MeshRenderers
+        foreach (MeshRenderer meshRenderer in meshRenderers)
         {
-            Plane[] planes = GeometryUtility.CalculateFrustumPlanes(cameraObject);
-            if (GeometryUtility.TestPlanesAABB(planes, meshRenderers[i].bounds))    
+            // Skip null entries to avoid errors
+            if (meshRenderer == null) continue;
+
+            // Check if the object's bounds intersect the camera frustum
+            bool isVisible = GeometryUtility.TestPlanesAABB(planes, meshRenderer.bounds);
+
+            // Directly skip objects that should always be visible
+            if (meshRenderer.name == "Arrow" || meshRenderer.gameObject.name == "SM_Pistol_Trigger")
             {
-                meshRenderers[i].enabled = true;
+                meshRenderer.enabled = true;
+                continue;
             }
-            else
-            {
-                if (meshRenderers[i].name != "Arrow" || meshRenderers[i].gameObject.name != "SM_Pistol_Trigger")
-                {
-                    meshRenderers[i].enabled = false;
-                }
-            }
+
+            // Enable/disable the MeshRenderer based on visibility
+            meshRenderer.enabled = isVisible;
         }
     }
-    
+
 }
 

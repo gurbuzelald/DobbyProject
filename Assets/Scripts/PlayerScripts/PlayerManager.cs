@@ -209,7 +209,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         GetAttackFromEnemy(ref _playerData, ref _topCanvasHealthBarSlider, ref playerObjects.healthBarSlider, ref _healthBarObject, ref _particleTransform);
         DontFallDown();
 
-        IncreaseHealthWhenEnemyKilledAtUpdate(30);
+        IncreaseHealthWhenEnemyKilledAtUpdate(5);
     }
 
     void IncreaseHealthWhenEnemyKilledAtUpdate(int increasedAmount)

@@ -19,13 +19,14 @@ public class MenuSoundEffect : AbstractPlayerSFX<MenuSoundEffect>
     }
     public void MenuSoundEffectStatement(MenuSoundEffectTypes menuSoundEffectType)
     {
-        if (MenuSoundEffectTypes.MenuClick == menuSoundEffectType)
+        if (MenuSoundEffectTypes.MenuClick == menuSoundEffectType || MenuSoundEffectTypes.MenuNotClick == menuSoundEffectType)
         {
             MenuSFX(menuSoundEffectType, menuAudioData);
         }
     }
     public enum MenuSoundEffectTypes
     {
-        MenuClick
+        MenuClick,
+        MenuNotClick
     }
 }

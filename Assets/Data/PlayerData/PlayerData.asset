@@ -39,7 +39,7 @@ MonoBehaviour:
   skeletonEnemyBulletDamage: 30
   urielEnemyBulletDamage: 33
   goblinEnemyBulletDamage: 35
-  currentEnemyCollisionDamage: 10
+  currentEnemyCollisionDamage: 15
   clownEnemyCollisionDamage: 10
   monsterEnemyCollisionDamage: 15
   prisonerEnemyCollisionDamage: 20
@@ -111,22 +111,22 @@ MonoBehaviour:
   - {fileID: 7971067666596210365, guid: 48f6891f360c67a488d3fe548e1e8d5f, type: 3}
   - {fileID: 7971067666596210365, guid: 0ba857b35eeb15e4da33c0bc95bc1357, type: 3}
   spawns: {fileID: 2359986759738939504, guid: aabf96d4f82bfd84cadaf35e1afe1e4b, type: 3}
-  sensivityX: 7
-  sensivityY: 5
+  sensivityX: 5
+  sensivityY: 8
   isTouchFinish: 0
   isLose: 0
-  joleenPrice: 950
-  dobbyPrice: 0
+  joleenPrice: 1100
+  dobbyPrice: 1
   glassyPrice: 300
-  lusthPrice: 1900
-  guardPrice: 1800
-  michellePrice: 1000
-  evePrice: 1900
-  ajPrice: 300
-  bossPrice: 1300
-  tyPrice: 500
-  mremirehPrice: 1500
-  playerSpeed: 33
+  lusthPrice: 1800
+  guardPrice: 1000
+  michellePrice: 800
+  evePrice: 1800
+  ajPrice: 1200
+  bossPrice: 1500
+  tyPrice: 600
+  mremirehPrice: 1600
+  playerSpeed: 40
   skateBoardSpeed: 14
   climbSpeed: 3
   rotateSpeed: 6
@@ -153,18 +153,6 @@ MonoBehaviour:
   bossJumpForce: 7
   tyJumpForce: 7
   guardJumpForce: 6
-  avaliableCharacters:
-  - Dobby
-  - Dobby
-  - Lusth
-  - Boss
-  - Dobby
-  - Glassy
-  - Lusth
-  - Guard
-  - Michelle
-  - Eve
-  - Aj
   isGround: 1
   isWalking: 0
   isSideWalking: 0

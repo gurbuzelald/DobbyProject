@@ -455,8 +455,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (_healthBarSlider.value <= 0)
             {
-                playerData.getCurrentEnemyDead = true;
-
                 EnemyData.enemyDeathCount++;
                 bottomParticleSystem.Play();
                 middleParticleSystem.Play();
@@ -548,8 +546,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         StartCoroutine(CreateDestroyParticle());
         
         yield return new WaitForSeconds(delayDestroy);
-        Destroy(gameObject);
         
+        Destroy(gameObject);
+
+        playerData.getCurrentEnemyDead = true;
+
         //enemyData.isWalking = true;
         enemyData.isDying = false;
     }
@@ -573,7 +574,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (soundEffect == SoundEffectTypes.GetHit)
         {
-            audioSource.PlayOneShot(enemyData.getHitClip);
+            //audioSource.PlayOneShot(enemyData.getHitClip);
         }
         else if (soundEffect == SoundEffectTypes.GiveHit)
         {
