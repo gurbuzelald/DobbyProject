@@ -8,7 +8,7 @@ public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehavi
     {
         if (!_playerData.isDestroyed)
         {
-            if (_enemyData.isWalking && !_enemyData.isFiring && !_enemyData.isDying && !_enemyData.isAttacking)
+            if (_enemyData.isWalking && !_enemyData.isFiring && !_enemyData.isAttacking)
             {
                 _animator.SetBool("isWalking", true);
 
@@ -26,7 +26,7 @@ public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehavi
                 _animator.SetLayerWeight(3, 0);
                 _animator.SetLayerWeight(4, 0);
             }
-            else if (_enemyData.isAttacking && !_enemyData.isFiring && !_enemyData.isWalking && !_enemyData.isDying)
+            else if (_enemyData.isAttacking && !_enemyData.isFiring && !_enemyData.isWalking)
             {
                 _animator.SetBool("isAttacking", true);
 
@@ -37,7 +37,7 @@ public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehavi
 
                 //_enemyData.isWalking = false;
             }
-            else if (_enemyData.isFiring && !_enemyData.isWalking && !_enemyData.isDying && !_enemyData.isAttacking)
+            else if (_enemyData.isFiring && !_enemyData.isWalking && !_enemyData.isAttacking)
             {
                 _animator.SetBool("isFiring", true);
 
@@ -50,7 +50,7 @@ public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehavi
 
                 //_enemyData.isWalking = false;
             }
-            else if (!_enemyData.isFiring && !_enemyData.isDying && !_enemyData.isWalking && !_enemyData.isAttacking)
+            else if (!_enemyData.isFiring && !_enemyData.isWalking && !_enemyData.isAttacking)
             {
                 _animator.SetBool("isIdling", true);
 

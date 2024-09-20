@@ -57,10 +57,6 @@ public class SettingController : MonoBehaviour
             _soundSettingsPanel.localScale = Vector3.zero;
             _sensivitySettingsPanel.localScale = Vector3.zero;
 
-            gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x + 300,
-                                                             gameObject.transform.localPosition.y,
-                                                             gameObject.transform.localPosition.z);
-
             if (levelData.currentLevel != LevelData.Levels.Level1)
             {
                 _continueButton.GetComponent<RectTransform>().localScale = Vector3.one;

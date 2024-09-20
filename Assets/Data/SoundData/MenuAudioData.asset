@@ -12,10 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283d3543a98d04ddd83ed4a82991e224, type: 3}
   m_Name: MenuAudioData
   m_EditorClassIdentifier: 
-  gameMusic: {fileID: 8300000, guid: 0085550480c4bb14aad42aca5a1f33bd, type: 3}
-  menuMusic: {fileID: 8300000, guid: 38ae912c8955d9e4d8d7dbf3e26302de, type: 3}
-  endMusic: {fileID: 8300000, guid: ba2cc4d73029d554b823de66cc743eed, type: 3}
-  winMusic: {fileID: 8300000, guid: ed67976025677d5478156b6088793e63, type: 3}
+  currentGameMusic: {fileID: 8300000, guid: 390593ac1c4f240b49b9eeb03169d5d9, type: 3}
+  menuMusic: {fileID: 8300000, guid: dc4124c34735a4967a36d1c1d3633368, type: 3}
+  endMusic: {fileID: 8300000, guid: d99c6e9972f284de5af65e4b471bb491, type: 3}
+  winMusic: {fileID: 8300000, guid: 18bcc63339c134f3980c2c3ee2f91f67, type: 3}
+  level1GameMusic: {fileID: 8300000, guid: 6edc268fc78ed4a42a2fcb10404bd2c3, type: 3}
+  level2GameMusic: {fileID: 8300000, guid: 77c3a60f7d2824885b12c77834f694c1, type: 3}
+  level3GameMusic: {fileID: 8300000, guid: 2e9d04efaed964f27862f3c82c53c5d4, type: 3}
+  level4GameMusic: {fileID: 8300000, guid: 18bcc63339c134f3980c2c3ee2f91f67, type: 3}
+  level5GameMusic: {fileID: 8300000, guid: 390593ac1c4f240b49b9eeb03169d5d9, type: 3}
+  level6GameMusic: {fileID: 8300000, guid: dc4124c34735a4967a36d1c1d3633368, type: 3}
+  level7GameMusic: {fileID: 8300000, guid: d99c6e9972f284de5af65e4b471bb491, type: 3}
+  level8GameMusic: {fileID: 8300000, guid: 6edc268fc78ed4a42a2fcb10404bd2c3, type: 3}
+  level9GameMusic: {fileID: 8300000, guid: 77c3a60f7d2824885b12c77834f694c1, type: 3}
+  level10GameMusic: {fileID: 8300000, guid: 2e9d04efaed964f27862f3c82c53c5d4, type: 3}
   nonShootClip: {fileID: 0}
   poisonClip: {fileID: 0}
   getEnemyHitClip: {fileID: 0}

@@ -18,64 +18,13 @@ public class CharacterLockingStatement : MonoBehaviour
 
     void Awake()
     {
-        ResetCharactersLocks();
+        //ResetCharactersLocks();
 
         SetCharacterNames();
         SetWeaponNames();
 
         SetCharacterLockingMode();
         SetWeaponLockingMode(bulletData);
-    }
-
-    void ResetCharactersLocks()
-    {
-        pickCharacterController = FindObjectOfType<ChooseCharacterController>();
-
-        if (playerData.dobbyLock == playerData.unLocked &&
-            playerData.glassyLock == playerData.unLocked &&
-            playerData.joleenLock == playerData.unLocked &&
-            playerData.guardLock == playerData.unLocked &&
-            playerData.lusthLock == playerData.unLocked &&
-            playerData.eveLock == playerData.unLocked &&
-            playerData.michelleLock == playerData.unLocked &&
-            playerData.ajLock == playerData.unLocked &&
-            playerData.bossLock == playerData.unLocked &&
-            playerData.mremirehLock == playerData.unLocked &&
-            playerData.tyLock == playerData.unLocked &&
-            playerData.resetLocks == playerData.unLocked)
-        {
-            pickCharacterController.ResetTheCharacters();
-
-
-            playerData.dobbyLock = playerData.locked;
-            playerData.glassyLock = playerData.locked;
-            playerData.joleenLock = playerData.locked;
-            playerData.lusthLock = playerData.locked;
-            playerData.eveLock = playerData.locked;
-            playerData.guardLock = playerData.locked;
-            playerData.bossLock = playerData.locked;
-            playerData.michelleLock = playerData.locked;
-            playerData.ajLock = playerData.locked;
-            playerData.mremirehLock = playerData.locked;
-            playerData.tyLock = playerData.locked;
-            playerData.resetLocks = playerData.locked;
-        }
-        else if (playerData.dobbyLock == playerData.locked &&
-            playerData.glassyLock == playerData.locked &&
-            playerData.joleenLock == playerData.locked &&
-            playerData.guardLock == playerData.locked &&
-            playerData.lusthLock == playerData.locked &&
-            playerData.eveLock == playerData.locked &&
-            playerData.michelleLock == playerData.locked &&
-            playerData.ajLock == playerData.locked &&
-            playerData.bossLock == playerData.locked &&
-            playerData.mremirehLock == playerData.locked &&
-            playerData.tyLock == playerData.locked &&
-            playerData.resetLocks == playerData.locked)
-        {
-            playerData.dobbyLock = playerData.unLocked;
-            playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
-        }
     }
     
 

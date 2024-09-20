@@ -12,7 +12,7 @@ public class LevelData : ScriptableObject
         public int levelUpKeys;
     }
 
-    public static int highestLevel = 0;
+    public static int highestLevel;
 
     public static int currentLevelUpRequirement;
     public static int currentOwnedLevelUpKeys;

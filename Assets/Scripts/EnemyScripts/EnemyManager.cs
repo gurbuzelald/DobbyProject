@@ -50,7 +50,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     void Start()
     {
-        playerSFX = GameObject.FindAnyObjectByType<PlayerSoundEffect>();
+        playerSFX = FindAnyObjectByType<PlayerSoundEffect>();
 
         enemyData = enemyListData[enemyDataNumber];
         bulletData = enemyListBulletData[enemyBulletDataNumber];
@@ -129,11 +129,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     void CheckGroundEnemy()
     {
-        if (!enemyData.isGround)
+        if (!enemyData.isGround && enemyRigidbody)
         {
             enemyRigidbody.constraints = RigidbodyConstraints.FreezePositionY;
         }
-        if (enemyData.isGround)
+        if (enemyData.isGround && enemyRigidbody)
         {
             enemyRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
@@ -141,8 +141,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     void SetPlayerWeaponExplosionParticle()
     {
         if (PlayerData.currentBulletExplosionIsChanged)
-        {
-            
+        {          
 
             PlayerData.currentBulletExplosionIsChanged = false;
         }
@@ -203,7 +202,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     void FollowPlayer()
     {
-        if (gameObject != null)
+        if (gameObject != null && enemyData && bulletData)
         {
             if (playerData.isPlayable && gameObject != null && enemyBulletManager != null)
             {
@@ -230,7 +229,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
                     playerData.isDecreaseHealth = true;
 
-                    playerData.currentEnemyName = gameObject.name;
+                    enemyData.currentEnemyName = gameObject.name;
 
                     enemyData.isWalking = false;
                     enemyData.isDying = false;

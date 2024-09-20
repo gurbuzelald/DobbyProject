@@ -21,17 +21,20 @@ public class ChooseWeaponController : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI[] weaponUsageLimits;
 
-    
+    private PriceSetting priceSetting;
+
+
     void Start()
     {
-        
-        ResetWeaponsLocks();
+        priceSetting = FindObjectOfType<PriceSetting>();        
 
         _playerController = FindObjectOfType<PlayerController>();
 
         WeaponPriceError();
         SetWeaponInfos();
 
+
+        GetWeaponUnLockData();
     }
     private void Update()
     {
@@ -39,6 +42,62 @@ public class ChooseWeaponController : MonoBehaviour
         WeaponPickStates();
         WeaponUsageLimit();
     }
+
+    void GetWeaponUnLockData()
+    {
+        if (PlayerPrefs.GetFloat("AxeLock") == 1)
+        {
+            bulletData.axeLock = "";
+            bulletData.axeUsageLimit = PlayerPrefs.GetInt("AxeUsageCount");
+        }
+        if (PlayerPrefs.GetFloat("BulldogLock") == 1)
+        {
+            bulletData.bulldogLock = "";
+            bulletData.bulldogUsageLimit = PlayerPrefs.GetInt("BulldogUsageCount");
+        }
+        if (PlayerPrefs.GetFloat("CowLock") == 1)
+        {
+            bulletData.cowLock = "";
+            bulletData.cowUsageLimit = PlayerPrefs.GetInt("CowUsageCount");
+        }
+        if (PlayerPrefs.GetFloat("CrystalLock") == 1)
+        {
+            bulletData.crystalLock = "";
+            bulletData.crystalUsageLimit = PlayerPrefs.GetInt("CrystalUsageCount");
+        }
+        if (PlayerPrefs.GetFloat("DemonLock") == 1)
+        {
+            bulletData.demonLock = "";
+            bulletData.demonUsageLimit = PlayerPrefs.GetInt("DemonUsageCount");
+        }
+        if (PlayerPrefs.GetFloat("IceLock") == 1)
+        {
+            bulletData.iceLock = "";
+            bulletData.iceUsageLimit = PlayerPrefs.GetInt("IceUsageCount");
+        }
+        if (PlayerPrefs.GetFloat("ElectroLock") == 1)
+        {
+            bulletData.electroLock = "";
+            bulletData.electroUsageLimit = PlayerPrefs.GetInt("ElectroUsageCount");
+        }
+        if (PlayerPrefs.GetFloat("Ak47Lock") == 1)
+        {
+            bulletData.ak47Lock = "";
+            bulletData.ak47UsageLimit = PlayerPrefs.GetInt("Ak47UsageCount");
+        }
+        if (PlayerPrefs.GetFloat("M4A4Lock") == 1)
+        {
+            bulletData.m4a4Lock = "";
+            bulletData.m4a4UsageLimit = PlayerPrefs.GetInt("M4A4UsageCount");
+        }
+
+        if (priceSetting)
+        {
+            priceSetting.SetWeaponPrices();
+        }        
+    }
+
+
     public void WeaponUsageLimit()
     {
         for (int i = 0; i < weaponUsageLimits.Length; i++)
@@ -165,63 +224,12 @@ public class ChooseWeaponController : MonoBehaviour
                         weaponUsageLimits[i].enabled = false;
                     }
                     break;
-
             }
         }
 
-    }
-    void ResetWeaponsLocks()
-    {
-
-        if (bulletData.ak47Lock == bulletData.unLocked &&
-            bulletData.axeLock == bulletData.unLocked &&
-            bulletData.bulldogLock == bulletData.unLocked &&
-            bulletData.cowLock == bulletData.unLocked &&
-            bulletData.crystalLock == bulletData.unLocked &&
-            bulletData.demonLock == bulletData.unLocked &&
-            bulletData.iceLock == bulletData.unLocked &&
-            bulletData.electroLock == bulletData.unLocked &&
-            bulletData.pistolLock == bulletData.unLocked &&
-            bulletData.m4a4Lock == bulletData.unLocked &&
-            bulletData.resetLocks == bulletData.unLocked)
-        {
-            ResetTheWeapons();
-
-
-            bulletData.ak47Lock = BulletData.locked;
-            bulletData.axeLock = BulletData.locked;
-            bulletData.bulldogLock = BulletData.locked;
-            bulletData.cowLock = BulletData.locked;
-            bulletData.crystalLock = BulletData.locked;
-            bulletData.iceLock = BulletData.locked;
-            bulletData.electroLock = BulletData.locked;
-            bulletData.demonLock = BulletData.locked;
-            bulletData.pistolLock = BulletData.locked;
-            bulletData.m4a4Lock = BulletData.locked;
-            bulletData.resetLocks = BulletData.locked;
-        }
-        else if (bulletData.ak47Lock == BulletData.locked &&
-            bulletData.axeLock == BulletData.locked &&
-            bulletData.bulldogLock == BulletData.locked &&
-            bulletData.cowLock == BulletData.locked &&
-            bulletData.crystalLock == BulletData.locked &&
-            bulletData.demonLock == BulletData.locked &&
-            bulletData.iceLock == BulletData.locked &&
-            bulletData.electroLock == BulletData.locked &&
-            bulletData.pistolLock == BulletData.locked &&
-            bulletData.m4a4Lock == BulletData.locked &&
-            bulletData.resetLocks == BulletData.locked)
-        {
-            bulletData.currentWeaponName = BulletData.ak47;
-        }
-    }
-    public void ResetTheWeapons()
-    {
-        /*for (int i = 0; i < bulletData.avaliableWeapons.Length; i++)
-        {
-            bulletData.avaliableWeapons[i] = "";
-        }*/
-    }
+    }    
+    
+    
     void WeaponPickStates()
     {
         if (weaponPriceErrorTextObjects.Length != 0)
@@ -376,6 +384,9 @@ public class ChooseWeaponController : MonoBehaviour
                 ObjectPool.creatablePlayerBullet = true;
 
                 bulletData.ak47UsageLimit = 3;
+                PlayerPrefs.SetInt("Ak47UsageCount", bulletData.ak47UsageLimit);
+
+                PlayerPrefs.SetFloat("Ak47Lock", 1);
             }
 
             bulletData.currentWeaponName = BulletData.ak47;
@@ -437,6 +448,9 @@ public class ChooseWeaponController : MonoBehaviour
                 ObjectPool.creatablePlayerBullet = true;
 
                 bulletData.axeUsageLimit = 3;
+                PlayerPrefs.SetInt("AxeUsageCount", bulletData.axeUsageLimit);
+
+                PlayerPrefs.SetFloat("AxeLock", 1);
             }
 
             bulletData.currentWeaponName = BulletData.axe;
@@ -474,6 +488,7 @@ public class ChooseWeaponController : MonoBehaviour
                 }
             }
         }
+        
     }
     public void PickBulldog(int avaliableCoinAmount)
     {
@@ -495,6 +510,9 @@ public class ChooseWeaponController : MonoBehaviour
                 ObjectPool.creatablePlayerBullet = true;
 
                 bulletData.bulldogUsageLimit = 3;
+                PlayerPrefs.SetInt("BulldogUsageCount", bulletData.bulldogUsageLimit);
+
+                PlayerPrefs.SetFloat("BulldogLock", 1);
             }
             bulletData.currentWeaponName = BulletData.bulldog;
 
@@ -552,6 +570,9 @@ public class ChooseWeaponController : MonoBehaviour
                 ObjectPool.creatablePlayerBullet = true;
 
                 bulletData.cowUsageLimit = 3;
+                PlayerPrefs.SetInt("CowUsageCount", bulletData.cowUsageLimit);
+
+                PlayerPrefs.SetFloat("CowLock", 1);
             }
 
             bulletData.currentWeaponName = BulletData.cow;
@@ -610,6 +631,9 @@ public class ChooseWeaponController : MonoBehaviour
                 ObjectPool.creatablePlayerBullet = true;
 
                 bulletData.crystalUsageLimit = 3;
+                PlayerPrefs.SetInt("CrystalUsageCount", bulletData.crystalUsageLimit);
+
+                PlayerPrefs.SetFloat("CrystalLock", 1);
             }
             bulletData.currentWeaponName = BulletData.crystal;
 
@@ -667,6 +691,9 @@ public class ChooseWeaponController : MonoBehaviour
                 ObjectPool.creatablePlayerBullet = true;
 
                 bulletData.demonUsageLimit = 3;
+                PlayerPrefs.SetInt("DemonUsageCount", bulletData.demonUsageLimit);
+
+                PlayerPrefs.SetFloat("DemonLock", 1);
             }
 
             bulletData.currentWeaponName = BulletData.demon;
@@ -725,6 +752,9 @@ public class ChooseWeaponController : MonoBehaviour
                 ObjectPool.creatablePlayerBullet = true;
 
                 bulletData.iceUsageLimit = 3;
+                PlayerPrefs.SetInt("IceUsageCount", bulletData.iceUsageLimit);
+
+                PlayerPrefs.SetFloat("IceLock", 1);
             }
 
             bulletData.currentWeaponName = BulletData.ice;
@@ -783,6 +813,9 @@ public class ChooseWeaponController : MonoBehaviour
                 ObjectPool.creatablePlayerBullet = true;
 
                 bulletData.electroUsageLimit = 3;
+                PlayerPrefs.SetInt("ElectroUsageCount", bulletData.electroUsageLimit);
+
+                PlayerPrefs.SetFloat("ElectroLock", 1);
             }
             bulletData.currentWeaponName = BulletData.electro;
 
@@ -825,8 +858,8 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (bulletData.pistolUsageLimit <= 0)
         {
-            //ObjectPool.creatablePlayerBullet = true;
-            //bulletData.pistolLock = BulletData.locked;
+            ObjectPool.creatablePlayerBullet = true;
+            bulletData.pistolLock = BulletData.locked;
         }
         if (_playerController.Pistol && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
           bulletData.currentWeaponName != BulletData.pistol)
@@ -841,6 +874,7 @@ public class ChooseWeaponController : MonoBehaviour
                 ObjectPool.creatablePlayerBullet = true;
 
                 bulletData.pistolUsageLimit = 3;
+                PlayerPrefs.SetInt("PistolUsageCount", bulletData.pistolUsageLimit);
             }
 
             bulletData.currentWeaponName = BulletData.pistol;
@@ -900,7 +934,12 @@ public class ChooseWeaponController : MonoBehaviour
                 ObjectPool.creatablePlayerBullet = true;
 
                 bulletData.m4a4UsageLimit = 3;
+                PlayerPrefs.SetInt("M4A4UsageCount", bulletData.m4a4UsageLimit);
+
+                PlayerPrefs.SetFloat("M4A4Lock", 1);
             }
+
+            bulletData.currentWeaponName = BulletData.m4a4;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
 

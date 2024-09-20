@@ -12,44 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  currentLanguage: 0
   getCurrentEnemyDead: 0
   currentMessageText: {fileID: 0}
   currentMessageObject: {fileID: 0}
   backgroundMap: {fileID: 1345883776023317691, guid: 515afb887ab870a43b53ea7d70cb9035, type: 3}
   enemyBulletHitActivate: 0
-  currentEnemyAttackDamage: 5
-  clownEnemyAttackDamage: 5
-  monsterEnemyAttackDamage: 10
-  prisonerEnemyAttackDamage: 12
-  pedrosoEnemyAttackDamage: 15
-  copEnemyAttackDamage: 18
-  morakEnemyAttackDamage: 20
-  ortizEnemyAttackDamage: 23
-  skeletonEnemyAttackDamage: 25
-  urielEnemyAttackDamage: 27
-  goblinEnemyAttackDamage: 30
-  currentEnemyBulletDamage: 12
-  clownEnemyBulletDamage: 12
-  monsterEnemyBulletDamage: 13
-  prisonerEnemyBulletDamage: 16
-  pedrosoEnemyBulletDamage: 21
-  copEnemyBulletDamage: 23
-  morakEnemyBulletDamage: 25
-  ortizEnemyBulletDamage: 28
-  skeletonEnemyBulletDamage: 30
-  urielEnemyBulletDamage: 33
-  goblinEnemyBulletDamage: 35
-  currentEnemyCollisionDamage: 15
-  clownEnemyCollisionDamage: 10
-  monsterEnemyCollisionDamage: 15
-  prisonerEnemyCollisionDamage: 20
-  pedrosoEnemyCollisionDamage: 22
-  copEnemyCollisionDamage: 24
-  morakEnemyCollisionDamage: 25
-  ortizEnemyCollisionDamage: 27
-  skeletonEnemyCollisionDamage: 29
-  urielEnemyCollisionDamage: 31
-  goblinEnemyCollisionDamage: 33
   dobbyDurability: 1
   glassyDurability: 3
   joleenDurability: 2
@@ -61,7 +29,6 @@ MonoBehaviour:
   ajDurability: 3
   mremirehDurability: 5
   tyDurability: 3
-  currentEnemyName: Clown(Clone)
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
   isDecreaseHealth: 0
   damageHealthText: {fileID: 0}
@@ -112,37 +79,37 @@ MonoBehaviour:
   - {fileID: 7971067666596210365, guid: 0ba857b35eeb15e4da33c0bc95bc1357, type: 3}
   spawns: {fileID: 2359986759738939504, guid: aabf96d4f82bfd84cadaf35e1afe1e4b, type: 3}
   sensivityX: 5
-  sensivityY: 8
+  sensivityY: 5
   isTouchFinish: 0
   isLose: 0
   joleenPrice: 1100
-  dobbyPrice: 1
+  dobbyPrice: 0
   glassyPrice: 300
-  lusthPrice: 1800
-  guardPrice: 1000
+  lusthPrice: 3000
+  guardPrice: 1800
   michellePrice: 800
-  evePrice: 1800
-  ajPrice: 1200
-  bossPrice: 1500
-  tyPrice: 600
-  mremirehPrice: 1600
-  playerSpeed: 40
+  evePrice: 3000
+  ajPrice: 1300
+  bossPrice: 1700
+  tyPrice: 500
+  mremirehPrice: 3500
+  playerSpeed: 45
   skateBoardSpeed: 14
   climbSpeed: 3
   rotateSpeed: 6
-  dobbySpeed: 40
-  michelleSpeed: 45
-  glassySpeed: 45
-  ajSpeed: 70
-  eveSpeed: 75
-  mremirehSpeed: 70
-  lusthSpeed: 80
+  dobbySpeed: 45
+  michelleSpeed: 40
+  glassySpeed: 35
+  ajSpeed: 50
+  eveSpeed: 65
+  mremirehSpeed: 55
+  lusthSpeed: 60
   joleenSpeed: 50
   bossSpeed: 43
   tySpeed: 40
   guardSpeed: 50
-  currentJumpForce: 6
-  dobbyJumpForce: 6
+  currentJumpForce: 4
+  dobbyJumpForce: 4
   michelleJumpForce: 7
   glassyJumpForce: 6
   ajJumpForce: 8
@@ -170,7 +137,7 @@ MonoBehaviour:
   isSwordAnimate: 0
   isLookingUp: 0
   isDestroyed: 0
-  isPlayable: 0
+  isPlayable: 1
   isFire: 0
   isFireWalkAnimation: 0
   isFireAnimation: 0

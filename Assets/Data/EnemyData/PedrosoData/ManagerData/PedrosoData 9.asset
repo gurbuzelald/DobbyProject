@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PedrosoData 9
   m_EditorClassIdentifier: 
   _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
-  currentBulletExplosionParticle: {fileID: 0}
+  currentBulletExplosionParticle: {fileID: 2689552222238927185, guid: 632812bd72b786d4c937d25598e0498d, type: 3}
   currentSwordBulletExplosionParticle: {fileID: 2689552222238927185, guid: 76a9d0317209b42d5a4e6704c3561791, type: 3}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
   getHitClip: {fileID: 8300000, guid: f6a4bd259669541c589d7bd8cefede6f, type: 3}
@@ -23,14 +23,14 @@ MonoBehaviour:
   isGround: 1
   isDying: 0
   isWalking: 0
-  isFiring: 1
+  isFiring: 0
   isAttacking: 0
-  isTouchable: 0
+  isTouchable: 1
   isActivateMagnet: 1
-  enemySpeed: 0.4
-  bulletDamageValue: 5
-  isSpeedZero: 1
-  isWalkable: 0
+  enemySpeed: 0.33680043
+  bulletDamageValue: 15
+  isSpeedZero: 0
+  isWalkable: 1
   isActivateCreateEnemy: 0
   currentBottomParticle: {fileID: 6847440653780713590, guid: 54b95b008a4da472fad9094e21768081, type: 3}
   currentMiddleParticle: {fileID: 971248542662641292, guid: 2f7ae11e5481b4410980b7b91fdc3dff, type: 3}

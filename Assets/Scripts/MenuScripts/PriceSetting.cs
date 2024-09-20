@@ -20,12 +20,11 @@ public class PriceSetting : MonoBehaviour
 
     private void Awake()
     {
-
         SetWeaponNames();
-        SetWeaponPrices();
+        //SetWeaponPrices();
 
         SetCharacterNames();
-        SetCharacterPrices();        
+        //SetCharacterPrices();        
     }
     
     void SetCharacterNames()
@@ -50,7 +49,7 @@ public class PriceSetting : MonoBehaviour
 
         }
     }
-    void SetWeaponPrices()
+    public void SetWeaponPrices()
     {
         if (weaponStaffs.Length != 0)
         {
@@ -167,7 +166,7 @@ public class PriceSetting : MonoBehaviour
             }
         }
     }
-    void SetCharacterPrices()
+    public void SetCharacterPrices()
     {
         if (characterStaffs.Length != 0)
         {

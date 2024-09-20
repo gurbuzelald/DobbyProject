@@ -5,10 +5,23 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewAudioMusicData", menuName = "AudioMusicData")]
 public class AudioData : ScriptableObject
 {
-    public AudioClip gameMusic;
+    [Header("Musics")]
+    public AudioClip currentGameMusic;
     public AudioClip menuMusic;
     public AudioClip endMusic;    
     public AudioClip winMusic;
+
+    [Header("Game Musics")]
+    public AudioClip level1GameMusic;
+    public AudioClip level2GameMusic;
+    public AudioClip level3GameMusic;
+    public AudioClip level4GameMusic;
+    public AudioClip level5GameMusic;
+    public AudioClip level6GameMusic;
+    public AudioClip level7GameMusic;
+    public AudioClip level8GameMusic;
+    public AudioClip level9GameMusic;
+    public AudioClip level10GameMusic;
 
 
     [Header("Sounds")]

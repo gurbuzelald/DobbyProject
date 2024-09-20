@@ -16,6 +16,9 @@ public class EnemyData : ScriptableObject
     [Header("Enemy Death Count")]
     public static int enemyDeathCount;
 
+    [Header("Enemy Tag")]
+    public string currentEnemyName;
+
 
     [Header("Sounds")]
     //public AudioClip shootClip;

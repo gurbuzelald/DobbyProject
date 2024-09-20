@@ -5,6 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Current Language")]
+    public Languages currentLanguage;
+
+
     [Header("Get Current Killing Enemy For Increase Health")]
     public bool getCurrentEnemyDead;
 
@@ -24,46 +28,7 @@ public class PlayerData : ScriptableObject
     public GameObject backgroundMap;
 
     [Header("Is Enemy Bullet Hit Activate For Sound Effect")]
-    public bool enemyBulletHitActivate;
-
-    [Header("Enemy Attack Damages")]
-    public int currentEnemyAttackDamage;
-    public int clownEnemyAttackDamage;
-    public int monsterEnemyAttackDamage;
-    public int prisonerEnemyAttackDamage;
-    public int pedrosoEnemyAttackDamage;
-    public int copEnemyAttackDamage;
-    public int morakEnemyAttackDamage;
-    public int ortizEnemyAttackDamage;
-    public int skeletonEnemyAttackDamage;
-    public int urielEnemyAttackDamage;
-    public int goblinEnemyAttackDamage;
-
-    [Header("Enemy Bullet Damages")]
-    public int currentEnemyBulletDamage;
-    public int clownEnemyBulletDamage;
-    public int monsterEnemyBulletDamage;
-    public int prisonerEnemyBulletDamage;
-    public int pedrosoEnemyBulletDamage;
-    public int copEnemyBulletDamage;
-    public int morakEnemyBulletDamage;
-    public int ortizEnemyBulletDamage;
-    public int skeletonEnemyBulletDamage;
-    public int urielEnemyBulletDamage;
-    public int goblinEnemyBulletDamage;
-
-    [Header("Enemy Collision Damages")]
-    public int currentEnemyCollisionDamage;
-    public int clownEnemyCollisionDamage;
-    public int monsterEnemyCollisionDamage;
-    public int prisonerEnemyCollisionDamage;    
-    public int pedrosoEnemyCollisionDamage;
-    public int copEnemyCollisionDamage;
-    public int morakEnemyCollisionDamage;
-    public int ortizEnemyCollisionDamage;
-    public int skeletonEnemyCollisionDamage;
-    public int urielEnemyCollisionDamage;
-    public int goblinEnemyCollisionDamage;   
+    public bool enemyBulletHitActivate;      
     
 
     [Header("Character Durabilities")]
@@ -81,9 +46,7 @@ public class PlayerData : ScriptableObject
     public static int currentCharacterDurability;
 
 
-    [Header("Enemy Tag")]
-    public string currentEnemyName;
-
+    
     [Header("Enemy Names")]
     public const string clown = "Clown(Clone)";
     public const string monster = "Monster(Clone)";
@@ -269,9 +232,8 @@ public class PlayerData : ScriptableObject
     public int particleCount;
     
 
-    [Header("BulletManager Data")]
-    //public GameObject[] _bulletObject;//If ObjectPool is not using in project, this'll use
-    //public float bulletSpeed = 5f;
+    [Header("Bullet Data")]
+    
 
 
     [Header("Destination Touch Control")]
@@ -301,5 +263,11 @@ public class PlayerData : ScriptableObject
     {
         //Locked,
         //Unlocked
+    }
+
+    public enum Languages
+    {
+        Turkish,
+        English
     }
 }

@@ -49,35 +49,36 @@ MonoBehaviour:
     coinCollectAmount: 50
     levelUpKeys: 1
   - enemyKills: 15
-    coinCollectAmount: 100
-    levelUpKeys: 2
-  - enemyKills: 17
-    coinCollectAmount: 150
-    levelUpKeys: 2
-  - enemyKills: 20
     coinCollectAmount: 200
     levelUpKeys: 2
-  - enemyKills: 22
-    coinCollectAmount: 250
-    levelUpKeys: 2
-  - enemyKills: 24
+  - enemyKills: 17
     coinCollectAmount: 300
     levelUpKeys: 2
+  - enemyKills: 20
+    coinCollectAmount: 500
+    levelUpKeys: 2
+  - enemyKills: 22
+    coinCollectAmount: 700
+    levelUpKeys: 2
+  - enemyKills: 24
+    coinCollectAmount: 900
+    levelUpKeys: 2
   - enemyKills: 26
-    coinCollectAmount: 350
+    coinCollectAmount: 1200
     levelUpKeys: 2
   - enemyKills: 28
-    coinCollectAmount: 400
+    coinCollectAmount: 1300
     levelUpKeys: 2
   - enemyKills: 30
-    coinCollectAmount: 450
+    coinCollectAmount: 1400
     levelUpKeys: 2
   - enemyKills: 32
-    coinCollectAmount: 500
+    coinCollectAmount: 1500
     levelUpKeys: 2
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
   bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
+  currentLevelUpKeysText: {fileID: 0}
   scoreMissionCompletedImage: {fileID: 0}
   enemyKillMissionCompletedImage: {fileID: 0}
   levelUpKeyMissionCompletedImage: {fileID: 0}

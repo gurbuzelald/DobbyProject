@@ -35,13 +35,13 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         public float _touchY;
     }
     private InputMovement inputMovement;
-    struct PlayerObjects
+    public struct PlayerObjects
     {
         public Rigidbody playerRigidbody;
         public Slider healthBarSlider;
         public Animator characterAnimator;
     }
-    PlayerObjects playerObjects = new PlayerObjects();
+    public PlayerObjects playerObjects = new PlayerObjects();
 
 
     [HideInInspector]
@@ -65,6 +65,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public EnemyData _enemyData;
     public BulletData _bulletData;
     public LevelData _levelData;
+    public BulletData enemyBulletData;
 
     [Header("Current Spawn Transforms")]
     public Transform _particleTransform;
@@ -104,8 +105,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public TextMeshProUGUI bulletPackAmountText;
     [HideInInspector]
     public GameObject _healthBarObject;
-    [SerializeField] GameObject _topCanvasHealthBarObject;
-    [SerializeField] Slider _topCanvasHealthBarSlider;
+    public GameObject _topCanvasHealthBarObject;
+    public Slider _topCanvasHealthBarSlider;
 
     float timer = 0;
     public static float randomEnemyXPos;
@@ -185,7 +186,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         else
         {
-            StartCoroutine(playerInterfaces.iPlayerShoot.delayFireWalkDisactivity(_playerData, 4f));
+            StartCoroutine(playerInterfaces.iPlayerShoot.delayFireWalkDisactivity(_playerData, 0f));
         }
         if (_playerData.isPlayable && _playerController.fire && !_playerData.isWinning)
         {
@@ -206,7 +207,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         Movement(_playerData);//PlayerStatement
         Rotation(_playerData);
-        GetAttackFromEnemy(ref _playerData, ref _topCanvasHealthBarSlider, ref playerObjects.healthBarSlider, ref _healthBarObject, ref _particleTransform);
+        //GetAttackFromEnemy(ref _playerData, ref _topCanvasHealthBarSlider, ref playerObjects.healthBarSlider, ref _healthBarObject, ref _particleTransform);
         DontFallDown();
 
         IncreaseHealthWhenEnemyKilledAtUpdate(5);
@@ -268,7 +269,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 //PlayerData
                 _playerData.isGround = false;
             }
-            if (collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()) || collision.collider.CompareTag(SceneController.Tags.CloneDobby.ToString()))
+            if (collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()))
             {
                 if (playerObjects.healthBarSlider.value == 0)
                 {
@@ -283,6 +284,11 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                         //Hit
                         collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable = false;
                     }
+                    else if(collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) && collision.gameObject.GetComponent<EnemyManager>()._healthBar)
+                    {
+                        collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable = true;
+                    }
+
                     if (collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable)
                     {
                         //Touch ParticleEffect
@@ -294,7 +300,10 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
                         //PlayerData
                         CheckEnemyCollisionDamage(collision, ref _playerData);
-                        playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData, _playerData.currentEnemyCollisionDamage, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+                        playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData,
+                            collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage,
+                            ref _healthBarObject, ref playerObjects.healthBarSlider,
+                            ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
                     }
                 }
             }
@@ -479,7 +488,9 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             StartCoroutine(playerInterfaces.iPlayerTrigger.DamageArrowIsLookAtEnemy(other, _damageArrow));
 
-            playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData, _playerData.currentEnemyBulletDamage, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+            playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData,
+                enemyBulletData.currentEnemyBulletDamage,
+                ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
             //Touch ParticleEffect
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);

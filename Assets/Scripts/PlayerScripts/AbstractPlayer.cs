@@ -386,88 +386,14 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else
         {
-            _playerData.playerSpeed = 2f;
+            _playerData.playerSpeed = _playerData.dobbySpeed;
         }
     }
 
     #endregion
 
     #region //Update Functions
-    public virtual void GetAttackFromEnemy(ref PlayerData _playerData, ref Slider _topCanvasHealthBarSlider, ref Slider healthBarSlider, ref GameObject _healthBarObject, ref Transform _particleTransform)
-    {
-        if (_playerData.isDecreaseHealth && _playerData.decreaseCounter == 0 && healthBarSlider.value > 0)
-        {
-            CheckEnemyAttackDamage(ref _playerData);
-
-            DecreaseHealth(ref _playerData, _playerData.currentEnemyAttackDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
-
-            //Touch ParticleEffect
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
-
-            //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetEnemyHit);
-
-
-            _playerData.isDecreaseHealth = false;
-
-            _playerData.decreaseCounter++;
-            StartCoroutine(DelayDecreaseCounterZero(_playerData));
-        }
-        else if (healthBarSlider.value <= 0 && _playerData.isDecreaseHealth)
-        {
-            _playerData.isPlayable = false;
-            _playerData.isDying = true;
-            StartCoroutine(PlayerManager.GetInstance.DelayDestroy(7f));
-
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-
-            _playerData.isDecreaseHealth = false;
-        }
-    }
-    public virtual void CheckEnemyAttackDamage(ref PlayerData _playerData)
-    {
-        if (_playerData.currentEnemyName == PlayerData.clown)
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.clownEnemyAttackDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.monster)
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.monsterEnemyAttackDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.prisoner)
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.prisonerEnemyAttackDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.pedroso)
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.pedrosoEnemyAttackDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.ortiz)
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.ortizEnemyAttackDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.skeleton)
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.skeletonEnemyAttackDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.uriel)
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.urielEnemyAttackDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.goblin)
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.goblinEnemyAttackDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.cop)
-        {
-            _playerData.currentEnemyAttackDamage = _playerData.copEnemyAttackDamage;
-        }
-    }
-    IEnumerator DelayDecreaseCounterZero(PlayerData _playerData)
-    {
-        yield return new WaitForSeconds(1f);
-        _playerData.decreaseCounter = 0;
-    }
+    
     #endregion
 
     #region //Shoot
@@ -1256,43 +1182,51 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     public virtual void CheckEnemyCollisionDamage(Collision collision, ref PlayerData _playerData)
     {
 
-        _playerData.currentEnemyName = collision.gameObject.name;
+        collision.gameObject.transform.GetComponent<EnemyManager>().enemyData.currentEnemyName = collision.gameObject.name;
 
-        if (_playerData.currentEnemyName == PlayerData.clown)
+
+        switch (collision.gameObject.transform.GetComponent<EnemyManager>().enemyData.currentEnemyName)
         {
-            _playerData.currentEnemyCollisionDamage = _playerData.clownEnemyCollisionDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.monster)
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.monsterEnemyCollisionDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.prisoner)
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.prisonerEnemyCollisionDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.pedroso)
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.pedrosoEnemyCollisionDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.cop)
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.copEnemyCollisionDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.ortiz)
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.ortizEnemyCollisionDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.skeleton)
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.skeletonEnemyCollisionDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.uriel)
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.urielEnemyCollisionDamage;
-        }
-        else if (_playerData.currentEnemyName == PlayerData.goblin)
-        {
-            _playerData.currentEnemyCollisionDamage = _playerData.goblinEnemyCollisionDamage;
+            case PlayerData.clown:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.clownEnemyCollisionDamage;
+                break;
+            case PlayerData.monster:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.monsterEnemyCollisionDamage;
+                break;
+            case PlayerData.prisoner:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.prisonerEnemyCollisionDamage;
+                break;
+            case PlayerData.pedroso:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.pedrosoEnemyCollisionDamage;
+                break;
+            case PlayerData.cop:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                   collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.copEnemyCollisionDamage;
+                break;
+            case PlayerData.ortiz:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.ortizEnemyCollisionDamage;
+                break;
+            case PlayerData.skeleton:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.skeletonEnemyCollisionDamage;
+                break;
+            case PlayerData.uriel:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.urielEnemyCollisionDamage;
+                break;
+            case PlayerData.goblin:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.goblinEnemyCollisionDamage;
+                break;
+            default:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.clownEnemyCollisionDamage;
+                break;
         }
         
     }
@@ -1660,7 +1594,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 //PlayerData
                 if (_playerData.extraSpeed)
                 {
-                    _playerData.playerSpeed = _initPlayerSpeed * 5f;
+                    _playerData.playerSpeed = _initPlayerSpeed;
                 }
                 if (_playerData.normalSpeed)
                 {
@@ -1670,7 +1604,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             else if (_playerData.isRunning)
             {
                 //PlayerData
-                _playerData.playerSpeed = _initPlayerSpeed * 1.3f;
+                //_playerData.playerSpeed = _initPlayerSpeed * 1.3f;
             }
             else
             {

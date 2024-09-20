@@ -27,7 +27,10 @@ public class ScoreController : AbstractPlayer<ScoreController>
 
         _scoreAmount = 0;
 
-        _scoreText.text = _scoreAmount.ToString();
+        if (_scoreText)
+        {
+            _scoreText.text = _scoreAmount.ToString();
+        }        
 
         if (GameObject.Find("LevelUpController"))
         {
@@ -47,9 +50,9 @@ public class ScoreController : AbstractPlayer<ScoreController>
             if (SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.PickCharacter.ToString() ||
              SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.PickWeapon.ToString())
             {
-                if (levelUpController)
+                if (levelUpController && _scoreText)
                 {
-                    _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString() + "/" +
+                    _scoreText.text = _scoreAmount + "/" +
                                   levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount;
                 }
             }
@@ -62,10 +65,10 @@ public class ScoreController : AbstractPlayer<ScoreController>
         {
             avaliableCoinText.text = playerCoinData.avaliableCoin.ToString();
         }
-        if (enemyKillValueText)
+        if (enemyKillValueText && levelUpController)
         {
             enemyKillValueText.text = EnemyData.enemyDeathCount.ToString() + "/" +
-                                     levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills; ;
+                                     levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills;
         }
         readWrite.SaveCoinToJson();
 
@@ -77,10 +80,16 @@ public class ScoreController : AbstractPlayer<ScoreController>
         }
         else if (SceneController.playAgain)
         {
-            playerCoinData.avaliableCoin -= PlayerPrefs.GetInt("ScoreAmount");
+            playerCoinData.avaliableCoin -= _scoreAmount;
             //Buraya PlayerCoinData koyulacak. (Json icin)
 
             _scoreAmount = 0;
+            if (_scoreText && levelUpController)
+            {
+                _scoreText.text = _scoreAmount + "/" +
+                          levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount;
+            }
+            
             PlayerPrefs.SetInt("ScoreAmount", 0);
             SceneController.playAgain = false;
         }
@@ -91,9 +100,9 @@ public class ScoreController : AbstractPlayer<ScoreController>
                 _scored = false;
             }
         }
-        if (levelUpController)
+        if (levelUpController && _scoreText)
         {
-            _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString() + "/" +
+            _scoreText.text = _scoreAmount + "/" +
                           levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount;
         }
     }
@@ -112,9 +121,9 @@ public class ScoreController : AbstractPlayer<ScoreController>
             avaliableCoinText.text = playerCoinData.avaliableCoin.ToString();
         }
 
-        if (levelUpController)
+        if (levelUpController && _scoreText)
         {
-            _scoreText.text = PlayerPrefs.GetInt("ScoreAmount").ToString() + "/" +
+            _scoreText.text = _scoreAmount + "/" +
                           levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount;
         }
 

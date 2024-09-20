@@ -43,11 +43,13 @@ public class LevelUpController : MonoBehaviour
     private TextMeshProUGUI enemyKillLevelUpRequirementText;
     private TextMeshProUGUI pickUpCoinLevelUpRequirementText;
     private TextMeshProUGUI levelUpKeysRequirementText;
-    private TextMeshProUGUI currentLevelUpKeysText;
 
-    public Image scoreMissionCompletedImage;
-    public Image enemyKillMissionCompletedImage;
-    public Image levelUpKeyMissionCompletedImage;
+
+    [SerializeField] TextMeshProUGUI currentLevelUpKeysText;
+
+    [SerializeField] Image scoreMissionCompletedImage;
+    [SerializeField] Image enemyKillMissionCompletedImage;
+    [SerializeField] Image levelUpKeyMissionCompletedImage;
 
 
     void Awake()
@@ -61,65 +63,101 @@ public class LevelUpController : MonoBehaviour
         cameraSpawnerObject = GameObject.Find("CameraSpawner");
         mapControllerObject = GameObject.Find("MapController");
         scoreControllerObject = GameObject.Find("ScoreController");
-        _sceneController = GameObject.FindObjectOfType<SceneController>();
+        _sceneController = FindObjectOfType<SceneController>();
 
 
         FindWarnTextObjects();
 
 
-        InitStatements();
+        InitStatements();        
     }
+    private void Start()
+    {
+        if (coinSpawner)
+        {
+            coinSpawner.SetCoinValue(LevelData.currentLevelCount);
+        }
+    }
+
 
     void FindWarnTextObjects()
     {
-        if (GameObject.Find("EnemyKillLevelUpRequirementWarnText").GetComponent<TextMeshProUGUI>())
+        if (SceneController.Scenes.Game.ToString() == _sceneController.CheckSceneName())
         {
-            enemyKillLevelUpRequirementText = GameObject.Find("EnemyKillLevelUpRequirementWarnText").GetComponent<TextMeshProUGUI>();
-            enemyKillLevelUpRequirementText.gameObject.SetActive(true);
+            if (GameObject.Find("EnemyKillLevelUpRequirementWarnText"))
+            {
+                enemyKillLevelUpRequirementText = GameObject.Find("EnemyKillLevelUpRequirementWarnText").GetComponent<TextMeshProUGUI>();
+                enemyKillLevelUpRequirementText.gameObject.SetActive(true);
 
+            }
+            if (GameObject.Find("PickUpCoinLevelUpRequirementWarnText"))
+            {
+                pickUpCoinLevelUpRequirementText = GameObject.Find("PickUpCoinLevelUpRequirementWarnText").GetComponent<TextMeshProUGUI>();
+            }
+            if (GameObject.Find("LevelUpKeysRequirementText"))
+            {
+                levelUpKeysRequirementText = GameObject.Find("LevelUpKeysRequirementText").GetComponent<TextMeshProUGUI>();
+            }
         }
-        if (GameObject.Find("PickUpCoinLevelUpRequirementWarnText").GetComponent<TextMeshProUGUI>())
-        {
-            pickUpCoinLevelUpRequirementText = GameObject.Find("PickUpCoinLevelUpRequirementWarnText").GetComponent<TextMeshProUGUI>();
-        }
-        if (GameObject.Find("LevelUpKeysRequirementText").GetComponent<TextMeshProUGUI>())
-        {
-            levelUpKeysRequirementText = GameObject.Find("LevelUpKeysRequirementText").GetComponent<TextMeshProUGUI>();
-        }
-
-        if (GameObject.Find("LevelUpKeysText").GetComponent<TextMeshProUGUI>())
-        {
-            currentLevelUpKeysText = GameObject.Find("LevelUpKeysText").GetComponent<TextMeshProUGUI>();
-        }
+        
 
         StartCoroutine(SetLevelUpRequirementWarnTextMessages());
     }
 
     IEnumerator SetLevelUpRequirementWarnTextMessages()
     {
-        if (levelUpRequirements != null)
+        if (levelUpRequirements != null && pickUpCoinLevelUpRequirementText)
         {
             pickUpCoinLevelUpRequirementText.text = "";
 
-            enemyKillLevelUpRequirementText.text = "You Need To Take  " +
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                enemyKillLevelUpRequirementText.text = "Bölümü Geçmen İçin" + levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills.ToString() +
+                "  Düşman Öldürmen, ";
+            }
+            else
+            {
+                enemyKillLevelUpRequirementText.text = "You Need To Take  " +
                 levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills.ToString() +
                 "  Kills...";
+            }
+            
             
             yield return new WaitForSeconds(2f);
 
             enemyKillLevelUpRequirementText.text = "";
 
-            pickUpCoinLevelUpRequirementText.text = "Pick Up  " +
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                pickUpCoinLevelUpRequirementText.text = levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount.ToString() +
+                "  Coin Toplaman ve";
+            }
+            else
+            {
+                pickUpCoinLevelUpRequirementText.text = "Pick Up  " +
                 levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount.ToString() +
                 "  Coins...";
+            }
+
+            
 
             yield return new WaitForSeconds(2f);
 
             pickUpCoinLevelUpRequirementText.text = "";
 
-            levelUpKeysRequirementText.text = "Pick Up  " +
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                levelUpKeysRequirementText.text = levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys.ToString() +
+                "  Adet Anahtar Bulman Gerekiyor!!!";
+            }
+            else
+            {
+                levelUpKeysRequirementText.text = "Pick Up  " +
                 levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys.ToString() +
                 "  Keys For Level Up!!!";
+            }
+
+                
 
             yield return new WaitForSeconds(3f);
 
@@ -132,29 +170,26 @@ public class LevelUpController : MonoBehaviour
 
     void InitStatements()
     {
-        if (GameObject.Find("ScoreMissionCompletedImage"))
+        if (levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount >= ScoreController._scoreAmount)
         {
-            if (levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount >= ScoreController._scoreAmount)
-            {
-                scoreMissionCompletedImage.gameObject.SetActive(false);
-            }
+            scoreMissionCompletedImage.gameObject.SetActive(false);
         }
 
-        if (GameObject.Find("EnemyKillMissionCompletedImage"))
-        {
-            if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills >= EnemyData.enemyDeathCount)
-            {
-                enemyKillMissionCompletedImage.gameObject.SetActive(false);
-            }
-        }
+        
 
-        if (GameObject.Find("LevelUpKeyMissionCompletedImage"))
+        if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills >= EnemyData.enemyDeathCount)
         {
-            if (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys >= LevelData.currentOwnedLevelUpKeys)
-            {
-                levelUpKeyMissionCompletedImage.gameObject.SetActive(false);
-            }
+            enemyKillMissionCompletedImage.gameObject.SetActive(false);
         }
+        
+
+
+        if (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys >= LevelData.currentOwnedLevelUpKeys)
+        {
+            levelUpKeyMissionCompletedImage.gameObject.SetActive(false);
+        }
+        
+
 
         LevelData.currentOwnedLevelUpKeys = 0;
 
@@ -193,7 +228,7 @@ public class LevelUpController : MonoBehaviour
         {
             scoreController = scoreControllerObject.GetComponent<ScoreController>();
         }
-        coinSpawner.SetCoinValue(LevelData.currentLevelCount);
+              
     }
 
     private void Update()
@@ -210,16 +245,21 @@ public class LevelUpController : MonoBehaviour
 
     IEnumerator AbleToLevelUpMessageText()
     {
-        if (enemyKillLevelUpRequirementText)
+        if (playerData.currentLanguage == PlayerData.Languages.Turkish)
         {
-            enemyKillLevelUpRequirementText.text = "You Can Level Up!!";
-
-            yield return new WaitForSeconds(2f);
-
-            enemyKillLevelUpRequirementText.text = "";
-
-            enemyKillLevelUpRequirementText.gameObject.SetActive(false);
+            enemyKillLevelUpRequirementText.text = "Bitiş Alanına Git ve Bölümü Geç!!!";
         }
+        else
+        {
+            enemyKillLevelUpRequirementText.text = "Go To Finish Area And Level Up!!!";
+        }
+        
+
+        yield return new WaitForSeconds(2f);
+
+        enemyKillLevelUpRequirementText.text = "";
+
+        enemyKillLevelUpRequirementText.gameObject.SetActive(false);
     }
 
     int GetCurrentLevelID(LevelData levelData)
@@ -235,18 +275,21 @@ public class LevelUpController : MonoBehaviour
         else if (levelData.currentLevel == LevelData.Levels.Level9) return 8;
         else if (levelData.currentLevel == LevelData.Levels.Level10) return 9;
         return -1;
+
     }
     void CurrentLevelID()
     {
         if (levelData != null)
         {
             LevelData.currentLevelCount = GetCurrentLevelID(levelData);
+
             StartCoroutine(CheckLevelUpRequirementsWhenTriggerFinisArea());
         } 
     }
     IEnumerator CheckLevelUpRequirementsWhenTriggerFinisArea()
     {
         LevelData.currentLevelUpRequirement = GetCurrentLevelID(levelData);
+
         if (levelUpRequirements != null)
         {
             if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills != 0 &&
@@ -255,10 +298,11 @@ public class LevelUpController : MonoBehaviour
             {
                 if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
                     levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys)
+                    levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys)
                 {
                     LevelData.levelCanBeSkipped = true;
                     StartCoroutine(AbleToLevelUpMessageText());
+
 
                     scoreMissionCompletedImage.gameObject.SetActive(true);
 
@@ -266,7 +310,15 @@ public class LevelUpController : MonoBehaviour
 
                     levelUpKeyMissionCompletedImage.gameObject.SetActive(true);
 
-                    requirementMessage = "You Can Level Up!!!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        requirementMessage = "Bölümü Geçmek İçim Bitiş Alanını Bul!!!";
+                    }
+                    else
+                    {
+                        requirementMessage = "Go To Finish Area For Level Up!!!";
+                    }
+                        
 
                     yield return new WaitForSeconds(3f);
 
@@ -274,7 +326,14 @@ public class LevelUpController : MonoBehaviour
                 }
                 if (levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount)
                 {
-                    requirementMessage = "You Have Pretty Enough Coins!!!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        requirementMessage = "Yeterince Coinin Var!!!";
+                    }
+                    else
+                    {
+                        requirementMessage = "You Have Pretty Enough Coins!!!";
+                    }                    
 
                     scoreMissionCompletedImage.gameObject.SetActive(true);
 
@@ -284,7 +343,15 @@ public class LevelUpController : MonoBehaviour
                 }
                 if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount)
                 {
-                    requirementMessage = "Enemy Kills Are Completed!!!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        requirementMessage = "Öldürmen Gereken Düşman Sayısına Ulaştın!!!";
+                    }
+                    else
+                    {
+                        requirementMessage = "You Reached Pretty Enough Enemy Killing!!!";
+                    }
+                    
 
                     enemyKillMissionCompletedImage.gameObject.SetActive(true);
 
@@ -292,13 +359,20 @@ public class LevelUpController : MonoBehaviour
 
                     requirementMessage = "";
                 }
-                if (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys &&
-                    currentLevelUpKeysText)
+                if (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys)
                 {
                     currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString() + "/" +
                                                   levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys;
 
-                    requirementMessage = "Level Up Keys Are Completed!!!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        requirementMessage = "Bütün Anahtarları Buldun!!!";
+                    }
+                    else
+                    {
+                        requirementMessage = "You Found All Keys!!!";
+                    }
+                    
 
                     levelUpKeyMissionCompletedImage.gameObject.SetActive(true);
 
@@ -317,9 +391,9 @@ public class LevelUpController : MonoBehaviour
             else
             {
                 LevelData.levelCanBeSkipped = true;
-            }
-            
-        }        
+            }           
+
+        }
     }
     
     void CheckCompleteLevel()

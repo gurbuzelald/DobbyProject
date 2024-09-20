@@ -23,6 +23,39 @@ MonoBehaviour:
   - {fileID: 4766537959376769809, guid: 09184e7c332494e459c4eb6925522f79, type: 3}
   - {fileID: 2981881977126167581, guid: c4ca995896d51c4478d7397ec113d07e, type: 3}
   - {fileID: 587789775632349523, guid: 7e25305159a90ef45861d6bd25feacd2, type: 3}
+  currentEnemyBulletDamage: 0
+  clownEnemyBulletDamage: 20
+  monsterEnemyBulletDamage: 22
+  prisonerEnemyBulletDamage: 24
+  pedrosoEnemyBulletDamage: 26
+  copEnemyBulletDamage: 28
+  morakEnemyBulletDamage: 30
+  ortizEnemyBulletDamage: 32
+  skeletonEnemyBulletDamage: 34
+  urielEnemyBulletDamage: 36
+  goblinEnemyBulletDamage: 38
+  currentEnemyAttackDamage: 0
+  clownEnemyAttackDamage: 20
+  monsterEnemyAttackDamage: 21
+  prisonerEnemyAttackDamage: 22
+  pedrosoEnemyAttackDamage: 23
+  copEnemyAttackDamage: 24
+  morakEnemyAttackDamage: 25
+  ortizEnemyAttackDamage: 26
+  skeletonEnemyAttackDamage: 27
+  urielEnemyAttackDamage: 28
+  goblinEnemyAttackDamage: 29
+  currentEnemyCollisionDamage: 0
+  clownEnemyCollisionDamage: 12
+  monsterEnemyCollisionDamage: 13
+  prisonerEnemyCollisionDamage: 14
+  pedrosoEnemyCollisionDamage: 15
+  copEnemyCollisionDamage: 16
+  morakEnemyCollisionDamage: 17
+  ortizEnemyCollisionDamage: 18
+  skeletonEnemyCollisionDamage: 19
+  urielEnemyCollisionDamage: 20
+  goblinEnemyCollisionDamage: 21
   swordBulletDelay: 0.05
   weaponBulletDelay: 0.05
   bulletSpeed: 5
@@ -40,7 +73,7 @@ MonoBehaviour:
   electroGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
   ak47GiftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
   axeGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
-  currentShootFrequency: 0.35
+  currentShootFrequency: 0.4
   pistolShootFrequency: 0.4
   axeShootFrequency: 0.35
   bulldogShootFrequency: 0.3
@@ -100,7 +133,7 @@ MonoBehaviour:
   demonUsageLimit: 0
   iceUsageLimit: 0
   electroUsageLimit: 0
-  axeUsageLimit: 2
+  axeUsageLimit: 0
   m4a4UsageLimit: 0
   ak47UsageLimit: 0
   isPistol: 0
@@ -136,7 +169,7 @@ MonoBehaviour:
   isLongHummer: 0
   isClub: 0
   currentSwordName: LowSword
-  currentWeaponName: axe
+  currentWeaponName: pistol
   swordDamageValue: 50
   enemyFireFrequency: 5
   enemyBulletDelayCounter: 0

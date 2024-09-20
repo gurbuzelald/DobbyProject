@@ -36,8 +36,14 @@ public class SceneController : AbstractSceneController<SceneController>
 
     [SerializeField] GameObject levelButton;
     [SerializeField] GameObject levelsObject;
+
+
+    TextMeshProUGUI[] currentTexts = new TextMeshProUGUI[100];
+
+
     void Start()
     {
+        ChangeLanguage();
         CreateLevelButtons();
 
         DefaulthVariableValues();
@@ -52,6 +58,504 @@ public class SceneController : AbstractSceneController<SceneController>
         SetCurrentWeaponAtUpdate();
         SetCurrentCharacterAtUpdate();
     }
+
+    public void ClickChangeLanguageButton()
+    {
+        if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
+        {
+            _playerData.currentLanguage = PlayerData.Languages.English;
+        }
+        else
+        {
+            _playerData.currentLanguage = PlayerData.Languages.Turkish;
+        }
+        ChangeLanguage();
+    }
+
+    public void ChangeLanguage()
+    {
+        if (_playerData)
+        {
+            currentTexts = FindObjectsOfType<TextMeshProUGUI>();
+            ChangeMenuSceneLanguage();
+
+            ChangeGameSceneLanguage();
+
+            ChangeEndSceneLanguage();
+
+            ChangeWinSceneLanguage();
+
+            ChangePickCharacterSceneLanguage();
+
+            ChangePickWeaponSceneLanguage();
+        }
+        
+    }
+
+    void ChangeMenuSceneLanguage()
+    {
+        if (Scenes.Menu.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.Turkish)
+        {
+            foreach (var currentText in currentTexts)
+            {
+                switch (currentText.text)
+                {
+                    case "English":
+                        currentText.text = "Türkçe";
+                        continue;
+                    case "Level 1":
+                        currentText.text = "Bölüm 1";
+                        continue;
+                    case "Pick Character":
+                        currentText.text = "Karakter Seç";
+                        continue;
+                    case "Avaliable Coin":
+                        currentText.text = "Mevcut Coinler";
+                        continue;
+                    case "Coins":
+                        currentText.text = "Coinler";
+                        continue;
+                    case "Default":
+                        currentText.text = "Varsayılan";
+                        continue;
+                    case "X Sensivity :":
+                        currentText.text = "Yatay Yön Hassasiyeti :";
+                        continue;
+                    case "Y Sensivity :":
+                        currentText.text = "Dikey Yön Hassasiyeti :";
+                        continue;
+                    case "Play":
+                        currentText.text = "Oyna";
+                        continue;
+                    case "Levels":
+                        currentText.text = "Bölümler";
+                        continue;
+                    case "Quit":
+                        currentText.text = "Çıkış";
+                        continue;
+                    case "Settings":
+                        currentText.text = "Ayarlar";
+                        continue;
+                    case "Game":
+                        currentText.text = "Oyun";
+                        continue;
+                    case "Player Sound Effects :":
+                        currentText.text = "Oyuncu Ses Efekti :";
+                        continue;
+                    case "Enemy Sound Effects :":
+                        currentText.text = "Düşman Ses Efekti :";
+                        continue;
+                    case "Menu Sound Effects :":
+                        currentText.text = "Menü Ses Efekti :";
+                        continue;
+                }
+            }
+        }
+        else if (Scenes.Menu.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.English)
+        {
+            foreach (var currentText in currentTexts)
+            {
+                switch (currentText.text)
+                {
+                    case "Türkçe":
+                        currentText.text = "English";
+                        continue;
+                    case "Bölüm 1":
+                        currentText.text = "Level 1";
+                        continue;
+                    case "Karakter Seç":
+                        currentText.text = "Pick Character";
+                        continue;
+                    case "Mevcut Coinler":
+                        currentText.text = "Avaliable Coin";
+                        continue;
+                    case "Coinler":
+                        currentText.text = "Coins";
+                        continue;
+                    case "Varsayılan":
+                        currentText.text = "Default";
+                        continue;
+                    case "Yatay Yön Hassasiyeti :":
+                        currentText.text = "X Sensivity :";
+                        continue;
+                    case "Dikey Yön Hassasiyeti :":
+                        currentText.text = "X Sensivity :";
+                        continue;
+                    case "Oyna":
+                        currentText.text = "Play";
+                        continue;
+                    case "Bölümler":
+                        currentText.text = "Levels";
+                        continue;
+                    case "Çıkış":
+                        currentText.text = "Quit";
+                        continue;
+                    case "Ayarlar":
+                        currentText.text = "Settings";
+                        continue;
+                    case "Oyun":
+                        currentText.text = "Game";
+                        continue;
+                    case "Oyuncu Ses Efekti :":
+                        currentText.text = "Player Sound Effects :";
+                        continue;
+                    case "Düşman Ses Efekti :":
+                        currentText.text = "Enemy Sound Effects :";
+                        continue;
+                    case "Menü Ses Efekti :":
+                        currentText.text = "Menu Sound Effects :";
+                        continue;
+                }
+            }
+        }
+    }
+
+    void ChangeGameSceneLanguage()
+    {
+        if (Scenes.Game.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.Turkish)
+        {
+            foreach (var currentText in currentTexts)
+            {
+                switch (currentText.text)
+                {
+                    case "Health":
+                        currentText.text = "Sağlık";
+                        continue;
+                    case "Active":
+                        currentText.text = "Aktif";
+                        continue;
+                    case "Sword":
+                        currentText.text = "Kılıç";
+                        continue;
+                    case "Run":
+                        currentText.text = "Koş";
+                        continue;
+                    case "Jump":
+                        currentText.text = "Zıpla";
+                        continue;
+                    case "Shoot":
+                        currentText.text = "Ateş Et";
+                        continue;
+                    case "Keys:":
+                        currentText.text = "Anahtarlar:";
+                        continue;
+                    case "Kills:":
+                        currentText.text = "Öldürmeler:";
+                        continue;
+                    case "Level1":
+                        currentText.text = "Bölüm 1";
+                        continue;
+                    case "Level2":
+                        currentText.text = "Bölüm 2";
+                        continue;
+                    case "Level3":
+                        currentText.text = "Bölüm 3";
+                        continue;
+                    case "Level4":
+                        currentText.text = "Bölüm 4";
+                        continue;
+                    case "Level5":
+                        currentText.text = "Bölüm 5";
+                        continue;
+                    case "Level6":
+                        currentText.text = "Bölüm 6";
+                        continue;
+                    case "Level7":
+                        currentText.text = "Böülüm 7";
+                        continue;
+                    case "Level8":
+                        currentText.text = "Bölüm 8";
+                        continue;
+                    case "Level9":
+                        currentText.text = "Bölüm 9";
+                        continue;
+                    case "Level10":
+                        currentText.text = "Bölüm 10";
+                        continue;
+                    case "Avaliable Coin":
+                        currentText.text = "Mevcut Coinler";
+                        continue;
+                    case "Score :":
+                        currentText.text = "Skor :";
+                        continue;
+                    case "Time : ":
+                        currentText.text = "Zaman:";
+                        continue;
+                    case "X Sensivity :":
+                        currentText.text = "Yatay Hassasiyet :";
+                        continue;
+                    case "Y Sensivity :":
+                        currentText.text = "Dikey Hassasiyet :";
+                        continue;
+                    case "Player Sound Effects :":
+                        currentText.text = "Oyuncu Ses Efekti";
+                        continue;
+                    case "Enemy Sound Effects :":
+                        currentText.text = "Düşman Ses Efekti";
+                        continue;
+                    case "Menu Sound Effects :":
+                        currentText.text = "Menü Ses Efekti";
+                        continue;
+                    case "Default":
+                        currentText.text = "Varsayılan";
+                        continue;
+                    case "Game :":
+                        currentText.text = "Oyun : ";
+                        continue;
+                    case "Menu":
+                        currentText.text = "Menü";
+                        continue;
+                }
+            }
+        }
+    }
+
+    void ChangeEndSceneLanguage()
+    {
+        if (Scenes.End.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.Turkish)
+        {
+            foreach (var currentText in currentTexts)
+            {
+                switch (currentText.text)
+                {
+                    case "You Lost!! Maybe You need a better Character or Weapon!!":
+                        currentText.text = "Kaybettin!!! Belki Daha İyi Bir Karaktere ya da Silaha İhtiyacın Var!!!";
+                        continue;
+                    case "Quit":
+                        currentText.text = "Çıkış";
+                        continue;
+                    case "Menu":
+                        currentText.text = "Menü";
+                        continue;
+                    case "Avaliable Coins:":
+                        currentText.text = "Mevcut Coinler:";
+                        continue;
+                    case "Or Go to Menu and Keep On Adventuring!!":
+                        currentText.text = "Ya da Menüye Git ve Macerada Kal!!!";
+                        continue;
+                    case "Maybe You Need A Better Character Or Weapon!!!":
+                        currentText.text = "Belki Daha İyi Bir Karaktere ya da Silaha İhtiyacın Var!!!";
+                        continue;
+                    case "Game Coins:":
+                        currentText.text = "Oyun Coinleri:";
+                        continue;
+                    case "Let's Start From The Beginning!":
+                        currentText.text = "Hadi En Baştan Başlayalım!!!";
+                        continue;
+                    case "Play":
+                        currentText.text = "Oyna";
+                        continue;
+                    case "Levels":
+                        currentText.text = "Bölümler";
+                        continue;
+                    case "Settings":
+                        currentText.text = "Ayarlar";
+                        continue;
+                    case "Game":
+                        currentText.text = "Oyun";
+                        continue;
+                    case "Player Sound Effects :":
+                        currentText.text = "Oyuncu Ses Efekti :";
+                        continue;
+                    case "Enemy Sound Effects :":
+                        currentText.text = "Düşman Ses Efekti :";
+                        continue;
+                    case "Menu Sound Effects :":
+                        currentText.text = "Menü Ses Efekti :";
+                        continue;
+                }
+            }
+        }
+    }
+
+    void ChangeWinSceneLanguage()
+    {
+        if (Scenes.Win.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.Turkish)
+        {            
+            foreach (var currentText in currentTexts)
+            {
+                switch (currentText.text)
+                {
+                    case "You Won!!":
+                        currentText.text = "Kazandın!!!";
+                        continue;
+                    case "Congratulations!!!":
+                        currentText.text = "Tebrikler!!!";
+                        continue;
+                    case "Go To Menu      or":
+                        currentText.text = "Menüye Git ya da";
+                        continue;
+                    case "Play Again":
+                        currentText.text = "Tekrar Oyna";
+                        continue;
+                    case "Avaliable Coin:":
+                        currentText.text = "Mevcut Coin:";
+                        continue;
+                    case "Maybe You Need A Better Character Or Weapon!!!":
+                        currentText.text = "Belki Daha İyi Bir Karaktere ya da Silaha İhtiyacın Var!!!";
+                        continue;
+                    case "Game Coins:":
+                        currentText.text = "Oyun Coinleri:";
+                        continue;
+                    case "Menu":
+                        currentText.text = "Menü";
+                        continue;
+                    case "Score:":
+                        currentText.text = "Skor:";
+                        continue;                    
+                }
+            }
+        }
+    }
+
+    void ChangePickCharacterSceneLanguage()
+    {
+        if (Scenes.PickCharacter.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.Turkish)
+        {
+            foreach (var currentText in currentTexts)
+            {
+
+                Debug.Log(currentText.text);
+                switch (currentText.text)
+                {
+                    case "Locked":
+                        currentText.text = "Kilitli";
+                        continue;
+                    case "Menu":
+                        currentText.text = "Menü";
+                        continue;
+                    case "Choose Weapon":
+                        currentText.text = "Silah Seç";
+                        continue;
+                    case "Speed:":
+                        currentText.text = "Hız:";
+                        continue;
+                    case "Jump Force:":
+                        currentText.text = "Zıplama Gücü:";
+                        continue;
+                    case "Durability:":
+                        currentText.text = "Dayanıklılık:";
+                        continue;
+                    case "Game Coins:":
+                        currentText.text = "Oyun Paraları:";
+                        continue;
+                    case "Score:":
+                        currentText.text = "Skor:";
+                        continue;
+                }
+            }
+        }
+    }
+
+    void ChangePickWeaponSceneLanguage()
+    {
+        if (Scenes.PickWeapon.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.Turkish)
+        {
+            foreach (var currentText in currentTexts)
+            {
+                switch (currentText.text)
+                {
+                    case "locked":
+                        currentText.text = "Kilitli";
+                        continue;
+                    case "Strength:":
+                        currentText.text = "Güç";
+                        continue;
+                    case "Menu:":
+                        currentText.text = "Menü:";
+                        continue;
+                    case "Avaliable Coin:":
+                        currentText.text = "Mevcut Coinler:";
+                        continue;
+                    case "Game Coins:":
+                        currentText.text = "Oyun Paraları:";
+                        continue;
+                    case "Score:":
+                        currentText.text = "Skor:";
+                        continue;
+                }
+            }
+        }
+    }
+
+    public void ResetWeaponsAndCharacters()
+    {
+        PlayerPrefs.SetFloat("ResetGame", 1);
+    }
+
+    public void CheckNeedResetWeaponsAndCharacters()
+    {//For Developer
+        ResetWeaponsAndCharacters();
+        if (PlayerPrefs.GetFloat("ResetGame") == 1)
+        {
+            PlayerPrefs.SetFloat("PistolLock", 0);
+            PlayerPrefs.SetFloat("AxeLock", 0);
+            PlayerPrefs.SetFloat("BulldogLock", 0);
+            PlayerPrefs.SetFloat("CowLock", 0);
+            PlayerPrefs.SetFloat("CrystalLock", 0);
+            PlayerPrefs.SetFloat("DemonLock", 0);
+            PlayerPrefs.SetFloat("IceLock", 0);
+            PlayerPrefs.SetFloat("ElectroLock", 0);
+            PlayerPrefs.SetFloat("Ak47Lock", 0);
+            PlayerPrefs.SetFloat("M4A4Lock", 0);
+
+            PlayerPrefs.SetFloat("AxeUsageCount", 0);
+            PlayerPrefs.SetFloat("BulldogUsageCount", 0);
+            PlayerPrefs.SetFloat("CowUsageCount", 0);
+            PlayerPrefs.SetFloat("CrystalUsageCount", 0);
+            PlayerPrefs.SetFloat("DemonUsageCount", 0);
+            PlayerPrefs.SetFloat("IceUsageCount", 0);
+            PlayerPrefs.SetFloat("ElectroUsageCount", 0);
+            PlayerPrefs.SetFloat("Ak47UsageCount", 0);
+            PlayerPrefs.SetFloat("M4A4UsageCount", 0);
+
+            bulletData.axeLock = BulletData.locked;
+            bulletData.bulldogLock = BulletData.locked;
+            bulletData.cowLock = BulletData.locked;
+            bulletData.crystalLock = BulletData.locked;
+            bulletData.demonLock = BulletData.locked;
+            bulletData.iceLock = BulletData.locked;
+            bulletData.electroLock = BulletData.locked;
+            bulletData.ak47Lock = BulletData.locked;
+            bulletData.m4a4Lock = BulletData.locked;
+
+
+            PlayerPrefs.SetFloat("DobbyLock", 0);
+            PlayerPrefs.SetFloat("JoleenLock", 0);
+            PlayerPrefs.SetFloat("GlassyLock", 0);
+            PlayerPrefs.SetFloat("LusthLock", 0);
+            PlayerPrefs.SetFloat("GuardLock", 0);
+            PlayerPrefs.SetFloat("MichelleLock", 0);
+            PlayerPrefs.SetFloat("EveLock", 0);
+            PlayerPrefs.SetFloat("AjLock", 0);
+            PlayerPrefs.SetFloat("BossLock", 0);
+            PlayerPrefs.SetFloat("TyLock", 0);
+            PlayerPrefs.SetFloat("MremirehLock", 0);
+
+            _playerData.glassyLock = _playerData.locked;
+            _playerData.joleenLock = _playerData.locked;
+            _playerData.lusthLock = _playerData.locked;
+            _playerData.guardLock = _playerData.locked;
+            _playerData.michelleLock = _playerData.locked;
+            _playerData.eveLock = _playerData.locked;
+            _playerData.ajLock = _playerData.locked;
+            _playerData.bossLock = _playerData.locked;
+            _playerData.tyLock = _playerData.locked;
+            _playerData.mremirehLock = _playerData.locked;
+
+            _playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
+
+            PlayerPrefs.SetInt("AvaliableCoin", 0);
+
+            levelData.currentLevel = LevelData.Levels.Level1;
+
+            LevelData.highestLevel = 0;
+            PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
+            LevelData.currentLevelCount = 0;
+        }
+    }
+
+
 
     void SetCurrentLevelAtStart()
     {
@@ -206,7 +710,8 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         if (bulletData.currentWeaponName == BulletData.axe && bulletData.axeUsageLimit > 0)
         {
-            bulletData.axeUsageLimit -= 1;
+            --bulletData.axeUsageLimit;
+            PlayerPrefs.SetInt("AxeUsageCount", bulletData.axeUsageLimit);
         }
         else if(bulletData.currentWeaponName == BulletData.axe && bulletData.axeUsageLimit == 0)
         {
@@ -215,7 +720,8 @@ public class SceneController : AbstractSceneController<SceneController>
 
         if (bulletData.currentWeaponName == BulletData.bulldog && bulletData.bulldogUsageLimit > 0)
         {
-            bulletData.bulldogUsageLimit -= 1;
+            --bulletData.bulldogUsageLimit;
+            PlayerPrefs.SetInt("BulldogUsageCount", bulletData.bulldogUsageLimit);
         }
         else if (bulletData.currentWeaponName == BulletData.bulldog && bulletData.bulldogUsageLimit == 0)
         {
@@ -224,7 +730,8 @@ public class SceneController : AbstractSceneController<SceneController>
 
         if (bulletData.currentWeaponName == BulletData.cow && bulletData.cowUsageLimit > 0)
         {
-            bulletData.cowUsageLimit -= 1;
+            --bulletData.cowUsageLimit;
+            PlayerPrefs.SetInt("CowUsageCount", bulletData.cowUsageLimit);
         }
         else if (bulletData.currentWeaponName == BulletData.cow && bulletData.cowUsageLimit == 0)
         {
@@ -233,7 +740,8 @@ public class SceneController : AbstractSceneController<SceneController>
 
         if (bulletData.currentWeaponName == BulletData.crystal && bulletData.crystalUsageLimit > 0)
         {
-            bulletData.crystalUsageLimit -= 1;
+            --bulletData.crystalUsageLimit;
+            PlayerPrefs.SetInt("CrystalUsageCount", bulletData.crystalUsageLimit);
         }
         else if (bulletData.currentWeaponName == BulletData.crystal && bulletData.crystalUsageLimit == 0)
         {
@@ -242,7 +750,8 @@ public class SceneController : AbstractSceneController<SceneController>
 
         if (bulletData.currentWeaponName == BulletData.demon && bulletData.demonUsageLimit > 0)
         {
-            bulletData.demonUsageLimit -= 1;
+            --bulletData.demonUsageLimit;
+            PlayerPrefs.SetInt("DemonUsageCount", bulletData.demonUsageLimit);
         }
         else if (bulletData.currentWeaponName == BulletData.demon && bulletData.demonUsageLimit == 0)
         {
@@ -251,7 +760,8 @@ public class SceneController : AbstractSceneController<SceneController>
 
         if (bulletData.currentWeaponName == BulletData.ice && bulletData.iceUsageLimit > 0)
         {
-            bulletData.iceUsageLimit -= 1;
+            --bulletData.iceUsageLimit;
+            PlayerPrefs.SetInt("IceUsageCount", bulletData.iceUsageLimit);
         }
         else if (bulletData.currentWeaponName == BulletData.ice && bulletData.iceUsageLimit == 0)
         {
@@ -260,7 +770,8 @@ public class SceneController : AbstractSceneController<SceneController>
 
         if (bulletData.currentWeaponName == BulletData.electro && bulletData.electroUsageLimit > 0)
         {
-            bulletData.electroUsageLimit -= 1;
+            --bulletData.electroUsageLimit;
+            PlayerPrefs.SetInt("ElectroUsageCount", bulletData.electroUsageLimit);
         }
         else if (bulletData.currentWeaponName == BulletData.electro && bulletData.electroUsageLimit == 0)
         {
@@ -269,7 +780,8 @@ public class SceneController : AbstractSceneController<SceneController>
 
         if (bulletData.currentWeaponName == BulletData.ak47 && bulletData.ak47UsageLimit > 0)
         {
-            bulletData.ak47UsageLimit -= 1;
+            --bulletData.ak47UsageLimit;
+            PlayerPrefs.SetInt("Ak47UsageCount", bulletData.ak47UsageLimit);
         }
         else if (bulletData.currentWeaponName == BulletData.ak47 && bulletData.ak47UsageLimit == 0)
         {
@@ -278,7 +790,8 @@ public class SceneController : AbstractSceneController<SceneController>
 
         if (bulletData.currentWeaponName == BulletData.m4a4 && bulletData.m4a4UsageLimit > 0)
         {
-            bulletData.m4a4UsageLimit -= 1;
+            --bulletData.m4a4UsageLimit;
+            PlayerPrefs.SetInt("M4A4UsageCount", bulletData.m4a4UsageLimit);
         }
         else if (bulletData.currentWeaponName == BulletData.m4a4 && bulletData.m4a4UsageLimit == 0)
         {
@@ -310,86 +823,102 @@ public class SceneController : AbstractSceneController<SceneController>
         DecreaseWeaponUsageLimit();
     }
 
+    
+
     void SetHighestLevel()
     {
         if (levelData)
         {
             if (levelData.currentLevel == LevelData.Levels.Level1)
             {
-                LevelData.highestLevel = 0;
+                if (PlayerPrefs.GetInt("HighestLevel") == 0)
+                {
+                    LevelData.highestLevel = 0;
+                    PlayerPrefs.SetInt("HighestLevel", 0);
+                }                
             }
-            if (levelData.currentLevel == LevelData.Levels.Level2)
+            else if (levelData.currentLevel == LevelData.Levels.Level2)
             {
-                if (LevelData.highestLevel <= 1)
+                if (PlayerPrefs.GetInt("HighestLevel") <= 1)
                 {
                     LevelData.highestLevel = 1;
+                    PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
             else if (levelData.currentLevel == LevelData.Levels.Level3)
             {
-                if (LevelData.highestLevel <= 2)
+                if (PlayerPrefs.GetInt("HighestLevel") <= 2)
                 {
                     LevelData.highestLevel = 2;
+                    PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
             else if (levelData.currentLevel == LevelData.Levels.Level4)
             {
-                if (LevelData.highestLevel <= 3)
+                if (PlayerPrefs.GetInt("HighestLevel") <= 3)
                 {
                     LevelData.highestLevel = 3;
+                    PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
             else if (levelData.currentLevel == LevelData.Levels.Level5)
             {
-                if (LevelData.highestLevel <= 4)
+                if (PlayerPrefs.GetInt("HighestLevel") <= 4)
                 {
                     LevelData.highestLevel = 4;
+                    PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
             else if (levelData.currentLevel == LevelData.Levels.Level6)
             {
-                if (LevelData.highestLevel <= 5)
+                if (PlayerPrefs.GetInt("HighestLevel") <= 5)
                 {
                     LevelData.highestLevel = 5;
+                    PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
             else if (levelData.currentLevel == LevelData.Levels.Level7)
             {
-                if (LevelData.highestLevel <= 6)
+                if (PlayerPrefs.GetInt("HighestLevel") <= 6)
                 {
                     LevelData.highestLevel = 6;
+                    PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
             else if (levelData.currentLevel == LevelData.Levels.Level8)
             {
-                if (LevelData.highestLevel <= 7)
+                if (PlayerPrefs.GetInt("HighestLevel") <= 7)
                 {
                     LevelData.highestLevel = 7;
+                    PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
             else if (levelData.currentLevel == LevelData.Levels.Level9)
             {
-                if (LevelData.highestLevel <= 8)
+                if (PlayerPrefs.GetInt("HighestLevel") <= 8)
                 {
                     LevelData.highestLevel = 8;
+                    PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
             else if (levelData.currentLevel == LevelData.Levels.Level10)
             {
-                if (LevelData.highestLevel <= 9)
+                if (PlayerPrefs.GetInt("HighestLevel") <= 9)
                 {
                     LevelData.highestLevel = 9;
+                    PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
         }
+
     }
 
     void CreateLevelButtons()
     {
         SetHighestLevel();
-        if (levelData && CheckSceneName() == Scenes.Levels.ToString())
+        if (levelData && CheckSceneName() == Scenes.Levels.ToString() && levelsObject)
         {
-            for (int i = 0; i < LevelData.highestLevel + 1; i++)
+            for (int i = 0; i < PlayerPrefs.GetInt("HighestLevel") + 1; i++)
             {
                 GameObject levelButtonObject = Instantiate(levelButton, new Vector3(levelButton.transform.localPosition.x,
                     levelButton.transform.localPosition.y,
@@ -429,9 +958,6 @@ public class SceneController : AbstractSceneController<SceneController>
         DestroySingletonObjects();
         SceneManager.LoadScene(Scenes.Levels.ToString());
     }
-
-
-
 
     public string CheckSceneName()
     {

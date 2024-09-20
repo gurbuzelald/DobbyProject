@@ -18,8 +18,6 @@ public class LockingStatement : MonoBehaviour
 
     void Awake()
     {
-        ResetCharactersLocks();
-
         priceSetting = GameObject.FindObjectOfType<PriceSetting>();
         characterStaffs = GameObject.Find("CharacterStaffs");
 
@@ -32,53 +30,6 @@ public class LockingStatement : MonoBehaviour
     private void OnDisable()
     {
         gameObject.GetComponent<LockingStatement>().enabled = true;
-    }
-    void ResetCharactersLocks()
-    {
-        pickCharacterController = FindObjectOfType<ChooseCharacterController>();
-
-        if (playerData.dobbyLock == playerData.unLocked &&
-            playerData.glassyLock == playerData.unLocked &&
-            playerData.joleenLock == playerData.unLocked &&
-            playerData.guardLock == playerData.unLocked &&
-            playerData.lusthLock == playerData.unLocked &&
-            playerData.eveLock == playerData.unLocked &&
-            playerData.michelleLock == playerData.unLocked &&
-            playerData.ajLock == playerData.unLocked &&
-            playerData.bossLock == playerData.unLocked &&
-            playerData.mremirehLock == playerData.unLocked &&
-            playerData.tyLock == playerData.unLocked &&
-            playerData.resetLocks == playerData.unLocked)
-        {
-            pickCharacterController.ResetTheCharacters();
-
-
-            playerData.dobbyLock = playerData.locked;
-            playerData.glassyLock = playerData.locked;
-            playerData.joleenLock = playerData.locked;
-            playerData.lusthLock = playerData.locked;
-            playerData.eveLock = playerData.locked;
-            playerData.michelleLock = playerData.locked;
-            playerData.ajLock = playerData.locked;
-            playerData.mremirehLock = playerData.locked;
-            playerData.tyLock = playerData.locked;
-            playerData.resetLocks = playerData.locked;
-        }
-        else if (playerData.dobbyLock == playerData.locked &&
-            playerData.glassyLock == playerData.locked &&
-            playerData.joleenLock == playerData.locked &&
-            playerData.guardLock == playerData.locked &&
-            playerData.lusthLock == playerData.locked &&
-            playerData.eveLock == playerData.locked &&
-            playerData.michelleLock == playerData.locked &&
-            playerData.ajLock == playerData.locked &&
-            playerData.bossLock == playerData.locked &&
-            playerData.mremirehLock == playerData.locked &&
-            playerData.tyLock == playerData.locked &&
-            playerData.resetLocks == playerData.locked)
-        {
-            playerData.currentCharacterName = PlayerData.CharacterNames.Joleen;
-        }
     }
     private void Update()
     {

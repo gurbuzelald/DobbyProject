@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MonsterData 2
   m_EditorClassIdentifier: 
   _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
-  currentBulletExplosionParticle: {fileID: 2689552222238927185, guid: 3d4521ca9e6a94bd2a9a4e107b87100f, type: 3}
+  currentBulletExplosionParticle: {fileID: 2689552222238927185, guid: 57a28dad6beae4784a6047213e845170, type: 3}
   currentSwordBulletExplosionParticle: {fileID: 2689552222238927185, guid: 76a9d0317209b42d5a4e6704c3561791, type: 3}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
   getHitClip: {fileID: 8300000, guid: e83b0607beada4fc7a6aa5e1cd158f26, type: 3}
@@ -23,12 +23,12 @@ MonoBehaviour:
   isGround: 1
   isDying: 0
   isWalking: 0
-  isFiring: 0
+  isFiring: 1
   isAttacking: 0
   isTouchable: 1
   isActivateMagnet: 0
-  enemySpeed: 0.28171903
-  bulletDamageValue: 14
+  enemySpeed: 0.27453464
+  bulletDamageValue: 13
   isSpeedZero: 0
   isWalkable: 1
   isActivateCreateEnemy: 0

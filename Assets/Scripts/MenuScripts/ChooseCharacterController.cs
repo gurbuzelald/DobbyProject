@@ -11,6 +11,7 @@ public class ChooseCharacterController : MonoBehaviour
     [SerializeField] GameObject _panelObject;
     [SerializeField] PlayerData playerData;
     [SerializeField] PlayerCoinData playerCoinData;
+    [SerializeField] LevelData levelData;
 
 
     private PlayerController _playerController;
@@ -22,10 +23,12 @@ public class ChooseCharacterController : MonoBehaviour
 
     [SerializeField] float menuSlideSpeed;
 
+    private PriceSetting priceSetting;
 
     private void Start()
     {
-
+        priceSetting = FindObjectOfType<PriceSetting>();
+        
         if (playerCoinData.avaliableCoin < 0)
         {
             playerCoinData.avaliableCoin = 0;
@@ -36,7 +39,8 @@ public class ChooseCharacterController : MonoBehaviour
 
 
         CharacterPriceError();
-        
+        GetCharacterUnLockData();
+
 
 
         //infoPanel = new GameObject[gameObject.transform.GetChild(1).GetChild(0).childCount];
@@ -47,6 +51,58 @@ public class ChooseCharacterController : MonoBehaviour
         //ResetTheCharacters();
 
         //characterLockStatesTextsObject = GameObject.Find("CharacterLockStatesTexts");
+    }
+
+    void GetCharacterUnLockData()
+    {
+        if (PlayerPrefs.GetFloat("DobbyLock") == 1)
+        {
+            playerData.dobbyLock = playerData.unLocked;
+        }
+        if (PlayerPrefs.GetFloat("JoleenLock") == 1)
+        {
+            playerData.joleenLock = playerData.unLocked;
+        }
+        if (PlayerPrefs.GetFloat("GlassyLock") == 1)
+        {
+            playerData.glassyLock = playerData.unLocked;
+        }
+        if (PlayerPrefs.GetFloat("LusthLock") == 1)
+        {
+            playerData.lusthLock = playerData.unLocked;
+        }
+        if (PlayerPrefs.GetFloat("GuardLock") == 1)
+        {
+            playerData.guardLock = playerData.unLocked;
+        }
+        if (PlayerPrefs.GetFloat("MichelleLock") == 1)
+        {
+            playerData.michelleLock = playerData.unLocked;
+        }
+        if (PlayerPrefs.GetFloat("EveLock") == 1)
+        {
+            playerData.eveLock = playerData.unLocked;
+        }
+        if (PlayerPrefs.GetFloat("AjLock") == 1)
+        {
+            playerData.ajLock = playerData.unLocked;
+        }
+        if (PlayerPrefs.GetFloat("BossLock") == 1)
+        {
+            playerData.bossLock = playerData.unLocked;
+        }
+        if (PlayerPrefs.GetFloat("TyLock") == 1)
+        {
+            playerData.tyLock = playerData.unLocked;
+        }
+        if (PlayerPrefs.GetFloat("MremirehLock") == 1)
+        {
+            playerData.mremirehLock = playerData.unLocked;
+        }
+        if (priceSetting)
+        {
+            priceSetting.SetCharacterPrices();
+        }        
     }
     void CharacterPriceError()
     {
@@ -241,13 +297,7 @@ public class ChooseCharacterController : MonoBehaviour
             _panelObject.transform.localPosition = new Vector3(-9000f, _panelObject.transform.localPosition.y, _panelObject.transform.localPosition.z);
         }
     }
-    public void ResetTheCharacters()
-    {
-        /*for (int i = 0; i < playerData.avaliableCharacters.Length; i++)
-        {
-            playerData.avaliableCharacters[i] = playerData.unLocked;
-        }*/
-    }
+    
     public void PickJoleen(int avaliableCoinAmount)
     {
         if (_playerController.Joleen && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
@@ -256,9 +306,11 @@ public class ChooseCharacterController : MonoBehaviour
             if (playerData.joleenLock == playerData.locked)
             {
                 playerCoinData.avaliableCoin -= avaliableCoinAmount;
-                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);                
 
                 playerData.joleenLock = playerData.unLocked;
+
+                PlayerPrefs.SetFloat("JoleenLock", 1);
             }
 
             playerData.currentCharacterName = PlayerData.CharacterNames.Joleen;
@@ -302,9 +354,9 @@ public class ChooseCharacterController : MonoBehaviour
             if (playerData.dobbyLock == playerData.locked)
             {
                 playerCoinData.avaliableCoin -= avaliableCoinAmount;
-                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
+                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);                
 
-                playerData.dobbyLock = playerData.unLocked;
+                playerData.dobbyLock = playerData.unLocked;                
             }
 
             playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
@@ -348,6 +400,8 @@ public class ChooseCharacterController : MonoBehaviour
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.glassyLock = playerData.unLocked;
+
+                PlayerPrefs.SetFloat("GlassyLock", 1);
             }
 
             characterPriceErrorTextObjectChilds[2].text = "";
@@ -391,8 +445,9 @@ public class ChooseCharacterController : MonoBehaviour
                 playerCoinData.avaliableCoin -= avaliableCoinAmount;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-
                 playerData.lusthLock = playerData.unLocked;
+
+                PlayerPrefs.SetFloat("LusthLock", 1);
             }
 
             characterPriceErrorTextObjectChilds[3].text = "";
@@ -437,6 +492,8 @@ public class ChooseCharacterController : MonoBehaviour
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.guardLock = playerData.unLocked;
+
+                PlayerPrefs.SetFloat("GuardLock", 1);
             }
 
             characterPriceErrorTextObjectChilds[4].text = "";
@@ -481,6 +538,8 @@ public class ChooseCharacterController : MonoBehaviour
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.eveLock = playerData.unLocked;
+
+                PlayerPrefs.SetFloat("EveLock", 1);
             }
 
             characterPriceErrorTextObjectChilds[5].text = "";
@@ -525,6 +584,8 @@ public class ChooseCharacterController : MonoBehaviour
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.michelleLock = playerData.unLocked;
+
+                PlayerPrefs.SetFloat("MichelleLock", 1);
             }
 
             characterPriceErrorTextObjectChilds[6].text = "";
@@ -570,6 +631,8 @@ public class ChooseCharacterController : MonoBehaviour
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.bossLock = playerData.unLocked;
+
+                PlayerPrefs.SetFloat("BossLock", 1);
             }
 
             characterPriceErrorTextObjectChilds[7].text = "";
@@ -614,6 +677,8 @@ public class ChooseCharacterController : MonoBehaviour
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.ajLock = playerData.unLocked;
+
+                PlayerPrefs.SetFloat("AjLock", 1);
             }
 
             characterPriceErrorTextObjectChilds[8].text = "";
@@ -659,6 +724,8 @@ public class ChooseCharacterController : MonoBehaviour
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.mremirehLock = playerData.unLocked;
+
+                PlayerPrefs.SetFloat("MremirehLock", 1);
             }
 
             characterPriceErrorTextObjectChilds[9].text = "";
@@ -705,6 +772,8 @@ public class ChooseCharacterController : MonoBehaviour
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.tyLock = playerData.unLocked;
+
+                PlayerPrefs.SetFloat("TyLock", 1);
             }
 
             characterPriceErrorTextObjectChilds[10].text = "";
@@ -738,8 +807,4 @@ public class ChooseCharacterController : MonoBehaviour
             }
         }
     }
-
-
-
-    
 }

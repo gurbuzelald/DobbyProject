@@ -7,6 +7,7 @@ public class BulletData : ScriptableObject
     [Header("Player")]
     [Header("WeaponGiftBoxes")]
     public GameObject[] giftBoxes;
+    
 
     [Header("Bullet Transform")]
     public float swordBulletDelay = 0.05f;
@@ -88,16 +89,16 @@ public class BulletData : ScriptableObject
     //public string[] avaliableWeapons= new string[10];
 
     [Header("Weapon Locking Modes")]
-    public string pistolLock = "locked";
-    public string axeLock = "locked";
-    public string bulldogLock = "locked";
-    public string cowLock = "locked";
-    public string crystalLock = "locked";
-    public string demonLock = "locked";
-    public string iceLock = "locked";
-    public string electroLock = "locked";
-    public string ak47Lock = "locked";
-    public string m4a4Lock = "locked";
+    public string pistolLock;
+    public string axeLock;
+    public string bulldogLock;
+    public string cowLock;
+    public string crystalLock;
+    public string demonLock;
+    public string iceLock;
+    public string electroLock;
+    public string ak47Lock;
+    public string m4a4Lock;
     public string resetLocks = "locked";
     public const string locked = "locked";
     public string unLocked = "";
@@ -151,6 +152,47 @@ public class BulletData : ScriptableObject
     public const string skeletonBullet = "SkeletonBullet(Clone)";
     public const string urielBullet = "UrielBullet(Clone)";
     public const string goblinBullet = "GoblinBullet(Clone)";
+
+
+    [Header("Enemy Bullet Damages")]
+    public int currentEnemyBulletDamage;
+    public int clownEnemyBulletDamage;
+    public int monsterEnemyBulletDamage;
+    public int prisonerEnemyBulletDamage;
+    public int pedrosoEnemyBulletDamage;
+    public int copEnemyBulletDamage;
+    public int morakEnemyBulletDamage;
+    public int ortizEnemyBulletDamage;
+    public int skeletonEnemyBulletDamage;
+    public int urielEnemyBulletDamage;
+    public int goblinEnemyBulletDamage;
+
+    [Header("Enemy Attack Damages")]
+    public int currentEnemyAttackDamage;
+    public int clownEnemyAttackDamage;
+    public int monsterEnemyAttackDamage;
+    public int prisonerEnemyAttackDamage;
+    public int pedrosoEnemyAttackDamage;
+    public int copEnemyAttackDamage;
+    public int morakEnemyAttackDamage;
+    public int ortizEnemyAttackDamage;
+    public int skeletonEnemyAttackDamage;
+    public int urielEnemyAttackDamage;
+    public int goblinEnemyAttackDamage;
+
+
+    [Header("Enemy Collision Damages")]
+    public int currentEnemyCollisionDamage;
+    public int clownEnemyCollisionDamage;
+    public int monsterEnemyCollisionDamage;
+    public int prisonerEnemyCollisionDamage;
+    public int pedrosoEnemyCollisionDamage;
+    public int copEnemyCollisionDamage;
+    public int morakEnemyCollisionDamage;
+    public int ortizEnemyCollisionDamage;
+    public int skeletonEnemyCollisionDamage;
+    public int urielEnemyCollisionDamage;
+    public int goblinEnemyCollisionDamage;
 
 
     public enum WeaponNames
