@@ -103,6 +103,9 @@ public class SceneController : AbstractSceneController<SceneController>
                     case "English":
                         currentText.text = "Türkçe";
                         continue;
+                    case "Game :":
+                        currentText.text = "Oyun :";
+                        continue;
                     case "Level 1":
                         currentText.text = "Bölüm 1";
                         continue;
@@ -159,6 +162,9 @@ public class SceneController : AbstractSceneController<SceneController>
                 {
                     case "Türkçe":
                         currentText.text = "English";
+                        continue;
+                    case "Oyun :":
+                        currentText.text = "Game :";
                         continue;
                     case "Bölüm 1":
                         currentText.text = "Level 1";
@@ -220,6 +226,9 @@ public class SceneController : AbstractSceneController<SceneController>
                 {
                     case "Health":
                         currentText.text = "Sağlık";
+                        continue;
+                    case "Resume":
+                        currentText.text = "Devam";
                         continue;
                     case "Active":
                         currentText.text = "Aktif";
@@ -414,8 +423,6 @@ public class SceneController : AbstractSceneController<SceneController>
         {
             foreach (var currentText in currentTexts)
             {
-
-                Debug.Log(currentText.text);
                 switch (currentText.text)
                 {
                     case "Locked":

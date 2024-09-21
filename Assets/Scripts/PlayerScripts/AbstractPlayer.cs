@@ -766,6 +766,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             //PlayerData
             _playerData.isPicking = true;
 
+            if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(_playerData, PlayerData.poisonMessageTr));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(_playerData, PlayerData.poisonMessage));
+            }
+
             //_coinObject.SetActive(true);
             _coinObject.transform.localScale = Vector3.one;
             StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(_coinObject));
@@ -795,12 +804,28 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
                 _playerData.bulletAmount = _playerData.bulletPack;
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
+
+                if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
+                {
+                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr));
+                }
+                else
+                {
+                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessage));
+                }
             }
             else if (_playerData.bulletPackAmount < 2)
             {
                 _playerData.bulletPackAmount += 1;
 
-                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessage));
+                if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
+                {
+                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr));
+                }
+                else
+                {
+                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessage));
+                }
 
                 ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyBulletCoin, other.gameObject.transform);
 
@@ -818,13 +843,30 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                     _playerData.bulletAmount = _playerData.bulletPack;
                     PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
 
+                    if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr));
+                    }
+                    else
+                    {
+                        StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessage));
+                    }
+
                 }
                 else
                 {
+                    if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        StartCoroutine(DelayMessageText(_playerData, PlayerData.alreadyHaveThisMessageTr));
+                    }
+                    else
+                    {
+                        StartCoroutine(DelayMessageText(_playerData, PlayerData.alreadyHaveThisMessage));
+                    }
                     PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin);
                 }
-
-                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessage));
+                
+                
 
                 //bulletAmountCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
                 //bulletAmountCanvas.transform.GetChild(1).gameObject.transform.localScale = Vector3.one;
@@ -838,14 +880,29 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (value == SceneController.Tags.HealthCoin)
         {
-            StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessage));
-
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.IncreasingHealth);
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyHealthCoin, other.gameObject.transform);
+
+            if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessageTr));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessage));
+            }
         }
 
         else if (value == SceneController.Tags.LevelUpKey)
         {
+            if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickedKeyMessageTr));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickedKeyMessage));
+            }
             LevelData.currentOwnedLevelUpKeys++;
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyBulletCoin, other.gameObject.transform);
@@ -882,7 +939,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
 
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
+            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));            
         }
 
         if (other.CompareTag(SceneController.Tags.ak47.ToString()) && _bulletData.currentWeaponName != BulletData.ak47)
@@ -1619,7 +1676,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         _playerData.currentMessageText.text = messageValue;
         if (_playerData.currentMessageText.text != PlayerData.emptyMessage)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
             _playerData.currentMessageText.text = PlayerData.emptyMessage;
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehaviour
 {
-    public virtual void AnimationState(EnemyData _enemyData,Animator _animator, PlayerData _playerData, int _animationCount)
+    public virtual void AnimationState(EnemyData _enemyData, Animator _animator, PlayerData _playerData, int _animationCount)
     {
         if (!_playerData.isDestroyed)
         {

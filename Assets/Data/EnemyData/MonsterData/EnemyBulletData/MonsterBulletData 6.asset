@@ -125,7 +125,7 @@ MonoBehaviour:
   skeletonEnemyAttackDamage: 0
   urielEnemyAttackDamage: 0
   goblinEnemyAttackDamage: 0
-  currentEnemyCollisionDamage: 0
+  currentEnemyCollisionDamage: 18
   clownEnemyCollisionDamage: 0
   monsterEnemyCollisionDamage: 18
   prisonerEnemyCollisionDamage: 0
@@ -163,6 +163,6 @@ MonoBehaviour:
   swordDamageValue: 0
   enemyFireFrequency: 4.5
   enemyBulletDelayCounter: 0
-  enemyBulletDelay: 10
+  enemyBulletDelay: 0.05
   enemyBulletSpeed: 3
-  isFirable: 1
+  isFirable: 0

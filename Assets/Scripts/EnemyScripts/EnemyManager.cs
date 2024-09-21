@@ -100,8 +100,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         
         FollowPlayer();
 
-        enemyData.enemySpeed = levelData.currentEnemySpeed;
-
         if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
         {
             enemyData = enemyListData[enemyDataNumber];
@@ -238,7 +236,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     //When Enemy touched player, enemy will get a animation to here.
                     //enemyData.isWalking = false;
                 }
-                else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.4f) &&
+                else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.2f) &&
                     (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 10f) &&
                     !enemyData.isDying && !playerData.isDying && !SceneController.pauseGame)
                 {
@@ -301,11 +299,26 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.ak47)
         {
-            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.ak47Power;
+            if (gameObject.transform.parent.name == "bossEnemyTransform")
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.ak47Power / 4;
+            }
+            else
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.ak47Power;
+            }
+            
         }
         else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.m4a4)
         {
-            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.m4a4Power;
+            if (gameObject.transform.parent.name == "bossEnemyTransform")
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.m4a4Power / 4;
+            }
+            else
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.m4a4Power;
+            }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.bulldog)
         {
@@ -313,31 +326,80 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.cow)
         {
-            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.cowPower;
+            if (gameObject.transform.parent.name == "bossEnemyTransform")
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.cowPower / 4;
+            }
+            else
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.cowPower;
+            }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.crystal)
         {
-            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.crystalPower;
+            if (gameObject.transform.parent.name == "bossEnemyTransform")
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.crystalPower / 4;
+            }
+            else
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.crystalPower;
+            }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.demon)
         {
-            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.demonPower;
+            if (gameObject.transform.parent.name == "bossEnemyTransform")
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.demonPower / 4;
+            }
+            else
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.demonPower;
+            }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.ice)
         {
-            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.icePower;
+            if (gameObject.transform.parent.name == "bossEnemyTransform")
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.icePower / 4;
+            }
+            else
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.icePower;
+            }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.electro)
         {
-            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.electroPower;
+            if (gameObject.transform.parent.name == "bossEnemyTransform")
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.electroPower / 4;
+            }
+            else
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.electroPower;
+            }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.axe)
         {
-            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.axePower;
+            if (gameObject.transform.parent.name == "bossEnemyTransform")
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.axePower / 4;
+            }
+            else
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.axePower;
+            }
         }
         else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.pistol)
         {
-            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.pistolPower;
+            if (gameObject.transform.parent.name == "bossEnemyTransform")
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.pistolPower / 4;
+            }
+            else
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.pistolPower;
+            }
         }
     }
 
@@ -378,7 +440,15 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
             enemyData.isWalking = false;
             enemyData.isFiring = false;
-            StartCoroutine(DelayStopEnemy(3f));
+            if (gameObject.transform.parent.name == "bossEnemyTransform")
+            {
+                StartCoroutine(DelayStopEnemy(0f));
+            }
+            else
+            {
+                StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue / 3));
+            }
+            
         }        
     }
     public void TouchWall()
@@ -394,7 +464,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
 
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
-        StartCoroutine(DelayStopEnemy(3f));
         if (_healthBar != null)
         {
             if (_healthBarSlider.value <= 0)
@@ -408,7 +477,15 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 //enemyData.isWalking = false;
                 enemyData.isFiring = false;
                 enemyData.isSpeedZero = true;
-                StartCoroutine(DelayStopEnemy(5f));
+                if (gameObject.transform.parent.name == "bossEnemyTransform")
+                {
+                    StartCoroutine(DelayStopEnemy(0f));
+                }
+                else
+                {
+                    StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
+                }
+
                 Destroy(_healthBar);
                 ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue * 2);
                 PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
@@ -429,12 +506,24 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 //enemyData.isWalking = false;
                 enemyData.isFiring = false;
                 enemyData.isSpeedZero = true;
-                StartCoroutine(DelayStopEnemy(3f));
+                if (gameObject.transform.parent.name == "bossEnemyTransform")
+                {
+                    StartCoroutine(DelayStopEnemy(0f));
+                }
+                else
+                {
+                    StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
+                }
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
                 PlaySoundEffect(SoundEffectTypes.SwordHit, _audioSource);
-
-                _healthBarSlider.value -= swordPower;
-
+                if (gameObject.transform.parent.name == "bossEnemyTransform")
+                {
+                    _healthBarSlider.value -= swordPower/3;
+                }
+                else
+                {
+                    _healthBarSlider.value -= swordPower;
+                }   
             }
 
             _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = _healthBarSlider.value;
@@ -463,7 +552,14 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 //enemyData.isWalking = false;
                 enemyData.isFiring = false;
                 enemyData.isSpeedZero = true;
-                StartCoroutine(DelayStopEnemy(5f));
+                if (gameObject.transform.parent.name == "bossEnemyTransform")
+                {
+                    StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue / 4));
+                }
+                else
+                {
+                    StartCoroutine(DelayStopEnemy(3f));
+                }
                 Destroy(_healthBar);
                 ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue * 2);
                 PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
@@ -485,7 +581,15 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isFiring = false;
                 
                 enemyData.isSpeedZero = true;
-                StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
+                if (gameObject.transform.parent.name == "bossEnemyTransform")
+                {
+                    StartCoroutine(DelayStopEnemy(0f));
+                }
+                else
+                {
+                    StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
+                }
+               
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
                 PlaySoundEffect(SoundEffectTypes.BulletHit, _audioSource);
                 _healthBarSlider.value -= bulletPower;

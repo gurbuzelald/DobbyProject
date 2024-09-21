@@ -262,7 +262,7 @@ public class BulletData : ScriptableObject
 
     [Header("Enemy")]
     [Header("Bullet Transform")]
-    public float enemyFireFrequency = 5f;
+    public float enemyFireFrequency;
     public float enemyBulletDelayCounter = 0;
     public float enemyBulletDelay = 0.05f;
     public float enemyBulletSpeed;

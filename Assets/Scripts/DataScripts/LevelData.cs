@@ -18,8 +18,7 @@ public class LevelData : ScriptableObject
     public static int currentOwnedLevelUpKeys;
     public static bool levelCanBeSkipped;
 
-    [Header("Enemy Level Speeds Ranges")]
-    public float currentEnemySpeed;
+    [Header("Enemy Level Speeds Ranges")]    
     public float[] levelEnemyMinSpeed;
     public float[] levelEnemyMaxSpeed;
 

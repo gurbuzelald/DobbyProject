@@ -112,7 +112,7 @@ public class LevelUpController : MonoBehaviour
 
             if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                enemyKillLevelUpRequirementText.text = "Bölümü Geçmen İçin" + levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills.ToString() +
+                enemyKillLevelUpRequirementText.text = "Bölümü Geçmen İçin " + levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills.ToString() +
                 "  Düşman Öldürmen, ";
             }
             else
@@ -123,7 +123,7 @@ public class LevelUpController : MonoBehaviour
             }
             
             
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(4f);
 
             enemyKillLevelUpRequirementText.text = "";
 
@@ -141,7 +141,7 @@ public class LevelUpController : MonoBehaviour
 
             
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(4f);
 
             pickUpCoinLevelUpRequirementText.text = "";
 
@@ -159,7 +159,7 @@ public class LevelUpController : MonoBehaviour
 
                 
 
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(4f);
 
             enemyKillLevelUpRequirementText.text = "";
             pickUpCoinLevelUpRequirementText.text = "";
@@ -238,7 +238,6 @@ public class LevelUpController : MonoBehaviour
         
         SetDetectionOfEnemyAtUpdate(LevelData.currentLevelCount);
         ArrowLevelRotation(LevelData.currentLevelCount);
-        SetEnemySpeed();
 
         CheckCompleteLevel();
     }
@@ -255,7 +254,7 @@ public class LevelUpController : MonoBehaviour
         }
         
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
 
         enemyKillLevelUpRequirementText.text = "";
 
@@ -320,7 +319,7 @@ public class LevelUpController : MonoBehaviour
                     }
                         
 
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(4f);
 
                     requirementMessage = "";
                 }
@@ -337,7 +336,7 @@ public class LevelUpController : MonoBehaviour
 
                     scoreMissionCompletedImage.gameObject.SetActive(true);
 
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(4f);
 
                     requirementMessage = "";
                 }
@@ -355,7 +354,7 @@ public class LevelUpController : MonoBehaviour
 
                     enemyKillMissionCompletedImage.gameObject.SetActive(true);
 
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(4f);
 
                     requirementMessage = "";
                 }
@@ -376,7 +375,7 @@ public class LevelUpController : MonoBehaviour
 
                     levelUpKeyMissionCompletedImage.gameObject.SetActive(true);
 
-                    yield return new WaitForSeconds(3f);
+                    yield return new WaitForSeconds(4f);
 
                     requirementMessage = "";
                 }
@@ -633,42 +632,7 @@ public class LevelUpController : MonoBehaviour
     {
         levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[levelCount];
     }
-    void SetEnemySpeed()
-    {
-        switch (levelData.currentLevel)
-        {
-            case LevelData.Levels.Level1:
-                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[0], levelData.levelEnemyMaxSpeed[0]);
-                break;
-            case LevelData.Levels.Level2:
-                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[1], levelData.levelEnemyMaxSpeed[1]);
-                break;
-            case LevelData.Levels.Level3:
-                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[2], levelData.levelEnemyMaxSpeed[2]);
-                break;
-            case LevelData.Levels.Level4:
-                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[3], levelData.levelEnemyMaxSpeed[3]);
-                break;
-            case LevelData.Levels.Level5:
-                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[4], levelData.levelEnemyMaxSpeed[4]);
-                break;
-            case LevelData.Levels.Level6:
-                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[5], levelData.levelEnemyMaxSpeed[5]);
-                break;
-            case LevelData.Levels.Level7:
-                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[6], levelData.levelEnemyMaxSpeed[6]);
-                break;
-            case LevelData.Levels.Level8:
-                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[7], levelData.levelEnemyMaxSpeed[7]);
-                break;
-            case LevelData.Levels.Level9:
-                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[8], levelData.levelEnemyMaxSpeed[8]);
-                break;
-            case LevelData.Levels.Level10:
-                levelData.currentEnemySpeed = Random.Range(levelData.levelEnemyMinSpeed[9], levelData.levelEnemyMaxSpeed[9]);
-                break;
-        }
-    }
+    
     public void ArrowLevelRotation(int levelCount)
     {
         levelData.currentFinishArea = levelData.finishTransforms[levelCount];

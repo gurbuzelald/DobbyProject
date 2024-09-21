@@ -18,10 +18,20 @@ public class PlayerData : ScriptableObject
     [Header("Message Text")]
     public TextMeshProUGUI currentMessageText;
     public GameObject currentMessageObject;
-    public const string pickBulletObjectMessage = "It's a Bullet Pack!!";
+    public const string pickBulletObjectMessage = "Bullet Pack!!";
+    public const string pickBulletObjectMessageTr = "Mermi Paketi!!";
     public const string pickHealthObjectMessage = "Healthy!!";
+    public const string pickHealthObjectMessageTr = "Sağlık!!";
     public const string pickWeaponObjectMessage = "Picked a Weapon!!";
-    public const string alreadyHaveThisWeaponMessage = "You Already Have This!!";
+    public const string pickWeaponObjectMessageTr = "Silah Aldın!!";
+    public const string alreadyHaveThisMessage = "You Already Have Enough This!!";
+    public const string alreadyHaveThisWeaponMessage = "You Already Have This Weapon!!";
+    public const string alreadyHaveThisWeaponMessageTr = "Zaten Bu Silaha Sahipsin!!";
+    public const string alreadyHaveThisMessageTr = "Yeterince Mermin Var!!";
+    public const string poisonMessage = "Poison!!!";
+    public const string poisonMessageTr = "Zehir!!!";
+    public const string pickedKeyMessage = "Picked A Key!!!";
+    public const string pickedKeyMessageTr = "Anahtar Topladın!!!";
     public const string emptyMessage = "";
 
     [Header("Background Maps")]

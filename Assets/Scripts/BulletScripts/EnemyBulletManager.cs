@@ -36,33 +36,43 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
 
             case PlayerData.clown:
                 bulletData.currentEnemyBulletDamage = bulletData.clownEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.clownEnemyAttackDamage;
                 break;
             case PlayerData.monster:
                 bulletData.currentEnemyBulletDamage = bulletData.monsterEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.monsterEnemyAttackDamage;
                 break;
             case PlayerData.prisoner:
                 bulletData.currentEnemyBulletDamage = bulletData.prisonerEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.prisonerEnemyAttackDamage;
                 break;
             case PlayerData.pedroso:
                 bulletData.currentEnemyBulletDamage = bulletData.pedrosoEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.pedrosoEnemyAttackDamage;
                 break;
             case PlayerData.ortiz:
                 bulletData.currentEnemyBulletDamage = bulletData.ortizEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.ortizEnemyAttackDamage;
                 break;
             case PlayerData.skeleton:
                 bulletData.currentEnemyBulletDamage = bulletData.skeletonEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.skeletonEnemyAttackDamage;
                 break;
             case PlayerData.uriel:
                 bulletData.currentEnemyBulletDamage = bulletData.urielEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.urielEnemyAttackDamage;
                 break;
             case PlayerData.goblin:
                 bulletData.currentEnemyBulletDamage = bulletData.goblinEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.goblinEnemyAttackDamage;
                 break;
             case PlayerData.cop:
                 bulletData.currentEnemyBulletDamage = bulletData.copEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.copEnemyAttackDamage;
                 break;
             default:
                 bulletData.currentEnemyBulletDamage = bulletData.clownEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.clownEnemyAttackDamage;
                 break;
         }
     }
@@ -177,7 +187,6 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
                 if (Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward), out hit, 50, enemySpawner.GetComponent<EnemySpawner>().layerMask))
                 {
                     CheckEnemyBulletDamage(ref bulletData);
-                    //Debug.DrawRay(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
                     bulletData.enemyBulletDelayCounter += 1f;
                     enemyData.isFiring = true;
                     enemyData.isWalking = false;
@@ -187,10 +196,6 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
                     PlayerManager.GetInstance.enemyBulletData = bulletData;
                     
                     return;
-                }
-                else
-                {
-                    //Debug.DrawRay(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 }
             }            
         }        
@@ -210,11 +215,9 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
         
         if (bulletData.enemyBulletDelayCounter >= 1 && !enemyData.isSpeedZero)
         {
-            //Debug.Log(bulletData.enemyBulletDelayCounter);
             bulletData.enemyBulletDelayCounter = 0;
             enemyData.isFiring = false;
             enemyData.isWalking = true;
-            //bulletData.isFirable = false;
         }        
     }
 

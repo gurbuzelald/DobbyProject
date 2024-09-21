@@ -16,6 +16,7 @@ MonoBehaviour:
   currentBulletExplosionParticle: {fileID: 2689552222238927185, guid: 632812bd72b786d4c937d25598e0498d, type: 3}
   currentSwordBulletExplosionParticle: {fileID: 2689552222238927185, guid: 76a9d0317209b42d5a4e6704c3561791, type: 3}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
+  currentEnemyName: 
   getHitClip: {fileID: 8300000, guid: e83b0607beada4fc7a6aa5e1cd158f26, type: 3}
   giveHitClip: {fileID: 8300000, guid: 7e57fadc2e4684c10a7d4a9e1e9847fd, type: 3}
   dyingClip: {fileID: 8300000, guid: 28d7f37d586834241aabb6f86f8b40ad, type: 3}
@@ -27,7 +28,7 @@ MonoBehaviour:
   isAttacking: 0
   isTouchable: 1
   isActivateMagnet: 0
-  enemySpeed: 0.15423886
+  enemySpeed: 0.2
   bulletDamageValue: 13
   isSpeedZero: 0
   isWalkable: 1
