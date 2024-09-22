@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-
     [SerializeField] LevelData levelData;
+    [SerializeField] PlayerData playerData;
     private GameObject continueButtonObject;
     private GameObject playButtonObject;
+
     void Start()
     {
         SetContinueButtonName();
@@ -19,9 +20,17 @@ public class MenuController : MonoBehaviour
     {
         continueButtonObject = GameObject.Find("ContinueButton");
 
-        if (continueButtonObject && levelData)
+        if (continueButtonObject && levelData  && playerData)
         {
-            continueButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level " + (GetCurrentLevelID(levelData) + 1).ToString();
+            if (PlayerData.Languages.Turkish == playerData.currentLanguage)
+            {
+                continueButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm " + (GetCurrentLevelID(levelData) + 1).ToString();
+            }
+            else
+            {
+                continueButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level " + (GetCurrentLevelID(levelData) + 1).ToString();
+            }
+
         }
     }
 
@@ -37,7 +46,15 @@ public class MenuController : MonoBehaviour
             }
             else if(continueButtonObject.transform.localScale.x > 0)
             {
-                playButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level 1";
+                if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                {
+                    playButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm 1";
+                }
+                else
+                {
+                    playButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level 1";
+                }
+                
             }
         }
     }

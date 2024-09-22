@@ -166,6 +166,7 @@ public class BulletData : ScriptableObject
     public int skeletonEnemyBulletDamage;
     public int urielEnemyBulletDamage;
     public int goblinEnemyBulletDamage;
+    public int laygoEnemyBulletDamage;
 
     [Header("Enemy Attack Damages")]
     public int currentEnemyAttackDamage;
@@ -179,6 +180,7 @@ public class BulletData : ScriptableObject
     public int skeletonEnemyAttackDamage;
     public int urielEnemyAttackDamage;
     public int goblinEnemyAttackDamage;
+    public int laygoEnemyAttackDamage;
 
 
     [Header("Enemy Collision Damages")]
@@ -193,6 +195,7 @@ public class BulletData : ScriptableObject
     public int skeletonEnemyCollisionDamage;
     public int urielEnemyCollisionDamage;
     public int goblinEnemyCollisionDamage;
+    public int laygoEnemyCollisionDamage;
 
 
     public enum WeaponNames

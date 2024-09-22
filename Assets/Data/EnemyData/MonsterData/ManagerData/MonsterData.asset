@@ -23,13 +23,14 @@ MonoBehaviour:
   giveBulletHitClip: {fileID: 8300000, guid: af06b3e94182e45b99592d4067e5661b, type: 3}
   isGround: 1
   isDying: 0
-  isWalking: 0
-  isFiring: 1
+  isWalking: 1
+  isFiring: 0
   isAttacking: 0
   isTouchable: 1
   isActivateMagnet: 0
   enemySpeed: 0.2
-  bulletDamageValue: 13
+  bulletDamageValue: 11
+  enemyDurability: 1
   isSpeedZero: 0
   isWalkable: 1
   isActivateCreateEnemy: 0

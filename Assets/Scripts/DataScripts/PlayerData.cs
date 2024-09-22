@@ -64,10 +64,10 @@ public class PlayerData : ScriptableObject
     public const string pedroso = "Pedroso(Clone)";
     public const string cop = "Cop(Clone)";
     public const string ortiz = "Ortiz(Clone)";
-    //public const string morak = "Morak(Clone)";
     public const string skeleton = "Skeleton(Clone)";
     public const string uriel = "Uriel(Clone)";
     public const string goblin = "Goblin(Clone)";
+    public const string laygo = "Laygo(Clone)";
 
 
     [Header("Player Level Spawns")]

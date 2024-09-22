@@ -20,6 +20,7 @@ public class ChooseWeaponController : MonoBehaviour
 
 
     [SerializeField] TextMeshProUGUI[] weaponUsageLimits;
+    [SerializeField] TextMeshProUGUI[] weaponStrengths;
 
     private PriceSetting priceSetting;
 
@@ -35,12 +36,62 @@ public class ChooseWeaponController : MonoBehaviour
 
 
         GetWeaponUnLockData();
+
+        SetStrengthOfWeaponInfos();
     }
     private void Update()
     {
         SlideMenu();
         WeaponPickStates();
         WeaponUsageLimit();
+    }
+
+
+    void SetStrengthOfWeaponInfos()
+    {
+        for (int i = 0; i < weaponStrengths.Length; i++)
+        {
+            if ("PistolStrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
+            {
+                weaponStrengths[i].text = bulletData.pistolPower.ToString();
+            }
+            else if ("AxeStrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
+            {
+                weaponStrengths[i].text = bulletData.axePower.ToString();
+            }
+            else if ("BulldogStrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
+            {
+                weaponStrengths[i].text = bulletData.bulldogPower.ToString();
+            }
+            else if ("CowStrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
+            {
+                weaponStrengths[i].text = bulletData.cowPower.ToString();
+            }
+            else if ("CrystalStrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
+            {
+                weaponStrengths[i].text = bulletData.crystalPower.ToString();
+            }
+            else if ("DemonStrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
+            {
+                weaponStrengths[i].text = bulletData.demonPower.ToString();
+            }
+            else if ("IceStrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
+            {
+                weaponStrengths[i].text = bulletData.icePower.ToString();
+            }
+            else if ("ElectroStrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
+            {
+                weaponStrengths[i].text = bulletData.electroPower.ToString();
+            }
+            else if ("Ak47StrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
+            {
+                weaponStrengths[i].text = bulletData.ak47Power.ToString();
+            }
+            else if ("M4a4StrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
+            {
+                weaponStrengths[i].text = bulletData.m4a4Power.ToString();
+            }
+        }
     }
 
     void GetWeaponUnLockData()
@@ -424,6 +475,8 @@ public class ChooseWeaponController : MonoBehaviour
                     weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
             }
+            bulletData.ak47UsageLimit = 0;
+            PlayerPrefs.SetInt("Ak47UsageCount", bulletData.ak47UsageLimit);
         }
     }
 
@@ -487,6 +540,8 @@ public class ChooseWeaponController : MonoBehaviour
                     weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
             }
+            bulletData.axeUsageLimit = 0;
+            PlayerPrefs.SetInt("AxeUsageCount", bulletData.axeUsageLimit);
         }
         
     }
@@ -548,6 +603,8 @@ public class ChooseWeaponController : MonoBehaviour
                     weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
             }
+            bulletData.bulldogUsageLimit = 0;
+            PlayerPrefs.SetInt("BulldogUsageCount", bulletData.bulldogUsageLimit);
         }
     }
     public void PickCow(int avaliableCoinAmount)
@@ -609,6 +666,8 @@ public class ChooseWeaponController : MonoBehaviour
                     weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
             }
+            bulletData.cowUsageLimit = 0;
+            PlayerPrefs.SetInt("CowUsageCount", bulletData.cowUsageLimit);
         }
     }
     public void PickCrystal(int avaliableCoinAmount)
@@ -669,6 +728,8 @@ public class ChooseWeaponController : MonoBehaviour
                     weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
             }
+            bulletData.crystalUsageLimit = 0;
+            PlayerPrefs.SetInt("CrystalUsageCount", bulletData.crystalUsageLimit);
         }
     }
     public void PickDemon(int avaliableCoinAmount)
@@ -730,6 +791,8 @@ public class ChooseWeaponController : MonoBehaviour
                     weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
             }
+            bulletData.demonUsageLimit = 0;
+            PlayerPrefs.SetInt("DemonUsageCount", bulletData.demonUsageLimit);
         }
     }
     public void PickIce(int avaliableCoinAmount)
@@ -791,6 +854,8 @@ public class ChooseWeaponController : MonoBehaviour
                     weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
             }
+            bulletData.iceUsageLimit = 0;
+            PlayerPrefs.SetInt("IceUsageCount", bulletData.iceUsageLimit);
         }
     }
     public void PickElectro(int avaliableCoinAmount)
@@ -851,6 +916,8 @@ public class ChooseWeaponController : MonoBehaviour
                     weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
                 }
             }
+            bulletData.electroUsageLimit = 0;
+            PlayerPrefs.SetInt("ElectroUsageCount", bulletData.electroUsageLimit);
         }
     }
 

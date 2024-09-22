@@ -10,8 +10,11 @@ public class SettingController : MonoBehaviour
     [SerializeField] RectTransform _soundSettingsPanel;
     [SerializeField] RectTransform _sensivitySettingsPanel;
 
-    private GameObject _pickCharacterButton;
+    private GameObject _pickWeaponButton;
     private RectTransform _pickCharacterButtonRectTransform;
+
+    private GameObject _pickCharacterButton;
+    private RectTransform _pickWeaponButtonRectTransform;
 
     private GameObject _playButton;
     private RectTransform _playButtonRectTransform;
@@ -21,6 +24,13 @@ public class SettingController : MonoBehaviour
 
     private GameObject _continueButton;
     private RectTransform _continueButtonRectTransform;
+
+    private GameObject _levelsButton;
+    private RectTransform _levelsButtonRectTransform;   
+    
+
+    private GameObject _languageButton;
+    private RectTransform _languageButtonRectTransform;
 
     [Header("Sensivity")]
     [SerializeField] Slider _sensivityX;
@@ -69,6 +79,10 @@ public class SettingController : MonoBehaviour
         {
             _pickCharacterButtonRectTransform = _pickCharacterButton.GetComponent<RectTransform>();
         }
+        if (_pickWeaponButton)
+        {
+            _pickWeaponButtonRectTransform = _pickWeaponButton.GetComponent<RectTransform>();
+        }
         if (_playButton)
         {
             _playButtonRectTransform = _playButton.GetComponent<RectTransform>();
@@ -80,6 +94,14 @@ public class SettingController : MonoBehaviour
         if (_continueButton)
         {
             _continueButtonRectTransform = _continueButton.GetComponent<RectTransform>();
+        }
+        if (_levelsButton)
+        {
+            _levelsButtonRectTransform = _levelsButton.GetComponent<RectTransform>();
+        }
+        if (_languageButton)
+        {
+            _languageButtonRectTransform = _languageButton.GetComponent<RectTransform>();
         }
     }
     private void Update()
@@ -105,9 +127,12 @@ public class SettingController : MonoBehaviour
             _sensivitySettingsPanel.localScale = Vector3.one;
 
             _pickCharacterButtonRectTransform.localScale = Vector3.zero;
+            _pickWeaponButtonRectTransform.localScale = Vector3.zero;
             _playButtonRectTransform.localScale = Vector3.zero;
             _quitButtonRectTransform.localScale = Vector3.zero;
             _continueButtonRectTransform.localScale = Vector3.zero;
+            _levelsButtonRectTransform.localScale = Vector3.zero;
+            _languageButtonRectTransform.localScale = Vector3.zero;
         }
         else
         {
@@ -117,8 +142,12 @@ public class SettingController : MonoBehaviour
             _sensivitySettingsPanel.localScale = Vector3.zero;
 
             _pickCharacterButtonRectTransform.localScale = Vector3.one;
+            _pickWeaponButtonRectTransform.localScale = Vector3.one;
             _playButtonRectTransform.localScale = Vector3.one;
             _quitButtonRectTransform.localScale = Vector3.one;
+            _levelsButtonRectTransform.localScale = Vector3.one;
+            _languageButtonRectTransform.localScale = Vector3.one;
+            
             if (levelData.currentLevel != LevelData.Levels.Level1)
             {
                 _continueButtonRectTransform.localScale = Vector3.one;
@@ -134,8 +163,11 @@ public class SettingController : MonoBehaviour
     void FindButtonObjects()
     {
         _pickCharacterButton = GameObject.Find("PickCharacterButton");
+        _pickWeaponButton = GameObject.Find("PickWeaponButton");
         _playButton = GameObject.Find("PlayButton");
         _quitButton = GameObject.Find("QuitButton");
         _continueButton = GameObject.Find("ContinueButton");
+        _levelsButton = GameObject.Find("LevelsButton");
+        _languageButton = GameObject.Find("LanguageButton");
     }
 }

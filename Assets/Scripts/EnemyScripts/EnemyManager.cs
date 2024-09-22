@@ -303,9 +303,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.ak47Power / 4;
             }
+            else if (gameObject.transform.name == PlayerData.laygo)
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.ak47Power / 2;
+            }
             else
             {
-                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.ak47Power;
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.ak47Power - enemyData.enemyDurability;
             }
             
         }
@@ -315,14 +319,29 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.m4a4Power / 4;
             }
+            else if (gameObject.transform.name == PlayerData.laygo)
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.m4a4Power / 2;
+            }
             else
             {
-                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.m4a4Power;
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.m4a4Power - enemyData.enemyDurability;
             }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.bulldog)
         {
-            enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.bulldogPower;
+            if (gameObject.transform.parent.name == "bossEnemyTransform")
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.bulldogPower / 4;
+            }
+            else if (gameObject.transform.name == PlayerData.laygo)
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.bulldogPower / 2;
+            }
+            else
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.bulldogPower - enemyData.enemyDurability;
+            }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.cow)
         {
@@ -330,9 +349,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.cowPower / 4;
             }
+            else if (gameObject.transform.name == PlayerData.laygo)
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.cowPower / 2;
+            }
             else
             {
-                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.cowPower;
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.cowPower - enemyData.enemyDurability;
             }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.crystal)
@@ -341,9 +364,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.crystalPower / 4;
             }
+            else if (gameObject.transform.name == PlayerData.laygo)
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.crystalPower / 2;
+            }
             else
             {
-                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.crystalPower;
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.crystalPower - enemyData.enemyDurability;
             }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.demon)
@@ -352,9 +379,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.demonPower / 4;
             }
+            else if (gameObject.transform.name == PlayerData.laygo)
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.demonPower / 2;
+            }
             else
             {
-                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.demonPower;
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.demonPower - enemyData.enemyDurability;
             }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.ice)
@@ -363,9 +394,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.icePower / 4;
             }
+            else if (gameObject.transform.name == PlayerData.laygo)
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.icePower / 2;
+            }
             else
             {
-                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.icePower;
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.icePower - enemyData.enemyDurability;
             }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.electro)
@@ -374,9 +409,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.electroPower / 4;
             }
+            else if (gameObject.transform.name == PlayerData.laygo)
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.electroPower / 2;
+            }
             else
             {
-                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.electroPower;
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.electroPower - enemyData.enemyDurability;
             }
         }
         else if(PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.axe)
@@ -385,9 +424,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.axePower / 4;
             }
+            else if (gameObject.transform.name == PlayerData.laygo)
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.axePower / 2;
+            }
             else
             {
-                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.axePower;
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.axePower - enemyData.enemyDurability;
             }
         }
         else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.pistol)
@@ -396,9 +439,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.pistolPower / 4;
             }
+            else if (gameObject.transform.name == PlayerData.laygo)
+            {
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.pistolPower / 2;
+            }
             else
             {
-                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.pistolPower;
+                enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.pistolPower - enemyData.enemyDurability;
             }
         }
     }
@@ -426,7 +473,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         _damageText.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(delayDestroy);
 
         _damageText.text = "";
     }

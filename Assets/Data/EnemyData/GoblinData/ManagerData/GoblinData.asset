@@ -16,20 +16,21 @@ MonoBehaviour:
   currentBulletExplosionParticle: {fileID: 2689552222238927185, guid: 632812bd72b786d4c937d25598e0498d, type: 3}
   currentSwordBulletExplosionParticle: {fileID: 2689552222238927185, guid: 76a9d0317209b42d5a4e6704c3561791, type: 3}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
-  currentEnemyName: 
+  currentEnemyName: Goblin(Clone)
   getHitClip: {fileID: 8300000, guid: 88e97700a806a47dfb73b5beb4753115, type: 3}
   giveHitClip: {fileID: 8300000, guid: 9a7cae847960047f4a7c08df2572cf53, type: 3}
   dyingClip: {fileID: 8300000, guid: dec194cac827643798c3ea856e958bfe, type: 3}
   giveBulletHitClip: {fileID: 8300000, guid: ceedbbd5f652649d9b13cacc18c0a485, type: 3}
   isGround: 1
   isDying: 0
-  isWalking: 1
+  isWalking: 0
   isFiring: 0
   isAttacking: 0
   isTouchable: 1
   isActivateMagnet: 1
   enemySpeed: 0.38
-  bulletDamageValue: 20
+  bulletDamageValue: 4
+  enemyDurability: 8
   isSpeedZero: 0
   isWalkable: 1
   isActivateCreateEnemy: 0

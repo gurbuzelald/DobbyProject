@@ -880,17 +880,20 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else if (value == SceneController.Tags.HealthCoin)
         {
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.IncreasingHealth);
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyHealthCoin, other.gameObject.transform);
+            if (PlayerManager.GetInstance.playerObjects.healthBarSlider.value <75)
+            {
+                ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyHealthCoin, other.gameObject.transform);
 
-            if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessageTr));
+                if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
+                {
+                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessageTr));
+                }
+                else
+                {
+                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessage));
+                }
             }
-            else
-            {
-                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessage));
-            }
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.IncreasingHealth);
         }
 
         else if (value == SceneController.Tags.LevelUpKey)
@@ -1279,6 +1282,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             case PlayerData.goblin:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
                     collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.goblinEnemyCollisionDamage;
+                break;
+            case PlayerData.laygo:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.laygoEnemyCollisionDamage;
                 break;
             default:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =

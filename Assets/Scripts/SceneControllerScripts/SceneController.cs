@@ -43,6 +43,9 @@ public class SceneController : AbstractSceneController<SceneController>
 
     void Start()
     {
+        //CheckNeedResetWeaponsAndCharacters();//ForDevelopers
+
+
         ChangeLanguage();
         CreateLevelButtons();
 
@@ -112,6 +115,9 @@ public class SceneController : AbstractSceneController<SceneController>
                     case "Pick Character":
                         currentText.text = "Karakter Seç";
                         continue;
+                    case "Pick Weapon":
+                        currentText.text = "Silah Seç";
+                        continue;
                     case "Avaliable Coin":
                         currentText.text = "Mevcut Coinler";
                         continue;
@@ -171,6 +177,9 @@ public class SceneController : AbstractSceneController<SceneController>
                         continue;
                     case "Karakter Seç":
                         currentText.text = "Pick Character";
+                        continue;
+                    case "Silah Seç":
+                        currentText.text = "Pick Weapon";
                         continue;
                     case "Mevcut Coinler":
                         currentText.text = "Avaliable Coin";
@@ -465,8 +474,11 @@ public class SceneController : AbstractSceneController<SceneController>
                     case "locked":
                         currentText.text = "Kilitli";
                         continue;
+                    case "Pick Character":
+                        currentText.text = "Karakter Seç";
+                        continue;
                     case "Strength:":
-                        currentText.text = "Güç";
+                        currentText.text = "Silah Kuvveti:";
                         continue;
                     case "Menu:":
                         currentText.text = "Menü:";
@@ -492,30 +504,29 @@ public class SceneController : AbstractSceneController<SceneController>
 
     public void CheckNeedResetWeaponsAndCharacters()
     {//For Developer
-        ResetWeaponsAndCharacters();
-        if (PlayerPrefs.GetFloat("ResetGame") == 1)
+        PlayerPrefs.SetFloat("PistolLock", 0);
+        PlayerPrefs.SetFloat("AxeLock", 0);
+        PlayerPrefs.SetFloat("BulldogLock", 0);
+        PlayerPrefs.SetFloat("CowLock", 0);
+        PlayerPrefs.SetFloat("CrystalLock", 0);
+        PlayerPrefs.SetFloat("DemonLock", 0);
+        PlayerPrefs.SetFloat("IceLock", 0);
+        PlayerPrefs.SetFloat("ElectroLock", 0);
+        PlayerPrefs.SetFloat("Ak47Lock", 0);
+        PlayerPrefs.SetFloat("M4A4Lock", 0);
+
+        PlayerPrefs.SetFloat("AxeUsageCount", 0);
+        PlayerPrefs.SetFloat("BulldogUsageCount", 0);
+        PlayerPrefs.SetFloat("CowUsageCount", 0);
+        PlayerPrefs.SetFloat("CrystalUsageCount", 0);
+        PlayerPrefs.SetFloat("DemonUsageCount", 0);
+        PlayerPrefs.SetFloat("IceUsageCount", 0);
+        PlayerPrefs.SetFloat("ElectroUsageCount", 0);
+        PlayerPrefs.SetFloat("Ak47UsageCount", 0);
+        PlayerPrefs.SetFloat("M4A4UsageCount", 0);
+
+        if (bulletData)
         {
-            PlayerPrefs.SetFloat("PistolLock", 0);
-            PlayerPrefs.SetFloat("AxeLock", 0);
-            PlayerPrefs.SetFloat("BulldogLock", 0);
-            PlayerPrefs.SetFloat("CowLock", 0);
-            PlayerPrefs.SetFloat("CrystalLock", 0);
-            PlayerPrefs.SetFloat("DemonLock", 0);
-            PlayerPrefs.SetFloat("IceLock", 0);
-            PlayerPrefs.SetFloat("ElectroLock", 0);
-            PlayerPrefs.SetFloat("Ak47Lock", 0);
-            PlayerPrefs.SetFloat("M4A4Lock", 0);
-
-            PlayerPrefs.SetFloat("AxeUsageCount", 0);
-            PlayerPrefs.SetFloat("BulldogUsageCount", 0);
-            PlayerPrefs.SetFloat("CowUsageCount", 0);
-            PlayerPrefs.SetFloat("CrystalUsageCount", 0);
-            PlayerPrefs.SetFloat("DemonUsageCount", 0);
-            PlayerPrefs.SetFloat("IceUsageCount", 0);
-            PlayerPrefs.SetFloat("ElectroUsageCount", 0);
-            PlayerPrefs.SetFloat("Ak47UsageCount", 0);
-            PlayerPrefs.SetFloat("M4A4UsageCount", 0);
-
             bulletData.axeLock = BulletData.locked;
             bulletData.bulldogLock = BulletData.locked;
             bulletData.cowLock = BulletData.locked;
@@ -525,21 +536,35 @@ public class SceneController : AbstractSceneController<SceneController>
             bulletData.electroLock = BulletData.locked;
             bulletData.ak47Lock = BulletData.locked;
             bulletData.m4a4Lock = BulletData.locked;
+        }
+        
 
 
-            PlayerPrefs.SetFloat("DobbyLock", 0);
-            PlayerPrefs.SetFloat("JoleenLock", 0);
-            PlayerPrefs.SetFloat("GlassyLock", 0);
-            PlayerPrefs.SetFloat("LusthLock", 0);
-            PlayerPrefs.SetFloat("GuardLock", 0);
-            PlayerPrefs.SetFloat("MichelleLock", 0);
-            PlayerPrefs.SetFloat("EveLock", 0);
-            PlayerPrefs.SetFloat("AjLock", 0);
-            PlayerPrefs.SetFloat("BossLock", 0);
-            PlayerPrefs.SetFloat("TyLock", 0);
-            PlayerPrefs.SetFloat("MremirehLock", 0);
+        PlayerPrefs.SetFloat("DobbyLock", 0);
+        PlayerPrefs.SetFloat("JoleenLock", 0);
+        PlayerPrefs.SetFloat("GlassyLock", 0);
+        PlayerPrefs.SetFloat("LusthLock", 0);
+        PlayerPrefs.SetFloat("GuardLock", 0);
+        PlayerPrefs.SetFloat("MichelleLock", 0);
+        PlayerPrefs.SetFloat("EveLock", 0);
+        PlayerPrefs.SetFloat("AjLock", 0);
+        PlayerPrefs.SetFloat("BossLock", 0);
+        PlayerPrefs.SetFloat("TyLock", 0);
+        PlayerPrefs.SetFloat("MremirehLock", 0);
 
-            _playerData.glassyLock = _playerData.locked;
+
+        PlayerPrefs.SetInt("AxeUsageCount", 0);
+        PlayerPrefs.SetInt("BulldogUsageCount", 0);
+        PlayerPrefs.SetInt("CowUsageCount", 0);
+        PlayerPrefs.SetInt("CrystalUsageCount", 0);
+        PlayerPrefs.SetInt("DemonUsageCount", 0);
+        PlayerPrefs.SetInt("IceUsageCount", 0);
+        PlayerPrefs.SetInt("NegevUsageCount", 0);
+        PlayerPrefs.SetInt("Ak47UsageCount", 0);
+        PlayerPrefs.SetInt("M4A4UsageCount", 0);
+
+        if (_playerData)
+        {
             _playerData.joleenLock = _playerData.locked;
             _playerData.lusthLock = _playerData.locked;
             _playerData.guardLock = _playerData.locked;
@@ -549,17 +574,23 @@ public class SceneController : AbstractSceneController<SceneController>
             _playerData.bossLock = _playerData.locked;
             _playerData.tyLock = _playerData.locked;
             _playerData.mremirehLock = _playerData.locked;
+            _playerData.glassyLock = _playerData.locked;
+
 
             _playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
-
-            PlayerPrefs.SetInt("AvaliableCoin", 0);
-
-            levelData.currentLevel = LevelData.Levels.Level1;
-
-            LevelData.highestLevel = 0;
-            PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
-            LevelData.currentLevelCount = 0;
         }
+        
+
+        PlayerPrefs.SetInt("AvaliableCoin", 0);
+
+        if (levelData)
+        {
+            levelData.currentLevel = LevelData.Levels.Level1;
+        }        
+
+        LevelData.highestLevel = 0;
+        PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
+        LevelData.currentLevelCount = 0;
     }
 
 
@@ -939,8 +970,15 @@ public class SceneController : AbstractSceneController<SceneController>
                 {
                     levelButtonObject.transform.localPosition = new Vector3(2800 - 400 * i, -100, 0);
                 }
-
-                levelButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level " + (i + 1).ToString();
+                if (PlayerData.Languages.Turkish == _playerData.currentLanguage)
+                {
+                    levelButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm " + (i + 1).ToString();
+                }
+                else
+                {
+                    levelButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level " + (i + 1).ToString();
+                }
+                
             }
         }
     }
