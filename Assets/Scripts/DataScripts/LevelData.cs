@@ -10,6 +10,7 @@ public class LevelData : ScriptableObject
         public int enemyKills;
         public int coinCollectAmount;
         public int levelUpKeys;
+        public bool isBossEnemyDead;
     }
 
     public static int highestLevel;

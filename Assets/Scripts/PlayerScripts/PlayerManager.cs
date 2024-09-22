@@ -200,7 +200,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
     void Update()
     {
-
         playerInterfaces.iPlayerCamera.ChangeCamera(_playerData, ref playerManager);
 
         playerInterfaces.iPlayerTrigger.DamageArrowDirection(ref _damageArrow);
@@ -364,15 +363,19 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         else if (other.gameObject.name == "FinishPlane")
         {
-            ShowRequirements();
+            StartCoroutine(ShowRequirements(LevelUpController.requirementMessage, 3f));
         }
     }
 
-    void ShowRequirements()
+    public IEnumerator ShowRequirements(string requirementMessage, float delayValue)
     {
         if (messageText)
         {
-            messageText.text = LevelUpController.requirementMessage;
+            messageText.text = requirementMessage;
+
+            yield return new WaitForSeconds(delayValue);
+
+            messageText.text = "";
         }        
     }
     void GetLevelTag(Collider other)

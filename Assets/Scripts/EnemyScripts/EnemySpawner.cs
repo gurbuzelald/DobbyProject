@@ -23,11 +23,14 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] Transform _bulletCoinSpawn;
 
+    private GameObject bossEnemyTransformObject;//For Checking Boss is Dead OR Not
 
+    public static bool bossIsDead;
 
-   
     private void Start()
     {
+        bossIsDead = false;
+
         EnemyData.enemyDeathCount = 0;
         enemyData.isActivateCreateEnemy = false;
 
@@ -37,7 +40,12 @@ public class EnemySpawner : MonoBehaviour
     {
         enemyTransformsObject = Instantiate(levelData.enemyTransformsInMap[levelCount].gameObject, gameObject.transform);
 
-        SetEnemyObjectsAtStart(); //Setted Enemy Object Character Before Instantiate Enemy Objects 
+        SetEnemyObjectsAtStart(); //Setted Enemy Object Character Before Instantiate Enemy Objects
+
+        if (GameObject.Find("bossEnemyTransform"))
+        {
+            bossEnemyTransformObject = GameObject.Find("bossEnemyTransform");
+        }        
 
         for (int i = 0; i < enemyTransformsObject.transform.childCount; i++)
         {
@@ -138,6 +146,12 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         CheckEnemyDeath();
+
+        if (bossEnemyTransformObject.transform.childCount == 0 ||
+            (bossEnemyTransformObject.transform.childCount == 1 && bossEnemyTransformObject.transform.GetChild(0).name == "Bullet(Clone)"))
+        {
+            bossIsDead = true;
+        }
     }
     void CheckEnemyDeath()
     {
@@ -145,9 +159,11 @@ public class EnemySpawner : MonoBehaviour
         {
             for (int i = 0; i < gameObject.transform.GetChild(0).transform.childCount; i++)
             {//if enemyTransformObject's childCount equals zero, destroy enemyTransformObject.
-             //This code is for getting enemies amount.
-                if (gameObject.transform.GetChild(0).GetChild(i).name == "BulletCoin(Clone)" || 
-                    gameObject.transform.GetChild(0).GetChild(i).childCount == 0)
+             //This code is for getting enemies amount.                
+
+                if ((gameObject.transform.GetChild(0).GetChild(i).name == "BulletCoin(Clone)" || 
+                    gameObject.transform.GetChild(0).GetChild(i).childCount == 0) &&
+                    gameObject.transform.GetChild(0).GetChild(i).name != "bossEnemyTransform")
                 {
                     CheckEnemyDeathForLevels(i, levelData.currentEnemyObjects);                    
                 }
