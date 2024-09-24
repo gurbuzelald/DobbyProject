@@ -10,7 +10,9 @@ public class BulletController : MonoBehaviour
     public PlayerData playerData;
     public BulletData bulletData;
     [SerializeField] float delayFalseWhenTriggerEnemy;
-   
+
+    public static bool AK47 { get; internal set; }
+
     private void Update()
     {
         RaycastHit hit;

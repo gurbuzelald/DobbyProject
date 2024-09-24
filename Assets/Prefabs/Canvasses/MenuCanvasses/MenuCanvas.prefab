@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 1796225202}
   - component: {fileID: 1796225201}
   - component: {fileID: 1796225200}
+  - component: {fileID: 3171397628028039727}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -415,6 +416,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3171397628028039727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1796225198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/#(8)
 --- !u!1 &461097269507534755
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +725,7 @@ GameObject:
   - component: {fileID: 8341344976284751416}
   - component: {fileID: 7426415571345357769}
   - component: {fileID: 7211019846058682932}
+  - component: {fileID: 2965638273523510916}
   m_Layer: 5
   m_Name: PickWeaponButton
   m_TagString: Untagged
@@ -832,6 +847,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2965638273523510916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2577718276505843114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/#(7)
 --- !u!1 &3148203683782177590
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,6 +1006,7 @@ GameObject:
   - component: {fileID: 2009304145322370947}
   - component: {fileID: 8688309690983021726}
   - component: {fileID: 1554276099359349806}
+  - component: {fileID: 3919044379039529727}
   m_Layer: 5
   m_Name: LanguageButton
   m_TagString: Untagged
@@ -1086,19 +1115,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8688309690983021726}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: ClickChangeLanguageButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &3919044379039529727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3259487515430315323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/#(4)
 --- !u!1 &3523444107626551833
 GameObject:
   m_ObjectHideFlags: 0
@@ -3088,6 +3118,7 @@ GameObject:
   - component: {fileID: 5889377279545972243}
   - component: {fileID: 5889377279545972252}
   - component: {fileID: 5889377279545972253}
+  - component: {fileID: 732015307927584302}
   m_Layer: 5
   m_Name: DefaultButton
   m_TagString: Untagged
@@ -3196,19 +3227,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5889377279545972252}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5889377280568054519}
-        m_TargetAssemblyTypeName: SettingController, Assembly-CSharp
-        m_MethodName: SetDefaulth
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &732015307927584302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5889377279545972255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/#(5)
 --- !u!1 &5889377279648079471
 GameObject:
   m_ObjectHideFlags: 0
@@ -4634,6 +4666,7 @@ GameObject:
   - component: {fileID: 5889377280055742222}
   - component: {fileID: 5889377280055742223}
   - component: {fileID: 5889377280055742216}
+  - component: {fileID: 6210289806582219998}
   m_Layer: 5
   m_Name: SettingButton
   m_TagString: Untagged
@@ -4742,19 +4775,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5889377280055742223}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5889377280568054519}
-        m_TargetAssemblyTypeName: SettingController, Assembly-CSharp
-        m_MethodName: ClickSettingButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &6210289806582219998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5889377280055742218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/#(2)
 --- !u!1 &5889377280068718911
 GameObject:
   m_ObjectHideFlags: 0
@@ -5447,6 +5481,7 @@ GameObject:
   - component: {fileID: 5889377280168332979}
   - component: {fileID: 5889377280168332988}
   - component: {fileID: 5889377280168332989}
+  - component: {fileID: 1285100456731022789}
   m_Layer: 5
   m_Name: PickCharacterButton
   m_TagString: Untagged
@@ -5568,6 +5603,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1285100456731022789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5889377280168332991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/#(6)
 --- !u!1 &5889377280175555367
 GameObject:
   m_ObjectHideFlags: 0
@@ -5750,6 +5798,7 @@ GameObject:
   - component: {fileID: 5889377280213422673}
   - component: {fileID: 5889377280213422674}
   - component: {fileID: 5889377280213422675}
+  - component: {fileID: 886341279404160960}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -5858,19 +5907,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5889377280213422674}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneLoadController, Assembly-CSharp
-        m_MethodName: PlayAgain
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &886341279404160960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5889377280213422685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/#(0)
 --- !u!1 &5889377280233717683
 GameObject:
   m_ObjectHideFlags: 0
@@ -6069,6 +6119,7 @@ GameObject:
   - component: {fileID: 5889377280535406856}
   - component: {fileID: 5889377280535406857}
   - component: {fileID: 5889377280535406858}
+  - component: {fileID: 5641472262816931545}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -6177,19 +6228,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5889377280535406857}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneLoadController, Assembly-CSharp
-        m_MethodName: QuitGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &5641472262816931545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5889377280535406964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/#(3)
 --- !u!1 &5889377280568054515
 GameObject:
   m_ObjectHideFlags: 0
@@ -7023,6 +7075,7 @@ GameObject:
   - component: {fileID: 871920982427413152}
   - component: {fileID: 4422145640350593264}
   - component: {fileID: 542536424160317178}
+  - component: {fileID: 2221460133531948511}
   m_Layer: 5
   m_Name: LevelsButton
   m_TagString: Untagged
@@ -7131,19 +7184,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4422145640350593264}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: LoadLevelsScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &2221460133531948511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483637568298086391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/#(1)
 --- !u!1 &7932342591315176635
 GameObject:
   m_ObjectHideFlags: 0

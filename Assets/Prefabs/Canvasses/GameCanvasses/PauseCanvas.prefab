@@ -1596,6 +1596,7 @@ GameObject:
   - component: {fileID: 7043038349035114043}
   - component: {fileID: 7043038349035114042}
   - component: {fileID: 7043038349035114041}
+  - component: {fileID: 1738189208366436315}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -1704,19 +1705,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7043038349035114042}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: PauseGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &1738189208366436315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043038349035114023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Gamepad>/start
 --- !u!1 &7043038349113556838
 GameObject:
   m_ObjectHideFlags: 0
@@ -2769,6 +2771,7 @@ GameObject:
   - component: {fileID: 7043038349776360833}
   - component: {fileID: 7043038349776360832}
   - component: {fileID: 7043038349776360847}
+  - component: {fileID: 7535946230554750797}
   m_Layer: 5
   m_Name: DefaultButton
   m_TagString: Untagged
@@ -2877,19 +2880,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7043038349776360832}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7043038350229093205}
-        m_TargetAssemblyTypeName: SettingController, Assembly-CSharp
-        m_MethodName: SetDefaulth
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &7535946230554750797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043038349776360845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Gamepad>/leftTrigger
 --- !u!1 &7043038349778589710
 GameObject:
   m_ObjectHideFlags: 0
@@ -3238,6 +3242,7 @@ GameObject:
   - component: {fileID: 7043038349867374827}
   - component: {fileID: 7043038349867374826}
   - component: {fileID: 7043038349867374825}
+  - component: {fileID: 1939912755960258106}
   m_Layer: 5
   m_Name: MenuButton
   m_TagString: Untagged
@@ -3346,19 +3351,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7043038349867374826}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: LoadMenuScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &1939912755960258106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7043038349867374807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Gamepad>/leftStickPress
 --- !u!1 &7043038349869697712
 GameObject:
   m_ObjectHideFlags: 0

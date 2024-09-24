@@ -47,8 +47,8 @@ public class ScoreController : AbstractPlayer<ScoreController>
 
         if (gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>())
         {
-            if (SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.PickCharacter.ToString() ||
-             SceneController.GetInstance.CheckSceneName() != SceneController.Scenes.PickWeapon.ToString())
+            if (SceneController.CheckSceneName() != SceneController.Scenes.PickCharacter.ToString() ||
+             SceneController.CheckSceneName() != SceneController.Scenes.PickWeapon.ToString())
             {
                 if (levelUpController && _scoreText)
                 {
@@ -73,7 +73,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
         readWrite.SaveCoinToJson();
 
         //Debug.Log(playerCoinData.avaliableCoin);
-        if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())
+        if (SceneController.CheckSceneName() == SceneController.Scenes.Menu.ToString())
         {
             //_scoreAmount = 0;
             //PlayerPrefs.SetInt("ScoreAmount", 0);

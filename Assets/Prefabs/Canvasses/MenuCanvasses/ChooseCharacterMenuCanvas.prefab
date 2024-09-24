@@ -393,6 +393,7 @@ GameObject:
   - component: {fileID: 2910071425863592162}
   - component: {fileID: 2910071425863592161}
   - component: {fileID: 2910071425863592160}
+  - component: {fileID: 410814558087061359}
   m_Layer: 5
   m_Name: MenuButton
   m_TagString: Untagged
@@ -501,19 +502,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2910071425863592161}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: LoadMenuScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &410814558087061359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2910071425863592094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Gamepad>/buttonEast
 --- !u!1 &2910071426460689294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1048,6 +1050,7 @@ GameObject:
   - component: {fileID: 2910071427222432369}
   - component: {fileID: 2910071427222432368}
   - component: {fileID: 2910071427222432367}
+  - component: {fileID: 3113425469302422959}
   m_Layer: 5
   m_Name: PickWeaponButton
   m_TagString: Untagged
@@ -1156,19 +1159,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2910071427222432368}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: LoadWeaponChoosingScene
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &3113425469302422959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2910071427222432365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Gamepad>/buttonNorth
 --- !u!1 &3591216373916591991
 GameObject:
   m_ObjectHideFlags: 0

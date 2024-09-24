@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class SceneController : AbstractSceneController<SceneController>
+public class SceneController : MonoBehaviour
 {
     [Header("Audio Components")]
     [SerializeField] AudioSource _audioSource;
@@ -34,7 +34,7 @@ public class SceneController : AbstractSceneController<SceneController>
     private TextMeshProUGUI currentCharacterText;
 
 
-    [SerializeField] GameObject levelButton;
+    [SerializeField] GameObject[] levelButtons;
     [SerializeField] GameObject levelsObject;
 
 
@@ -47,7 +47,7 @@ public class SceneController : AbstractSceneController<SceneController>
 
 
         ChangeLanguage();
-        CreateLevelButtons();
+        OpenLevelButtons();
 
         DefaulthVariableValues();
         SetCurrentLevelAtStart();
@@ -61,6 +61,8 @@ public class SceneController : AbstractSceneController<SceneController>
         SetCurrentWeaponAtUpdate();
         SetCurrentCharacterAtUpdate();
     }
+
+   
 
     public void ClickChangeLanguageButton()
     {
@@ -497,6 +499,9 @@ public class SceneController : AbstractSceneController<SceneController>
         }
     }
 
+
+
+
     public void ResetWeaponsAndCharacters()
     {
         PlayerPrefs.SetFloat("ResetGame", 1);
@@ -726,7 +731,7 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         playAgain = true;
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Game.ToString());
     }
@@ -738,103 +743,106 @@ public class SceneController : AbstractSceneController<SceneController>
 
         playAgain = true;
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Game.ToString());
 
         DecreaseWeaponUsageLimit();
     }
-    void DecreaseWeaponUsageLimit()
+    public void DecreaseWeaponUsageLimit()
     {
-        if (bulletData.currentWeaponName == BulletData.axe && bulletData.axeUsageLimit > 0)
+        if (bulletData)
         {
-            --bulletData.axeUsageLimit;
-            PlayerPrefs.SetInt("AxeUsageCount", bulletData.axeUsageLimit);
-        }
-        else if(bulletData.currentWeaponName == BulletData.axe && bulletData.axeUsageLimit == 0)
-        {
-            bulletData.currentWeaponName = BulletData.pistol;
-        }
+            if (bulletData.currentWeaponName == BulletData.axe && bulletData.axeUsageLimit > 0)
+            {
+                --bulletData.axeUsageLimit;
+                PlayerPrefs.SetInt("AxeUsageCount", bulletData.axeUsageLimit);
+            }
+            else if (bulletData.currentWeaponName == BulletData.axe && bulletData.axeUsageLimit == 0)
+            {
+                bulletData.currentWeaponName = BulletData.pistol;
+            }
 
-        if (bulletData.currentWeaponName == BulletData.bulldog && bulletData.bulldogUsageLimit > 0)
-        {
-            --bulletData.bulldogUsageLimit;
-            PlayerPrefs.SetInt("BulldogUsageCount", bulletData.bulldogUsageLimit);
-        }
-        else if (bulletData.currentWeaponName == BulletData.bulldog && bulletData.bulldogUsageLimit == 0)
-        {
-            bulletData.currentWeaponName = BulletData.pistol;
-        }
+            if (bulletData.currentWeaponName == BulletData.bulldog && bulletData.bulldogUsageLimit > 0)
+            {
+                --bulletData.bulldogUsageLimit;
+                PlayerPrefs.SetInt("BulldogUsageCount", bulletData.bulldogUsageLimit);
+            }
+            else if (bulletData.currentWeaponName == BulletData.bulldog && bulletData.bulldogUsageLimit == 0)
+            {
+                bulletData.currentWeaponName = BulletData.pistol;
+            }
 
-        if (bulletData.currentWeaponName == BulletData.cow && bulletData.cowUsageLimit > 0)
-        {
-            --bulletData.cowUsageLimit;
-            PlayerPrefs.SetInt("CowUsageCount", bulletData.cowUsageLimit);
-        }
-        else if (bulletData.currentWeaponName == BulletData.cow && bulletData.cowUsageLimit == 0)
-        {
-            bulletData.currentWeaponName = BulletData.pistol;
-        }
+            if (bulletData.currentWeaponName == BulletData.cow && bulletData.cowUsageLimit > 0)
+            {
+                --bulletData.cowUsageLimit;
+                PlayerPrefs.SetInt("CowUsageCount", bulletData.cowUsageLimit);
+            }
+            else if (bulletData.currentWeaponName == BulletData.cow && bulletData.cowUsageLimit == 0)
+            {
+                bulletData.currentWeaponName = BulletData.pistol;
+            }
 
-        if (bulletData.currentWeaponName == BulletData.crystal && bulletData.crystalUsageLimit > 0)
-        {
-            --bulletData.crystalUsageLimit;
-            PlayerPrefs.SetInt("CrystalUsageCount", bulletData.crystalUsageLimit);
-        }
-        else if (bulletData.currentWeaponName == BulletData.crystal && bulletData.crystalUsageLimit == 0)
-        {
-            bulletData.currentWeaponName = BulletData.pistol;
-        }
+            if (bulletData.currentWeaponName == BulletData.crystal && bulletData.crystalUsageLimit > 0)
+            {
+                --bulletData.crystalUsageLimit;
+                PlayerPrefs.SetInt("CrystalUsageCount", bulletData.crystalUsageLimit);
+            }
+            else if (bulletData.currentWeaponName == BulletData.crystal && bulletData.crystalUsageLimit == 0)
+            {
+                bulletData.currentWeaponName = BulletData.pistol;
+            }
 
-        if (bulletData.currentWeaponName == BulletData.demon && bulletData.demonUsageLimit > 0)
-        {
-            --bulletData.demonUsageLimit;
-            PlayerPrefs.SetInt("DemonUsageCount", bulletData.demonUsageLimit);
-        }
-        else if (bulletData.currentWeaponName == BulletData.demon && bulletData.demonUsageLimit == 0)
-        {
-            bulletData.currentWeaponName = BulletData.pistol;
-        }
+            if (bulletData.currentWeaponName == BulletData.demon && bulletData.demonUsageLimit > 0)
+            {
+                --bulletData.demonUsageLimit;
+                PlayerPrefs.SetInt("DemonUsageCount", bulletData.demonUsageLimit);
+            }
+            else if (bulletData.currentWeaponName == BulletData.demon && bulletData.demonUsageLimit == 0)
+            {
+                bulletData.currentWeaponName = BulletData.pistol;
+            }
 
-        if (bulletData.currentWeaponName == BulletData.ice && bulletData.iceUsageLimit > 0)
-        {
-            --bulletData.iceUsageLimit;
-            PlayerPrefs.SetInt("IceUsageCount", bulletData.iceUsageLimit);
-        }
-        else if (bulletData.currentWeaponName == BulletData.ice && bulletData.iceUsageLimit == 0)
-        {
-            bulletData.currentWeaponName = BulletData.pistol;
-        }
+            if (bulletData.currentWeaponName == BulletData.ice && bulletData.iceUsageLimit > 0)
+            {
+                --bulletData.iceUsageLimit;
+                PlayerPrefs.SetInt("IceUsageCount", bulletData.iceUsageLimit);
+            }
+            else if (bulletData.currentWeaponName == BulletData.ice && bulletData.iceUsageLimit == 0)
+            {
+                bulletData.currentWeaponName = BulletData.pistol;
+            }
 
-        if (bulletData.currentWeaponName == BulletData.electro && bulletData.electroUsageLimit > 0)
-        {
-            --bulletData.electroUsageLimit;
-            PlayerPrefs.SetInt("ElectroUsageCount", bulletData.electroUsageLimit);
-        }
-        else if (bulletData.currentWeaponName == BulletData.electro && bulletData.electroUsageLimit == 0)
-        {
-            bulletData.currentWeaponName = BulletData.pistol;
-        }
+            if (bulletData.currentWeaponName == BulletData.electro && bulletData.electroUsageLimit > 0)
+            {
+                --bulletData.electroUsageLimit;
+                PlayerPrefs.SetInt("ElectroUsageCount", bulletData.electroUsageLimit);
+            }
+            else if (bulletData.currentWeaponName == BulletData.electro && bulletData.electroUsageLimit == 0)
+            {
+                bulletData.currentWeaponName = BulletData.pistol;
+            }
 
-        if (bulletData.currentWeaponName == BulletData.ak47 && bulletData.ak47UsageLimit > 0)
-        {
-            --bulletData.ak47UsageLimit;
-            PlayerPrefs.SetInt("Ak47UsageCount", bulletData.ak47UsageLimit);
-        }
-        else if (bulletData.currentWeaponName == BulletData.ak47 && bulletData.ak47UsageLimit == 0)
-        {
-            bulletData.currentWeaponName = BulletData.pistol;
-        }
+            if (bulletData.currentWeaponName == BulletData.ak47 && bulletData.ak47UsageLimit > 0)
+            {
+                --bulletData.ak47UsageLimit;
+                PlayerPrefs.SetInt("Ak47UsageCount", bulletData.ak47UsageLimit);
+            }
+            else if (bulletData.currentWeaponName == BulletData.ak47 && bulletData.ak47UsageLimit == 0)
+            {
+                bulletData.currentWeaponName = BulletData.pistol;
+            }
 
-        if (bulletData.currentWeaponName == BulletData.m4a4 && bulletData.m4a4UsageLimit > 0)
-        {
-            --bulletData.m4a4UsageLimit;
-            PlayerPrefs.SetInt("M4A4UsageCount", bulletData.m4a4UsageLimit);
-        }
-        else if (bulletData.currentWeaponName == BulletData.m4a4 && bulletData.m4a4UsageLimit == 0)
-        {
-            bulletData.currentWeaponName = BulletData.pistol;
-        }
+            if (bulletData.currentWeaponName == BulletData.m4a4 && bulletData.m4a4UsageLimit > 0)
+            {
+                --bulletData.m4a4UsageLimit;
+                PlayerPrefs.SetInt("M4A4UsageCount", bulletData.m4a4UsageLimit);
+            }
+            else if (bulletData.currentWeaponName == BulletData.m4a4 && bulletData.m4a4UsageLimit == 0)
+            {
+                bulletData.currentWeaponName = BulletData.pistol;
+            }
+        }        
     }
     public void PlayAgainInLevel()
     {
@@ -951,65 +959,45 @@ public class SceneController : AbstractSceneController<SceneController>
 
     }
 
-    void CreateLevelButtons()
+    void OpenLevelButtons()
     {
         SetHighestLevel();
         if (levelData && CheckSceneName() == Scenes.Levels.ToString() && levelsObject)
         {
             for (int i = 0; i < PlayerPrefs.GetInt("HighestLevel") + 1; i++)
             {
-                GameObject levelButtonObject = Instantiate(levelButton, new Vector3(levelButton.transform.localPosition.x,
-                    levelButton.transform.localPosition.y,
-                    levelButton.transform.localPosition.z),
-                    Quaternion.identity, levelsObject.transform);
-                if (i < 5)
-                {
-                    levelButtonObject.transform.localPosition = new Vector3(-800 + 400 * i, 250, 0);
-                }
-                else if (i >= 5)
-                {
-                    levelButtonObject.transform.localPosition = new Vector3(2800 - 400 * i, -100, 0);
-                }
+                levelButtons[i].SetActive(true);
+
+
                 if (PlayerData.Languages.Turkish == _playerData.currentLanguage)
                 {
-                    levelButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm " + (i + 1).ToString();
+                    levelButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm " + (i + 1).ToString();
                 }
                 else
                 {
-                    levelButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level " + (i + 1).ToString();
+                    levelButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level " + (i + 1).ToString();
                 }
                 
             }
         }
     }
 
-    public void OpenCurrentLevel()
-    {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-        playAgain = true;
-
-        DestroySingletonObjects();
-
-        SceneManager.LoadScene(Scenes.Game.ToString());
-
-        DecreaseWeaponUsageLimit();
-    }
 
     public void LoadLevelsScene()
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
         SceneManager.LoadScene(Scenes.Levels.ToString());
     }
 
-    public string CheckSceneName()
+    public static string CheckSceneName()
     {
         string _sceneName = SceneManager.GetActiveScene().name;
         return _sceneName;
     }
-    public void LoadMenuScene()
+
+    public static void LoadMenuScene()
     {//Load By Click Menu Scene
 
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
@@ -1019,7 +1007,7 @@ public class SceneController : AbstractSceneController<SceneController>
             playAgain = true;
         }
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Menu.ToString());
 
@@ -1036,11 +1024,11 @@ public class SceneController : AbstractSceneController<SceneController>
         SceneManager.LoadScene(Scenes.Menu.ToString());
 
     }
-    public void LoadMenuSceneByWinScene()
+    public static void LoadMenuSceneByWinScene()
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Menu.ToString());
     }
@@ -1051,15 +1039,15 @@ public class SceneController : AbstractSceneController<SceneController>
 
         //levelData.currentLevel = LevelData.Levels.Level1;
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Win.ToString());
     }
-    public void LoadCharacterChoosingScene()
+    public static void LoadCharacterChoosingScene()
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.PickCharacter.ToString());
     }
@@ -1067,7 +1055,7 @@ public class SceneController : AbstractSceneController<SceneController>
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.PickSword.ToString());
     }
@@ -1079,21 +1067,23 @@ public class SceneController : AbstractSceneController<SceneController>
 
         SceneManager.LoadScene(Scenes.PickWeapon.ToString());
     }
-    public void LoadEndScene()
+    public static void LoadEndScene()
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.End.ToString());
     }
     void DestroySingletonObjects()
     {
-        if (PlayerManager.GetInstance.gameObject != null)
+
+        /*if (PlayerManager.GetInstance.gameObject != null)
         {
             Destroy(AudioManager.GetInstance.gameObject);
             Destroy(PlayerManager.GetInstance.gameObject);
-        }
+        }*/
+
     }
     public void PauseGame()
     {
@@ -1121,7 +1111,6 @@ public class SceneController : AbstractSceneController<SceneController>
                                                              pausePanel.transform.localPosition.y,
                                                              pausePanel.transform.localPosition.z);
             _playerData.isPlayable = false;
-
         }
     }
     public void ControlRotate()

@@ -43,7 +43,7 @@ public class ChooseSwordController : MonoBehaviour
             havingSwordText.text = "";
 
             bulletData.currentSwordName = swordName;
-            SceneController.GetInstance.LoadCharacterChoosingScene();
+            SceneController.LoadCharacterChoosingScene();
         }
     }
 

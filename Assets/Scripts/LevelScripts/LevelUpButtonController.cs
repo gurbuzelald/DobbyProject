@@ -2,102 +2,202 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LevelUpButtonController : MonoBehaviour
 {
     [SerializeField] SceneController sceneController;
     [SerializeField] LevelData levelData;
 
-    public void OnClick()
+
+    public void Level1()
     {
         if (levelData && sceneController)
         {
-            if (gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Level 1" ||
-                gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Bölüm 1")
-            {
-                levelData.currentLevel = LevelData.Levels.Level1;
+            sceneController.DecreaseWeaponUsageLimit();
 
-                sceneController.OpenCurrentLevel();
-            }
-            else if (gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Level 2" ||
-                gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Bölüm 2")
-            {
-                levelData.currentLevel = LevelData.Levels.Level2;
+            levelData.currentLevel = LevelData.Levels.Level1;
 
-                sceneController.OpenCurrentLevel();
-            }
-            else if (gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Level 3" ||
-                gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Bölüm 3")
-            {
-                levelData.currentLevel = LevelData.Levels.Level3;
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-                sceneController.OpenCurrentLevel();
-            }
-            else if (gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Level 4" ||
-                gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Bölüm 4")
-            {
-                levelData.currentLevel = LevelData.Levels.Level4;
+            SceneController.playAgain = true;
 
-                sceneController.OpenCurrentLevel();
-            }
-            else if (gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Level 5" ||
-                gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Bölüm 5")
-            {
-                levelData.currentLevel = LevelData.Levels.Level5;
+            //DestroySingletonObjects();
 
-                sceneController.OpenCurrentLevel();
-            }
-            else if (gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Level 6" ||
-                gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Bölüm 6")
-            {
-                levelData.currentLevel = LevelData.Levels.Level6;
+            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
 
-                sceneController.OpenCurrentLevel();
-            }
-            else if (gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Level 7" ||
-                gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Bölüm 7")
-            {
-                levelData.currentLevel = LevelData.Levels.Level7;
-
-                sceneController.OpenCurrentLevel();
-            }
-            else if (gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Level 8" ||
-                gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Bölüm 8")
-            {
-                levelData.currentLevel = LevelData.Levels.Level8;
-
-                sceneController.OpenCurrentLevel();
-            }
-            else if (gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Level 9" ||
-                gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Bölüm 9")
-            {
-                levelData.currentLevel = LevelData.Levels.Level9;
-
-                sceneController.OpenCurrentLevel();
-            }
-            else if (gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Level 10" ||
-                gameObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text == "Bölüm 10")
-            {
-                levelData.currentLevel = LevelData.Levels.Level10;
-
-                sceneController.OpenCurrentLevel();
-            }
+            //DecreaseWeaponUsageLimit();
         }
-        
     }
-
-    int GetCurrentLevelID(LevelData levelData)
+    public void Level2()
     {
-        if (levelData.currentLevel == LevelData.Levels.Level1) return 0;
-        else if (levelData.currentLevel == LevelData.Levels.Level2) return 1;
-        else if (levelData.currentLevel == LevelData.Levels.Level3) return 2;
-        else if (levelData.currentLevel == LevelData.Levels.Level4) return 3;
-        else if (levelData.currentLevel == LevelData.Levels.Level5) return 4;
-        else if (levelData.currentLevel == LevelData.Levels.Level6) return 5;
-        else if (levelData.currentLevel == LevelData.Levels.Level7) return 6;
-        else if (levelData.currentLevel == LevelData.Levels.Level8) return 7;
-        else if (levelData.currentLevel == LevelData.Levels.Level9) return 8;
-        else if (levelData.currentLevel == LevelData.Levels.Level10) return 9;
-        return -1;
+        if (levelData && sceneController)
+        {
+            sceneController.DecreaseWeaponUsageLimit();
+
+            levelData.currentLevel = LevelData.Levels.Level2;
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+            SceneController.playAgain = true;
+
+            //DestroySingletonObjects();
+
+            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+
+            //DecreaseWeaponUsageLimit();
+        }
+    }
+    public void Level3()
+    {
+        if (levelData && sceneController)
+        {
+            sceneController.DecreaseWeaponUsageLimit();
+
+            levelData.currentLevel = LevelData.Levels.Level3;
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+            SceneController.playAgain = true;
+
+            //DestroySingletonObjects();
+
+            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+
+            //DecreaseWeaponUsageLimit();
+        }
+    }
+    public void Level4()
+    {
+        if (levelData && sceneController)
+        {
+            sceneController.DecreaseWeaponUsageLimit();
+
+            levelData.currentLevel = LevelData.Levels.Level4;
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+            SceneController.playAgain = true;
+
+            //DestroySingletonObjects();
+
+            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+
+            //DecreaseWeaponUsageLimit();
+        }
+    }
+    public void Level5()
+    {
+        if (levelData && sceneController)
+        {
+            sceneController.DecreaseWeaponUsageLimit();
+
+            levelData.currentLevel = LevelData.Levels.Level5;
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+            SceneController.playAgain = true;
+
+            //DestroySingletonObjects();
+
+            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+
+            //DecreaseWeaponUsageLimit();
+        }
+    }
+    public void Level6()
+    {
+        if (levelData && sceneController)
+        {
+            sceneController.DecreaseWeaponUsageLimit();
+
+            levelData.currentLevel = LevelData.Levels.Level6;
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+            SceneController.playAgain = true;
+
+            //DestroySingletonObjects();
+
+            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+
+            //DecreaseWeaponUsageLimit();
+        }
+    }
+    public void Level7()
+    {
+        if (levelData && sceneController)
+        {
+            sceneController.DecreaseWeaponUsageLimit();
+
+            levelData.currentLevel = LevelData.Levels.Level7;
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+            SceneController.playAgain = true;
+
+            //DestroySingletonObjects();
+
+            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+
+            //DecreaseWeaponUsageLimit();
+        }
+    }
+    public void Level8()
+    {
+        if (levelData && sceneController)
+        {
+            sceneController.DecreaseWeaponUsageLimit();
+
+            levelData.currentLevel = LevelData.Levels.Level8;
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+            SceneController.playAgain = true;
+
+            //DestroySingletonObjects();
+
+            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+
+            //DecreaseWeaponUsageLimit();
+        }
+    }
+    public void Level9()
+    {
+        if (levelData && sceneController)
+        {
+            sceneController.DecreaseWeaponUsageLimit();
+
+            levelData.currentLevel = LevelData.Levels.Level9;
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+            SceneController.playAgain = true;
+
+            //DestroySingletonObjects();
+
+            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+
+            //DecreaseWeaponUsageLimit();
+        }
+    }
+    public void Level10()
+    {
+        if (levelData && sceneController)
+        {
+            sceneController.DecreaseWeaponUsageLimit();
+
+            levelData.currentLevel = LevelData.Levels.Level10;
+
+            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+            SceneController.playAgain = true;
+
+            //DestroySingletonObjects();
+
+            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+
+            //DecreaseWeaponUsageLimit();
+        }
     }
 }

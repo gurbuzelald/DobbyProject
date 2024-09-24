@@ -654,7 +654,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         Destroy(gameObject);
 
-        SceneController.GetInstance.LoadEndScene();
+        SceneController.LoadEndScene();
     }
     //Init
     private void InitStates()

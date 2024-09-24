@@ -21,19 +21,19 @@ public class AudioManager : AbstractPlayer<AudioManager>
     void SetStartMusic()
     {
         _audioSource = GetComponent<AudioSource>();
-        if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Menu.ToString())
+        if (SceneController.CheckSceneName() == SceneController.Scenes.Menu.ToString())
         {
             _audioSource.clip = audioData.menuMusic;
         }
-        else if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.End.ToString())
+        else if (SceneController.CheckSceneName() == SceneController.Scenes.End.ToString())
         {
             _audioSource.clip = audioData.endMusic;
         }
-        else if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Win.ToString())
+        else if (SceneController.CheckSceneName() == SceneController.Scenes.Win.ToString())
         {
             _audioSource.clip = audioData.winMusic;
         }
-        else if (SceneController.GetInstance.CheckSceneName() == SceneController.Scenes.Game.ToString())
+        else if (SceneController.CheckSceneName() == SceneController.Scenes.Game.ToString())
         {
             SetCurrentGameLevelMusic(_levelData);
             _audioSource.clip = audioData.currentGameMusic;

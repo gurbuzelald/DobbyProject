@@ -102,7 +102,7 @@ public class LevelUpController : MonoBehaviour
 
     void FindWarnTextObjects()
     {
-        if (SceneController.Scenes.Game.ToString() == _sceneController.CheckSceneName())
+        if (SceneController.Scenes.Game.ToString() == SceneController.CheckSceneName())
         {
             if (GameObject.Find("EnemyKillLevelUpRequirementWarnText"))
             {

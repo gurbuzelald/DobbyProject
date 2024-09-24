@@ -357,6 +357,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 373697536177982832, guid: 437dbb14a7ff9f2428461143ed75c4b9, type: 3}
   m_PrefabInstance: {fileID: 373697535467242247}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &441296586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7043038350229093205, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
+  m_PrefabInstance: {fileID: 7124135182238496669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ed52c3f69bda224cbf734fe35a85f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &513472942
 GameObject:
   m_ObjectHideFlags: 0
@@ -2044,6 +2055,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemies
       objectReference: {fileID: 0}
+    - target: {fileID: 373697536177982833, guid: 437dbb14a7ff9f2428461143ed75c4b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8253522799619947808, guid: 437dbb14a7ff9f2428461143ed75c4b9, type: 3}
       propertyPath: _objectPool
       value: 
@@ -2118,6 +2133,71 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 86528e47600e948fcaceb1106becc3b8, type: 3}
+--- !u!1001 &3157948435531275727
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 91269939070495591, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: m_Name
+      value: ButtonController
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864453543013122447, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864453543013122447, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864453543013122447, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864453543013122447, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864453543013122447, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864453543013122447, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864453543013122447, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864453543013122447, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864453543013122447, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864453543013122447, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408401303601693601, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: sceneController
+      value: 
+      objectReference: {fileID: 1484659335}
+    - target: {fileID: 6408401303601693601, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+      propertyPath: settingController
+      value: 
+      objectReference: {fileID: 441296586}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
 --- !u!1001 &3561150236717394727
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2134,14 +2214,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3003887011127807532, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1484659335}
-    - target: {fileID: 4042076056659475865, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1484659335}
     - target: {fileID: 4598009266626586985, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
       propertyPath: _swordTimeText
       value: 
@@ -2615,10 +2687,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7043038349035114041, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1484659335}
     - target: {fileID: 7043038349175366700, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2631,10 +2699,6 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7043038349867374825, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1484659335}
     - target: {fileID: 7043038349869697713, guid: c6a5ba654edd8b14984f594315d7c257, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2816,3 +2880,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1785344939}
   - {fileID: 2963509655275705551}
+  - {fileID: 3157948435531275727}

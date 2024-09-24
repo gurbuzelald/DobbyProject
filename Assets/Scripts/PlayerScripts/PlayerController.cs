@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Cinemachine;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Input")]
     private Player playerInput;
+    
     public Vector2 movement;
     public Vector2 lookRotation;
     public bool fire;
@@ -17,33 +15,12 @@ public class PlayerController : MonoBehaviour
     public static bool run;
 
     public Vector2 characterStick;
-    public bool Joleen;
-    public bool Glassy;
-    public bool Dobby;
-    public bool Guard;
-    public bool Lusth;
-    public bool Eve;
-    public bool Michelle;
-    public bool Boss;
-    public bool Aj;
-    public bool Mremireh;
-    public bool Ty;
 
-    public Vector2 weaponStick;
-    public bool AK47;
-    public bool Axe;
-    public bool Bulldog;
-    public bool Cow;
-    public bool Crystal;
-    public bool Demon;
-    public bool Ice;
-    public bool Electro;
-    public bool Pistol;
-    public bool M4A4;
+    public Vector2 weaponStick; 
 
     private void Awake() 
     {
-        playerInput = new Player();
+        playerInput = new Player();        
     }
     private void OnEnable()
     {
@@ -72,36 +49,13 @@ public class PlayerController : MonoBehaviour
     }
     void PickCharacter()
     {
-        Joleen = playerInput.CharacterMenuInput.Joleen.IsPressed();
-        Glassy = playerInput.CharacterMenuInput.Glassy.IsPressed();
-        Dobby = playerInput.CharacterMenuInput.Dobby.IsPressed();
-        Guard = playerInput.CharacterMenuInput.Guard.IsPressed();
-        Lusth = playerInput.CharacterMenuInput.Lusth.IsPressed();
-        Eve = playerInput.CharacterMenuInput.Eve.IsPressed();
-        Michelle = playerInput.CharacterMenuInput.Michelle.IsPressed();
-        Boss = playerInput.CharacterMenuInput.Boss.IsPressed();
-        Aj = playerInput.CharacterMenuInput.Aj.IsPressed();
-        Mremireh = playerInput.CharacterMenuInput.Mremireh.IsPressed();
-        Ty = playerInput.CharacterMenuInput.Ty.IsPressed();
-
-
         characterStick = playerInput.CharacterMenuInput.CharacterStick.ReadValue<Vector2>();
     }
     void WwaponCharacter()
     {
-        AK47 = playerInput.WeaponMenuInput.AK47.IsPressed();
-        Axe = playerInput.WeaponMenuInput.Axe.IsPressed();
-        Bulldog = playerInput.WeaponMenuInput.Bulldog.IsPressed();
-        Cow = playerInput.WeaponMenuInput.Cow.IsPressed();
-        Crystal = playerInput.WeaponMenuInput.Crystal.IsPressed();
-        Demon = playerInput.WeaponMenuInput.Demon.IsPressed();
-        Ice = playerInput.WeaponMenuInput.Ice.IsPressed();
-        Electro = playerInput.WeaponMenuInput.Electro.IsPressed();
-        Pistol = playerInput.WeaponMenuInput.Pistol.IsPressed();
-        M4A4 = playerInput.WeaponMenuInput.M4a4.IsPressed();
-
-
         weaponStick = playerInput.WeaponMenuInput.WeaponStick.ReadValue<Vector2>();
     }
+
+    
 }
 
