@@ -287,7 +287,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
                 !playerData.isSwordAnimate &&
                 !playerData.isSideWalking &&
                 !playerData.isWalking &&
-                !playerData.isBackWalking)
+                !playerData.isBackWalking &&
+                !playerData.isDying)
         {
             _animator.SetLayerWeight(17, 1);
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);
@@ -298,9 +299,13 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
             _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
         }
-        else if ((!playerData.isFire &&
-                !playerData.isFireAnimation) && (PlayerManager.GetInstance.GetZValue() != 0 ||
-                PlayerManager.GetInstance.GetXValue() != 0))
+        else if (((!playerData.isFire &&
+                !playerData.isFireAnimation) &&
+                (PlayerManager.GetInstance.GetZValue() != 0 ||
+                PlayerManager.GetInstance.GetXValue() != 0)) ||
+                playerData.isDying ||
+                PlayerManager.GetInstance.GetXValue() != 0 ||
+                PlayerManager.GetInstance.GetZValue() != 0)
         {
             _animator.SetLayerWeight(17, 0);
 
@@ -310,6 +315,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             _animator.SetBool(AnimatorParameters.isClimbing.ToString(), false);
             _animator.SetBool(AnimatorParameters.isBackClimbing.ToString(), false);
         }
+
     }
 
     void FireWalkAnimation(PlayerData playerData, Animator _animator)
@@ -351,6 +357,8 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             playerData.isSwordAnimate)
         {
             _animator.SetBool(AnimatorParameters.isSword.ToString(), true);
+
+            _animator.SetLayerWeight(17, 0);
 
             _animator.SetBool(AnimatorParameters.isFiring.ToString(), false);
             _animator.SetBool(AnimatorParameters.isIdling.ToString(), false);

@@ -135,7 +135,7 @@ public class EnemySpawner : MonoBehaviour
     }
     IEnumerator DelayDestroy()
     {
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(5f);
         if (_bulletCoinSpawn.childCount != 0)
         {
             Destroy(_bulletCoinSpawn.transform.GetChild(0).gameObject);
@@ -169,7 +169,7 @@ public class EnemySpawner : MonoBehaviour
                 }
                 if (gameObject.transform.GetChild(0).GetChild(i).childCount == 0)
                 {
-                    StartCoroutine(CreateBulletCoin(i));
+                    //StartCoroutine(CreateBulletCoin(i));
                 }
             }
         }

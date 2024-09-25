@@ -190,7 +190,7 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
                     CheckEnemyBulletDamage(ref _enemyManager.bulletData);
                     _enemyManager.bulletData.enemyBulletDelayCounter += 1f;
                     _enemyManager.enemyData.isFiring = true;
-                    _enemyManager.enemyData.isWalking = false;
+                    //_enemyManager.enemyData.isWalking = false;
                     StartCoroutine(Delay(_enemyManager.bulletData.enemyBulletDelay, 2f));
                     StartCoroutine(FiringFalse(enemyFireFrequency));
 
@@ -217,7 +217,7 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
         if (_enemyManager.bulletData.enemyBulletDelayCounter >= 1 && !_enemyManager.enemyData.isSpeedZero)
         {
             _enemyManager.bulletData.enemyBulletDelayCounter = 0;
-            _enemyManager.enemyData.isFiring = false;
+            _enemyManager.enemyData.isFiring = true;
             _enemyManager.enemyData.isWalking = true;
         }        
     }

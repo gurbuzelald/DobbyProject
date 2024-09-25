@@ -15,37 +15,57 @@ public class MapController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
 
-        currentMap = Instantiate(levelData.Maps[LevelData.currentLevelCount], gameObject.transform);
-        RenderSettings.skybox = levelData.levelSkyboxes[LevelData.currentLevelCount];
-
+        if (levelData)
+        {
+            currentMap = Instantiate(levelData.Maps[LevelData.currentLevelCount], gameObject.transform);
+        }
+        if (levelData)
+        {
+            RenderSettings.skybox = levelData.levelSkyboxes[LevelData.currentLevelCount];
+        }    
     }
     IEnumerator DelayTruePlayable()
     {
         yield return new WaitForSeconds(0.5f);
-        playerData.isPlayable = true;
+        if (playerData)
+        {
+            playerData.isPlayable = true;
+        }
     }
     void Update()
     {
-        readWrite.SavePlayerDataToJson();
+        if (readWrite)
+        {
+            readWrite.SavePlayerDataToJson();
+        }
     }
     public void CreateMap(int levelCount)
     {
-        playerData.isPlayable = false;
-        Destroy(currentMap, levelCount);
-        CreateMap(levelData.Maps[levelCount], gameObject.transform);
-        StartCoroutine(DelayTruePlayable());
+        if (playerData && currentMap && levelData)
+        {
+            playerData.isPlayable = false;
+            Destroy(currentMap, levelCount);
+            CreateMap(levelData.Maps[levelCount], gameObject.transform);
+            StartCoroutine(DelayTruePlayable());
+        }
     }
 
     void CreateMap(GameObject mapObject, Transform mapTransform)
     {
-        currentMap  = Instantiate(mapObject, mapTransform);
+        if (currentMap && mapObject != null)
+        {
+            currentMap = Instantiate(mapObject, mapTransform);
+        }        
     }
     public void SetSkybox(int levelCount)
     {
-        RenderSettings.skybox = levelData.levelSkyboxes[levelCount];
+        if (levelData)
+        {
+            RenderSettings.skybox = levelData.levelSkyboxes[levelCount];
+        }
     }
 }

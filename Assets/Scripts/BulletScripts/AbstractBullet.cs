@@ -34,9 +34,6 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
 
     public virtual void CreateBullet(Transform bulletSpawn, float bulletSpeed, int objectpoolCount, ObjectPool objectPool,float delayCreate, float delayDestroy)
     {
-        //GameObject bulletObject = Instantiate(_bulletObject, _bulletSpawnTransform.transform.position, _bulletSpawnTransform.transform.rotation);
-        //bulletObject.GetComponent<Rigidbody>().velocity = (_bulletSpawnTransform.transform.TransformDirection(Vector3.forward * _playerData.bulletSpeed));
-
         StartCoroutine(DelayCreate(bulletSpawn, bulletSpeed, objectpoolCount, objectPool, delayCreate, delayDestroy));
     }
     public IEnumerator DelaySpawn(GameObject bulletObject, Transform bulletSpawn, float delayDestroy)

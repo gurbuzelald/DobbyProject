@@ -181,7 +181,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         if (_playerData.isPlayable && GetInstance._playerController.fire && !_playerData.isWinning)
         {
-            //SetFalseBullet
             StartCoroutine(playerInterfaces.iPlayerShoot.DelayShowingCrosshairAlpha(crosshairImage, 2f));
         }
         else
@@ -190,7 +189,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         if (_playerData.isPlayable && _playerController.fire && !_playerData.isWinning)
         {
-            playerInterfaces.iPlayerTrigger.BulletPackGrow(_playerData, ref bulletAmountCanvas);
+            playerInterfaces.iPlayerTrigger.SetBulletPackAndAmountTextSize(_playerData, ref bulletAmountCanvas);
 
             
         }
@@ -498,10 +497,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             //Touch ParticleEffect
             ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
         }
-        if (other.CompareTag(SceneController.Tags.Ladder.ToString()))
-        {
-            playerInterfaces.iPlayerTrigger.TriggerLadder(true, false, _playerData, ref playerObjects.playerRigidbody);
-        }
 
         TriggerFinishControl(other);
 
@@ -547,33 +542,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
         }
-
-
-        if (other.CompareTag(SceneController.Tags.Lava.ToString()))
-        {
-            playerInterfaces.iPlayerTrigger.DestroyByLava(_playerData, ref _particleTransform);//DeathByLava
-
-            //DestroyingWithDelay
-            StartCoroutine(DelayDestroy(3f));
-        }
-        if (other.CompareTag(SceneController.Tags.Water.ToString()))
-        {
-            playerInterfaces.iPlayerTrigger.DestroyByWater(_playerData);//DeathByLadder
-
-            //DestroyingWithDelay
-            StartCoroutine(DelayDestroy(3f));
-        }
         playerInterfaces.iPlayerTrigger.CheckWeaponCollect(other, _bulletData);
     }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag(SceneController.Tags.Ladder.ToString()))
-        {
-            playerInterfaces.iPlayerTrigger.TriggerLadder(false, true, _playerData, ref playerObjects.playerRigidbody);//ExitLadder
-        }
-    }
-
 
 
 
@@ -680,11 +650,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             _playerData.isTouchableSkate = true;
             playerObjects.playerRigidbody = GetComponent<Rigidbody>();
-
-            playerInterfaces.iPlayerTrigger.TriggerLadder(false, true, _playerData, ref playerObjects.playerRigidbody);
-            //
-            //iPlayerInitial.PlayerRandomSpawn(_playerData);
-
 
             playerInterfaces.iPlayerInitial.CreateCharacterObject(_playerData, ref characterObject);
 

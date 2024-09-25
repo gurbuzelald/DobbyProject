@@ -127,6 +127,19 @@ public class BulletData : ScriptableObject
     public bool isM4a4;
     public bool isAk47;
 
+    [Header("Bullet Packs")]
+    public int currentBulletPack;
+    public int pistolBulletAmount;
+    public int axeBulletAmount;
+    public int bulldogBulletAmount;
+    public int cowBulletAmount;
+    public int crystalBulletAmount;
+    public int demonBulletAmount;
+    public int iceBulletAmount;
+    public int electroBulletAmount;
+    public int ak47BulletAmount;
+    public int m4A4BulletAmount;
+
     [Header("Weapon Names")]
     public static int currentWeaponID = 0;
     public const string pistol = "pistol";
@@ -255,9 +268,9 @@ public class BulletData : ScriptableObject
 
 
 
-    [Header("Pick Sword")]
+    [Header("Pick Sword Weapon")]
     public string currentSwordName = warriorSword;
-    public string currentWeaponName = pistol;
+    public string currentWeaponName = pistol;    
 
     [Header("Sword Power")]
     public float swordDamageValue;

@@ -197,6 +197,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                                PlayerManager.GetInstance._gunTransform.transform);
 
             bulletData.currentShootFrequency = bulletData.ak47ShootFrequency;
+
+            bulletData.currentBulletPack = bulletData.ak47BulletAmount;
         }
         else if (bulletData.currentWeaponName == BulletData.m4a4)
         {
@@ -206,6 +208,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     PlayerManager.GetInstance._gunTransform.transform);
 
             bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
+
+            bulletData.currentBulletPack = bulletData.m4A4BulletAmount;
         }
         else if (bulletData.currentWeaponName == BulletData.bulldog)
         {
@@ -215,6 +219,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     PlayerManager.GetInstance._gunTransform.transform);
 
             bulletData.currentShootFrequency = bulletData.bulldogShootFrequency;
+
+            bulletData.currentBulletPack = bulletData.bulldogBulletAmount;
         }
         else if (bulletData.currentWeaponName == BulletData.cow)
         {
@@ -225,6 +231,8 @@ public class BulletManager : AbstractBullet<BulletManager>
 
             bulletData.currentShootFrequency = bulletData.cowShootFrequency;
 
+            bulletData.currentBulletPack = bulletData.cowBulletAmount;
+
         }
         else if (bulletData.currentWeaponName == BulletData.crystal)
         {
@@ -234,6 +242,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     PlayerManager.GetInstance._gunTransform.transform);
 
             bulletData.currentShootFrequency = bulletData.crystalShootFrequency;
+
+            bulletData.currentBulletPack = bulletData.crystalBulletAmount;
         }
         else if (bulletData.currentWeaponName == BulletData.demon)
         {
@@ -243,6 +253,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     PlayerManager.GetInstance._gunTransform.transform);
 
             bulletData.currentShootFrequency = bulletData.demonShootFrequency;
+
+            bulletData.currentBulletPack = bulletData.demonBulletAmount;
         }
         else if (bulletData.currentWeaponName == BulletData.ice)
         {
@@ -252,6 +264,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     PlayerManager.GetInstance._gunTransform.transform);
 
             bulletData.currentShootFrequency = bulletData.iceShootFrequency;
+
+            bulletData.currentBulletPack = bulletData.iceBulletAmount;
         }
         else if (bulletData.currentWeaponName == BulletData.electro)
         {
@@ -261,6 +275,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     PlayerManager.GetInstance._gunTransform.transform);
 
             bulletData.currentShootFrequency = bulletData.electroShootFrequency;
+
+            bulletData.currentBulletPack = bulletData.electroBulletAmount;
         }
         else if (bulletData.currentWeaponName == BulletData.axe)
         {
@@ -270,6 +286,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     PlayerManager.GetInstance._gunTransform.transform);
 
             bulletData.currentShootFrequency = bulletData.axeShootFrequency;
+
+            bulletData.currentBulletPack = bulletData.axeBulletAmount;
         }
         else if (bulletData.currentWeaponName == BulletData.pistol)
         {
@@ -279,6 +297,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                                     PlayerManager.GetInstance._gunTransform.transform);
 
             bulletData.currentShootFrequency = bulletData.pistolShootFrequency;
+
+            bulletData.currentBulletPack = bulletData.pistolBulletAmount;
         }
         else
         {
@@ -953,7 +973,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 WeaponSoundTypeState();
 
-                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 3f);
+                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 1f);
                 isCreatedWeaponBullet = true;
             }
             //PlayerManager.GetInstance._currentCamera.transform.position.x

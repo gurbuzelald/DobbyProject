@@ -100,8 +100,6 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 0
-  playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
-  bulletData: {fileID: 0}
   delayFalseWhenTriggerEnemy: 0
 --- !u!1 &3532475191173677778
 GameObject:
@@ -145,7 +143,7 @@ ParticleSystem:
   m_GameObject: {fileID: 3532475191173677778}
   serializedVersion: 8
   lengthInSec: 5
-  simulationSpeed: 10
+  simulationSpeed: 1
   stopAction: 1
   cullingMode: 3
   ringBufferMode: 2
@@ -689,7 +687,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 2
+    maxNumParticles: 1
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -2770,7 +2768,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
   NoiseModule:
-    enabled: 1
+    enabled: 0
     strength:
       serializedVersion: 2
       minMaxState: 0

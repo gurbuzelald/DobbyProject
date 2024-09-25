@@ -81,13 +81,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         SetPlayerWeaponExplosionParticle();
 
-        SetCurrentBackToWalkingValueForStart();
+        SetBackToWalkingValueForStart();
     }   
     void Update()
     {
         WeaponBulletPower(); 
 
-        if (!enemyData.isFiring && !enemyData.isDying && 
+        if (!enemyData.isDying && 
             (Vector3.Distance(gameObject.transform.position,
             PlayerManager.GetInstance.gameObject.transform.position) <= levelData.enemyDetectionDistances[LevelData.currentLevelCount])
             && !enemyData.isSpeedZero)
@@ -109,7 +109,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         if (levelData)
         {
-            SetCurrentBackToWalkingValueForUpdate();
+            SetCurrentBackToWalkingValue();
         }
         if (PlayerManager.GetInstance._bulletData != null && enemyData != null)
         {
@@ -139,8 +139,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     void SetPlayerWeaponExplosionParticle()
     {
         if (PlayerData.currentBulletExplosionIsChanged)
-        {          
-
+        {         
             PlayerData.currentBulletExplosionIsChanged = false;
         }
         if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.pistol)
@@ -206,7 +205,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 bulletData.isFirable = true;
 
-
                 if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.1f) &&
                     (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < levelData.currentEnemyDetectionDistance) &&
                     enemyData.isWalkable && !enemyData.isDying && !enemyData.isSpeedZero)
@@ -216,13 +214,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     enemyData.isAttacking = false;
                     enemyData.isFiring = false;
                     enemyData.isDying = false;
-                    //Debug.Log("Test");
+
                     Movement(clownSpawner.targetTransform, _initTransform, gameObject.transform, enemyData.enemySpeed, playerData, enemyData);
                 }
                 else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) <= 0.1f) && !enemyData.isDying &&
                           playerData.isPlayable)
                 {
-                    //Debug.Log("Test");
                     enemyData.isAttacking = true;
 
                     playerData.isDecreaseHealth = true;
@@ -234,7 +231,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     enemyData.isFiring = false;
                     
                     //When Enemy touched player, enemy will get a animation to here.
-                    //enemyData.isWalking = false;
                 }
                 else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.2f) &&
                     (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 10f) &&
@@ -243,14 +239,14 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     enemyData.isFiring = true;
                     enemyData.isAttacking = false;
                     enemyData.isDying = false;
-                    enemyData.isWalking = false;
+                    //enemyData.isWalking = false;
 
                 }
                 else
                 {
-                    enemyData.isAttacking = false;
-                    enemyData.isWalking = false;
-                    enemyData.isFiring = false;
+                    //enemyData.isAttacking = false;
+                    //enemyData.isWalking = false;
+                    //enemyData.isFiring = false;
                 }
             }
             else if (!playerData.isPlayable || gameObject != null || enemyBulletManager != null)
@@ -485,14 +481,15 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             PlaySoundEffect(SoundEffectTypes.GiveHit, _audioSource);
 
-            enemyData.isWalking = false;
-            enemyData.isFiring = false;
             if (gameObject.transform.parent.name == "bossEnemyTransform")
             {
                 StartCoroutine(DelayStopEnemy(0f));
             }
             else
             {
+                enemyData.isWalking = false;
+                //enemyData.isSpeedZero = true;
+
                 StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue / 3));
             }
             
@@ -522,8 +519,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 enemyData.isTouchable = false;
                 enemyData.isDying = true;
                 //enemyData.isWalking = false;
+
                 enemyData.isFiring = false;
+
                 enemyData.isSpeedZero = true;
+
                 if (gameObject.transform.parent.name == "bossEnemyTransform")
                 {
                     StartCoroutine(DelayStopEnemy(0f));
@@ -532,6 +532,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 {
                     StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
                 }
+
 
                 Destroy(_healthBar);
                 ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue * 2);
@@ -550,19 +551,20 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 {
                     middleParticleSystem.Play();
                 }
-                //enemyData.isWalking = false;
-                enemyData.isFiring = false;
-                enemyData.isSpeedZero = true;
+
                 if (gameObject.transform.parent.name == "bossEnemyTransform")
                 {
                     StartCoroutine(DelayStopEnemy(0f));
                 }
                 else
                 {
+                    //enemyData.isSpeedZero = true;
+                    enemyData.isWalking = false;
                     StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
                 }
                 PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
                 PlaySoundEffect(SoundEffectTypes.SwordHit, _audioSource);
+
                 if (gameObject.transform.parent.name == "bossEnemyTransform")
                 {
                     _healthBarSlider.value -= swordPower/3;
@@ -583,9 +585,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         StartCoroutine(TriggerBulletParticleCreater(other, enemyData.currentBulletExplosionParticle));
 
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
-        //enemyData.isWalking = false;
-        enemyData.isSpeedZero = true;
-        //StartCoroutine(DelayStopEnemy(3f));
+
+
         if (_healthBar != null)
         {
             if (_healthBarSlider.value <= 0)
@@ -599,14 +600,18 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 //enemyData.isWalking = false;
                 enemyData.isFiring = false;
                 enemyData.isSpeedZero = true;
-                if (gameObject.transform.parent.name == "bossEnemyTransform")
+
+
+                if (PlayerManager.GetInstance._bulletData.currentBulletPack - playerData.bulletAmount >= 5)
                 {
-                    StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue / 4));
+                    playerData.bulletAmount += 5;
                 }
                 else
                 {
-                    StartCoroutine(DelayStopEnemy(3f));
+                    playerData.bulletAmount += PlayerManager.GetInstance._bulletData.currentBulletPack - playerData.bulletAmount;
                 }
+                
+
                 Destroy(_healthBar);
                 ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue * 2);
                 PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
@@ -625,15 +630,16 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     middleParticleSystem.Play();
                 }
                 //enemyData.isWalking = false;
-                enemyData.isFiring = false;
                 
-                enemyData.isSpeedZero = true;
+                
                 if (gameObject.transform.parent.name == "bossEnemyTransform")
                 {
                     StartCoroutine(DelayStopEnemy(0f));
                 }
                 else
                 {
+                    //enemyData.isSpeedZero = true;
+                    enemyData.isWalking = false;
                     StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
                 }
                
@@ -648,16 +654,22 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
     }
 
-    void SetCurrentBackToWalkingValueForStart()
+    void SetBackToWalkingValueForStart()
     {
-        levelData.currentBackToWalkingValue = levelData.backToWalkingDelays[LevelData.currentLevelCount];
-    }
-    void SetCurrentBackToWalkingValueForUpdate()
-    {
-        if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
+        if (levelData)
         {
-            levelData.currentBackToWalkingValue = LevelData.currentLevelCount;
+            levelData.currentBackToWalkingValue = levelData.backToWalkingDelays[LevelData.currentLevelCount];
         }
+    }
+    void SetCurrentBackToWalkingValue()
+    {
+        if (levelData)
+        {
+            if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
+            {
+                levelData.currentBackToWalkingValue = levelData.backToWalkingDelays[LevelData.currentLevelCount];
+            }
+        }        
     }
 
     IEnumerator TriggerBulletParticleCreater(Collider other, GameObject bulletExplosionParticle)
@@ -682,12 +694,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     }
 
-
-
     public IEnumerator DelayStopEnemy(float backToWalkingValue)
     {
         yield return new WaitForSeconds(backToWalkingValue);
-        //enemyData.isWalking = true;
+        
+        enemyData.isWalking = true;
         enemyData.isSpeedZero = false;
 
     }

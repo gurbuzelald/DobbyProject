@@ -8,7 +8,7 @@ public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehavi
     {
         if (!_playerData.isDestroyed)
         {
-            if (_enemyData.isWalking && !_enemyData.isFiring && !_enemyData.isAttacking)
+            if (_enemyData.isWalking && !_enemyData.isFiring)
             {
                 _animator.SetBool("isWalking", true);
 

@@ -40,6 +40,11 @@ public class SceneController : MonoBehaviour
 
     TextMeshProUGUI[] currentTexts = new TextMeshProUGUI[100];
 
+    private void Awake()
+    {
+        SetCurrentLevelCount();
+    }
+
 
     void Start()
     {
@@ -741,13 +746,18 @@ public class SceneController : MonoBehaviour
 
         levelData.currentLevel = LevelData.Levels.Level1;
 
-        playAgain = true;
-
+        
         //DestroySingletonObjects();
+        if (levelData.currentLevel == LevelData.Levels.Level1)
+        {
+            LevelData.currentLevelCount = 0;
+            playAgain = true;
 
-        SceneManager.LoadScene(Scenes.Game.ToString());
+            SceneManager.LoadScene(Scenes.Game.ToString());
 
-        DecreaseWeaponUsageLimit();
+            DecreaseWeaponUsageLimit();
+        }
+        
     }
     public void DecreaseWeaponUsageLimit()
     {
@@ -862,11 +872,57 @@ public class SceneController : MonoBehaviour
 
         playAgain = true;
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
+
+        SetCurrentLevelCount();
 
         SceneManager.LoadScene(Scenes.Game.ToString());
 
         DecreaseWeaponUsageLimit();
+    }
+
+    void SetCurrentLevelCount()
+    {
+        if (levelData.currentLevel == LevelData.Levels.Level1)
+        {
+            LevelData.currentLevelCount = 0;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level2)
+        {
+            LevelData.currentLevelCount = 1;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level3)
+        {
+            LevelData.currentLevelCount = 2;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level4)
+        {
+            LevelData.currentLevelCount = 3;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level5)
+        {
+            LevelData.currentLevelCount = 4;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level6)
+        {
+            LevelData.currentLevelCount = 5;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level7)
+        {
+            LevelData.currentLevelCount = 6;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level8)
+        {
+            LevelData.currentLevelCount = 7;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level9)
+        {
+            LevelData.currentLevelCount = 8;
+        }
+        else if (levelData.currentLevel == LevelData.Levels.Level10)
+        {
+            LevelData.currentLevelCount = 9;
+        }
     }
 
     

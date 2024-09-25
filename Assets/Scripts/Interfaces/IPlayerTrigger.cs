@@ -6,9 +6,6 @@ using UnityEngine.UI;
 
 internal interface IPlayerTrigger
 {
-    void TriggerLadder(bool isTouch, bool isTouchExit, PlayerData _playerData, ref Rigidbody objectRigidbody);
-
-
     void TriggerBullet(Collider other, PlayerData _playerData, 
                         ref GameObject _healthBarObject, 
                         ref GameObject _topCanvasHealthBarObject, 
@@ -33,7 +30,7 @@ internal interface IPlayerTrigger
 
     void DamageArrowDirection(ref GameObject _damageArrow);
 
-    void BulletPackGrow(PlayerData _playerData, ref GameObject bulletAmountCanvas);
+    void SetBulletPackAndAmountTextSize(PlayerData _playerData, ref GameObject bulletAmountCanvas);
 
     void DestroyByWater(PlayerData _playerData);
 

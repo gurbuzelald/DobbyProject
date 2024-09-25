@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationController>
 {
     [Header("Animator")]
-    [SerializeField] RuntimeAnimatorController[] runAnimatorControllers;
+    [SerializeField] RuntimeAnimatorController[] runtimeAnimatorControllers;
     private RuntimeAnimatorController runAnimatorController;
     private Animator _animator;
     private int _animationCount;
@@ -28,11 +28,11 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
 
         if (_enemyManager)
         {
-            if (runAnimatorControllers != null)
+            if (runtimeAnimatorControllers != null)
             {
-                if (runAnimatorControllers[_enemyManager.enemyDataNumber] != null)
+                if (runtimeAnimatorControllers[_enemyManager.enemyDataNumber] != null)
                 {
-                    runAnimatorController = runAnimatorControllers[_enemyManager.enemyDataNumber];
+                    runAnimatorController = runtimeAnimatorControllers[_enemyManager.enemyDataNumber];
                 }
                 
             }          
@@ -49,7 +49,7 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
     }
     void Update()
     {
-        if (_animator && _animator)
+        if (_animator)
         {
             AnimationState(_enemyData, _animator, _playerData, _animationCount);
         }              

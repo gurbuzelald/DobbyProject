@@ -120,6 +120,8 @@ public class ButtonController : MonoBehaviour
         buttonTime += Time.deltaTime;
     }
 
+
+    #region WinScene Button Events
     void WinSceneButtons()
     {
         if (SceneController.CheckSceneName() == SceneController.Scenes.Win.ToString())
@@ -153,6 +155,7 @@ public class ButtonController : MonoBehaviour
             buttonTime = 0;
         }
     }
+    #endregion
 
 
     #region End Scene Button Events

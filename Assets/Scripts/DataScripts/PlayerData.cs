@@ -54,8 +54,6 @@ public class PlayerData : ScriptableObject
     public int mremirehDurability;
     public int tyDurability;
     public static int currentCharacterDurability;
-
-
     
     [Header("Enemy Names")]
     public const string clown = "Clown(Clone)";
@@ -217,9 +215,8 @@ public class PlayerData : ScriptableObject
     public bool normalSpeed;
     public int clickTabCount;
     public int clickShiftCount;
-    public int bulletAmount = 90;
-    public int bulletPack = 90;
-    public int bulletPackAmount = 2;
+    public int bulletAmount;
+    public int bulletPackAmount;
     public bool isTouchableSkate;
 
     [Header("Dance")]
