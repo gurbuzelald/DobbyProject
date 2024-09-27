@@ -38,15 +38,12 @@ public class ObjectPool : MonoBehaviour
     {
         if (pools.Length != 0)
         {
-            if (pools[0].bulletData != null && creatablePlayerBullet)
+            if (pools[0].bulletData != null && creatablePlayerBullet &&
+                pools[1].bulletData != null && levelData && creatableEnemyBullet)
             {
                 CreateAndEnqueueObject();
 
                 creatablePlayerBullet = false;
-            }
-            if (pools[1].bulletData != null && levelData && creatableEnemyBullet)
-            {
-                CreateAndEnqueueObject();
 
                 creatableEnemyBullet = false;
             }
@@ -55,7 +52,7 @@ public class ObjectPool : MonoBehaviour
     
     void SetPlayerBulletID(int objectPoolLine)
     {
-        if (pools[0].bulletData != null)
+        if (pools[objectPoolLine].bulletData != null)
         {
             int weaponId = GetPlayerWeaponId(pools[objectPoolLine].bulletData);
             if (weaponId != -1)
@@ -64,9 +61,9 @@ public class ObjectPool : MonoBehaviour
             }
         }
     }
-    void SetEnemyBulletID()
+    void SetEnemyBulletID(int objectPoolLine)
     {
-        if (pools[1].bulletData != null)
+        if (pools[objectPoolLine].bulletData != null)
         {
             int bulletID = GetEnemyWeaponId(levelData);
             if (bulletID != -1)
@@ -113,47 +110,68 @@ public class ObjectPool : MonoBehaviour
         {
             pools[j].pooledObjects = new Queue<GameObject>();
 
+            // Initialize ID once based on the pool type (Player Bullet, Enemy Bullet, etc.)
+            if (j == 0)
+            {
+                SetPlayerBulletID(0);  // Set Player Bullet ID once for this pool
+            }
+            else if (j == 1)
+            {
+                SetEnemyBulletID(1);  // Set Enemy Bullet ID once for this pool
+            }
 
+            // Pool objects exactly poolSize times
             for (int i = 0; i < pools[j].poolSize; i++)
             {
-                if (j == 0)
+                GameObject pooledObject = InstantiateObject(j, pools[j]);
+                if (pooledObject == null)
                 {
-                    SetPlayerBulletID(0);
-
-                    _playerBulletObject = Instantiate(pools[j].objectPrefab[BulletData.currentWeaponID],
-                                             pools[j].objectTransform.position,
-                                             pools[j].objectTransform.rotation,
-                                             pools[j].objectTransform);
-                    _playerBulletObject.SetActive(false);
-
-                    pools[j].pooledObjects.Enqueue(_playerBulletObject);
+                    return;
                 }
-                else if(j == 1)
-                {
-                    SetEnemyBulletID();
 
-
-                    _enemyBulletObject = Instantiate(pools[j].objectPrefab[BulletData.currentEnemyBulletID],
-                                             pools[j].objectTransform.position,
-                                             pools[j].objectTransform.rotation,
-                                             pools[j].objectTransform);
-                    _enemyBulletObject.SetActive(false);
-
-                    pools[j].pooledObjects.Enqueue(_enemyBulletObject);
-                }
-                else
-                {
-                    _playerSwordObject = Instantiate(pools[j].objectPrefab[0],
-                                             pools[j].objectTransform.position,
-                                             pools[j].objectTransform.rotation,
-                                             pools[j].objectTransform);
-                    _playerSwordObject.SetActive(false);
-
-                    pools[j].pooledObjects.Enqueue(_playerSwordObject);
-                }
-                
+                pooledObject.SetActive(false);
+                pools[j].pooledObjects.Enqueue(pooledObject); // Add only one object per iteration
             }
+        }        
+    }
+    // Helper Method to Instantiate Object Once
+    GameObject InstantiateObject(int poolIndex, Pool pool)
+    {
+        GameObject obj;
+
+        if (poolIndex == 0)
+        {
+            // Instantiate Player Bullet
+            obj = Instantiate(pool.objectPrefab[BulletData.currentWeaponID],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
         }
+        else if (poolIndex == 1)
+        {
+            // Instantiate Enemy Bullet
+            obj = Instantiate(pool.objectPrefab[BulletData.currentEnemyBulletID],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if(poolIndex == 2)
+        {
+            // Instantiate Player Sword
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else
+        {
+            return null;
+        }
+
+        
     }
 
     public GameObject GetPooledObject(int objectType)
