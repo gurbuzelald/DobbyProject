@@ -12,12 +12,29 @@ public class AudioManager : AbstractPlayer<AudioManager>
     [Header("Audio Components")]
     public AudioMixer _audiomixer;
     private AudioSource _audioSource;
+
+    public static float buttonDelayTimer;
+
     // Start is called before the first frame update
     void Start()
     {
+        //buttonDelayTimer = 0;
+
         SetStartMusic();
         LoadVolume();   
     }
+
+
+    private void Update()
+    {
+        DelayButton();//This Code Writen for ButtonController's Button Delay
+    }
+
+    void DelayButton()
+    {
+        buttonDelayTimer += Time.deltaTime;
+    }
+
     void SetStartMusic()
     {
         _audioSource = GetComponent<AudioSource>();

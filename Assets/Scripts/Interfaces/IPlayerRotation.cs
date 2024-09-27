@@ -6,6 +6,5 @@ internal interface IPlayerRotation
 {
     void Rotate(ref float _touchX, ref float _touchY, ref Transform playerTransform);
     void GetMousePosition(PlayerData _playerData, ref float _touchX, ref float _touchY);
-    void SensivityXSettings(int touchXValue, PlayerController _playerController, PlayerData _playerData, ref float _touchX);
-    
+    void SensivityXSettings(float touchXValue, PlayerController _playerController, PlayerData _playerData, ref float _touchX);
 }

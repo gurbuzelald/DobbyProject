@@ -15,6 +15,7 @@ public class ChooseWeaponController : MonoBehaviour
 
     [SerializeField] BulletData bulletData;
     [SerializeField] PlayerCoinData playerCoinData;
+    [SerializeField] PlayerData playerData;
 
     [SerializeField] float menuSlideSpeed;
 
@@ -148,7 +149,6 @@ public class ChooseWeaponController : MonoBehaviour
         }        
     }
 
-
     public void WeaponUsageLimit()
     {
         for (int i = 0; i < weaponUsageLimits.Length; i++)
@@ -279,7 +279,6 @@ public class ChooseWeaponController : MonoBehaviour
         }
 
     }    
-    
     
     void WeaponPickStates()
     {
@@ -476,7 +475,14 @@ public class ChooseWeaponController : MonoBehaviour
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "AK47PriceErrorText")
                 {
-                    weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
+                    }
+                    else
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    }
                 }
             }
             bulletData.ak47UsageLimit = 0;
@@ -545,7 +551,14 @@ public class ChooseWeaponController : MonoBehaviour
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "AXEPriceErrorText")
                 {
-                    weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
+                    }
+                    else
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    }
                 }
             }
             bulletData.axeUsageLimit = 0;
@@ -612,7 +625,14 @@ public class ChooseWeaponController : MonoBehaviour
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "BULLDOGPriceErrorText")
                 {
-                    weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
+                    }
+                    else
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    }
                 }
             }
             bulletData.bulldogUsageLimit = 0;
@@ -679,7 +699,14 @@ public class ChooseWeaponController : MonoBehaviour
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "COWPriceErrorText")
                 {
-                    weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
+                    }
+                    else
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    }
                 }
             }
             bulletData.cowUsageLimit = 0;
@@ -745,7 +772,14 @@ public class ChooseWeaponController : MonoBehaviour
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "CRYSTALPriceErrorText")
                 {
-                    weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
+                    }
+                    else
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    }
                 }
             }
             bulletData.crystalUsageLimit = 0;
@@ -812,7 +846,14 @@ public class ChooseWeaponController : MonoBehaviour
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "DEMONPriceErrorText")
                 {
-                    weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
+                    }
+                    else
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    }
                 }
             }
             bulletData.demonUsageLimit = 0;
@@ -879,7 +920,14 @@ public class ChooseWeaponController : MonoBehaviour
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "ICEPriceErrorText")
                 {
-                    weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
+                    }
+                    else
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    }
                 }
             }
             bulletData.iceUsageLimit = 0;
@@ -945,7 +993,14 @@ public class ChooseWeaponController : MonoBehaviour
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "ELECTROPriceErrorText")
                 {
-                    weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
+                    }
+                    else
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    }
                 }
             }
             bulletData.electroUsageLimit = 0;
@@ -1011,7 +1066,14 @@ public class ChooseWeaponController : MonoBehaviour
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "PISTOLPriceErrorText")
                 {
-                    weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
+                    }
+                    else
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    }
                 }
             }
         }
@@ -1078,7 +1140,14 @@ public class ChooseWeaponController : MonoBehaviour
             {
                 if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "M4A4PriceErrorText")
                 {
-                    weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
+                    }
+                    else
+                    {
+                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
+                    }
                 }
             }
         }

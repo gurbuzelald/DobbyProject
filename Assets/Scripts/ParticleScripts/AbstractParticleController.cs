@@ -125,7 +125,8 @@ public abstract class AbstractParticleController<T> : MonoBehaviour where T : Mo
         DestroyMushroomCoin,
         DestroyBulletCoin,
         DestroyHealthCoin,
-        PlayerWalking
+        PlayerWalking,
+        None
     }
     IEnumerator DelayStopParticle(float value, GameObject particleObject)
     {
@@ -133,5 +134,4 @@ public abstract class AbstractParticleController<T> : MonoBehaviour where T : Mo
 
         Destroy(particleObject);
     }
-
 }

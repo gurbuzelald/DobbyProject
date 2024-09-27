@@ -25,6 +25,7 @@ public class ButtonController : MonoBehaviour
     private bool pickCharacterButton;
     private bool pickWeaponButton;
     private bool continueButton;
+    private bool resetGameButton;
 
     //Levels Scene Buttons
     private bool levelsMenuButton;
@@ -83,7 +84,7 @@ public class ButtonController : MonoBehaviour
     [SerializeField] SettingController settingController;
     [SerializeField] LevelUpButtonController levelUpButtonController;
 
-    private float buttonTime;
+    public float buttonTime;
 
     void Awake()
     {
@@ -97,7 +98,7 @@ public class ButtonController : MonoBehaviour
     }
     private void OnDisable()
     {
-        menuInput.Enable();
+        menuInput.Disable();
     }
 
     // Update is called once per frame
@@ -112,6 +113,8 @@ public class ButtonController : MonoBehaviour
         WinSceneButtons();
 
         DelayButton();
+        //Debug.Log(buttonTime);
+
     }
     
 
@@ -200,7 +203,7 @@ public class ButtonController : MonoBehaviour
         if (SceneController.CheckSceneName() == SceneController.Scenes.PickWeapon.ToString())
         {
             pickWeaponMenuButton = menuInput.PickWeaponSceneButtons.MenuButton.IsPressed();
-            openPickWeaponSceneByPickCharacterSceneButton = menuInput.PickWeaponSceneButtons.PickCharacterButton.IsPressed();
+            openPickCharacterSceneByPickWeaponSceneButton = menuInput.PickWeaponSceneButtons.PickCharacterButton.IsPressed();
 
             Pistol = menuInput.PickWeaponSceneButtons.Pistol.IsPressed();
             Axe = menuInput.PickWeaponSceneButtons.Axe.IsPressed();
@@ -226,7 +229,7 @@ public class ButtonController : MonoBehaviour
             buttonTime = 0;
         }
 
-        if (openPickWeaponSceneByPickCharacterSceneButton && buttonTime >= .2f && sceneController)
+        if (openPickCharacterSceneByPickWeaponSceneButton && buttonTime >= .2f && sceneController)
         {
             SceneController.LoadCharacterChoosingScene();
 
@@ -387,6 +390,7 @@ public class ButtonController : MonoBehaviour
             pickCharacterButton = menuInput.MenuSceneButtons.PickCharacterButton.IsPressed();
             pickWeaponButton = menuInput.MenuSceneButtons.PickWeaponButton.IsPressed();
             continueButton = menuInput.MenuSceneButtons.ContinueButton.IsPressed();
+            resetGameButton = menuInput.MenuSceneButtons.ResetGameButton.IsPressed();
 
             MenuSceneEvents();
         }
@@ -394,59 +398,68 @@ public class ButtonController : MonoBehaviour
 
     void MenuSceneEvents()
     {
-        if (playButton && buttonTime >= .2f && sceneController)
+        if (playButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
         {
             sceneController.PlayAgain();
 
-            buttonTime = 0;
+            AudioManager.buttonDelayTimer = 0;
         }
-        if (levelsButton && buttonTime >= .2f && sceneController)
+        if (levelsButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
         {
             sceneController.LoadLevelsScene();
 
-            buttonTime = 0;
+            AudioManager.buttonDelayTimer = 0;
         }
-        if (settingButton && buttonTime >= .2f && settingController)
+        if (settingButton && settingController && AudioManager.buttonDelayTimer >= .2f)
         {
             settingController.ClickSettingButton();
 
-            buttonTime = 0;
+            AudioManager.buttonDelayTimer = 0;
         }
-        if (quitButton && buttonTime >= .2f && sceneController)
+        if (quitButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
         {
             sceneController.QuitGame();
 
-            buttonTime = 0;
+            AudioManager.buttonDelayTimer = 0;
         }
-        if (languageButton && buttonTime >= .2f && sceneController)
+        if (languageButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
         {
             sceneController.ClickChangeLanguageButton();
 
-            buttonTime = 0;
+            AudioManager.buttonDelayTimer = 0;
         }
-        if (menuDefaultButton && buttonTime >= .2f && settingController)
+        if (menuDefaultButton && settingController && AudioManager.buttonDelayTimer >= .2f)
         {
-            settingController.SetDefaulth();
+            if (settingController)
+            {
+                settingController.SetDefaulth();
+            }               
 
-            buttonTime = 0;
+            AudioManager.buttonDelayTimer = 0;
         }
-        if (pickCharacterButton && buttonTime >= .2f && sceneController)
+        if (pickCharacterButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
         {
             SceneController.LoadCharacterChoosingScene();
 
-            buttonTime = 0;
+            AudioManager.buttonDelayTimer = 0;
         }
-        if (pickWeaponButton && buttonTime >= .2f && sceneController)
+        if (pickWeaponButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
         {
             sceneController.LoadWeaponChoosingScene();
 
-            buttonTime = 0;
+            AudioManager.buttonDelayTimer = 0;
         }
-        if (continueButton && buttonTime >= .2f && sceneController)
+        if (continueButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
         {
             sceneController.ContinueLastLevel();
 
-            buttonTime = 0;
+            AudioManager.buttonDelayTimer = 0;
+        }
+        if (resetGameButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
+        {
+            sceneController.CheckNeedResetWeaponsAndCharacters();
+
+            AudioManager.buttonDelayTimer = 0;
         }
     }
 

@@ -65,22 +65,22 @@ MonoBehaviour:
   axePower: 17
   bulldogPower: 14
   cowPower: 13
-  crystalPower: 18
+  crystalPower: 19
   demonPower: 15
-  icePower: 14
-  electroPower: 15
-  ak47Power: 16
-  m4a4Power: 18
+  icePower: 16
+  electroPower: 18
+  ak47Power: 24
+  m4a4Power: 25
   pistolPrice: 0
-  axePrice: 170
-  bulldogPrice: 140
-  cowPrice: 130
-  crystalPrice: 180
-  demonPrice: 150
-  icePrice: 140
-  electroPrice: 150
-  ak47Price: 160
-  m4a4Price: 180
+  axePrice: 5000
+  bulldogPrice: 2000
+  cowPrice: 1000
+  crystalPrice: 7000
+  demonPrice: 3000
+  icePrice: 4000
+  electroPrice: 6000
+  ak47Price: 9000
+  m4a4Price: 10000
   pistolLock: 
   axeLock: locked
   bulldogLock: locked
@@ -113,7 +113,7 @@ MonoBehaviour:
   isAxe: 0
   isM4a4: 0
   isAk47: 0
-  currentBulletAmount: 0
+  currentBulletPack: 21
   pistolBulletAmount: 21
   axeBulletAmount: 22
   bulldogBulletAmount: 23

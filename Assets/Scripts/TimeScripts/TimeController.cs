@@ -22,6 +22,8 @@ public class TimeController : MonoBehaviour
     public PlayerData playerData;
 
     public int initialTimeValue = 300;
+
+
     void Start()
     {
         _warnTimeText.transform.localScale = Vector3.zero;

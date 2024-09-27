@@ -35,7 +35,7 @@ public class MiniMapController : MonoBehaviour
     }
     void MiniMapRotation()
     {
-        gameObject.transform.LookAt(PlayerManager.GetInstance.gameObject.transform.GetChild(0).GetChild(9));
+        gameObject.transform.LookAt(PlayerManager.GetInstance.gameObject.transform.GetChild(0).GetChild(8));
         gameObject.transform.position = new Vector3(PlayerManager.GetInstance.transform.position.x,
                                                     gameObject.transform.position.y,
                                                     PlayerManager.GetInstance.transform.position.z);

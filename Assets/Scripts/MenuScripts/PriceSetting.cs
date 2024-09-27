@@ -21,10 +21,10 @@ public class PriceSetting : MonoBehaviour
     private void Awake()
     {
         SetWeaponNames();
-        //SetWeaponPrices();
+        SetWeaponPrices();
 
         SetCharacterNames();
-        //SetCharacterPrices();        
+        SetCharacterPrices();        
     }
     
     void SetCharacterNames()

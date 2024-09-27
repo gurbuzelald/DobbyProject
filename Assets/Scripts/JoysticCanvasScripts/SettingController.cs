@@ -42,18 +42,10 @@ public class SettingController : MonoBehaviour
     public PlayerData playerData;
     public LevelData levelData;
 
-    private float settingButtonTimer;
-
     private void Awake()
     {
-        settingButtonTimer = 0f;
-
         //Finding button objects with names.
         FindButtonObjects();
-
-        //Sensivity Datas are transforming to preferences on awake
-        PlayerPrefs.SetFloat("SensivityX", playerData.sensivityX);
-        PlayerPrefs.SetFloat("SensivityY", playerData.sensivityY);
 
         _sensivityX.value = PlayerPrefs.GetFloat("SensivityX");
         _sensivityY.value = PlayerPrefs.GetFloat("SensivityY");
@@ -77,6 +69,10 @@ public class SettingController : MonoBehaviour
             if (levelData.currentLevel != LevelData.Levels.Level1)
             {
                 _continueButton.GetComponent<RectTransform>().localScale = Vector3.one;
+            }
+            if (PlayerPrefs.GetInt("GetHighestLevel") == 0)
+            {
+                _continueButtonRectTransform.localScale = Vector3.zero;
             }
         }
     }
@@ -115,12 +111,6 @@ public class SettingController : MonoBehaviour
     {
         //Sensivity values are transforming to sensivity datas
         TransformSensivityValueToData();
-
-
-        if (SceneController.Scenes.Menu.ToString() == SceneController.CheckSceneName())
-        {
-            DelaySettingButton();
-        }
     }
     void TransformSensivityValueToData()
     {
@@ -132,7 +122,7 @@ public class SettingController : MonoBehaviour
     }
     public void ClickSettingButton()
     {
-        if (_soundSettingsPanel.localScale.x == 0 && settingButtonTimer >= .5f)
+        if (_soundSettingsPanel.localScale.x == 0)
         {
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -146,11 +136,10 @@ public class SettingController : MonoBehaviour
             _continueButtonRectTransform.localScale = Vector3.zero;
             _levelsButtonRectTransform.localScale = Vector3.zero;
             _languageButtonRectTransform.localScale = Vector3.zero;
-            settingButtonTimer = 0f;
 
             
         }
-        else if(settingButtonTimer >= .5f && _soundSettingsPanel.localScale.x == 1)
+        else if(_soundSettingsPanel.localScale.x == 1)
         {
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -163,25 +152,25 @@ public class SettingController : MonoBehaviour
             _quitButtonRectTransform.localScale = Vector3.one;
             _levelsButtonRectTransform.localScale = Vector3.one;
             _languageButtonRectTransform.localScale = Vector3.one;
-            
+
             if (levelData.currentLevel != LevelData.Levels.Level1)
             {
-                _continueButtonRectTransform.localScale = Vector3.one;
+                _continueButton.GetComponent<RectTransform>().localScale = Vector3.one;
             }
-
-            settingButtonTimer = 0f;
+            if (PlayerPrefs.GetInt("GetHighestLevel") == 0)
+            {
+                _continueButtonRectTransform.localScale = Vector3.zero;
+            }
         }
-    }
-
-    void DelaySettingButton()
-    {
-        settingButtonTimer += Time.deltaTime;
     }
 
     public void SetDefaulth()
     {
-        _sensivityX.value = 10f;
-        _sensivityY.value = 0f;
+        _sensivityX.value = 5f;
+        _sensivityY.value = 5f;
+
+        PlayerPrefs.SetFloat("SensivityX", _sensivityX.value);
+        PlayerPrefs.SetFloat("SensivityY", _sensivityY.value);
     }
 
     void FindButtonObjects()

@@ -61,49 +61,53 @@ public class ScoreController : AbstractPlayer<ScoreController>
     }
     void Update()
     {
+        // Update available coin text if the text component exists
         if (avaliableCoinText)
         {
             avaliableCoinText.text = playerCoinData.avaliableCoin.ToString();
         }
+
+        // Update enemy kill value text if both components exist
         if (enemyKillValueText && levelUpController)
         {
-            enemyKillValueText.text = EnemyData.enemyDeathCount.ToString() + "/" +
-                                     levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills;
+            enemyKillValueText.text = $"{EnemyData.enemyDeathCount}/{levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills}";
         }
+
+        // Save coin data to JSON
         readWrite.SaveCoinToJson();
 
-        //Debug.Log(playerCoinData.avaliableCoin);
+        // Check for scene-specific logic
         if (SceneController.CheckSceneName() == SceneController.Scenes.Menu.ToString())
         {
-            //_scoreAmount = 0;
-            //PlayerPrefs.SetInt("ScoreAmount", 0);
+            // Optional: Reset score if needed, these lines are commented
+            _scoreAmount = 0;
+            PlayerPrefs.SetInt("ScoreAmount", 0);
         }
         else if (SceneController.playAgain)
         {
-            playerCoinData.avaliableCoin -= _scoreAmount;
-            //Buraya PlayerCoinData koyulacak. (Json icin)
-
+            playerCoinData.avaliableCoin -= _scoreAmount; // Deduct score amount from available coin
             _scoreAmount = 0;
-            if (_scoreText && levelUpController)
+
+            // Update score text if the text component and level controller exist
+            if (_scoreText)
             {
-                _scoreText.text = _scoreAmount + "/" +
-                          levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount;
+                _scoreText.text = $"0/{levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount}";
             }
-            
-            PlayerPrefs.SetInt("ScoreAmount", 0);
-            SceneController.playAgain = false;
+
+            PlayerPrefs.SetInt("ScoreAmount", 0); // Reset score in PlayerPrefs
+            SceneController.playAgain = false; // Reset playAgain flag
         }
-        else
+
+        // Reset scored flag if necessary
+        if (_scored)
         {
-            if (_scored)
-            {
-                _scored = false;
-            }
+            _scored = false;
         }
-        if (levelUpController && _scoreText)
+
+        // Update score text if both components exist
+        if (_scoreText && levelUpController)
         {
-            _scoreText.text = _scoreAmount + "/" +
-                          levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount;
+            _scoreText.text = $"{_scoreAmount}/{levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount}";
         }
     }
     public int SetScore(int scoreAmount)

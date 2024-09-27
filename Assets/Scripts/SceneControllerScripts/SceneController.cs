@@ -37,8 +37,12 @@ public class SceneController : MonoBehaviour
     [SerializeField] GameObject[] levelButtons;
     [SerializeField] GameObject levelsObject;
 
+    public static float buttonTimer;
 
-    TextMeshProUGUI[] currentTexts = new TextMeshProUGUI[100];
+
+    TextMeshProUGUI[] currentTexts = new TextMeshProUGUI[200];
+
+    private GameObject menuMap;
 
     private void Awake()
     {
@@ -48,8 +52,7 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
-        //CheckNeedResetWeaponsAndCharacters();//ForDevelopers
-
+        CreateMenuMap();
 
         ChangeLanguage();
         OpenLevelButtons();
@@ -65,9 +68,27 @@ public class SceneController : MonoBehaviour
         SetCurrentLevelAtUpdate();
         SetCurrentWeaponAtUpdate();
         SetCurrentCharacterAtUpdate();
+
+        buttonTimer += Time.deltaTime;
     }
 
-   
+    void CreateMenuMap()
+    {
+        if (CheckSceneName() != Scenes.Game.ToString())
+        {
+            if (_playerData)
+            {
+                if (_playerData.menuMap)
+                {
+                    menuMap = Instantiate(_playerData.menuMap);
+                }
+            }
+        }                     
+    }
+
+
+
+    #region Change Language Functions
 
     public void ClickChangeLanguageButton()
     {
@@ -110,8 +131,8 @@ public class SceneController : MonoBehaviour
             {
                 switch (currentText.text)
                 {
-                    case "English":
-                        currentText.text = "Türkçe";
+                    case "Türkçe":
+                        currentText.text = "English";
                         continue;
                     case "Game :":
                         currentText.text = "Oyun :";
@@ -173,8 +194,8 @@ public class SceneController : MonoBehaviour
             {
                 switch (currentText.text)
                 {
-                    case "Türkçe":
-                        currentText.text = "English";
+                    case "English":
+                        currentText.text = "Türkçe";
                         continue;
                     case "Oyun :":
                         currentText.text = "Game :";
@@ -503,17 +524,14 @@ public class SceneController : MonoBehaviour
             }
         }
     }
+    #endregion
 
-
-
-
-    public void ResetWeaponsAndCharacters()
-    {
-        PlayerPrefs.SetFloat("ResetGame", 1);
-    }
 
     public void CheckNeedResetWeaponsAndCharacters()
     {//For Developer
+        PlayerPrefs.GetInt("ResetGame", 1);
+
+
         PlayerPrefs.SetFloat("PistolLock", 0);
         PlayerPrefs.SetFloat("AxeLock", 0);
         PlayerPrefs.SetFloat("BulldogLock", 0);
@@ -547,9 +565,6 @@ public class SceneController : MonoBehaviour
             bulletData.ak47Lock = BulletData.locked;
             bulletData.m4a4Lock = BulletData.locked;
         }
-        
-
-
         PlayerPrefs.SetFloat("DobbyLock", 0);
         PlayerPrefs.SetFloat("JoleenLock", 0);
         PlayerPrefs.SetFloat("GlassyLock", 0);
@@ -589,17 +604,17 @@ public class SceneController : MonoBehaviour
 
             _playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
         }
-        
+
 
         PlayerPrefs.SetInt("AvaliableCoin", 0);
 
         if (levelData)
         {
             levelData.currentLevel = LevelData.Levels.Level1;
-        }        
+        }
 
         LevelData.highestLevel = 0;
-        PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
+        PlayerPrefs.SetInt("HighestLevel", 0);
         LevelData.currentLevelCount = 0;
     }
 
@@ -736,7 +751,7 @@ public class SceneController : MonoBehaviour
     {
         playAgain = true;
 
-        //DestroySingletonObjects();
+        DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Game.ToString());
     }
@@ -872,7 +887,7 @@ public class SceneController : MonoBehaviour
 
         playAgain = true;
 
-        //DestroySingletonObjects();
+        DestroySingletonObjects();
 
         SetCurrentLevelCount();
 
@@ -931,7 +946,13 @@ public class SceneController : MonoBehaviour
     {
         if (levelData)
         {
-            if (levelData.currentLevel == LevelData.Levels.Level1)
+            if ((PlayerPrefs.GetInt("ResetGame") == 1))
+            {
+                PlayerPrefs.SetInt("HighestLevel", 0);
+                LevelData.highestLevel = 0;
+                PlayerPrefs.SetInt("ResetGame", 0);
+            }
+            else if (LevelData.currentLevelCount == 0)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") == 0)
                 {
@@ -939,7 +960,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", 0);
                 }                
             }
-            else if (levelData.currentLevel == LevelData.Levels.Level2)
+            else if (LevelData.currentLevelCount == 1)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 1)
                 {
@@ -947,7 +968,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (levelData.currentLevel == LevelData.Levels.Level3)
+            else if (LevelData.currentLevelCount == 2)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 2)
                 {
@@ -955,7 +976,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (levelData.currentLevel == LevelData.Levels.Level4)
+            else if (LevelData.currentLevelCount == 3)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 3)
                 {
@@ -963,7 +984,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (levelData.currentLevel == LevelData.Levels.Level5)
+            else if (LevelData.currentLevelCount == 4)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 4)
                 {
@@ -971,7 +992,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (levelData.currentLevel == LevelData.Levels.Level6)
+            else if (LevelData.currentLevelCount == 5)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 5)
                 {
@@ -979,7 +1000,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (levelData.currentLevel == LevelData.Levels.Level7)
+            else if (LevelData.currentLevelCount == 6)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 6)
                 {
@@ -987,7 +1008,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (levelData.currentLevel == LevelData.Levels.Level8)
+            else if (LevelData.currentLevelCount == 7)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 7)
                 {
@@ -995,7 +1016,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (levelData.currentLevel == LevelData.Levels.Level9)
+            else if (LevelData.currentLevelCount == 8)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 8)
                 {
@@ -1003,11 +1024,19 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (levelData.currentLevel == LevelData.Levels.Level10)
+            else if (LevelData.currentLevelCount == 9)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 9)
                 {
                     LevelData.highestLevel = 9;
+                    PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
+                }
+            }
+            else if (LevelData.currentLevelCount == 10)
+            {
+                if (PlayerPrefs.GetInt("HighestLevel") <= 10)
+                {
+                    LevelData.highestLevel = 10;
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
@@ -1024,7 +1053,6 @@ public class SceneController : MonoBehaviour
             {
                 levelButtons[i].SetActive(true);
 
-
                 if (PlayerData.Languages.Turkish == _playerData.currentLanguage)
                 {
                     levelButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm " + (i + 1).ToString();
@@ -1032,8 +1060,7 @@ public class SceneController : MonoBehaviour
                 else
                 {
                     levelButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level " + (i + 1).ToString();
-                }
-                
+                }                
             }
         }
     }
@@ -1043,7 +1070,7 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        //DestroySingletonObjects();
+        DestroySingletonObjects();
         SceneManager.LoadScene(Scenes.Levels.ToString());
     }
 
@@ -1063,7 +1090,7 @@ public class SceneController : MonoBehaviour
             playAgain = true;
         }
 
-        //DestroySingletonObjects();
+        DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Menu.ToString());
 
@@ -1084,7 +1111,7 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        //DestroySingletonObjects();
+        DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Menu.ToString());
     }
@@ -1095,7 +1122,7 @@ public class SceneController : MonoBehaviour
 
         //levelData.currentLevel = LevelData.Levels.Level1;
 
-        //DestroySingletonObjects();
+        DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Win.ToString());
     }
@@ -1103,17 +1130,9 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        //DestroySingletonObjects();
+        DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.PickCharacter.ToString());
-    }
-    public void LoadSwordChoosingScene()
-    {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-        //DestroySingletonObjects();
-
-        SceneManager.LoadScene(Scenes.PickSword.ToString());
     }
     public void LoadWeaponChoosingScene()
     {
@@ -1127,18 +1146,18 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        //DestroySingletonObjects();
+        DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.End.ToString());
     }
-    void DestroySingletonObjects()
+    public static void DestroySingletonObjects()
     {
 
-        /*if (PlayerManager.GetInstance.gameObject != null)
+        if (PlayerManager.GetInstance.gameObject != null)
         {
             Destroy(AudioManager.GetInstance.gameObject);
             Destroy(PlayerManager.GetInstance.gameObject);
-        }*/
+        }
 
     }
     public void PauseGame()

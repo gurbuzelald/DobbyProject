@@ -13522,16 +13522,6 @@ MonoBehaviour:
   jump: 0
   characterStick: {x: 0, y: 0}
   weaponStick: {x: 0, y: 0}
-  AK47: 0
-  Axe: 0
-  Bulldog: 0
-  Cow: 0
-  Crystal: 0
-  Demon: 0
-  Ice: 0
-  Electro: 0
-  Pistol: 0
-  M4A4: 0
 --- !u!114 &3791610878507469806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13588,6 +13578,7 @@ MonoBehaviour:
   _panelObject: {fileID: 3791610878089095378}
   bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
   playerCoinData: {fileID: 11400000, guid: 853c688538b9c714f8661972da059616, type: 2}
+  playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   menuSlideSpeed: 20
   weaponUsageLimits:
   - {fileID: 9217840113306482231}

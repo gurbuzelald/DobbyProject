@@ -214,7 +214,7 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
         }
         yield return new WaitForSeconds(enemyFireFrequency);
         
-        if (_enemyManager.bulletData.enemyBulletDelayCounter >= 1 && !_enemyManager.enemyData.isSpeedZero)
+        if (_enemyManager.bulletData.enemyBulletDelayCounter >= 1)
         {
             _enemyManager.bulletData.enemyBulletDelayCounter = 0;
             _enemyManager.enemyData.isFiring = true;

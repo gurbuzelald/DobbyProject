@@ -261,17 +261,17 @@ public class ChooseCharacterController : MonoBehaviour
     {
         if (characterPriceErrorTextObjects.Length != 0)
         {
-            PickJoleen(playerData.joleenPrice);
-            PickGlassy(playerData.glassyPrice);
-            PickDobby(playerData.dobbyPrice);
-            PickLusth(playerData.lusthPrice);
-            PickGuard(playerData.guardPrice);
-            PickEve(playerData.evePrice);
-            PickMichelle(playerData.michellePrice);
-            PickBoss(playerData.bossPrice);
-            PickAj(playerData.ajPrice);
-            PickMremireh(playerData.mremirehPrice);
-            PickTy(playerData.tyPrice);
+            PickJoleen();
+            PickGlassy();
+            PickDobby();
+            PickLusth();
+            PickGuard();
+            PickEve();
+            PickMichelle();
+            PickBoss();
+            PickAj();
+            PickMremireh();
+            PickTy();
         }       
     }
     void SlideMenu()
@@ -298,14 +298,14 @@ public class ChooseCharacterController : MonoBehaviour
         }
     }
     
-    public void PickJoleen(int avaliableCoinAmount)
+    public void PickJoleen()
     {
-        if (ButtonController.Joleen && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+        if (ButtonController.Joleen && playerCoinData.avaliableCoin >= playerData.joleenPrice &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Joleen)
         {
             if (playerData.joleenLock == playerData.locked)
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                playerCoinData.avaliableCoin -= playerData.joleenPrice;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);                
 
                 playerData.joleenLock = playerData.unLocked;
@@ -330,34 +330,35 @@ public class ChooseCharacterController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
-        else if((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.joleenLock == playerData.locked)
+        else if((playerData.joleenPrice - playerCoinData.avaliableCoin) > 0 && playerData.joleenLock == playerData.locked)
         {
             if (ButtonController.Joleen)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
-            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "JoleenPriceErrorText")
-                {
-                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                }
+                characterPriceErrorTextObjectChilds[0].text = "Satin Almak İçİn " + (playerData.joleenPrice - playerCoinData.avaliableCoin).ToString() + " Coİn' e Daha İhtİyacin Var!";
+            }
+            else
+            {
+                characterPriceErrorTextObjectChilds[0].text = "You need " + (playerData.joleenPrice - playerCoinData.avaliableCoin).ToString() + " More Coin!";
             }
         }
-    }
-    
-    public void PickDobby(int avaliableCoinAmount)
+    }    
+    public void PickDobby()
     {
-        if (ButtonController.Dobby && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+        if (ButtonController.Dobby && playerCoinData.avaliableCoin >= playerData.dobbyPrice &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Dobby)
         {
             if (playerData.dobbyLock == playerData.locked)
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                playerCoinData.avaliableCoin -= playerData.dobbyPrice;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);                
 
                 playerData.dobbyLock = playerData.unLocked;                
             }
+            characterPriceErrorTextObjectChilds[1].text = "";
 
             playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
 
@@ -373,30 +374,30 @@ public class ChooseCharacterController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.dobbyLock == playerData.locked)
+        else if ((playerData.dobbyPrice - playerCoinData.avaliableCoin) > 0 && playerData.dobbyLock == playerData.locked)
         {
             if (ButtonController.Dobby)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
-            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "DobbyPriceErrorText")
-                {
-                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                }
+                characterPriceErrorTextObjectChilds[1].text = "Satin Almak İçİn " + (playerData.dobbyPrice - playerCoinData.avaliableCoin).ToString() + " Coin' e Daha İhtİyacin Var!";
+            }
+            else
+            {
+                characterPriceErrorTextObjectChilds[1].text = "You need " + (playerData.dobbyPrice - playerCoinData.avaliableCoin).ToString() + " More Coin!";
             }
         }
-
     }
-    public void PickGlassy(int avaliableCoinAmount)
+    public void PickGlassy()
     {
-        if (ButtonController.Glassy && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+        if (ButtonController.Glassy && playerCoinData.avaliableCoin >= playerData.glassyPrice &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Glassy)
         {
             if (playerData.glassyLock == playerData.locked)
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                playerCoinData.avaliableCoin -= playerData.glassyPrice;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.glassyLock = playerData.unLocked;
@@ -420,29 +421,30 @@ public class ChooseCharacterController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.glassyLock == playerData.locked)
+        else if ((playerData.glassyPrice - playerCoinData.avaliableCoin) > 0 && playerData.glassyLock == playerData.locked)
         {
             if (ButtonController.Glassy)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
-            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "GlassyPriceErrorText")
-                {
-                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                }
+                characterPriceErrorTextObjectChilds[2].text = "Satin Almak İçİn " + (playerData.glassyPrice - playerCoinData.avaliableCoin).ToString() + " Coin' e Daha İhtİyacin Var!";
+            }
+            else
+            {
+                characterPriceErrorTextObjectChilds[2].text = "You need " + (playerData.glassyPrice - playerCoinData.avaliableCoin).ToString() + " More Coin!";
             }
         }
     }
-    public void PickLusth(int avaliableCoinAmount)
+    public void PickLusth()
     {
-        if ((ButtonController.Lusth) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+        if ((ButtonController.Lusth) && playerCoinData.avaliableCoin >= playerData.lusthPrice &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Lusth )
         {
             if (playerData.lusthLock == playerData.locked)
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                playerCoinData.avaliableCoin -= playerData.lusthPrice;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.lusthLock = playerData.unLocked;
@@ -466,29 +468,30 @@ public class ChooseCharacterController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.lusthLock == playerData.locked)
+        else if ((playerData.lusthPrice - playerCoinData.avaliableCoin) > 0 && playerData.lusthLock == playerData.locked)
         {
             if (ButtonController.Lusth)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
-            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "LusthPriceErrorText")
-                {
-                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                }
+                characterPriceErrorTextObjectChilds[3].text = "Satin Almak İçİn " + (playerData.lusthPrice - playerCoinData.avaliableCoin).ToString() + " Coin' e Daha İhtİyacin Var!";
+            }
+            else
+            {
+                characterPriceErrorTextObjectChilds[3].text = "You need " + (playerData.lusthPrice - playerCoinData.avaliableCoin).ToString() + " More Coin!";
             }
         }
     }
-    public void PickGuard(int avaliableCoinAmount)
+    public void PickGuard()
     {
-        if ((ButtonController.Guard) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+        if ((ButtonController.Guard) && playerCoinData.avaliableCoin >= playerData.guardPrice &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Guard)
         {
             if (playerData.guardLock == playerData.locked)
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                playerCoinData.avaliableCoin -= playerData.guardPrice;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.guardLock = playerData.unLocked;
@@ -512,29 +515,30 @@ public class ChooseCharacterController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.guardLock == playerData.locked)
+        else if ((playerData.guardPrice - playerCoinData.avaliableCoin) > 0 && playerData.guardLock == playerData.locked)
         {
             if (ButtonController.Guard)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
-            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "GuardPriceErrorText")
-                {
-                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                }
+                characterPriceErrorTextObjectChilds[4].text = "Satin Almak İçİn " + (playerData.guardPrice - playerCoinData.avaliableCoin).ToString() + " Coin' e Daha İhtİyacin Var!";
+            }
+            else
+            {
+                characterPriceErrorTextObjectChilds[4].text = "You need " + (playerData.guardPrice - playerCoinData.avaliableCoin).ToString() + " More Coin!";
             }
         }
     }
-    public void PickEve(int avaliableCoinAmount)
+    public void PickEve()
     {
-        if ((ButtonController.Eve) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+        if ((ButtonController.Eve) && playerCoinData.avaliableCoin >= playerData.evePrice &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Eve)
         {
             if (playerData.eveLock == playerData.locked)
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                playerCoinData.avaliableCoin -= playerData.evePrice;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.eveLock = playerData.unLocked;
@@ -558,29 +562,30 @@ public class ChooseCharacterController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.eveLock == playerData.locked)
+        else if ((playerData.evePrice - playerCoinData.avaliableCoin) > 0 && playerData.eveLock == playerData.locked)
         {
             if (ButtonController.Eve)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
-            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "EvePriceErrorText")
-                {
-                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                }
+                characterPriceErrorTextObjectChilds[5].text = "Satin Almak İçİn " + (playerData.evePrice - playerCoinData.avaliableCoin).ToString() + " Coin' e Daha İhtİyacin Var!";
+            }
+            else
+            {
+                characterPriceErrorTextObjectChilds[5].text = "You need " + (playerData.evePrice - playerCoinData.avaliableCoin).ToString() + " More Coin!";
             }
         }
     }
-    public void PickMichelle(int avaliableCoinAmount)
+    public void PickMichelle()
     {
-        if ((ButtonController.Michelle) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+        if ((ButtonController.Michelle) && playerCoinData.avaliableCoin >= playerData.michellePrice &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Michelle)
         {
             if (playerData.michelleLock == playerData.locked)
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                playerCoinData.avaliableCoin -= playerData.michellePrice;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.michelleLock = playerData.unLocked;
@@ -604,30 +609,31 @@ public class ChooseCharacterController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.michelleLock == playerData.locked)
+        else if ((playerData.michellePrice - playerCoinData.avaliableCoin) > 0 && playerData.michelleLock == playerData.locked)
         {
             if (ButtonController.Michelle)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
 
-            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "MichellePriceErrorText")
-                {
-                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                }
+                characterPriceErrorTextObjectChilds[6].text = "Satin Almak İçİn " + (playerData.michellePrice - playerCoinData.avaliableCoin).ToString() + " Coin' e Daha İhtİyacin Var!";
+            }
+            else
+            {
+                characterPriceErrorTextObjectChilds[6].text = "You need " + (playerData.michellePrice - playerCoinData.avaliableCoin).ToString() + " More Coin!";
             }
         }
     }
-    public void PickBoss(int avaliableCoinAmount)
+    public void PickBoss()
     {
-        if ((ButtonController.Boss) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+        if ((ButtonController.Boss) && playerCoinData.avaliableCoin >= playerData.bossPrice &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Boss)
         {
             if (playerData.bossLock == playerData.locked)
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                playerCoinData.avaliableCoin -= playerData.bossPrice;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.bossLock = playerData.unLocked;
@@ -651,29 +657,30 @@ public class ChooseCharacterController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.bossLock == playerData.locked)
+        else if ((playerData.bossPrice - playerCoinData.avaliableCoin) > 0 && playerData.bossLock == playerData.locked)
         {
             if (ButtonController.Boss)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
-            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "BossPriceErrorText")
-                {
-                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                }
+                characterPriceErrorTextObjectChilds[7].text = "Satin Almak İçİn " + (playerData.bossPrice - playerCoinData.avaliableCoin).ToString() + " Coin' e Daha İhtİyacin Var!";
+            }
+            else
+            {
+                characterPriceErrorTextObjectChilds[7].text = "You need " + (playerData.bossPrice - playerCoinData.avaliableCoin).ToString() + " More Coin!";
             }
         }
     }
-    public void PickAj(int avaliableCoinAmount)
+    public void PickAj()
     {
-        if ((ButtonController.Aj) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+        if ((ButtonController.Aj) && playerCoinData.avaliableCoin >= playerData.ajPrice &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Aj)
         {
             if (playerData.ajLock == playerData.locked)
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                playerCoinData.avaliableCoin -= playerData.ajPrice;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.ajLock = playerData.unLocked;
@@ -697,30 +704,30 @@ public class ChooseCharacterController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }       
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.ajLock == playerData.locked)
+        else if ((playerData.ajPrice - playerCoinData.avaliableCoin) > 0 && playerData.ajLock == playerData.locked)
         {
             if (ButtonController.Aj)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
-            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "AjPriceErrorText")
-                {
-                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                }
+                characterPriceErrorTextObjectChilds[8].text = "Satin Almak İçİn " + (playerData.ajPrice - playerCoinData.avaliableCoin).ToString() + " Coin' e Daha İhtİyacin Var!";
+            }
+            else
+            {
+                characterPriceErrorTextObjectChilds[8].text = "You need " + (playerData.ajPrice - playerCoinData.avaliableCoin).ToString() + " More Coin!";
             }
         }
     }
-
-    public void PickMremireh(int avaliableCoinAmount)
+    public void PickMremireh()
     {
-        if ((ButtonController.Mremireh) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+        if ((ButtonController.Mremireh) && playerCoinData.avaliableCoin >= playerData.mremirehPrice &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Mremireh)
         {
             if (playerData.mremirehLock == playerData.locked)
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                playerCoinData.avaliableCoin -= playerData.mremirehPrice;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.mremirehLock = playerData.unLocked;
@@ -745,30 +752,30 @@ public class ChooseCharacterController : MonoBehaviour
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
        
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.mremirehLock == playerData.locked)
+        else if ((playerData.mremirehPrice - playerCoinData.avaliableCoin) > 0 && playerData.mremirehLock == playerData.locked)
         {
             if (ButtonController.Mremireh)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
-            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "MremirehPriceErrorText")
-                {
-                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                }
+                characterPriceErrorTextObjectChilds[9].text = "Satin Almak İçİn " + (playerData.mremirehPrice - playerCoinData.avaliableCoin).ToString() + " Coin' e Daha İhtİyacin Var!";
+            }
+            else
+            {
+                characterPriceErrorTextObjectChilds[9].text = "You need " + (playerData.mremirehPrice - playerCoinData.avaliableCoin).ToString() + " More Coin!";
             }
         }
     }
-
-    public void PickTy(int avaliableCoinAmount)
+    public void PickTy()
     {
-        if ((ButtonController.Ty) && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+        if ((ButtonController.Ty) && playerCoinData.avaliableCoin >= playerData.tyPrice &&
             playerData.currentCharacterName != PlayerData.CharacterNames.Ty)
         {
             if (playerData.tyLock == playerData.locked)
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
+                playerCoinData.avaliableCoin -= playerData.tyPrice;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
                 playerData.tyLock = playerData.unLocked;
@@ -792,18 +799,19 @@ public class ChooseCharacterController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && playerData.tyLock == playerData.locked)
+        else if ((playerData.tyPrice - playerCoinData.avaliableCoin) > 0 && playerData.tyLock == playerData.locked)
         {
             if (ButtonController.Ty)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
-            for (int i = 0; i < characterPriceErrorTextObjectChilds.Length; i++)
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                if (characterPriceErrorTextObjectChilds[i].gameObject.name == "TyPriceErrorText")
-                {
-                    characterPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                }
+                characterPriceErrorTextObjectChilds[10].text = "Satin Almak İçİn " + (playerData.tyPrice - playerCoinData.avaliableCoin).ToString() + " Coin' e Daha İhtİyacin Var!";
+            }
+            else
+            {
+                characterPriceErrorTextObjectChilds[10].text = "You need " + (playerData.tyPrice - playerCoinData.avaliableCoin).ToString() + " More Coin!";
             }
         }
     }

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  menuMap: {fileID: 502383380469877276, guid: b885b8bf05ba341e6974309d788b5026, type: 3}
   currentLanguage: 0
   getCurrentEnemyDead: 0
   currentMessageText: {fileID: 0}
@@ -19,15 +20,15 @@ MonoBehaviour:
   backgroundMap: {fileID: 1345883776023317691, guid: 515afb887ab870a43b53ea7d70cb9035, type: 3}
   enemyBulletHitActivate: 0
   dobbyDurability: 1
-  glassyDurability: 3
-  joleenDurability: 2
-  guardDurability: 7
+  glassyDurability: 2
+  joleenDurability: 4
+  guardDurability: 5
   lusthDurability: 6
-  eveDurability: 4
+  eveDurability: 7
   michelleDurability: 3
   bossDurability: 5
   ajDurability: 3
-  mremirehDurability: 5
+  mremirehDurability: 8
   tyDurability: 3
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
   isDecreaseHealth: 0
@@ -82,32 +83,32 @@ MonoBehaviour:
   sensivityY: 5
   isTouchFinish: 0
   isLose: 0
-  joleenPrice: 1100
+  joleenPrice: 10000
   dobbyPrice: 0
-  glassyPrice: 300
-  lusthPrice: 3000
-  guardPrice: 1800
-  michellePrice: 800
-  evePrice: 3000
-  ajPrice: 1300
-  bossPrice: 1700
-  tyPrice: 500
-  mremirehPrice: 3500
-  playerSpeed: 45
+  glassyPrice: 800
+  lusthPrice: 15000
+  guardPrice: 12000
+  michellePrice: 7500
+  evePrice: 15500
+  ajPrice: 5000
+  bossPrice: 23000
+  tyPrice: 2000
+  mremirehPrice: 20000
+  playerSpeed: 30
   skateBoardSpeed: 14
   climbSpeed: 3
   rotateSpeed: 6
-  dobbySpeed: 45
-  michelleSpeed: 40
+  dobbySpeed: 30
+  michelleSpeed: 39
   glassySpeed: 35
-  ajSpeed: 50
-  eveSpeed: 65
-  mremirehSpeed: 55
-  lusthSpeed: 60
-  joleenSpeed: 50
+  ajSpeed: 37
+  eveSpeed: 47
+  mremirehSpeed: 50
+  lusthSpeed: 45
+  joleenSpeed: 41
   bossSpeed: 43
-  tySpeed: 40
-  guardSpeed: 50
+  tySpeed: 35
+  guardSpeed: 43
   currentJumpForce: 4
   dobbyJumpForce: 4
   michelleJumpForce: 7
@@ -137,7 +138,7 @@ MonoBehaviour:
   isSwordAnimate: 0
   isLookingUp: 0
   isDestroyed: 0
-  isPlayable: 1
+  isPlayable: 0
   isFire: 0
   isFireWalkAnimation: 0
   isFireAnimation: 0
@@ -153,7 +154,6 @@ MonoBehaviour:
   clickTabCount: 0
   clickShiftCount: 0
   bulletAmount: 21
-  bulletPack: 21
   bulletPackAmount: 2
   isTouchableSkate: 1
   danceTime: 5

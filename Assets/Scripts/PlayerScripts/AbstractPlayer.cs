@@ -514,24 +514,20 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void ChangeCamera(PlayerData playerData, ref PlayerManager playerManager)
     {
-        if (playerManager.GetZValue() == 0 && playerManager.GetXValue() == 0
-            && playerManager._playerController.lookRotation.x == 0
-            && playerManager._playerController.lookRotation.y == 0)
+        // Cache values to reduce repeated calls and improve readability
+        float zValue = playerManager.GetZValue();
+        float xValue = playerManager.GetXValue();
+        var lookRotation = playerManager._playerController.lookRotation;
+        bool isLookingForward = (lookRotation.x == 0 && lookRotation.y == 0);
+        bool isMoving = (zValue != 0 || xValue != 0);
+        bool isSkateboarding = playerData.isSkateBoarding;
+
+        // Check for far or close camera conversion based on player movement and look rotation
+        if (zValue == 0 && xValue == 0 && isLookingForward)
         {
             ConvertToFarCamera(playerManager.cameraSpawner);
         }
-        else if (playerManager.GetZValue() != 0 || playerManager.GetXValue() != 0 || playerData.isSkateBoarding
-            && playerManager._playerController.lookRotation.x == 0 && playerManager._playerController.lookRotation.y == 0)
-        {
-            ConvertToCloseCamera(playerManager.cameraSpawner);
-        }
-        else if (playerManager.GetZValue() == 0 && playerManager.GetXValue() != 0
-            && playerManager._playerController.lookRotation.x == 0 && playerManager._playerController.lookRotation.y == 0)
-        {
-            ConvertToCloseCamera(playerManager.cameraSpawner);
-        }
-        else if (playerManager.GetZValue() != 0 && playerManager.GetXValue() != 0
-            && playerManager._playerController.lookRotation.x == 0 && playerManager._playerController.lookRotation.y == 0)
+        else if (isMoving || isSkateboarding && isLookingForward)
         {
             ConvertToCloseCamera(playerManager.cameraSpawner);
         }
@@ -563,35 +559,23 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void CheckCameraEulerX(PlayerData _playerData, Transform _currentCameraTransform)
     {
-        if (_currentCameraTransform.transform.eulerAngles.x > 74 && _currentCameraTransform.transform.eulerAngles.x <= 80)
-        {
-            //PlayerData
-            _playerData.isLookingUp = false;
+        // Cache frequently accessed values
+        Vector3 eulerAngles = _currentCameraTransform.transform.eulerAngles;
+        float cameraXAngle = eulerAngles.x;
+        float cameraYAngle = eulerAngles.y;
+        float cameraZAngle = eulerAngles.z;
 
-            //CinemachineVirtualCamera
-            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, _currentCameraTransform.transform.eulerAngles.y, _currentCameraTransform.transform.eulerAngles.z);
-        }
-        else if (_currentCameraTransform.transform.eulerAngles.x > 355)
+        // Adjust player state and camera based on X angle
+        if (cameraXAngle > 74 && cameraXAngle <= 80 || cameraXAngle > 355 || cameraXAngle < 0)
         {
-            //PlayerData
-            _playerData.isLookingUp = false;
+            _playerData.isLookingUp = cameraXAngle < 0; // Set isLookingUp based on angle < 0
 
-            //CinemachineVirtualCamera
-            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, _currentCameraTransform.transform.eulerAngles.y, _currentCameraTransform.transform.eulerAngles.z);
+            // Reset the X rotation to 0
+            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, cameraYAngle, cameraZAngle);
         }
-        else if (_currentCameraTransform.transform.eulerAngles.x < 0)
+        else if (cameraXAngle > 270 && cameraXAngle <= 360)
         {
-            //PlayerData
             _playerData.isLookingUp = true;
-
-            //CinemachineVirtualCamera
-            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, _currentCameraTransform.transform.eulerAngles.y, _currentCameraTransform.transform.eulerAngles.z);
-        }
-        else if (_currentCameraTransform.transform.eulerAngles.x > 270 && _currentCameraTransform.transform.eulerAngles.x <= 360)
-        {
-            //PlayerData
-            _playerData.isLookingUp = true;
-            //_currentCamera = _upCamera;
         }
         else
         {
@@ -604,279 +588,177 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     #region //Trigger
 
-    public virtual void TriggerBullet(Collider other, PlayerData _playerData, 
-                                        ref GameObject _healthBarObject, 
-                                        ref GameObject _topCanvasHealthBarObject, 
-                                        ref Transform _particleTransform, 
-                                        ref Slider healthBarSlider,
-                                        ref Slider topCanvasHealthBarSlider)
+   public virtual void TriggerBullet(Collider other, PlayerData _playerData, 
+                                  ref GameObject _healthBarObject, 
+                                  ref GameObject _topCanvasHealthBarObject, 
+                                  ref Transform _particleTransform, 
+                                  ref Slider healthBarSlider,
+                                  ref Slider topCanvasHealthBarSlider)
+{
+    var playerObject = _playerData.objects[3];
+
+    // Exit if no player object
+    if (playerObject == null) return;
+
+    // Cache health value
+    float healthValue = healthBarSlider.value;
+
+    // Handle death scenario
+    if (healthValue == 0 && !_playerData.isWinning)
     {
+        // Particle and sound effects for death
+        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform);
+        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
 
-        if (_playerData.objects[3] != null)
+        // Mark player as destroyed and handle enemy-related effects
+        _playerData.isDestroyed = true;
+
+        if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
         {
-            if (healthBarSlider.value == 0 && !_playerData.isWinning)
+            var enemyManager = other.gameObject.GetComponent<EnemyManager>();
+            enemyManager.enemyData.isWalking = false;
+            enemyManager.enemyData.enemySpeed = 0;
+        }
+
+        // Sync top canvas health bar and set player states
+        topCanvasHealthBarSlider.value = healthValue;
+        _playerData.isDying = true;
+        _playerData.isIdling = false;
+        _playerData.isPlayable = false;
+
+        // Hide the player object
+        playerObject.transform.localScale = Vector3.zero;
+
+        // Play death sound again
+        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
+
+        // Trigger delayed destruction
+        StartCoroutine(PlayerManager.GetInstance.DelayDestroy(3f));
+        return; // Early exit since the player is dead
+    }
+
+    // Handle non-death hit
+    if (!_playerData.isWinning)
+    {
+        // Particle effects for hit
+        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform);
+        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.TouchBurning, _particleTransform);
+
+        // Activate bullet hit on player
+        _playerData.enemyBulletHitActivate = true;
+
+        // You can uncomment if sound effect is needed
+        // PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GiveBulletHit);
+    }
+}
+
+    public virtual void PickUpCoin(LevelData levelData,
+                               SceneController.Tags value, Collider other,
+                               PlayerData _playerData,
+                               ref GameObject _coinObject,
+                               ref GameObject _cheeseObject,
+                               ref GameObject bulletAmountCanvas,
+                               ref TextMeshProUGUI bulletAmountText,
+                               ref TextMeshProUGUI bulletPackAmountText)
+    {
+        _playerData.isPicking = true; // Set player state once at the start
+
+        // Helper method to handle particle, sound, and coin destruction
+        void HandleCoinPickup(GameObject coinObj, ParticleController.ParticleNames particle, PlayerSoundEffect.SoundEffectTypes sound)
+        {
+            if (coinObj != null)
             {
-                //Particle Effect
-                ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform.transform);
+                coinObj.transform.localScale = Vector3.one;
+                StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(coinObj));
+            }
+            ParticleController.GetInstance.CreateParticle(particle, other.gameObject.transform);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(sound);
+            Destroy(other.gameObject);
+        }
 
-                //Sound Effect
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
+        // Switch-case for different tag types
+        switch (value)
+        {
+            case SceneController.Tags.Coin:
+                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.None, PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+                ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
+                break;
 
+            case SceneController.Tags.RotateCoin:
+                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+                ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
+                break;
 
-                _playerData.isDestroyed = true;
+            case SceneController.Tags.CheeseCoin:
+                _cheeseObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                HandleCoinPickup(_cheeseObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+                ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
+                break;
 
-                //EnemyAnimation
-                if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
+            case SceneController.Tags.MushroomCoin:
+                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyMushroomCoin, PlayerSoundEffect.SoundEffectTypes.Poison);
+                string poisonMessage = (_playerData.currentLanguage == PlayerData.Languages.Turkish) ? PlayerData.poisonMessageTr : PlayerData.poisonMessage;
+                StartCoroutine(DelayMessageText(_playerData, poisonMessage));
+                break;
+
+            case SceneController.Tags.BulletCoin:
+                HandleBulletCoinPickup(_coinObject, other, bulletAmountCanvas, _playerData, bulletAmountText, bulletPackAmountText);
+                break;
+
+            case SceneController.Tags.HealthCoin:
+                if (PlayerManager.GetInstance.playerObjects.healthBarSlider.value < 75)
                 {
-                    other.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
-                    other.gameObject.GetComponent<EnemyManager>().enemyData.enemySpeed = 0;
+                    HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyHealthCoin, PlayerSoundEffect.SoundEffectTypes.IncreasingHealth);
+                    string healthMessage = (_playerData.currentLanguage == PlayerData.Languages.Turkish) ? PlayerData.pickHealthObjectMessageTr : PlayerData.pickHealthObjectMessage;
+                    StartCoroutine(DelayMessageText(_playerData, healthMessage));
                 }
+                break;
 
-                topCanvasHealthBarSlider.value = healthBarSlider.value;
-
-                //PlayerData
-                _playerData.isDying = true;
-                _playerData.isIdling = false;
-                _playerData.isPlayable = false;
-
-                _playerData.objects[3].transform.localScale = Vector3.zero;
-
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-
-                StartCoroutine(PlayerManager.GetInstance.DelayDestroy(3f));
-            }
-            else if (!_playerData.isWinning)
-            {
-                ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
-                ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.TouchBurning, _particleTransform.transform);
-
-                //SoundEffect
-
-                _playerData.enemyBulletHitActivate = true;
-                //PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GiveBulletHit);
-                
-            }
+            case SceneController.Tags.LevelUpKey:
+                string keyMessage = (_playerData.currentLanguage == PlayerData.Languages.Turkish) ? PlayerData.pickedKeyMessageTr : PlayerData.pickedKeyMessage;
+                StartCoroutine(DelayMessageText(_playerData, keyMessage));
+                LevelData.currentOwnedLevelUpKeys++;
+                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyBulletCoin, PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
+                break;
         }
     }
 
-    public virtual void PickUpCoin(LevelData levelData, 
-                                    SceneController.Tags value, Collider other, 
-                                    PlayerData _playerData, 
-                                    ref GameObject _coinObject, 
-                                    ref GameObject _cheeseObject, 
-                                    ref GameObject bulletAmountCanvas,
-                                    ref TextMeshProUGUI bulletAmountText,
-                                    ref TextMeshProUGUI bulletPackAmountText)
+    void HandleBulletCoinPickup(GameObject _coinObject, Collider other, GameObject bulletAmountCanvas, PlayerData _playerData, TextMeshProUGUI bulletAmountText, TextMeshProUGUI bulletPackAmountText)
     {
-        if (value == SceneController.Tags.Coin)
+        _coinObject.transform.localScale = Vector3.one;
+
+        if (_playerData.bulletPackAmount == 0 && _playerData.bulletAmount == 0)
         {
-            //Data
-            _playerData.isPicking = true;
-            
-
-            //_coinObject.SetActive(true);
-            _coinObject.transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(_coinObject));
-
-            //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
-            //PickUpCoinSFX(_playerData);
-
-
-            //Trigger
-            Destroy(other.gameObject);
-
-            //Score
-            ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
-        }
-        else if (value == SceneController.Tags.RotateCoin)
-        {
-            //PlayerData
-
-            _playerData.isPicking = true;
-
-            //_coinObject.SetActive(true);
-            _coinObject.transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(_coinObject));
-
-            //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
-
-
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyRotateCoin, other.gameObject.transform);
-
-            //Trigger CoinObject
             other.gameObject.SetActive(false);
-
-            //SettingScore
-            ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
-        }
-        else if (value == SceneController.Tags.CheeseCoin)
-        {
-            //PlayerData
-            _playerData.isPicking = true;
-
-            //_cheeseObject.SetActive(true);
-            _cheeseObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-            StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(_cheeseObject));
-
-            //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
-            //PickUpCoinSFX(_playerData);
-
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyRotateCoin, other.gameObject.transform);
-
-            //Trigger CoinObject
-            other.gameObject.SetActive(false);
-
-            //SettingScore
-            ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
-        }
-        else if (value == SceneController.Tags.MushroomCoin)
-        {
-            //PlayerData
-            _playerData.isPicking = true;
-
-            if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                StartCoroutine(DelayMessageText(_playerData, PlayerData.poisonMessageTr));
-            }
-            else
-            {
-                StartCoroutine(DelayMessageText(_playerData, PlayerData.poisonMessage));
-            }
-
-            //_coinObject.SetActive(true);
-            _coinObject.transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(_coinObject));
-
-            //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Poison);
-
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyMushroomCoin, other.gameObject.transform);
-
-            //Trigger CoinObject
-            other.gameObject.SetActive(false);
-        }
-        else if (value == SceneController.Tags.BulletCoin)
-        {
-            //PlayerData
-            _playerData.isPicking = true;
-
-            //_coinObject.SetActive(true);
-            _coinObject.transform.localScale = Vector3.one;
-            
-            StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(_coinObject));
-
-            //Trigger CoinObject
-            if (_playerData.bulletPackAmount == 0 && _playerData.bulletAmount == 0)
-            {
-                other.gameObject.SetActive(false);
-
-                _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPack;
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-
-                if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
-                {
-                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr));
-                }
-                else
-                {
-                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessage));
-                }
-            }
-            else if (_playerData.bulletPackAmount < 2)
-            {
-                _playerData.bulletPackAmount += 1;
-
-                if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
-                {
-                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr));
-                }
-                else
-                {
-                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessage));
-                }
-
-                ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyBulletCoin, other.gameObject.transform);
-
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-                other.gameObject.SetActive(false);
-                bulletAmountCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
-                bulletAmountCanvas.transform.GetChild(1).gameObject.transform.localScale = Vector3.one;
-            }
-            else if (_playerData.bulletPackAmount == 2)
-            {
-                if (_playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPack)
-                {
-                    other.gameObject.SetActive(false);
-
-                    _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPack;
-                    PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-
-                    if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr));
-                    }
-                    else
-                    {
-                        StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessage));
-                    }
-
-                }
-                else
-                {
-                    if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        StartCoroutine(DelayMessageText(_playerData, PlayerData.alreadyHaveThisMessageTr));
-                    }
-                    else
-                    {
-                        StartCoroutine(DelayMessageText(_playerData, PlayerData.alreadyHaveThisMessage));
-                    }
-                    PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin);
-                }
-            }
-            else
-            {
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin);
-            }           
-
-        }
-        else if (value == SceneController.Tags.HealthCoin)
-        {
-            if (PlayerManager.GetInstance.playerObjects.healthBarSlider.value <75)
-            {
-                ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyHealthCoin, other.gameObject.transform);
-
-                if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
-                {
-                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessageTr));
-                }
-                else
-                {
-                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessage));
-                }
-            }
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.IncreasingHealth);
-        }
-
-        else if (value == SceneController.Tags.LevelUpKey)
-        {
-            if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickedKeyMessageTr));
-            }
-            else
-            {
-                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickedKeyMessage));
-            }
-            LevelData.currentOwnedLevelUpKeys++;
+            _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPack;
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.DestroyBulletCoin, other.gameObject.transform);
-
-            other.gameObject.SetActive(false);
+            ShowBulletMessage(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage);
         }
+        else if (_playerData.bulletPackAmount < 2)
+        {
+            _playerData.bulletPackAmount += 1;
+            ShowBulletMessage(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage);
+            other.gameObject.SetActive(false);
+            bulletAmountCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
+            bulletAmountCanvas.transform.GetChild(1).gameObject.transform.localScale = Vector3.one;
+        }
+        else if (_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPack)
+        {
+            other.gameObject.SetActive(false);
+            _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPack;
+            ShowBulletMessage(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage);
+        }
+        else
+        {
+            ShowBulletMessage(_playerData, PlayerData.alreadyHaveThisMessageTr, PlayerData.alreadyHaveThisMessage);
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin);
+        }
+    }
+
+    void ShowBulletMessage(PlayerData _playerData, string turkishMessage, string englishMessage)
+    {
+        string message = _playerData.currentLanguage == PlayerData.Languages.Turkish ? turkishMessage : englishMessage;
+        StartCoroutine(DelayMessageText(_playerData, message));
     }
     public void CheckAllWeaponsLocked(BulletData bulletData)
     {
@@ -906,6 +788,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _bulletData.currentBulletPack = _bulletData.m4A4BulletAmount;
 
             PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
+
+            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.m4a4.ToString()));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.m4a4.ToString()));
+            }
         }
         else if (other.CompareTag(SceneController.Tags.m4a4.ToString()) && _bulletData.currentWeaponName == BulletData.m4a4)
         {
@@ -928,6 +819,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _bulletData.currentBulletPack = _bulletData.ak47BulletAmount;
 
             PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
+
+            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.ak47.ToString()));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.ak47.ToString()));
+            }
         }
         else if (other.CompareTag(SceneController.Tags.ak47.ToString()) && _bulletData.currentWeaponName == BulletData.ak47)
         {
@@ -950,6 +850,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _bulletData.currentBulletPack = _bulletData.axeBulletAmount;
 
             PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
+
+            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.axe.ToString()));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.axe.ToString()));
+            }
         }
         else if (other.CompareTag(SceneController.Tags.axe.ToString()) && _bulletData.currentWeaponName == BulletData.axe)
         {
@@ -972,6 +881,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _bulletData.currentBulletPack = _bulletData.bulldogBulletAmount;
 
             PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
+
+            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.bulldog.ToString()));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.bulldog.ToString()));
+            }
         }
         else if (other.CompareTag(SceneController.Tags.bulldog.ToString()) && _bulletData.currentWeaponName == BulletData.bulldog)
         {
@@ -993,6 +911,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _bulletData.currentBulletPack = _bulletData.cowBulletAmount;
 
             PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
+
+            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.cow.ToString()));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.cow.ToString()));
+            }
         }
         else if (other.CompareTag(SceneController.Tags.cow.ToString()) && _bulletData.currentWeaponName == BulletData.cow)
         {
@@ -1015,6 +942,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _bulletData.currentBulletPack = _bulletData.crystalBulletAmount;
 
             PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
+
+            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.crystal.ToString()));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.crystal.ToString()));
+            }
         }
         else if (other.CompareTag(SceneController.Tags.crystal.ToString()) && _bulletData.currentWeaponName == BulletData.crystal)
         {
@@ -1036,6 +972,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _bulletData.currentBulletPack = _bulletData.demonBulletAmount;
 
             PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
+
+            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.demon.ToString()));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.demon.ToString()));
+            }
         }
         else if (other.CompareTag(SceneController.Tags.demon.ToString()) && _bulletData.currentWeaponName != BulletData.demon)
         {
@@ -1057,6 +1002,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _bulletData.currentBulletPack = _bulletData.iceBulletAmount;
 
             PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
+
+            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.ice.ToString()));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.ice.ToString()));
+            }
         }
         else if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName == BulletData.ice)
         {
@@ -1078,6 +1032,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _bulletData.currentBulletPack = _bulletData.electroBulletAmount;
 
             PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
+
+            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.electro.ToString()));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.electro.ToString()));
+            }
         }
         else if (other.CompareTag(SceneController.Tags.electro.ToString()) && _bulletData.currentWeaponName == BulletData.electro)
         {
@@ -1099,6 +1062,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _bulletData.currentBulletPack = _bulletData.pistolBulletAmount;
 
             PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
+
+            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.pistol.ToString()));
+            }
+            else
+            {
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.pistol.ToString()));
+            }
         }
         else if (other.CompareTag(SceneController.Tags.pistol.ToString()) && _bulletData.currentWeaponName == BulletData.pistol)
         {
@@ -1723,31 +1695,29 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
 
 
-    public virtual void SensivityXSettings(int touchXValue, PlayerController _playerController, PlayerData _playerData, ref float _touchX)
+    public virtual void SensivityXSettings(float touchXValue, PlayerController _playerController, PlayerData _playerData, ref float _touchX)
     {//ControllerSmoothForXAxis
         if ((_playerController.lookRotation.x >= -0.2f && _playerController.lookRotation.x < 0f) || (_playerController.lookRotation.x <= 0.2f && _playerController.lookRotation.x > 0f))
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 8f * _playerData.sensivityX * Time.timeScale * touchXValue;
+            _touchX = (_playerController.lookRotation.x * 2f) / 8f * _playerData.sensivityX * touchXValue;
         }
         else if ((_playerController.lookRotation.x >= -0.4f && _playerController.lookRotation.x < -0.2f) || (_playerController.lookRotation.x <= 0.4f && _playerController.lookRotation.x > 0.2f))
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 7f * _playerData.sensivityX * Time.timeScale * touchXValue;
+            _touchX = (_playerController.lookRotation.x * 2f) / 7f * _playerData.sensivityX * touchXValue;
         }
         else if ((_playerController.lookRotation.x >= -0.6f && _playerController.lookRotation.x < -0.4f) || (_playerController.lookRotation.x <= 0.6f && _playerController.lookRotation.x > 0.4f))
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 6f * _playerData.sensivityX * Time.timeScale * touchXValue;
+            _touchX = (_playerController.lookRotation.x * 2f) / 6f * _playerData.sensivityX * touchXValue;
         }
         else if ((_playerController.lookRotation.x >= -0.8f && _playerController.lookRotation.x < -0.6f) || (_playerController.lookRotation.x <= 0.8f && _playerController.lookRotation.x > 0.6f))
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 5f * _playerData.sensivityX * Time.timeScale * touchXValue;
+            _touchX = (_playerController.lookRotation.x * 2f) / 5f * _playerData.sensivityX * touchXValue;
         }
         else
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 4f * _playerData.sensivityX * Time.timeScale * touchXValue;
+            _touchX = (_playerController.lookRotation.x * 2f) / 4f * _playerData.sensivityX * touchXValue;
         }
     }
-
-
     #endregion
 
 

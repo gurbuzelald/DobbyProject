@@ -244,9 +244,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 }
                 else
                 {
-                    //enemyData.isAttacking = false;
-                    //enemyData.isWalking = false;
-                    //enemyData.isFiring = false;
+                    enemyData.isAttacking = false;
+                    enemyData.isWalking = false;
+                    enemyData.isFiring = false;
                 }
             }
             else if (!playerData.isPlayable || gameObject != null || enemyBulletManager != null)

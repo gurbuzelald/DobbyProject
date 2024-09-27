@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class MenuController : MonoBehaviour
+public class MenuController : AbstractPlayer<MenuController>
 {
     [SerializeField] LevelData levelData;
     [SerializeField] PlayerData playerData;

@@ -169,32 +169,40 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     void FixedUpdate()
     {
+        // If the player is not in sword animation, allow firing
         if (!_playerData.isSwordAnimate)
         {
             playerInterfaces.iPlayerShoot.Fire(_playerData);
         }
 
+        // Trigger sword action if both Z and X values are zero
         if (GetZValue() == 0 && GetXValue() == 0)
         {
             playerInterfaces.iPlayerShoot.Sword(_playerData);
         }
 
-        if (_playerData.isPlayable && GetInstance._playerController.fire && !_playerData.isWinning)
+        // Common conditions to reduce redundancy
+        bool canPlayActions = _playerData.isPlayable && !_playerData.isWinning;
+        bool fireActive = GetInstance._playerController.fire;
+
+        // Handle crosshair and firing related actions
+        if (canPlayActions && fireActive)
         {
+            // Show crosshair with delay
             StartCoroutine(playerInterfaces.iPlayerShoot.DelayShowingCrosshairAlpha(crosshairImage, 2f));
+
+            // Update bullet pack and amount text size
+            playerInterfaces.iPlayerTrigger.SetBulletPackAndAmountTextSize(_playerData, ref bulletAmountCanvas);
         }
         else
         {
+            // Delayed fire walk disactivity if not actively firing
             StartCoroutine(playerInterfaces.iPlayerShoot.delayFireWalkDisactivity(_playerData, 0f));
         }
-        if (_playerData.isPlayable && _playerController.fire && !_playerData.isWinning)
-        {
-            playerInterfaces.iPlayerTrigger.SetBulletPackAndAmountTextSize(_playerData, ref bulletAmountCanvas);
 
-            
-        }
+        // Update bullet amount and pack amount text
         bulletAmountText.text = _playerData.bulletAmount.ToString();
-        bulletPackAmountText.text = "x" + (_playerData.bulletPackAmount).ToString();
+        bulletPackAmountText.text = "x" + _playerData.bulletPackAmount.ToString();
     }
 
     void Update()
@@ -205,9 +213,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         Movement(_playerData);//PlayerStatement
         Rotation(_playerData);
-        //GetAttackFromEnemy(ref _playerData, ref _topCanvasHealthBarSlider, ref playerObjects.healthBarSlider, ref _healthBarObject, ref _particleTransform);
         DontFallDown();
-
         IncreaseHealthWhenEnemyKilledAtUpdate(10);
     }
 
@@ -362,6 +368,14 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         else if (other.gameObject.name == "FinishPlane")
         {
+            if (PlayerData.Languages.Turkish == _playerData.currentLanguage)
+            {
+                LevelUpController.requirementMessage = "Bölümü Geçmen İçin Bölüm Görevlerini Bitirmen Gerekiyor!!!";
+            }
+            else
+            {
+                LevelUpController.requirementMessage = "You Need To Finish Current Level's Mission(s)!!!";
+            }
             StartCoroutine(ShowRequirements(LevelUpController.requirementMessage, 3f));
         }
     }
@@ -598,15 +612,16 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         else
         {
             //Touch Rotation Controller
-            playerInterfaces.iPlayerRotation.SensivityXSettings(1, _playerController, _playerData, ref inputMovement._touchX);
-            inputMovement._touchY = _playerController.lookRotation.y * _playerData.sensivityY * Time.deltaTime * 40;
+            playerInterfaces.iPlayerRotation.SensivityXSettings(1f, _playerController, _playerData, ref inputMovement._touchX);
+
+            inputMovement._touchY = _playerController.lookRotation.y * _playerData.sensivityY;
         }
 
         playerInterfaces.iPlayerRotation.Rotate(ref inputMovement._touchX, ref inputMovement._touchX, ref playerTransform);
 
 
         //Rotating Just Camera On X Axis with TouchY
-        _currentCameraTransform.transform.Rotate(-inputMovement._touchY * Time.timeScale / 10, 0f, 0f);
+        _currentCameraTransform.transform.Rotate(-inputMovement._touchY * Time.deltaTime * 10, 0f, 0f);
 
 
         //Debug.Log(_playerController.lookRotation.x);

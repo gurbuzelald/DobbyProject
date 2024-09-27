@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Menu Map")]
+    public GameObject menuMap;
+
     [Header("Current Language")]
     public Languages currentLanguage;
 

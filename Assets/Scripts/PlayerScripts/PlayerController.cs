@@ -32,9 +32,19 @@ public class PlayerController : MonoBehaviour
     }  
     void Update()
     {
-        ControlStates();
-        PickCharacter();
-        WwaponCharacter();
+        if (SceneController.Scenes.Game.ToString() == SceneController.CheckSceneName())
+        {
+            ControlStates();
+        }
+        else if (SceneController.Scenes.PickCharacter.ToString() == SceneController.CheckSceneName())
+        {
+            PickCharacter();
+        }
+        else if (SceneController.Scenes.PickWeapon.ToString() == SceneController.CheckSceneName())
+        {
+            PickWeapon();
+        }       
+        
     }
     public void ControlStates()
     {
@@ -51,7 +61,7 @@ public class PlayerController : MonoBehaviour
     {
         characterStick = playerInput.CharacterMenuInput.CharacterStick.ReadValue<Vector2>();
     }
-    void WwaponCharacter()
+    void PickWeapon()
     {
         weaponStick = playerInput.WeaponMenuInput.WeaponStick.ReadValue<Vector2>();
     }

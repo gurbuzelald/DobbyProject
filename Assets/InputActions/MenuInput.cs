@@ -223,6 +223,15 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ResetGameButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""0f069d54-8137-4dfd-bbe9-658bd54ac177"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -322,6 +331,17 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ContinueButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf6adce0-c9be-4855-a8fa-658c81fe9f03"",
+                    ""path"": ""<Keyboard>/#(9)"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetGameButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1230,6 +1250,7 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
         m_MenuSceneButtons_PickCharacterButton = m_MenuSceneButtons.FindAction("PickCharacterButton", throwIfNotFound: true);
         m_MenuSceneButtons_PickWeaponButton = m_MenuSceneButtons.FindAction("PickWeaponButton", throwIfNotFound: true);
         m_MenuSceneButtons_ContinueButton = m_MenuSceneButtons.FindAction("ContinueButton", throwIfNotFound: true);
+        m_MenuSceneButtons_ResetGameButton = m_MenuSceneButtons.FindAction("ResetGameButton", throwIfNotFound: true);
         // LevelsSceneButtons
         m_LevelsSceneButtons = asset.FindActionMap("LevelsSceneButtons", throwIfNotFound: true);
         m_LevelsSceneButtons_LevelsMenubutton = m_LevelsSceneButtons.FindAction("LevelsMenubutton", throwIfNotFound: true);
@@ -1468,6 +1489,7 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_MenuSceneButtons_PickCharacterButton;
     private readonly InputAction m_MenuSceneButtons_PickWeaponButton;
     private readonly InputAction m_MenuSceneButtons_ContinueButton;
+    private readonly InputAction m_MenuSceneButtons_ResetGameButton;
     public struct MenuSceneButtonsActions
     {
         private @MenuInput m_Wrapper;
@@ -1481,6 +1503,7 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
         public InputAction @PickCharacterButton => m_Wrapper.m_MenuSceneButtons_PickCharacterButton;
         public InputAction @PickWeaponButton => m_Wrapper.m_MenuSceneButtons_PickWeaponButton;
         public InputAction @ContinueButton => m_Wrapper.m_MenuSceneButtons_ContinueButton;
+        public InputAction @ResetGameButton => m_Wrapper.m_MenuSceneButtons_ResetGameButton;
         public InputActionMap Get() { return m_Wrapper.m_MenuSceneButtons; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1517,6 +1540,9 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
             @ContinueButton.started += instance.OnContinueButton;
             @ContinueButton.performed += instance.OnContinueButton;
             @ContinueButton.canceled += instance.OnContinueButton;
+            @ResetGameButton.started += instance.OnResetGameButton;
+            @ResetGameButton.performed += instance.OnResetGameButton;
+            @ResetGameButton.canceled += instance.OnResetGameButton;
         }
 
         private void UnregisterCallbacks(IMenuSceneButtonsActions instance)
@@ -1548,6 +1574,9 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
             @ContinueButton.started -= instance.OnContinueButton;
             @ContinueButton.performed -= instance.OnContinueButton;
             @ContinueButton.canceled -= instance.OnContinueButton;
+            @ResetGameButton.started -= instance.OnResetGameButton;
+            @ResetGameButton.performed -= instance.OnResetGameButton;
+            @ResetGameButton.canceled -= instance.OnResetGameButton;
         }
 
         public void RemoveCallbacks(IMenuSceneButtonsActions instance)
@@ -2113,6 +2142,7 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
         void OnPickCharacterButton(InputAction.CallbackContext context);
         void OnPickWeaponButton(InputAction.CallbackContext context);
         void OnContinueButton(InputAction.CallbackContext context);
+        void OnResetGameButton(InputAction.CallbackContext context);
     }
     public interface ILevelsSceneButtonsActions
     {
