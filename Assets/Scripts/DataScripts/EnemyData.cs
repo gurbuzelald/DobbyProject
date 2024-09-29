@@ -7,8 +7,7 @@ public class EnemyData : ScriptableObject
 {
     [Header("Particles")]
     public GameObject _enemyDestroyParticle;
-    public GameObject currentBulletExplosionParticle;    
-    public GameObject currentSwordBulletExplosionParticle;    
+        
 
     [Header("Bullet Object")]
     public GameObject _playerBulletObject;

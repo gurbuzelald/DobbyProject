@@ -144,47 +144,47 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.pistol)
         {
-            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[0];
+            playerData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[0];
         }
         else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.axe)
         {
-            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[1];
+            playerData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[1];
         }
         else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.bulldog)
         {
-            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[2];
+            playerData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[2];
         }
         else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.cow)
         {
-            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[3];
+            playerData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[3];
         }
         else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.crystal)
         {
-            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[4];
+            playerData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[4];
         }
         else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.demon)
         {
-            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[5];
+            playerData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[5];
         }
         else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.ice)
         {
-            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[6];
+            playerData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[6];
         }
         else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.electro)
         {
-            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[7];
+            playerData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[7];
         }
         else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.ak47)
         {
-            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[8];
+            playerData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[8];
         }
         else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.m4a4)
         {
-            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[9];
+            playerData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[9];
         }
         else
         {
-            enemyData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[0];
+            playerData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[0];
         }
     }
 
@@ -232,8 +232,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     
                     //When Enemy touched player, enemy will get a animation to here.
                 }
-                else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.2f) &&
-                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 10f) &&
+                else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.1f) &&
+                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < 30f) &&
                     !enemyData.isDying && !playerData.isDying && !SceneController.pauseGame)
                 {
                     enemyData.isFiring = true;
@@ -502,87 +502,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             gameObject.transform.Rotate(0f, 180f, 0f);
         }
     }
-    public void TriggerSword(float swordPower, Collider other)
-    {
-        StartCoroutine(TriggerBulletParticleCreater(other, enemyData.currentSwordBulletExplosionParticle));
-
-
-        gameObject.transform.LookAt(clownSpawner.targetTransform.position);
-        if (_healthBar != null)
-        {
-            if (_healthBarSlider.value <= 0)
-            {
-                EnemyData.enemyDeathCount++;
-                bottomParticleSystem.Play();
-                middleParticleSystem.Play();
-                middleParticleSystem.Play();
-                enemyData.isTouchable = false;
-                enemyData.isDying = true;
-                //enemyData.isWalking = false;
-
-                enemyData.isFiring = false;
-
-                enemyData.isSpeedZero = true;
-
-                if (gameObject.transform.parent.name == "bossEnemyTransform")
-                {
-                    StartCoroutine(DelayStopEnemy(0f));
-                }
-                else
-                {
-                    StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
-                }
-
-
-                Destroy(_healthBar);
-                ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue * 2);
-                PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
-                StartCoroutine(DelayDestroy(2f));
-            }
-            else
-            {
-               
-                if (_healthBarSlider.value <= 50)
-                {
-                    bottomParticleSystem.Play();
-                    middleParticleSystem.Play();
-                }
-                else if (_healthBarSlider.value > 50)
-                {
-                    middleParticleSystem.Play();
-                }
-
-                if (gameObject.transform.parent.name == "bossEnemyTransform")
-                {
-                    StartCoroutine(DelayStopEnemy(0f));
-                }
-                else
-                {
-                    //enemyData.isSpeedZero = true;
-                    enemyData.isWalking = false;
-                    StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
-                }
-                PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
-                PlaySoundEffect(SoundEffectTypes.SwordHit, _audioSource);
-
-                if (gameObject.transform.parent.name == "bossEnemyTransform")
-                {
-                    _healthBarSlider.value -= swordPower/3;
-                }
-                else
-                {
-                    _healthBarSlider.value -= swordPower;
-                }   
-            }
-
-            _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = _healthBarSlider.value;
-
-            StartCoroutine(ShowDamage((int)swordPower, 0.1f, 3f));
-        }
-    }
+    
     public void TriggerBullet(float bulletPower, Collider other)
     {
-        StartCoroutine(TriggerBulletParticleCreater(other, enemyData.currentBulletExplosionParticle));
+        BulletOrSwordExplosionParticleWithObjectPool(other, 8);
 
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
 
@@ -654,6 +577,85 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
     }
 
+    public void TriggerSword(float swordPower, Collider other)
+    {
+        BulletOrSwordExplosionParticleWithObjectPool(other, 9);
+
+
+        gameObject.transform.LookAt(clownSpawner.targetTransform.position);
+        if (_healthBar != null)
+        {
+            if (_healthBarSlider.value <= 0)
+            {
+                EnemyData.enemyDeathCount++;
+                bottomParticleSystem.Play();
+                middleParticleSystem.Play();
+                middleParticleSystem.Play();
+                enemyData.isTouchable = false;
+                enemyData.isDying = true;
+                //enemyData.isWalking = false;
+
+                enemyData.isFiring = false;
+
+                enemyData.isSpeedZero = true;
+
+                if (gameObject.transform.parent.name == "bossEnemyTransform")
+                {
+                    StartCoroutine(DelayStopEnemy(0f));
+                }
+                else
+                {
+                    StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
+                }
+
+
+                Destroy(_healthBar);
+                ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue * 2);
+                PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
+                StartCoroutine(DelayDestroy(2f));
+            }
+            else
+            {
+
+                if (_healthBarSlider.value <= 50)
+                {
+                    bottomParticleSystem.Play();
+                    middleParticleSystem.Play();
+                }
+                else if (_healthBarSlider.value > 50)
+                {
+                    middleParticleSystem.Play();
+                }
+
+                if (gameObject.transform.parent.name == "bossEnemyTransform")
+                {
+                    StartCoroutine(DelayStopEnemy(0f));
+                }
+                else
+                {
+                    //enemyData.isSpeedZero = true;
+                    enemyData.isWalking = false;
+                    StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
+                }
+                PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
+                PlaySoundEffect(SoundEffectTypes.SwordHit, _audioSource);
+
+                if (gameObject.transform.parent.name == "bossEnemyTransform")
+                {
+                    _healthBarSlider.value -= swordPower / 3;
+                }
+                else
+                {
+                    _healthBarSlider.value -= swordPower;
+                }
+            }
+
+            _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = _healthBarSlider.value;
+
+            StartCoroutine(ShowDamage((int)swordPower, 0.1f, 3f));
+        }
+    }
+
     void SetBackToWalkingValueForStart()
     {
         if (levelData)
@@ -672,25 +674,23 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }        
     }
 
-    IEnumerator TriggerBulletParticleCreater(Collider other, GameObject bulletExplosionParticle)
+    void BulletOrSwordExplosionParticleWithObjectPool(Collider other, int objectPoolValue)
     {
-        yield return new WaitForSeconds(0.0002f);
-        bulletExplosionParticle = Instantiate(bulletExplosionParticle, 
-                                               new Vector3(other.gameObject.transform.position.x, 
-                                                           other.gameObject.transform.position.y + .08f,
-                                                           other.gameObject.transform.position.z), 
-                                               Quaternion.identity, 
-                                               gameObject.transform);
-        enemyData.isWalkable = false;
-
-
-        yield return new WaitForSeconds(1f);
-
-        if (!enemyData.isSpeedZero)
-        {
-            enemyData.isWalkable = true;
+        GameObject particleObject = null;
+        if (objectPoolValue == 8)
+        {            
+            particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(8);
+            particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+                                                               other.gameObject.transform.position.y + .08f,
+                                                               other.gameObject.transform.position.z);
         }
-        Destroy(bulletExplosionParticle, levelData.currentBackToWalkingValue);
+        else if (objectPoolValue == 9)
+        {
+            particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(9);
+            particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+                                                               other.gameObject.transform.position.y + .08f,
+                                                               other.gameObject.transform.position.z);
+        }
 
     }
 
@@ -704,7 +704,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     public IEnumerator DelayDestroy(float delayDestroy)
     {
-        StartCoroutine(CreateDestroyParticle());
+        CreateDestroyParticle();
         
         yield return new WaitForSeconds(delayDestroy);
         
@@ -715,20 +715,29 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         //enemyData.isWalking = true;
         enemyData.isDying = false;
     }
-    IEnumerator CreateDestroyParticle() {
+    void CreateDestroyParticle() {
         Transform currentBulletCoinTransform = gameObject.transform;
 
-        yield return new WaitForSeconds(2f);
-
-        GameObject enemyDestroyParticle = Instantiate(enemyData._enemyDestroyParticle,
+        /*GameObject enemyDestroyParticle = Instantiate(enemyData._enemyDestroyParticle,
                             new Vector3(currentBulletCoinTransform.position.x,
                                         enemyData._playerBulletObject.transform.position.y,
                                         currentBulletCoinTransform.position.z),
                             Quaternion.identity);
 
-        Destroy(enemyDestroyParticle, 2f);
+        Destroy(enemyDestroyParticle, 2f);*/
+
+        GameObject particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(5);
+        particleObject.transform.position = new Vector3(currentBulletCoinTransform.transform.position.x,
+                                                        currentBulletCoinTransform.transform.position.y + .5f,
+                                                        currentBulletCoinTransform.transform.position.z);
+
+        StartCoroutine(DelaySetActiveFalseParticle(particleObject));
     }
-    
+    IEnumerator DelaySetActiveFalseParticle(GameObject particleObject)
+    {
+        yield return new WaitForSeconds(2f);
+        particleObject.SetActive(false);
+    }
 
     //SFX States
     public void PlaySoundEffect(SoundEffectTypes soundEffect, AudioSource audioSource)

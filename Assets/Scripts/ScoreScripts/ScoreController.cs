@@ -89,7 +89,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
             _scoreAmount = 0;
 
             // Update score text if the text component and level controller exist
-            if (_scoreText)
+            if (_scoreText && levelUpController)
             {
                 _scoreText.text = $"0/{levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount}";
             }

@@ -22,7 +22,8 @@ internal interface IPlayerTrigger
                     ref GameObject _cheeseObject, 
                     ref GameObject bulletAmountCanvas,
                     ref TextMeshProUGUI bulletAmountText,
-                    ref TextMeshProUGUI bulletPackAmountText);
+                    ref TextMeshProUGUI bulletPackAmountText,
+                    ref ObjectPool objectPool);
 
     void CheckWeaponCollect(Collider other, BulletData _bulletData);
 
@@ -31,10 +32,6 @@ internal interface IPlayerTrigger
     void DamageArrowDirection(ref GameObject _damageArrow);
 
     void SetBulletPackAndAmountTextSize(PlayerData _playerData, ref GameObject bulletAmountCanvas);
-
-    void DestroyByWater(PlayerData _playerData);
-
-    void DestroyByLava(PlayerData _playerData, ref Transform _particleTransform);
 
     void GettingPoisonDamage(PlayerData _playerData, ref Slider _topCanvasHealthBarSlider, ref Slider _healthBarSlider);
 

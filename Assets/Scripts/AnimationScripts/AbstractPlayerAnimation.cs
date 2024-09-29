@@ -571,7 +571,7 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         }
         else
         {
-            DisableRunAnimation(playerData, _animator);
+           DisableRunAnimation(playerData, _animator);
         }
     }
     public virtual void DisableRunAnimation(PlayerData playerData, Animator _animator)

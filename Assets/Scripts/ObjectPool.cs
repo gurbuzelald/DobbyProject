@@ -19,10 +19,6 @@ public class ObjectPool : MonoBehaviour
 
     [SerializeField] Pool[] pools = null;
 
-    private GameObject _playerBulletObject;
-    private GameObject _enemyBulletObject;
-    private GameObject _playerSwordObject;
-
     private GameObject _poolUpdateObject;
 
 
@@ -38,8 +34,8 @@ public class ObjectPool : MonoBehaviour
     {
         if (pools.Length != 0)
         {
-            if (pools[0].bulletData != null && creatablePlayerBullet &&
-                pools[1].bulletData != null && levelData && creatableEnemyBullet)
+            if ((pools[0].bulletData != null && creatablePlayerBullet && pools[8].bulletData != null) ||
+                (pools[1].bulletData != null && levelData && creatableEnemyBullet))
             {
                 CreateAndEnqueueObject();
 
@@ -119,6 +115,10 @@ public class ObjectPool : MonoBehaviour
             {
                 SetEnemyBulletID(1);  // Set Enemy Bullet ID once for this pool
             }
+            else if (j == 8)
+            {
+                SetPlayerBulletID(8);  // Set Player Bullet Explosion ID once for this pool
+            }
 
             // Pool objects exactly poolSize times
             for (int i = 0; i < pools[j].poolSize; i++)
@@ -160,6 +160,69 @@ public class ObjectPool : MonoBehaviour
         else if(poolIndex == 2)
         {
             // Instantiate Player Sword
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 3)
+        {
+            // Instantiate Player Coin Particle
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 4)
+        {
+            // Instantiate Bullet Coin Particle
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 5)
+        {
+            // Instantiate Bullet Coin Particle
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 6)
+        {
+            // Instantiate Bullet Coin Particle
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 7)
+        {
+            // Instantiate Bullet Coin Particle
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 8)
+        {
+            // Instantiate Bullet Coin Particle
+            obj = Instantiate(pool.objectPrefab[BulletData.currentWeaponID],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 9)
+        {
+            // Instantiate Bullet Coin Particle
             obj = Instantiate(pool.objectPrefab[0],
                               pool.objectTransform.position,
                               pool.objectTransform.rotation,

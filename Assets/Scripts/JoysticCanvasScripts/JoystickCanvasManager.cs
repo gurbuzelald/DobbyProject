@@ -54,12 +54,6 @@ public class JoystickCanvasManager : MonoBehaviour
             {
                 fireButton.SetActive(false);
             }
-            if (fire2Button)
-            {
-                fire2Button.SetActive(false);
-            }
-
-            //swordButton.SetActive(true);
         }
         else
         {
@@ -67,12 +61,6 @@ public class JoystickCanvasManager : MonoBehaviour
             {
                 fireButton.SetActive(true);
             }
-
-            if (fire2Button)
-            {
-                fire2Button.SetActive(true);
-            }
-            //swordButton.SetActive(false);
         }
     }
     void RunMode()

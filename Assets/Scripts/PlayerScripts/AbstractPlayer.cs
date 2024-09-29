@@ -659,106 +659,150 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                                ref GameObject _cheeseObject,
                                ref GameObject bulletAmountCanvas,
                                ref TextMeshProUGUI bulletAmountText,
-                               ref TextMeshProUGUI bulletPackAmountText)
+                               ref TextMeshProUGUI bulletPackAmountText,
+                               ref ObjectPool objectPool)
     {
         _playerData.isPicking = true; // Set player state once at the start
 
-        // Helper method to handle particle, sound, and coin destruction
-        void HandleCoinPickup(GameObject coinObj, ParticleController.ParticleNames particle, PlayerSoundEffect.SoundEffectTypes sound)
-        {
-            if (coinObj != null)
-            {
-                coinObj.transform.localScale = Vector3.one;
-                StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(coinObj));
-            }
-            ParticleController.GetInstance.CreateParticle(particle, other.gameObject.transform);
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(sound);
-            Destroy(other.gameObject);
-        }
+        
 
         // Switch-case for different tag types
         switch (value)
         {
             case SceneController.Tags.Coin:
-                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.None, PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin,
+                    other, objectPool);
                 ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
                 break;
 
             case SceneController.Tags.RotateCoin:
-                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin,
+                    other, objectPool);
                 ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
                 break;
 
             case SceneController.Tags.CheeseCoin:
                 _cheeseObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-                HandleCoinPickup(_cheeseObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+                HandleCoinPickup(_cheeseObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin,
+                    other, objectPool);
                 ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
                 break;
 
             case SceneController.Tags.MushroomCoin:
-                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyMushroomCoin, PlayerSoundEffect.SoundEffectTypes.Poison);
-                string poisonMessage = (_playerData.currentLanguage == PlayerData.Languages.Turkish) ? PlayerData.poisonMessageTr : PlayerData.poisonMessage;
-                StartCoroutine(DelayMessageText(_playerData, poisonMessage));
+                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyMushroomCoin, PlayerSoundEffect.SoundEffectTypes.Poison,
+                    other, objectPool);
+                StartCoroutine(DelayMessageText(_playerData, PlayerData.poisonMessageTr, PlayerData.poisonMessage));
                 break;
 
             case SceneController.Tags.BulletCoin:
-                HandleBulletCoinPickup(_coinObject, other, bulletAmountCanvas, _playerData, bulletAmountText, bulletPackAmountText);
+                HandleBulletCoinPickup(_coinObject, other, bulletAmountCanvas, _playerData, bulletAmountText, bulletPackAmountText, objectPool);
                 break;
 
             case SceneController.Tags.HealthCoin:
                 if (PlayerManager.GetInstance.playerObjects.healthBarSlider.value < 75)
                 {
-                    HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyHealthCoin, PlayerSoundEffect.SoundEffectTypes.IncreasingHealth);
-                    string healthMessage = (_playerData.currentLanguage == PlayerData.Languages.Turkish) ? PlayerData.pickHealthObjectMessageTr : PlayerData.pickHealthObjectMessage;
-                    StartCoroutine(DelayMessageText(_playerData, healthMessage));
+                    HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyHealthCoin,
+                                     PlayerSoundEffect.SoundEffectTypes.IncreasingHealth, other, objectPool);
+                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessageTr, PlayerData.pickHealthObjectMessage));
                 }
                 break;
 
             case SceneController.Tags.LevelUpKey:
-                string keyMessage = (_playerData.currentLanguage == PlayerData.Languages.Turkish) ? PlayerData.pickedKeyMessageTr : PlayerData.pickedKeyMessage;
-                StartCoroutine(DelayMessageText(_playerData, keyMessage));
+                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickedKeyMessageTr, PlayerData.pickedKeyMessage));
                 LevelData.currentOwnedLevelUpKeys++;
-                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyBulletCoin, PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
+                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyBulletCoin,
+                                 PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin, other, objectPool);
                 break;
         }
     }
 
-    void HandleBulletCoinPickup(GameObject _coinObject, Collider other, GameObject bulletAmountCanvas, PlayerData _playerData, TextMeshProUGUI bulletAmountText, TextMeshProUGUI bulletPackAmountText)
+    void HandleBulletCoinPickup(GameObject _coinObject, Collider other, GameObject bulletAmountCanvas,
+        PlayerData _playerData, TextMeshProUGUI bulletAmountText, TextMeshProUGUI bulletPackAmountText, ObjectPool objectPool)
     {
         _coinObject.transform.localScale = Vector3.one;
+
+        if ((_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPack) ||
+            (_playerData.bulletPackAmount == 0 && _playerData.bulletAmount == 0) ||
+             _playerData.bulletPackAmount < 2 ||
+             (_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPack))
+        {
+            GameObject particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(4);
+            particleObject.transform.position = other.gameObject.transform.position;
+
+            StartCoroutine(DelaySetActiveFalseParticle(particleObject));
+        }
 
         if (_playerData.bulletPackAmount == 0 && _playerData.bulletAmount == 0)
         {
             other.gameObject.SetActive(false);
             _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPack;
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-            ShowBulletMessage(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage);
+            StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage));
         }
         else if (_playerData.bulletPackAmount < 2)
         {
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
             _playerData.bulletPackAmount += 1;
-            ShowBulletMessage(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage);
+            StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage));
             other.gameObject.SetActive(false);
             bulletAmountCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
             bulletAmountCanvas.transform.GetChild(1).gameObject.transform.localScale = Vector3.one;
         }
         else if (_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPack)
         {
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
             other.gameObject.SetActive(false);
             _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPack;
-            ShowBulletMessage(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage);
+            StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage));
         }
         else
         {
-            ShowBulletMessage(_playerData, PlayerData.alreadyHaveThisMessageTr, PlayerData.alreadyHaveThisMessage);
+            StartCoroutine(DelayMessageText(_playerData, PlayerData.alreadyHaveThisMessageTr, PlayerData.alreadyHaveThisMessage));
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin);
         }
     }
 
-    void ShowBulletMessage(PlayerData _playerData, string turkishMessage, string englishMessage)
+    // Helper method to handle particle, sound, and coin destruction
+    void HandleCoinPickup(GameObject coinObj, ParticleController.ParticleNames particle,
+        PlayerSoundEffect.SoundEffectTypes sound, Collider other, ObjectPool objectPool)
     {
-        string message = _playerData.currentLanguage == PlayerData.Languages.Turkish ? turkishMessage : englishMessage;
-        StartCoroutine(DelayMessageText(_playerData, message));
+        if (coinObj != null)
+        {
+            coinObj.transform.localScale = Vector3.one;
+            StartCoroutine(PlayerManager.GetInstance.DelayDestroyCoinObject(coinObj));
+        }
+
+        GameObject particleObject = null;
+
+        if (ParticleController.ParticleNames.DestroyRotateCoin == particle)
+        {
+            particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(3);
+            particleObject.transform.position = other.gameObject.transform.position;
+        }
+        else if (ParticleController.ParticleNames.DestroyHealthCoin == particle)
+        {
+            particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(6);
+            particleObject.transform.position = other.gameObject.transform.position;
+        }
+        else if (ParticleController.ParticleNames.DestroyMushroomCoin == particle)
+        {
+            particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(7);
+            particleObject.transform.position = other.gameObject.transform.position;            
+        }
+
+        StartCoroutine(DelaySetActiveFalseParticle(particleObject));
+
+        //ParticleController.GetInstance.CreateParticle(particle, other.gameObject.transform);
+        PlayerSoundEffect.GetInstance.SoundEffectStatement(sound);
+        Destroy(other.gameObject);
+    }
+    IEnumerator DelaySetActiveFalseParticle(GameObject particleObject)
+    {
+        yield return new WaitForSeconds(1f);
+        if (particleObject != null)
+        {
+            particleObject.SetActive(false);
+        }        
     }
     public void CheckAllWeaponsLocked(BulletData bulletData)
     {
@@ -774,307 +818,102 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void CheckWeaponCollect(Collider other, BulletData _bulletData)
     {
-        if (other.CompareTag(SceneController.Tags.m4a4.ToString()) && _bulletData.currentWeaponName != BulletData.m4a4)
+        HandleWeaponCollect(other, _bulletData,
+            SceneController.Tags.m4a4,
+            BulletData.m4a4,
+            ref _bulletData.isM4a4,
+            ref _bulletData.m4a4Lock,
+            _bulletData.m4A4BulletAmount);
+
+        HandleWeaponCollect(other, _bulletData,
+            SceneController.Tags.ak47,
+            BulletData.ak47,
+            ref _bulletData.isAk47,
+            ref _bulletData.ak47Lock,
+            _bulletData.ak47BulletAmount);
+
+        HandleWeaponCollect(other, _bulletData,
+            SceneController.Tags.axe,
+            BulletData.axe,
+            ref _bulletData.isAxe,
+            ref _bulletData.axeLock,
+            _bulletData.axeBulletAmount);
+
+        HandleWeaponCollect(other, _bulletData,
+            SceneController.Tags.bulldog,
+            BulletData.bulldog,
+            ref _bulletData.isBulldog,
+            ref _bulletData.bulldogLock,
+            _bulletData.bulldogBulletAmount);
+
+        HandleWeaponCollect(other, _bulletData,
+            SceneController.Tags.cow,
+            BulletData.cow,
+            ref _bulletData.isCow,
+            ref _bulletData.cowLock,
+            _bulletData.cowBulletAmount);
+
+        HandleWeaponCollect(other, _bulletData,
+            SceneController.Tags.crystal,
+            BulletData.crystal,
+            ref _bulletData.isCrystal,
+            ref _bulletData.crystalLock,
+            _bulletData.crystalBulletAmount);
+
+        HandleWeaponCollect(other, _bulletData,
+            SceneController.Tags.demon,
+            BulletData.demon,
+            ref _bulletData.isDemon,
+            ref _bulletData.demonLock,
+            _bulletData.demonBulletAmount);
+
+        HandleWeaponCollect(other, _bulletData,
+            SceneController.Tags.ice,
+            BulletData.ice,
+            ref _bulletData.isIce,
+            ref _bulletData.iceLock,
+            _bulletData.iceBulletAmount);
+
+        HandleWeaponCollect(other, _bulletData,
+            SceneController.Tags.electro,
+            BulletData.electro,
+            ref _bulletData.isElectro,
+            ref _bulletData.electroLock,
+            _bulletData.electroBulletAmount);
+
+        HandleWeaponCollect(other, _bulletData,
+            SceneController.Tags.pistol,
+            BulletData.pistol,
+            ref _bulletData.isPistol,
+            ref _bulletData.pistolLock,
+            _bulletData.pistolBulletAmount);
+    }
+
+    // Helper method for handling weapon collection
+    private void HandleWeaponCollect(Collider other, BulletData _bulletData, SceneController.Tags tag,
+        string weaponName, ref bool weaponStatus, ref string weaponLock, int bulletAmount)
+    {
+        string tagString = tag.ToString();
+
+        if (other.CompareTag(tagString))
         {
-            Destroy(other.gameObject);
-            _bulletData.isM4a4 = true;
-
-            ObjectPool.creatablePlayerBullet = true;
-
-            _bulletData.m4a4Lock = _bulletData.unLocked;
-
-            PlayerData.currentBulletExplosionIsChanged = true;
-
-            _bulletData.currentBulletPack = _bulletData.m4A4BulletAmount;
-
-            PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
-
-            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
+            if (_bulletData.currentWeaponName != weaponName)
             {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.m4a4.ToString()));
+                Destroy(other.gameObject);
+                weaponStatus = true;
+                ObjectPool.creatablePlayerBullet = true;
+                weaponLock = _bulletData.unLocked;
+                PlayerData.currentBulletExplosionIsChanged = true;
+                _bulletData.currentBulletPack = bulletAmount;
+                PlayerManager.GetInstance._playerData.bulletAmount = bulletAmount;
+
+                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, tagString, tagString));
             }
-            else
+            else if (_bulletData.currentWeaponName == weaponName)
             {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.m4a4.ToString()));
+                other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
+                StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
             }
-        }
-        else if (other.CompareTag(SceneController.Tags.m4a4.ToString()) && _bulletData.currentWeaponName == BulletData.m4a4)
-        {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));            
-        }
-
-        if (other.CompareTag(SceneController.Tags.ak47.ToString()) && _bulletData.currentWeaponName != BulletData.ak47)
-        {
-            Destroy(other.gameObject);
-            _bulletData.isAk47 = true;
-
-            ObjectPool.creatablePlayerBullet = true;
-
-            _bulletData.ak47Lock = _bulletData.unLocked;
-
-            PlayerData.currentBulletExplosionIsChanged = true;
-
-            _bulletData.currentBulletPack = _bulletData.ak47BulletAmount;
-
-            PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
-
-            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.ak47.ToString()));
-            }
-            else
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.ak47.ToString()));
-            }
-        }
-        else if (other.CompareTag(SceneController.Tags.ak47.ToString()) && _bulletData.currentWeaponName == BulletData.ak47)
-        {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
-        }
-
-        if (other.CompareTag(SceneController.Tags.axe.ToString()) && _bulletData.currentWeaponName != BulletData.axe)
-        {
-            Destroy(other.gameObject);
-            _bulletData.isAxe = true;
-
-            ObjectPool.creatablePlayerBullet = true;
-
-            _bulletData.axeLock = _bulletData.unLocked;
-
-            PlayerData.currentBulletExplosionIsChanged = true;
-
-            _bulletData.currentBulletPack = _bulletData.axeBulletAmount;
-
-            PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
-
-            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.axe.ToString()));
-            }
-            else
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.axe.ToString()));
-            }
-        }
-        else if (other.CompareTag(SceneController.Tags.axe.ToString()) && _bulletData.currentWeaponName == BulletData.axe)
-        {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
-        }
-
-        if (other.CompareTag(SceneController.Tags.bulldog.ToString()) && _bulletData.currentWeaponName != BulletData.bulldog)
-        {
-            Destroy(other.gameObject);
-            _bulletData.isBulldog = true;
-
-            ObjectPool.creatablePlayerBullet = true;
-
-            _bulletData.bulldogLock = _bulletData.unLocked;
-
-            PlayerData.currentBulletExplosionIsChanged = true;
-
-            _bulletData.currentBulletPack = _bulletData.bulldogBulletAmount;
-
-            PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
-
-            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.bulldog.ToString()));
-            }
-            else
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.bulldog.ToString()));
-            }
-        }
-        else if (other.CompareTag(SceneController.Tags.bulldog.ToString()) && _bulletData.currentWeaponName == BulletData.bulldog)
-        {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
-        }
-
-        if (other.CompareTag(SceneController.Tags.cow.ToString()) && _bulletData.currentWeaponName != BulletData.cow)
-        {
-            Destroy(other.gameObject);
-            _bulletData.isCow = true;
-
-            ObjectPool.creatablePlayerBullet = true;
-
-            _bulletData.cowLock = _bulletData.unLocked;
-
-            PlayerData.currentBulletExplosionIsChanged = true;
-
-            _bulletData.currentBulletPack = _bulletData.cowBulletAmount;
-
-            PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
-
-            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.cow.ToString()));
-            }
-            else
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.cow.ToString()));
-            }
-        }
-        else if (other.CompareTag(SceneController.Tags.cow.ToString()) && _bulletData.currentWeaponName == BulletData.cow)
-        {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
-        }
-
-        if (other.CompareTag(SceneController.Tags.crystal.ToString()) && _bulletData.currentWeaponName != BulletData.crystal)
-        {
-            Destroy(other.gameObject);
-            _bulletData.isCrystal = true;
-
-            ObjectPool.creatablePlayerBullet = true;
-
-            _bulletData.crystalLock = _bulletData.unLocked;
-
-            PlayerData.currentBulletExplosionIsChanged = true;
-
-            _bulletData.currentBulletPack = _bulletData.crystalBulletAmount;
-
-            PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
-
-            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.crystal.ToString()));
-            }
-            else
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.crystal.ToString()));
-            }
-        }
-        else if (other.CompareTag(SceneController.Tags.crystal.ToString()) && _bulletData.currentWeaponName == BulletData.crystal)
-        {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
-        }
-
-        if (other.CompareTag(SceneController.Tags.demon.ToString()) && _bulletData.currentWeaponName != BulletData.demon)
-        {
-            Destroy(other.gameObject);
-            _bulletData.isDemon = true;
-
-            ObjectPool.creatablePlayerBullet = true;
-
-            _bulletData.demonLock = _bulletData.unLocked;
-
-            PlayerData.currentBulletExplosionIsChanged = true;
-
-            _bulletData.currentBulletPack = _bulletData.demonBulletAmount;
-
-            PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
-
-            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.demon.ToString()));
-            }
-            else
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.demon.ToString()));
-            }
-        }
-        else if (other.CompareTag(SceneController.Tags.demon.ToString()) && _bulletData.currentWeaponName != BulletData.demon)
-        {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
-        }
-
-        if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName != BulletData.ice)
-        {
-            Destroy(other.gameObject);
-            _bulletData.isIce = true;
-
-            ObjectPool.creatablePlayerBullet = true;
-
-            _bulletData.iceLock = _bulletData.unLocked;
-
-            PlayerData.currentBulletExplosionIsChanged = true;
-
-            _bulletData.currentBulletPack = _bulletData.iceBulletAmount;
-
-            PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
-
-            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.ice.ToString()));
-            }
-            else
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.ice.ToString()));
-            }
-        }
-        else if (other.CompareTag(SceneController.Tags.ice.ToString()) && _bulletData.currentWeaponName == BulletData.ice)
-        {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
-        }
-
-        if (other.CompareTag(SceneController.Tags.electro.ToString()) && _bulletData.currentWeaponName != BulletData.electro)
-        {
-            Destroy(other.gameObject);
-            _bulletData.isElectro = true;
-
-            ObjectPool.creatablePlayerBullet = true;
-
-            _bulletData.electroLock = _bulletData.unLocked;
-
-            PlayerData.currentBulletExplosionIsChanged = true;
-
-            _bulletData.currentBulletPack = _bulletData.electroBulletAmount;
-
-            PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
-
-            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.electro.ToString()));
-            }
-            else
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.electro.ToString()));
-            }
-        }
-        else if (other.CompareTag(SceneController.Tags.electro.ToString()) && _bulletData.currentWeaponName == BulletData.electro)
-        {
-            other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
-        }
-
-        if (other.CompareTag(SceneController.Tags.pistol.ToString()) && _bulletData.currentWeaponName != BulletData.pistol)
-        {
-            Destroy(other.gameObject);
-            _bulletData.isPistol = true;
-
-            ObjectPool.creatablePlayerBullet = true;
-
-            _bulletData.pistolLock = _bulletData.unLocked;
-
-            PlayerData.currentBulletExplosionIsChanged = true;
-
-            _bulletData.currentBulletPack = _bulletData.pistolBulletAmount;
-
-            PlayerManager.GetInstance._playerData.bulletAmount = _bulletData.currentBulletPack;
-
-            if (PlayerManager.GetInstance._playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.pistol.ToString()));
-            }
-            else
-            {
-                StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, SceneController.Tags.pistol.ToString()));
-            }
-        }
-        else if (other.CompareTag(SceneController.Tags.pistol.ToString()) && _bulletData.currentWeaponName == BulletData.pistol)
-        {
-            StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
         }
     }
     public virtual void DamageArrowDirection(ref GameObject _damageArrow)
@@ -1107,31 +946,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             bulletAmountCanvas.transform.GetChild(0).transform.localScale = Vector3.one;
             bulletAmountCanvas.transform.GetChild(1).transform.localScale = Vector3.one;
         }
-    }
-
-
-    public virtual void DestroyByWater(PlayerData _playerData)
-    {
-        //PlayerData
-        _playerData.isDestroyed = true;
-        _playerData.isDying = true;
-        _playerData.isIdling = false;
-        _playerData.isPlayable = false;
-
-        //SoundEffect
-        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.JumpToSea);
-    }
-
-    public virtual void DestroyByLava(PlayerData _playerData, ref Transform _particleTransform)
-    {
-        //PlayerData
-        _playerData.isDestroyed = true;
-        _playerData.isDying = true;
-        _playerData.isIdling = false;
-        _playerData.isPlayable = false;
-
-        //ParticleEffect
-        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform.transform);
     }
 
     public virtual void GettingPoisonDamage(PlayerData _playerData, ref Slider _topCanvasHealthBarSlider, ref Slider _healthBarSlider)
@@ -1660,9 +1474,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             }
         }
     }
-    public IEnumerator DelayMessageText(PlayerData _playerData, string messageValue)
+    public IEnumerator DelayMessageText(PlayerData _playerData, string turkishMessage, string englishMessage)
     {
-        _playerData.currentMessageText.text = messageValue;
+        string message = _playerData.currentLanguage == PlayerData.Languages.Turkish ? turkishMessage : englishMessage;
+        _playerData.currentMessageText.text = message;
         if (_playerData.currentMessageText.text != PlayerData.emptyMessage)
         {
             yield return new WaitForSeconds(2f);

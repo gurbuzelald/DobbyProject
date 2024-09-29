@@ -74,7 +74,8 @@ public class SceneController : MonoBehaviour
 
     void CreateMenuMap()
     {
-        if (CheckSceneName() != Scenes.Game.ToString())
+        if (CheckSceneName() != Scenes.Game.ToString() && CheckSceneName() != Scenes.PickCharacter.ToString() &&
+            CheckSceneName() != Scenes.PickWeapon.ToString())
         {
             if (_playerData)
             {
@@ -83,7 +84,21 @@ public class SceneController : MonoBehaviour
                     menuMap = Instantiate(_playerData.menuMap);
                 }
             }
-        }                     
+        }
+        if (CheckSceneName() == Scenes.PickCharacter.ToString() ||
+            CheckSceneName() == Scenes.PickWeapon.ToString())
+        {
+            if (_playerData)
+            {
+                if (_playerData.menuMap)
+                {
+                    menuMap = Instantiate(_playerData.menuMap);
+                    menuMap.transform.position = new Vector3(menuMap.transform.position.x,
+                                                             menuMap.transform.position.y,
+                                                             -100);
+                }
+            }
+        }
     }
 
 
@@ -92,6 +107,8 @@ public class SceneController : MonoBehaviour
 
     public void ClickChangeLanguageButton()
     {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
         {
             _playerData.currentLanguage = PlayerData.Languages.English;
@@ -264,6 +281,9 @@ public class SceneController : MonoBehaviour
                     case "Health":
                         currentText.text = "Sağlık";
                         continue;
+                    case "Teleporter":
+                        currentText.text = "Işinlayici";
+                        continue;
                     case "Resume":
                         currentText.text = "Devam";
                         continue;
@@ -273,8 +293,8 @@ public class SceneController : MonoBehaviour
                     case "Sword":
                         currentText.text = "Kılıç";
                         continue;
-                    case "Run":
-                        currentText.text = "Koş";
+                    case "Faster":
+                        currentText.text = "Daha Hızlı";
                         continue;
                     case "Jump":
                         currentText.text = "Zıpla";
@@ -425,6 +445,9 @@ public class SceneController : MonoBehaviour
                     case "You Won!!":
                         currentText.text = "Kazandın!!!";
                         continue;
+                    case "Quit":
+                        currentText.text = "Çıkış";
+                        continue;
                     case "Congratulations!!!":
                         currentText.text = "Tebrikler!!!";
                         continue;
@@ -529,6 +552,9 @@ public class SceneController : MonoBehaviour
 
     public void CheckNeedResetWeaponsAndCharacters()
     {//For Developer
+
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         PlayerPrefs.GetInt("ResetGame", 1);
 
 
@@ -754,6 +780,8 @@ public class SceneController : MonoBehaviour
         DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Game.ToString());
+
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
     }
     public void PlayAgain()
     {
@@ -762,7 +790,7 @@ public class SceneController : MonoBehaviour
         levelData.currentLevel = LevelData.Levels.Level1;
 
         
-        //DestroySingletonObjects();
+        DestroySingletonObjects();
         if (levelData.currentLevel == LevelData.Levels.Level1)
         {
             LevelData.currentLevelCount = 0;
@@ -1046,6 +1074,8 @@ public class SceneController : MonoBehaviour
 
     void OpenLevelButtons()
     {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
         SetHighestLevel();
         if (levelData && CheckSceneName() == Scenes.Levels.ToString() && levelsObject)
         {

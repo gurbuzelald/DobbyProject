@@ -9,12 +9,15 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     private EnemySpawner _enemySpawner;
     private PlayerData playerData;
 
-    [SerializeField] Transform _bulletSpawnTransform;
+    private Transform _bulletSpawnTransform;
 
     private EnemyManager _enemyManager;
 
     private void Awake()
+
     {
+        _bulletSpawnTransform = gameObject.transform.GetChild(0);
+
         _enemyManager = gameObject.transform.parent.GetComponent<EnemyManager>();
 
         _enemyManager.bulletData.enemyBulletDelayCounter = 0;
@@ -22,11 +25,37 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
         _enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 
+   
+    private void Start()
+    {
+        playerData = GameObject.Find("Player").GetComponent<PlayerManager>()._playerData;
+    }
+    void FixedUpdate()
+    {
+        if (!SceneController.pauseGame)
+        {
+            RayBullet(_enemyManager.bulletData.enemyFireFrequency);
+        }
+        else
+        {
+            _enemyManager.enemyData.isFiring = false;
+        }
+    }
+
+    private void Update()
+    {
+        Attack(ref playerData, ref PlayerManager.GetInstance._topCanvasHealthBarSlider,
+                           ref PlayerManager.GetInstance.playerObjects.healthBarSlider,
+                            ref PlayerManager.GetInstance._healthBarObject,
+                            ref PlayerManager.GetInstance._particleTransform);
+    }
+
     public virtual void CheckEnemyBulletDamage(ref BulletData bulletData)
     {
         _enemyManager.enemyData.currentEnemyName = gameObject.transform.parent.name;
 
-        switch (_enemyManager.enemyData.currentEnemyName) {
+        switch (_enemyManager.enemyData.currentEnemyName)
+        {
 
             case PlayerData.clown:
                 bulletData.currentEnemyBulletDamage = bulletData.clownEnemyBulletDamage;
@@ -74,37 +103,13 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
                 break;
         }
     }
-    private void Start()
-    {
-        playerData = GameObject.Find("Player").GetComponent<PlayerManager>()._playerData;
-    }
-    void FixedUpdate()
-    {
-        if (!SceneController.pauseGame)
-        {
-            RayBullet(_enemyManager.bulletData.enemyFireFrequency);
-        }
-        else
-        {
-            _enemyManager.enemyData.isFiring = false;
-        }
-    }
-
-    private void Update()
-    {
-        GetAttackFromEnemy(ref playerData, ref PlayerManager.GetInstance._topCanvasHealthBarSlider,
-                           ref PlayerManager.GetInstance.playerObjects.healthBarSlider,
-                            ref PlayerManager.GetInstance._healthBarObject,
-                            ref PlayerManager.GetInstance._particleTransform);
-    }
-
-    public void GetAttackFromEnemy(ref PlayerData _playerData, ref Slider _topCanvasHealthBarSlider,
+    public void Attack(ref PlayerData _playerData, ref Slider _topCanvasHealthBarSlider,
                                    ref Slider healthBarSlider, ref GameObject _healthBarObject,
                                    ref Transform _particleTransform)
     {
         if (_playerData.isDecreaseHealth && _playerData.decreaseCounter == 0 && healthBarSlider.value > 0)
         {
-            CheckEnemyAttackDamage(ref _enemyManager.enemyData, ref _enemyManager.bulletData);
+            SetCurrentAttacker(ref _enemyManager.enemyData, ref _enemyManager.bulletData);
 
             PlayerManager.GetInstance.DecreaseHealth(ref _playerData, _enemyManager.bulletData.currentEnemyAttackDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
@@ -131,7 +136,7 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
             _playerData.isDecreaseHealth = false;
         }
     }
-    public virtual void CheckEnemyAttackDamage(ref EnemyData enemyData, ref BulletData bulletData)
+    public virtual void SetCurrentAttacker(ref EnemyData enemyData, ref BulletData bulletData)
     {
         switch (enemyData.currentEnemyName)
         {
@@ -191,20 +196,28 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
                     _enemyManager.bulletData.enemyBulletDelayCounter += 1f;
                     _enemyManager.enemyData.isFiring = true;
                     //_enemyManager.enemyData.isWalking = false;
-                    StartCoroutine(Delay(_enemyManager.bulletData.enemyBulletDelay, 2f));
-                    StartCoroutine(FiringFalse(enemyFireFrequency));
+                    //StartCoroutine(Delay(_enemyManager.bulletData.enemyBulletDelay, 2f));
+                    if (gameObject.transform.parent.parent.name == "bossEnemyTransform")
+                    {
+                        CreateBullet(_bulletSpawnTransform.transform,
+                                 _enemyManager.bulletData.enemyBulletSpeed,
+                                 1, _enemySpawner._objectPool, 0f, 1f);
+                        StartCoroutine(FiringFalse(enemyFireFrequency/3));
+                    }
+                    else
+                    {
+                        CreateBullet(_bulletSpawnTransform.transform,
+                                 _enemyManager.bulletData.enemyBulletSpeed,
+                                 1, _enemySpawner._objectPool, 0f, 1f);
+                        StartCoroutine(FiringFalse(enemyFireFrequency));
+                    }
+                    
+
 
                     PlayerManager.GetInstance.enemyBulletData = _enemyManager.bulletData;
-                    
-                    return;
                 }
             }            
         }        
-    }
-    public IEnumerator Delay(float delayValue, float delayDestroy)
-    {
-        yield return new WaitForSeconds(delayValue);
-        CreateBullet(_bulletSpawnTransform.transform, _enemyManager.bulletData.enemyBulletSpeed, 1, _enemySpawner._objectPool, 0f, delayDestroy);
     }
     public IEnumerator FiringFalse(float enemyFireFrequency)
     {
@@ -218,7 +231,8 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
         {
             _enemyManager.bulletData.enemyBulletDelayCounter = 0;
             _enemyManager.enemyData.isFiring = true;
-            _enemyManager.enemyData.isWalking = true;
+            _enemyManager.bulletData.isFirable = true;
+            _enemyManager.enemyData.isWalking = true;            
         }        
     }
 

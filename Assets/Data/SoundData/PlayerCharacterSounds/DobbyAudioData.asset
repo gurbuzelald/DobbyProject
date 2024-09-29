@@ -12,14 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283d3543a98d04ddd83ed4a82991e224, type: 3}
   m_Name: DobbyAudioData
   m_EditorClassIdentifier: 
-  gameMusic: {fileID: 0}
+  currentGameMusic: {fileID: 0}
   menuMusic: {fileID: 0}
   endMusic: {fileID: 0}
   winMusic: {fileID: 0}
+  level1GameMusic: {fileID: 0}
+  level2GameMusic: {fileID: 0}
+  level3GameMusic: {fileID: 0}
+  level4GameMusic: {fileID: 0}
+  level5GameMusic: {fileID: 0}
+  level6GameMusic: {fileID: 0}
+  level7GameMusic: {fileID: 0}
+  level8GameMusic: {fileID: 0}
+  level9GameMusic: {fileID: 0}
+  level10GameMusic: {fileID: 0}
   nonShootClip: {fileID: 8300000, guid: 2858e67a8bea042a69c9a9585288902a, type: 3}
   poisonClip: {fileID: 8300000, guid: d2d11996a99484d33a615f856046b978, type: 3}
   getEnemyHitClip: {fileID: 8300000, guid: 66578c668ce7b47a2927f0d4506283fb, type: 3}
-  jumpingClip: {fileID: 8300000, guid: fe8d5d5b33ee27841abb3ee8ef927a7a, type: 3}
+  jumpingClip: {fileID: 8300000, guid: c283bd36fe281f240b132e6475866323, type: 3}
   dyingClip: {fileID: 8300000, guid: f3046f59fc1e6455ab98444b7122ea57, type: 3}
   pickupCoinClip: {fileID: 8300000, guid: 808c4bf3192b36e4aa9365737800255f, type: 3}
   pickupBulletCoinClip: {fileID: 8300000, guid: 2858e67a8bea042a69c9a9585288902a, type: 3}
@@ -64,3 +74,4 @@ MonoBehaviour:
   LongHummerClip: {fileID: 0}
   ClubClip: {fileID: 0}
   menuClickClip: {fileID: 0}
+  menuNotClickClip: {fileID: 0}

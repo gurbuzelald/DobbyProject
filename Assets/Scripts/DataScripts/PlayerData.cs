@@ -5,6 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Explosion Particles")]
+    public GameObject currentBulletExplosionParticle;
+
+    public GameObject currentSwordBulletExplosionParticle;
+
     [Header("Menu Map")]
     public GameObject menuMap;
 
@@ -268,13 +273,6 @@ public class PlayerData : ScriptableObject
         Mremireh,
         Ty
     }
-    
-    public enum CharacterLocking
-    {
-        //Locked,
-        //Unlocked
-    }
-
     public enum Languages
     {
         Turkish,
