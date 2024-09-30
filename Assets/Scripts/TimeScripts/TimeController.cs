@@ -21,7 +21,7 @@ public class TimeController : MonoBehaviour
     [SerializeField] BulletData bulletData;
     public PlayerData playerData;
 
-    public int initialTimeValue = 300;
+    public static int initialTimeValue = 300;
 
 
     void Start()

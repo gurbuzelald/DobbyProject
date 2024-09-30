@@ -41,11 +41,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     [SerializeField] Transform burnParticleTransformObject;
 
-    private ParticleSystem bottomParticleSystem;
+    /*private ParticleSystem bottomParticleSystem;
     private ParticleSystem middleParticleSystem;
-    private ParticleSystem topParticleSystem;
+    private ParticleSystem topParticleSystem;*/
 
     private PlayerSoundEffect playerSFX;
+
+    [SerializeField] SkinnedMeshRenderer[] skinnedMeshRenderers;
 
 
     void Start()
@@ -61,7 +63,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         enemyRigidbody = gameObject.transform.GetComponent<Rigidbody>();
 
-        enemyBulletManager = gameObject.transform.GetChild(2).transform.GetComponent<EnemyBulletManager>();
+        enemyBulletManager = gameObject.transform.GetChild(0).transform.GetComponent<EnemyBulletManager>();
 
         enemySpawnerObject = GameObject.Find("EnemySpawner");
         enemySpawner = enemySpawnerObject.GetComponent<EnemySpawner>();
@@ -77,14 +79,35 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         DataStatesOnInitial();
         _audioSource = GetComponent<AudioSource>();
 
-        CreateEnemyTouchParticle();
-
         SetPlayerWeaponExplosionParticle();
 
         SetBackToWalkingValueForStart();
-    }   
+    }
+
+
+    void CloseMeshWhenFarToPlayer()
+    {
+        if (Vector3.Distance(gameObject.transform.position,
+            PlayerManager.GetInstance.gameObject.transform.position) > 10)
+        {
+            for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+            {
+                skinnedMeshRenderers[i].enabled = false;
+            }           
+        }
+        else
+        {
+            for (int i = 0; i < skinnedMeshRenderers.Length; i++)
+            {
+                skinnedMeshRenderers[i].enabled = true;
+            }
+        }
+    }
     void Update()
     {
+        CloseMeshWhenFarToPlayer();
+
+
         WeaponBulletPower(); 
 
         if (!enemyData.isDying && 
@@ -104,8 +127,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             enemyData = enemyListData[enemyDataNumber];
             bulletData = enemyListBulletData[enemyBulletDataNumber];
-
-            CreateEnemyTouchParticle();
         }
         if (levelData)
         {
@@ -186,15 +207,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             playerData.currentBulletExplosionParticle = playerData.weaponBulletExplosionParticles[0];
         }
-    }
-
-
-
-    public void CreateEnemyTouchParticle()
-    {
-        bottomParticleSystem = Instantiate(enemyData.currentBottomParticle, burnParticleTransformObject.transform.GetChild(0));
-        middleParticleSystem = Instantiate(enemyData.currentMiddleParticle, burnParticleTransformObject.transform.GetChild(1));
-        topParticleSystem = Instantiate(enemyData.currentTopParticle, burnParticleTransformObject.transform.GetChild(2));
     }
 
     void FollowPlayer()
@@ -502,21 +514,50 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             gameObject.transform.Rotate(0f, 180f, 0f);
         }
     }
+
+    IEnumerator DelayDestroyFireParticle(GameObject particleObject = null, GameObject particleObject1 = null,
+                                         GameObject particleObject2 = null)
+    {
+        yield return new WaitForSeconds(2f);
+        if (particleObject != null)
+        {
+            particleObject.SetActive(false);
+        }
+        if (particleObject1 != null)
+        {
+            particleObject1.SetActive(false);
+        }
+        if (particleObject2 != null)
+        {
+            particleObject2.SetActive(false);
+        }
+    }
     
     public void TriggerBullet(float bulletPower, Collider other)
     {
         BulletOrSwordExplosionParticleWithObjectPool(other, 8);
 
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
-
+        GameObject particleObject;
+        GameObject particleObject1;
+        GameObject particleObject2;
 
         if (_healthBar != null)
         {
             if (_healthBarSlider.value <= 0)
             {
                 EnemyData.enemyDeathCount++;
-                bottomParticleSystem.Play();
-                middleParticleSystem.Play();
+
+                if (burnParticleTransformObject)
+                {
+                    particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(10);
+                    particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(11);
+                    particleObject.transform.position = burnParticleTransformObject.transform.GetChild(0).position;
+                    particleObject1.transform.position = burnParticleTransformObject.transform.GetChild(1).position;
+
+                    StartCoroutine(DelayDestroyFireParticle(particleObject, particleObject1));
+                }
+                         
                 enemyData.currentTopParticle.Play();
                 enemyData.isTouchable = false;
                 enemyData.isDying = true;
@@ -545,12 +586,20 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 if (_healthBarSlider.value <= 50 &&
                     _healthBarSlider.value > 0)
                 {
-                    bottomParticleSystem.Play();
-                    middleParticleSystem.Play();
+                    particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(10);
+                    particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(11);
+                    particleObject2 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(12);
+                    particleObject.transform.position = burnParticleTransformObject.transform.GetChild(0).position;
+                    particleObject1.transform.position = burnParticleTransformObject.transform.GetChild(1).position;
+                    particleObject2.transform.position = burnParticleTransformObject.transform.GetChild(2).position;
+
+                    StartCoroutine(DelayDestroyFireParticle(particleObject, particleObject1, particleObject2));
                 }
                 if (_healthBarSlider.value > 50)
                 {
-                    middleParticleSystem.Play();
+                    particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(11);
+                    particleObject1.transform.position = burnParticleTransformObject.transform.GetChild(1).position;
+                    StartCoroutine(DelayDestroyFireParticle(particleObject1));
                 }
                 //enemyData.isWalking = false;
                 
@@ -581,6 +630,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         BulletOrSwordExplosionParticleWithObjectPool(other, 9);
 
+        GameObject particleObject;
+        GameObject particleObject1;
+        GameObject particleObject2;
 
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
         if (_healthBar != null)
@@ -588,9 +640,15 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             if (_healthBarSlider.value <= 0)
             {
                 EnemyData.enemyDeathCount++;
-                bottomParticleSystem.Play();
-                middleParticleSystem.Play();
-                middleParticleSystem.Play();
+
+                particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(10);
+                particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(11);
+                particleObject2 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(12);
+                particleObject.transform.position = burnParticleTransformObject.transform.GetChild(0).position;
+                particleObject1.transform.position = burnParticleTransformObject.transform.GetChild(1).position;
+                particleObject2.transform.position = burnParticleTransformObject.transform.GetChild(2).position;
+
+                StartCoroutine(DelayDestroyFireParticle(particleObject, particleObject1, particleObject2));
                 enemyData.isTouchable = false;
                 enemyData.isDying = true;
                 //enemyData.isWalking = false;
@@ -619,12 +677,19 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
                 if (_healthBarSlider.value <= 50)
                 {
-                    bottomParticleSystem.Play();
-                    middleParticleSystem.Play();
+                    particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(10);
+                    particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(11);
+                    particleObject.transform.position = burnParticleTransformObject.transform.GetChild(0).position;
+                    particleObject1.transform.position = burnParticleTransformObject.transform.GetChild(1).position;
+
+                    StartCoroutine(DelayDestroyFireParticle(particleObject, particleObject1));
                 }
                 else if (_healthBarSlider.value > 50)
                 {
-                    middleParticleSystem.Play();
+                    particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(11);
+                    particleObject1.transform.position = burnParticleTransformObject.transform.GetChild(1).position;
+
+                    StartCoroutine(DelayDestroyFireParticle(particleObject1));
                 }
 
                 if (gameObject.transform.parent.name == "bossEnemyTransform")
@@ -677,21 +742,34 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     void BulletOrSwordExplosionParticleWithObjectPool(Collider other, int objectPoolValue)
     {
         GameObject particleObject = null;
+        GameObject particleObject1 = null;
         if (objectPoolValue == 8)
         {            
             particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(8);
             particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
                                                                other.gameObject.transform.position.y + .08f,
                                                                other.gameObject.transform.position.z);
+
+            StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject));
         }
         else if (objectPoolValue == 9)
         {
-            particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(9);
-            particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+            particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(9);
+            particleObject1.transform.position = new Vector3(other.gameObject.transform.position.x,
                                                                other.gameObject.transform.position.y + .08f,
                                                                other.gameObject.transform.position.z);
-        }
 
+            StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject1));
+        }
+    }
+
+    IEnumerator DelaySetActiveFalseBulletOrSword(GameObject particleObject)
+    {
+        yield return new WaitForSeconds(1f);
+        if (particleObject != null)
+        {
+            particleObject.SetActive(false);
+        }
     }
 
     public IEnumerator DelayStopEnemy(float backToWalkingValue)
@@ -717,15 +795,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     void CreateDestroyParticle() {
         Transform currentBulletCoinTransform = gameObject.transform;
-
-        /*GameObject enemyDestroyParticle = Instantiate(enemyData._enemyDestroyParticle,
-                            new Vector3(currentBulletCoinTransform.position.x,
-                                        enemyData._playerBulletObject.transform.position.y,
-                                        currentBulletCoinTransform.position.z),
-                            Quaternion.identity);
-
-        Destroy(enemyDestroyParticle, 2f);*/
-
+        
         GameObject particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(5);
         particleObject.transform.position = new Vector3(currentBulletCoinTransform.transform.position.x,
                                                         currentBulletCoinTransform.transform.position.y + .5f,

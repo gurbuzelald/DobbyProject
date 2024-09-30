@@ -51,9 +51,9 @@ public class CoinController : MonoBehaviour
     }
     void Update()
     {
-        RotaterCoin(_rotaterCoinTransformList, 90f, 90f, 90f);
-        RotaterCoin(_rotaterBulletCoinTransformList, 90f, 0f, 0f);
-        RotaterCoin(_levelUpKeyTransformList, 0f, 0f, 90f);
+        //RotaterCoin(_rotaterCoinTransformList, 90f, 90f, 90f);
+        //RotaterCoin(_rotaterBulletCoinTransformList, 90f, 0f, 0f);
+        //RotaterCoin(_levelUpKeyTransformList, 0f, 0f, 90f);
     }
     void RotaterCoin(Transform[] rotaterTransformList, float speedX, float speedY, float speedZ)
     {

@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 5005255141795196123}
   - component: {fileID: 8202410224976266223}
   m_Layer: 0
-  m_Name: Prisoner B Styperek@Zombie Running
+  m_Name: PrisonerZombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -316,9 +316,9 @@ Transform:
   m_LocalScale: {x: 0.22, y: 0.22, z: 0.22}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4396689458349005485}
-  - {fileID: 493480926778938037}
   - {fileID: 7137264946574178198}
+  - {fileID: 493480926778938037}
+  - {fileID: 4396689458349005485}
   - {fileID: 7137264944818706985}
   - {fileID: 4282333597899690738}
   - {fileID: 2107907867482100077}
@@ -387,6 +387,8 @@ MonoBehaviour:
   _bulletCoin: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
   _damageText: {fileID: 4282333597523355603}
   burnParticleTransformObject: {fileID: 6220740893334707463}
+  skinnedMeshRenderers:
+  - {fileID: 5200562212573551781}
 --- !u!54 &2107907869325205935
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1762,7 +1764,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60d5b47d7aaf24449d132e00a7c1ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpawnTransform: {fileID: 6251332869846693676}
 --- !u!1 &7355735712695907898
 GameObject:
   m_ObjectHideFlags: 0

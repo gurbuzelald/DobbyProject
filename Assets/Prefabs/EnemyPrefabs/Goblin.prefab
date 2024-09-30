@@ -390,9 +390,9 @@ Transform:
   m_LocalScale: {x: 0.22, y: 0.22, z: 0.22}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2589809322067369154}
-  - {fileID: 2290535823455822307}
   - {fileID: 7384933884683855659}
+  - {fileID: 2290535823455822307}
+  - {fileID: 2589809322067369154}
   - {fileID: 7384933884878736020}
   - {fileID: 6216606670253118662}
   - {fileID: 1743154272661438928}
@@ -461,6 +461,9 @@ MonoBehaviour:
   _bulletCoin: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
   _damageText: {fileID: 6216606669876716007}
   burnParticleTransformObject: {fileID: 8684340182311415473}
+  skinnedMeshRenderers:
+  - {fileID: 4626502845276120385}
+  - {fileID: 5149516831834285290}
 --- !u!54 &1743154272420507922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3379,7 +3382,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60d5b47d7aaf24449d132e00a7c1ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpawnTransform: {fileID: 1046519711651457689}
 --- !u!1 &7384933884878736024
 GameObject:
   m_ObjectHideFlags: 0

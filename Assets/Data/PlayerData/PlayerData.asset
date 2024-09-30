@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  currentBulletExplosionParticle: {fileID: 2689552222238927185, guid: 632812bd72b786d4c937d25598e0498d, type: 3}
+  currentSwordBulletExplosionParticle: {fileID: 0}
   menuMap: {fileID: 502383380469877276, guid: b885b8bf05ba341e6974309d788b5026, type: 3}
   currentLanguage: 0
   getCurrentEnemyDead: 0
@@ -94,7 +96,7 @@ MonoBehaviour:
   bossPrice: 23000
   tyPrice: 2000
   mremirehPrice: 20000
-  playerSpeed: 30
+  playerSpeed: 70
   skateBoardSpeed: 14
   climbSpeed: 3
   rotateSpeed: 6
@@ -138,7 +140,7 @@ MonoBehaviour:
   isSwordAnimate: 0
   isLookingUp: 0
   isDestroyed: 0
-  isPlayable: 0
+  isPlayable: 1
   isFire: 0
   isFireWalkAnimation: 0
   isFireAnimation: 0
@@ -153,8 +155,8 @@ MonoBehaviour:
   normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 21
-  bulletPackAmount: 2
+  bulletAmount: 18
+  bulletPackAmount: 1
   isTouchableSkate: 1
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

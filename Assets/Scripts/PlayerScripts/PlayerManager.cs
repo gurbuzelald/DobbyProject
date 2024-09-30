@@ -108,7 +108,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public GameObject _topCanvasHealthBarObject;
     public Slider _topCanvasHealthBarSlider;
 
-    float timer = 0;
     public static float randomEnemyXPos;
     public static float randomEnemyZPos;
 
@@ -117,8 +116,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
 
     private PlayerManager playerManager;
-
-    private Collider characterCollider;
 
     public float GetZValue()
     {
@@ -130,9 +127,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     void Start()
     {
-        characterCollider = gameObject.transform.GetComponent<Collider>();
-
-        RandomEnemySpawnDistance(10);
         inputMovement = new InputMovement();
         playerInterfaces = new PlayerInterfaces();
 
@@ -153,15 +147,26 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         //Audio
         audioSource = GetComponent<AudioSource>();
 
-        //Particle
-        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Birth, _particleTransform.transform);
+        
 
         SpawnPlayerObject();
 
         playerInterfaces.iPlayerTrigger.CheckAllWeaponsLocked(_bulletData);
+
+        //BirthParticle();
     }
+    void BirthParticle()
+    {
+        GameObject particleObject = null;
 
+        if (particleObject == null)
+        {
+            particleObject = _objectPool.GetComponent<ObjectPool>().GetPooledObject(14);
+            particleObject.transform.position = _particleTransform.transform.position;
 
+            StartCoroutine(DelaySetActiveFalseParticle(particleObject, 2f));
+        }
+    }
     private void SpawnPlayerObject()
     {
         transform.position =
@@ -225,20 +230,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             _playerData.getCurrentEnemyDead = false;
         }
     }
-    public void RandomEnemySpawnDistance(float enemySpawnableDistance)
-    {
-        timer += Time.deltaTime;
-        if (timer>=5)
-        {
-            randomEnemyXPos = Random.Range(gameObject.transform.position.x - enemySpawnableDistance,
-                                   gameObject.transform.position.x + enemySpawnableDistance);
-            randomEnemyZPos = Random.Range(gameObject.transform.position.z - enemySpawnableDistance,
-                                       gameObject.transform.position.z + enemySpawnableDistance);
-            Debug.Log("X:" + randomEnemyXPos);
-            Debug.Log("Y:" + randomEnemyZPos);
-            timer = 0;
-        }        
-    }
 
     
     void DontFallDown()
@@ -296,7 +287,17 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                     if (collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable)
                     {
                         //Touch ParticleEffect
-                        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
+                        //ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
+
+                        GameObject particleObject = null;
+
+                        if (particleObject == null)
+                        {
+                            particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(14);
+                            particleObject.transform.position = _particleTransform.transform.position;
+
+                            StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 1f));
+                        }
 
                         //SoundEffect
                         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetEnemyHit);
@@ -435,24 +436,24 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         if (other.CompareTag(SceneController.Tags.Coin.ToString()))
         {
             playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.Coin, other, _playerData,
-                    ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
-                    ref _objectPool);//GetScore
+                                        ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
+                                        ref _objectPool);//GetScore
             playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
             playerInterfaces.iPlayerHealth.IncreaseHealth(5, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, other);
         }
         if (other.CompareTag(SceneController.Tags.CheeseCoin.ToString()))
         {
             playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.CheeseCoin, other, _playerData,
-                ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
-                    ref _objectPool);//GetScore
+                                         ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
+                                         ref _objectPool);//GetScore
             playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
             playerInterfaces.iPlayerHealth.IncreaseHealth(5, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, other);
         }
         if (other.CompareTag(SceneController.Tags.RotateCoin.ToString()))
         {
             playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.RotateCoin, other, _playerData,
-                ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
-                    ref _objectPool);//GetScore
+                                         ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
+                                         ref _objectPool);//GetScore
             playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
             playerInterfaces.iPlayerHealth.IncreaseHealth(5, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, other);
 
@@ -462,15 +463,15 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             playerInterfaces.iPlayerScore.DecreaseScore(10);
 
             playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.MushroomCoin, other, _playerData, ref _coinObject,
-                                      ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
-                    ref _objectPool);
+                                          ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
+                                          ref _objectPool);
             if (playerObjects.healthBarSlider.value > 0)
             {
                 playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData, 30, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
                 playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject,
                                           ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
-                    ref _objectPool);//FreshBulletAmount
+                                          ref _objectPool);//FreshBulletAmount
             }
             else
             {
@@ -483,14 +484,14 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData,
                                       ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
                                       ref bulletAmountText, ref bulletPackAmountText,
-                    ref _objectPool);//FreshBulletAmount
+                                      ref _objectPool);//FreshBulletAmount
         }
         if (other.CompareTag(SceneController.Tags.HealthCoin.ToString()))
         {
             playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.HealthCoin, other, _playerData,
                                       ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
                                       ref bulletAmountText, ref bulletPackAmountText,
-                    ref _objectPool);
+                                      ref _objectPool);
             playerInterfaces.iPlayerHealth.IncreaseHealth(50, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, other);
         }
         if (other.CompareTag(SceneController.Tags.LevelUpKey.ToString()))
@@ -498,7 +499,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.LevelUpKey, other, _playerData,
                                       ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
                                       ref bulletAmountText, ref bulletPackAmountText,
-                    ref _objectPool);
+                                      ref _objectPool);
         }
     }
     void OnTriggerEnter(Collider other)
@@ -519,7 +520,15 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
             //Touch ParticleEffect
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
+            //ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
+
+            GameObject particleObject = null;
+
+            if (particleObject == null)
+            {
+                particleObject = _objectPool.GetComponent<ObjectPool>().GetPooledObject(13);
+                particleObject.transform.position = _particleTransform.transform.position;
+            }
         }
 
         TriggerFinishControl(other);
@@ -563,7 +572,11 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         playerInterfaces.iPlayerTrigger.CheckWeaponCollect(other, _bulletData);
     }
-
+    IEnumerator DelaySetActiveFalseParticle(GameObject particleObject, float delayValue)
+    {
+        yield return new WaitForSeconds(delayValue);
+        particleObject.SetActive(false);
+    }
 
 
     #region //Move and Rotation
@@ -601,7 +614,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             iPlayerMovement.SideWalk(_playerData, ref playerTransform);
             iPlayerMovement.SpeedSettings(_playerData, _initPlayerSpeed);
             iPlayerMovement.Climb(_playerData, ref playerTransform);
-            iPlayerMovement.SkateBoard(_playerData, _particleTransform.transform, ref playerTransform);
             iPlayerMovement.Run(_playerData, _particleTransform.transform, 0f, playerObjects.playerRigidbody);
             iPlayerMovement.Jump(_playerData, ref playerObjects.playerRigidbody);
         }        
@@ -638,7 +650,16 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public IEnumerator DelayDestroy(float delayDying)
     {
         //ParticleEffect
-        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Death, _particleTransform.transform);
+        //ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Death, _particleTransform.transform);
+        GameObject particleObject = null;
+
+        if (particleObject == null)
+        {
+            particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(16);
+            particleObject.transform.position = _particleTransform.transform.position;
+
+            StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 4f));
+        }
 
         yield return new WaitForSeconds(delayDying);
 

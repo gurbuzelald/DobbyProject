@@ -613,9 +613,9 @@ Transform:
   m_LocalScale: {x: 0.22, y: 0.22, z: 0.22}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2411620211274878470}
-  - {fileID: 7772904394347001367}
   - {fileID: 7276581322212029935}
+  - {fileID: 7772904394347001367}
+  - {fileID: 2411620211274878470}
   - {fileID: 7276581321480230992}
   - {fileID: 6107655980082906626}
   - {fileID: 1925288317341111060}
@@ -684,6 +684,8 @@ MonoBehaviour:
   _bulletCoin: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
   _damageText: {fileID: 6107655980461355811}
   burnParticleTransformObject: {fileID: 5422225241498398909}
+  skinnedMeshRenderers:
+  - {fileID: 8588842025947044279}
 --- !u!54 &1925288318119388118
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3355,7 +3357,7 @@ GameObject:
   - component: {fileID: 6959530310225652908}
   - component: {fileID: 6959530310225652907}
   m_Layer: 0
-  m_Name: PedrosoCharacter
+  m_Name: Pedroso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3654,7 +3656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60d5b47d7aaf24449d132e00a7c1ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpawnTransform: {fileID: 865516000019150941}
 --- !u!1 &7465886607393085383
 GameObject:
   m_ObjectHideFlags: 0

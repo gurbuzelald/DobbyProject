@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7707355688560459589}
   - component: {fileID: 7707355688560459610}
   - component: {fileID: 7497113621727282716}
+  - component: {fileID: 448876474662115733}
   m_Layer: 12
   m_Name: BulletCoin
   m_TagString: BulletCoin
@@ -134,6 +135,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
+--- !u!114 &448876474662115733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7707355688560459608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2401734181390671229
 PrefabInstance:
   m_ObjectHideFlags: 0

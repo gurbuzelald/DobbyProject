@@ -52,8 +52,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
             {
                 if (levelUpController && _scoreText)
                 {
-                    _scoreText.text = _scoreAmount + "/" +
-                                  levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount;
+                    _scoreText.text = $"{_scoreAmount}/{levelUpController.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount}";
                 }
             }
         }

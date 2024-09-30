@@ -11,15 +11,15 @@ public class LevelUpPanelController : MonoBehaviour
     private CanvasGroup levelUpCanvasGroup;
     void Awake()
     {
-        levelUpImage = gameObject.GetComponent<Image>();
+        /*levelUpImage = gameObject.GetComponent<Image>();
         levelUpCanvasGroup = gameObject.GetComponent<CanvasGroup>();
 
-        levelUpImage.enabled = true;
+        levelUpImage.enabled = true;*/
     }
 
     void Update()
     {
-        if (levelData.isLevelUp && LevelData.levelCanBeSkipped && levelUpCanvasGroup && levelUpImage)
+      /*  if (levelData.isLevelUp && LevelData.levelCanBeSkipped && levelUpCanvasGroup && levelUpImage)
         {
             levelUpCanvasGroup.alpha = 1;
             levelUpImage.enabled = true;
@@ -36,6 +36,6 @@ public class LevelUpPanelController : MonoBehaviour
             {
                 levelUpImage.enabled = false;
             }
-        }
+        }*/
     }
 }

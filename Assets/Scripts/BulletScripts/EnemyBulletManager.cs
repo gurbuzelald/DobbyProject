@@ -103,6 +103,8 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
                 break;
         }
     }
+
+    
     public void Attack(ref PlayerData _playerData, ref Slider _topCanvasHealthBarSlider,
                                    ref Slider healthBarSlider, ref GameObject _healthBarObject,
                                    ref Transform _particleTransform)
@@ -114,7 +116,16 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
             PlayerManager.GetInstance.DecreaseHealth(ref _playerData, _enemyManager.bulletData.currentEnemyAttackDamage, ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
             //Touch ParticleEffect
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
+            GameObject particleObject = null;
+
+            if (particleObject == null)
+            {
+                particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(14);
+                particleObject.transform.position = _particleTransform.transform.position;
+
+                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 1f));
+            }
+            
 
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetEnemyHit);

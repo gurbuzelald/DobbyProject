@@ -594,21 +594,30 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                                   ref Transform _particleTransform, 
                                   ref Slider healthBarSlider,
                                   ref Slider topCanvasHealthBarSlider)
-{
-    var playerObject = _playerData.objects[3];
-
-    // Exit if no player object
-    if (playerObject == null) return;
-
-    // Cache health value
-    float healthValue = healthBarSlider.value;
-
-    // Handle death scenario
-    if (healthValue == 0 && !_playerData.isWinning)
     {
-        // Particle and sound effects for death
-        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Burn, _particleTransform);
-        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
+        var playerObject = _playerData.objects[3];
+
+        // Exit if no player object
+        if (playerObject == null) return;
+
+        // Cache health value
+        float healthValue = healthBarSlider.value;        
+
+        // Handle death scenario
+        if (healthValue == 0 && !_playerData.isWinning)
+        {
+            GameObject particleObject = null;
+
+            if (particleObject == null)
+            {
+                particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(13);
+                particleObject.transform.position = _particleTransform.transform.position;
+
+                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 3f));
+            }
+            
+
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
 
         // Mark player as destroyed and handle enemy-related effects
         _playerData.isDestroyed = true;
@@ -637,15 +646,33 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         return; // Early exit since the player is dead
     }
 
-    // Handle non-death hit
-    if (!_playerData.isWinning)
-    {
-        // Particle effects for hit
-        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform);
-        ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.TouchBurning, _particleTransform);
+        // Handle non-death hit
+        if (!_playerData.isWinning)
+        {
+            
+            //Debug.Log("in");
+            GameObject particleObject = null;
+            GameObject particleObject1 = null;
 
-        // Activate bullet hit on player
-        _playerData.enemyBulletHitActivate = true;
+            if (particleObject == null)
+            {
+                particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(13);
+                particleObject.transform.position = _particleTransform.transform.position;
+
+                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 2f));                
+            }
+
+            if (particleObject == null)
+            {
+                particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(14);
+                particleObject1.transform.position = _particleTransform.transform.position;
+
+                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 2f));
+            }
+            
+
+            // Activate bullet hit on player
+            _playerData.enemyBulletHitActivate = true;
 
         // You can uncomment if sound effect is needed
         // PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GiveBulletHit);
@@ -729,7 +756,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             GameObject particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(4);
             particleObject.transform.position = other.gameObject.transform.position;
 
-            StartCoroutine(DelaySetActiveFalseParticle(particleObject));
+            StartCoroutine(DelaySetActiveFalseParticle(particleObject, 1f));
         }
 
         if (_playerData.bulletPackAmount == 0 && _playerData.bulletAmount == 0)
@@ -773,36 +800,36 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
 
         GameObject particleObject = null;
+        GameObject particleObject1 = null;
+        GameObject particleObject2 = null;
 
         if (ParticleController.ParticleNames.DestroyRotateCoin == particle)
         {
             particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(3);
             particleObject.transform.position = other.gameObject.transform.position;
+            StartCoroutine(DelaySetActiveFalseParticle(particleObject, 1f));
         }
         else if (ParticleController.ParticleNames.DestroyHealthCoin == particle)
         {
-            particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(6);
-            particleObject.transform.position = other.gameObject.transform.position;
+            particleObject1 = objectPool.GetComponent<ObjectPool>().GetPooledObject(6);
+            particleObject1.transform.position = other.gameObject.transform.position;
+            StartCoroutine(DelaySetActiveFalseParticle(particleObject1, 1f));
         }
         else if (ParticleController.ParticleNames.DestroyMushroomCoin == particle)
         {
-            particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(7);
-            particleObject.transform.position = other.gameObject.transform.position;            
+            particleObject2 = objectPool.GetComponent<ObjectPool>().GetPooledObject(7);
+            particleObject2.transform.position = other.gameObject.transform.position;
+            StartCoroutine(DelaySetActiveFalseParticle(particleObject2, 1f));
         }
 
-        StartCoroutine(DelaySetActiveFalseParticle(particleObject));
-
-        //ParticleController.GetInstance.CreateParticle(particle, other.gameObject.transform);
+        
         PlayerSoundEffect.GetInstance.SoundEffectStatement(sound);
         Destroy(other.gameObject);
     }
-    IEnumerator DelaySetActiveFalseParticle(GameObject particleObject)
+    public IEnumerator DelaySetActiveFalseParticle(GameObject particleObject, float delayValue)
     {
-        yield return new WaitForSeconds(1f);
-        if (particleObject != null)
-        {
-            particleObject.SetActive(false);
-        }        
+        yield return new WaitForSeconds(delayValue);
+        particleObject.SetActive(false);
     }
     public void CheckAllWeaponsLocked(BulletData bulletData)
     {
@@ -1238,52 +1265,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     #endregion
 
     #region //Move
-    public virtual void SkateBoard(PlayerData _playerData, Transform _particleTransform, ref Transform playerTransform)
-    {//StyleWalking
-        if (PlayerController.skateBoard && !_playerData.isJumping 
-            && !_playerData.isClimbing && !_playerData.isBackClimbing 
-            && !_playerData.isRunning && !_playerData.isBackWalking && _playerData.isTouchableSkate)
-        {
-            //PlayerData
-            if (_playerData.clickTabCount < 1)
-            {
-                _playerData.clickTabCount++;
-                _playerData.isSkateBoarding = true;
-
-                _playerData.isTouchableSkate = false;
-
-                StartCoroutine(DelaySkateBoardTouching(_playerData, 0.1f));
-
-            }
-            else
-            {
-                _playerData.isSkateBoarding = false;
-                _playerData.skateboardParticle.Stop();
-
-                _playerData.isTouchableSkate = false;
-
-                StartCoroutine(DelaySkateBoardTouching(_playerData, 0.1f));
-            }
-        }
-        if (_playerData.isSkateBoarding && !_playerData.isJumping && 
-            !_playerData.isClimbing && !_playerData.isBackClimbing && 
-            !_playerData.isRunning && !_playerData.isBackWalking)
-        {
-            //ParticleEffect
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Skateboard, _particleTransform.transform);
-
-            //_skateboardParticle.Play();
-            playerTransform.Translate(0f, 0f, _playerData.skateBoardSpeed * Time.deltaTime);            
-        }
-        
-    }
-    IEnumerator DelaySkateBoardTouching(PlayerData _playerData, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        _playerData.isTouchableSkate = true;
-
-    }
+    
     public virtual void Run(PlayerData _playerData, Transform _particleTransform, float runTimeAmount, Rigidbody objectRigidbody)
     {//FasterWalking
         if (_playerData.isClickable && PlayerController.run && !_playerData.isJumping && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isBackWalking)
@@ -1298,11 +1280,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.isRunning = false;
         }
-        if (_playerData.isRunning && !_playerData.isJumping && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isBackWalking)
+        if (_playerData.isRunning && !_playerData.isJumping && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isBackWalking)
         {
-            //ParticleEffect
-            ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Skateboard, _particleTransform.transform);
-
             objectRigidbody.AddForce(transform.forward*_playerData.playerSpeed * Time.deltaTime * 1000f);
         }
 
@@ -1312,7 +1291,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {//ForwardAndBackWalking
         if (!_playerData.isLockedWalking)
         {
-            if ((PlayerManager.GetInstance.GetZValue() >= 0.01 && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding))
+            if ((PlayerManager.GetInstance.GetZValue() >= 0.01 && !_playerData.isClimbing && !_playerData.isBackClimbing))
             {
                 //PlayerData
                 _playerData.isWalking = true;

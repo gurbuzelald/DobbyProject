@@ -13,15 +13,15 @@ public class LightController : MonoBehaviour
     private void Awake()
     {
 
-        lights[0].SetActive(true);
+        /*lights[0].SetActive(true);
         for (int i = 1; i < lights.Length; i++)
         {
             lights[i].SetActive(false);
-        }
+        }*/
     }
     void Update()
     {
-        LevelUpLight(playerData, delayLevelUpLight);
+       // LevelUpLight(playerData, delayLevelUpLight);
     }
     void LevelUpLight(PlayerData playerData, float delayLevelUpLight)
     {

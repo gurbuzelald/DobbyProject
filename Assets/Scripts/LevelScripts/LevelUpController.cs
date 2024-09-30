@@ -35,9 +35,6 @@ public class LevelUpController : MonoBehaviour
 
     private SceneController _sceneController;
 
-    private GameObject scoreControllerObject;
-    private ScoreController scoreController;
-
     public static string requirementMessage;
 
     private TextMeshProUGUI enemyKillLevelUpRequirementText;
@@ -75,14 +72,21 @@ public class LevelUpController : MonoBehaviour
         enoughForLevelUp = 0;
 
         CurrentLevelID();
+
         weaponGiftBoxSpawnerObject = GameObject.Find("WeaponGiftBoxSpawner");
+
         healthCoinSpawnerObject = GameObject.Find("HealthCoinSpawner");
+
         enemySpawnerObject = GameObject.Find("EnemySpawner");
+
         coinSpawnerObject = GameObject.Find("CoinSpawner");
+
         mirrorSpawnerObject = GameObject.Find("MirrorSpawner");
+
         cameraSpawnerObject = GameObject.Find("CameraSpawner");
+
         mapControllerObject = GameObject.Find("MapController");
-        scoreControllerObject = GameObject.Find("ScoreController");
+
         _sceneController = FindObjectOfType<SceneController>();
 
 
@@ -129,6 +133,19 @@ public class LevelUpController : MonoBehaviour
         if (levelUpRequirements != null && pickUpCoinLevelUpRequirementText)
         {
             pickUpCoinLevelUpRequirementText.text = "";
+            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+            {
+                enemyKillLevelUpRequirementText.text = TimeController.initialTimeValue.ToString() +
+                "  Saniyen Var: ";
+            }
+            else
+            {
+                enemyKillLevelUpRequirementText.text = "You Have  " +
+                TimeController.initialTimeValue.ToString() +
+                "  Seconds:";
+            }
+
+            yield return new WaitForSeconds(4f);
 
             if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
@@ -139,7 +156,7 @@ public class LevelUpController : MonoBehaviour
             {
                 enemyKillLevelUpRequirementText.text = "You Need To Take  " +
                 levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills.ToString() +
-                "  Kills...";
+                "  Kills";
             }
             
             yield return new WaitForSeconds(4f);
@@ -155,7 +172,7 @@ public class LevelUpController : MonoBehaviour
             {
                 pickUpCoinLevelUpRequirementText.text = "Pick Up  " +
                 levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount.ToString() +
-                "  Coins...";
+                "  Coins and";
             }
 
             yield return new WaitForSeconds(4f);
@@ -232,10 +249,6 @@ public class LevelUpController : MonoBehaviour
         if (mapControllerObject)
         {
             mapController = mapControllerObject.GetComponent<MapController>();
-        }
-        if (scoreControllerObject)
-        {
-            scoreController = scoreControllerObject.GetComponent<ScoreController>();
         }
         if (levelUpRequirements != null)
         {
@@ -472,8 +485,8 @@ public class LevelUpController : MonoBehaviour
                         levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
                         currentLevelUpKeysText)
                     {
-                        currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString() + "/" +
-                                                      levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys; ;
+                        currentLevelUpKeysText.text = $"{LevelData.currentOwnedLevelUpKeys}/{levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys}";
+
                     }
                     if (levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
                         enoughBossDeadCount == 0)
@@ -511,19 +524,8 @@ public class LevelUpController : MonoBehaviour
             levelData.currentEnemyObjects = levelData.enemySecondObjects;
             bulletData.currentGiftBox = bulletData.cowGiftBox;
             CurrentLevelID();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelCount);
-            healthCoinSpawner.CreateMapHealthCoins(LevelData.currentLevelCount);
-            coinSpawner.CreateCoins(LevelData.currentLevelCount);
             coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.CreateMap(LevelData.currentLevelCount);
             mapController.SetSkybox(LevelData.currentLevelCount);
-            mirrorSpawner.CreateTransportMirror(LevelData.currentLevelCount);
-
-            if (enemySpawner)
-            {
-                enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
-            }
-
             _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[0] = false;
@@ -536,19 +538,8 @@ public class LevelUpController : MonoBehaviour
             levelData.currentEnemyObjects = levelData.enemyThirdObjects;
             bulletData.currentGiftBox = bulletData.demonGiftBox;
             CurrentLevelID();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelCount);
-            healthCoinSpawner.CreateMapHealthCoins(LevelData.currentLevelCount);
-            coinSpawner.CreateCoins(LevelData.currentLevelCount);
             coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.CreateMap(LevelData.currentLevelCount);
             mapController.SetSkybox(LevelData.currentLevelCount);
-            mirrorSpawner.CreateTransportMirror(LevelData.currentLevelCount);
-
-            if (enemySpawner)
-            {
-                enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
-            }
-
             _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[1] = false;
@@ -561,18 +552,8 @@ public class LevelUpController : MonoBehaviour
             levelData.currentEnemyObjects = levelData.enemyFourthObjects;
             bulletData.currentGiftBox = bulletData.electroGiftBox;
             CurrentLevelID();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelCount);
-            healthCoinSpawner.CreateMapHealthCoins(LevelData.currentLevelCount);
-            coinSpawner.CreateCoins(LevelData.currentLevelCount);
             coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.CreateMap(LevelData.currentLevelCount);
             mapController.SetSkybox(LevelData.currentLevelCount);
-            mirrorSpawner.CreateTransportMirror(LevelData.currentLevelCount);
-
-            if (enemySpawner)
-            {
-                enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
-            }
 
             _sceneController.LevelUpGame();
 
@@ -586,18 +567,8 @@ public class LevelUpController : MonoBehaviour
             levelData.currentEnemyObjects = levelData.enemyFifthObjects;
             bulletData.currentGiftBox = bulletData.axeGiftBox;
             CurrentLevelID();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelCount);
-            healthCoinSpawner.CreateMapHealthCoins(LevelData.currentLevelCount);
-            coinSpawner.CreateCoins(LevelData.currentLevelCount);
             coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.CreateMap(LevelData.currentLevelCount);
             mapController.SetSkybox(LevelData.currentLevelCount);
-            mirrorSpawner.CreateTransportMirror(LevelData.currentLevelCount);
-
-            if (enemySpawner)
-            {
-                enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
-            }
 
             _sceneController.LevelUpGame();
 
@@ -611,18 +582,8 @@ public class LevelUpController : MonoBehaviour
             levelData.currentEnemyObjects = levelData.enemySixthObjects;
             bulletData.currentGiftBox = bulletData.crystalGiftBox;
             CurrentLevelID();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelCount);
-            healthCoinSpawner.CreateMapHealthCoins(LevelData.currentLevelCount);
-            coinSpawner.CreateCoins(LevelData.currentLevelCount);
             coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.CreateMap(LevelData.currentLevelCount);
             mapController.SetSkybox(LevelData.currentLevelCount);
-            mirrorSpawner.CreateTransportMirror(LevelData.currentLevelCount);
-
-            if (enemySpawner)
-            {
-                enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
-            }
 
             _sceneController.LevelUpGame();
 
@@ -636,19 +597,8 @@ public class LevelUpController : MonoBehaviour
             levelData.currentEnemyObjects = levelData.enemySeventhObjects;
             bulletData.currentGiftBox = bulletData.iceGiftBox;
             CurrentLevelID();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelCount);
-            healthCoinSpawner.CreateMapHealthCoins(LevelData.currentLevelCount);
-            coinSpawner.CreateCoins(LevelData.currentLevelCount);
             coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.CreateMap(LevelData.currentLevelCount);
             mapController.SetSkybox(LevelData.currentLevelCount);
-            mirrorSpawner.CreateTransportMirror(LevelData.currentLevelCount);
-
-            if (enemySpawner)
-            {
-                enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
-            }
-
             _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[5] = false;
@@ -661,19 +611,8 @@ public class LevelUpController : MonoBehaviour
             levelData.currentEnemyObjects = levelData.enemyEightthObjects;
             bulletData.currentGiftBox = bulletData.pistolGiftBox;
             CurrentLevelID();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelCount);
-            healthCoinSpawner.CreateMapHealthCoins(LevelData.currentLevelCount);
-            coinSpawner.CreateCoins(LevelData.currentLevelCount);
             coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.CreateMap(LevelData.currentLevelCount);
             mapController.SetSkybox(LevelData.currentLevelCount);
-            mirrorSpawner.CreateTransportMirror(LevelData.currentLevelCount);
-
-            if (enemySpawner)
-            {
-                enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
-            }
-
             _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[6] = false;
@@ -686,18 +625,8 @@ public class LevelUpController : MonoBehaviour
             levelData.currentEnemyObjects = levelData.enemyNinethObjects;
             bulletData.currentGiftBox = bulletData.ak47GiftBox;
             CurrentLevelID();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelCount);
-            healthCoinSpawner.CreateMapHealthCoins(LevelData.currentLevelCount);
-            coinSpawner.CreateCoins(LevelData.currentLevelCount);
             coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.CreateMap(LevelData.currentLevelCount);
             mapController.SetSkybox(LevelData.currentLevelCount);
-            mirrorSpawner.CreateTransportMirror(LevelData.currentLevelCount);
-
-            if (enemySpawner)
-            {
-                enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
-            }
 
             _sceneController.LevelUpGame();
 
@@ -711,18 +640,8 @@ public class LevelUpController : MonoBehaviour
             levelData.currentEnemyObjects = levelData.enemyTenthObjects;
             bulletData.currentGiftBox = bulletData.m4a4GiftBox;
             CurrentLevelID();
-            weaponGiftBoxSpawner.CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelCount);
-            healthCoinSpawner.CreateMapHealthCoins(LevelData.currentLevelCount);
-            coinSpawner.CreateCoins(LevelData.currentLevelCount);
             coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.CreateMap(LevelData.currentLevelCount);
             mapController.SetSkybox(LevelData.currentLevelCount);
-            mirrorSpawner.CreateTransportMirror(LevelData.currentLevelCount);
-
-            if (enemySpawner)
-            {
-                enemySpawner.CreateEnemiesByMap(LevelData.currentLevelCount);
-            }
 
             _sceneController.LevelUpGame();
 
@@ -731,8 +650,14 @@ public class LevelUpController : MonoBehaviour
         else if (levelData.isCompleteMaps[levelData.isCompleteMaps.Length - 1])
         {//When last level is passed
             playerData.isWinning = true;
-            //SceneController.GetInstance.LoadWinScene();
+            StartCoroutine(DelayGoToWinScene());
         }
+    }
+
+    IEnumerator DelayGoToWinScene()
+    {
+        yield return new WaitForSeconds(5f);
+        _sceneController.LoadWinScene();
     }
     void SetDetectionOfEnemyAtUpdate(int levelCount)
     {

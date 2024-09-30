@@ -176,8 +176,7 @@ public class ObjectPool : MonoBehaviour
             return obj;
         }
         else if (poolIndex == 4)
-        {
-            // Instantiate Bullet Coin Particle
+        {//Destroy BulletCoin
             obj = Instantiate(pool.objectPrefab[0],
                               pool.objectTransform.position,
                               pool.objectTransform.rotation,
@@ -185,8 +184,7 @@ public class ObjectPool : MonoBehaviour
             return obj;
         }
         else if (poolIndex == 5)
-        {
-            // Instantiate Bullet Coin Particle
+        {//Enemy Destroy Particle
             obj = Instantiate(pool.objectPrefab[0],
                               pool.objectTransform.position,
                               pool.objectTransform.rotation,
@@ -194,8 +192,7 @@ public class ObjectPool : MonoBehaviour
             return obj;
         }
         else if (poolIndex == 6)
-        {
-            // Instantiate Bullet Coin Particle
+        {//Health Particle
             obj = Instantiate(pool.objectPrefab[0],
                               pool.objectTransform.position,
                               pool.objectTransform.rotation,
@@ -203,8 +200,7 @@ public class ObjectPool : MonoBehaviour
             return obj;
         }
         else if (poolIndex == 7)
-        {
-            // Instantiate Bullet Coin Particle
+        {//Mushroom Particle
             obj = Instantiate(pool.objectPrefab[0],
                               pool.objectTransform.position,
                               pool.objectTransform.rotation,
@@ -212,8 +208,7 @@ public class ObjectPool : MonoBehaviour
             return obj;
         }
         else if (poolIndex == 8)
-        {
-            // Instantiate Bullet Coin Particle
+        {//Bullet Explosion
             obj = Instantiate(pool.objectPrefab[BulletData.currentWeaponID],
                               pool.objectTransform.position,
                               pool.objectTransform.rotation,
@@ -221,8 +216,63 @@ public class ObjectPool : MonoBehaviour
             return obj;
         }
         else if (poolIndex == 9)
-        {
-            // Instantiate Bullet Coin Particle
+        {//Sword Explosion
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 10)
+        {// Bottom Particle
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 11)
+        {// Mid Particle
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 12)
+        { // Top Particle
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 13)
+        {//Burning Particle
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 14)
+        {//Burning Particle
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 15)
+        {//Birth Particle
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 16)
+        {//Death Particle
             obj = Instantiate(pool.objectPrefab[0],
                               pool.objectTransform.position,
                               pool.objectTransform.rotation,

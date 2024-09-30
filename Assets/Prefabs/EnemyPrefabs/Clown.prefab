@@ -435,9 +435,9 @@ Transform:
   m_LocalScale: {x: 0.22, y: 0.22, z: 0.22}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4446688504359761094}
-  - {fileID: 7059691197878400886}
   - {fileID: 8663122777301880623}
+  - {fileID: 7059691197878400886}
+  - {fileID: 4446688504359761094}
   - {fileID: 8663122777073410704}
   - {fileID: 5188363020660505794}
   - {fileID: 465555122002307540}
@@ -507,6 +507,8 @@ MonoBehaviour:
   _bulletCoin: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
   _damageText: {fileID: 5188363021103942115}
   burnParticleTransformObject: {fileID: 7156007043752413553}
+  skinnedMeshRenderers:
+  - {fileID: 2509034559955821653}
 --- !u!54 &465555122176071958
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -902,7 +904,7 @@ Transform:
   m_GameObject: {fileID: 2137008754360509359}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.569, z: 0}
+  m_LocalPosition: {x: 0, y: 2.84, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.10000001, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -996,7 +998,7 @@ Transform:
   m_GameObject: {fileID: 2507913101043198105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.0700002, z: 0}
+  m_LocalPosition: {x: 0, y: 2.32, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.10000001, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1754,7 +1756,7 @@ Transform:
   m_GameObject: {fileID: 5196555449404954410}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.521, z: 0}
+  m_LocalPosition: {x: 0, y: 1.95, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.10000001, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2661,7 +2663,7 @@ GameObject:
   - component: {fileID: 1316699130752496603}
   - component: {fileID: 5728763791185617087}
   m_Layer: 0
-  m_Name: Whiteclown N Hallin@Walking
+  m_Name: Clown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2992,7 +2994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60d5b47d7aaf24449d132e00a7c1ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletSpawnTransform: {fileID: 1207222380784698013}
 --- !u!1 &8888367171846194884
 GameObject:
   m_ObjectHideFlags: 0
