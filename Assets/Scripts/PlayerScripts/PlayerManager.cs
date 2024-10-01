@@ -221,6 +221,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         DontFallDown();
         IncreaseHealthWhenEnemyKilledAtUpdate(10);
     }
+    
 
     void IncreaseHealthWhenEnemyKilledAtUpdate(int increasedAmount)
     {
@@ -504,6 +505,13 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     void OnTriggerEnter(Collider other)
     {
+
+        if (other.CompareTag(SceneController.Tags.EnemyTriggerBox.ToString()))
+        {
+            SetTrueEnemy(other);
+        }
+
+
         if (other.CompareTag(SceneController.Tags.EnemyBullet.ToString()))
         {
             playerInterfaces.iPlayerTrigger.TriggerBullet(other, _playerData, 
@@ -572,6 +580,32 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         playerInterfaces.iPlayerTrigger.CheckWeaponCollect(other, _bulletData);
     }
+
+
+    public void SetTrueEnemy(Collider other)
+    {
+        if (_objectPool)
+        {
+            for (int i = 0; i < other.gameObject.transform.childCount; i++)
+            {
+                GameObject currentEnemyObjects = _objectPool.GetPooledObject(17);
+
+                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
+                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
+                currentEnemyObjects.gameObject.transform.GetChild(1).GetComponent<EnemyAnimationController>().SetAnimator();
+                currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
+                currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(i).position.x,
+                                                                     2f,
+                                                                     other.gameObject.transform.GetChild(i).position.z);
+            }
+        }
+
+    }
+
+
+
+
+
     IEnumerator DelaySetActiveFalseParticle(GameObject particleObject, float delayValue)
     {
         yield return new WaitForSeconds(delayValue);

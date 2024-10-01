@@ -1265,6 +1265,7 @@ public class SceneController : MonoBehaviour
         Water,
         FanceWooden,
         LevelUpKey,
+        EnemyTriggerBox,
         
 
         Tree,

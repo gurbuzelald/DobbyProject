@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -17,7 +18,9 @@ public class EnemySpawner : MonoBehaviour
 
 
     [SerializeField] Transform enemySpawnTransform;
-    private GameObject enemyTransformsObject;
+
+    public static GameObject enemyTransformsObject;
+    public static int iValue;
 
     private GameObject playerBulletObject;
 
@@ -36,6 +39,8 @@ public class EnemySpawner : MonoBehaviour
 
         CreateEnemiesAtStart(LevelData.currentLevelCount);
     }
+
+    
     void CreateEnemiesAtStart(int levelCount)
     {
         enemyTransformsObject = Instantiate(levelData.enemyTransformsInMap[levelCount].gameObject, gameObject.transform);
@@ -47,19 +52,26 @@ public class EnemySpawner : MonoBehaviour
             bossEnemyTransformObject = GameObject.Find("bossEnemyTransform");
         }        
 
-        for (int i = 0; i < enemyTransformsObject.transform.childCount; i++)
+        /*for (int i = 0; i < enemyTransformsObject.transform.childCount; i++)
         {
+            iValue = i;
             levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[levelCount];
+
             currentEnemyObjects = Instantiate(levelData.currentEnemyObjects[i],
                                          enemyTransformsObject.transform.GetChild(i).position,
                                          Quaternion.identity,
                                          enemyTransformsObject.transform.GetChild(i).transform);
-            currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
-            currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
-            currentEnemyObjects.transform.position = new Vector3(enemyTransformsObject.transform.GetChild(i).position.x,
-                                                                 10f,
-                                                                 enemyTransformsObject.transform.GetChild(i).position.z);
-        }
+            if (PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(17))
+            {
+                currentEnemyObjects = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(17);
+
+                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
+                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
+                currentEnemyObjects.transform.position = new Vector3(enemyTransformsObject.transform.GetChild(i).position.x,
+                                                                     10f,
+                                                                     enemyTransformsObject.transform.GetChild(i).position.z);
+            }            
+        }*/
     }
     void SetEnemyObjectsAtStart()
     {

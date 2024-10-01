@@ -1668,6 +1668,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7519706926137553243}
   - component: {fileID: 8588842025947044279}
+  - component: {fileID: 7231668442155295255}
   m_Layer: 0
   m_Name: WorldWar_zombie
   m_TagString: Untagged
@@ -1815,6 +1816,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.0000009834766, y: -0.0710206, z: -0.005025506}
     m_Extent: {x: 0.9910885, y: 1.1044798, z: 0.26198775}
   m_DirtyAABB: 0
+--- !u!114 &7231668442155295255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2621352368798443295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2815184754540954474
 GameObject:
   m_ObjectHideFlags: 0

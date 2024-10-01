@@ -1738,6 +1738,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1237928367901935322}
   - component: {fileID: 4286513874035540234}
+  - component: {fileID: 5981312195315691744}
   m_Layer: 0
   m_Name: PumpkinHulk
   m_TagString: Untagged
@@ -1879,6 +1880,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.1273517, y: 0.010478377, z: 0.38545612}
     m_Extent: {x: 0.7338964, y: 1.0758847, z: 0.80527866}
   m_DirtyAABB: 0
+--- !u!114 &5981312195315691744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6481456390886252979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6520458849490471808
 GameObject:
   m_ObjectHideFlags: 0

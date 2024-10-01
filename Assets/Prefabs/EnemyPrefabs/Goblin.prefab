@@ -1758,6 +1758,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1487326204025699630}
   - component: {fileID: 4626502845276120385}
+  - component: {fileID: 6738344799744975355}
   m_Layer: 0
   m_Name: Gobiln_eyes
   m_TagString: Untagged
@@ -1902,6 +1903,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.00075000525, y: -0.050792575, z: 0.03277886}
     m_Extent: {x: 1.2652717, y: 1.1922513, z: 0.66846615}
   m_DirtyAABB: 0
+--- !u!114 &6738344799744975355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3100224252265676624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3288085886869503291
 GameObject:
   m_ObjectHideFlags: 0
@@ -3730,6 +3743,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5947126489486453564}
   - component: {fileID: 5149516831834285290}
+  - component: {fileID: 4247506116065513976}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -3874,6 +3888,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0008426234, y: 0.75420535, z: 0.22726372}
     m_Extent: {x: 0.1105829, y: 0.03621626, z: 0.021375716}
   m_DirtyAABB: 0
+--- !u!114 &4247506116065513976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8352926386339252263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8391812879422695810
 GameObject:
   m_ObjectHideFlags: 0

@@ -47,11 +47,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     private PlayerSoundEffect playerSFX;
 
-    [SerializeField] SkinnedMeshRenderer[] skinnedMeshRenderers;
+    private ObjectPool objectPool;
 
 
     void Start()
     {
+        objectPool = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>();
+
         playerSFX = FindAnyObjectByType<PlayerSoundEffect>();
 
         enemyData = enemyListData[enemyDataNumber];
@@ -83,31 +85,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         SetBackToWalkingValueForStart();
     }
-
-
-    void CloseMeshWhenFarToPlayer()
-    {
-        if (Vector3.Distance(gameObject.transform.position,
-            PlayerManager.GetInstance.gameObject.transform.position) > 10)
-        {
-            for (int i = 0; i < skinnedMeshRenderers.Length; i++)
-            {
-                skinnedMeshRenderers[i].enabled = false;
-            }           
-        }
-        else
-        {
-            for (int i = 0; i < skinnedMeshRenderers.Length; i++)
-            {
-                skinnedMeshRenderers[i].enabled = true;
-            }
-        }
-    }
     void Update()
     {
-        CloseMeshWhenFarToPlayer();
-
-
         WeaponBulletPower(); 
 
         if (!enemyData.isDying && 
@@ -514,33 +493,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             gameObject.transform.Rotate(0f, 180f, 0f);
         }
     }
-
-    IEnumerator DelayDestroyFireParticle(GameObject particleObject = null, GameObject particleObject1 = null,
-                                         GameObject particleObject2 = null)
-    {
-        yield return new WaitForSeconds(2f);
-        if (particleObject != null)
-        {
-            particleObject.SetActive(false);
-        }
-        if (particleObject1 != null)
-        {
-            particleObject1.SetActive(false);
-        }
-        if (particleObject2 != null)
-        {
-            particleObject2.SetActive(false);
-        }
-    }
     
     public void TriggerBullet(float bulletPower, Collider other)
     {
         BulletOrSwordExplosionParticleWithObjectPool(other, 8);
 
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
-        GameObject particleObject;
-        GameObject particleObject1;
-        GameObject particleObject2;
 
         if (_healthBar != null)
         {
@@ -550,15 +508,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
                 if (burnParticleTransformObject)
                 {
-                    particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(10);
-                    particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(11);
-                    particleObject.transform.position = burnParticleTransformObject.transform.GetChild(0).position;
-                    particleObject1.transform.position = burnParticleTransformObject.transform.GetChild(1).position;
-
-                    StartCoroutine(DelayDestroyFireParticle(particleObject, particleObject1));
+                    BulletOrSwordExplosionParticleWithObjectPool(other, 10);
+                    BulletOrSwordExplosionParticleWithObjectPool(other, 11);
                 }
                          
-                enemyData.currentTopParticle.Play();
+                //enemyData.currentTopParticle.Play();
                 enemyData.isTouchable = false;
                 enemyData.isDying = true;
                 //enemyData.isWalking = false;
@@ -576,7 +530,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 }
                 
 
-                Destroy(_healthBar);
+                //Destroy(_healthBar);
                 ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue * 2);
                 PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
                 StartCoroutine(DelayDestroy(2f));                
@@ -586,20 +540,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 if (_healthBarSlider.value <= 50 &&
                     _healthBarSlider.value > 0)
                 {
-                    particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(10);
-                    particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(11);
-                    particleObject2 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(12);
-                    particleObject.transform.position = burnParticleTransformObject.transform.GetChild(0).position;
-                    particleObject1.transform.position = burnParticleTransformObject.transform.GetChild(1).position;
-                    particleObject2.transform.position = burnParticleTransformObject.transform.GetChild(2).position;
-
-                    StartCoroutine(DelayDestroyFireParticle(particleObject, particleObject1, particleObject2));
+                    BulletOrSwordExplosionParticleWithObjectPool(other, 10);
+                    BulletOrSwordExplosionParticleWithObjectPool(other, 11);
+                    BulletOrSwordExplosionParticleWithObjectPool(other, 12);
                 }
                 if (_healthBarSlider.value > 50)
                 {
-                    particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(11);
-                    particleObject1.transform.position = burnParticleTransformObject.transform.GetChild(1).position;
-                    StartCoroutine(DelayDestroyFireParticle(particleObject1));
+                    BulletOrSwordExplosionParticleWithObjectPool(other, 11);
                 }
                 //enemyData.isWalking = false;
                 
@@ -630,25 +577,17 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         BulletOrSwordExplosionParticleWithObjectPool(other, 9);
 
-        GameObject particleObject;
-        GameObject particleObject1;
-        GameObject particleObject2;
-
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
+
         if (_healthBar != null)
         {
             if (_healthBarSlider.value <= 0)
             {
                 EnemyData.enemyDeathCount++;
 
-                particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(10);
-                particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(11);
-                particleObject2 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(12);
-                particleObject.transform.position = burnParticleTransformObject.transform.GetChild(0).position;
-                particleObject1.transform.position = burnParticleTransformObject.transform.GetChild(1).position;
-                particleObject2.transform.position = burnParticleTransformObject.transform.GetChild(2).position;
-
-                StartCoroutine(DelayDestroyFireParticle(particleObject, particleObject1, particleObject2));
+                BulletOrSwordExplosionParticleWithObjectPool(other, 10);
+                BulletOrSwordExplosionParticleWithObjectPool(other, 11);
+                BulletOrSwordExplosionParticleWithObjectPool(other, 12);
                 enemyData.isTouchable = false;
                 enemyData.isDying = true;
                 //enemyData.isWalking = false;
@@ -677,19 +616,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
                 if (_healthBarSlider.value <= 50)
                 {
-                    particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(10);
-                    particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(11);
-                    particleObject.transform.position = burnParticleTransformObject.transform.GetChild(0).position;
-                    particleObject1.transform.position = burnParticleTransformObject.transform.GetChild(1).position;
-
-                    StartCoroutine(DelayDestroyFireParticle(particleObject, particleObject1));
+                    BulletOrSwordExplosionParticleWithObjectPool(other, 10);
+                    BulletOrSwordExplosionParticleWithObjectPool(other, 11);
                 }
                 else if (_healthBarSlider.value > 50)
                 {
-                    particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(11);
-                    particleObject1.transform.position = burnParticleTransformObject.transform.GetChild(1).position;
-
-                    StartCoroutine(DelayDestroyFireParticle(particleObject1));
+                    BulletOrSwordExplosionParticleWithObjectPool(other, 11);
                 }
 
                 if (gameObject.transform.parent.name == "bossEnemyTransform")
@@ -741,35 +673,65 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     void BulletOrSwordExplosionParticleWithObjectPool(Collider other, int objectPoolValue)
     {
-        GameObject particleObject = null;
-        GameObject particleObject1 = null;
-        if (objectPoolValue == 8)
-        {            
-            particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(8);
-            particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
-                                                               other.gameObject.transform.position.y + .08f,
-                                                               other.gameObject.transform.position.z);
-
-            StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject));
-        }
-        else if (objectPoolValue == 9)
+        if (objectPool)
         {
-            particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(9);
-            particleObject1.transform.position = new Vector3(other.gameObject.transform.position.x,
-                                                               other.gameObject.transform.position.y + .08f,
-                                                               other.gameObject.transform.position.z);
+            if (objectPoolValue == 8)
+            {
+                GameObject particleObject = null;
+                particleObject = objectPool.GetPooledObject(8);
+                particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+                                                                   other.gameObject.transform.position.y + .08f,
+                                                                   other.gameObject.transform.position.z);
 
-            StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject1));
-        }
+                StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject));
+            }
+            else if (objectPoolValue == 9)
+            {
+                GameObject particleObject = null;
+                particleObject = objectPool.GetPooledObject(9);
+                particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+                                                                   other.gameObject.transform.position.y + .08f,
+                                                                   other.gameObject.transform.position.z);
+
+                StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject));
+            }
+            else if (objectPoolValue == 10)
+            {
+                GameObject particleObject = null;
+                particleObject = objectPool.GetPooledObject(10);
+                particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+                                                                   other.gameObject.transform.position.y + .08f,
+                                                                   other.gameObject.transform.position.z);
+
+                StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject));
+            }
+            else if (objectPoolValue == 11)
+            {
+                GameObject particleObject = null;
+                particleObject = objectPool.GetPooledObject(11);
+                particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+                                                                   other.gameObject.transform.position.y + .08f,
+                                                                   other.gameObject.transform.position.z);
+
+                StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject));
+            }
+            else if (objectPoolValue == 12)
+            {
+                GameObject particleObject = null;
+                particleObject = objectPool.GetPooledObject(12);
+                particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+                                                                   other.gameObject.transform.position.y + .08f,
+                                                                   other.gameObject.transform.position.z);
+
+                StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject));
+            }
+        }        
     }
 
     IEnumerator DelaySetActiveFalseBulletOrSword(GameObject particleObject)
     {
         yield return new WaitForSeconds(1f);
-        if (particleObject != null)
-        {
-            particleObject.SetActive(false);
-        }
+        particleObject.SetActive(false);
     }
 
     public IEnumerator DelayStopEnemy(float backToWalkingValue)
@@ -782,13 +744,14 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     public IEnumerator DelayDestroy(float delayDestroy)
     {
-        CreateDestroyParticle();
+        //CreateDestroyParticle();
         
         yield return new WaitForSeconds(delayDestroy);
-        
-        Destroy(gameObject);
 
-        playerData.getCurrentEnemyDead = true;
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
+
+        //playerData.getCurrentEnemyDead = true;
 
         //enemyData.isWalking = true;
         enemyData.isDying = false;

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7917119833059395411}
   - component: {fileID: 7917119833059395420}
   - component: {fileID: 7917119833059395421}
+  - component: {fileID: 1169584882887091488}
   m_Layer: 12
   m_Name: Mushroom
   m_TagString: MushroomCoin
@@ -105,6 +106,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.61, y: 0.63, z: 0.3}
   m_Center: {x: 0.0000001527369, y: 0.34, z: 0.0000004582107}
+--- !u!114 &1169584882887091488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917119833059395423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7917119833797352369
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,6 +165,7 @@ GameObject:
   - component: {fileID: 7917119833954049593}
   - component: {fileID: 7917119833954049594}
   - component: {fileID: 7917119833954049595}
+  - component: {fileID: 1881547789776065642}
   m_Layer: 12
   m_Name: Mushroom
   m_TagString: MushroomCoin
@@ -245,6 +259,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.61, y: 0.63, z: 0.3}
   m_Center: {x: 0.0000001527369, y: 0.34, z: 0.0000004582107}
+--- !u!114 &1881547789776065642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917119833954049573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7917119834090699734
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +283,7 @@ GameObject:
   - component: {fileID: 7917119834090699562}
   - component: {fileID: 7917119834090699563}
   - component: {fileID: 7917119834090699732}
+  - component: {fileID: 4497355268294417976}
   m_Layer: 12
   m_Name: Mushroom
   m_TagString: MushroomCoin
@@ -350,6 +377,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.61, y: 0.63, z: 0.3}
   m_Center: {x: 0.0000001527369, y: 0.34, z: 0.0000004582107}
+--- !u!114 &4497355268294417976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917119834090699734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7917119834109873025
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,6 +401,7 @@ GameObject:
   - component: {fileID: 7917119834109873029}
   - component: {fileID: 7917119834109873030}
   - component: {fileID: 7917119834109873031}
+  - component: {fileID: 2721367705006655508}
   m_Layer: 12
   m_Name: Mushroom
   m_TagString: MushroomCoin
@@ -455,3 +495,15 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.61, y: 0.63, z: 0.3}
   m_Center: {x: 0.0000001527369, y: 0.34, z: 0.0000004582107}
+--- !u!114 &2721367705006655508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917119834109873025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

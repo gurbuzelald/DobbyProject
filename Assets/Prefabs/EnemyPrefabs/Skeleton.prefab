@@ -3101,6 +3101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5153916488482134642}
   - component: {fileID: 4538988070152145350}
+  - component: {fileID: 7119753514073619601}
   m_Layer: 0
   m_Name: skeletonZombie
   m_TagString: Untagged
@@ -3250,6 +3251,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000002026558, y: -0.2253564, z: -0.009315252}
     m_Extent: {x: 1.507425, y: 1.1035802, z: 0.29686156}
   m_DirtyAABB: 0
+--- !u!114 &7119753514073619601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5811645990646131033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5930627562593039006
 GameObject:
   m_ObjectHideFlags: 0

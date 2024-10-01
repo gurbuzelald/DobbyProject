@@ -3316,6 +3316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4690460174732909186}
   - component: {fileID: 6495870227971050788}
+  - component: {fileID: 3434154493653872974}
   m_Layer: 0
   m_Name: MAW
   m_TagString: Untagged
@@ -3455,6 +3456,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000019013882, y: 0.12420279, z: -0.050549403}
     m_Extent: {x: 1.5171311, y: 1.2625291, z: 0.50378036}
   m_DirtyAABB: 0
+--- !u!114 &3434154493653872974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8163672007424340747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8324768974913828517
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,8 +24,10 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
         _enemyData.isDying = false;
         _enemyData.isWalking = true;
         _animationCount = 0;
+    }
 
-
+    public void SetAnimator()
+    {
         if (_enemyManager)
         {
             if (runtimeAnimatorControllers != null)
@@ -34,19 +36,18 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
                 {
                     runAnimatorController = runtimeAnimatorControllers[_enemyManager.enemyDataNumber];
                 }
-                
-            }          
+
+            }
 
             _animator = gameObject.transform.GetComponent<Animator>();
 
             if (_animator && runAnimatorController)
             {
                 _animator.runtimeAnimatorController = runAnimatorController;
-            }           
+            }
         }
-        
-
     }
+
     void Update()
     {
         if (_animator)

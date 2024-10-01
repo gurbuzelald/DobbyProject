@@ -2061,6 +2061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2472393179895369746}
   - component: {fileID: 5200562212573551781}
+  - component: {fileID: 7564939232767209298}
   m_Layer: 0
   m_Name: Prisoner
   m_TagString: Untagged
@@ -2183,6 +2184,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.042398363, y: -0.13122377, z: 0.25789487}
     m_Extent: {x: 0.49348387, y: 0.8451643, z: 0.43300617}
   m_DirtyAABB: 0
+--- !u!114 &7564939232767209298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8656977248985553128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8719102198198327409
 GameObject:
   m_ObjectHideFlags: 0

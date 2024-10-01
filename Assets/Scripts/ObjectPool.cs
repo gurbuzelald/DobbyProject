@@ -26,15 +26,16 @@ public class ObjectPool : MonoBehaviour
     public static bool creatableEnemyBullet;
     public static bool creatableSwordBullet;
 
+
     void Start()
     {
         CreateAndEnqueueObject();
     }
     private void Update()
     {
-        if (pools.Length != 0)
+        /*if (pools.Length != 0)
         {
-            if ((pools[0].bulletData != null && creatablePlayerBullet && pools[8].bulletData != null) ||
+            if ((pools[0].bulletData != null && creatablePlayerBullet && pools[8].bulletData != null && pools[17].bulletData != null) ||
                 (pools[1].bulletData != null && levelData && creatableEnemyBullet))
             {
                 CreateAndEnqueueObject();
@@ -43,7 +44,7 @@ public class ObjectPool : MonoBehaviour
 
                 creatableEnemyBullet = false;
             }
-        }
+        }*/
     }
     
     void SetPlayerBulletID(int objectPoolLine)
@@ -118,6 +119,10 @@ public class ObjectPool : MonoBehaviour
             else if (j == 8)
             {
                 SetPlayerBulletID(8);  // Set Player Bullet Explosion ID once for this pool
+            }
+            else if (j == 17)
+            {
+                SetPlayerBulletID(17);  // Enemy
             }
 
             // Pool objects exactly poolSize times
@@ -274,6 +279,14 @@ public class ObjectPool : MonoBehaviour
         else if (poolIndex == 16)
         {//Death Particle
             obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 17)
+        {//Enemies
+            obj = Instantiate(pool.objectPrefab[BulletData.currentEnemyBulletID],
                               pool.objectTransform.position,
                               pool.objectTransform.rotation,
                               pool.objectTransform);

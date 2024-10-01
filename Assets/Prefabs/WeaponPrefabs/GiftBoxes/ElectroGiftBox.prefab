@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 5084911641846264109}
   - component: {fileID: 428646137441694790}
   - component: {fileID: 7629022651563765081}
+  - component: {fileID: 6898193467543524108}
   m_Layer: 21
   m_Name: SR_B1_LegL_mesh
   m_TagString: Untagged
@@ -260,6 +261,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6898193467543524108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2179871113026746211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4468976526461586643
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +284,7 @@ GameObject:
   - component: {fileID: 8134975259394248270}
   - component: {fileID: 908224867039839820}
   - component: {fileID: 8864268794945776240}
+  - component: {fileID: 2689633810519522854}
   m_Layer: 21
   m_Name: SM_SRA1_Trigger
   m_TagString: Untagged
@@ -343,6 +357,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2689633810519522854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4468976526461586643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4792272903292322376
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,6 +435,7 @@ GameObject:
   - component: {fileID: 7284527068167811037}
   - component: {fileID: 2830437764183741075}
   - component: {fileID: 8690820508474640625}
+  - component: {fileID: 3447203301269167474}
   m_Layer: 21
   m_Name: SR_B1_LegR_mesh
   m_TagString: Untagged
@@ -481,6 +508,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3447203301269167474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6231499129632425736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7484269309429173646
 GameObject:
   m_ObjectHideFlags: 0
@@ -626,6 +665,7 @@ GameObject:
   - component: {fileID: 6064654001027269060}
   - component: {fileID: 3713623218210374060}
   - component: {fileID: 8936499122637255424}
+  - component: {fileID: 8466236285771850459}
   m_Layer: 21
   m_Name: SM_SRA1_Safe
   m_TagString: Untagged
@@ -698,6 +738,18 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8466236285771850459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7655124380094224480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7782060439441966170
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,6 +897,7 @@ GameObject:
   - component: {fileID: 7782060439503501682}
   - component: {fileID: 7782060439503501683}
   - component: {fileID: 7782060439503501580}
+  - component: {fileID: 8144995714540453684}
   m_Layer: 0
   m_Name: WeaponBox
   m_TagString: WeaponBox
@@ -951,6 +1004,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageGiftBoxParticle: {fileID: 3059162571395792145, guid: c7fe4472878cac14486a7dce970fad4e, type: 3}
+--- !u!114 &8144995714540453684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7782060439503501582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7782060441024797264
 GameObject:
   m_ObjectHideFlags: 0

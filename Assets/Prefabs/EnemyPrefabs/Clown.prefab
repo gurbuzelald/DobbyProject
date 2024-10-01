@@ -507,8 +507,6 @@ MonoBehaviour:
   _bulletCoin: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
   _damageText: {fileID: 5188363021103942115}
   burnParticleTransformObject: {fileID: 7156007043752413553}
-  skinnedMeshRenderers:
-  - {fileID: 2509034559955821653}
 --- !u!54 &465555122176071958
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1426,6 +1424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5350595790440076395}
   - component: {fileID: 2509034559955821653}
+  - component: {fileID: 157777969166936915}
   m_Layer: 0
   m_Name: WhiteClown
   m_TagString: Untagged
@@ -1568,6 +1567,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.11342731, y: -0.13489777, z: 0.39016676}
     m_Extent: {x: 0.6126323, y: 0.9857307, z: 0.6382048}
   m_DirtyAABB: 0
+--- !u!114 &157777969166936915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742756082088423227}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4749995364800074384
 GameObject:
   m_ObjectHideFlags: 0
