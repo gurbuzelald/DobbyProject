@@ -588,7 +588,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     #region //Trigger
 
-   public virtual void TriggerBullet(Collider other, PlayerData _playerData, 
+    public virtual void TriggerBullet(Collider other, PlayerData _playerData, 
                                   ref GameObject _healthBarObject, 
                                   ref GameObject _topCanvasHealthBarObject, 
                                   ref Transform _particleTransform, 
@@ -613,41 +613,41 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(13);
                 particleObject.transform.position = _particleTransform.transform.position;
 
-                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 3f));
+                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 2f));
             }
             
 
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
 
-        // Mark player as destroyed and handle enemy-related effects
-        _playerData.isDestroyed = true;
+            // Mark player as destroyed and handle enemy-related effects
+            _playerData.isDestroyed = true;
 
-        if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
-        {
-            var enemyManager = other.gameObject.GetComponent<EnemyManager>();
-            enemyManager.enemyData.isWalking = false;
-            enemyManager.enemyData.enemySpeed = 0;
+            if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
+            {
+                var enemyManager = other.gameObject.GetComponent<EnemyManager>();
+                enemyManager.enemyData.isWalking = false;
+                enemyManager.enemyData.enemySpeed = 0;
+            }
+
+            // Sync top canvas health bar and set player states
+            topCanvasHealthBarSlider.value = healthValue;
+            _playerData.isDying = true;
+            _playerData.isIdling = false;
+            _playerData.isPlayable = false;
+
+            // Hide the player object
+            playerObject.transform.localScale = Vector3.zero;
+
+            // Play death sound again
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
+
+            // Trigger delayed destruction
+            StartCoroutine(PlayerManager.GetInstance.DelayDestroy(3f));
+            return; // Early exit since the player is dead
         }
 
-        // Sync top canvas health bar and set player states
-        topCanvasHealthBarSlider.value = healthValue;
-        _playerData.isDying = true;
-        _playerData.isIdling = false;
-        _playerData.isPlayable = false;
-
-        // Hide the player object
-        playerObject.transform.localScale = Vector3.zero;
-
-        // Play death sound again
-        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-
-        // Trigger delayed destruction
-        StartCoroutine(PlayerManager.GetInstance.DelayDestroy(3f));
-        return; // Early exit since the player is dead
-    }
-
         // Handle non-death hit
-        if (!_playerData.isWinning)
+        if (!_playerData.isWinning && healthValue != 0)
         {
             
             //Debug.Log("in");
@@ -667,17 +667,14 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(14);
                 particleObject1.transform.position = _particleTransform.transform.position;
 
-                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 2f));
+                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, .2f));
             }
             
 
             // Activate bullet hit on player
             _playerData.enemyBulletHitActivate = true;
-
-        // You can uncomment if sound effect is needed
-        // PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GiveBulletHit);
+        }
     }
-}
 
     public virtual void PickUpCoin(LevelData levelData,
                                SceneController.Tags value, Collider other,
@@ -1070,49 +1067,57 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
         switch (collision.gameObject.transform.GetComponent<EnemyManager>().enemyData.currentEnemyName)
         {
-            case PlayerData.clown:
+            case PlayerData.chibi:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.clownEnemyCollisionDamage;
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.chibiEnemyCollisionDamage;
                 break;
-            case PlayerData.monster:
+            case PlayerData.mino:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.monsterEnemyCollisionDamage;
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.minoEnemyCollisionDamage;
                 break;
-            case PlayerData.prisoner:
+            case PlayerData.bigMonster:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.prisonerEnemyCollisionDamage;
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.bigMonsterEnemyCollisionDamage;
                 break;
-            case PlayerData.pedroso:
+            case PlayerData.orc:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.pedrosoEnemyCollisionDamage;
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.orcEnemyCollisionDamage;
                 break;
-            case PlayerData.cop:
+            case PlayerData.beholder:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                   collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.copEnemyCollisionDamage;
+                   collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.beholderEnemyCollisionDamage;
                 break;
-            case PlayerData.ortiz:
+            case PlayerData.femaleZombie:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.ortizEnemyCollisionDamage;
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.femaleZombieEnemyCollisionDamage;
                 break;
-            case PlayerData.skeleton:
+            case PlayerData.doctor:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.skeletonEnemyCollisionDamage;
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.doctorEnemyCollisionDamage;
                 break;
-            case PlayerData.uriel:
+            case PlayerData.giant:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.urielEnemyCollisionDamage;
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.giantEnemyCollisionDamage;
                 break;
-            case PlayerData.goblin:
+            case PlayerData.bone:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.goblinEnemyCollisionDamage;
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.boneEnemyCollisionDamage;
                 break;
-            case PlayerData.laygo:
+            case PlayerData.clothyBone:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.laygoEnemyCollisionDamage;
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.clothyBoneEnemyCollisionDamage;
+                break;
+            case PlayerData.chestMonster:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.chestMonsterEnemyCollisionDamage;
+                break;
+            case PlayerData.chestMonster2:
+                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.chestMonster2EnemyCollisionDamage;
                 break;
             default:
                 collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.clownEnemyCollisionDamage;
+                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.chibiEnemyCollisionDamage;
                 break;
         }
         

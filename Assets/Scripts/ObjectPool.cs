@@ -292,6 +292,22 @@ public class ObjectPool : MonoBehaviour
                               pool.objectTransform);
             return obj;
         }
+        else if (poolIndex == 18)
+        {//Boss Enemy
+            obj = Instantiate(pool.objectPrefab[BulletData.currentEnemyBulletID],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
+        else if (poolIndex == 19)
+        {//Chest Monsters
+            obj = Instantiate(pool.objectPrefab[0],
+                              pool.objectTransform.position,
+                              pool.objectTransform.rotation,
+                              pool.objectTransform);
+            return obj;
+        }
         else
         {
             return null;

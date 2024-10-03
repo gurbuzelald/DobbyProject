@@ -64,16 +64,18 @@ public class PlayerData : ScriptableObject
     public static int currentCharacterDurability;
     
     [Header("Enemy Names")]
-    public const string clown = "Clown(Clone)";
-    public const string monster = "Monster(Clone)";
-    public const string prisoner = "PrisonerZombie(Clone)";
-    public const string pedroso = "Pedroso(Clone)";
-    public const string cop = "Cop(Clone)";
-    public const string ortiz = "Ortiz(Clone)";
-    public const string skeleton = "Skeleton(Clone)";
-    public const string uriel = "Uriel(Clone)";
-    public const string goblin = "Goblin(Clone)";
-    public const string laygo = "Laygo(Clone)";
+    public const string chibi = "Chibi(Clone)";
+    public const string mino = "Mino(Clone)";
+    public const string bigMonster = "BigMonster(Clone)";
+    public const string orc = "Orc(Clone)";
+    public const string beholder = "Beholder(Clone)";
+    public const string femaleZombie = "FemaleZombi(Clone)";
+    public const string doctor = "Doctor(Clone)";
+    public const string giant = "Giant(Clone)";
+    public const string bone = "Bone(Clone)";
+    public const string clothyBone = "ClothyBone(Clone)";
+    public const string chestMonster = "ChestMonster(Clone)";
+    public const string chestMonster2 = "ChestMonster2(Clone)";
 
 
     [Header("Player Level Spawns")]

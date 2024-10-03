@@ -791,6 +791,7 @@ public class SceneController : MonoBehaviour
 
         
         DestroySingletonObjects();
+
         if (levelData.currentLevel == LevelData.Levels.Level1)
         {
             LevelData.currentLevelCount = 0;
@@ -1266,6 +1267,7 @@ public class SceneController : MonoBehaviour
         FanceWooden,
         LevelUpKey,
         EnemyTriggerBox,
+        BossTriggerBox,
         
 
         Tree,

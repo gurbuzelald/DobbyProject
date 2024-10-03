@@ -24,7 +24,10 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
         _enemyData.isDying = false;
         _enemyData.isWalking = true;
         _animationCount = 0;
+        SetAnimator();
     }
+
+    
 
     public void SetAnimator()
     {

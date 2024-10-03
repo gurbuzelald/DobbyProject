@@ -169,46 +169,51 @@ public class BulletData : ScriptableObject
 
     [Header("Enemy Bullet Damages")]
     public int currentEnemyBulletDamage;
-    public int clownEnemyBulletDamage;
-    public int monsterEnemyBulletDamage;
-    public int prisonerEnemyBulletDamage;
-    public int pedrosoEnemyBulletDamage;
-    public int copEnemyBulletDamage;
+    public int chibiEnemyBulletDamage;
+    public int minoEnemyBulletDamage;
+    public int bigMonsterEnemyBulletDamage;
+    public int orcEnemyBulletDamage;
+    public int boneEnemyBulletDamage;
     public int morakEnemyBulletDamage;
-    public int ortizEnemyBulletDamage;
-    public int skeletonEnemyBulletDamage;
-    public int urielEnemyBulletDamage;
-    public int goblinEnemyBulletDamage;
-    public int laygoEnemyBulletDamage;
+    public int beholderEnemyBulletDamage;
+    public int femaleZombieEnemyBulletDamage;
+    public int doctorEnemyBulletDamage;
+    public int giantEnemyBulletDamage;
+    public int clothyBoneEnemyBulletDamage;
+    public int chestMonsterEnemyBulletDamage;
+    public int chestMonster2EnemyBulletDamage;
 
     [Header("Enemy Attack Damages")]
     public int currentEnemyAttackDamage;
-    public int clownEnemyAttackDamage;
-    public int monsterEnemyAttackDamage;
-    public int prisonerEnemyAttackDamage;
-    public int pedrosoEnemyAttackDamage;
-    public int copEnemyAttackDamage;
+    public int chibiEnemyAttackDamage;
+    public int minoEnemyAttackDamage;
+    public int bigMonsterEnemyAttackDamage;
+    public int orcEnemyAttackDamage;
+    public int boneEnemyAttackDamage;
     public int morakEnemyAttackDamage;
-    public int ortizEnemyAttackDamage;
-    public int skeletonEnemyAttackDamage;
-    public int urielEnemyAttackDamage;
-    public int goblinEnemyAttackDamage;
-    public int laygoEnemyAttackDamage;
+    public int beholderEnemyAttackDamage;
+    public int femaleZombieEnemyAttackDamage;
+    public int doctorEnemyAttackDamage;
+    public int giantEnemyAttackDamage;
+    public int clothyBoneEnemyAttackDamage;
+    public int chestMonsterEnemyAttackDamage;
+    public int chestMonster2EnemyAttackDamage;
 
 
     [Header("Enemy Collision Damages")]
     public int currentEnemyCollisionDamage;
-    public int clownEnemyCollisionDamage;
-    public int monsterEnemyCollisionDamage;
-    public int prisonerEnemyCollisionDamage;
-    public int pedrosoEnemyCollisionDamage;
-    public int copEnemyCollisionDamage;
-    public int morakEnemyCollisionDamage;
-    public int ortizEnemyCollisionDamage;
-    public int skeletonEnemyCollisionDamage;
-    public int urielEnemyCollisionDamage;
-    public int goblinEnemyCollisionDamage;
-    public int laygoEnemyCollisionDamage;
+    public int chibiEnemyCollisionDamage;
+    public int minoEnemyCollisionDamage;
+    public int bigMonsterEnemyCollisionDamage;
+    public int orcEnemyCollisionDamage;
+    public int beholderEnemyCollisionDamage;
+    public int femaleZombieEnemyCollisionDamage;
+    public int doctorEnemyCollisionDamage;
+    public int giantEnemyCollisionDamage;
+    public int boneEnemyCollisionDamage;
+    public int clothyBoneEnemyCollisionDamage;
+    public int chestMonsterEnemyCollisionDamage;
+    public int chestMonster2EnemyCollisionDamage;
 
 
     public enum WeaponNames

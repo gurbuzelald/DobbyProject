@@ -130,16 +130,16 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         inputMovement = new InputMovement();
         playerInterfaces = new PlayerInterfaces();
 
-        playerManager = gameObject.GetComponent<PlayerManager>(); 
-        GetInstance.gameObject.GetComponent<Rigidbody>().isKinematic = false ;
+        playerManager = gameObject.GetComponent<PlayerManager>();
+        if (gameObject.GetComponent<Rigidbody>())
+        {
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
+        }
 
         if (GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>())
         {
             messageText = GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>();
         }
-
-
-        _playerData.decreaseCounter = 0;
         InitStates();
         //Scripts
         _playerController = FindObjectOfType<PlayerController>();
@@ -169,8 +169,11 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     private void SpawnPlayerObject()
     {
-        transform.position =
+        if (_playerData)
+        {
+            transform.position =
             _playerData.playerSpawns.GetChild(LevelData.currentLevelCount).transform.position;
+        }        
     }
     void FixedUpdate()
     {
@@ -509,6 +512,18 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         if (other.CompareTag(SceneController.Tags.EnemyTriggerBox.ToString()))
         {
             SetTrueEnemy(other);
+
+            SetTrueChestMonster(other);
+
+            Destroy(other.gameObject);
+        }
+        if (other.CompareTag(SceneController.Tags.BossTriggerBox.ToString()))
+        {
+            SetTrueBoss(other);
+            for (int i = 0; i < EnemySpawner.bossEnemyBoxes.Length; i++)
+            {
+                Destroy(EnemySpawner.bossEnemyBoxes[i]);
+            }
         }
 
 
@@ -527,15 +542,13 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 enemyBulletData.currentEnemyBulletDamage,
                 ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
-            //Touch ParticleEffect
-            //ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
-
             GameObject particleObject = null;
 
             if (particleObject == null)
             {
-                particleObject = _objectPool.GetComponent<ObjectPool>().GetPooledObject(13);
+                particleObject = _objectPool.GetComponent<ObjectPool>().GetPooledObject(14);
                 particleObject.transform.position = _particleTransform.transform.position;
+                StartCoroutine(DelaySetActiveFalseParticle(particleObject, .2f));
             }
         }
 
@@ -592,27 +605,56 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
-                currentEnemyObjects.gameObject.transform.GetChild(1).GetComponent<EnemyAnimationController>().SetAnimator();
+                //currentEnemyObjects.gameObject.transform.GetChild(1).GetComponent<EnemyAnimationController>().SetAnimator();
                 currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
                 currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(i).position.x,
-                                                                     2f,
+                                                                     1f,
                                                                      other.gameObject.transform.GetChild(i).position.z);
             }
         }
 
     }
-
-
-
-
-
-    IEnumerator DelaySetActiveFalseParticle(GameObject particleObject, float delayValue)
+    public void SetTrueBoss(Collider other)
     {
-        yield return new WaitForSeconds(delayValue);
-        particleObject.SetActive(false);
+        if (_objectPool)
+        {
+            for (int i = 0; i < other.gameObject.transform.childCount; i++)
+            {
+                GameObject currentEnemyObjects = _objectPool.GetPooledObject(18);
+
+                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
+                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
+                //currentEnemyObjects.gameObject.transform.GetChild(1).GetComponent<EnemyAnimationController>().SetAnimator();
+                currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
+                currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(i).position.x,
+                                                                     .5f,
+                                                                     other.gameObject.transform.GetChild(i).position.z);
+                currentEnemyObjects.transform.localScale = new Vector3(currentEnemyObjects.transform.localScale.x*2,
+                                                                       currentEnemyObjects.transform.localScale.y*2,
+                                                                       currentEnemyObjects.transform.localScale.z*2);
+            }
+        }
+
     }
+    public void SetTrueChestMonster(Collider other)
+    {
+        if (_objectPool)
+        {
+            GameObject currentEnemyObjects = _objectPool.GetPooledObject(19);
 
+            currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = 0;
+            currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = 0;
+            //currentEnemyObjects.gameObject.transform.GetChild(1).GetComponent<EnemyAnimationController>().SetAnimator();
+            currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
+            currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(0).position.x,
+                                                                 .5f,
+                                                                 other.gameObject.transform.GetChild(0).position.z);
+            currentEnemyObjects.transform.localScale = new Vector3(currentEnemyObjects.transform.localScale.x * 2,
+                                                                   currentEnemyObjects.transform.localScale.y * 2,
+                                                                   currentEnemyObjects.transform.localScale.z * 2);
+        }
 
+    }
     #region //Move and Rotation
     private void Movement(PlayerData _playerData)
     {
@@ -704,9 +746,11 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     //Init
     private void InitStates()
     {
-        _levelData.currentEnemyDetectionDistance = _levelData.enemyDetectionDistances[LevelData.currentLevelCount];
+        if (_levelData)
+        {
+            _levelData.currentEnemyDetectionDistance = _levelData.enemyDetectionDistances[LevelData.currentLevelCount];
+        }        
 
-        _playerData.damageHealthText = GameObject.Find("DamageHealthText").GetComponent<TextMeshProUGUI>();
         playerTransform = GetInstance.GetComponent<Transform>();
 
         playerInterfaces.iPlayerShoot = GetComponent<IPlayerShoot>();
@@ -721,6 +765,10 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         if (_playerData)
         {
+            _playerData.damageHealthText = GameObject.Find("DamageHealthText").GetComponent<TextMeshProUGUI>();
+
+            _playerData.decreaseCounter = 0;
+
             _playerData.bulletPackAmount = 2;
 
             _playerData.isTouchableSkate = true;
@@ -747,12 +795,43 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                                  ref _topCanvasHealthBarObject, 
                                  ref bulletAmountCanvas,
                                  ref _initPlayerSpeed);
-            playerObjects.healthBarSlider = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>();
 
-            bulletAmountText = bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>();
-            bulletPackAmountText = bulletAmountCanvas.transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>();
-            _topCanvasHealthBarSlider = _topCanvasHealthBarObject.GetComponent<Slider>();
-            playerObjects.characterAnimator = GetInstance.transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>();
+            if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>())
+            {
+                playerObjects.healthBarSlider = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>();
+            }
+
+            if (bulletAmountCanvas)
+            {
+                if (bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>())
+                {
+                    bulletAmountText = bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>();
+                }
+                if (bulletAmountCanvas.transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>())
+                {
+                    bulletPackAmountText = bulletAmountCanvas.transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>();
+                }
+            }
+
+            if (_topCanvasHealthBarObject)
+            {
+                _topCanvasHealthBarSlider = _topCanvasHealthBarObject.GetComponent<Slider>();
+            }
+
+            if (transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>())
+            {
+                if (transform.GetChild(1))
+                {
+                    if (transform.GetChild(1).GetChild(0))
+                    {
+                        if (transform.GetChild(1).GetChild(0).gameObject != null)
+                        {
+                            playerObjects.characterAnimator = transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>();
+                        }
+                    }
+                }
+            }
+
         }
 
     }

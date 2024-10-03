@@ -57,49 +57,57 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
         switch (_enemyManager.enemyData.currentEnemyName)
         {
 
-            case PlayerData.clown:
-                bulletData.currentEnemyBulletDamage = bulletData.clownEnemyBulletDamage;
-                bulletData.currentEnemyAttackDamage = bulletData.clownEnemyAttackDamage;
+            case PlayerData.chibi:
+                bulletData.currentEnemyBulletDamage = bulletData.chibiEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.chibiEnemyAttackDamage;
                 break;
-            case PlayerData.monster:
-                bulletData.currentEnemyBulletDamage = bulletData.monsterEnemyBulletDamage;
-                bulletData.currentEnemyAttackDamage = bulletData.monsterEnemyAttackDamage;
+            case PlayerData.mino:
+                bulletData.currentEnemyBulletDamage = bulletData.minoEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.minoEnemyAttackDamage;
                 break;
-            case PlayerData.prisoner:
-                bulletData.currentEnemyBulletDamage = bulletData.prisonerEnemyBulletDamage;
-                bulletData.currentEnemyAttackDamage = bulletData.prisonerEnemyAttackDamage;
+            case PlayerData.bigMonster:
+                bulletData.currentEnemyBulletDamage = bulletData.bigMonsterEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.bigMonsterEnemyAttackDamage;
                 break;
-            case PlayerData.pedroso:
-                bulletData.currentEnemyBulletDamage = bulletData.pedrosoEnemyBulletDamage;
-                bulletData.currentEnemyAttackDamage = bulletData.pedrosoEnemyAttackDamage;
+            case PlayerData.orc:
+                bulletData.currentEnemyBulletDamage = bulletData.orcEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.orcEnemyAttackDamage;
                 break;
-            case PlayerData.ortiz:
-                bulletData.currentEnemyBulletDamage = bulletData.ortizEnemyBulletDamage;
-                bulletData.currentEnemyAttackDamage = bulletData.ortizEnemyAttackDamage;
+            case PlayerData.beholder:
+                bulletData.currentEnemyBulletDamage = bulletData.beholderEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.beholderEnemyAttackDamage;
                 break;
-            case PlayerData.skeleton:
-                bulletData.currentEnemyBulletDamage = bulletData.skeletonEnemyBulletDamage;
-                bulletData.currentEnemyAttackDamage = bulletData.skeletonEnemyAttackDamage;
+            case PlayerData.femaleZombie:
+                bulletData.currentEnemyBulletDamage = bulletData.femaleZombieEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.femaleZombieEnemyAttackDamage;
                 break;
-            case PlayerData.uriel:
-                bulletData.currentEnemyBulletDamage = bulletData.urielEnemyBulletDamage;
-                bulletData.currentEnemyAttackDamage = bulletData.urielEnemyAttackDamage;
+            case PlayerData.doctor:
+                bulletData.currentEnemyBulletDamage = bulletData.doctorEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.doctorEnemyAttackDamage;
                 break;
-            case PlayerData.goblin:
-                bulletData.currentEnemyBulletDamage = bulletData.goblinEnemyBulletDamage;
-                bulletData.currentEnemyAttackDamage = bulletData.goblinEnemyAttackDamage;
+            case PlayerData.giant:
+                bulletData.currentEnemyBulletDamage = bulletData.giantEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.giantEnemyAttackDamage;
                 break;
-            case PlayerData.cop:
-                bulletData.currentEnemyBulletDamage = bulletData.copEnemyBulletDamage;
-                bulletData.currentEnemyAttackDamage = bulletData.copEnemyAttackDamage;
+            case PlayerData.bone:
+                bulletData.currentEnemyBulletDamage = bulletData.boneEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.boneEnemyAttackDamage;
                 break;
-            case PlayerData.laygo:
-                bulletData.currentEnemyBulletDamage = bulletData.laygoEnemyBulletDamage;
-                bulletData.currentEnemyAttackDamage = bulletData.laygoEnemyAttackDamage;
+            case PlayerData.clothyBone:
+                bulletData.currentEnemyBulletDamage = bulletData.clothyBoneEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.clothyBoneEnemyAttackDamage;
+                break;
+            case PlayerData.chestMonster:
+                bulletData.currentEnemyBulletDamage = bulletData.chestMonsterEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.chestMonsterEnemyAttackDamage;
+                break;
+            case PlayerData.chestMonster2:
+                bulletData.currentEnemyBulletDamage = bulletData.chestMonster2EnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.chestMonster2EnemyAttackDamage;
                 break;
             default:
-                bulletData.currentEnemyBulletDamage = bulletData.clownEnemyBulletDamage;
-                bulletData.currentEnemyAttackDamage = bulletData.clownEnemyAttackDamage;
+                bulletData.currentEnemyBulletDamage = bulletData.chibiEnemyBulletDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.chibiEnemyAttackDamage;
                 break;
         }
     }
@@ -151,38 +159,38 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     {
         switch (enemyData.currentEnemyName)
         {
-            case PlayerData.clown:
-                bulletData.currentEnemyAttackDamage = bulletData.clownEnemyAttackDamage;
+            case PlayerData.chibi:
+                bulletData.currentEnemyAttackDamage = bulletData.chibiEnemyAttackDamage;
                 break;
-            case PlayerData.monster:
-                bulletData.currentEnemyBulletDamage = bulletData.monsterEnemyAttackDamage;
+            case PlayerData.mino:
+                bulletData.currentEnemyBulletDamage = bulletData.minoEnemyAttackDamage;
                 break;
-            case PlayerData.prisoner:
-                bulletData.currentEnemyBulletDamage = bulletData.prisonerEnemyAttackDamage;
+            case PlayerData.bigMonster:
+                bulletData.currentEnemyBulletDamage = bulletData.bigMonsterEnemyAttackDamage;
                 break;
-            case PlayerData.pedroso:
-                bulletData.currentEnemyBulletDamage = bulletData.pedrosoEnemyAttackDamage;
+            case PlayerData.orc:
+                bulletData.currentEnemyBulletDamage = bulletData.orcEnemyAttackDamage;
                 break;
-            case PlayerData.ortiz:
-                bulletData.currentEnemyBulletDamage = bulletData.ortizEnemyAttackDamage;
+            case PlayerData.beholder:
+                bulletData.currentEnemyBulletDamage = bulletData.beholderEnemyAttackDamage;
                 break;
-            case PlayerData.skeleton:
-                bulletData.currentEnemyBulletDamage = bulletData.skeletonEnemyAttackDamage;
+            case PlayerData.femaleZombie:
+                bulletData.currentEnemyBulletDamage = bulletData.femaleZombieEnemyAttackDamage;
                 break;
-            case PlayerData.uriel:
-                bulletData.currentEnemyBulletDamage = bulletData.urielEnemyAttackDamage;
+            case PlayerData.doctor:
+                bulletData.currentEnemyBulletDamage = bulletData.doctorEnemyAttackDamage;
                 break;
-            case PlayerData.goblin:
-                bulletData.currentEnemyBulletDamage = bulletData.goblinEnemyAttackDamage;
+            case PlayerData.giant:
+                bulletData.currentEnemyBulletDamage = bulletData.giantEnemyAttackDamage;
                 break;
-            case PlayerData.cop:
-                bulletData.currentEnemyBulletDamage = bulletData.copEnemyAttackDamage;
+            case PlayerData.bone:
+                bulletData.currentEnemyBulletDamage = bulletData.boneEnemyAttackDamage;
                 break;
-            case PlayerData.laygo:
-                bulletData.currentEnemyBulletDamage = bulletData.laygoEnemyAttackDamage;
+            case PlayerData.clothyBone:
+                bulletData.currentEnemyBulletDamage = bulletData.clothyBoneEnemyAttackDamage;
                 break;
             default:
-                bulletData.currentEnemyAttackDamage = bulletData.clownEnemyAttackDamage;
+                bulletData.currentEnemyAttackDamage = bulletData.chibiEnemyAttackDamage;
                 break;
         }
     }

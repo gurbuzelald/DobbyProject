@@ -196,8 +196,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 bulletData.isFirable = true;
 
-                if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > 0.1f) &&
-                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < levelData.currentEnemyDetectionDistance) &&
+                if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) > .5f) &&
+                    (Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) < levelData.currentEnemyDetectionDistance*3) &&
                     enemyData.isWalkable && !enemyData.isDying && !enemyData.isSpeedZero)
                 {
                     enemyData.enemySpeed = _initSpeed;
@@ -208,8 +208,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
                     Movement(clownSpawner.targetTransform, _initTransform, gameObject.transform, enemyData.enemySpeed, playerData, enemyData);
                 }
-                else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) <= 0.1f) && !enemyData.isDying &&
-                          playerData.isPlayable)
+                else if ((Vector3.Distance(gameObject.transform.position, PlayerManager.GetInstance.gameObject.transform.position) <= .5f) &&
+                    !enemyData.isDying && playerData.isPlayable)
                 {
                     enemyData.isAttacking = true;
 
@@ -218,7 +218,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     enemyData.currentEnemyName = gameObject.name;
 
                     enemyData.isWalking = false;
-                    enemyData.isDying = false;
                     enemyData.isFiring = false;
                     
                     //When Enemy touched player, enemy will get a animation to here.
@@ -229,8 +228,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 {
                     enemyData.isFiring = true;
                     enemyData.isAttacking = false;
-                    enemyData.isDying = false;
-                    //enemyData.isWalking = false;
+                    enemyData.isWalking = false;
 
                 }
                 else
@@ -290,7 +288,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.ak47Power / 4;
             }
-            else if (gameObject.transform.name == PlayerData.laygo)
+            else if (gameObject.transform.name == PlayerData.clothyBone)
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.ak47Power / 2;
             }
@@ -306,7 +304,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.m4a4Power / 4;
             }
-            else if (gameObject.transform.name == PlayerData.laygo)
+            else if (gameObject.transform.name == PlayerData.clothyBone)
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.m4a4Power / 2;
             }
@@ -321,7 +319,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.bulldogPower / 4;
             }
-            else if (gameObject.transform.name == PlayerData.laygo)
+            else if (gameObject.transform.name == PlayerData.clothyBone)
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.bulldogPower / 2;
             }
@@ -336,7 +334,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.cowPower / 4;
             }
-            else if (gameObject.transform.name == PlayerData.laygo)
+            else if (gameObject.transform.name == PlayerData.clothyBone)
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.cowPower / 2;
             }
@@ -351,7 +349,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.crystalPower / 4;
             }
-            else if (gameObject.transform.name == PlayerData.laygo)
+            else if (gameObject.transform.name == PlayerData.clothyBone)
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.crystalPower / 2;
             }
@@ -366,7 +364,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.demonPower / 4;
             }
-            else if (gameObject.transform.name == PlayerData.laygo)
+            else if (gameObject.transform.name == PlayerData.clothyBone)
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.demonPower / 2;
             }
@@ -381,7 +379,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.icePower / 4;
             }
-            else if (gameObject.transform.name == PlayerData.laygo)
+            else if (gameObject.transform.name == PlayerData.clothyBone)
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.icePower / 2;
             }
@@ -396,7 +394,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.electroPower / 4;
             }
-            else if (gameObject.transform.name == PlayerData.laygo)
+            else if (gameObject.transform.name == PlayerData.clothyBone)
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.electroPower / 2;
             }
@@ -411,7 +409,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.axePower / 4;
             }
-            else if (gameObject.transform.name == PlayerData.laygo)
+            else if (gameObject.transform.name == PlayerData.clothyBone)
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.axePower / 2;
             }
@@ -426,7 +424,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.pistolPower / 4;
             }
-            else if (gameObject.transform.name == PlayerData.laygo)
+            else if (gameObject.transform.name == PlayerData.clothyBone)
             {
                 enemyData.bulletDamageValue = PlayerManager.GetInstance._bulletData.pistolPower / 2;
             }
@@ -500,7 +498,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
 
-        if (_healthBar != null)
+        if (_healthBar != null && !enemyData.isDying)
         {
             if (_healthBarSlider.value <= 0)
             {
@@ -579,7 +577,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         gameObject.transform.LookAt(clownSpawner.targetTransform.position);
 
-        if (_healthBar != null)
+        if (_healthBar != null && !enemyData.isDying)
         {
             if (_healthBarSlider.value <= 0)
             {
@@ -678,50 +676,65 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             if (objectPoolValue == 8)
             {
                 GameObject particleObject = null;
-                particleObject = objectPool.GetPooledObject(8);
-                particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
-                                                                   other.gameObject.transform.position.y + .08f,
-                                                                   other.gameObject.transform.position.z);
+                if (particleObject == null)
+                {
+                    particleObject = objectPool.GetPooledObject(8);
+                    particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+                                                                       other.gameObject.transform.position.y + .08f,
+                                                                       other.gameObject.transform.position.z);
+                }                
 
                 StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject));
             }
             else if (objectPoolValue == 9)
             {
                 GameObject particleObject = null;
-                particleObject = objectPool.GetPooledObject(9);
-                particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
-                                                                   other.gameObject.transform.position.y + .08f,
-                                                                   other.gameObject.transform.position.z);
+                if (particleObject == null)
+                {
+                    particleObject = objectPool.GetPooledObject(9);
+                    particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+                                                                       other.gameObject.transform.position.y + .08f,
+                                                                       other.gameObject.transform.position.z);
+                }
 
                 StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject));
             }
             else if (objectPoolValue == 10)
             {
                 GameObject particleObject = null;
-                particleObject = objectPool.GetPooledObject(10);
-                particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
-                                                                   other.gameObject.transform.position.y + .08f,
-                                                                   other.gameObject.transform.position.z);
+                if (particleObject == null)
+                {
+                    particleObject = objectPool.GetPooledObject(10);
+                    particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+                                                                       other.gameObject.transform.position.y + .08f,
+                                                                       other.gameObject.transform.position.z);
+                }                
 
                 StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject));
             }
             else if (objectPoolValue == 11)
             {
                 GameObject particleObject = null;
-                particleObject = objectPool.GetPooledObject(11);
-                particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
-                                                                   other.gameObject.transform.position.y + .08f,
-                                                                   other.gameObject.transform.position.z);
+                if (particleObject == null)
+                {
+                    particleObject = objectPool.GetPooledObject(11);
+                    particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+                                                                       other.gameObject.transform.position.y + .08f,
+                                                                       other.gameObject.transform.position.z);
+                }                
 
                 StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject));
             }
             else if (objectPoolValue == 12)
             {
                 GameObject particleObject = null;
-                particleObject = objectPool.GetPooledObject(12);
-                particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
-                                                                   other.gameObject.transform.position.y + .08f,
-                                                                   other.gameObject.transform.position.z);
+                if (particleObject == null)
+                {
+                    particleObject = objectPool.GetPooledObject(12);
+                    particleObject.transform.position = new Vector3(other.gameObject.transform.position.x,
+                                                                       other.gameObject.transform.position.y + .08f,
+                                                                       other.gameObject.transform.position.z);
+                }                
 
                 StartCoroutine(DelaySetActiveFalseBulletOrSword(particleObject));
             }

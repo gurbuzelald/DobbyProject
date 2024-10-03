@@ -65,7 +65,7 @@ public class MapController : MonoBehaviour
     {
         if (levelData)
         {
-            RenderSettings.skybox = levelData.levelSkyboxes[levelCount];
+            //RenderSettings.skybox = levelData.levelSkyboxes[levelCount];
         }
     }
 }

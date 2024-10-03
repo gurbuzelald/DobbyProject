@@ -27,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Transform _bulletCoinSpawn;
 
     private GameObject bossEnemyTransformObject;//For Checking Boss is Dead OR Not
+    public static GameObject[] bossEnemyBoxes = new GameObject[2];
 
     public static bool bossIsDead;
 
@@ -50,7 +51,19 @@ public class EnemySpawner : MonoBehaviour
         if (GameObject.Find("bossEnemyTransform"))
         {
             bossEnemyTransformObject = GameObject.Find("bossEnemyTransform");
-        }        
+        }
+        if (GameObject.Find("bossEnemyBox"))
+        {
+            bossEnemyBoxes[0] = GameObject.Find("bossEnemyBox");
+        }
+        if (GameObject.Find("bossEnemyBox1"))
+        {
+            bossEnemyBoxes[1] = GameObject.Find("bossEnemyBox1");
+        }
+        else
+        {
+            bossEnemyBoxes[1] = GameObject.Find("bossEnemyBox");
+        }
 
         /*for (int i = 0; i < enemyTransformsObject.transform.childCount; i++)
         {
@@ -159,11 +172,15 @@ public class EnemySpawner : MonoBehaviour
     {
         CheckEnemyDeath();
 
-        if (bossEnemyTransformObject.transform.childCount == 0 ||
-            (bossEnemyTransformObject.transform.childCount == 1 && bossEnemyTransformObject.transform.GetChild(0).name == "Bullet(Clone)"))
+        if (bossEnemyTransformObject != null)
         {
-            bossIsDead = true;
-        }
+            if (bossEnemyTransformObject.transform.childCount == 0 ||
+                (bossEnemyTransformObject.transform.childCount == 1 &&
+                bossEnemyTransformObject.transform.GetChild(0).name == "Bullet(Clone)"))
+            {
+                bossIsDead = true;
+            }
+        }        
     }
     void CheckEnemyDeath()
     {
