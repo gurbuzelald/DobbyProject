@@ -13,6 +13,14 @@ public class LevelData : ScriptableObject
         public bool isBossEnemyDead;
     }
 
+
+    public GameObject _rotaterCoinObject;
+    public GameObject _rotaterBulletCoinObject;
+    public GameObject _coinGroupObject;
+    public GameObject _cheeseObject;
+    public GameObject _mushroomObject;
+    public GameObject _levelUpKeyObject;
+
     public static int highestLevel;
 
     public static int currentLevelUpRequirement;
@@ -37,7 +45,7 @@ public class LevelData : ScriptableObject
 
     [Header("Coin Transforms")]
     public GameObject[] mapCoins;
-    public GameObject[] _healtCoinTransform;
+    public GameObject[] levelRectangles;
     public GameObject _healtCoinObject;
 
     [Header("Map Objects")]

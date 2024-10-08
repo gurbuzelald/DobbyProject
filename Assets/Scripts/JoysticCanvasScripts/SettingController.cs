@@ -49,6 +49,8 @@ public class SettingController : MonoBehaviour
 
         _sensivityX.value = PlayerPrefs.GetFloat("SensivityX");
         _sensivityY.value = PlayerPrefs.GetFloat("SensivityY");
+        playerData.sensivityX = _sensivityX.value;
+        playerData.sensivityY = _sensivityY.value;
     }
     private void OnEnable()
     {
@@ -119,6 +121,9 @@ public class SettingController : MonoBehaviour
 
         _sensivityXText.text = playerData.sensivityX.ToString();
         _sensivityYText.text = playerData.sensivityY.ToString();
+
+        PlayerPrefs.SetFloat("SensivityX", _sensivityX.value);
+        PlayerPrefs.SetFloat("SensivityY", _sensivityY.value);
     }
     public void ClickSettingButton()
     {

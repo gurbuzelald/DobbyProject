@@ -32,25 +32,53 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    public virtual void CreateBullet(Transform bulletSpawn, float bulletSpeed, int objectpoolCount, ObjectPool objectPool,float delayCreate, float delayDestroy)
+    // Oyuncu mermisi üretimi
+    public virtual void CreatePlayerBullet(Transform bulletSpawn, float bulletSpeed, int objectpoolCount,
+        ObjectPool objectPool, float delayCreate, float delayDestroy)
     {
-        StartCoroutine(DelayCreate(bulletSpawn, bulletSpeed, objectpoolCount, objectPool, delayCreate, delayDestroy));
+        StartCoroutine(DelayBulletCreate<ObjectPool>(bulletSpawn, bulletSpeed, objectpoolCount, objectPool, delayCreate, delayDestroy));
     }
-    public IEnumerator DelaySpawn(GameObject bulletObject, Transform bulletSpawn, float delayDestroy)
-    {
-        yield return new WaitForSeconds(delayDestroy);
-        bulletObject.transform.rotation = bulletSpawn.rotation;
 
-        bulletObject.SetActive(false);
-    }
-    public IEnumerator DelayCreate(Transform bulletSpawn, float bulletSpeed,  int objectpoolCount, ObjectPool objectPool, float delayCreate, float delayDestroy)
+    // Düşman mermisi üretimi
+    public virtual void CreateEnemyBullet(Transform bulletSpawn, float bulletSpeed, int objectpoolCount, EnemyObjectPool objectPool, float delayCreate, float delayDestroy)
     {
+        StartCoroutine(DelayBulletCreate<EnemyObjectPool>(bulletSpawn, bulletSpeed, objectpoolCount, objectPool, delayCreate, delayDestroy));
+    }
+
+    // Ortak bir coroutine oluşturup hem ObjectPool hem de EnemyObjectPool için kullanıyoruz
+    private IEnumerator DelayBulletCreate<T>(Transform bulletSpawn, float bulletSpeed, int objectpoolCount, T objectPool, float delayCreate, float delayDestroy) where T : Component
+    {
+        // Belirtilen süre kadar bekle
         yield return new WaitForSeconds(delayCreate);
-        GameObject bulletObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(objectpoolCount);
-        bulletObject.transform.position = gameObject.transform.position;
+
+        // ObjectPool ya da EnemyObjectPool içindeki GetPooledObject metodunu çağırıyoruz
+        GameObject bulletObject = (objectPool as ObjectPool)?.GetPooledObject(objectpoolCount) ??
+                                  (objectPool as EnemyObjectPool)?.GetPooledObject(objectpoolCount);
+
+        if (bulletObject == null) yield break; // Havuzda geçerli bir obje yoksa çık
+
+        // Mermiyi uygun pozisyon ve rotasyonla yerleştir
+        bulletObject.transform.position = bulletSpawn.position;
         bulletObject.transform.rotation = bulletSpawn.rotation;
 
-        bulletObject.GetComponent<Rigidbody>().velocity = (bulletSpawn.TransformDirection(Vector3.forward * bulletSpeed));
+        // Mermiyi hızlandır
+        Rigidbody bulletRigidbody = bulletObject.GetComponent<Rigidbody>();
+        if (bulletRigidbody != null)
+        {
+            bulletRigidbody.velocity = bulletSpawn.TransformDirection(Vector3.forward * bulletSpeed);
+        }
+
+        // Belirli bir süre sonra mermiyi devre dışı bırak
         StartCoroutine(DelaySpawn(bulletObject, bulletSpawn, delayDestroy));
+    }
+
+    // Merminin devre dışı bırakılması
+    private IEnumerator DelaySpawn(GameObject bulletObject, Transform bulletSpawn, float delayDestroy)
+    {
+        // Belirtilen süre kadar bekle
+        yield return new WaitForSeconds(delayDestroy);
+
+        // Mermiyi devre dışı bırak
+        bulletObject.SetActive(false);
     }
 }

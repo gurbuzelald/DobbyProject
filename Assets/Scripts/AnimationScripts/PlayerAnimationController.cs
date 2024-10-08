@@ -34,14 +34,16 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
         IdleAnimation(playerData, _animator);
         JumpAnimation(playerData, _animator);
         WalkAnimation(playerData, _animator);
-        ClimbAnimation(playerData, _animator);
         FireNonWalkAnimation(playerData, _animator);
         SwordAnimation(playerData, _animator);
         DeathAnimation(playerData, _animator);
         VictoryAnimation(playerData, _animator);
-        SkateBoardAnimation(playerData, _animator);
         RunAnimation(playerData, _animator);
         PickRotateAnimation(playerData, _animator);
 
+    }
+    public void SwordAnimationCompleted()
+    {
+        playerData.isSwordAnimate = false;
     }
 }

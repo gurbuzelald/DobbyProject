@@ -5,13 +5,30 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
-    [Header("Explosion Particles")]
-    public GameObject currentBulletExplosionParticle;
 
-    public GameObject currentSwordBulletExplosionParticle;
+    [Header("Player Object Pool IDs")]
+    public int playerWeaponBulletObjectPoolCount;//0
+    public int playerSwordBulletObjectPoolCount;//1
+    public int destroyCoinParticleObjectPoolCount;//2
+    public int destroyBulletCoinParticleObjectPoolCount;//3
+    public int destroyHealthCoinObjectPoolCount;//4
+    public int destroyMushroomCoinObjectPoolCount;//5
+    public int playerBulletsExplosionObjectPoolCount;//6
+    public int playerSwordExplosionObjectPoolCount;//7
+    public int playerBurningTouchParticleObjectPoolCount;//8
+    public int playerTouchParticleObjectPoolCount;//9
+    public int deathParticleObjectPoolCount;//10
 
-    [Header("Menu Map")]
-    public GameObject menuMap;
+
+    //EnemyBullet = 0
+    [Header("Enemy Object Pool IDs")]
+    public int enemyBulletParticleObjectPoolCount;//0
+    public int enemyMidParticleObjectPoolCount;//1
+    public int enemyPrefabObjectPoolCount;//2
+    public int bossEnemyPrefabObjectPoolCount;//3
+    public int chestMonsterEnemyPrefabObjectPoolCount;//4
+    public int chestMonster2EnemyPrefabObjectPoolCount;//5
+
 
     [Header("Current Language")]
     public Languages currentLanguage;
@@ -200,6 +217,7 @@ public class PlayerData : ScriptableObject
     public bool isPicking;
     public bool isPickRotateCoin;
     public bool isSwordAnimate;
+    public bool isSword;
 
     [Header("CameraRotation Info")]
     public bool isLookingUp;
@@ -215,26 +233,19 @@ public class PlayerData : ScriptableObject
     public bool isFireWalkAnimation;
     public bool isFireAnimation;
     public bool isFireTime;
-    public bool isSwording;
-    public bool isSwordTime;
     public bool isJumping;
-    public bool isClickable;
     public int jumpCount;
     public int clickDoubleSpeedCount;
-    public bool extraSpeed;
-    public bool normalSpeed;
     public int clickTabCount;
     public int clickShiftCount;
     public int bulletAmount;
     public int bulletPackAmount;
-    public bool isTouchableSkate;
 
     [Header("Dance")]
     public float danceTime = 5f;
     public GameObject jolleenObject;
 
     [Header("Particle")]
-    public ParticleSystem skateboardParticle;
     public ParticleSystem touchParticle;
     public ParticleSystem birthParticle;
     public ParticleSystem deathParticle;
@@ -244,7 +255,6 @@ public class PlayerData : ScriptableObject
     public ParticleSystem destroyHealthCoinParticle;
     public ParticleSystem destroyBulletCoinParticle;
     public ParticleSystem destroyMushroomCoinParticle;
-    public ParticleSystem playerWalkingParticle;
     [Header("Particle Count Control")]
     public int particleCount;
     

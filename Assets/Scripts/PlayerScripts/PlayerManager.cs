@@ -9,11 +9,6 @@ using Random = UnityEngine.Random;
 
 public class PlayerManager : AbstractPlayer<PlayerManager>
 {
-    [HideInInspector]
-    public PlayerController _playerController;
-    [HideInInspector]
-    public ArrowRotationController _arrowRotationController;
-
     struct PlayerInterfaces
     {
         public IPlayerShoot iPlayerShoot;
@@ -35,13 +30,16 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         public float _touchY;
     }
     private InputMovement inputMovement;
-    public struct PlayerObjects
+    public struct PlayerComponents
     {
         public Rigidbody playerRigidbody;
         public Slider healthBarSlider;
         public Animator characterAnimator;
+        public PlayerController _playerController;
+        public Transform playerTransform;
+        public ArrowRotationController _arrowRotationController;
     }
-    public PlayerObjects playerObjects = new PlayerObjects();
+    public PlayerComponents playerComponents = new PlayerComponents();
 
 
     [HideInInspector]
@@ -76,7 +74,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     [SerializeField] public Transform healthBarTransform;
     [SerializeField] public Transform _bulletsSpawnTransform;
     [SerializeField] public Transform _cameraWasherTransform;
-    private Transform playerTransform;
 
     [HideInInspector]
     public Transform bulletCoinTransform;
@@ -91,6 +88,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
 
     public ObjectPool _objectPool;
+    public EnemyObjectPool _enemyObjectPool;
 
     [SerializeField] GameObject _damageArrow;
 
@@ -114,9 +112,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
     private TextMeshProUGUI messageText;
 
-
-    private PlayerManager playerManager;
-
     public float GetZValue()
     {
         return inputMovement._zValue;
@@ -127,100 +122,272 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     void Start()
     {
-        inputMovement = new InputMovement();
-        playerInterfaces = new PlayerInterfaces();
+        Interfaces();
+        InitStates();
+        SpawnPlayerObject();
 
-        playerManager = gameObject.GetComponent<PlayerManager>();
-        if (gameObject.GetComponent<Rigidbody>())
-        {
-            gameObject.GetComponent<Rigidbody>().isKinematic = false;
-        }
+        PlayerComponentsOnStart();
+    }
+
+    //Init
+    private void InitStates()
+    {
+        inputMovement = new InputMovement();
 
         if (GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>())
         {
             messageText = GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>();
         }
-        InitStates();
-        //Scripts
-        _playerController = FindObjectOfType<PlayerController>();
-        _arrowRotationController = FindObjectOfType<ArrowRotationController>();
-        //Audio
-        audioSource = GetComponent<AudioSource>();
-
-        
-
-        SpawnPlayerObject();
-
-        playerInterfaces.iPlayerTrigger.CheckAllWeaponsLocked(_bulletData);
-
-        //BirthParticle();
-    }
-    void BirthParticle()
-    {
-        GameObject particleObject = null;
-
-        if (particleObject == null)
+        if (FindObjectOfType<ArrowRotationController>())
         {
-            particleObject = _objectPool.GetComponent<ObjectPool>().GetPooledObject(14);
-            particleObject.transform.position = _particleTransform.transform.position;
+            playerComponents._arrowRotationController = FindObjectOfType<ArrowRotationController>();
+        }
 
-            StartCoroutine(DelaySetActiveFalseParticle(particleObject, 2f));
+        //Audio
+        if (GetComponent<AudioSource>())
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
+        if (_levelData)
+        {
+            _levelData.currentEnemyDetectionDistance = _levelData.enemyDetectionDistances[LevelData.currentLevelCount];
+        }
+
+        if (_playerData)
+        {
+            if (GameObject.Find("DamageHealthText"))
+            {
+                _playerData.damageHealthText = GameObject.Find("DamageHealthText").GetComponent<TextMeshProUGUI>();
+            }
+
+            _playerData.decreaseCounter = 0;
+
+            _playerData.bulletPackAmount = 2;
+
+            if (bulletAmountCanvas)
+            {
+                if (bulletAmountCanvas.transform.childCount >= 2)
+                {
+                    if (bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>())
+                    {
+                        bulletAmountText = bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>();
+                    }
+                    if (bulletAmountCanvas.transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>())
+                    {
+                        bulletPackAmountText = bulletAmountCanvas.transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>();
+                    }
+                }                
+            }
+
+            if (_topCanvasHealthBarObject)
+            {
+                _topCanvasHealthBarSlider = _topCanvasHealthBarObject.GetComponent<Slider>();
+            }
+        }
+    }
+    void PlayerComponentsOnStart()
+    {
+        if (GetComponent<Transform>())
+        {
+            playerComponents.playerTransform = GetComponent<Transform>();
+        }
+
+        if (gameObject.GetComponent<Rigidbody>())
+        {
+            playerComponents.playerRigidbody = GetComponent<Rigidbody>();
+
+            playerComponents.playerRigidbody.isKinematic = false;
+        }
+        if (FindObjectOfType<PlayerController>())
+        {
+            playerComponents._playerController = FindObjectOfType<PlayerController>();
+        }
+
+
+        if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>())
+        {
+            playerComponents.healthBarSlider = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>();
+        }
+
+        if (transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>())
+        {
+            if (transform.GetChild(1))
+            {
+                if (transform.GetChild(1).GetChild(0))
+                {
+                    if (transform.GetChild(1).GetChild(0).gameObject != null)
+                    {
+                        playerComponents.characterAnimator = transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>();
+                    }
+                }
+            }
+        }
+    }
+
+    void Interfaces()
+    {
+        
+        playerInterfaces = new PlayerInterfaces();
+        playerInterfaces.iPlayerShoot = GetComponent<IPlayerShoot>();
+        playerInterfaces.iPlayerCamera = GetComponent<IPlayerCamera>();
+        playerInterfaces.iPlayerInitial = GetComponent<IPlayerInitial>();
+        playerInterfaces.iPlayerTrigger = GetComponent<IPlayerTrigger>();
+        playerInterfaces.iPlayerTouch = GetComponent<IPlayerTouch>();
+        playerInterfaces.iPlayerScore = GetComponent<IPlayerScore>();
+        playerInterfaces.iPlayerHealth = GetComponent<IPlayerHealth>();
+        playerInterfaces.iPlayerMovement = GetComponent<IPlayerMovement>();
+        playerInterfaces.iPlayerRotation = GetComponent<IPlayerRotation>();
+
+        if (_bulletData)
+        {
+            if (playerInterfaces.iPlayerTrigger != null)
+            {
+                playerInterfaces.iPlayerTrigger.CheckAllWeaponsLocked(_bulletData);
+            }
+        }
+
+        if (playerInterfaces.iPlayerInitial != null)
+        {
+            if (_playerData)
+            {
+                playerInterfaces.iPlayerInitial.CreateCharacterObject(_playerData, ref characterObject);
+
+            }
+
+            playerInterfaces.iPlayerInitial.GetHandObjectsTransform(ref _coinObject, ref _cheeseObject);
+            if (_bulletData)
+            {
+                playerInterfaces.iPlayerInitial.GetWeaponTransform(_bulletData, ref _gunTransform);
+                playerInterfaces.iPlayerInitial.GetSwordTransform(_bulletData, ref _swordTransform);
+            }
+            if (_playerData)
+            {
+                playerInterfaces.iPlayerInitial.CreateStartPlayerStaff(_playerData,
+                                                  ref playerIconTransform,
+                                                  ref _bulletsSpawnTransform,
+                                                  ref _cameraWasherTransform, healthBarTransform,
+                                                  ref _healthBarObject,
+                                                  ref bulletAmountCanvas);
+            }
+            if (_levelData && _playerData && _bulletData)
+            {
+                playerInterfaces.iPlayerInitial.DataStatesOnInitial(_levelData, _playerData, _bulletData,
+                                 ref _healthBarObject,
+                                 ref _topCanvasHealthBarObject,
+                                 ref bulletAmountCanvas,
+                                 ref _initPlayerSpeed);
+            }
         }
     }
     private void SpawnPlayerObject()
     {
         if (_playerData)
         {
-            transform.position =
-            _playerData.playerSpawns.GetChild(LevelData.currentLevelCount).transform.position;
+            if (_playerData.playerSpawns.GetChild(LevelData.currentLevelCount))
+            {
+                transform.position =
+                    _playerData.playerSpawns.GetChild(LevelData.currentLevelCount).transform.position;
+            }            
         }        
     }
     void FixedUpdate()
     {
         // If the player is not in sword animation, allow firing
-        if (!_playerData.isSwordAnimate)
+        if (_playerData)
         {
-            playerInterfaces.iPlayerShoot.Fire(_playerData);
+            if (playerInterfaces.iPlayerShoot != null)
+            {
+                if (!_playerData.isSwordAnimate && _playerData)
+                {
+                    playerInterfaces.iPlayerShoot.Fire(_playerData);
+                }
+            }            
         }
+
 
         // Trigger sword action if both Z and X values are zero
-        if (GetZValue() == 0 && GetXValue() == 0)
+        if (playerInterfaces.iPlayerShoot != null)
         {
-            playerInterfaces.iPlayerShoot.Sword(_playerData);
+            if (_playerData)
+            {
+                if (GetZValue() == 0 && GetXValue() == 0)
+                {
+                    if (playerInterfaces.iPlayerShoot != null)
+                    {
+                        playerInterfaces.iPlayerShoot.Sword(_playerData);
+                    }                    
+                }
+            }
         }
+
 
         // Common conditions to reduce redundancy
-        bool canPlayActions = _playerData.isPlayable && !_playerData.isWinning;
-        bool fireActive = GetInstance._playerController.fire;
-
-        // Handle crosshair and firing related actions
-        if (canPlayActions && fireActive)
+        if (_playerData && bulletAmountCanvas && playerComponents._playerController)
         {
-            // Show crosshair with delay
-            StartCoroutine(playerInterfaces.iPlayerShoot.DelayShowingCrosshairAlpha(crosshairImage, 2f));
+            // Handle crosshair and firing related actions
+            if (_playerData.isPlayable && !_playerData.isWinning && playerComponents._playerController.fire)
+            {
+                // Show crosshair with delay
+                if (playerInterfaces.iPlayerShoot != null)
+                {
+                    if (crosshairImage)
+                    {
+                        StartCoroutine(playerInterfaces.iPlayerShoot.DelayShowingCrosshairAlpha(crosshairImage, 2f));
+                    }
+                }
 
-            // Update bullet pack and amount text size
-            playerInterfaces.iPlayerTrigger.SetBulletPackAndAmountTextSize(_playerData, ref bulletAmountCanvas);
-        }
-        else
-        {
-            // Delayed fire walk disactivity if not actively firing
-            StartCoroutine(playerInterfaces.iPlayerShoot.delayFireWalkDisactivity(_playerData, 0f));
+                // Update bullet pack and amount text size
+                if (playerInterfaces.iPlayerTrigger != null)
+                {
+                    playerInterfaces.iPlayerTrigger.SetBulletPackAndAmountTextSize(_playerData, ref bulletAmountCanvas);
+                }
+            }
+            else
+            {
+                // Delayed fire walk disactivity if not actively firing
+                if (playerInterfaces.iPlayerShoot != null)
+                {
+                    StartCoroutine(playerInterfaces.iPlayerShoot.delayFireWalkDisactivity(_playerData, 0f));
+                }
+            }
         }
 
         // Update bullet amount and pack amount text
-        bulletAmountText.text = _playerData.bulletAmount.ToString();
-        bulletPackAmountText.text = "x" + _playerData.bulletPackAmount.ToString();
+        if (_playerData)
+        {
+            if (bulletAmountText)
+            {
+                bulletAmountText.text = _playerData.bulletAmount.ToString();
+            }
+            if (bulletPackAmountText)
+            {
+                bulletPackAmountText.text = "x" + _playerData.bulletPackAmount.ToString();
+            }
+        }
+        
+       
     }
 
     void Update()
     {
-        playerInterfaces.iPlayerCamera.ChangeCamera(_playerData, ref playerManager);
-
-        playerInterfaces.iPlayerTrigger.DamageArrowDirection(ref _damageArrow);
-
-        Movement(_playerData);//PlayerStatement
-        Rotation(_playerData);
+        if (playerInterfaces.iPlayerCamera != null)
+        {
+            playerInterfaces.iPlayerCamera.ChangeCamera();
+        }
+        if (playerInterfaces.iPlayerTrigger != null)
+        {
+            if (_damageArrow)
+            {
+                playerInterfaces.iPlayerTrigger.DamageArrowDirection(ref _damageArrow);
+            }           
+        }
+        if (_playerData)
+        {
+            Movement(_playerData);//PlayerStatement
+            Rotation(_playerData);
+        }
+        
         DontFallDown();
         IncreaseHealthWhenEnemyKilledAtUpdate(10);
     }
@@ -228,28 +395,47 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
     void IncreaseHealthWhenEnemyKilledAtUpdate(int increasedAmount)
     {
-        if (_playerData.getCurrentEnemyDead)
+        if (_playerData)
         {
-            playerInterfaces.iPlayerHealth.IncreaseHealth(increasedAmount, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider);
-            _playerData.getCurrentEnemyDead = false;
+            if (playerInterfaces.iPlayerHealth != null)
+            {
+                if (_playerData.getCurrentEnemyDead)
+                {
+                    if (playerComponents.healthBarSlider && _topCanvasHealthBarSlider && _healthBarObject)
+                    {
+                        playerInterfaces.iPlayerHealth.IncreaseHealth(increasedAmount, ref _healthBarObject,
+                                                                      ref playerComponents.healthBarSlider,
+                                                                      ref _topCanvasHealthBarSlider);
+                        _playerData.getCurrentEnemyDead = false;
+                    }
+                    
+                }
+            }
+            
         }
+        
     }
 
     
     void DontFallDown()
-    {        
-        if (GetInstance.transform.position.y <= 0.9301061f && !_playerData.isGround)
+    {
+        if (_playerData)
         {
-            GetInstance.transform.position = new Vector3(GetInstance.transform.position.x,
-                                                         0.93010632f,
-                                                         GetInstance.transform.position.z);
-           // playerRigidbody.isKinematic = true;
-        }
-        else if (GetInstance.transform.position.y > 0.9301061f && _playerData.isGround)
-        {
+            if (playerComponents.playerRigidbody)
+            {
+                if (transform.position.y <= 0.9301061f && !_playerData.isGround)
+                {
+                    transform.position = new Vector3(transform.position.x,
+                                                                 0.93010632f,
+                                                                 transform.position.z);
+                }
+                else if (transform.position.y > 0.9301061f && _playerData.isGround)
+                {
 
-            playerObjects.playerRigidbody.isKinematic = false;
-        }
+                    playerComponents.playerRigidbody.isKinematic = false;
+                }
+            }            
+        }        
     }
 
     void OnCollisionEnter(Collision collision)
@@ -270,11 +456,11 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             }
             if (collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()))
             {
-                if (playerObjects.healthBarSlider.value == 0)
+                if (playerComponents.healthBarSlider.value == 0)
                 {
-                    playerInterfaces.iPlayerTouch.TouchEnemy(collision, _playerData, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, ref _particleTransform);
+                    playerInterfaces.iPlayerTouch.TouchEnemy(collision, _playerData, ref playerComponents.healthBarSlider, ref _topCanvasHealthBarSlider, ref _particleTransform);
 
-                    StartCoroutine(DelayDestroy(7f));
+                    StartCoroutine(DelayPlayerDestroy(3f));
                 }
                 else
                 {
@@ -297,22 +483,16 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
                         if (particleObject == null)
                         {
-                            particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(14);
+                            particleObject =
+                                _objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.playerTouchParticleObjectPoolCount);
                             particleObject.transform.position = _particleTransform.transform.position;
 
-                            StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 1f));
+                            StartCoroutine(DelaySetActiveFalseParticle(particleObject, 1f));
                         }
 
                         //SoundEffect
                         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetEnemyHit);
-                        //GetHitSFX(_playerData);
-
-                        //PlayerData
-                        CheckEnemyCollisionDamage(collision, ref _playerData);
-                        playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData,
-                            collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage,
-                            ref _healthBarObject, ref playerObjects.healthBarSlider,
-                            ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+                        //GetHitSFX(_playerData);                        
                     }
                 }
             }
@@ -364,8 +544,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             _levelData.isLevelUp = true;
 
-            playerObjects.healthBarSlider.value = 100;
-            _topCanvasHealthBarSlider.value = playerObjects.healthBarSlider.value;
+            playerComponents.healthBarSlider.value = 100;
+            _topCanvasHealthBarSlider.value = playerComponents.healthBarSlider.value;
 
             ScoreController.GetInstance.SetScoreWithLevelUp();
 
@@ -443,7 +623,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                                         ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
                                         ref _objectPool);//GetScore
             playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
-            playerInterfaces.iPlayerHealth.IncreaseHealth(5, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, other);
+            playerInterfaces.iPlayerHealth.IncreaseHealth(5, ref _healthBarObject, ref playerComponents.healthBarSlider, ref _topCanvasHealthBarSlider, other);
         }
         if (other.CompareTag(SceneController.Tags.CheeseCoin.ToString()))
         {
@@ -451,7 +631,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                                          ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
                                          ref _objectPool);//GetScore
             playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
-            playerInterfaces.iPlayerHealth.IncreaseHealth(5, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, other);
+            playerInterfaces.iPlayerHealth.IncreaseHealth(5, ref _healthBarObject, ref playerComponents.healthBarSlider, ref _topCanvasHealthBarSlider, other);
         }
         if (other.CompareTag(SceneController.Tags.RotateCoin.ToString()))
         {
@@ -459,7 +639,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                                          ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
                                          ref _objectPool);//GetScore
             playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
-            playerInterfaces.iPlayerHealth.IncreaseHealth(5, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, other);
+            playerInterfaces.iPlayerHealth.IncreaseHealth(5, ref _healthBarObject, ref playerComponents.healthBarSlider, ref _topCanvasHealthBarSlider, other);
 
         }
         if (other.CompareTag(SceneController.Tags.MushroomCoin.ToString()))
@@ -469,9 +649,10 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.MushroomCoin, other, _playerData, ref _coinObject,
                                           ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
                                           ref _objectPool);
-            if (playerObjects.healthBarSlider.value > 0)
+            if (playerComponents.healthBarSlider.value > 0)
             {
-                playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData, 30, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+                playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData, 30, ref _healthBarObject,
+                    ref playerComponents.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
                 playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject,
                                           ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
@@ -479,8 +660,8 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             }
             else
             {
-                playerInterfaces.iPlayerTrigger.GettingPoisonDamage(_playerData, ref _topCanvasHealthBarSlider, ref playerObjects.healthBarSlider);//Score
-                StartCoroutine(DelayDestroy(7f));
+                playerInterfaces.iPlayerTrigger.GettingPoisonDamage(_playerData, ref _topCanvasHealthBarSlider, ref playerComponents.healthBarSlider);//Score
+                StartCoroutine(DelayPlayerDestroy(3f));
             }
         }
         if (other.CompareTag(SceneController.Tags.BulletCoin.ToString()))
@@ -496,7 +677,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                                       ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
                                       ref bulletAmountText, ref bulletPackAmountText,
                                       ref _objectPool);
-            playerInterfaces.iPlayerHealth.IncreaseHealth(50, ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, other);
+            playerInterfaces.iPlayerHealth.IncreaseHealth(50, ref _healthBarObject, ref playerComponents.healthBarSlider, ref _topCanvasHealthBarSlider, other);
         }
         if (other.CompareTag(SceneController.Tags.LevelUpKey.ToString()))
         {
@@ -513,8 +694,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             SetTrueEnemy(other);
 
-            SetTrueChestMonster(other);
-
             Destroy(other.gameObject);
         }
         if (other.CompareTag(SceneController.Tags.BossTriggerBox.ToString()))
@@ -525,7 +704,19 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 Destroy(EnemySpawner.bossEnemyBoxes[i]);
             }
         }
+        if (other.CompareTag(SceneController.Tags.ChestTriggerBox.ToString()))
+        {
+            SetTrueChestMonster(other);
 
+            Destroy(other.gameObject);
+        }
+
+        if (other.CompareTag(SceneController.Tags.ChestTrigger2Box.ToString()))
+        {
+            SetTrueChestMonster2(other);
+
+            Destroy(other.gameObject);
+        }
 
         if (other.CompareTag(SceneController.Tags.EnemyBullet.ToString()))
         {
@@ -533,20 +724,17 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                                           ref _healthBarObject, 
                                           ref _topCanvasHealthBarObject, 
                                           ref _particleTransform, 
-                                          ref playerObjects.healthBarSlider,
-                                          ref _topCanvasHealthBarSlider);
+                                          ref playerComponents.healthBarSlider,
+                                          ref _topCanvasHealthBarSlider,
+                                          ref _playerData.damageHealthText);
 
             StartCoroutine(playerInterfaces.iPlayerTrigger.DamageArrowIsLookAtEnemy(other, _damageArrow));
-
-            playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData,
-                enemyBulletData.currentEnemyBulletDamage,
-                ref _healthBarObject, ref playerObjects.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
             GameObject particleObject = null;
 
             if (particleObject == null)
             {
-                particleObject = _objectPool.GetComponent<ObjectPool>().GetPooledObject(14);
+                particleObject = _objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.playerTouchParticleObjectPoolCount);
                 particleObject.transform.position = _particleTransform.transform.position;
                 StartCoroutine(DelaySetActiveFalseParticle(particleObject, .2f));
             }
@@ -555,6 +743,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         TriggerFinishControl(other);
 
         TriggerCoinControl(other);
+
 
 
 
@@ -597,15 +786,14 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
     public void SetTrueEnemy(Collider other)
     {
-        if (_objectPool)
+        if (_enemyObjectPool)
         {
             for (int i = 0; i < other.gameObject.transform.childCount; i++)
             {
-                GameObject currentEnemyObjects = _objectPool.GetPooledObject(17);
+                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.enemyPrefabObjectPoolCount);
 
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
-                //currentEnemyObjects.gameObject.transform.GetChild(1).GetComponent<EnemyAnimationController>().SetAnimator();
                 currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
                 currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(i).position.x,
                                                                      1f,
@@ -616,223 +804,173 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     public void SetTrueBoss(Collider other)
     {
-        if (_objectPool)
+        if (_enemyObjectPool)
         {
             for (int i = 0; i < other.gameObject.transform.childCount; i++)
             {
-                GameObject currentEnemyObjects = _objectPool.GetPooledObject(18);
+                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.bossEnemyPrefabObjectPoolCount);
 
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
-                //currentEnemyObjects.gameObject.transform.GetChild(1).GetComponent<EnemyAnimationController>().SetAnimator();
                 currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
                 currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(i).position.x,
-                                                                     .5f,
+                                                                     1f,
                                                                      other.gameObject.transform.GetChild(i).position.z);
-                currentEnemyObjects.transform.localScale = new Vector3(currentEnemyObjects.transform.localScale.x*2,
-                                                                       currentEnemyObjects.transform.localScale.y*2,
-                                                                       currentEnemyObjects.transform.localScale.z*2);
+                currentEnemyObjects.transform.localScale = new Vector3(currentEnemyObjects.transform.localScale.x,
+                                                                       currentEnemyObjects.transform.localScale.y,
+                                                                       currentEnemyObjects.transform.localScale.z);
             }
         }
 
     }
+
     public void SetTrueChestMonster(Collider other)
     {
-        if (_objectPool)
+        if (_enemyObjectPool)
         {
-            GameObject currentEnemyObjects = _objectPool.GetPooledObject(19);
+            for (int i = 0; i < other.gameObject.transform.childCount; i++)
+            {
+                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.chestMonsterEnemyPrefabObjectPoolCount);
 
-            currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = 0;
-            currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = 0;
-            //currentEnemyObjects.gameObject.transform.GetChild(1).GetComponent<EnemyAnimationController>().SetAnimator();
-            currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
-            currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(0).position.x,
-                                                                 .5f,
-                                                                 other.gameObject.transform.GetChild(0).position.z);
-            currentEnemyObjects.transform.localScale = new Vector3(currentEnemyObjects.transform.localScale.x * 2,
-                                                                   currentEnemyObjects.transform.localScale.y * 2,
-                                                                   currentEnemyObjects.transform.localScale.z * 2);
+                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
+                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
+                currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
+                currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(i).position.x,
+                                                                     1f,
+                                                                     other.gameObject.transform.GetChild(i).position.z);
+                currentEnemyObjects.transform.localScale = new Vector3(currentEnemyObjects.transform.localScale.x,
+                                                                       currentEnemyObjects.transform.localScale.y,
+                                                                       currentEnemyObjects.transform.localScale.z);
+            }            
         }
+    }
 
+    public void SetTrueChestMonster2(Collider other)
+    {
+        if (_enemyObjectPool)
+        {
+            for (int i = 0; i < other.gameObject.transform.childCount; i++)
+            {
+                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.chestMonster2EnemyPrefabObjectPoolCount);
+
+                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
+                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
+                currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
+                currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(i).position.x,
+                                                                     1f,
+                                                                     other.gameObject.transform.GetChild(i).position.z);
+                currentEnemyObjects.transform.localScale = new Vector3(currentEnemyObjects.transform.localScale.x,
+                                                                       currentEnemyObjects.transform.localScale.y,
+                                                                       currentEnemyObjects.transform.localScale.z);
+            }
+        }
     }
     #region //Move and Rotation
     private void Movement(PlayerData _playerData)
     {
-        if (_playerData.isPlayable && !_playerData.isWinning)
+        if (playerComponents._playerController)
         {
-            //Getting left stick values
-            inputMovement._xValue = _playerController.movement.x * Time.deltaTime * 2f;
-            inputMovement._zValue = _playerController.movement.y * Time.deltaTime * 2f;
+            if (_currentCameraTransform.transform)
+            {
+                if (_playerData.isPlayable && !_playerData.isWinning)
+                {
+                    //Getting left stick values
+                    inputMovement._xValue = playerComponents._playerController.movement.x;
+                    inputMovement._zValue = playerComponents._playerController.movement.y;
 
-            //Moves
-            Moves(playerInterfaces.iPlayerMovement, playerInterfaces.iPlayerShoot);
-        }
-        else if (_playerData.isWinning)
-        {
-            //VirtualCameraEulerAngle for Salsa Dance
-            _currentCameraTransform.transform.eulerAngles = new Vector3(_currentCameraTransform.transform.eulerAngles.x,
-                                                                        180f,
-                                                                        _currentCameraTransform.transform.eulerAngles.z);
-        }
-        else
-        {
-            //PlayerData
-            _playerData.isFire = false;
-        }
+                    //Moves
+                    if (playerInterfaces.iPlayerMovement != null && playerInterfaces.iPlayerShoot != null)
+                    {
+                        Moves(playerInterfaces.iPlayerMovement, playerInterfaces.iPlayerShoot);
+                    }
+                }
+                else if (_playerData.isWinning)
+                {
+                    //VirtualCameraEulerAngle for Salsa Dance
+                    _currentCameraTransform.transform.eulerAngles = new Vector3(_currentCameraTransform.transform.eulerAngles.x,
+                                                                                0f,
+                                                                                _currentCameraTransform.transform.eulerAngles.z);
+                }
+                else
+                {
+                    //PlayerData
+                    _playerData.isFire = false;
+                }
+            }            
+        }        
     }
     private void Moves(IPlayerMovement iPlayerMovement, IPlayerShoot iPlayerShoot)
     {
         //Moves
-
-        if (!_playerData.isSwordAnimate)
+        if (_playerData)
         {
-            iPlayerMovement.Walk(_playerData, ref playerTransform, ref playerObjects.characterAnimator);
-            iPlayerMovement.SideWalk(_playerData, ref playerTransform);
-            iPlayerMovement.SpeedSettings(_playerData, _initPlayerSpeed);
-            iPlayerMovement.Climb(_playerData, ref playerTransform);
-            iPlayerMovement.Run(_playerData, _particleTransform.transform, 0f, playerObjects.playerRigidbody);
-            iPlayerMovement.Jump(_playerData, ref playerObjects.playerRigidbody);
-        }        
+            if (!_playerData.isSwordAnimate && _particleTransform)
+            {
+                if (playerComponents.playerTransform && playerComponents.characterAnimator && playerComponents.playerRigidbody)
+                {
+                    iPlayerMovement.Walk(_playerData, ref playerComponents.playerTransform, ref playerComponents.characterAnimator);
+                    iPlayerMovement.Run(_playerData, _particleTransform.transform, 0f, playerComponents.playerRigidbody);
+                    iPlayerMovement.Jump(_playerData, ref playerComponents.playerRigidbody);
+                }                
+            }
+        }            
     }
 
     private void Rotation(PlayerData _playerData)
     {
-        if (SceneController.rotateTouchOrMousePos == true)
+        if (playerInterfaces.iPlayerRotation != null && playerInterfaces.iPlayerCamera != null)
         {
-            //Mouse Rotation Controller
-            playerInterfaces.iPlayerRotation.GetMousePosition(_playerData, ref inputMovement._touchX, ref inputMovement._touchY);
-        }
-        else
-        {
-            //Touch Rotation Controller
-            playerInterfaces.iPlayerRotation.SensivityXSettings(3f, _playerController, _playerData, ref inputMovement._touchX);
+            if (_currentCameraTransform && playerComponents._playerController)
+            {
+                if (SceneController.rotateTouchOrMousePos == true)
+                {
+                    //Mouse Rotation Controller
+                    playerInterfaces.iPlayerRotation.GetMousePosition(_playerData, ref inputMovement._touchX, ref inputMovement._touchY);
+                }
+                else
+                {
+                    //Touch Rotation Controller
+                    playerInterfaces.iPlayerRotation.SensivityXSettings(3f, playerComponents._playerController, _playerData, ref inputMovement._touchX);
 
-            inputMovement._touchY = _playerController.lookRotation.y * _playerData.sensivityY;
-        }
+                    inputMovement._touchY = playerComponents._playerController.lookRotation.y * _playerData.sensivityY;
+                }
 
-        playerInterfaces.iPlayerRotation.Rotate(ref inputMovement._touchX, ref inputMovement._touchX, ref playerTransform);
+                playerInterfaces.iPlayerRotation.Rotate(ref inputMovement._touchX, ref inputMovement._touchX, ref playerComponents.playerTransform);
+
+                //Rotating Just Camera On X Axis with TouchY
+                _currentCameraTransform.transform.Rotate(-inputMovement._touchY * Time.deltaTime * 10, 0f, 0f);
 
 
-        //Rotating Just Camera On X Axis with TouchY
-        _currentCameraTransform.transform.Rotate(-inputMovement._touchY * Time.deltaTime * 10, 0f, 0f);
-
-
-        //Debug.Log(_playerController.lookRotation.x);
-        playerInterfaces.iPlayerCamera.CheckCameraEulerX(_playerData, _currentCameraTransform);
+                playerInterfaces.iPlayerCamera.CheckCameraEulerX(_playerData, _currentCameraTransform);
+            }            
+        }     
     }
-
     #endregion
 
-    public IEnumerator DelayDestroy(float delayDying)
+    public IEnumerator DelayPlayerDestroy(float delayDying)
     {
-        //ParticleEffect
-        //ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Death, _particleTransform.transform);
-        GameObject particleObject = null;
-
-        if (particleObject == null)
+        if (_objectPool && _playerData)
         {
-            particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(16);
-            particleObject.transform.position = _particleTransform.transform.position;
+            if (_particleTransform)
+            {
+                //ParticleEffect
+                GameObject particleObject = null;
 
-            StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 4f));
-        }
+                if (particleObject == null)
+                {
+                    particleObject = _objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.deathParticleObjectPoolCount);
+                    particleObject.transform.position = _particleTransform.transform.position;
 
-        yield return new WaitForSeconds(delayDying);
+                    StartCoroutine(DelaySetActiveFalseParticle(particleObject, 2f));
+                }
 
-        Destroy(gameObject);
+                yield return new WaitForSeconds(delayDying);
 
-        SceneController.LoadEndScene();
-    }
-    //Init
-    private void InitStates()
-    {
-        if (_levelData)
-        {
-            _levelData.currentEnemyDetectionDistance = _levelData.enemyDetectionDistances[LevelData.currentLevelCount];
+                //Destroy(gameObject);
+                //SceneController.DestroySingletonObjects();
+                SceneController.LoadEndScene();
+            }
         }        
-
-        playerTransform = GetInstance.GetComponent<Transform>();
-
-        playerInterfaces.iPlayerShoot = GetComponent<IPlayerShoot>();
-        playerInterfaces.iPlayerCamera = GetComponent<IPlayerCamera>();
-        playerInterfaces.iPlayerInitial = GetComponent<IPlayerInitial>();
-        playerInterfaces.iPlayerTrigger = GetComponent<IPlayerTrigger>();
-        playerInterfaces.iPlayerTouch = GetComponent<IPlayerTouch>();
-        playerInterfaces.iPlayerScore = GetComponent<IPlayerScore>();
-        playerInterfaces.iPlayerHealth = GetComponent<IPlayerHealth>();
-        playerInterfaces.iPlayerMovement = GetComponent<IPlayerMovement>();
-        playerInterfaces.iPlayerRotation = GetComponent<IPlayerRotation>();
-
-        if (_playerData)
-        {
-            _playerData.damageHealthText = GameObject.Find("DamageHealthText").GetComponent<TextMeshProUGUI>();
-
-            _playerData.decreaseCounter = 0;
-
-            _playerData.bulletPackAmount = 2;
-
-            _playerData.isTouchableSkate = true;
-            playerObjects.playerRigidbody = GetComponent<Rigidbody>();
-
-            playerInterfaces.iPlayerInitial.CreateCharacterObject(_playerData, ref characterObject);
-
-
-
-            playerInterfaces.iPlayerInitial.GetHandObjectsTransform(ref _coinObject, ref _cheeseObject);
-            playerInterfaces.iPlayerInitial.GetWeaponTransform(_bulletData, ref _gunTransform);
-            playerInterfaces.iPlayerInitial.GetSwordTransform(_bulletData, ref _swordTransform);
-            playerInterfaces.iPlayerInitial.CreateStartPlayerStaff(_playerData, 
-                                                   ref playerIconTransform, 
-                                                   ref _bulletsSpawnTransform,
-                                                   ref _cameraWasherTransform, healthBarTransform,
-                                                   ref _healthBarObject, 
-                                                   ref bulletAmountCanvas);
-
-
-
-            playerInterfaces.iPlayerInitial.DataStatesOnInitial(_levelData, _playerData, _bulletData, 
-                                 ref _healthBarObject,
-                                 ref _topCanvasHealthBarObject, 
-                                 ref bulletAmountCanvas,
-                                 ref _initPlayerSpeed);
-
-            if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>())
-            {
-                playerObjects.healthBarSlider = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>();
-            }
-
-            if (bulletAmountCanvas)
-            {
-                if (bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>())
-                {
-                    bulletAmountText = bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>();
-                }
-                if (bulletAmountCanvas.transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>())
-                {
-                    bulletPackAmountText = bulletAmountCanvas.transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>();
-                }
-            }
-
-            if (_topCanvasHealthBarObject)
-            {
-                _topCanvasHealthBarSlider = _topCanvasHealthBarObject.GetComponent<Slider>();
-            }
-
-            if (transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>())
-            {
-                if (transform.GetChild(1))
-                {
-                    if (transform.GetChild(1).GetChild(0))
-                    {
-                        if (transform.GetChild(1).GetChild(0).gameObject != null)
-                        {
-                            playerObjects.characterAnimator = transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>();
-                        }
-                    }
-                }
-            }
-
-        }
-
     }
+    
 }

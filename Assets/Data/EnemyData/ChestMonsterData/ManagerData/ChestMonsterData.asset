@@ -24,12 +24,12 @@ MonoBehaviour:
   isWalking: 1
   isFiring: 0
   isAttacking: 0
-  isTouchable: 1
+  isTouchable: 0
   isActivateMagnet: 1
-  enemySpeed: 0
-  bulletDamageValue: 12
+  enemySpeed: 0.2
+  bulletDamageValue: 48
   enemyDurability: 0
-  isSpeedZero: 0
+  isSpeedZero: 1
   isWalkable: 1
   isActivateCreateEnemy: 0
   currentBottomParticle: {fileID: 6847440653780713590, guid: 54b95b008a4da472fad9094e21768081, type: 3}

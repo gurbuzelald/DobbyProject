@@ -20,7 +20,7 @@ public class AudioManager : AbstractPlayer<AudioManager>
     {
         //buttonDelayTimer = 0;
 
-        SetStartMusic();
+        SetCurrentMusic();
         LoadVolume();   
     }
 
@@ -35,27 +35,37 @@ public class AudioManager : AbstractPlayer<AudioManager>
         buttonDelayTimer += Time.deltaTime;
     }
 
-    void SetStartMusic()
+    public void SetCurrentMusic()
     {
-        _audioSource = GetComponent<AudioSource>();
-        if (SceneController.CheckSceneName() == SceneController.Scenes.Menu.ToString())
+        if (audioData && _levelData)
         {
-            _audioSource.clip = audioData.menuMusic;
-        }
-        else if (SceneController.CheckSceneName() == SceneController.Scenes.End.ToString())
-        {
-            _audioSource.clip = audioData.endMusic;
-        }
-        else if (SceneController.CheckSceneName() == SceneController.Scenes.Win.ToString())
-        {
-            _audioSource.clip = audioData.winMusic;
-        }
-        else if (SceneController.CheckSceneName() == SceneController.Scenes.Game.ToString())
-        {
-            SetCurrentGameLevelMusic(_levelData);
-            _audioSource.clip = audioData.currentGameMusic;
-        }
-        _audioSource.Play();
+            _audioSource = GetComponent<AudioSource>();
+            if (_audioSource)
+            {
+                if (SceneController.CheckSceneName() == SceneController.Scenes.Menu.ToString())
+                {
+                    _audioSource.clip = audioData.menuMusic;
+                    _audioSource.Play();
+                }
+                if (SceneController.CheckSceneName() == SceneController.Scenes.End.ToString())
+                {
+                    _audioSource.clip = audioData.endMusic;
+                    _audioSource.Play();
+                }
+                if (SceneController.CheckSceneName() == SceneController.Scenes.Win.ToString())
+                {
+                    _audioSource.clip = audioData.winMusic;
+                    _audioSource.Play();
+                }
+                if (SceneController.CheckSceneName() == SceneController.Scenes.Game.ToString())
+                {
+                    SetCurrentGameLevelMusic(_levelData);
+                    _audioSource.Stop();
+                    _audioSource.clip = audioData.currentGameMusic;
+                    _audioSource.Play();
+                }
+            }
+        }  
     }
 
     void SetCurrentGameLevelMusic(LevelData levelData)

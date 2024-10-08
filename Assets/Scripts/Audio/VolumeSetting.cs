@@ -15,7 +15,7 @@ public class VolumeSetting : MonoBehaviour
     [SerializeField] Slider _enemySFXSliderVolume;
     [SerializeField] Slider _menuSFXSliderVolume;
 
-    private void Start()
+    private void OnEnable()
     {
         _musicSlider.value = PlayerPrefs.GetFloat(AudioManager.ExposedParameters.MusicVolume.ToString(), 1f);
         _playerSFXSlider.value = PlayerPrefs.GetFloat(AudioManager.ExposedParameters.PlayerSFXVolume.ToString(), 1f);

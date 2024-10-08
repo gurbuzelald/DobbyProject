@@ -11,7 +11,8 @@ internal interface IPlayerTrigger
                         ref GameObject _topCanvasHealthBarObject, 
                         ref Transform _particleTransform,
                         ref Slider healthBarSlider,
-                        ref Slider topCanvasHealthBarSlider);
+                        ref Slider topCanvasHealthBarSlider,
+                        ref TextMeshProUGUI damageHealthText);
 
 
     void PickUpCoin(LevelData levelData,

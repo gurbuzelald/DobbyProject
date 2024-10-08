@@ -40,151 +40,120 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     public void GetHandObjectsTransform(ref GameObject _coinObject, ref GameObject _cheeseObject)
     {
         //GameObjects
-        _coinObject = GameObject.Find("Coin");
-        _cheeseObject = GameObject.Find("Cheese");
-        _coinObject.transform.localScale = Vector3.zero;
-        _cheeseObject.transform.localScale = Vector3.zero;
+        if (GameObject.Find("Coin"))
+        {
+            _coinObject = GameObject.Find("Coin");
+            _coinObject.transform.localScale = Vector3.zero;
+        }
+        if (GameObject.Find("Cheese"))
+        {
+            _cheeseObject = GameObject.Find("Cheese");
+            _cheeseObject.transform.localScale = Vector3.zero;
+        }
     }
     public virtual void GetWeaponTransform(BulletData _bulletData, ref GameObject _gunTransform)//Getting finger transform parameter
     {
-        if (_bulletData.currentWeaponName == BulletData.ak47)
+        if (_bulletData.currentWeaponName == BulletData.ak47 && GameObject.Find("Ak47Transform"))
         {
             _gunTransform = GameObject.Find("Ak47Transform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.m4a4)
+        else if (_bulletData.currentWeaponName == BulletData.m4a4 && GameObject.Find("M4a4Transform"))
         {
             _gunTransform = GameObject.Find("M4a4Transform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.bulldog)
+        else if (_bulletData.currentWeaponName == BulletData.bulldog && GameObject.Find("BulldogTransform"))
         {
             _gunTransform = GameObject.Find("BulldogTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.cow)
+        else if (_bulletData.currentWeaponName == BulletData.cow && GameObject.Find("CowTransform"))
         {
             _gunTransform = GameObject.Find("CowTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.crystal)
+        else if (_bulletData.currentWeaponName == BulletData.crystal && GameObject.Find("CrystalTransform"))
         {
             _gunTransform = GameObject.Find("CrystalTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.demon)
+        else if (_bulletData.currentWeaponName == BulletData.demon && GameObject.Find("DemonTransform"))
         {
             _gunTransform = GameObject.Find("DemonTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.ice)
+        else if (_bulletData.currentWeaponName == BulletData.ice && GameObject.Find("IceTransform"))
         {
             _gunTransform = GameObject.Find("IceTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.electro)
+        else if (_bulletData.currentWeaponName == BulletData.electro && GameObject.Find("ElectroTransform"))
         {
             _gunTransform = GameObject.Find("ElectroTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.axe)
+        else if (_bulletData.currentWeaponName == BulletData.axe && GameObject.Find("AxeTransform"))
         {
             _gunTransform = GameObject.Find("AxeTransform");
         }
     }
     public virtual void GetSwordTransform(BulletData _bulletData, ref GameObject _swordTransform)
     {
-        if (_bulletData.currentSwordName == BulletData.lowSword)
+        if (_bulletData.currentSwordName == BulletData.lowSword && GameObject.Find("LowSwordTransform"))
         {
             _swordTransform = GameObject.Find("LowSwordTransform");
-        }
-        else if (_bulletData.currentSwordName == BulletData.warriorSword)
-        {
-            _swordTransform = GameObject.Find("WarriorSwordTransform");
-        }
-        else if (_bulletData.currentSwordName == BulletData.hummer)
-        {
-            _swordTransform = GameObject.Find("HummerTransform");
-        }
-        else if (_bulletData.currentSwordName == BulletData.orcSword)
-        {
-            _swordTransform = GameObject.Find("OrcSwordTransform");
-        }
-        else if (_bulletData.currentSwordName == BulletData.axeSword)
-        {
-            _swordTransform = GameObject.Find("AxeSwordTransform");
-        }
-        else if (_bulletData.currentSwordName == BulletData.axeKnight)
-        {
-            _swordTransform = GameObject.Find("AxeKnightTransform");
-        }
-        else if (_bulletData.currentSwordName == BulletData.barbarianSword)
-        {
-            _swordTransform = GameObject.Find("BarbarianSwordTransform");
-        }
-        else if (_bulletData.currentSwordName == BulletData.demonSword)
-        {
-            _swordTransform = GameObject.Find("DemonSwordTransform");
-        }
-        else if (_bulletData.currentSwordName == BulletData.magicSword)
-        {
-            _swordTransform = GameObject.Find("MagicSwordTransform");
-        }
-        else if (_bulletData.currentSwordName == BulletData.longHummer)
-        {
-            _swordTransform = GameObject.Find("LongHummerTransform");
-        }
-        else if (_bulletData.currentSwordName == BulletData.club)
-        {
-            _swordTransform = GameObject.Find("ClubTransform");
         }
     }
     public void CreateCharacterObject(PlayerData _playerData, ref GameObject characterObject)
     {
-        characterObject = Instantiate(_playerData.characterObject, gameObject.transform);
+        if (_playerData.characterObject)
+        {
+            characterObject = Instantiate(_playerData.characterObject, gameObject.transform);
 
-        GameObject current;
-        if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
-        {
-            current = _playerData.dobby;
+            GameObject current;
+            if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
+            {
+                current = _playerData.dobby;
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
+            {
+                current = _playerData.glassy;
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
+            {
+                current = _playerData.guard;
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Joleen)
+            {
+                current = _playerData.joleen;
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
+            {
+                current = _playerData.lusth;
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Eve)
+            {
+                current = _playerData.eve;
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Michelle)
+            {
+                current = _playerData.michelle;
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Boss)
+            {
+                current = _playerData.boss;
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Aj)
+            {
+                current = _playerData.aj;
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Mremireh)
+            {
+                current = _playerData.mremireh;
+            }
+            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Ty)
+            {
+                current = _playerData.ty;
+            }
+            else
+            {
+                current = _playerData.dobby;
+            }
+            Instantiate(current, characterObject.transform);
         }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
-        {
-            current = _playerData.glassy;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
-        {
-            current = _playerData.guard;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Joleen)
-        {
-            current = _playerData.joleen;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
-        {
-            current = _playerData.lusth;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Eve)
-        {
-            current = _playerData.eve;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Michelle)
-        {
-            current = _playerData.michelle;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Boss)
-        {
-            current = _playerData.boss;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Aj)
-        {
-            current = _playerData.aj;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Mremireh)
-        {
-            current = _playerData.mremireh;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Ty)
-        {
-            current = _playerData.ty;
-        }
-        else
-        {
-            current = _playerData.dobby;
-        }
-        Instantiate(current, characterObject.transform);
     }
 
 
@@ -192,74 +161,191 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                                                ref Transform _cameraWasherTransform, Transform healthBarTransform,
                                                ref GameObject _healthBarObject, ref GameObject bulletAmountCanvas)
     { //Create Player Objects On Start
-        Instantiate(_playerData.objects[1],
+        if (_playerData)
+        {
+            if (_playerData.objects[1] && _bulletsTransform)
+            {
+                Instantiate(_playerData.objects[1],
                    _bulletsTransform.transform.position,
                     Quaternion.identity,
                     _bulletsTransform.transform);//BulletsPrefab
-        Instantiate(_playerData.objects[2],
-                    _cameraWasherTransform.transform.position,
-                    Quaternion.identity,
-                    _cameraWasherTransform.transform);//CameraWasherPrefab
-        _healthBarObject = Instantiate(_playerData.objects[3],
-                        healthBarTransform.transform.position,
+            }
+            else
+            {
+                Debug.Log("There is no BulletsPrefab");
+            }
+            if (_playerData.objects[2] && _cameraWasherTransform)
+            {
+                Instantiate(_playerData.objects[2],
+                        _cameraWasherTransform.transform.position,
                         Quaternion.identity,
-                        PlayerManager.GetInstance.gameObject.transform);//HealthBarPrefab
+                        _cameraWasherTransform.transform);//CameraWasherPrefab
+            }
+            else
+            {
+                Debug.Log("There is no CameraWasherPrefab");
+            }
 
-        //Instantiate(_playerData.objects[4],
-        //            new Vector3(PlayerManager.GetInstance.gameObject.transform.position.x,
-        //                        1,
-        //                        PlayerManager.GetInstance.gameObject.transform.position.z),
-        //            Quaternion.identity,
-        //            PlayerManager.GetInstance.gameObject.transform);//MagnetPrefab
+            if (_playerData.objects[3] && healthBarTransform && PlayerManager.GetInstance.gameObject)
+            {
+                _healthBarObject = Instantiate(_playerData.objects[3],
+                            healthBarTransform.transform.position,
+                            Quaternion.identity,
+                            PlayerManager.GetInstance.gameObject.transform);//HealthBarPrefab
+            }
+            else
+            {
+                Debug.Log("There is no HealthBarPrefab");
+            }
+            if (_playerData.objects[4] && playerIconTransform && PlayerManager.GetInstance.gameObject)
+            {
+                Instantiate(_playerData.objects[4],
+                        playerIconTransform.transform.position,
+                        Quaternion.identity,
+                        playerIconTransform.transform);//PlayerIconPrefab
+                playerIconTransform.rotation = PlayerManager.GetInstance.gameObject.transform.rotation;
+            }
+            else
+            {
+                Debug.Log("There is no PlayerIconPrefab");
+            }
+            if (_playerData.objects[5] && PlayerManager.GetInstance.gameObject)
+            {
+                Instantiate(_playerData.objects[5], PlayerManager.GetInstance.gameObject.transform);//PlayerSFXPrefab
+            }
+            else
+            {
+                Debug.Log("There is no PlayerSFXPrefab");
+            }
 
-        Instantiate(_playerData.objects[4],
-                    playerIconTransform.transform.position,
-                    Quaternion.identity,
-                    playerIconTransform.transform);//PlayerIconPrefab
-        playerIconTransform.rotation = PlayerManager.GetInstance.gameObject.transform.rotation;
-
-        Instantiate(_playerData.objects[5], PlayerManager.GetInstance.gameObject.transform);//PlayerSFXPrefab
-
-        bulletAmountCanvas = Instantiate(_playerData.objects[6], PlayerManager.GetInstance.gameObject.transform);//BulletAmountCanvas
-
-        //CreateSlaveObject();
+            if (_playerData.objects[6] && PlayerManager.GetInstance.gameObject)
+            {
+                bulletAmountCanvas = Instantiate(_playerData.objects[6], PlayerManager.GetInstance.gameObject.transform);//BulletAmountCanvas
+            }
+            else
+            {
+                Debug.Log("There is no BulletAmountCanvas");
+            }
+        }
     }
 
     public void DataStatesOnInitial(LevelData levelData, PlayerData _playerData, BulletData _bulletData, ref GameObject _healthBarObject,
                              ref GameObject _topCanvasHealthBarObject, ref GameObject bulletAmountCanvas,
                              ref float _initPlayerSpeed)
     {//PlayerData
-        if (_playerData != null)
+        if (_playerData && _bulletData && levelData)
         {
-            _playerData.currentMessageObject = GameObject.Find("MessageText");
+            if (GameObject.Find("MessageText"))
+            {
+                _playerData.currentMessageObject = GameObject.Find("MessageText");
+            }
+            
             if (_playerData.currentMessageObject)
             {
                 _playerData.currentMessageText = _playerData.currentMessageObject.GetComponent<TextMeshProUGUI>();
             }
+
+            if (_healthBarObject)
+            {
+                if (_healthBarObject.transform.childCount >= 1)
+                {
+                    if (_healthBarObject.transform.GetChild(0).childCount >= 1)
+                    {
+                        if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>())
+                        {
+                            _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
+
+                            if (_topCanvasHealthBarObject)
+                            {
+                                if (_topCanvasHealthBarObject.GetComponent<Slider>())
+                                {
+                                    _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
+                                }
+                                else
+                                {
+                                    Debug.Log("_topCanvasHealthBarObject.GetComponent<Slider>()");
+                                }
+                            }
+                            else
+                            {
+                                Debug.Log("_topCanvasHealthBarObject");
+                            }
+                        }
+                        else
+                        {
+                            Debug.Log("_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>()");
+                        }
+                    }
+                    else
+                    {
+                        Debug.Log("_healthBarObject.transform.GetChild(0).childCount");
+                    }
+                }
+                else
+                {
+                    Debug.Log("_healthBarObject.transform.childCount");
+                }
+            }
+            else
+            {
+                Debug.Log("_healthBarObject");
+            }
+
+            if (levelData.isCompleteMaps.Length >= 1)
+            {
+                for (int i = 0; i < levelData.isCompleteMaps.Length; i++)
+                {
+                    levelData.isCompleteMaps[i] = false;
+                }
+            }
+            
+
+            if (bulletAmountCanvas)
+            {
+                if (bulletAmountCanvas.transform.childCount >= 1)
+                {
+                    if (bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>())
+                    {
+                        bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
+                    }
+                    else
+                    {
+                        Debug.Log("bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>()");
+                    }
+                }
+                else
+                {
+                    Debug.Log("bulletAmountCanvas.transform.childCount >= 1");
+                }
+            }
+            else
+            {
+                Debug.Log("bulletAmountCanvas");
+            }
+
+            if (_playerData.objects[4])
+            {
+                _playerData.objects[4].GetComponent<MeshRenderer>().enabled = true;
+            }
+            else
+            {
+                Debug.Log("_playerData.objects[4]");
+            }
+
+            if (_playerData.objects[3])
+            {
+                _playerData.objects[3].transform.localScale = new Vector3(1f, 0.1f, 0.1f);
+            }
+            else
+            {
+                Debug.Log("_playerData.objects[3]");
+            }
+
+            _playerData.bulletAmount = _bulletData.currentBulletPack;
             _playerData.isFireWalkAnimation = false;
             _playerData.isFire = false;
             levelData.isLevelUp = false;
             LevelData.levelCanBeSkipped = false;
-
-            _playerData.isClickable = true;
-            _playerData.normalSpeed = true;
-            _playerData.extraSpeed = true;
-
-            _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
-            _topCanvasHealthBarObject.GetComponent<Slider>().value = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value;
-            for (int i = 0; i < levelData.isCompleteMaps.Length; i++)
-            {
-                levelData.isCompleteMaps[i] = false;
-            }
-            //PlayerData.slaveCounter = 0;
-            _bulletData.isM4a4 = false;
-
-            _playerData.bulletAmount = _bulletData.currentBulletPack;
-
-            bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
-
-            _playerData.objects[4].GetComponent<MeshRenderer>().enabled = true;
-            _playerData.objects[3].transform.localScale = new Vector3(1f, 0.1f, 0.1f);
             _playerData.isLockedWalking = false;
             _playerData.clickTabCount = 0;
             _playerData.clickShiftCount = 0;
@@ -287,13 +373,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
     }
 
-
-    public Transform PlayerRandomSpawn(PlayerData _playerData)
-    {//Random Spawn Control Function
-        int value = UnityEngine.Random.Range(0, 8);
-        PlayerManager.GetInstance.gameObject.transform.position = _playerData.spawns.GetChild(2).position;
-        return _playerData.spawns.GetChild(value);
-    }
     void CharacterJumpForce(PlayerData _playerData)
     {
         if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
@@ -395,14 +474,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     #endregion
 
-    #region //Update Functions
-    
-    #endregion
 
     #region //Shoot
     public virtual void Fire(PlayerData _playerData)
     {
-        if (_playerData.isPlayable && PlayerManager.GetInstance._playerController.fire && !_playerData.isWinning)
+        if (_playerData.isPlayable && PlayerManager.GetInstance.playerComponents._playerController.fire && !_playerData.isWinning)
         {
             //PlayerData
             if (_playerData.bulletAmount <= 0 && _playerData.bulletPackAmount <= 0)
@@ -427,7 +503,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                     _playerData.isFireAnimation = false;
                     _playerData.isFireWalkAnimation = false;
                 }
-                if (!_playerData.isWalking && !_playerData.isSideWalking && !_playerData.isBackWalking && !_playerData.isSwording)
+                if (!_playerData.isWalking && !_playerData.isSideWalking && !_playerData.isBackWalking && !_playerData.isSwordAnimate)
                 {
                     _playerData.isFire = true;
                     _playerData.isFireAnimation = true;
@@ -451,7 +527,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 if (_playerData.bulletAmount > 0 && BulletManager.isCreatedWeaponBullet)
                 {
                     --_playerData.bulletAmount;
-                    PlayerManager.GetInstance._playerController.fire = false;
+                    PlayerManager.GetInstance.playerComponents._playerController.fire = false;
                     BulletManager.isCreatedWeaponBullet = false;
                 }
             }
@@ -467,29 +543,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         if (_playerData.isPlayable)
         {
-            if (PlayerManager.GetInstance._playerController.sword && _playerData.isSwordTime)
+            if (PlayerManager.GetInstance.playerComponents._playerController.sword && !_playerData.isSwordAnimate)
             {
                 //PlayerData
-                _playerData.isSwording = true;
-                
-                _playerData.isSwordAnimate = true;                
-
-                StartCoroutine(DelayPlayableTrue(_playerData));
+                _playerData.isSwordAnimate = true;   
+                _playerData.isSword = true;   
             }
             else
             {
-                _playerData.isSwording = false;
+                _playerData.isSword = false;
             }
         }
-        else
-        {
-            _playerData.isFireWalkAnimation = false;
-        }
-    }
-    IEnumerator DelayPlayableTrue(PlayerData _playerData)
-    {
-        yield return new WaitForSeconds(2f);
-        _playerData.isSwordAnimate = false;
     }
     
     public virtual IEnumerator DelayShowingCrosshairAlpha(CanvasGroup crosshairImage, float delay)
@@ -512,25 +576,23 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     #region //Camera
 
 
-    public virtual void ChangeCamera(PlayerData playerData, ref PlayerManager playerManager)
+    public virtual void ChangeCamera()
     {
-        // Cache values to reduce repeated calls and improve readability
-        float zValue = playerManager.GetZValue();
-        float xValue = playerManager.GetXValue();
-        var lookRotation = playerManager._playerController.lookRotation;
-        bool isLookingForward = (lookRotation.x == 0 && lookRotation.y == 0);
-        bool isMoving = (zValue != 0 || xValue != 0);
-        bool isSkateboarding = playerData.isSkateBoarding;
-
-        // Check for far or close camera conversion based on player movement and look rotation
-        if (zValue == 0 && xValue == 0 && isLookingForward)
+        if (PlayerManager.GetInstance.playerComponents._playerController)
         {
-            ConvertToFarCamera(playerManager.cameraSpawner);
-        }
-        else if (isMoving || isSkateboarding && isLookingForward)
-        {
-            ConvertToCloseCamera(playerManager.cameraSpawner);
-        }
+            if (PlayerManager.GetInstance.cameraSpawner)
+            {
+                if (PlayerManager.GetInstance.GetZValue() == 0 &&
+                    PlayerManager.GetInstance.GetXValue() == 0)
+                {
+                    ConvertToFarCamera(PlayerManager.GetInstance.cameraSpawner);
+                }
+                else if ((PlayerManager.GetInstance.GetZValue() != 0 || PlayerManager.GetInstance.GetXValue() != 0))
+                {
+                    ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
+                }
+            }            
+        }       
     }
     public virtual void ConvertToCloseCamera(GameObject cameraSpawner)
     {
@@ -593,7 +655,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                                   ref GameObject _topCanvasHealthBarObject, 
                                   ref Transform _particleTransform, 
                                   ref Slider healthBarSlider,
-                                  ref Slider topCanvasHealthBarSlider)
+                                  ref Slider topCanvasHealthBarSlider,
+                                  ref TextMeshProUGUI damageHealthText)
     {
         var playerObject = _playerData.objects[3];
 
@@ -610,7 +673,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             if (particleObject == null)
             {
-                particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(13);
+                particleObject =
+                    PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.playerBurningTouchParticleObjectPoolCount);
                 particleObject.transform.position = _particleTransform.transform.position;
 
                 StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 2f));
@@ -621,13 +685,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             // Mark player as destroyed and handle enemy-related effects
             _playerData.isDestroyed = true;
-
-            if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
-            {
-                var enemyManager = other.gameObject.GetComponent<EnemyManager>();
-                enemyManager.enemyData.isWalking = false;
-                enemyManager.enemyData.enemySpeed = 0;
-            }
 
             // Sync top canvas health bar and set player states
             topCanvasHealthBarSlider.value = healthValue;
@@ -642,7 +699,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
 
             // Trigger delayed destruction
-            StartCoroutine(PlayerManager.GetInstance.DelayDestroy(3f));
+            StartCoroutine(PlayerManager.GetInstance.DelayPlayerDestroy(3f));
             return; // Early exit since the player is dead
         }
 
@@ -656,21 +713,27 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             if (particleObject == null)
             {
-                particleObject = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(13);
+                particleObject =
+                    PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.playerBurningTouchParticleObjectPoolCount);
                 particleObject.transform.position = _particleTransform.transform.position;
 
                 StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 2f));                
             }
 
-            if (particleObject == null)
+            if (particleObject1 == null)
             {
-                particleObject1 = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(14);
+                particleObject1 =
+                    PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.playerTouchParticleObjectPoolCount);
                 particleObject1.transform.position = _particleTransform.transform.position;
 
                 StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, .2f));
             }
-            
+            //Debug.Log(other.gameObject.name);
 
+            //other.gameObject.transform.parent.GetComponent<EnemyManager>().CheckEnemyBulletDamage(ref other.gameObject.transform.parent.GetComponent<EnemyManager>().bulletData);
+
+            DecreaseHealth(ref _playerData, PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage,
+                            ref _healthBarObject, ref healthBarSlider, ref topCanvasHealthBarSlider, ref damageHealthText);
             // Activate bullet hit on player
             _playerData.enemyBulletHitActivate = true;
         }
@@ -723,7 +786,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 break;
 
             case SceneController.Tags.HealthCoin:
-                if (PlayerManager.GetInstance.playerObjects.healthBarSlider.value < 75)
+                if (PlayerManager.GetInstance.playerComponents.healthBarSlider.value < 75)
                 {
                     HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyHealthCoin,
                                      PlayerSoundEffect.SoundEffectTypes.IncreasingHealth, other, objectPool);
@@ -750,7 +813,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
              _playerData.bulletPackAmount < 2 ||
              (_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPack))
         {
-            GameObject particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(4);
+            GameObject particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.destroyBulletCoinParticleObjectPoolCount);
             particleObject.transform.position = other.gameObject.transform.position;
 
             StartCoroutine(DelaySetActiveFalseParticle(particleObject, 1f));
@@ -802,19 +865,19 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
         if (ParticleController.ParticleNames.DestroyRotateCoin == particle)
         {
-            particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(3);
+            particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(PlayerManager.GetInstance._playerData.destroyCoinParticleObjectPoolCount);
             particleObject.transform.position = other.gameObject.transform.position;
             StartCoroutine(DelaySetActiveFalseParticle(particleObject, 1f));
         }
         else if (ParticleController.ParticleNames.DestroyHealthCoin == particle)
         {
-            particleObject1 = objectPool.GetComponent<ObjectPool>().GetPooledObject(6);
+            particleObject1 = objectPool.GetComponent<ObjectPool>().GetPooledObject(PlayerManager.GetInstance._playerData.destroyHealthCoinObjectPoolCount);
             particleObject1.transform.position = other.gameObject.transform.position;
             StartCoroutine(DelaySetActiveFalseParticle(particleObject1, 1f));
         }
         else if (ParticleController.ParticleNames.DestroyMushroomCoin == particle)
         {
-            particleObject2 = objectPool.GetComponent<ObjectPool>().GetPooledObject(7);
+            particleObject2 = objectPool.GetComponent<ObjectPool>().GetPooledObject(PlayerManager.GetInstance._playerData.destroyMushroomCoinObjectPoolCount);
             particleObject2.transform.position = other.gameObject.transform.position;
             StartCoroutine(DelaySetActiveFalseParticle(particleObject2, 1f));
         }
@@ -830,14 +893,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
     public void CheckAllWeaponsLocked(BulletData bulletData)
     {
-        if (bulletData.ak47Lock == BulletData.locked && bulletData.m4a4Lock == BulletData.locked && 
+        if (bulletData)
+        {
+            if (bulletData.ak47Lock == BulletData.locked && bulletData.m4a4Lock == BulletData.locked &&
             bulletData.axeLock == BulletData.locked && bulletData.bulldogLock == BulletData.locked &&
             bulletData.cowLock == BulletData.locked && bulletData.crystalLock == BulletData.locked &&
             bulletData.demonLock == BulletData.locked && bulletData.iceLock == BulletData.locked &&
             bulletData.electroLock == BulletData.locked && bulletData.pistolLock == BulletData.locked)
-        {
-            bulletData.currentWeaponName = BulletData.pistol;
-        }
+            {
+                bulletData.currentWeaponName = BulletData.pistol;
+            }
+        }        
     }
 
     public virtual void CheckWeaponCollect(Collider other, BulletData _bulletData)
@@ -847,75 +913,85 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             BulletData.m4a4,
             ref _bulletData.isM4a4,
             ref _bulletData.m4a4Lock,
-            _bulletData.m4A4BulletAmount);
+            _bulletData.m4A4BulletAmount,
+            9);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.ak47,
             BulletData.ak47,
             ref _bulletData.isAk47,
             ref _bulletData.ak47Lock,
-            _bulletData.ak47BulletAmount);
+            _bulletData.ak47BulletAmount,
+            8);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.axe,
             BulletData.axe,
             ref _bulletData.isAxe,
             ref _bulletData.axeLock,
-            _bulletData.axeBulletAmount);
+            _bulletData.axeBulletAmount,
+            1);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.bulldog,
             BulletData.bulldog,
             ref _bulletData.isBulldog,
             ref _bulletData.bulldogLock,
-            _bulletData.bulldogBulletAmount);
+            _bulletData.bulldogBulletAmount,
+            2);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.cow,
             BulletData.cow,
             ref _bulletData.isCow,
             ref _bulletData.cowLock,
-            _bulletData.cowBulletAmount);
+            _bulletData.cowBulletAmount,
+            3);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.crystal,
             BulletData.crystal,
             ref _bulletData.isCrystal,
             ref _bulletData.crystalLock,
-            _bulletData.crystalBulletAmount);
+            _bulletData.crystalBulletAmount,
+            4);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.demon,
             BulletData.demon,
             ref _bulletData.isDemon,
             ref _bulletData.demonLock,
-            _bulletData.demonBulletAmount);
+            _bulletData.demonBulletAmount,
+            5);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.ice,
             BulletData.ice,
             ref _bulletData.isIce,
             ref _bulletData.iceLock,
-            _bulletData.iceBulletAmount);
+            _bulletData.iceBulletAmount,
+            6);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.electro,
             BulletData.electro,
             ref _bulletData.isElectro,
             ref _bulletData.electroLock,
-            _bulletData.electroBulletAmount);
+            _bulletData.electroBulletAmount,
+            7);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.pistol,
             BulletData.pistol,
             ref _bulletData.isPistol,
             ref _bulletData.pistolLock,
-            _bulletData.pistolBulletAmount);
+            _bulletData.pistolBulletAmount,
+            0);
     }
 
     // Helper method for handling weapon collection
     private void HandleWeaponCollect(Collider other, BulletData _bulletData, SceneController.Tags tag,
-        string weaponName, ref bool weaponStatus, ref string weaponLock, int bulletAmount)
+        string weaponName, ref bool weaponStatus, ref string weaponLock, int bulletAmount, int _currentWeaponID)
     {
         string tagString = tag.ToString();
 
@@ -930,6 +1006,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 PlayerData.currentBulletExplosionIsChanged = true;
                 _bulletData.currentBulletPack = bulletAmount;
                 PlayerManager.GetInstance._playerData.bulletAmount = bulletAmount;
+                BulletData.currentWeaponID = _currentWeaponID;
+                IncreaseUsageLimit(_bulletData, tag);
 
                 StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, tagString, tagString));
             }
@@ -940,6 +1018,71 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             }
         }
     }
+
+    void IncreaseUsageLimit(BulletData _bulletData, SceneController.Tags tag)
+    {
+        if (tag == SceneController.Tags.ak47)
+        {
+            _bulletData.ak47Lock = _bulletData.unLocked;
+            _bulletData.ak47UsageLimit = 1;
+            PlayerPrefs.SetInt("Ak47UsageCount", _bulletData.ak47UsageLimit);
+        }
+        else if (tag == SceneController.Tags.m4a4)
+        {
+            _bulletData.m4a4Lock = _bulletData.unLocked;
+            _bulletData.m4a4UsageLimit = 1;
+            PlayerPrefs.SetInt("M4a4UsageCount", _bulletData.m4a4UsageLimit);
+        }
+        else if (tag == SceneController.Tags.cow)
+        {
+            _bulletData.cowLock = _bulletData.unLocked;
+            _bulletData.cowUsageLimit = 1;
+            PlayerPrefs.SetInt("CowUsageCount", _bulletData.cowUsageLimit);
+        }
+        else if (tag == SceneController.Tags.axe)
+        {
+            _bulletData.axeLock = _bulletData.unLocked;
+            _bulletData.axeUsageLimit = 1;
+            PlayerPrefs.SetInt("AxeUsageCount", _bulletData.axeUsageLimit);
+        }
+        else if (tag == SceneController.Tags.crystal)
+        {
+            _bulletData.crystalLock = _bulletData.unLocked;
+            _bulletData.crystalUsageLimit = 1;
+            PlayerPrefs.SetInt("CrystalUsageCount", _bulletData.crystalUsageLimit);
+        }
+        else if (tag == SceneController.Tags.demon)
+        {
+            _bulletData.demonLock = _bulletData.unLocked;
+            _bulletData.demonUsageLimit = 1;
+            PlayerPrefs.SetInt("DemonUsageCount", _bulletData.demonUsageLimit);
+        }
+        else if (tag == SceneController.Tags.pistol)
+        {
+            _bulletData.pistolLock = _bulletData.unLocked;
+            _bulletData.pistolUsageLimit = 1;
+            PlayerPrefs.SetInt("PistolUsageCount", _bulletData.pistolUsageLimit);
+        }
+        else if (tag == SceneController.Tags.ice)
+        {
+            _bulletData.iceLock = _bulletData.unLocked;
+            _bulletData.iceUsageLimit = 1;
+            PlayerPrefs.SetInt("IceUsageCount", _bulletData.iceUsageLimit);
+        }
+        else if (tag == SceneController.Tags.electro)
+        {
+            _bulletData.electroLock = _bulletData.unLocked;
+            _bulletData.electroUsageLimit = 1;
+            PlayerPrefs.SetInt("ElectroUsageCount", _bulletData.electroUsageLimit);
+        }
+        else if (tag == SceneController.Tags.bulldog)
+        {
+            _bulletData.bulldogLock = _bulletData.unLocked;
+            _bulletData.bulldogUsageLimit = 1;
+            PlayerPrefs.SetInt("BulldogUsageCount", _bulletData.bulldogUsageLimit);
+        }
+    }
+
     public virtual void DamageArrowDirection(ref GameObject _damageArrow)
     {
         if (_damageArrow != null && _damageArrow.transform.localScale == Vector3.one)
@@ -1044,7 +1187,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         //EnemyAnimation--Collision
         if (collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
         {
-            collision.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
+            //collision.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
         }
         
 
@@ -1057,70 +1200,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         _playerData.isPlayable = false;
         _playerData.objects[3].transform.localScale = Vector3.zero;
 
-    }
-
-    public virtual void CheckEnemyCollisionDamage(Collision collision, ref PlayerData _playerData)
-    {
-
-        collision.gameObject.transform.GetComponent<EnemyManager>().enemyData.currentEnemyName = collision.gameObject.name;
-
-
-        switch (collision.gameObject.transform.GetComponent<EnemyManager>().enemyData.currentEnemyName)
-        {
-            case PlayerData.chibi:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.chibiEnemyCollisionDamage;
-                break;
-            case PlayerData.mino:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.minoEnemyCollisionDamage;
-                break;
-            case PlayerData.bigMonster:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.bigMonsterEnemyCollisionDamage;
-                break;
-            case PlayerData.orc:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.orcEnemyCollisionDamage;
-                break;
-            case PlayerData.beholder:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                   collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.beholderEnemyCollisionDamage;
-                break;
-            case PlayerData.femaleZombie:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.femaleZombieEnemyCollisionDamage;
-                break;
-            case PlayerData.doctor:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.doctorEnemyCollisionDamage;
-                break;
-            case PlayerData.giant:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.giantEnemyCollisionDamage;
-                break;
-            case PlayerData.bone:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.boneEnemyCollisionDamage;
-                break;
-            case PlayerData.clothyBone:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.clothyBoneEnemyCollisionDamage;
-                break;
-            case PlayerData.chestMonster:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.chestMonsterEnemyCollisionDamage;
-                break;
-            case PlayerData.chestMonster2:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.chestMonster2EnemyCollisionDamage;
-                break;
-            default:
-                collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.currentEnemyCollisionDamage =
-                    collision.gameObject.transform.GetComponent<EnemyManager>().bulletData.chibiEnemyCollisionDamage;
-                break;
-        }
-        
     }
     #endregion
 
@@ -1192,8 +1271,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             }
         }
     }
-    public virtual void DecreaseHealth(ref PlayerData playerData, int damageHealthValue, ref GameObject _healthBarObject, ref Slider _healthBarSlider, ref Slider _topCanvasHealthBarSlider,
-                                       ref TextMeshProUGUI damageHealthText)
+    public virtual void DecreaseHealth(ref PlayerData playerData, int damageHealthValue, ref GameObject _healthBarObject, ref Slider _healthBarSlider,
+        ref Slider _topCanvasHealthBarSlider, ref TextMeshProUGUI damageHealthText)
     {
         _healthBarSlider.value -= (-CharacterDurability(ref playerData)) + damageHealthValue;
         _topCanvasHealthBarSlider.value = _healthBarSlider.value;
@@ -1273,11 +1352,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     
     public virtual void Run(PlayerData _playerData, Transform _particleTransform, float runTimeAmount, Rigidbody objectRigidbody)
     {//FasterWalking
-        if (_playerData.isClickable && PlayerController.run && !_playerData.isJumping && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isBackWalking)
+        if (PlayerController.run && !_playerData.isJumping && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isBackWalking)
         {
             _playerData.isRunning = true;
             _playerData.clickShiftCount++;
-            _playerData.isClickable = false;
             StartCoroutine(DelayFalseRunning(_playerData, runTimeAmount));
         }
 
@@ -1287,95 +1365,80 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         if (_playerData.isRunning && !_playerData.isJumping && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isBackWalking)
         {
-            objectRigidbody.AddForce(transform.forward*_playerData.playerSpeed * Time.deltaTime * 1000f);
+            if (PlayerManager.GetInstance.GetZValue() > 0f)
+            {
+                objectRigidbody.AddForce(transform.forward * Time.deltaTime * 150000);
+            }
+            if (PlayerManager.GetInstance.GetZValue() < 0f)
+            {
+                objectRigidbody.AddForce(-transform.forward * Time.deltaTime * 150000);
+            }
+            if (PlayerManager.GetInstance.GetXValue() > 0f)
+            {
+                objectRigidbody.AddForce(transform.right * Time.deltaTime * 150000);
+            }
+            if (PlayerManager.GetInstance.GetXValue() < 0f)
+            {
+                objectRigidbody.AddForce(-transform.right * Time.deltaTime * 150000);
+            }
+            if(PlayerManager.GetInstance.GetZValue() == 0f && PlayerManager.GetInstance.GetXValue() == 0f)
+            {
+                objectRigidbody.AddForce(transform.forward * Time.deltaTime * 150000);
+            }            
         }
 
     }
 
     public virtual void Walk(PlayerData _playerData, ref Transform playerTransform, ref Animator characterAnimator)
-    {//ForwardAndBackWalking
-        if (!_playerData.isLockedWalking)
-        {
-            if ((PlayerManager.GetInstance.GetZValue() >= 0.01 && !_playerData.isClimbing && !_playerData.isBackClimbing))
-            {
-                //PlayerData
-                _playerData.isWalking = true;
+    {
+        float zValue = PlayerManager.GetInstance.GetZValue();
+        float xValue = PlayerManager.GetInstance.GetXValue();
 
-                if (characterAnimator.GetLayerWeight(16) == 1)
-                {//When fireWalk Animation is active, player speed will lower then original speed
-                    playerTransform.Translate(0f, 0f, PlayerManager.GetInstance.GetZValue() * _playerData.playerSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    playerTransform.Translate(0f, 0f, PlayerManager.GetInstance.GetZValue() * _playerData.playerSpeed * Time.deltaTime);
-                }
-                _playerData.isBackWalking = false;
-            }
-            if (PlayerManager.GetInstance.GetZValue() < -0.01 && !_playerData.isClimbing && !_playerData.isBackClimbing)
-            {
-                //PlayerData
-                playerTransform.Translate(0f, 0f, PlayerManager.GetInstance.GetZValue() * (_playerData.playerSpeed * 2 / 3)* Time.deltaTime);
-                _playerData.isBackWalking = true;
-                _playerData.isWalking = false;
-                _playerData.isBackClimbing = false;
-                _playerData.isClimbing = false;
-                _playerData.isSideWalking = false;
-            }
-            if (PlayerManager.GetInstance.GetZValue() == 0)
-            {
-                //PlayerData
-                _playerData.isBackWalking = false;
-                _playerData.isWalking = false;
-            }
-        }
-        else if(_playerData.isLockedWalking)
+        if (Mathf.Abs(xValue)*2 >= zValue)
         {
-            playerTransform.Translate(0f, 0f, _playerData.playerSpeed / 2 * Time.deltaTime);
+            _playerData.isSideWalking = true;
+            _playerData.isWalking = false;            
         }
         else
-        {
-            _playerData.isWalking = false;
-        }
-
-    }
-    public virtual void SideWalk(PlayerData _playerData, ref Transform playerTransform)
-    {//LeftAndRightWalking
-
-        if (Mathf.Abs(PlayerManager.GetInstance.GetXValue()) < Mathf.Abs(PlayerManager.GetInstance.GetZValue()) || (PlayerManager.GetInstance.GetZValue() > 0.1f &&
-            PlayerManager.GetInstance.GetXValue() > 0.1f))
         {
             _playerData.isWalking = true;
             _playerData.isSideWalking = false;
         }
-        if ((!_playerData.isClimbing && !_playerData.isBackClimbing) && 
-            (PlayerManager.GetInstance.GetXValue() < -0.001f || PlayerManager.GetInstance.GetXValue() > 0.001f) &&
-            Mathf.Abs(PlayerManager.GetInstance.GetXValue()) > 2 * Mathf.Abs(PlayerManager.GetInstance.GetZValue()) &&
-            PlayerManager.GetInstance.GetZValue() < 0.2f)
+        if (Mathf.Abs(xValue) > 0 && Mathf.Abs(zValue) < .4f)
         {
-            _playerData.isSideWalking = true;
-
-            playerTransform.Translate(PlayerManager.GetInstance.GetXValue() * (_playerData.playerSpeed / 3 )* Time.deltaTime, 0f, 0f);
+            playerTransform.Translate((_playerData.playerSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue), 0f, 0f);
         }
-        if (PlayerManager.GetInstance.GetXValue() == 0f)
+        if (zValue > 0 && Mathf.Abs(xValue) < .4f)
         {
+            playerTransform.Translate(0f, 0f, _playerData.playerSpeed * Time.deltaTime);
+        }
+        if (Mathf.Abs(zValue) > .4f && Mathf.Abs(xValue) > .4f)
+        {
+            playerTransform.Translate(0f, 0f, _playerData.playerSpeed * Time.deltaTime);
+            playerTransform.Translate((_playerData.playerSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue), 0f, 0f);
+        }
+
+
+        // Geri Yürüme Durumu
+        if (zValue < 0f)
+        {
+            playerTransform.Translate(0f, 0f, (-_playerData.playerSpeed * 2 / 3) * Time.deltaTime);
+            _playerData.isBackWalking = true;
+            _playerData.isWalking = false;
             _playerData.isSideWalking = false;
         }
-    }
-    public virtual void Climb(PlayerData _playerData, ref Transform playerTransform)
-    {//WhenEnterToTheLadderGoToClimb
-        if (PlayerManager.GetInstance.GetZValue() > 0 && _playerData.isClimbing && !_playerData.isBackClimbing)
+        // Durma Durumu
+        if (zValue == 0f && xValue == 0f)
         {
-            playerTransform.Translate(0f, PlayerManager.GetInstance.GetZValue() * _playerData.climbSpeed, 0f);
-        }
-        else if (PlayerManager.GetInstance.GetZValue() < 0 && !_playerData.isClimbing && _playerData.isBackClimbing)
-        {
-            playerTransform.Translate(0f, PlayerManager.GetInstance.GetZValue(), 0f);
+            _playerData.isBackWalking = false;
+            _playerData.isWalking = false;
+            _playerData.isSideWalking = false;
         }
     }
 
     public virtual void Jump(PlayerData _playerData, ref Rigidbody playerRigidbody)
     {
-        if (PlayerManager.GetInstance._playerController.jump && _playerData.jumpCount == 0 && _playerData.isGround)
+        if (PlayerManager.GetInstance.playerComponents._playerController.jump && _playerData.jumpCount == 0 && _playerData.isGround)
         {
 
             //SoundEffect
@@ -1401,11 +1464,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     void JumpDirectionZ(PlayerData _playerData, ref Rigidbody playerRigidbody)
     {
-        if (PlayerManager.GetInstance.GetZValue() <= 0.01)
+        if (PlayerManager.GetInstance.GetZValue() < 0)
         {
             playerRigidbody.AddForce(transform.forward * -1 * _playerData.currentJumpForce / 3, ForceMode.Impulse);
         }
-        else
+        else if (PlayerManager.GetInstance.GetZValue() > 0)
         {
             playerRigidbody.AddForce(transform.forward * _playerData.currentJumpForce / 3, ForceMode.Impulse);
         }
@@ -1413,50 +1476,16 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
     void JumpDirectionX(PlayerData _playerData, ref Rigidbody playerRigidbody)
     {
-        if (PlayerManager.GetInstance.GetXValue() <= 0.01 && _playerData.isSideWalking)
+        if (PlayerManager.GetInstance.GetXValue() < 0 && _playerData.isSideWalking)
         {
             playerRigidbody.AddForce(transform.right * -1 * _playerData.currentJumpForce / 3, ForceMode.Impulse);
 
         }
-        else if (PlayerManager.GetInstance.GetXValue() >= 0.01 && _playerData.isSideWalking)
+        else if (PlayerManager.GetInstance.GetXValue() > 0 && _playerData.isSideWalking)
         {
             playerRigidbody.AddForce(transform.right * _playerData.currentJumpForce / 3, ForceMode.Impulse);
         }
 
-    }
-
-    public virtual void SpeedSettings(PlayerData _playerData, float _initPlayerSpeed)
-    {
-        if (!_playerData.isLockedWalking)
-        {
-            if ((PlayerManager.GetInstance.GetXValue() > 0 && PlayerManager.GetInstance.GetZValue() > 0) ||
-                (PlayerManager.GetInstance.GetXValue() < 0 && PlayerManager.GetInstance.GetZValue() > 0) ||
-                (PlayerManager.GetInstance.GetXValue() < 0 && PlayerManager.GetInstance.GetZValue() < 0) ||
-                (PlayerManager.GetInstance.GetXValue() > 0 && PlayerManager.GetInstance.GetZValue() < 0) ||
-                PlayerManager.GetInstance.GetZValue() < 0)
-            {
-                //PlayerData
-                if (_playerData.extraSpeed)
-                {
-                    _playerData.playerSpeed = _initPlayerSpeed;
-                }
-                if (_playerData.normalSpeed)
-                {
-                    _playerData.playerSpeed = _initPlayerSpeed;
-                }
-            }
-            else if (_playerData.isRunning)
-            {
-                //PlayerData
-                //_playerData.playerSpeed = _initPlayerSpeed * 1.3f;
-            }
-            else
-            {
-                //PlayerData
-                _playerData.skateboardParticle.Stop();
-                _playerData.playerSpeed = _initPlayerSpeed;
-            }
-        }
     }
     public IEnumerator DelayMessageText(PlayerData _playerData, string turkishMessage, string englishMessage)
     {
@@ -1472,10 +1501,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         yield return new WaitForSeconds(delay);
         _playerData.isRunning = false;
-
-        yield return new WaitForSeconds(3f);
-        _playerData.isClickable = true;
-
     }
     #endregion
 
@@ -1489,8 +1514,22 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void GetMousePosition(PlayerData _playerData, ref float _touchX, ref float _touchY)
     {
-        _touchX = Input.GetAxis("Mouse X") * _playerData.rotateSpeed * Time.timeScale;
-        _touchY = Input.GetAxis("Mouse Y") * _playerData.rotateSpeed * Time.timeScale * 5f;
+        if (Input.GetAxis("Mouse X")> 0)
+        {
+            _touchX = _playerData.rotateSpeed * Time.deltaTime;
+        }
+        else if(Input.GetAxis("Mouse X") < 0)
+        {
+            _touchX = -_playerData.rotateSpeed * Time.deltaTime;
+        }
+        if (Input.GetAxis("Mouse Y") > 0)
+        {
+            _touchY = _playerData.rotateSpeed * Time.deltaTime * 5f;
+        }
+        else if (Input.GetAxis("Mouse Y") < 0)
+        {
+            _touchY = -_playerData.rotateSpeed * Time.deltaTime * 5f;
+        }
     }
 
 

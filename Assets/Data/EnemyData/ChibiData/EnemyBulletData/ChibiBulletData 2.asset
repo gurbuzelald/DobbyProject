@@ -114,7 +114,7 @@ MonoBehaviour:
   electroBulletAmount: 0
   ak47BulletAmount: 0
   m4A4BulletAmount: 0
-  currentEnemyBulletDamage: 0
+  currentEnemyBulletDamage: 15
   chibiEnemyBulletDamage: 15
   minoEnemyBulletDamage: 0
   bigMonsterEnemyBulletDamage: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   clothyBoneEnemyBulletDamage: 0
   chestMonsterEnemyBulletDamage: 0
   chestMonster2EnemyBulletDamage: 0
-  currentEnemyAttackDamage: 0
+  currentEnemyAttackDamage: 16
   chibiEnemyAttackDamage: 16
   minoEnemyAttackDamage: 0
   bigMonsterEnemyAttackDamage: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   clothyBoneEnemyAttackDamage: 0
   chestMonsterEnemyAttackDamage: 0
   chestMonster2EnemyAttackDamage: 0
-  currentEnemyCollisionDamage: 0
+  currentEnemyCollisionDamage: 17
   chibiEnemyCollisionDamage: 17
   minoEnemyCollisionDamage: 0
   bigMonsterEnemyCollisionDamage: 0
@@ -180,8 +180,8 @@ MonoBehaviour:
   currentSwordName: WarriorSword
   currentWeaponName: Ak47
   swordDamageValue: 0
-  enemyFireFrequency: 5
-  enemyBulletDelayCounter: 0
+  enemyFireFrequency: 1
+  enemyBulletDelayCounter: 0.5204841
   enemyBulletDelay: 0.05
   enemyBulletSpeed: 3
   isFirable: 1

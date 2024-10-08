@@ -12,9 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  currentBulletExplosionParticle: {fileID: 2689552222238927185, guid: 632812bd72b786d4c937d25598e0498d, type: 3}
-  currentSwordBulletExplosionParticle: {fileID: 0}
-  menuMap: {fileID: 502383380469877276, guid: b885b8bf05ba341e6974309d788b5026, type: 3}
+  playerWeaponBulletObjectPoolCount: 0
+  playerSwordBulletObjectPoolCount: 1
+  destroyCoinParticleObjectPoolCount: 2
+  destroyBulletCoinParticleObjectPoolCount: 3
+  destroyHealthCoinObjectPoolCount: 4
+  destroyMushroomCoinObjectPoolCount: 5
+  playerBulletsExplosionObjectPoolCount: 6
+  playerSwordExplosionObjectPoolCount: 7
+  playerBurningTouchParticleObjectPoolCount: 8
+  playerTouchParticleObjectPoolCount: 9
+  deathParticleObjectPoolCount: 10
+  playerSwordObjectPoolCount: 11
+  enemyBulletParticleObjectPoolCount: 0
+  enemyMidParticleObjectPoolCount: 1
+  enemyPrefabObjectPoolCount: 2
+  bossEnemyPrefabObjectPoolCount: 3
+  chestMonsterEnemyPrefabObjectPoolCount: 4
+  chestMonster2EnemyPrefabObjectPoolCount: 5
   currentLanguage: 0
   getCurrentEnemyDead: 0
   currentMessageText: {fileID: 0}
@@ -81,8 +96,8 @@ MonoBehaviour:
   - {fileID: 7971067666596210365, guid: 48f6891f360c67a488d3fe548e1e8d5f, type: 3}
   - {fileID: 7971067666596210365, guid: 0ba857b35eeb15e4da33c0bc95bc1357, type: 3}
   spawns: {fileID: 2359986759738939504, guid: aabf96d4f82bfd84cadaf35e1afe1e4b, type: 3}
-  sensivityX: 5
-  sensivityY: 5
+  sensivityX: 1
+  sensivityY: 3
   isTouchFinish: 0
   isLose: 0
   joleenPrice: 10000
@@ -96,21 +111,21 @@ MonoBehaviour:
   bossPrice: 23000
   tyPrice: 2000
   mremirehPrice: 20000
-  playerSpeed: 70
+  playerSpeed: 1
   skateBoardSpeed: 14
   climbSpeed: 3
   rotateSpeed: 6
-  dobbySpeed: 30
-  michelleSpeed: 39
-  glassySpeed: 35
-  ajSpeed: 37
-  eveSpeed: 47
-  mremirehSpeed: 50
-  lusthSpeed: 45
-  joleenSpeed: 41
-  bossSpeed: 43
-  tySpeed: 35
-  guardSpeed: 43
+  dobbySpeed: 1
+  michelleSpeed: 4
+  glassySpeed: 3.5
+  ajSpeed: 3.7
+  eveSpeed: 4.5
+  mremirehSpeed: 4.6
+  lusthSpeed: 4.5
+  joleenSpeed: 4.1
+  bossSpeed: 4.3
+  tySpeed: 3.5
+  guardSpeed: 4.3
   currentJumpForce: 4
   dobbyJumpForce: 4
   michelleJumpForce: 7
@@ -138,6 +153,7 @@ MonoBehaviour:
   isPicking: 0
   isPickRotateCoin: 0
   isSwordAnimate: 0
+  isSword: 0
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 1
@@ -145,22 +161,15 @@ MonoBehaviour:
   isFireWalkAnimation: 0
   isFireAnimation: 0
   isFireTime: 0
-  isSwording: 0
-  isSwordTime: 1
   isJumping: 0
-  isClickable: 1
   jumpCount: 0
   clickDoubleSpeedCount: 0
-  extraSpeed: 1
-  normalSpeed: 1
   clickTabCount: 0
   clickShiftCount: 0
-  bulletAmount: 18
-  bulletPackAmount: 1
-  isTouchableSkate: 1
+  bulletAmount: 24
+  bulletPackAmount: 2
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}
-  skateboardParticle: {fileID: 4302228992980891979, guid: 769cab40082ebc24fbc29148cf0f4687, type: 3}
   touchParticle: {fileID: 2098394851902305992, guid: 9bd5863dac0a07144a968a375408214b, type: 3}
   birthParticle: {fileID: 1705621348223521887, guid: cd7d4ea18b432ef44b8f8ed281ea60c7, type: 3}
   deathParticle: {fileID: 5597880929392322992, guid: c3d186f24e85b9549b8b845c134e0d97, type: 3}
@@ -170,7 +179,6 @@ MonoBehaviour:
   destroyHealthCoinParticle: {fileID: 8288753135164088106, guid: 5d1b41e89aeadc54d8b8754f2510a377, type: 3}
   destroyBulletCoinParticle: {fileID: 5528744555975214268, guid: f15554b031345d14590701f56225ee6b, type: 3}
   destroyMushroomCoinParticle: {fileID: 5170391159290364789, guid: 9ad1b0280ab4ddb488e732d284326376, type: 3}
-  playerWalkingParticle: {fileID: 3532911235452109422, guid: e23fee5b26651554395da526e4bb4ce1, type: 3}
   particleCount: 0
   isTouchFirst: 0
   isTouchSecond: 0

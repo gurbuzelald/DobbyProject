@@ -20,9 +20,9 @@ public class LevelUpButtonController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-            SceneController.playAgain = true;
+            SceneController.playAgainForScore = true;
 
-            SceneController.DestroySingletonObjects();
+            //SceneController.DestroySingletonObjects();
 
             SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
 
@@ -39,9 +39,9 @@ public class LevelUpButtonController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-            SceneController.playAgain = true;
+            SceneController.playAgainForScore = true;
 
-            SceneController.DestroySingletonObjects();
+            //SceneController.DestroySingletonObjects();
 
             SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
 
@@ -58,9 +58,9 @@ public class LevelUpButtonController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-            SceneController.playAgain = true;
+            SceneController.playAgainForScore = true;
 
-            SceneController.DestroySingletonObjects();
+            //SceneController.DestroySingletonObjects();
 
             SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
 
@@ -77,9 +77,9 @@ public class LevelUpButtonController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-            SceneController.playAgain = true;
+            SceneController.playAgainForScore = true;
 
-            SceneController.DestroySingletonObjects();
+            //SceneController.DestroySingletonObjects();
 
             SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
 
@@ -96,9 +96,9 @@ public class LevelUpButtonController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-            SceneController.playAgain = true;
+            SceneController.playAgainForScore = true;
 
-            SceneController.DestroySingletonObjects();
+            //SceneController.DestroySingletonObjects();
 
             SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
 
@@ -115,9 +115,9 @@ public class LevelUpButtonController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-            SceneController.playAgain = true;
+            SceneController.playAgainForScore = true;
 
-            SceneController.DestroySingletonObjects();
+            //SceneController.DestroySingletonObjects();
 
             SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
 
@@ -134,9 +134,9 @@ public class LevelUpButtonController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-            SceneController.playAgain = true;
+            SceneController.playAgainForScore = true;
 
-            SceneController.DestroySingletonObjects();
+            //SceneController.DestroySingletonObjects();
 
             SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
 
@@ -153,9 +153,9 @@ public class LevelUpButtonController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-            SceneController.playAgain = true;
+            SceneController.playAgainForScore = true;
 
-            SceneController.DestroySingletonObjects();
+            //SceneController.DestroySingletonObjects();
 
             SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
 
@@ -172,9 +172,9 @@ public class LevelUpButtonController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-            SceneController.playAgain = true;
+            SceneController.playAgainForScore = true;
 
-            SceneController.DestroySingletonObjects();
+            //SceneController.DestroySingletonObjects();
 
             SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
 
@@ -191,9 +191,9 @@ public class LevelUpButtonController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-            SceneController.playAgain = true;
+            SceneController.playAgainForScore = true;
 
-            SceneController.DestroySingletonObjects();
+            //SceneController.DestroySingletonObjects();
 
             SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
 

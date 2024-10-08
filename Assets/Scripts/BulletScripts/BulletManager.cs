@@ -100,215 +100,162 @@ public class BulletManager : AbstractBullet<BulletManager>
     }
     public void CreateSwordObject()
     {
-        if (BulletData.lowSword == bulletData.currentSwordName)
+        if (bulletData)
         {
-            _currentSwordObject = Instantiate(bulletData.lowSwordObject,
-                                   _bulletSpawnTransform.position,
-                                   Quaternion.identity,
-                                   PlayerManager.GetInstance._swordTransform.transform);
+            if (BulletData.lowSword == bulletData.currentSwordName)
+            {
+                if (_bulletSpawnTransform)
+                {
+                    if (PlayerManager.GetInstance)
+                    {
+                        if (PlayerManager.GetInstance._swordTransform)
+                        {
+                            if (bulletData.lowSwordObject)
+                            {
+                                _currentSwordObject = Instantiate(bulletData.lowSwordObject,
+                                               _bulletSpawnTransform.position,
+                                               Quaternion.identity,
+                                               PlayerManager.GetInstance._swordTransform.transform);
+                            }
+                        }
+                    }   
+                }
+            }
         }
-        else if (BulletData.warriorSword == bulletData.currentSwordName)
-        {
-            _currentSwordObject = Instantiate(bulletData.warriorSwordObject,
-                                   _bulletSpawnTransform.position,
-                                   Quaternion.identity,
-                                   PlayerManager.GetInstance._swordTransform.transform);
-        }
-        else if (BulletData.hummer == bulletData.currentSwordName)
-        {
-            _currentSwordObject = Instantiate(bulletData.hummerObject,
-                                   _bulletSpawnTransform.position,
-                                   Quaternion.identity,
-                                   PlayerManager.GetInstance._swordTransform.transform);
-        }
-        else if (BulletData.orcSword == bulletData.currentSwordName)
-        {
-            _currentSwordObject = Instantiate(bulletData.orcObject,
-                                   _bulletSpawnTransform.position,
-                                   Quaternion.identity,
-                                   PlayerManager.GetInstance._swordTransform.transform);
-        }
-        else if (BulletData.axeSword == bulletData.currentSwordName)
-        {
-            _currentSwordObject = Instantiate(bulletData.axeSwordObject,
-                                   _bulletSpawnTransform.position,
-                                   Quaternion.identity,
-                                   PlayerManager.GetInstance._swordTransform.transform);
-        }
-        else if (BulletData.axeKnight == bulletData.currentSwordName)
-        {
-            _currentSwordObject = Instantiate(bulletData.axeKnightObject,
-                                   _bulletSpawnTransform.position,
-                                   Quaternion.identity,
-                                   PlayerManager.GetInstance._swordTransform.transform);
-        }
-        else if (BulletData.barbarianSword == bulletData.currentSwordName)
-        {
-            _currentSwordObject = Instantiate(bulletData.barbarianSwordObject,
-                                   _bulletSpawnTransform.position,
-                                   Quaternion.identity,
-                                   PlayerManager.GetInstance._swordTransform.transform);
-        }
-        else if (BulletData.demonSword == bulletData.currentSwordName)
-        {
-            _currentSwordObject = Instantiate(bulletData.demonSwordObject,
-                                   _bulletSpawnTransform.position,
-                                   Quaternion.identity,
-                                   PlayerManager.GetInstance._swordTransform.transform);
-
-        }
-        else if (BulletData.magicSword == bulletData.currentSwordName)
-        {
-            _currentSwordObject = Instantiate(bulletData.magicWeaponObject,
-                                   _bulletSpawnTransform.position,
-                                   Quaternion.identity,
-                                   PlayerManager.GetInstance._swordTransform.transform);
-        }
-        else if (BulletData.longHummer == bulletData.currentSwordName)
-        {
-            _currentSwordObject = Instantiate(bulletData.longHummerObject,
-                                   _bulletSpawnTransform.position,
-                                   Quaternion.identity,
-                                   PlayerManager.GetInstance._swordTransform.transform);
-        }
-        else if (BulletData.club == bulletData.currentSwordName)
-        {
-            _currentSwordObject = Instantiate(bulletData.clubObject,
-                                   _bulletSpawnTransform.position,
-                                   Quaternion.identity,
-                                   PlayerManager.GetInstance._swordTransform.transform);
-        }
+        
         if (_currentSwordObject)
         {
             _currentSwordObject.SetActive(true);
+            _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.transform.position;
+
+            _currentSwordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.transform.rotation;
         }
-
-        _currentSwordObject.transform.position = PlayerManager.GetInstance._swordTransform.transform.position;
-
-        _currentSwordObject.transform.rotation = PlayerManager.GetInstance._swordTransform.transform.rotation;
     }
     public void CreateWeaponObject()
     {
-        if (bulletData.currentWeaponName == BulletData.ak47)
+        if (bulletData)
         {
-            _currentWeaponObject = Instantiate(bulletData.ak47Object,
-                                               _bulletSpawnTransform.position,
-                                               Quaternion.identity,
-                                               PlayerManager.GetInstance._gunTransform.transform);
+            if (bulletData.currentWeaponName == BulletData.ak47)
+            {
+                _currentWeaponObject = Instantiate(bulletData.ak47Object,
+                                                   _bulletSpawnTransform.position,
+                                                   Quaternion.identity,
+                                                   PlayerManager.GetInstance._gunTransform.transform);
 
-            bulletData.currentShootFrequency = bulletData.ak47ShootFrequency;
+                bulletData.currentShootFrequency = bulletData.ak47ShootFrequency;
 
-            bulletData.currentBulletPack = bulletData.ak47BulletAmount;
+                bulletData.currentBulletPack = bulletData.ak47BulletAmount;
+            }
+            else if (bulletData.currentWeaponName == BulletData.m4a4)
+            {
+                _currentWeaponObject = Instantiate(bulletData.m4a4Object,
+                                        _bulletSpawnTransform.position,
+                                        Quaternion.identity,
+                                        PlayerManager.GetInstance._gunTransform.transform);
+
+                bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
+
+                bulletData.currentBulletPack = bulletData.m4A4BulletAmount;
+            }
+            else if (bulletData.currentWeaponName == BulletData.bulldog)
+            {
+                _currentWeaponObject = Instantiate(bulletData.bullDogObject,
+                                        _bulletSpawnTransform.position,
+                                        Quaternion.identity,
+                                        PlayerManager.GetInstance._gunTransform.transform);
+
+                bulletData.currentShootFrequency = bulletData.bulldogShootFrequency;
+
+                bulletData.currentBulletPack = bulletData.bulldogBulletAmount;
+            }
+            else if (bulletData.currentWeaponName == BulletData.cow)
+            {
+                _currentWeaponObject = Instantiate(bulletData.cowObject,
+                                        _bulletSpawnTransform.position,
+                                        Quaternion.identity,
+                                        PlayerManager.GetInstance._gunTransform.transform);
+
+                bulletData.currentShootFrequency = bulletData.cowShootFrequency;
+
+                bulletData.currentBulletPack = bulletData.cowBulletAmount;
+
+            }
+            else if (bulletData.currentWeaponName == BulletData.crystal)
+            {
+                _currentWeaponObject = Instantiate(bulletData.crsytalObject,
+                                        _bulletSpawnTransform.position,
+                                        Quaternion.identity,
+                                        PlayerManager.GetInstance._gunTransform.transform);
+
+                bulletData.currentShootFrequency = bulletData.crystalShootFrequency;
+
+                bulletData.currentBulletPack = bulletData.crystalBulletAmount;
+            }
+            else if (bulletData.currentWeaponName == BulletData.demon)
+            {
+                _currentWeaponObject = Instantiate(bulletData.demonObject,
+                                        _bulletSpawnTransform.position,
+                                        Quaternion.identity,
+                                        PlayerManager.GetInstance._gunTransform.transform);
+
+                bulletData.currentShootFrequency = bulletData.demonShootFrequency;
+
+                bulletData.currentBulletPack = bulletData.demonBulletAmount;
+            }
+            else if (bulletData.currentWeaponName == BulletData.ice)
+            {
+                _currentWeaponObject = Instantiate(bulletData.iceObject,
+                                        _bulletSpawnTransform.position,
+                                        Quaternion.identity,
+                                        PlayerManager.GetInstance._gunTransform.transform);
+
+                bulletData.currentShootFrequency = bulletData.iceShootFrequency;
+
+                bulletData.currentBulletPack = bulletData.iceBulletAmount;
+            }
+            else if (bulletData.currentWeaponName == BulletData.electro)
+            {
+                _currentWeaponObject = Instantiate(bulletData.electroObject,
+                                        _bulletSpawnTransform.position,
+                                        Quaternion.identity,
+                                        PlayerManager.GetInstance._gunTransform.transform);
+
+                bulletData.currentShootFrequency = bulletData.electroShootFrequency;
+
+                bulletData.currentBulletPack = bulletData.electroBulletAmount;
+            }
+            else if (bulletData.currentWeaponName == BulletData.axe)
+            {
+                _currentWeaponObject = Instantiate(bulletData.axeObject,
+                                        _bulletSpawnTransform.position,
+                                        Quaternion.identity,
+                                        PlayerManager.GetInstance._gunTransform.transform);
+
+                bulletData.currentShootFrequency = bulletData.axeShootFrequency;
+
+                bulletData.currentBulletPack = bulletData.axeBulletAmount;
+            }
+            else if (bulletData.currentWeaponName == BulletData.pistol)
+            {
+                _currentWeaponObject = Instantiate(bulletData.pistolObject,
+                                        _bulletSpawnTransform.position,
+                                        Quaternion.identity,
+                                        PlayerManager.GetInstance._gunTransform.transform);
+
+                bulletData.currentShootFrequency = bulletData.pistolShootFrequency;
+
+                bulletData.currentBulletPack = bulletData.pistolBulletAmount;
+            }
+            else
+            {
+                Debug.Log("Check current weapon name");
+            }
+
+            _currentWeaponObject.SetActive(true);
+
+            _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.transform.position;
+            _currentWeaponObject.transform.rotation = PlayerManager.GetInstance._gunTransform.transform.rotation;
         }
-        else if (bulletData.currentWeaponName == BulletData.m4a4)
-        {
-            _currentWeaponObject = Instantiate(bulletData.m4a4Object,
-                                    _bulletSpawnTransform.position,
-                                    Quaternion.identity,
-                                    PlayerManager.GetInstance._gunTransform.transform);
-
-            bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
-
-            bulletData.currentBulletPack = bulletData.m4A4BulletAmount;
-        }
-        else if (bulletData.currentWeaponName == BulletData.bulldog)
-        {
-            _currentWeaponObject = Instantiate(bulletData.bullDogObject,
-                                    _bulletSpawnTransform.position,
-                                    Quaternion.identity,
-                                    PlayerManager.GetInstance._gunTransform.transform);
-
-            bulletData.currentShootFrequency = bulletData.bulldogShootFrequency;
-
-            bulletData.currentBulletPack = bulletData.bulldogBulletAmount;
-        }
-        else if (bulletData.currentWeaponName == BulletData.cow)
-        {
-            _currentWeaponObject = Instantiate(bulletData.cowObject,
-                                    _bulletSpawnTransform.position,
-                                    Quaternion.identity,
-                                    PlayerManager.GetInstance._gunTransform.transform);
-
-            bulletData.currentShootFrequency = bulletData.cowShootFrequency;
-
-            bulletData.currentBulletPack = bulletData.cowBulletAmount;
-
-        }
-        else if (bulletData.currentWeaponName == BulletData.crystal)
-        {
-            _currentWeaponObject = Instantiate(bulletData.crsytalObject,
-                                    _bulletSpawnTransform.position,
-                                    Quaternion.identity,
-                                    PlayerManager.GetInstance._gunTransform.transform);
-
-            bulletData.currentShootFrequency = bulletData.crystalShootFrequency;
-
-            bulletData.currentBulletPack = bulletData.crystalBulletAmount;
-        }
-        else if (bulletData.currentWeaponName == BulletData.demon)
-        {
-            _currentWeaponObject = Instantiate(bulletData.demonObject,
-                                    _bulletSpawnTransform.position,
-                                    Quaternion.identity,
-                                    PlayerManager.GetInstance._gunTransform.transform);
-
-            bulletData.currentShootFrequency = bulletData.demonShootFrequency;
-
-            bulletData.currentBulletPack = bulletData.demonBulletAmount;
-        }
-        else if (bulletData.currentWeaponName == BulletData.ice)
-        {
-            _currentWeaponObject = Instantiate(bulletData.iceObject,
-                                    _bulletSpawnTransform.position,
-                                    Quaternion.identity,
-                                    PlayerManager.GetInstance._gunTransform.transform);
-
-            bulletData.currentShootFrequency = bulletData.iceShootFrequency;
-
-            bulletData.currentBulletPack = bulletData.iceBulletAmount;
-        }
-        else if (bulletData.currentWeaponName == BulletData.electro)
-        {
-            _currentWeaponObject = Instantiate(bulletData.electroObject,
-                                    _bulletSpawnTransform.position,
-                                    Quaternion.identity,
-                                    PlayerManager.GetInstance._gunTransform.transform);
-
-            bulletData.currentShootFrequency = bulletData.electroShootFrequency;
-
-            bulletData.currentBulletPack = bulletData.electroBulletAmount;
-        }
-        else if (bulletData.currentWeaponName == BulletData.axe)
-        {
-            _currentWeaponObject = Instantiate(bulletData.axeObject,
-                                    _bulletSpawnTransform.position,
-                                    Quaternion.identity,
-                                    PlayerManager.GetInstance._gunTransform.transform);
-
-            bulletData.currentShootFrequency = bulletData.axeShootFrequency;
-
-            bulletData.currentBulletPack = bulletData.axeBulletAmount;
-        }
-        else if (bulletData.currentWeaponName == BulletData.pistol)
-        {
-            _currentWeaponObject = Instantiate(bulletData.pistolObject,
-                                    _bulletSpawnTransform.position,
-                                    Quaternion.identity,
-                                    PlayerManager.GetInstance._gunTransform.transform);
-
-            bulletData.currentShootFrequency = bulletData.pistolShootFrequency;
-
-            bulletData.currentBulletPack = bulletData.pistolBulletAmount;
-        }
-        else
-        {
-            Debug.Log("Check current weapon name");
-        }
-
-        _currentWeaponObject.SetActive(true);
-
-        _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.transform.position;
-        _currentWeaponObject.transform.rotation = PlayerManager.GetInstance._gunTransform.transform.rotation;
     }
 
     public void SetWeaponTransform()//Getting finger transform parameter
@@ -409,48 +356,49 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
         if (bulletData.isM4a4)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.electro || bulletData.currentWeaponName == BulletData.axe
-                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon || 
-                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
-                bulletData.currentWeaponName == BulletData.pistol)
+            if (bulletData.currentWeaponName != BulletData.m4a4)
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.m4a4;
                 bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
+
+                BulletData.currentWeaponID = 9;
+                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
+
                 CreateWeaponObject();
 
-                PlayerData.currentBulletExplosionIsChanged = true;
+                PlayerData.currentBulletExplosionIsChanged = true;                
             }
             bulletData.isM4a4 = false;
         }
         else if (bulletData.isAk47)
         {
-            if (bulletData.currentWeaponName == BulletData.m4a4 || bulletData.currentWeaponName == BulletData.electro || bulletData.currentWeaponName == BulletData.axe
-                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
-                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
-                bulletData.currentWeaponName == BulletData.pistol)
+            if (bulletData.currentWeaponName != BulletData.ak47)
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.ak47;
                 bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
+
+                BulletData.currentWeaponID = 8;
+                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
+
                 CreateWeaponObject();
 
                 PlayerData.currentBulletExplosionIsChanged = true;
-
-                
             }
             bulletData.isAk47 = false;
         }
         else if (bulletData.isAxe)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.electro || bulletData.currentWeaponName == BulletData.m4a4
-                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
-                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
-                bulletData.currentWeaponName == BulletData.pistol)
+            if (bulletData.currentWeaponName != BulletData.axe)
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.axe;
                 bulletData.currentShootFrequency = bulletData.axeShootFrequency;
+
+                BulletData.currentWeaponID = 1;
+                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
+
                 CreateWeaponObject();
 
                 PlayerData.currentBulletExplosionIsChanged = true;
@@ -459,14 +407,15 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
         else if (bulletData.isElectro)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.axe || bulletData.currentWeaponName == BulletData.m4a4
-                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
-                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
-                bulletData.currentWeaponName == BulletData.pistol)
+            if (bulletData.currentWeaponName != BulletData.electro)
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.electro;
                 bulletData.currentShootFrequency = bulletData.electroShootFrequency;
+
+                BulletData.currentWeaponID = 7;
+                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
+
                 CreateWeaponObject();
 
                 PlayerData.currentBulletExplosionIsChanged = true;
@@ -475,14 +424,15 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
         else if (bulletData.isCrystal)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.electro || bulletData.currentWeaponName == BulletData.m4a4
-                || bulletData.currentWeaponName == BulletData.axe || bulletData.currentWeaponName == BulletData.demon ||
-                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
-                bulletData.currentWeaponName == BulletData.pistol)
+            if (bulletData.currentWeaponName != BulletData.crystal)
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.crystal;
                 bulletData.currentShootFrequency = bulletData.crystalShootFrequency;
+
+                BulletData.currentWeaponID = 4;
+                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
+
                 CreateWeaponObject();
 
                 PlayerData.currentBulletExplosionIsChanged = true;
@@ -491,14 +441,15 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
         else if (bulletData.isDemon)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.electro || bulletData.currentWeaponName == BulletData.m4a4
-                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.axe ||
-                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
-                bulletData.currentWeaponName == BulletData.pistol)
+            if (bulletData.currentWeaponName != BulletData.demon)
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.demon;
                 bulletData.currentShootFrequency = bulletData.demonShootFrequency;
+
+                BulletData.currentWeaponID = 5;
+                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
+
                 CreateWeaponObject();
 
                 PlayerData.currentBulletExplosionIsChanged = true;
@@ -507,14 +458,15 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
         else if (bulletData.isIce)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.electro || bulletData.currentWeaponName == BulletData.m4a4
-                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
-                bulletData.currentWeaponName == BulletData.axe || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.cow ||
-                bulletData.currentWeaponName == BulletData.pistol)
+            if (bulletData.currentWeaponName != BulletData.ice)
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.ice;
                 bulletData.currentShootFrequency = bulletData.iceShootFrequency;
+
+                BulletData.currentWeaponID = 6;
+                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
+
                 CreateWeaponObject();
 
                 PlayerData.currentBulletExplosionIsChanged = true;
@@ -523,14 +475,15 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
         else if (bulletData.isBulldog)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.electro || bulletData.currentWeaponName == BulletData.m4a4
-                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
-                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.axe || bulletData.currentWeaponName == BulletData.cow ||
-                bulletData.currentWeaponName == BulletData.pistol)
+            if (bulletData.currentWeaponName != BulletData.bulldog)
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.bulldog;
                 bulletData.currentShootFrequency = bulletData.bulldogShootFrequency;
+
+                BulletData.currentWeaponID = 2;
+                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
+
                 CreateWeaponObject();
 
                 PlayerData.currentBulletExplosionIsChanged = true;
@@ -539,14 +492,15 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
         else if (bulletData.isCow)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.electro || bulletData.currentWeaponName == BulletData.m4a4
-                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
-                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.axe ||
-                bulletData.currentWeaponName == BulletData.pistol)
+            if (bulletData.currentWeaponName != BulletData.cow)
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.cow;
                 bulletData.currentShootFrequency = bulletData.cowShootFrequency;
+
+                BulletData.currentWeaponID = 3;
+                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
+
                 CreateWeaponObject();
 
                 PlayerData.currentBulletExplosionIsChanged = true;
@@ -555,14 +509,15 @@ public class BulletManager : AbstractBullet<BulletManager>
         }
         else if (bulletData.isPistol)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47 || bulletData.currentWeaponName == BulletData.electro || bulletData.currentWeaponName == BulletData.m4a4
-                || bulletData.currentWeaponName == BulletData.crystal || bulletData.currentWeaponName == BulletData.demon ||
-                bulletData.currentWeaponName == BulletData.ice || bulletData.currentWeaponName == BulletData.bulldog || bulletData.currentWeaponName == BulletData.axe ||
-                bulletData.currentWeaponName == BulletData.cow)
+            if (bulletData.currentWeaponName != BulletData.pistol)
             {
                 Destroy(_currentWeaponObject);
                 bulletData.currentWeaponName = BulletData.pistol;
                 bulletData.currentShootFrequency = bulletData.pistolShootFrequency;
+
+                BulletData.currentWeaponID = 0;
+                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
+
                 CreateWeaponObject();
 
                 PlayerData.currentBulletExplosionIsChanged = true;
@@ -831,22 +786,19 @@ public class BulletManager : AbstractBullet<BulletManager>
 
     public void SwordFire()
     {
-        if (_playerData.isSwording && !_playerData.isFire && bulletData.bulletDelayCounter == 0 && _playerData.isSwordTime)
+        if (_playerData.isSword)
         {
-
-            bulletData.bulletDelayCounter++;
-
-            StartCoroutine(Delay(bulletData.swordBulletDelay, 2));
+            StartCoroutine(Delay(0.5f, _playerData.playerSwordBulletObjectPoolCount));
         }
     }
 
     public void WeaponFire()
     {
-        if ((_playerData.isFire || _playerData.isFire) && !_playerData.isSwording && bulletData.bulletDelayCounter == 0 && _playerData.isFireTime)
+        if ((_playerData.isFire || _playerData.isFire) && !_playerData.isSwordAnimate && bulletData.bulletDelayCounter == 0 && _playerData.isFireTime)
         {
             bulletData.bulletDelayCounter++;
 
-            StartCoroutine(Delay(bulletData.weaponBulletDelay, 0));
+            StartCoroutine(Delay(bulletData.weaponBulletDelay, _playerData.playerWeaponBulletObjectPoolCount));
         }
     }
 
@@ -943,24 +895,21 @@ public class BulletManager : AbstractBullet<BulletManager>
     }
     IEnumerator Delay(float delayValue, int objectPoolCount)
     {        
-        if (objectPoolCount == 2)
+        if (objectPoolCount == _playerData.playerSwordBulletObjectPoolCount)
         {//SwordBullet
-            //yield return new WaitForSeconds(1);
             _currentSwordObject.SetActive(true);
             _currentWeaponObject.SetActive(false);
             yield return new WaitForSeconds(delayValue);
              
             SwordSoundTypeState();
 
-            _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._currentCamera.transform.position.x, 
-                                                        _bulletSpawnTransform.transform.position.y, 
-                                                        _bulletSpawnTransform.transform.position.z);
-            CreateBullet(_bulletSpawnTransform, bulletData.swordSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 1f, 1f);
-            bulletData.bulletDelayCounter = 0;
-            yield return new WaitForSeconds(delayValue * 50f);
-            //_swordObject.SetActive(false);
+            CreatePlayerBullet(_bulletSpawnTransform, bulletData.swordSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 1f);
+
+            _bulletSpawnTransform.position = new Vector3(_bulletSpawnTransform.transform.position.x,
+                                                         _bulletSpawnTransform.transform.position.y,
+                                                         _bulletSpawnTransform.transform.position.z);
         }
-        else if (objectPoolCount == 0)
+        else if (objectPoolCount == _playerData.playerWeaponBulletObjectPoolCount)
         {//WeaponBullet
             _currentWeaponObject.SetActive(true);
             _currentSwordObject.SetActive(false);
@@ -973,7 +922,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 WeaponSoundTypeState();
 
-                CreateBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 1f);
+                CreatePlayerBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 1f);
                 isCreatedWeaponBullet = true;
             }
             //PlayerManager.GetInstance._currentCamera.transform.position.x
@@ -981,10 +930,6 @@ public class BulletManager : AbstractBullet<BulletManager>
                                                          _bulletSpawnTransform.transform.position.y, 
                                                          _bulletSpawnTransform.transform.position.z);
             bulletData.bulletDelayCounter = 0;
-            //yield return new WaitForSeconds(delayValue * 50f);
-            //_currentWeaponObject.SetActive(false);
-            //yield return new WaitForSeconds(3f);
-            //_currentSwordObject.SetActive(true);
         }
         
     }

@@ -169,6 +169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5451428620714222760}
   - component: {fileID: 364407844603412121}
+  - component: {fileID: 2068004204811469983}
   m_Layer: 0
   m_Name: PT_Medieval_Male_Armor_Skeleton_01_boots
   m_TagString: Untagged
@@ -319,6 +320,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000012278557, y: -1.014365, z: 0.032376677}
     m_Extent: {x: 0.16126056, y: 0.13291335, z: 0.14472102}
   m_DirtyAABB: 0
+--- !u!114 &2068004204811469983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464853987666171870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &514630174282529866
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,12 +602,44 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 74fbddf411f6b45969c86e9054cd26d0, type: 2}
   - {fileID: 11400000, guid: 72adf82299b7f4f42a11da4a69420e78, type: 2}
   - {fileID: 11400000, guid: 86169bf8d638a465a9b127dfd16819d7, type: 2}
+  - {fileID: 11400000, guid: b634f6a169a004717b9e0f8c2e854fc8, type: 2}
+  - {fileID: 11400000, guid: 5cb099d351f2f4b79be1a903fc79daaa, type: 2}
+  - {fileID: 11400000, guid: 7da43238ed4714c4ba38d76d89441743, type: 2}
+  - {fileID: 11400000, guid: c2eda9916df8d41f59fa343567884d4b, type: 2}
+  - {fileID: 11400000, guid: 45533481aebc9425cbbb123a7b211646, type: 2}
+  - {fileID: 11400000, guid: cbd752d3c9c984446843fb1be70b13c9, type: 2}
+  - {fileID: 11400000, guid: 9d2565f5f1e4e4f439a4b5c61d109247, type: 2}
+  - {fileID: 11400000, guid: 45cb5013177954e2b9bcf90357d1834c, type: 2}
+  - {fileID: 11400000, guid: 24dc8b5ca20d04ea2a6d3e8db56b77a8, type: 2}
+  - {fileID: 11400000, guid: d7e8e953c60fc45c2b7d30392dad66e1, type: 2}
+  - {fileID: 11400000, guid: 63b4ce7b0006c4b7081dbb8c949395f2, type: 2}
+  - {fileID: 11400000, guid: be1e5c8aff8e74c6ba0b441bf4f1c872, type: 2}
+  - {fileID: 11400000, guid: 2a74dcdc418894962b88e0c68fec58e1, type: 2}
+  - {fileID: 11400000, guid: 19292e16ca1f241598cbd30ba9e8c826, type: 2}
+  - {fileID: 11400000, guid: 1d923c9bbf5e64aa6a729fea4a4dcd40, type: 2}
+  - {fileID: 11400000, guid: a0ae1f6ba57bf48a2a9d832147bc6442, type: 2}
   enemyData: {fileID: 11400000, guid: 1c26dca8c93d24e37a26abc7b8907a6f, type: 2}
   enemyListBulletData:
   - {fileID: 11400000, guid: 8b75b3f214d1b44c5b8a4ab61acb1bc5, type: 2}
   - {fileID: 11400000, guid: bf42e6c6640aa4955a211620d82b1a17, type: 2}
   - {fileID: 11400000, guid: 5444794eeb41c48c39ce918a4f5f1cb1, type: 2}
   - {fileID: 11400000, guid: f7cdef03426a648ca954e53ccf75c658, type: 2}
+  - {fileID: 11400000, guid: 4ef4482f1b5ce43158730c1d542f946b, type: 2}
+  - {fileID: 11400000, guid: 81df42817764d4adeab3e6d80b53aee5, type: 2}
+  - {fileID: 11400000, guid: 9c42538130fa0496abc8e9f7bee93dc8, type: 2}
+  - {fileID: 11400000, guid: 7d837ddf242b944f38bdbf315d0935b9, type: 2}
+  - {fileID: 11400000, guid: 03367144b50e44fb1b89352c1e139b55, type: 2}
+  - {fileID: 11400000, guid: 2dab7e81e5b6a4b22b2e0a0c2f4a2ce1, type: 2}
+  - {fileID: 11400000, guid: a8195c0f08749418d886679be77ca1b7, type: 2}
+  - {fileID: 11400000, guid: 6b8f80cdede75402d9933b9a8cd2a230, type: 2}
+  - {fileID: 11400000, guid: d225a2a96470e4e199ebb9de8847ae67, type: 2}
+  - {fileID: 11400000, guid: 7343c007083814644be45fdfc256fdc8, type: 2}
+  - {fileID: 11400000, guid: 626d4d9ae6d524188a1be9a95bfb0c6b, type: 2}
+  - {fileID: 11400000, guid: d889c34acf94f41e99ad53e151b102cc, type: 2}
+  - {fileID: 11400000, guid: 6072f6fb8aeda4f56b8c853d798caa8e, type: 2}
+  - {fileID: 11400000, guid: 6044f9c39d78246b98458ddf580aa850, type: 2}
+  - {fileID: 11400000, guid: a9d03a0aa533440b8aa2bdcaf98e4ecd, type: 2}
+  - {fileID: 11400000, guid: 9cb925496de014381aa193ac67d61044, type: 2}
   bulletData: {fileID: 11400000, guid: 8b75b3f214d1b44c5b8a4ab61acb1bc5, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
@@ -1082,6 +1127,22 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 025a5d9a294b34f4981dc0303aeab070, type: 2}
   - {fileID: 9100000, guid: a50295ecf36814665880f15f277a0641, type: 2}
   - {fileID: 9100000, guid: 377e14273de6f4e9a8d38f25023f3a27, type: 2}
+  - {fileID: 9100000, guid: 794b33103d840455c807c2dddcc51730, type: 2}
+  - {fileID: 9100000, guid: a50d5eacc99bf4268bee83a5bf976acb, type: 2}
+  - {fileID: 9100000, guid: a005a5b54ff0f44e98e34a48012c5e80, type: 2}
+  - {fileID: 9100000, guid: 3a2f2239d0a964e2c8bb69837f6b52f7, type: 2}
+  - {fileID: 9100000, guid: 5051f16fa32854991a98cf3cb59c75ff, type: 2}
+  - {fileID: 9100000, guid: 5fce0533654824c3fa71277f775b4f52, type: 2}
+  - {fileID: 9100000, guid: 2617ee22fcf334226889351ba436cf2e, type: 2}
+  - {fileID: 9100000, guid: d54f40245dc1f46c691264a5f9fae642, type: 2}
+  - {fileID: 9100000, guid: 9f48ba0f29b7b4121a650962062a12ea, type: 2}
+  - {fileID: 9100000, guid: 8d7b4b36555a24654b67f81edb9368bd, type: 2}
+  - {fileID: 9100000, guid: 2442af6adbf15415cbdd7891bc9a3e2b, type: 2}
+  - {fileID: 9100000, guid: 3d0621aabadf34556bfa71e216ed272a, type: 2}
+  - {fileID: 9100000, guid: 5b576ea7cd40c4d16aeadf2d79b61291, type: 2}
+  - {fileID: 9100000, guid: 8bed4408b0ac2456c9d352d83e919882, type: 2}
+  - {fileID: 9100000, guid: 2a22ae3e24ede4d88a0d34901a25a362, type: 2}
+  - {fileID: 9100000, guid: 98ee3f094bbcb4c3e8eb6b687cee6339, type: 2}
 --- !u!1 &2000584971699228970
 GameObject:
   m_ObjectHideFlags: 0
@@ -2406,6 +2467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 155019913653448530}
   - component: {fileID: 8341767695230586171}
+  - component: {fileID: 630691616251444436}
   m_Layer: 0
   m_Name: PT_Medieval_Male_Armor_Skeleton_01_body
   m_TagString: Untagged
@@ -2556,6 +2618,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.2541926, z: -0.037493423}
     m_Extent: {x: 0.70748127, y: 0.32611644, z: 0.18000215}
   m_DirtyAABB: 0
+--- !u!114 &630691616251444436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4809532752619024225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4865278637307485226
 GameObject:
   m_ObjectHideFlags: 0
@@ -3068,6 +3142,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8275371699221591904}
   - component: {fileID: 766490525845116108}
+  - component: {fileID: 3955214512725294427}
   m_Layer: 0
   m_Name: PT_Medieval_Male_Armor_Skeleton_01_head
   m_TagString: Untagged
@@ -3218,6 +3293,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0, y: 0.62081033, z: -0.02145353}
     m_Extent: {x: 0.08330283, y: 0.13171011, z: 0.118622646}
   m_DirtyAABB: 0
+--- !u!114 &3955214512725294427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5660496832049384502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5686929584611439001
 GameObject:
   m_ObjectHideFlags: 0
@@ -3228,6 +3315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 839206828022060709}
   - component: {fileID: 4852195170781422662}
+  - component: {fileID: 8780438993260157470}
   m_Layer: 0
   m_Name: PT_Medieval_Male_Armor_Skeleton_01_legs
   m_TagString: Untagged
@@ -3378,6 +3466,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.0000037774444, y: -0.4917466, z: -0.036373675}
     m_Extent: {x: 0.17063022, y: 0.47861612, z: 0.19124429}
   m_DirtyAABB: 0
+--- !u!114 &8780438993260157470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5686929584611439001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5706754867578857923
 GameObject:
   m_ObjectHideFlags: 0
@@ -4464,6 +4564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1623917352981701380}
   - component: {fileID: 803602956369429761}
+  - component: {fileID: 1753317878576368592}
   m_Layer: 0
   m_Name: PT_Medieval_Male_Armor_Skeleton_01_gauntlets
   m_TagString: Untagged
@@ -4614,6 +4715,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.000000029802322, y: 0.31439435, z: -0.0348712}
     m_Extent: {x: 0.92340493, y: 0.07306192, z: 0.09838235}
   m_DirtyAABB: 0
+--- !u!114 &1753317878576368592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8344676945919729997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8392306151473056624
 GameObject:
   m_ObjectHideFlags: 0

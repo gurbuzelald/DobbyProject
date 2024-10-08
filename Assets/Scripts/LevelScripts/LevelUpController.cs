@@ -15,9 +15,6 @@ public class LevelUpController : MonoBehaviour
     private GameObject weaponGiftBoxSpawnerObject;
     private WeaponGiftBoxSpawner weaponGiftBoxSpawner;
 
-    private GameObject healthCoinSpawnerObject;
-    private HealthCoinSpawner healthCoinSpawner;
-
     private GameObject enemySpawnerObject;
     private EnemySpawner enemySpawner;
 
@@ -74,8 +71,6 @@ public class LevelUpController : MonoBehaviour
         CurrentLevelID();
 
         weaponGiftBoxSpawnerObject = GameObject.Find("WeaponGiftBoxSpawner");
-
-        healthCoinSpawnerObject = GameObject.Find("HealthCoinSpawner");
 
         enemySpawnerObject = GameObject.Find("EnemySpawner");
 
@@ -225,10 +220,6 @@ public class LevelUpController : MonoBehaviour
         {
             weaponGiftBoxSpawner = weaponGiftBoxSpawnerObject.GetComponent<WeaponGiftBoxSpawner>();
         }
-        if (healthCoinSpawnerObject)
-        {
-            healthCoinSpawner = healthCoinSpawnerObject.GetComponent<HealthCoinSpawner>();
-        }
         if (enemySpawnerObject)
         {
             enemySpawner = enemySpawnerObject.GetComponent<EnemySpawner>();
@@ -265,15 +256,7 @@ public class LevelUpController : MonoBehaviour
 
         CheckCompleteLevel();
 
-        CheckBossIsDeadOrNot();
-    }
-
-    void CheckBossIsDeadOrNot()
-    {
-        if (EnemySpawner.bossIsDead)
-        {
-            levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead = true;
-        }
+        levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead = EnemySpawner.bossIsDead;
     }
 
 

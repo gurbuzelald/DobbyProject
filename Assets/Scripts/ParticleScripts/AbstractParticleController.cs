@@ -32,13 +32,6 @@ public abstract class AbstractParticleController<T> : MonoBehaviour where T : Mo
     }
     public virtual void ParticleCreate(ParticleNames particleName, Transform particleTransform, PlayerData playerData)
     {
-        if (particleName == ParticleNames.Skateboard)
-        {
-            GameObject particleObject = Instantiate(playerData.skateboardParticle.gameObject, particleTransform);
-            particleObject.transform.position = particleTransform.position;
-            particleObject.GetComponent<ParticleSystem>().Play();
-            Destroy(particleObject, 0.5f);
-        }
         if (particleName == ParticleNames.Death)
         {
             GameObject particleObject = Instantiate(playerData.deathParticle.gameObject, particleTransform);
@@ -101,16 +94,6 @@ public abstract class AbstractParticleController<T> : MonoBehaviour where T : Mo
             particleObject.transform.position = particleTransform.position;
             particleObject.GetComponent<ParticleSystem>().Play();
             StartCoroutine(DelayStopParticle(1f, particleObject));
-        }
-        if (particleName == ParticleNames.PlayerWalking)
-        {
-            GameObject particleObject = Instantiate(playerData.playerWalkingParticle.gameObject);
-            particleObject.transform.position = particleTransform.position;
-            particleObject.GetComponent<ParticleSystem>().Play();
-            if (!playerData.isWalking)
-            {
-                StartCoroutine(DelayStopParticle(0f, particleObject));
-            }
         }
     }
     public enum ParticleNames

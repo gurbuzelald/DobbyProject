@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9df28307b15eed744a58827ea4f595cc, type: 3}
+  m_Name: ChibiData 17
+  m_EditorClassIdentifier: 
+  _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
+  _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
+  currentEnemyName: Chibi(Clone)
+  getHitClip: {fileID: 8300000, guid: 18b38e3d1fc5f498687012905a46970f, type: 3}
+  giveHitClip: {fileID: 8300000, guid: 3e7bcde5c8adc4ba48e03f0d71a12ba6, type: 3}
+  dyingClip: {fileID: 8300000, guid: 9a2f688b041404c529944fb5aea8002b, type: 3}
+  giveBulletHitClip: {fileID: 8300000, guid: 31a4ceb58ede646f1a20bb2c17b500e6, type: 3}
+  isGround: 1
+  isDying: 0
+  isWalking: 1
+  isFiring: 1
+  isAttacking: 0
+  isTouchable: 1
+  isActivateMagnet: 1
+  enemySpeed: 0.2
+  bulletDamageValue: 12
+  enemyDurability: 0
+  isSpeedZero: 0
+  isWalkable: 1
+  isActivateCreateEnemy: 0
+  currentBottomParticle: {fileID: 6847440653780713590, guid: 54b95b008a4da472fad9094e21768081, type: 3}
+  currentMiddleParticle: {fileID: 971248542662641292, guid: 2f7ae11e5481b4410980b7b91fdc3dff, type: 3}
+  currentTopParticle: {fileID: 2336971284181270886, guid: fec8603a8201643e4ae2590b1c017295, type: 3}

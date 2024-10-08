@@ -59,4 +59,9 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
         }              
         
     }
+    public void FinishedAttackAnimation()
+    {
+        _enemyManager.SetCurrentAttacker(ref _enemyManager.enemyData, ref _enemyManager.bulletData);
+        _playerData.decreaseCounter = 0;
+    }
 }

@@ -82,7 +82,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
             _scoreAmount = 0;
             PlayerPrefs.SetInt("ScoreAmount", 0);
         }
-        else if (SceneController.playAgain)
+        else if (SceneController.playAgainForScore)
         {
             playerCoinData.avaliableCoin -= _scoreAmount; // Deduct score amount from available coin
             _scoreAmount = 0;
@@ -94,7 +94,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
             }
 
             PlayerPrefs.SetInt("ScoreAmount", 0); // Reset score in PlayerPrefs
-            SceneController.playAgain = false; // Reset playAgain flag
+            SceneController.playAgainForScore = false; // Reset playAgain flag
         }
 
         // Reset scored flag if necessary

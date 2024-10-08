@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11bd5ee0fd3b6564f95fa990dbc67b4b, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
+  _rotaterCoinObject: {fileID: 8727144327109741877, guid: c9f215a222585534b9e1750b7fe1679d, type: 3}
+  _rotaterBulletCoinObject: {fileID: 358850139895906454, guid: 3519a3a9dce129e44a91eeddee1427ff, type: 3}
+  _coinGroupObject: {fileID: 5002014321445554460, guid: 546708dfca2381543aa73020d92f8e83, type: 3}
+  _cheeseObject: {fileID: 6474077886218887933, guid: 5a589a2848f13db4ba3ccdd60733aaaa, type: 3}
+  _mushroomObject: {fileID: 7917119833797352369, guid: eb2bcb2ffb9a7fd4ea76e4ede77aab2d, type: 3}
+  _levelUpKeyObject: {fileID: 7585633041324373990, guid: 36b07e14d1c2e440db04a28b16e6ac3e, type: 3}
   levelEnemyMinSpeed:
   - 0.1
   - 0.2
@@ -47,7 +53,7 @@ MonoBehaviour:
   - {fileID: 4189659274323236319, guid: d36deddb9a517af41b0c5f00202c344f, type: 3}
   - {fileID: 7231031274430238451, guid: f3078121af932f54784db323aaed7ec7, type: 3}
   - {fileID: 2160304439524430781, guid: bbd98162969f3af46ae69abae2572f25, type: 3}
-  _healtCoinTransform:
+  levelRectangles:
   - {fileID: 1707016675134421311, guid: 06d257ec3674d9446806cfc13725069b, type: 3}
   - {fileID: 2602705668131860869, guid: 16b30ccc6b22aee44b1deac6fb497ceb, type: 3}
   - {fileID: 1198534576858581768, guid: b91f8c0951dc9aa419cdd62f0d11a1e3, type: 3}
@@ -117,9 +123,9 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
   - {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
   - {fileID: 2100000, guid: 1cf6f4c6e6e0518419839d3f5448dd99, type: 2}
-  currentEnemyDetectionDistance: 3
+  currentEnemyDetectionDistance: 7
   enemyDetectionDistances:
-  - 3
+  - 30
   - 4
   - 5
   - 6
@@ -132,7 +138,7 @@ MonoBehaviour:
   - 7
   currentEnemySpawnDelay: 15
   enemySpawnDelaysByLevel: 0f0000000e0000000d0000000c0000000b0000000b0000000a0000000a0000000a0000000a000000
-  currentMirrorName: Mirror1
+  currentMirrorName: Mirror2
   mirrorCouples:
   - {fileID: 9044617553140458651, guid: e7f4d5f6e375e4548a69d4d890e6ec8c, type: 3}
   - {fileID: 6167717323233158170, guid: e039fe0c70ee28544a24b18517c302fe, type: 3}

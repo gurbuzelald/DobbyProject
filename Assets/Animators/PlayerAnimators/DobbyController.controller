@@ -1377,7 +1377,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Idle
     m_StateMachine: {fileID: 2994441298317474248}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 8ae9e9506d4a0496baa3816d5c11336e, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1389,7 +1389,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Walking
     m_StateMachine: {fileID: -4268772575346619581}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 230c6f0e1c1b04ba7bc68ec92af02362, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1401,7 +1401,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: BackWalking
     m_StateMachine: {fileID: -4257624709825862336}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 230c6f0e1c1b04ba7bc68ec92af02362, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1437,7 +1437,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: LeftWalk
     m_StateMachine: {fileID: -4332942784788073882}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 230c6f0e1c1b04ba7bc68ec92af02362, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1449,7 +1449,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: RightWalk
     m_StateMachine: {fileID: 6192337168580918227}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 230c6f0e1c1b04ba7bc68ec92af02362, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1461,7 +1461,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Death
     m_StateMachine: {fileID: 2453491637296163448}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 09e4542caf596471790ef6fb525b5d32, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1473,7 +1473,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Victory
     m_StateMachine: {fileID: -7006745751483065187}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 09e4542caf596471790ef6fb525b5d32, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1497,7 +1497,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: PickUp
     m_StateMachine: {fileID: -6712864953481048852}
-    m_Mask: {fileID: 31900000, guid: 77d5dcf76e592484091659e022c13ea3, type: 2}
+    m_Mask: {fileID: 31900000, guid: 09e4542caf596471790ef6fb525b5d32, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1509,7 +1509,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: PickRotateCoin
     m_StateMachine: {fileID: 5242373358891390491}
-    m_Mask: {fileID: 31900000, guid: 77d5dcf76e592484091659e022c13ea3, type: 2}
+    m_Mask: {fileID: 31900000, guid: 8ae9e9506d4a0496baa3816d5c11336e, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1521,7 +1521,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Run
     m_StateMachine: {fileID: -8607539351730284525}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 230c6f0e1c1b04ba7bc68ec92af02362, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1545,7 +1545,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: JumpRight
     m_StateMachine: {fileID: 1815265794617816429}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 09e4542caf596471790ef6fb525b5d32, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1557,7 +1557,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: JumpLeft
     m_StateMachine: {fileID: 7405709226701217727}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 09e4542caf596471790ef6fb525b5d32, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1569,7 +1569,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: FireWalk
     m_StateMachine: {fileID: 5841673907374441788}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 8ae9e9506d4a0496baa3816d5c11336e, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1581,7 +1581,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: FireAnimation
     m_StateMachine: {fileID: 8013985131667271283}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 8ae9e9506d4a0496baa3816d5c11336e, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -2910,7 +2910,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: 9aa29ffd510edc64c93a3d11b5b3df06, type: 3}
+  m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

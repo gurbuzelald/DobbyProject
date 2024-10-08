@@ -8,13 +8,11 @@ public class TimeController : MonoBehaviour
     //[SerializeField] TextMeshProUGUI test;
 
     private float _time;
-    private float _swordTime;
     private float _weaponTime;
     private float _enemySpawnTime;
 
     [SerializeField] TextMeshProUGUI _timeText;
     [SerializeField] TextMeshProUGUI _warnTimeText;
-    [SerializeField] TextMeshProUGUI _swordTimeText;
 
     [SerializeField] EnemyData enemyData;
     [SerializeField] LevelData levelData;
@@ -27,10 +25,8 @@ public class TimeController : MonoBehaviour
     void Start()
     {
         _warnTimeText.transform.localScale = Vector3.zero;
-        //_swordTimeText.transform.localScale = Vector3.zero;
         _timeText.text = "0";
         _time = 0;
-        _swordTime = 0;
         _weaponTime = 0;
         _enemySpawnTime = 0;
     }
@@ -38,12 +34,7 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //test.text = _enemySpawnTime.ToString();
-
         GetTime(initialTimeValue);
-
-        SwordTimer(playerData, _swordTimeText);
-
 
         WeaponTimer(playerData);
         EnemySpawnTimer(levelData.currentEnemySpawnDelay);
@@ -59,7 +50,7 @@ public class TimeController : MonoBehaviour
 
             if ((int)_time > timeValue - 1)
             {
-                StartCoroutine(PlayerManager.GetInstance.DelayDestroy(0));
+                StartCoroutine(PlayerManager.GetInstance.DelayPlayerDestroy(4));
             }
             if ((((int)(timeValue - _time))) <= 10)
             {
@@ -75,27 +66,6 @@ public class TimeController : MonoBehaviour
                 _time = 0;
             }
         }        
-    }
-    public void SwordTimer(PlayerData playerData, TextMeshProUGUI _swordTimeText)
-    {
-        if (_swordTime <= 2)
-        {
-            _swordTimeText.text = ((int)_swordTime).ToString();
-        }
-        else
-        {
-            _swordTimeText.text = SwordTexts.Active.ToString();
-        }
-        playerData.isSwordTime = false;
-        if (_swordTimeText.text == SwordTexts.Active.ToString())
-        {
-            playerData.isSwordTime = true;
-            if (playerData.isSwording && playerData.isPlayable)
-            {
-                _swordTime = 0;
-            }
-        }
-        _swordTime += Time.deltaTime;
     }
     public void WeaponTimer(PlayerData playerData)
     {

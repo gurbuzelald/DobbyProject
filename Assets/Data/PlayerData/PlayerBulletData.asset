@@ -74,7 +74,7 @@ MonoBehaviour:
   pistolPrice: 0
   axePrice: 5000
   bulldogPrice: 2000
-  cowPrice: 1000
+  cowPrice: 500
   crystalPrice: 7000
   demonPrice: 3000
   icePrice: 4000
@@ -125,41 +125,46 @@ MonoBehaviour:
   ak47BulletAmount: 29
   m4A4BulletAmount: 30
   currentEnemyBulletDamage: 0
-  clownEnemyBulletDamage: 20
-  monsterEnemyBulletDamage: 22
-  prisonerEnemyBulletDamage: 24
-  pedrosoEnemyBulletDamage: 26
-  copEnemyBulletDamage: 28
+  chibiEnemyBulletDamage: 14
+  minoEnemyBulletDamage: 15
+  bigMonsterEnemyBulletDamage: 16
+  orcEnemyBulletDamage: 17
+  boneEnemyBulletDamage: 18
   morakEnemyBulletDamage: 30
-  ortizEnemyBulletDamage: 32
-  skeletonEnemyBulletDamage: 34
-  urielEnemyBulletDamage: 36
-  goblinEnemyBulletDamage: 38
-  laygoEnemyBulletDamage: 0
+  beholderEnemyBulletDamage: 19
+  femaleZombieEnemyBulletDamage: 20
+  doctorEnemyBulletDamage: 21
+  giantEnemyBulletDamage: 22
+  clothyBoneEnemyBulletDamage: 23
+  chestMonsterEnemyBulletDamage: 24
+  chestMonster2EnemyBulletDamage: 25
   currentEnemyAttackDamage: 0
-  clownEnemyAttackDamage: 20
-  monsterEnemyAttackDamage: 21
-  prisonerEnemyAttackDamage: 22
-  pedrosoEnemyAttackDamage: 23
-  copEnemyAttackDamage: 24
+  chibiEnemyAttackDamage: 15
+  minoEnemyAttackDamage: 16
+  bigMonsterEnemyAttackDamage: 17
+  orcEnemyAttackDamage: 18
+  boneEnemyAttackDamage: 19
   morakEnemyAttackDamage: 25
-  ortizEnemyAttackDamage: 26
-  skeletonEnemyAttackDamage: 27
-  urielEnemyAttackDamage: 28
-  goblinEnemyAttackDamage: 29
-  laygoEnemyAttackDamage: 0
+  beholderEnemyAttackDamage: 20
+  femaleZombieEnemyAttackDamage: 21
+  doctorEnemyAttackDamage: 22
+  giantEnemyAttackDamage: 23
+  clothyBoneEnemyAttackDamage: 25
+  chestMonsterEnemyAttackDamage: 25
+  chestMonster2EnemyAttackDamage: 25
   currentEnemyCollisionDamage: 0
-  clownEnemyCollisionDamage: 12
-  monsterEnemyCollisionDamage: 13
-  prisonerEnemyCollisionDamage: 14
-  pedrosoEnemyCollisionDamage: 15
-  copEnemyCollisionDamage: 16
-  morakEnemyCollisionDamage: 17
-  ortizEnemyCollisionDamage: 18
-  skeletonEnemyCollisionDamage: 19
-  urielEnemyCollisionDamage: 20
-  goblinEnemyCollisionDamage: 21
-  laygoEnemyCollisionDamage: 0
+  chibiEnemyCollisionDamage: 16
+  minoEnemyCollisionDamage: 17
+  bigMonsterEnemyCollisionDamage: 18
+  orcEnemyCollisionDamage: 19
+  beholderEnemyCollisionDamage: 20
+  femaleZombieEnemyCollisionDamage: 21
+  doctorEnemyCollisionDamage: 22
+  giantEnemyCollisionDamage: 23
+  boneEnemyCollisionDamage: 24
+  clothyBoneEnemyCollisionDamage: 25
+  chestMonsterEnemyCollisionDamage: 26
+  chestMonster2EnemyCollisionDamage: 27
   lowSwordObject: {fileID: 7486198881408922905, guid: e0ca519d8f748de48b2cdc4e12d21e8f, type: 3}
   warriorSwordObject: {fileID: 9112861893149409468, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
   hummerObject: {fileID: 2768828069807502141, guid: b55a81b3910ea5748a6e80d5db666505, type: 3}

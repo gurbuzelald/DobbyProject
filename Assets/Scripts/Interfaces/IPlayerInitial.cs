@@ -18,6 +18,4 @@ internal interface IPlayerInitial
                              ref GameObject _topCanvasHealthBarObject, ref GameObject bulletAmountCanvas,
                              ref float _initPlayerSpeed);
     void CreateCharacterObject(PlayerData _playerData, ref GameObject characterObject);
-
-    Transform PlayerRandomSpawn(PlayerData _playerData);
 }

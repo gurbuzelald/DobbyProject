@@ -11,15 +11,13 @@ public class PostProcessingLevelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.transform.GetComponent<PostProcessVolume>().profile = postProcessingData.postProcessingObjects[LevelData.currentLevelCount];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
+        if (postProcessingData)
         {
-            gameObject.transform.GetComponent<PostProcessVolume>().profile = postProcessingData.postProcessingObjects[LevelData.currentLevelCount];
+            if (postProcessingData.postProcessingObjects[LevelData.currentLevelCount])
+            {
+                gameObject.transform.GetComponent<PostProcessVolume>().profile = postProcessingData.postProcessingObjects[LevelData.currentLevelCount];
+            }
         }
+        
     }
 }

@@ -631,6 +631,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1779809314}
     m_Modifications:
+    - target: {fileID: 1057874763, guid: a3818897296de1348afcc47693b2da5f, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443908922, guid: a3818897296de1348afcc47693b2da5f, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3791610878507469811, guid: a3818897296de1348afcc47693b2da5f, type: 3}
       propertyPath: m_Camera
       value: 
@@ -877,6 +885,10 @@ PrefabInstance:
     - target: {fileID: 7215637996825339943, guid: fdd53b83fa34c8f4aac0cbe82bf97f9d, type: 3}
       propertyPath: m_Name
       value: PickWeaponMenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7750874788452113303, guid: fdd53b83fa34c8f4aac0cbe82bf97f9d, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

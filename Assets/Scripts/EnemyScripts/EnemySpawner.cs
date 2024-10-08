@@ -12,6 +12,8 @@ public class EnemySpawner : MonoBehaviour
 
     public Transform targetTransform;
     public ObjectPool _objectPool;
+
+    public EnemyObjectPool enemyObjectPool;
     private GameObject currentEnemyObjects;
 
     public LayerMask layerMask;
@@ -30,6 +32,8 @@ public class EnemySpawner : MonoBehaviour
     public static GameObject[] bossEnemyBoxes = new GameObject[2];
 
     public static bool bossIsDead;
+
+    
 
     private void Start()
     {
@@ -64,27 +68,6 @@ public class EnemySpawner : MonoBehaviour
         {
             bossEnemyBoxes[1] = GameObject.Find("bossEnemyBox");
         }
-
-        /*for (int i = 0; i < enemyTransformsObject.transform.childCount; i++)
-        {
-            iValue = i;
-            levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[levelCount];
-
-            currentEnemyObjects = Instantiate(levelData.currentEnemyObjects[i],
-                                         enemyTransformsObject.transform.GetChild(i).position,
-                                         Quaternion.identity,
-                                         enemyTransformsObject.transform.GetChild(i).transform);
-            if (PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(17))
-            {
-                currentEnemyObjects = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(17);
-
-                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
-                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
-                currentEnemyObjects.transform.position = new Vector3(enemyTransformsObject.transform.GetChild(i).position.x,
-                                                                     10f,
-                                                                     enemyTransformsObject.transform.GetChild(i).position.z);
-            }            
-        }*/
     }
     void SetEnemyObjectsAtStart()
     {
@@ -170,17 +153,7 @@ public class EnemySpawner : MonoBehaviour
     }
     private void Update()
     {
-        CheckEnemyDeath();
-
-        if (bossEnemyTransformObject != null)
-        {
-            if (bossEnemyTransformObject.transform.childCount == 0 ||
-                (bossEnemyTransformObject.transform.childCount == 1 &&
-                bossEnemyTransformObject.transform.GetChild(0).name == "Bullet(Clone)"))
-            {
-                bossIsDead = true;
-            }
-        }        
+        CheckEnemyDeath();    
     }
     void CheckEnemyDeath()
     {

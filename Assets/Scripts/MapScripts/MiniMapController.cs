@@ -21,11 +21,17 @@ public class MiniMapController : MonoBehaviour
     }
     private void OnEnable()
     {
-        playerInput.Enable();
+        if (playerInput != null)
+        {
+            playerInput.Enable();
+        }
     }
     private void OnDisable()
     {
-        playerInput.Disable();
+        if (playerInput != null)
+        {
+            playerInput.Disable();
+        }
     }
     void Update()
     {
@@ -35,10 +41,22 @@ public class MiniMapController : MonoBehaviour
     }
     void MiniMapRotation()
     {
-        gameObject.transform.LookAt(PlayerManager.GetInstance.gameObject.transform.GetChild(0).GetChild(8));
-        gameObject.transform.position = new Vector3(PlayerManager.GetInstance.transform.position.x,
-                                                    gameObject.transform.position.y,
-                                                    PlayerManager.GetInstance.transform.position.z);
+        if (PlayerManager.GetInstance.gameObject)
+        {
+            if (PlayerManager.GetInstance.gameObject.transform.GetChild(0))
+            {
+                if (PlayerManager.GetInstance.gameObject.transform.GetChild(0).childCount >= 8)
+                {
+                    if (PlayerManager.GetInstance.gameObject.transform.GetChild(0).GetChild(8))
+                    {
+                        gameObject.transform.LookAt(PlayerManager.GetInstance.gameObject.transform.GetChild(0).GetChild(8));
+                        gameObject.transform.position = new Vector3(PlayerManager.GetInstance.transform.position.x,
+                                                                    gameObject.transform.position.y,
+                                                                    PlayerManager.GetInstance.transform.position.z);
+                    }
+                }                
+            }            
+        }        
     }
     void TouchMiniMap(Camera miniMapCamera)
     {

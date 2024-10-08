@@ -94,11 +94,17 @@ public class ButtonController : MonoBehaviour
     }
     private void OnEnable()
     {
-        menuInput.Enable();
+        if (menuInput != null)
+        {
+            menuInput.Enable();
+        }        
     }
     private void OnDisable()
     {
-        menuInput.Disable();
+        if (menuInput != null)
+        {
+            menuInput.Disable();
+        }        
     }
 
     // Update is called once per frame

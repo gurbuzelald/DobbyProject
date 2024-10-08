@@ -438,8 +438,10 @@ public class ChooseWeaponController : MonoBehaviour
 
                 PlayerPrefs.SetFloat("Ak47Lock", 1);
 
-                bulletData.currentBulletPack = bulletData.ak47BulletAmount;
+                bulletData.currentBulletPack = bulletData.ak47BulletAmount;                
             }
+
+            BulletData.currentWeaponID = 8;
 
             bulletData.currentWeaponName = BulletData.ak47;
 
@@ -462,6 +464,8 @@ public class ChooseWeaponController : MonoBehaviour
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
                 bulletData.currentBulletPack = bulletData.ak47BulletAmount;
+
+                BulletData.currentWeaponID = 8;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.ak47Lock == BulletData.locked)
@@ -517,6 +521,7 @@ public class ChooseWeaponController : MonoBehaviour
 
                 bulletData.currentBulletPack = bulletData.axeBulletAmount;
             }
+            BulletData.currentWeaponID = 1;
 
             bulletData.currentWeaponName = BulletData.axe;
 
@@ -539,6 +544,8 @@ public class ChooseWeaponController : MonoBehaviour
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
                 bulletData.currentBulletPack = bulletData.axeBulletAmount;
+
+                BulletData.currentWeaponID = 1;
             }  
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.axeLock == BulletData.locked)
@@ -592,6 +599,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                 bulletData.currentBulletPack = bulletData.bulldogBulletAmount;
             }
+            BulletData.currentWeaponID = 2;
+
             bulletData.currentWeaponName = BulletData.bulldog;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
@@ -613,6 +622,8 @@ public class ChooseWeaponController : MonoBehaviour
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
                 bulletData.currentBulletPack = bulletData.bulldogBulletAmount;
+
+                BulletData.currentWeaponID = 2;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.bulldogLock == BulletData.locked)
@@ -666,6 +677,8 @@ public class ChooseWeaponController : MonoBehaviour
                 bulletData.currentBulletPack = bulletData.cowBulletAmount;
             }
 
+            BulletData.currentWeaponID = 3;
+
             bulletData.currentWeaponName = BulletData.cow;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
@@ -687,6 +700,8 @@ public class ChooseWeaponController : MonoBehaviour
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
                 bulletData.currentBulletPack = bulletData.cowBulletAmount;
+
+                BulletData.currentWeaponID = 3;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.cowLock == BulletData.locked)
@@ -739,6 +754,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                 bulletData.currentBulletPack = bulletData.crystalBulletAmount;
             }
+            BulletData.currentWeaponID = 4;
+
             bulletData.currentWeaponName = BulletData.crystal;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
@@ -760,6 +777,8 @@ public class ChooseWeaponController : MonoBehaviour
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
                 bulletData.currentBulletPack = bulletData.crystalBulletAmount;
+
+                BulletData.currentWeaponID = 4;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.crystalLock == BulletData.locked)
@@ -813,6 +832,8 @@ public class ChooseWeaponController : MonoBehaviour
                 bulletData.currentBulletPack = bulletData.demonBulletAmount;
             }
 
+            BulletData.currentWeaponID = 5;
+
             bulletData.currentWeaponName = BulletData.demon;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
@@ -834,6 +855,8 @@ public class ChooseWeaponController : MonoBehaviour
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
                 bulletData.currentBulletPack = bulletData.demonBulletAmount;
+
+                BulletData.currentWeaponID = 5;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.demonLock == BulletData.locked)
@@ -886,6 +909,7 @@ public class ChooseWeaponController : MonoBehaviour
 
                 bulletData.currentBulletPack = bulletData.iceBulletAmount;
             }
+            BulletData.currentWeaponID = 6;
 
             bulletData.currentWeaponName = BulletData.ice;
 
@@ -908,6 +932,8 @@ public class ChooseWeaponController : MonoBehaviour
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
                 bulletData.currentBulletPack = bulletData.iceBulletAmount;
+
+                BulletData.currentWeaponID = 6;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.iceLock == BulletData.locked)
@@ -960,6 +986,8 @@ public class ChooseWeaponController : MonoBehaviour
 
                 bulletData.currentBulletPack = bulletData.electroBulletAmount;
             }
+            BulletData.currentWeaponID = 7;
+
             bulletData.currentWeaponName = BulletData.electro;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
@@ -981,6 +1009,8 @@ public class ChooseWeaponController : MonoBehaviour
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
                 bulletData.currentBulletPack = bulletData.electroBulletAmount;
+
+                BulletData.currentWeaponID = 7;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.electroLock == BulletData.locked)
@@ -1013,25 +1043,11 @@ public class ChooseWeaponController : MonoBehaviour
         if (bulletData.pistolUsageLimit <= 0)
         {
             ObjectPool.creatablePlayerBullet = true;
-            bulletData.pistolLock = BulletData.locked;
         }
-        if (ButtonController.Pistol && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+        if (ButtonController.Pistol &&
           bulletData.currentWeaponName != BulletData.pistol)
         {
-            if (bulletData.pistolLock == BulletData.locked)
-            {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
-                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
-
-                bulletData.pistolLock = bulletData.unLocked;
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                bulletData.pistolUsageLimit = 3;
-                PlayerPrefs.SetInt("PistolUsageCount", bulletData.pistolUsageLimit);
-
-                bulletData.currentBulletPack = bulletData.pistolBulletAmount;
-            }
+            BulletData.currentWeaponID = 0;
 
             bulletData.currentWeaponName = BulletData.pistol;
 
@@ -1040,6 +1056,8 @@ public class ChooseWeaponController : MonoBehaviour
             SceneController.LoadMenuScene();
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+            BulletData.currentWeaponID = 0;
         }
         else if (ButtonController.Pistol && bulletData.pistolLock == bulletData.unLocked)
         {
@@ -1054,27 +1072,8 @@ public class ChooseWeaponController : MonoBehaviour
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
                 bulletData.currentBulletPack = bulletData.pistolBulletAmount;
-            }
-        }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.pistolLock == BulletData.locked)
-        {
-            if (ButtonController.Pistol)
-            {
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
-            }
-            for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
-            {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "PISTOLPriceErrorText")
-                {
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
-                    }
-                    else
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                    }
-                }
+
+                BulletData.currentWeaponID = 0;
             }
         }
     }
@@ -1105,6 +1104,7 @@ public class ChooseWeaponController : MonoBehaviour
 
                 bulletData.currentBulletPack = bulletData.m4A4BulletAmount;
             }
+            BulletData.currentWeaponID = 9;
 
             bulletData.currentWeaponName = BulletData.m4a4;
 
@@ -1128,6 +1128,8 @@ public class ChooseWeaponController : MonoBehaviour
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
                 bulletData.currentBulletPack = bulletData.m4A4BulletAmount;
+
+                BulletData.currentWeaponID = 9;
             }
         }
         else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.m4a4Lock == BulletData.locked)
@@ -1152,6 +1154,4 @@ public class ChooseWeaponController : MonoBehaviour
             }
         }
     }
-
-
 }

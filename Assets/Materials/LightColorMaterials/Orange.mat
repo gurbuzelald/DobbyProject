@@ -8,10 +8,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Orange
-  m_Shader: {fileID: 4800000, guid: 045772399bb678644aa0b9dcdf6546c9, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _EMISSION
   m_InvalidKeywords: []
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -31,6 +32,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _CarNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -43,6 +48,18 @@ Material:
         m_Texture: {fileID: 2800000, guid: b3d940e75e1f5d24684cd93a2758e1bf, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Emision1:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -52,6 +69,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Emision3:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -83,13 +104,25 @@ Material:
         m_Texture: {fileID: 2800000, guid: 21a6bd9b3f2c90047b38cea2fe37f5bb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OrangePeelNormal:
         m_Texture: {fileID: 2800000, guid: b3d940e75e1f5d24684cd93a2758e1bf, type: 3}
         m_Scale: {x: 5, y: 5}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Specular:
         m_Texture: {fileID: 0}
@@ -139,6 +172,7 @@ Material:
     - _BaseOcclusion: 0
     - _BaseSmoothness: 0.078
     - _Brightness: 1
+    - _BumpScale: 1
     - _CarMetallic: 0.5049318
     - _CarSmoothness: 0
     - _CarSmoothnessMax: 1
@@ -148,6 +182,9 @@ Material:
     - _CoatAmount: 7.76
     - _CoatBump: 0.266
     - _CoatSmoothness: 0
+    - _Cutoff: 0.5
+    - _DetailNormalMapScale: 1
+    - _DstBlend: 0
     - _EimisionContrast3: 0
     - _EmisionBase: 0
     - _EmisionContrast1: 0
@@ -164,12 +201,24 @@ Material:
     - _Float2: 0.6
     - _Float3: 0
     - _Float4: 0.5
+    - _GlossMapScale: 1
+    - _Glossiness: 0.5
+    - _GlossyReflections: 1
+    - _Metallic: 0
+    - _Mode: 0
+    - _OcclusionStrength: 1
     - _OrangePeelBump: 0.2
     - _OrangePeelSmoothness: 0.95
     - _OrangePeelTilling: 20
+    - _Parallax: 0.02
     - _Phase: 0.02
     - _Smooth: 0.5
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
     - _Tilling: 1
+    - _UVSec: 0
+    - _ZWrite: 1
     - __dirty: 0
     m_Colors:
     - _BaseColor: {r: 0.3970588, g: 0.19232786, b: 0.03503461, a: 0}
@@ -177,12 +226,14 @@ Material:
     - _BaseColor2: {r: 0.5, g: 0.56551623, b: 1, a: 0}
     - _CarColor: {r: 0.08832457, g: 0.07493501, b: 0.46323526, a: 0}
     - _CarPaintColor: {r: 0.088324, g: 0.074934505, b: 0.46323526, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 0.9528302, g: 0.3754838, b: 0, a: 0}
     - _Color1: {r: 0.021626277, g: 0.056079105, b: 0.7352942, a: 0.953}
     - _Color3: {r: 0.035034638, g: 0.08247225, b: 0.39705884, a: 0}
     - _ColorIn: {r: 1, g: 0.48235297, b: 0, a: 0}
     - _ColorO: {r: 0.5, g: 0.56551623, b: 1, a: 0}
     - _ColorOut: {r: 1, g: 0.43451902, b: 0, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FlakesColor: {r: 0.73529416, g: 0.021626318, b: 0.36123332, a: 0.953}
     - _FlakesColor1: {r: 0.7794118, g: 0.9361055, b: 1, a: 0}
     - _FlakesColor2: {r: 0.74264705, g: 0.89350915, b: 1, a: 0}

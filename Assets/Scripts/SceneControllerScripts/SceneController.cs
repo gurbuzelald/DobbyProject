@@ -18,7 +18,7 @@ public class SceneController : MonoBehaviour
     private GameObject pausePanel;
     public static bool pauseGame = false;
     [HideInInspector]
-    public static bool playAgain;
+    public static bool playAgainForScore;
 
     [Header("RotationControl")]
     public static bool rotateTouchOrMousePos = false;
@@ -52,8 +52,7 @@ public class SceneController : MonoBehaviour
 
     void Start()
     {
-        CreateMenuMap();
-
+        AudioManager.GetInstance.SetCurrentMusic();
         ChangeLanguage();
         OpenLevelButtons();
 
@@ -65,40 +64,11 @@ public class SceneController : MonoBehaviour
 
     private void Update()
     {
-        SetCurrentLevelAtUpdate();
+        //SetCurrentLevelAtUpdate();
         SetCurrentWeaponAtUpdate();
-        SetCurrentCharacterAtUpdate();
+        //SetCurrentCharacterAtUpdate();
 
         buttonTimer += Time.deltaTime;
-    }
-
-    void CreateMenuMap()
-    {
-        if (CheckSceneName() != Scenes.Game.ToString() && CheckSceneName() != Scenes.PickCharacter.ToString() &&
-            CheckSceneName() != Scenes.PickWeapon.ToString())
-        {
-            if (_playerData)
-            {
-                if (_playerData.menuMap)
-                {
-                    menuMap = Instantiate(_playerData.menuMap);
-                }
-            }
-        }
-        if (CheckSceneName() == Scenes.PickCharacter.ToString() ||
-            CheckSceneName() == Scenes.PickWeapon.ToString())
-        {
-            if (_playerData)
-            {
-                if (_playerData.menuMap)
-                {
-                    menuMap = Instantiate(_playerData.menuMap);
-                    menuMap.transform.position = new Vector3(menuMap.transform.position.x,
-                                                             menuMap.transform.position.y,
-                                                             -100);
-                }
-            }
-        }
     }
 
 
@@ -664,7 +634,7 @@ public class SceneController : MonoBehaviour
                                                              pausePanel.transform.localPosition.z);
         }
     }
-    void SetCurrentLevelAtUpdate()
+    /*void SetCurrentLevelAtUpdate()
     {
         if (currentLevelText && levelData)
         {
@@ -674,7 +644,7 @@ public class SceneController : MonoBehaviour
                 EnemyData.enemyDeathCount = 0;
             }
         }
-    }
+    }*/
 
     void SetCurrentWeaponAtStart()
     {
@@ -710,13 +680,13 @@ public class SceneController : MonoBehaviour
         }
     }
 
-    void SetCurrentCharacterAtUpdate()
+    /*void SetCurrentCharacterAtUpdate()
     {
         if (currentCharacterText && _playerData)
         {
             currentCharacterText.text = _playerData.currentCharacterName.ToString();
         }
-    }
+    }*/
 
     void OnEnable()
     {
@@ -755,7 +725,7 @@ public class SceneController : MonoBehaviour
             rotateTouchOrMousePos = false;
             _playerData.isLockedWalking = false;
         }
-        playAgain = false;
+        playAgainForScore = false;
         pauseGame = false;
     }
     public void LockWalking()
@@ -775,9 +745,9 @@ public class SceneController : MonoBehaviour
     }
     public void LevelUpGame()
     {
-        playAgain = true;
+        playAgainForScore = true;
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Game.ToString());
 
@@ -789,19 +759,14 @@ public class SceneController : MonoBehaviour
 
         levelData.currentLevel = LevelData.Levels.Level1;
 
-        
-        DestroySingletonObjects();
+        // DestroySingletonObjects();
 
-        if (levelData.currentLevel == LevelData.Levels.Level1)
-        {
-            LevelData.currentLevelCount = 0;
-            playAgain = true;
+        LevelData.currentLevelCount = 0;
+        playAgainForScore = true;
 
-            SceneManager.LoadScene(Scenes.Game.ToString());
+        SceneManager.LoadScene(Scenes.Game.ToString());
 
-            DecreaseWeaponUsageLimit();
-        }
-        
+        DecreaseWeaponUsageLimit();
     }
     public void DecreaseWeaponUsageLimit()
     {
@@ -902,9 +867,9 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        playAgain = true;
+        playAgainForScore = true;
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Game.ToString());
 
@@ -914,13 +879,13 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        playAgain = true;
+        playAgainForScore = true;
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SetCurrentLevelCount();
 
-        SceneManager.LoadScene(Scenes.Game.ToString());
+        AudioManager.GetInstance.SetCurrentMusic();
 
         DecreaseWeaponUsageLimit();
     }
@@ -1101,7 +1066,8 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
+
         SceneManager.LoadScene(Scenes.Levels.ToString());
     }
 
@@ -1118,10 +1084,10 @@ public class SceneController : MonoBehaviour
 
         if (CheckSceneName() != Scenes.End.ToString())
         {
-            playAgain = true;
+            playAgainForScore = true;
         }
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Menu.ToString());
 
@@ -1133,7 +1099,7 @@ public class SceneController : MonoBehaviour
 
         levelData.currentLevel = LevelData.Levels.Level1;
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Menu.ToString());
 
@@ -1142,7 +1108,7 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Menu.ToString());
     }
@@ -1153,7 +1119,7 @@ public class SceneController : MonoBehaviour
 
         //levelData.currentLevel = LevelData.Levels.Level1;
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Win.ToString());
     }
@@ -1161,7 +1127,7 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.PickCharacter.ToString());
     }
@@ -1169,7 +1135,7 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();        
 
         SceneManager.LoadScene(Scenes.PickWeapon.ToString());
     }
@@ -1177,20 +1143,41 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        DestroySingletonObjects();
+        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.End.ToString());
     }
-    public static void DestroySingletonObjects()
+    /*public void LevelUp()
     {
-
-        if (PlayerManager.GetInstance.gameObject != null)
+        if (SceneManager.sceneCountInBuildSettings - 3 == SceneManager.GetActiveScene().buildIndex)
         {
-            Destroy(AudioManager.GetInstance.gameObject);
+            LoadWinScene();
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }*/
+    public void QuitGame()
+    {
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
+
+        Application.Quit();
+    }
+
+
+    /*public static void DestroySingletonObjects()
+    {
+        if (PlayerManager.GetInstance.gameObject)
+        {
             Destroy(PlayerManager.GetInstance.gameObject);
         }
-
+        if (AudioManager.GetInstance.gameObject)
+        {
+            Destroy(AudioManager.GetInstance.gameObject);
+        }
     }
+    */
     public void PauseGame()
     {
         if (pauseGame) {
@@ -1234,26 +1221,7 @@ public class SceneController : MonoBehaviour
             rotateTouchOrMousePos = true;
         }
     }
-    public void LevelUp()
-    {
-        if (SceneManager.sceneCountInBuildSettings - 3 == SceneManager.GetActiveScene().buildIndex)
-        {
-            LoadWinScene();
-        }
-        else
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-        
-        Destroy(PlayerManager.GetInstance.gameObject);
-        
-    }
-    public void QuitGame()
-    {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);     
-
-        Application.Quit();
-    }
+   
     public enum Tags
     {
         Ground,
@@ -1268,6 +1236,8 @@ public class SceneController : MonoBehaviour
         LevelUpKey,
         EnemyTriggerBox,
         BossTriggerBox,
+        ChestTriggerBox,
+        ChestTrigger2Box,
         
 
         Tree,

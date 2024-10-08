@@ -11,14 +11,8 @@ public class BulletController : MonoBehaviour
 
     public static bool AK47 { get; internal set; }
 
-    private void Update()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 0.05f, layerMask))
-        {
-            //Debug.Log("Test");
-        }
-    }
+    public int damageValue;
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (gameObject.transform.name == "EnemyBullet")
@@ -45,12 +39,9 @@ public class BulletController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (gameObject.transform.name == "EnemyBullet(Clone)")
+        if (other.gameObject.CompareTag(SceneController.Tags.Player.ToString()))
         {
-            if (other.gameObject.CompareTag(SceneController.Tags.Player.ToString()))
-            {
-                gameObject.SetActive(false);
-            }
+            gameObject.SetActive(false);
         }
 
         if (gameObject.transform.name == "WeaponBullet(Clone)")

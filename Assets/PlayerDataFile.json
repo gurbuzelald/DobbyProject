@@ -1,23 +1,31 @@
 {
-    "currentBulletExplosionParticle": {
-        "instanceID": 29642
-    },
-    "currentSwordBulletExplosionParticle": {
-        "instanceID": 0
-    },
-    "menuMap": {
-        "instanceID": 29644
-    },
+    "playerWeaponBulletObjectPoolCount": 0,
+    "playerSwordBulletObjectPoolCount": 1,
+    "destroyCoinParticleObjectPoolCount": 2,
+    "destroyBulletCoinParticleObjectPoolCount": 3,
+    "destroyHealthCoinObjectPoolCount": 4,
+    "destroyMushroomCoinObjectPoolCount": 5,
+    "playerBulletsExplosionObjectPoolCount": 6,
+    "playerSwordExplosionObjectPoolCount": 7,
+    "playerBurningTouchParticleObjectPoolCount": 8,
+    "playerTouchParticleObjectPoolCount": 9,
+    "deathParticleObjectPoolCount": 10,
+    "enemyBulletParticleObjectPoolCount": 0,
+    "enemyMidParticleObjectPoolCount": 1,
+    "enemyPrefabObjectPoolCount": 2,
+    "bossEnemyPrefabObjectPoolCount": 3,
+    "chestMonsterEnemyPrefabObjectPoolCount": 4,
+    "chestMonster2EnemyPrefabObjectPoolCount": 5,
     "currentLanguage": 0,
     "getCurrentEnemyDead": false,
     "currentMessageText": {
-        "instanceID": 130878
+        "instanceID": 89582
     },
     "currentMessageObject": {
-        "instanceID": 130874
+        "instanceID": 89578
     },
     "backgroundMap": {
-        "instanceID": 29646
+        "instanceID": 30886
     },
     "enemyBulletHitActivate": false,
     "dobbyDurability": 1,
@@ -32,49 +40,49 @@
     "mremirehDurability": 8,
     "tyDurability": 3,
     "playerSpawns": {
-        "instanceID": 29648
+        "instanceID": 30888
     },
-    "isDecreaseHealth": false,
+    "isDecreaseHealth": true,
     "damageHealthText": {
-        "instanceID": -243098
+        "instanceID": 89200
     },
     "decreaseCounter": 0,
     "currentCharacterName": 1,
     "characterObject": {
-        "instanceID": 29650
+        "instanceID": 30890
     },
     "dobby": {
-        "instanceID": 29652
+        "instanceID": 30892
     },
     "glassy": {
-        "instanceID": 29654
+        "instanceID": 30894
     },
     "joleen": {
-        "instanceID": 29656
+        "instanceID": 30896
     },
     "guard": {
-        "instanceID": 29658
+        "instanceID": 30898
     },
     "lusth": {
-        "instanceID": 29660
+        "instanceID": 30900
     },
     "eve": {
-        "instanceID": 29662
+        "instanceID": 30902
     },
     "michelle": {
-        "instanceID": 29664
+        "instanceID": 30904
     },
     "boss": {
-        "instanceID": 29666
+        "instanceID": 30906
     },
     "aj": {
-        "instanceID": 29668
+        "instanceID": 30908
     },
     "mremireh": {
-        "instanceID": 29670
+        "instanceID": 30910
     },
     "ty": {
-        "instanceID": 29672
+        "instanceID": 30912
     },
     "dobbyLock": "",
     "glassyLock": "Locked",
@@ -92,58 +100,58 @@
     "unLocked": "",
     "objects": [
         {
-            "instanceID": 29674
+            "instanceID": 30914
         },
         {
-            "instanceID": 29676
+            "instanceID": 30916
         },
         {
-            "instanceID": 29678
+            "instanceID": 30918
         },
         {
-            "instanceID": 29680
+            "instanceID": 30920
         },
         {
-            "instanceID": 29682
+            "instanceID": 30922
         },
         {
-            "instanceID": 29684
+            "instanceID": 30924
         },
         {
-            "instanceID": 29686
+            "instanceID": 30926
         }
     ],
     "slaveObjects": [
         {
-            "instanceID": 29688
+            "instanceID": 30928
         },
         {
-            "instanceID": 29690
+            "instanceID": 30930
         },
         {
-            "instanceID": 29692
+            "instanceID": 30932
         },
         {
-            "instanceID": 29694
+            "instanceID": 30934
         },
         {
-            "instanceID": 29696
+            "instanceID": 30936
         },
         {
-            "instanceID": 29698
+            "instanceID": 30938
         },
         {
-            "instanceID": 29700
+            "instanceID": 30940
         },
         {
-            "instanceID": 29702
+            "instanceID": 30942
         }
     ],
     "spawns": {
-        "instanceID": 29704
+        "instanceID": 30944
     },
-    "sensivityX": 5.0,
-    "sensivityY": 5.0,
+    "sensivityX": 3.0,
+    "sensivityY": 3.0,
     "isTouchFinish": false,
     "isLose": false,
     "joleenPrice": 10000,
@@ -157,21 +165,21 @@
     "bossPrice": 23000,
     "tyPrice": 2000,
     "mremirehPrice": 20000,
-    "playerSpeed": 30.0,
+    "playerSpeed": 1.0,
     "skateBoardSpeed": 14.0,
     "climbSpeed": 3.0,
     "rotateSpeed": 6.0,
-    "dobbySpeed": 30.0,
-    "michelleSpeed": 39.0,
-    "glassySpeed": 35.0,
-    "ajSpeed": 37.0,
-    "eveSpeed": 47.0,
-    "mremirehSpeed": 50.0,
-    "lusthSpeed": 45.0,
-    "joleenSpeed": 41.0,
-    "bossSpeed": 43.0,
-    "tySpeed": 35.0,
-    "guardSpeed": 43.0,
+    "dobbySpeed": 1.0,
+    "michelleSpeed": 4.0,
+    "glassySpeed": 3.5,
+    "ajSpeed": 3.700000047683716,
+    "eveSpeed": 4.5,
+    "mremirehSpeed": 4.599999904632568,
+    "lusthSpeed": 4.5,
+    "joleenSpeed": 4.099999904632568,
+    "bossSpeed": 4.300000190734863,
+    "tySpeed": 3.5,
+    "guardSpeed": 4.300000190734863,
     "currentJumpForce": 4.0,
     "dobbyJumpForce": 4.0,
     "michelleJumpForce": 7.0,
@@ -199,62 +207,51 @@
     "isPicking": false,
     "isPickRotateCoin": false,
     "isSwordAnimate": false,
+    "isSword": false,
     "isLookingUp": false,
     "isDestroyed": false,
-    "isPlayable": true,
+    "isPlayable": false,
     "isFire": false,
     "isFireWalkAnimation": false,
     "isFireAnimation": false,
     "isFireTime": false,
-    "isSwording": false,
-    "isSwordTime": true,
     "isJumping": false,
-    "isClickable": true,
     "jumpCount": 0,
     "clickDoubleSpeedCount": 0,
-    "extraSpeed": true,
-    "normalSpeed": true,
     "clickTabCount": 0,
     "clickShiftCount": 0,
-    "bulletAmount": 21,
+    "bulletAmount": 26,
     "bulletPackAmount": 2,
-    "isTouchableSkate": true,
     "danceTime": 5.0,
     "jolleenObject": {
-        "instanceID": 29706
-    },
-    "skateboardParticle": {
-        "instanceID": 29708
+        "instanceID": 30946
     },
     "touchParticle": {
-        "instanceID": 29710
+        "instanceID": 30948
     },
     "birthParticle": {
-        "instanceID": 29712
+        "instanceID": 30950
     },
     "deathParticle": {
-        "instanceID": 29714
+        "instanceID": 30952
     },
     "burningParticle": {
-        "instanceID": 29716
+        "instanceID": 30954
     },
     "burningTouchParticle": {
-        "instanceID": 29716
+        "instanceID": 30954
     },
     "destroyRotateCoinParticle": {
-        "instanceID": 29718
+        "instanceID": 30956
     },
     "destroyHealthCoinParticle": {
-        "instanceID": 29720
+        "instanceID": 30958
     },
     "destroyBulletCoinParticle": {
-        "instanceID": 29722
+        "instanceID": 30960
     },
     "destroyMushroomCoinParticle": {
-        "instanceID": 29724
-    },
-    "playerWalkingParticle": {
-        "instanceID": 29726
+        "instanceID": 30962
     },
     "particleCount": 0,
     "isTouchFirst": false,
@@ -262,34 +259,34 @@
     "isTouchThird": false,
     "weaponBulletExplosionParticles": [
         {
-            "instanceID": 29642
+            "instanceID": 30964
         },
         {
-            "instanceID": 29728
+            "instanceID": 30966
         },
         {
-            "instanceID": 29730
+            "instanceID": 30968
         },
         {
-            "instanceID": 29732
+            "instanceID": 30970
         },
         {
-            "instanceID": 29734
+            "instanceID": 30972
         },
         {
-            "instanceID": 29736
+            "instanceID": 30974
         },
         {
-            "instanceID": 29738
+            "instanceID": 30976
         },
         {
-            "instanceID": 29740
+            "instanceID": 30978
         },
         {
-            "instanceID": 29742
+            "instanceID": 30980
         },
         {
-            "instanceID": 29744
+            "instanceID": 30982
         }
     ]
 }

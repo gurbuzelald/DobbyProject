@@ -48,20 +48,26 @@ public class JoystickCanvasManager : MonoBehaviour
     }
     void FiringMode()
     {
-        if (PlayerManager.GetInstance.bulletAmountText.text == "0" && playerData.bulletPackAmount == 0)
+        if (playerData)
         {
-            if (fireButton)
+            if (PlayerManager.GetInstance.bulletAmountText)
             {
-                fireButton.SetActive(false);
-            }
-        }
-        else
-        {
-            if (fireButton)
-            {
-                fireButton.SetActive(true);
-            }
-        }
+                if (PlayerManager.GetInstance.bulletAmountText.text == "0" && playerData.bulletPackAmount == 0)
+                {
+                    if (fireButton)
+                    {
+                        fireButton.SetActive(false);
+                    }
+                }
+                else
+                {
+                    if (fireButton)
+                    {
+                        fireButton.SetActive(true);
+                    }
+                }
+            }           
+        }        
     }
     void RunMode()
     {

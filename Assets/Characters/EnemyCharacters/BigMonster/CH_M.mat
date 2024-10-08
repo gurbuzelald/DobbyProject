@@ -8,16 +8,16 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CH_M
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 5e4cdb9d2d26c2844ac7c733faa9e7ff, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - _ALPHATEST_ON
-  - _EMISSION
-  - _NORMALMAP
+  m_ValidKeywords: []
   m_InvalidKeywords:
   - _ALBEDO_ADJUST
+  - _ALPHATEST_ON
   - _DIFFUSE_ADJUST
+  - _EMISSION
+  - _NORMALMAP
   - _RIM_INNER
   - _SPECULAR_GGX
   - _SPECULAR_MAP
@@ -25,9 +25,8 @@ Material:
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
-  stringTagMap:
-    RenderType: TransparentCutout
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
   disabledShaderPasses: []
   m_LockedProperties: 
   m_SavedProperties:
