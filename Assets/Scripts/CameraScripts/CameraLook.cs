@@ -124,10 +124,9 @@ public class CameraLook : MonoBehaviour
     }
     private void Update()
     {
-        gameObject.transform.rotation = PlayerManager.GetInstance._currentCameraTransform.rotation;
-        if (PlayerManager.GetInstance.GetZValue() != 0)
+        if (PlayerManager.GetInstance._currentCameraTransform)
         {
-           // gameObject.transform.GetComponent<CinemachineVirtualCamera>().  
+            gameObject.transform.rotation = PlayerManager.GetInstance._currentCameraTransform.rotation;
         }
     }
 }

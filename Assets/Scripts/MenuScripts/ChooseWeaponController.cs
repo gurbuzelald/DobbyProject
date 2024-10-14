@@ -45,6 +45,11 @@ public class ChooseWeaponController : MonoBehaviour
         SlideMenu();
         WeaponPickStates();
         WeaponUsageLimit();
+        if (BulletController.ShotGun)
+        {
+            Debug.Log("3");
+
+        }
     }
 
 
@@ -84,13 +89,13 @@ public class ChooseWeaponController : MonoBehaviour
             {
                 weaponStrengths[i].text = bulletData.electroPower.ToString();
             }
-            else if ("Ak47StrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
+            else if ("ShotGunStrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
             {
-                weaponStrengths[i].text = bulletData.ak47Power.ToString();
+                weaponStrengths[i].text = bulletData.shotGunPower.ToString();
             }
-            else if ("M4a4StrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
+            else if ("MachineStrengthInfoText" == weaponStrengths[i].gameObject.transform.name)
             {
-                weaponStrengths[i].text = bulletData.m4a4Power.ToString();
+                weaponStrengths[i].text = bulletData.machinePower.ToString();
             }
         }
     }
@@ -132,15 +137,15 @@ public class ChooseWeaponController : MonoBehaviour
             bulletData.electroLock = "";
             bulletData.electroUsageLimit = PlayerPrefs.GetInt("ElectroUsageCount");
         }
-        if (PlayerPrefs.GetFloat("Ak47Lock") == 1)
+        if (PlayerPrefs.GetFloat("ShotGunLock") == 1)
         {
-            bulletData.ak47Lock = "";
-            bulletData.ak47UsageLimit = PlayerPrefs.GetInt("Ak47UsageCount");
+            bulletData.shotGunLock = "";
+            bulletData.shotGunUsageLimit = PlayerPrefs.GetInt("ShotGunUsageCount");
         }
-        if (PlayerPrefs.GetFloat("M4A4Lock") == 1)
+        if (PlayerPrefs.GetFloat("MachineLock") == 1)
         {
-            bulletData.m4a4Lock = "";
-            bulletData.m4a4UsageLimit = PlayerPrefs.GetInt("M4A4UsageCount");
+            bulletData.machineLock = "";
+            bulletData.machineUsageLimit = PlayerPrefs.GetInt("MachineUsageCount");
         }
 
         if (priceSetting)
@@ -251,24 +256,24 @@ public class ChooseWeaponController : MonoBehaviour
                         weaponUsageLimits[i].enabled = false;
                     }
                     break;
-                case "AK47UsageLimit":
-                    if (bulletData.ak47Lock == "")
+                case "ShotGunUsageLimit":
+                    if (bulletData.shotGunLock == "")
                     {
                         weaponUsageLimits[i].enabled = true;
 
-                        weaponUsageLimits[i].text = "Usage Limit: " + bulletData.ak47UsageLimit.ToString();
+                        weaponUsageLimits[i].text = "Usage Limit: " + bulletData.shotGunUsageLimit.ToString();
                     }
                     else
                     {
                         weaponUsageLimits[i].enabled = false;
                     }
                     break;
-                case "M4A4UsageLimit":
-                    if (bulletData.m4a4Lock == "")
+                case "MachineUsageLimit":
+                    if (bulletData.machineLock == "")
                     {
                         weaponUsageLimits[i].enabled = true;
 
-                        weaponUsageLimits[i].text = "Usage Limit: " + bulletData.m4a4UsageLimit.ToString();
+                        weaponUsageLimits[i].text = "Usage Limit: " + bulletData.machineUsageLimit.ToString();
                     }
                     else
                     {
@@ -284,7 +289,7 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (weaponPriceErrorTextObjects.Length != 0)
         {
-            PickAK47(bulletData.ak47Price);
+            PickShotGun(bulletData.shotGunPrice);
             PickAxe(bulletData.axePrice);
             PickBulldog(bulletData.bulldogPrice);
             PickCow(bulletData.cowPrice);
@@ -293,7 +298,7 @@ public class ChooseWeaponController : MonoBehaviour
             PickIce(bulletData.icePrice);
             PickElectro(bulletData.electroPrice);
             PickPistol(bulletData.pistolPrice);
-            PickM4a4(bulletData.m4a4Price);
+            PickMachine(bulletData.machinePrice);
         }
     }
     void WeaponPriceError()
@@ -325,11 +330,11 @@ public class ChooseWeaponController : MonoBehaviour
 
             for (int i = 0; i < bulletData.weaponStaffs.Count; i++)
             {
-                if (bulletData.weaponStaffs[i].name == "AK47Staff")
+                if (bulletData.weaponStaffs[i].name == "ShotGunStaff")
                 {
                     bulletData.weaponStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
 
-                    bulletData.weaponStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = bulletData.ak47Power.ToString();
+                    bulletData.weaponStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = bulletData.shotGunPower.ToString();
                 }
                 else if (bulletData.weaponStaffs[i].name == "AxeStaff")
                 {
@@ -380,11 +385,11 @@ public class ChooseWeaponController : MonoBehaviour
 
                     bulletData.weaponStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = bulletData.pistolPower.ToString();
                 }
-                else if (bulletData.weaponStaffs[i].name == "M4A4Staff")
+                else if (bulletData.weaponStaffs[i].name == "MachineStaff")
                 {
                     bulletData.weaponStaffs[i].transform.GetChild(0).transform.Rotate(new Vector3(0F, Time.deltaTime * 50f, 0f));
 
-                    bulletData.weaponStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = bulletData.m4a4Power.ToString();
+                    bulletData.weaponStaffs[i].transform.GetChild(1).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = bulletData.machinePower.ToString();
                 }
             }
         }
@@ -414,36 +419,36 @@ public class ChooseWeaponController : MonoBehaviour
         }
     }
 
-    public void PickAK47(int avaliableCoinAmount)
+    public void PickShotGun(int avaliableCoinAmount)
     {
-        if (bulletData.ak47UsageLimit <= 0)
+        if (bulletData.shotGunUsageLimit <= 0)
         {
             ObjectPool.creatablePlayerBullet = true;
-            bulletData.ak47Lock = BulletData.locked;
+            bulletData.shotGunLock = BulletData.locked;
         }
-        if (BulletController.AK47 && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-            bulletData.currentWeaponName != BulletData.ak47)
+        if (ButtonController.ShotGun && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+            bulletData.currentWeaponName != BulletData.shotGun)
         {
-            if (bulletData.ak47Lock == BulletData.locked)
+            if (bulletData.shotGunLock == BulletData.locked)
             {
                 playerCoinData.avaliableCoin -= avaliableCoinAmount;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                bulletData.ak47Lock = bulletData.unLocked;
+                bulletData.shotGunLock = bulletData.unLocked;
 
                 ObjectPool.creatablePlayerBullet = true;
 
-                bulletData.ak47UsageLimit = 3;
-                PlayerPrefs.SetInt("Ak47UsageCount", bulletData.ak47UsageLimit);
+                bulletData.shotGunUsageLimit = 3;
+                PlayerPrefs.SetInt("ShotGunUsageCount", bulletData.shotGunUsageLimit);
 
-                PlayerPrefs.SetFloat("Ak47Lock", 1);
+                PlayerPrefs.SetFloat("ShotGunLock", 1);
 
-                bulletData.currentBulletPack = bulletData.ak47BulletAmount;                
+                bulletData.currentBulletPack = bulletData.shotGunBulletAmount;                
             }
 
             BulletData.currentWeaponID = 8;
 
-            bulletData.currentWeaponName = BulletData.ak47;
+            bulletData.currentWeaponName = BulletData.shotGun;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
 
@@ -451,11 +456,11 @@ public class ChooseWeaponController : MonoBehaviour
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
-        else if (BulletController.AK47 && bulletData.ak47Lock == bulletData.unLocked)
+        else if (ButtonController.ShotGun && bulletData.shotGunLock == bulletData.unLocked)
         {
-            if (bulletData.ak47UsageLimit > 0 && bulletData.currentWeaponName != BulletData.ak47)
+            if (bulletData.shotGunUsageLimit > 0 && bulletData.currentWeaponName != BulletData.shotGun)
             {
-                bulletData.currentWeaponName = BulletData.ak47;
+                bulletData.currentWeaponName = BulletData.shotGun;
 
                 SceneController.LoadMenuScene();
 
@@ -463,21 +468,21 @@ public class ChooseWeaponController : MonoBehaviour
 
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-                bulletData.currentBulletPack = bulletData.ak47BulletAmount;
+                bulletData.currentBulletPack = bulletData.shotGunBulletAmount;
 
                 BulletData.currentWeaponID = 8;
             }
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.ak47Lock == BulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.shotGunLock == BulletData.locked)
         {
-            if (BulletController.AK47)
+            if (ButtonController.ShotGun)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
 
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "AK47PriceErrorText")
+                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "ShotGunPriceErrorText")
                 {
                     if (playerData.currentLanguage == PlayerData.Languages.Turkish)
                     {
@@ -489,8 +494,8 @@ public class ChooseWeaponController : MonoBehaviour
                     }
                 }
             }
-            bulletData.ak47UsageLimit = 0;
-            PlayerPrefs.SetInt("Ak47UsageCount", bulletData.ak47UsageLimit);
+            bulletData.shotGunUsageLimit = 0;
+            PlayerPrefs.SetInt("ShotGunUsageCount", bulletData.shotGunUsageLimit);
         }
     }
 
@@ -1078,35 +1083,35 @@ public class ChooseWeaponController : MonoBehaviour
         }
     }
 
-    public void PickM4a4(int avaliableCoinAmount)
+    public void PickMachine(int avaliableCoinAmount)
     {
-        if (bulletData.m4a4UsageLimit <= 0)
+        if (bulletData.machineUsageLimit <= 0)
         {
             ObjectPool.creatablePlayerBullet = true;
-            bulletData.m4a4Lock = BulletData.locked;
+            bulletData.machineLock = BulletData.locked;
         }
-        if (ButtonController.M4A4 && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-          bulletData.currentWeaponName != BulletData.m4a4)
+        if (ButtonController.Machine && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
+          bulletData.currentWeaponName != BulletData.machine)
         {
-            if (bulletData.m4a4Lock == BulletData.locked)
+            if (bulletData.machineLock == BulletData.locked)
             {
                 playerCoinData.avaliableCoin -= avaliableCoinAmount;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                bulletData.m4a4Lock = bulletData.unLocked;
+                bulletData.machineLock = bulletData.unLocked;
 
                 ObjectPool.creatablePlayerBullet = true;
 
-                bulletData.m4a4UsageLimit = 3;
-                PlayerPrefs.SetInt("M4A4UsageCount", bulletData.m4a4UsageLimit);
+                bulletData.machineUsageLimit = 3;
+                PlayerPrefs.SetInt("MachineUsageCount", bulletData.machineUsageLimit);
 
-                PlayerPrefs.SetFloat("M4A4Lock", 1);
+                PlayerPrefs.SetFloat("MachineLock", 1);
 
-                bulletData.currentBulletPack = bulletData.m4A4BulletAmount;
+                bulletData.currentBulletPack = bulletData.machineBulletAmount;
             }
             BulletData.currentWeaponID = 9;
 
-            bulletData.currentWeaponName = BulletData.m4a4;
+            bulletData.currentWeaponName = BulletData.machine;
 
             weaponPriceErrorTextObjectChilds[0].text = "";
 
@@ -1115,11 +1120,11 @@ public class ChooseWeaponController : MonoBehaviour
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
         }
-        else if (ButtonController.M4A4 && bulletData.m4a4Lock == bulletData.unLocked)
+        else if (ButtonController.Machine && bulletData.machineLock == bulletData.unLocked)
         {
-            if (bulletData.m4a4UsageLimit > 0 && bulletData.currentWeaponName != BulletData.m4a4)
+            if (bulletData.machineUsageLimit > 0 && bulletData.currentWeaponName != BulletData.machine)
             {
-                bulletData.currentWeaponName = BulletData.m4a4;
+                bulletData.currentWeaponName = BulletData.machine;
 
                 SceneController.LoadMenuScene();
 
@@ -1127,20 +1132,20 @@ public class ChooseWeaponController : MonoBehaviour
 
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-                bulletData.currentBulletPack = bulletData.m4A4BulletAmount;
+                bulletData.currentBulletPack = bulletData.machineBulletAmount;
 
                 BulletData.currentWeaponID = 9;
             }
         }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.m4a4Lock == BulletData.locked)
+        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.machineLock == BulletData.locked)
         {
-            if (ButtonController.M4A4)
+            if (ButtonController.Machine)
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
             for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
             {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "M4A4PriceErrorText")
+                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "MachinePriceErrorText")
                 {
                     if (playerData.currentLanguage == PlayerData.Languages.Turkish)
                     {

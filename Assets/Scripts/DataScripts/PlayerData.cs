@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Player Object")]
+    public GameObject playerObject;
 
     [Header("Player Object Pool IDs")]
     public int playerWeaponBulletObjectPoolCount;//0
@@ -60,10 +62,7 @@ public class PlayerData : ScriptableObject
     public const string emptyMessage = "";
 
     [Header("Background Maps")]
-    public GameObject backgroundMap;
-
-    [Header("Is Enemy Bullet Hit Activate For Sound Effect")]
-    public bool enemyBulletHitActivate;      
+    public GameObject backgroundMap;     
     
 
     [Header("Character Durabilities")]
@@ -205,14 +204,10 @@ public class PlayerData : ScriptableObject
     public bool isGround;
     public bool isWalking;
     public bool isSideWalking;
-    public bool isLockedWalking;
-    public bool isBackWalking;
-    public bool isClimbing;
-    public bool isBackClimbing;    
+    public bool isBackWalking;  
     public bool isIdling;
     public bool isDying;
     public bool isWinning;
-    public bool isSkateBoarding;
     public bool isRunning;
     public bool isPicking;
     public bool isPickRotateCoin;
@@ -235,8 +230,6 @@ public class PlayerData : ScriptableObject
     public bool isFireTime;
     public bool isJumping;
     public int jumpCount;
-    public int clickDoubleSpeedCount;
-    public int clickTabCount;
     public int clickShiftCount;
     public int bulletAmount;
     public int bulletPackAmount;

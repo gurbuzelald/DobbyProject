@@ -4,14 +4,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewBulletData", menuName = "BulletData")]
 public class BulletData : ScriptableObject
 {
+    [Header("Pick Sword Weapon")]
+    public string currentSwordName = warriorSword;
+    public string currentWeaponName = pistol;
+
     [Header("Player")]
     [Header("WeaponGiftBoxes")]
     public GameObject[] giftBoxes;
     
 
     [Header("Bullet Transform")]
-    public float swordBulletDelay = 0.05f;
-    public float weaponBulletDelay = 0.05f;
+    public float weaponBulletDelay;
+    public float swordBulletDelay;
     public float bulletSpeed = 5f;
     public float swordSpeed = 1f;
     public int bulletDelayCounter;
@@ -20,14 +24,14 @@ public class BulletData : ScriptableObject
     [Header("Weapon GiftBoxes")]
     public GameObject currentGiftBox;
     public GameObject pistolGiftBox;
-    public GameObject m4a4GiftBox;
+    public GameObject machineGiftBox;
     public GameObject bullDogGiftBox; //+
     public GameObject cowGiftBox; //+
     public GameObject crystalGiftBox; //+
     public GameObject demonGiftBox; //+
     public GameObject iceGiftBox; //+
     public GameObject electroGiftBox; //+
-    public GameObject ak47GiftBox;
+    public GameObject shotGunGiftBox;
     public GameObject axeGiftBox; //+
 
 
@@ -42,13 +46,13 @@ public class BulletData : ScriptableObject
     public float demonShootFrequency;
     public float iceShootFrequency;
     public float electroShootFrequency;
-    public float ak47ShootFrequency;
-    public float m4a4ShootFrequency;
+    public float shotGunShootFrequency;
+    public float machineShootFrequency;
 
 
     [Header("Weapon Types")]
-    public GameObject ak47Object;
-    public GameObject m4a4Object;
+    public GameObject shotGunObject;
+    public GameObject machineObject;
     public GameObject bullDogObject;
     public GameObject cowObject;
     public GameObject crsytalObject;
@@ -67,8 +71,8 @@ public class BulletData : ScriptableObject
     public int demonPower;
     public int icePower;
     public int electroPower;
-    public int ak47Power;
-    public int m4a4Power;
+    public int shotGunPower;
+    public int machinePower;
 
     [Header("Weapons Prices")]
     public int pistolPrice;    
@@ -79,8 +83,8 @@ public class BulletData : ScriptableObject
     public int demonPrice;
     public int icePrice;
     public int electroPrice;
-    public int ak47Price;
-    public int m4a4Price;
+    public int shotGunPrice;
+    public int machinePrice;
 
     [Header("Weapon Staff")]
     public Dictionary<int, GameObject> weaponStaffs;
@@ -97,8 +101,8 @@ public class BulletData : ScriptableObject
     public string demonLock;
     public string iceLock;
     public string electroLock;
-    public string ak47Lock;
-    public string m4a4Lock;
+    public string shotGunLock;
+    public string machineLock;
     public string resetLocks = "locked";
     public const string locked = "locked";
     public string unLocked = "";
@@ -112,8 +116,8 @@ public class BulletData : ScriptableObject
     public int iceUsageLimit = 0;
     public int electroUsageLimit = 0;
     public int axeUsageLimit = 0;
-    public int m4a4UsageLimit = 0;
-    public int ak47UsageLimit = 0;
+    public int machineUsageLimit = 0;
+    public int shotGunUsageLimit = 0;
 
     [Header("Check Pistol")]
     public bool isPistol;
@@ -124,8 +128,8 @@ public class BulletData : ScriptableObject
     public bool isIce;
     public bool isElectro;
     public bool isAxe;
-    public bool isM4a4;
-    public bool isAk47;
+    public bool isMachine;
+    public bool isShotGun;
 
     [Header("Bullet Packs")]
     public int currentBulletPack;
@@ -137,11 +141,11 @@ public class BulletData : ScriptableObject
     public int demonBulletAmount;
     public int iceBulletAmount;
     public int electroBulletAmount;
-    public int ak47BulletAmount;
-    public int m4A4BulletAmount;
+    public int shotGunBulletAmount;
+    public int machineBulletAmount;
 
     [Header("Weapon Names")]
-    public static int currentWeaponID = 0;
+    public static int currentWeaponID;
     public const string pistol = "pistol";
     public const string axe = "axe";
     public const string bulldog = "bulldog";
@@ -150,21 +154,21 @@ public class BulletData : ScriptableObject
     public const string demon = "demon";
     public const string ice = "ice";
     public const string electro = "electro";
-    public const string ak47 = "ak47";
-    public const string m4a4 = "m4a4";
+    public const string shotGun = "shotGun";
+    public const string machine = "machine";
 
     [Header("Enemy Weapon Names")]
     public static int currentEnemyBulletID = 0;
-    public const string clownBullet = "ClownBullet(Clone)";
-    public const string monsterBullet = "MonsterBullet(Clone)";
-    public const string prisonerBullet = "PrisonerBullet(Clone)";
-    public const string pedrosoBullet = "PedrosoBullet(Clone)";
-    public const string copBullet = "CopBullet(Clone)";
-    public const string morakBullet = "MorakBullet(Clone)";
-    public const string ortizBullet = "OrtizBullet(Clone)";
-    public const string skeletonBullet = "SkeletonBullet(Clone)";
-    public const string urielBullet = "UrielBullet(Clone)";
-    public const string goblinBullet = "GoblinBullet(Clone)";
+    public const string chibiBullet = "ChibiBullet(Clone)";
+    public const string minoBullet = "MinoBullet(Clone)";
+    public const string bigMonsterBullet = "BigMonsterBullet(Clone)";
+    public const string orcBullet = "OrcBBullet(Clone)";
+    public const string beholderBullet = "BeholderBullet(Clone)";
+    public const string femaleZombieBullet = "FemaleZombieBullet(Clone)";
+    public const string doctorBullet = "DoctorBullet(Clone)";
+    public const string giantBullet = "GiantBullet(Clone)";
+    public const string boneBullet = "BoneBullet(Clone)";
+    public const string clothyBoneBullet = "ClothyBoneBullet(Clone)";
 
 
     [Header("Enemy Bullet Damages")]
@@ -226,8 +230,8 @@ public class BulletData : ScriptableObject
         demon,
         ice,
         electro,
-        ak47,
-        m4a4
+        shotGun,
+        machine
     }
 
 
@@ -272,10 +276,6 @@ public class BulletData : ScriptableObject
     public bool isClub;
 
 
-
-    [Header("Pick Sword Weapon")]
-    public string currentSwordName = warriorSword;
-    public string currentWeaponName = pistol;    
 
     [Header("Sword Power")]
     public float swordDamageValue;

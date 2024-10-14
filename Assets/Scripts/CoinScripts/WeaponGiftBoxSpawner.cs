@@ -26,7 +26,7 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
 
         CreateWeaponGiftBox(weaponObject, giftBox.transform.GetChild(0).transform);
     }
-    public void CreateWeaponGiftBox(GameObject weaponObject, Transform weaponTransform)
+    void CreateWeaponGiftBox(GameObject weaponObject, Transform weaponTransform)
     {
         for (int i = 0; i < weaponTransform.childCount; i++)
         {
@@ -34,7 +34,7 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
             GameObject _weaponObejct = Instantiate(weaponObject, 
                                                    weaponTransform.GetChild(i).position, 
                                                    Quaternion.identity, 
-                                                   weaponTransform.GetChild(i));
+                                                   gameObject.transform);
             _weaponObejct.transform.rotation = weaponTransform.GetChild(i).rotation;
         }
     }
@@ -74,11 +74,11 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
         }
         else if (levelData.currentLevel == LevelData.Levels.Level9)
         {
-            bulletData.currentGiftBox = bulletData.ak47GiftBox;
+            bulletData.currentGiftBox = bulletData.shotGunGiftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level10)
         {
-            bulletData.currentGiftBox = bulletData.m4a4GiftBox;
+            bulletData.currentGiftBox = bulletData.machineGiftBox;
         }
     }
 

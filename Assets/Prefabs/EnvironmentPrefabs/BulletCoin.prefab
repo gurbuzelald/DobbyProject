@@ -62,6 +62,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -155,6 +158,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7707355688560459611}
     m_Modifications:
+    - target: {fileID: 7348819420291715062, guid: 1c43bc4646d36cd4da23fd2fc2116961, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
+      objectReference: {fileID: 0}
     - target: {fileID: 7348819420762410845, guid: 1c43bc4646d36cd4da23fd2fc2116961, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -242,6 +249,10 @@ PrefabInstance:
     - target: {fileID: 7348819420762410846, guid: 1c43bc4646d36cd4da23fd2fc2116961, type: 3}
       propertyPath: m_Name
       value: BulletCoinCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7348819421476469372, guid: 1c43bc4646d36cd4da23fd2fc2116961, type: 3}
+      propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
+      value: 1801810542
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

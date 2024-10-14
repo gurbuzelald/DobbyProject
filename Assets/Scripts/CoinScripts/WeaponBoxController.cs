@@ -14,10 +14,10 @@ public class WeaponBoxController : MonoBehaviour
     }
     private void Update()
     {
-        if (_damageGiftBoxParticle != null)
+        /*if (_damageGiftBoxParticle != null)
         {
             StartCoroutine(DelayDestroyParticle());
-        }
+        }*/
     }
     IEnumerator DelayDestroyParticle()
     {
@@ -41,6 +41,8 @@ public class WeaponBoxController : MonoBehaviour
             else
             {
                 other.gameObject.SetActive(false);
+
+                StartCoroutine(DelayDestroyParticle());
 
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.TouchGiftBox);
             }

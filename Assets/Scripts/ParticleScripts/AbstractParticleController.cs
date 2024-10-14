@@ -27,7 +27,7 @@ public abstract class AbstractParticleController<T> : MonoBehaviour where T : Mo
         {
             _instance = this as T;
 
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     }
     public virtual void ParticleCreate(ParticleNames particleName, Transform particleTransform, PlayerData playerData)

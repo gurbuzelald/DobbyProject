@@ -82,10 +82,6 @@ public class LevelData : ScriptableObject
     public float currentEnemyDetectionDistance;
     public float[] enemyDetectionDistances;
 
-    [Header("Enemy Spawn")]
-    public int currentEnemySpawnDelay;
-    public int[] enemySpawnDelaysByLevel;
-
     [Header("Mirror")]
     public string currentMirrorName;
     public GameObject[] mirrorCouples;

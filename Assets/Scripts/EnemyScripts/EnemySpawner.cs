@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     public LevelData levelData;
 
     public Transform targetTransform;
+
     public ObjectPool _objectPool;
 
     public EnemyObjectPool enemyObjectPool;
@@ -37,6 +38,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        targetTransform = PlayerManager.GetInstance.gameObject.transform;
+
         bossIsDead = false;
 
         EnemyData.enemyDeathCount = 0;
@@ -110,123 +113,6 @@ public class EnemySpawner : MonoBehaviour
         else if (levelData.currentLevel == LevelData.Levels.Level10)
         {
             levelData.currentEnemyObjects = levelData.enemyTenthObjects;
-        }
-    }
-    IEnumerator CreateBulletCoin(int i)
-    {
-        yield return new WaitForSeconds(2);
-
-        if (gameObject.transform.GetChild(0).GetChild(i).transform.childCount == 0)
-        {
-            if (enemyData)
-                playerBulletObject = Instantiate(enemyData._playerBulletObject,
-                                                new Vector3(gameObject.transform.GetChild(0).GetChild(i).transform.position.x,
-                                                            enemyData._playerBulletObject.transform.position.y,
-                                                            gameObject.transform.GetChild(0).GetChild(i).transform.position.z),
-                                                Quaternion.identity,
-                                                gameObject.transform.GetChild(0).GetChild(i).transform);
-
-
-            //bulletCoinCount++;
-
-            playerBulletObject.transform.eulerAngles = new Vector3(0f,
-                                                                   gameObject.transform.GetChild(0).GetChild(i).transform.eulerAngles.y + 90f,
-                                                                   90f);
-
-            //Destroy(_bulletCoinSpawn.transform.GetChild(0).GetChild(i).GetChild(0).gameObject, 10f);
-
-
-            StartCoroutine(DelayDestroy());
-        }
-        
-
-    }
-    IEnumerator DelayDestroy()
-    {
-        yield return new WaitForSeconds(5f);
-        if (_bulletCoinSpawn.childCount != 0)
-        {
-            Destroy(_bulletCoinSpawn.transform.GetChild(0).gameObject);
-        }
-        Destroy(playerBulletObject);
-
-    }
-    private void Update()
-    {
-        CheckEnemyDeath();    
-    }
-    void CheckEnemyDeath()
-    {
-        if (gameObject.transform.childCount != 0)
-        {
-            for (int i = 0; i < gameObject.transform.GetChild(0).transform.childCount; i++)
-            {//if enemyTransformObject's childCount equals zero, destroy enemyTransformObject.
-             //This code is for getting enemies amount.                
-
-                if ((gameObject.transform.GetChild(0).GetChild(i).name == "BulletCoin(Clone)" || 
-                    gameObject.transform.GetChild(0).GetChild(i).childCount == 0) &&
-                    gameObject.transform.GetChild(0).GetChild(i).name != "bossEnemyTransform")
-                {
-                    CheckEnemyDeathForLevels(i, levelData.currentEnemyObjects);                    
-                }
-                if (gameObject.transform.GetChild(0).GetChild(i).childCount == 0)
-                {
-                    //StartCoroutine(CreateBulletCoin(i));
-                }
-            }
-        }
-    }
-    void CheckEnemyDeathForLevels(int i, GameObject[] enemyObjects)
-    {
-        CheckEnemyDeathWithLevels(i, enemyObjects);
-    }
-    void CheckEnemyDeathWithLevels(int i, GameObject[] enemyObjects)
-    {
-        if (levelData.currentLevel == LevelData.Levels.Level1)
-        {
-
-            
-        }
-        if (enemyData.isActivateCreateEnemy)
-        {
-            currentEnemyObjects = Instantiate(enemyObjects[i],
-                                 enemyTransformsObject.transform.GetChild(i).position,
-                                 Quaternion.identity,
-                                 enemyTransformsObject.transform.GetChild(i).transform);
-
-            currentEnemyObjects.transform.position =
-                new Vector3(enemyTransformsObject.transform.GetChild(i).position.x,
-                            10f,
-                            enemyTransformsObject.transform.GetChild(i).position.z);
-            enemyData.isActivateCreateEnemy = false;
-        }
-    }
-
-
-    public void CreateEnemiesByMap(int levelCount)
-    {
-        levelData.currentEnemySpawnDelay = levelData.enemySpawnDelaysByLevel[levelCount];
-
-        Destroy(enemyTransformsObject);
-        enemyTransformsObject = Instantiate(levelData.enemyTransformsInMap[levelCount].gameObject, 
-                                           gameObject.transform);
-
-
-        CreateEnemyInUpdate(currentEnemyObjects, enemyTransformsObject, levelData.currentEnemyObjects);
-    }
-    void CreateEnemyInUpdate(GameObject currentEnemyObjects, GameObject enemyTransformObject, GameObject[] enemyObjects)
-    {
-        for (int i = 0; i < levelData.enemySecondObjects.Length; i++)
-        {
-            currentEnemyObjects = Instantiate(enemyObjects[i],//enemySecondObjects[i]
-                                     enemyTransformObject.transform.GetChild(i).position,
-                                     Quaternion.identity,
-                                     enemyTransformObject.transform.GetChild(i).transform);
-            currentEnemyObjects.transform.position = new Vector3(enemyTransformObject.transform.GetChild(i).position.x,
-                                                             10f,
-                                                             enemyTransformObject.transform.GetChild(i).position.z);
-            currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
-            currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
         }
     }
 }

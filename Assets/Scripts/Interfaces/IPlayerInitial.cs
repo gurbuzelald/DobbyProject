@@ -15,7 +15,7 @@ internal interface IPlayerInitial
                                                ref GameObject _healthBarObject, ref GameObject bulletAmountCanvas);
 
     void DataStatesOnInitial(LevelData levelData, PlayerData _playerData, BulletData _bulletData, ref GameObject _healthBarObject,
-                             ref GameObject _topCanvasHealthBarObject, ref GameObject bulletAmountCanvas,
-                             ref float _initPlayerSpeed);
+                             ref GameObject _topCanvasHealthBarObject, ref GameObject bulletAmountCanvas);
+
     void CreateCharacterObject(PlayerData _playerData, ref GameObject characterObject);
 }

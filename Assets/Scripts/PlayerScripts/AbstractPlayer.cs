@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using TMPro;
 using Cinemachine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 
 //This abstract class has abstraction singleton and interface functions
@@ -16,13 +18,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         get
         {
-            if (_instance == null)
+            /*if (_instance == null)
             {
                 _instance = FindObjectOfType<T>();
                 GameObject objectOfGame = new GameObject();
                 objectOfGame.name = typeof(T).Name;
                 _instance = objectOfGame.AddComponent<T>();
-            }
+            }*/
             return _instance;
         }
     }
@@ -31,8 +33,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         if (_instance == null)
         {
             _instance = this as T;
-
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     }
 
@@ -53,13 +54,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
     public virtual void GetWeaponTransform(BulletData _bulletData, ref GameObject _gunTransform)//Getting finger transform parameter
     {
-        if (_bulletData.currentWeaponName == BulletData.ak47 && GameObject.Find("Ak47Transform"))
+        if (_bulletData.currentWeaponName == BulletData.shotGun && GameObject.Find("ShotGunTransform"))
         {
-            _gunTransform = GameObject.Find("Ak47Transform");
+            _gunTransform = GameObject.Find("ShotGunTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.m4a4 && GameObject.Find("M4a4Transform"))
+        else if (_bulletData.currentWeaponName == BulletData.machine && GameObject.Find("MachineTransform"))
         {
-            _gunTransform = GameObject.Find("M4a4Transform");
+            _gunTransform = GameObject.Find("MachineTransform");
         }
         else if (_bulletData.currentWeaponName == BulletData.bulldog && GameObject.Find("BulldogTransform"))
         {
@@ -88,6 +89,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         else if (_bulletData.currentWeaponName == BulletData.axe && GameObject.Find("AxeTransform"))
         {
             _gunTransform = GameObject.Find("AxeTransform");
+        }
+        else if (_bulletData.currentWeaponName == BulletData.pistol && GameObject.Find("PistolTransform"))
+        {
+            _gunTransform = GameObject.Find("PistolTransform");
         }
     }
     public virtual void GetSwordTransform(BulletData _bulletData, ref GameObject _swordTransform)
@@ -230,8 +235,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
 
     public void DataStatesOnInitial(LevelData levelData, PlayerData _playerData, BulletData _bulletData, ref GameObject _healthBarObject,
-                             ref GameObject _topCanvasHealthBarObject, ref GameObject bulletAmountCanvas,
-                             ref float _initPlayerSpeed)
+                             ref GameObject _topCanvasHealthBarObject, ref GameObject bulletAmountCanvas)
     {//PlayerData
         if (_playerData && _bulletData && levelData)
         {
@@ -255,6 +259,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                         {
                             _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
 
+                            _topCanvasHealthBarObject = GameObject.Find("HealthSlider");
                             if (_topCanvasHealthBarObject)
                             {
                                 if (_topCanvasHealthBarObject.GetComponent<Slider>())
@@ -346,8 +351,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.isFire = false;
             levelData.isLevelUp = false;
             LevelData.levelCanBeSkipped = false;
-            _playerData.isLockedWalking = false;
-            _playerData.clickTabCount = 0;
             _playerData.clickShiftCount = 0;
             _playerData.isDestroyed = false;
             _playerData.jumpCount = 0;
@@ -357,16 +360,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.isPickRotateCoin = false;
             _playerData.isLookingUp = false;
             _playerData.isWinning = false;
-            _playerData.isSkateBoarding = false;
             _playerData.isRunning = false;
             _playerData.isPlayable = true;
             CharacterSpeeds(_playerData);
             CharacterJumpForce(_playerData);
-            _initPlayerSpeed = _playerData.playerSpeed;
             _playerData.isDying = false;
             _playerData.isFireWalkAnimation = false;
             _playerData.isWalking = false;
-            _playerData.isClimbing = false;
             _playerData.isBackWalking = false;
             _playerData.isGround = true;
             _playerData.isSwordAnimate = false;
@@ -515,7 +515,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                     _playerData.isFireAnimation = false;
                     _playerData.isFireWalkAnimation = true;
                 }
-                else if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPack / 2f &&
+                if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPack / 2f &&
                     _playerData.bulletAmount > 0 && _playerData.isWalking)
                 {
                     _playerData.isFire = true;
@@ -541,34 +541,46 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
     public virtual void Sword(PlayerData _playerData)
     {
-        if (_playerData.isPlayable)
+        if (_playerData)
         {
-            if (PlayerManager.GetInstance.playerComponents._playerController.sword && !_playerData.isSwordAnimate)
+            if (_playerData.isPlayable)
             {
-                //PlayerData
-                _playerData.isSwordAnimate = true;   
-                _playerData.isSword = true;   
-            }
-            else
-            {
-                _playerData.isSword = false;
+                if (PlayerManager.GetInstance.playerComponents._playerController)
+                {
+                    if (PlayerManager.GetInstance.playerComponents._playerController.sword && !_playerData.isSwordAnimate)
+                    {
+                        //PlayerData
+                        _playerData.isSwordAnimate = true;
+                        _playerData.isSword = true;
+                    }
+                    else
+                    {
+                        _playerData.isSword = false;
+                    }
+                }
             }
         }
     }
     
     public virtual IEnumerator DelayShowingCrosshairAlpha(CanvasGroup crosshairImage, float delay)
     {
-        crosshairImage.alpha = 1;
+        if (crosshairImage)
+        {
+            crosshairImage.alpha = 1;
 
-        yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(delay);
 
-        crosshairImage.alpha = 0;
+            crosshairImage.alpha = 0;
+        }
     }
 
     public virtual IEnumerator delayFireWalkDisactivity(PlayerData _playerData, float delay)
     {
-        yield return new WaitForSeconds(delay);
-        _playerData.isFire = false;
+        if (_playerData)
+        {
+            yield return new WaitForSeconds(delay);
+            _playerData.isFire = false;
+        }
     }
 
     #endregion
@@ -580,68 +592,69 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         if (PlayerManager.GetInstance.playerComponents._playerController)
         {
-            if (PlayerManager.GetInstance.cameraSpawner)
+            var playerController = PlayerManager.GetInstance.playerComponents._playerController;
+            var cameraSpawner = PlayerManager.GetInstance.cameraSpawner;
+
+            if (playerController && cameraSpawner)
             {
-                if (PlayerManager.GetInstance.GetZValue() == 0 &&
-                    PlayerManager.GetInstance.GetXValue() == 0)
+                if (PlayerManager.GetInstance.gameObject)
                 {
-                    ConvertToFarCamera(PlayerManager.GetInstance.cameraSpawner);
+                    if (PlayerManager.GetInstance.GetZValue() == 0 && PlayerManager.GetInstance.GetXValue() == 0)
+                    {
+                        ConvertToFarCamera(cameraSpawner);
+                    }
+                    else
+                    {
+                        ConvertToCloseCamera(cameraSpawner);
+                    }
                 }
-                else if ((PlayerManager.GetInstance.GetZValue() != 0 || PlayerManager.GetInstance.GetXValue() != 0))
-                {
-                    ConvertToCloseCamera(PlayerManager.GetInstance.cameraSpawner);
-                }
-            }            
-        }       
+            }
+        }
     }
+
     public virtual void ConvertToCloseCamera(GameObject cameraSpawner)
     {
-        cameraSpawner.transform.GetChild(0).gameObject.transform.position = cameraSpawner.transform.GetChild(1).gameObject.transform.position;
-        cameraSpawner.transform.GetChild(0).gameObject.transform.rotation = cameraSpawner.transform.GetChild(1).gameObject.transform.rotation;
-
-        cameraSpawner.transform.GetChild(1).gameObject.SetActive(false);
-        cameraSpawner.transform.GetChild(0).gameObject.SetActive(true);
-        PlayerManager.GetInstance._currentCamera = cameraSpawner.transform.GetChild(0).gameObject.GetComponent<CinemachineVirtualCamera>();
-        PlayerManager.GetInstance._currentCamera.m_Follow = gameObject.transform;
-        PlayerManager.GetInstance._currentCamera.m_LookAt = gameObject.transform;
+        SwitchCamera(cameraSpawner, 0, 1);
     }
+
     public virtual void ConvertToFarCamera(GameObject cameraSpawner)
     {
-        cameraSpawner.transform.GetChild(1).gameObject.transform.position = cameraSpawner.transform.GetChild(0).gameObject.transform.position;
-        cameraSpawner.transform.GetChild(1).gameObject.transform.rotation = cameraSpawner.transform.GetChild(0).gameObject.transform.rotation;
+        SwitchCamera(cameraSpawner, 1, 0);
+    }
 
-        cameraSpawner.transform.GetChild(0).gameObject.SetActive(false);
-        cameraSpawner.transform.GetChild(1).gameObject.SetActive(true);
+    private void SwitchCamera(GameObject cameraSpawner, int activateIndex, int deactivateIndex)
+    {
+        var activateCamera = cameraSpawner.transform.GetChild(activateIndex).gameObject;
+        var deactivateCamera = cameraSpawner.transform.GetChild(deactivateIndex).gameObject;
 
-        PlayerManager.GetInstance._currentCamera = cameraSpawner.transform.GetChild(1).gameObject.GetComponent<CinemachineVirtualCamera>();
+        activateCamera.transform.SetPositionAndRotation(deactivateCamera.transform.position, deactivateCamera.transform.rotation);
 
-        PlayerManager.GetInstance._currentCamera.m_Follow = gameObject.transform;
-        PlayerManager.GetInstance._currentCamera.m_LookAt = gameObject.transform;
+        deactivateCamera.SetActive(false);
+        activateCamera.SetActive(true);
+
+        var currentCamera = activateCamera.GetComponent<CinemachineVirtualCamera>();
+        PlayerManager.GetInstance._currentCamera = currentCamera;
+
+        currentCamera.m_Follow = transform;
+        currentCamera.m_LookAt = transform;
     }
 
     public virtual void CheckCameraEulerX(PlayerData _playerData, Transform _currentCameraTransform)
     {
-        // Cache frequently accessed values
-        Vector3 eulerAngles = _currentCameraTransform.transform.eulerAngles;
-        float cameraXAngle = eulerAngles.x;
-        float cameraYAngle = eulerAngles.y;
-        float cameraZAngle = eulerAngles.z;
+        if (_currentCameraTransform)
+        {
+            Vector3 eulerAngles = _currentCameraTransform.eulerAngles;
+            float cameraXAngle = eulerAngles.x;
 
-        // Adjust player state and camera based on X angle
-        if (cameraXAngle > 74 && cameraXAngle <= 80 || cameraXAngle > 355 || cameraXAngle < 0)
-        {
-            _playerData.isLookingUp = cameraXAngle < 0; // Set isLookingUp based on angle < 0
-
-            // Reset the X rotation to 0
-            _currentCameraTransform.transform.eulerAngles = new Vector3(0f, cameraYAngle, cameraZAngle);
-        }
-        else if (cameraXAngle > 270 && cameraXAngle <= 360)
-        {
-            _playerData.isLookingUp = true;
-        }
-        else
-        {
-            _playerData.isLookingUp = false;
+            if ((cameraXAngle > 74 && cameraXAngle <= 80) || (cameraXAngle > 355 || cameraXAngle < 0))
+            {
+                _playerData.isLookingUp = cameraXAngle < 0;
+                _currentCameraTransform.eulerAngles = new Vector3(0f, eulerAngles.y, eulerAngles.z);
+            }
+            else
+            {
+                _playerData.isLookingUp = cameraXAngle > 270 && cameraXAngle <= 360;
+            }
         }
     }
 
@@ -734,8 +747,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             DecreaseHealth(ref _playerData, PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage,
                             ref _healthBarObject, ref healthBarSlider, ref topCanvasHealthBarSlider, ref damageHealthText);
-            // Activate bullet hit on player
-            _playerData.enemyBulletHitActivate = true;
         }
     }
 
@@ -895,7 +906,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         if (bulletData)
         {
-            if (bulletData.ak47Lock == BulletData.locked && bulletData.m4a4Lock == BulletData.locked &&
+            if (bulletData.shotGunLock == BulletData.locked && bulletData.machineLock == BulletData.locked &&
             bulletData.axeLock == BulletData.locked && bulletData.bulldogLock == BulletData.locked &&
             bulletData.cowLock == BulletData.locked && bulletData.crystalLock == BulletData.locked &&
             bulletData.demonLock == BulletData.locked && bulletData.iceLock == BulletData.locked &&
@@ -909,19 +920,19 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     public virtual void CheckWeaponCollect(Collider other, BulletData _bulletData)
     {
         HandleWeaponCollect(other, _bulletData,
-            SceneController.Tags.m4a4,
-            BulletData.m4a4,
-            ref _bulletData.isM4a4,
-            ref _bulletData.m4a4Lock,
-            _bulletData.m4A4BulletAmount,
+            SceneController.Tags.machine,
+            BulletData.machine,
+            ref _bulletData.isMachine,
+            ref _bulletData.machineLock,
+            _bulletData.machineBulletAmount,
             9);
 
         HandleWeaponCollect(other, _bulletData,
-            SceneController.Tags.ak47,
-            BulletData.ak47,
-            ref _bulletData.isAk47,
-            ref _bulletData.ak47Lock,
-            _bulletData.ak47BulletAmount,
+            SceneController.Tags.shotGun,
+            BulletData.shotGun,
+            ref _bulletData.isShotGun,
+            ref _bulletData.shotGunLock,
+            _bulletData.shotGunBulletAmount,
             8);
 
         HandleWeaponCollect(other, _bulletData,
@@ -1021,65 +1032,45 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     void IncreaseUsageLimit(BulletData _bulletData, SceneController.Tags tag)
     {
-        if (tag == SceneController.Tags.ak47)
+        Dictionary<SceneController.Tags, (Action unlock, Action<int> setUsageLimit, string usageCountKey)> bulletMap = new Dictionary<SceneController.Tags, (Action, Action<int>, string)>
+    {
+        { SceneController.Tags.shotGun,    (() => _bulletData.shotGunLock =
+        _bulletData.unLocked, value => _bulletData.shotGunUsageLimit = value, "ShotGunUsageCount") },
+
+        { SceneController.Tags.machine,    (() => _bulletData.machineLock =
+        _bulletData.unLocked, value => _bulletData.machineUsageLimit = value, "MachineUsageCount") },
+
+        { SceneController.Tags.cow,     (() => _bulletData.cowLock =
+        _bulletData.unLocked, value => _bulletData.cowUsageLimit = value, "CowUsageCount") },
+
+        { SceneController.Tags.axe,     (() => _bulletData.axeLock =
+        _bulletData.unLocked, value => _bulletData.axeUsageLimit = value, "AxeUsageCount") },
+
+        { SceneController.Tags.crystal, (() => _bulletData.crystalLock =
+        _bulletData.unLocked, value => _bulletData.crystalUsageLimit = value, "CrystalUsageCount") },
+
+        { SceneController.Tags.demon,   (() => _bulletData.demonLock =
+        _bulletData.unLocked, value => _bulletData.demonUsageLimit = value, "DemonUsageCount") },
+
+        { SceneController.Tags.pistol,  (() => _bulletData.pistolLock =
+        _bulletData.unLocked, value => _bulletData.pistolUsageLimit = value, "PistolUsageCount") },
+
+        { SceneController.Tags.ice,     (() => _bulletData.iceLock =
+        _bulletData.unLocked, value => _bulletData.iceUsageLimit = value, "IceUsageCount") },
+
+        { SceneController.Tags.electro, (() => _bulletData.electroLock =
+        _bulletData.unLocked, value => _bulletData.electroUsageLimit = value, "ElectroUsageCount") },
+
+        { SceneController.Tags.bulldog, (() => _bulletData.bulldogLock =
+        _bulletData.unLocked, value => _bulletData.bulldogUsageLimit = value, "BulldogUsageCount") }
+    };
+
+        if (bulletMap.ContainsKey(tag))
         {
-            _bulletData.ak47Lock = _bulletData.unLocked;
-            _bulletData.ak47UsageLimit = 1;
-            PlayerPrefs.SetInt("Ak47UsageCount", _bulletData.ak47UsageLimit);
-        }
-        else if (tag == SceneController.Tags.m4a4)
-        {
-            _bulletData.m4a4Lock = _bulletData.unLocked;
-            _bulletData.m4a4UsageLimit = 1;
-            PlayerPrefs.SetInt("M4a4UsageCount", _bulletData.m4a4UsageLimit);
-        }
-        else if (tag == SceneController.Tags.cow)
-        {
-            _bulletData.cowLock = _bulletData.unLocked;
-            _bulletData.cowUsageLimit = 1;
-            PlayerPrefs.SetInt("CowUsageCount", _bulletData.cowUsageLimit);
-        }
-        else if (tag == SceneController.Tags.axe)
-        {
-            _bulletData.axeLock = _bulletData.unLocked;
-            _bulletData.axeUsageLimit = 1;
-            PlayerPrefs.SetInt("AxeUsageCount", _bulletData.axeUsageLimit);
-        }
-        else if (tag == SceneController.Tags.crystal)
-        {
-            _bulletData.crystalLock = _bulletData.unLocked;
-            _bulletData.crystalUsageLimit = 1;
-            PlayerPrefs.SetInt("CrystalUsageCount", _bulletData.crystalUsageLimit);
-        }
-        else if (tag == SceneController.Tags.demon)
-        {
-            _bulletData.demonLock = _bulletData.unLocked;
-            _bulletData.demonUsageLimit = 1;
-            PlayerPrefs.SetInt("DemonUsageCount", _bulletData.demonUsageLimit);
-        }
-        else if (tag == SceneController.Tags.pistol)
-        {
-            _bulletData.pistolLock = _bulletData.unLocked;
-            _bulletData.pistolUsageLimit = 1;
-            PlayerPrefs.SetInt("PistolUsageCount", _bulletData.pistolUsageLimit);
-        }
-        else if (tag == SceneController.Tags.ice)
-        {
-            _bulletData.iceLock = _bulletData.unLocked;
-            _bulletData.iceUsageLimit = 1;
-            PlayerPrefs.SetInt("IceUsageCount", _bulletData.iceUsageLimit);
-        }
-        else if (tag == SceneController.Tags.electro)
-        {
-            _bulletData.electroLock = _bulletData.unLocked;
-            _bulletData.electroUsageLimit = 1;
-            PlayerPrefs.SetInt("ElectroUsageCount", _bulletData.electroUsageLimit);
-        }
-        else if (tag == SceneController.Tags.bulldog)
-        {
-            _bulletData.bulldogLock = _bulletData.unLocked;
-            _bulletData.bulldogUsageLimit = 1;
-            PlayerPrefs.SetInt("BulldogUsageCount", _bulletData.bulldogUsageLimit);
+            var actions = bulletMap[tag];
+            actions.unlock();
+            actions.setUsageLimit(1);
+            PlayerPrefs.SetInt(actions.usageCountKey, 1);
         }
     }
 
@@ -1161,15 +1152,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         yield return new WaitForSeconds(1f);
         other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.zero;
     }
-
-    public virtual void CreateVictoryAnimation(PlayerData _playerData, ref Transform _jolleenTransform)
-    {//InstantiatingDancerObject
-        GameObject jolleenObject = Instantiate(_playerData.jolleenObject, _jolleenTransform.transform);
-        jolleenObject.transform.position = _jolleenTransform.transform.position;
-        Destroy(jolleenObject, _playerData.danceTime);
-    }
-
-
     #endregion
 
     #region //Touch
@@ -1352,7 +1334,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     
     public virtual void Run(PlayerData _playerData, Transform _particleTransform, float runTimeAmount, Rigidbody objectRigidbody)
     {//FasterWalking
-        if (PlayerController.run && !_playerData.isJumping && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isSkateBoarding && !_playerData.isBackWalking)
+        if (PlayerController.run && !_playerData.isJumping && !_playerData.isBackWalking)
         {
             _playerData.isRunning = true;
             _playerData.clickShiftCount++;
@@ -1363,27 +1345,27 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             _playerData.isRunning = false;
         }
-        if (_playerData.isRunning && !_playerData.isJumping && !_playerData.isClimbing && !_playerData.isBackClimbing && !_playerData.isBackWalking)
+        if (_playerData.isRunning && !_playerData.isJumping && !_playerData.isBackWalking)
         {
             if (PlayerManager.GetInstance.GetZValue() > 0f)
             {
-                objectRigidbody.AddForce(transform.forward * Time.deltaTime * 150000);
+                objectRigidbody.AddForce(transform.forward * Time.deltaTime * 15000);
             }
             if (PlayerManager.GetInstance.GetZValue() < 0f)
             {
-                objectRigidbody.AddForce(-transform.forward * Time.deltaTime * 150000);
+                objectRigidbody.AddForce(-transform.forward * Time.deltaTime * 15000);
             }
             if (PlayerManager.GetInstance.GetXValue() > 0f)
             {
-                objectRigidbody.AddForce(transform.right * Time.deltaTime * 150000);
+                objectRigidbody.AddForce(transform.right * Time.deltaTime * 15000);
             }
             if (PlayerManager.GetInstance.GetXValue() < 0f)
             {
-                objectRigidbody.AddForce(-transform.right * Time.deltaTime * 150000);
+                objectRigidbody.AddForce(-transform.right * Time.deltaTime * 15000);
             }
             if(PlayerManager.GetInstance.GetZValue() == 0f && PlayerManager.GetInstance.GetXValue() == 0f)
             {
-                objectRigidbody.AddForce(transform.forward * Time.deltaTime * 150000);
+                objectRigidbody.AddForce(transform.forward * Time.deltaTime * 15000);
             }            
         }
 
@@ -1410,11 +1392,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         if (zValue > 0 && Mathf.Abs(xValue) < .4f)
         {
-            playerTransform.Translate(0f, 0f, _playerData.playerSpeed * Time.deltaTime);
+            playerTransform.Translate(0f, 0f, _playerData.playerSpeed * zValue * Time.deltaTime);
         }
         if (Mathf.Abs(zValue) > .4f && Mathf.Abs(xValue) > .4f)
         {
-            playerTransform.Translate(0f, 0f, _playerData.playerSpeed * Time.deltaTime);
+            playerTransform.Translate(0f, 0f, _playerData.playerSpeed * zValue * Time.deltaTime);
             playerTransform.Translate((_playerData.playerSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue), 0f, 0f);
         }
 
@@ -1427,6 +1409,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.isWalking = false;
             _playerData.isSideWalking = false;
         }
+        else
+        {
+            _playerData.isBackWalking = false;
+        }
         // Durma Durumu
         if (zValue == 0f && xValue == 0f)
         {
@@ -1438,28 +1424,30 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void Jump(PlayerData _playerData, ref Rigidbody playerRigidbody)
     {
-        if (PlayerManager.GetInstance.playerComponents._playerController.jump && _playerData.jumpCount == 0 && _playerData.isGround)
+        if (PlayerManager.GetInstance.playerComponents._playerController)
         {
+            if (PlayerManager.GetInstance.playerComponents._playerController.jump && _playerData.jumpCount == 0 && _playerData.isGround)
+            {
 
-            //SoundEffect
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);            
+                //SoundEffect
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
 
-            //PlayerData
-            _playerData.isJumping = true;
+                //PlayerData
+                _playerData.isJumping = true;
 
-            //AddForceForJump
-            playerRigidbody.AddForce(transform.up * _playerData.currentJumpForce, ForceMode.Impulse);
+                //AddForceForJump
+                playerRigidbody.AddForce(transform.up * _playerData.currentJumpForce, ForceMode.Impulse);
 
-            JumpDirectionZ(_playerData, ref playerRigidbody);
-            JumpDirectionX(_playerData, ref playerRigidbody);
-            _playerData.jumpCount++;
+                JumpDirectionZ(_playerData, ref playerRigidbody);
+                JumpDirectionX(_playerData, ref playerRigidbody);
+                _playerData.jumpCount++;
+            }
+            else
+            {
+                //PlayerData
+                _playerData.isJumping = false;
+            }
         }
-        else
-        {
-            //PlayerData
-            _playerData.isJumping = false;
-        }
-
     }
 
     void JumpDirectionZ(PlayerData _playerData, ref Rigidbody playerRigidbody)

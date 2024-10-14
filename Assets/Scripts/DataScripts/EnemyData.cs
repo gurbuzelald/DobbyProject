@@ -40,7 +40,6 @@ public class EnemyData : ScriptableObject
     public float bulletDamageValue;
     public float enemyDurability;
     public bool isSpeedZero;
-    public bool isWalkable;
 
     public bool isActivateCreateEnemy;
 

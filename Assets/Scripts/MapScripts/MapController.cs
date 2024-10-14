@@ -43,7 +43,7 @@ public class MapController : MonoBehaviour
             readWrite.SavePlayerDataToJson();
         }
     }
-    public void CreateMap(int levelCount)
+    /*public void CreateMap(int levelCount)
     {
         if (playerData && currentMap && levelData)
         {
@@ -52,7 +52,7 @@ public class MapController : MonoBehaviour
             CreateMap(levelData.Maps[levelCount], gameObject.transform);
             StartCoroutine(DelayTruePlayable());
         }
-    }
+    }*/
 
     void CreateMap(GameObject mapObject, Transform mapTransform)
     {

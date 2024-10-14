@@ -10,9 +10,13 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
     [Header("Data")]
     private PlayerData playerData;
 
+    private BulletManager bulletManager;
 
+    [System.Obsolete]
     private void Start()
     {
+        bulletManager = FindObjectOfType<BulletManager>();
+
         playerData = this.gameObject.transform.parent.transform.parent.GetComponent<PlayerManager>()._playerData;
     }
     void OnEnable()
@@ -44,6 +48,15 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
     }
     public void SwordAnimationCompleted()
     {
+        //bulletManager.SwordFire();
         playerData.isSwordAnimate = false;
+    }
+    public void SwordFireBulletParticle()
+    {
+        if (PlayerManager.GetInstance._playerData)
+        {
+            bulletManager.SwordFire(PlayerManager.GetInstance._bulletData.swordBulletDelay,
+                                    PlayerManager.GetInstance._playerData.playerSwordBulletObjectPoolCount);
+        }
     }
 }

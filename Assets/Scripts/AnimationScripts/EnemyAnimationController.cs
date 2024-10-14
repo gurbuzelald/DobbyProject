@@ -61,6 +61,21 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
     }
     public void FinishedAttackAnimation()
     {
+        //Touch ParticleEffect
+        GameObject particleObject = null;
+
+        if (particleObject == null)
+        {
+            particleObject =
+                PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(PlayerManager.GetInstance._playerData.playerTouchParticleObjectPoolCount);
+            particleObject.transform.position = PlayerManager.GetInstance._particleTransform.position;
+
+            StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 1f));
+        }
+        _playerData.isDecreaseHealth = false;
+
+        _enemyManager.enemyData.currentEnemyName = gameObject.transform.parent.name;
+
         _enemyManager.SetCurrentAttacker(ref _enemyManager.enemyData, ref _enemyManager.bulletData);
         _playerData.decreaseCounter = 0;
     }

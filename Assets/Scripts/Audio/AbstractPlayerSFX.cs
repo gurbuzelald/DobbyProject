@@ -12,7 +12,9 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             if (_instance == null)
             {
+#pragma warning disable CS0618 // Type or member is obsolete
                 _instance = FindObjectOfType<T>();
+#pragma warning restore CS0618 // Type or member is obsolete
                 GameObject objectOfGame = new GameObject();
                 objectOfGame.name = typeof(T).Name;
                 _instance = objectOfGame.AddComponent<T>();
@@ -28,7 +30,7 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
         {
             _instance = this as T;
 
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
     }
     public void SFXStatement(PlayerSoundEffect.SoundEffectTypes soundEffect, AudioData audioData)
@@ -93,17 +95,17 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
 
     public void WeaponSFX(PlayerSoundEffect.ShootSoundEffectTypes shootSoundEffectType, AudioData audioData)
     {
-        if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Ak47)
+        if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.ShotGun)
         {
-            audioData.currentBulletHitClip = audioData.ak47HitClip;
+            audioData.currentBulletHitClip = audioData.shotGunHitClip;
 
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.Ak47Clip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ShotGunClip);
         }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.M4a4)
+        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Machine)
         {
-            audioData.currentBulletHitClip = audioData.m4a4HitClip;
+            audioData.currentBulletHitClip = audioData.machineHitClip;
 
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.M4a4Clip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.MachineClip);
         }
         else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Bulldog)
         {

@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
+  serializedVersion: 3
   tags:
   - Ground
   - Lava
@@ -43,7 +43,6 @@ TagManager:
   - EighthFinishArea
   - NinethFinishArea
   - TenthFinishArea
-  - ak47
   - axe
   - bulldog
   - cow
@@ -56,11 +55,14 @@ TagManager:
   - LevelUpKey
   - electro
   - negev
-  - Rifle
   - EnemyTriggerBox
   - BossTriggerBox
   - ChestTriggerBox
   - ChestTrigger2Box
+  - ClickBlock
+  - Gun
+  - shotGun
+  - machine
   layers:
   - Default
   - TransparentFX
@@ -101,3 +103,5 @@ TagManager:
   - name: Player
     uniqueID: 782441051
     locked: 0
+  m_RenderingLayers:
+  - Default

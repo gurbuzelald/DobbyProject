@@ -12,10 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283d3543a98d04ddd83ed4a82991e224, type: 3}
   m_Name: WeaponAudioData
   m_EditorClassIdentifier: 
-  gameMusic: {fileID: 0}
+  currentGameMusic: {fileID: 0}
   menuMusic: {fileID: 0}
   endMusic: {fileID: 0}
   winMusic: {fileID: 0}
+  level1GameMusic: {fileID: 0}
+  level2GameMusic: {fileID: 0}
+  level3GameMusic: {fileID: 0}
+  level4GameMusic: {fileID: 0}
+  level5GameMusic: {fileID: 0}
+  level6GameMusic: {fileID: 0}
+  level7GameMusic: {fileID: 0}
+  level8GameMusic: {fileID: 0}
+  level9GameMusic: {fileID: 0}
+  level10GameMusic: {fileID: 0}
   nonShootClip: {fileID: 0}
   poisonClip: {fileID: 0}
   getEnemyHitClip: {fileID: 0}
@@ -40,10 +50,10 @@ MonoBehaviour:
   demonHitClip: {fileID: 8300000, guid: bb338f5dee6254f798807d775b347a9b, type: 3}
   iceHitClip: {fileID: 8300000, guid: d6c86dc9f7e384b6ebdb68d60b76b47f, type: 3}
   electroHitClip: {fileID: 8300000, guid: 9af0f4d9dc9434d0eae9e447add97502, type: 3}
-  ak47HitClip: {fileID: 8300000, guid: 37ca78aa1cce9ed4496db0b4fd17ac74, type: 3}
-  m4a4HitClip: {fileID: 8300000, guid: ae04e9287d4c3da45beb4cf5404346ac, type: 3}
-  Ak47Clip: {fileID: 8300000, guid: d1f2b15d8a6bf465898dee70970bdf4b, type: 3}
-  M4a4Clip: {fileID: 8300000, guid: 7f90284bfd26f40fc831d84854f5fdb9, type: 3}
+  shotGunHitClip: {fileID: 0}
+  machineHitClip: {fileID: 0}
+  ShotGunClip: {fileID: 8300000, guid: d1f2b15d8a6bf465898dee70970bdf4b, type: 3}
+  MachineClip: {fileID: 8300000, guid: 7f90284bfd26f40fc831d84854f5fdb9, type: 3}
   BulldogClip: {fileID: 8300000, guid: 67b0359bfdbdd4185a59a6a16fafb3b7, type: 3}
   CowClip: {fileID: 8300000, guid: 2133a8764b9d94c36926497a9b623aca, type: 3}
   CrystalClip: {fileID: 8300000, guid: 6bd939b24c96a40179c0cdc4455b2793, type: 3}
@@ -64,3 +74,4 @@ MonoBehaviour:
   LongHummerClip: {fileID: 0}
   ClubClip: {fileID: 0}
   menuClickClip: {fileID: 0}
+  menuNotClickClip: {fileID: 0}

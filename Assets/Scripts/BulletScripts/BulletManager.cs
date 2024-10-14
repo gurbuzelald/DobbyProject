@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using System;
 
 public class BulletManager : AbstractBullet<BulletManager>
 {
@@ -21,11 +22,14 @@ public class BulletManager : AbstractBullet<BulletManager>
 
     public static bool isCreatedWeaponBullet;
 
+    public ObjectPool _objectPool;
+
     void Start()
     {
         SetWeaponTransform();
 
         isCreatedWeaponBullet = false;
+
         CreateWeaponObject();
 
         CreateSwordObject();
@@ -39,6 +43,8 @@ public class BulletManager : AbstractBullet<BulletManager>
         {
             CheckWeaponUsageLimitAtStart();
         }
+
+        _objectPool = GameObject.Find("ObjectPool").GetComponent<ObjectPool>();
     }
 
     void CheckWeaponUsageLimitAtStart()
@@ -85,21 +91,26 @@ public class BulletManager : AbstractBullet<BulletManager>
 
             bulletData.electroLock = BulletData.locked;
         }
-        if (bulletData.ak47UsageLimit <= 0)
+        if (bulletData.shotGunUsageLimit <= 0)
         {
             ObjectPool.creatablePlayerBullet = true;
 
-            bulletData.ak47Lock = BulletData.locked;
+            bulletData.shotGunLock = BulletData.locked;
         }
-        if (bulletData.m4a4UsageLimit <= 0)
+        if (bulletData.machineUsageLimit <= 0)
         {
             ObjectPool.creatablePlayerBullet = true;
 
-            bulletData.m4a4Lock = BulletData.locked;
+            bulletData.machineLock = BulletData.locked;
         }
     }
     public void CreateSwordObject()
     {
+        if (PlayerManager.GetInstance._bulletData)
+        {
+            PlayerManager.GetInstance.GetSwordTransform(PlayerManager.GetInstance._bulletData, ref PlayerManager.GetInstance._swordTransform);
+        }
+        
         if (bulletData)
         {
             if (BulletData.lowSword == bulletData.currentSwordName)
@@ -133,29 +144,35 @@ public class BulletManager : AbstractBullet<BulletManager>
     }
     public void CreateWeaponObject()
     {
-        if (bulletData)
+        if (PlayerManager.GetInstance._bulletData)
         {
-            if (bulletData.currentWeaponName == BulletData.ak47)
+            PlayerManager.GetInstance.GetWeaponTransform(PlayerManager.GetInstance._bulletData, ref PlayerManager.GetInstance._gunTransform);
+        }
+        
+
+        if (bulletData && _bulletSpawnTransform && PlayerManager.GetInstance._gunTransform)
+        {
+            if (bulletData.currentWeaponName == BulletData.shotGun)
             {
-                _currentWeaponObject = Instantiate(bulletData.ak47Object,
+                _currentWeaponObject = Instantiate(bulletData.shotGunObject,
                                                    _bulletSpawnTransform.position,
                                                    Quaternion.identity,
                                                    PlayerManager.GetInstance._gunTransform.transform);
 
-                bulletData.currentShootFrequency = bulletData.ak47ShootFrequency;
+                bulletData.currentShootFrequency = bulletData.shotGunShootFrequency;
 
-                bulletData.currentBulletPack = bulletData.ak47BulletAmount;
+                bulletData.currentBulletPack = bulletData.shotGunBulletAmount;
             }
-            else if (bulletData.currentWeaponName == BulletData.m4a4)
+            else if (bulletData.currentWeaponName == BulletData.machine)
             {
-                _currentWeaponObject = Instantiate(bulletData.m4a4Object,
+                _currentWeaponObject = Instantiate(bulletData.machineObject,
                                         _bulletSpawnTransform.position,
                                         Quaternion.identity,
                                         PlayerManager.GetInstance._gunTransform.transform);
 
-                bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
+                bulletData.currentShootFrequency = bulletData.machineShootFrequency;
 
-                bulletData.currentBulletPack = bulletData.m4A4BulletAmount;
+                bulletData.currentBulletPack = bulletData.machineBulletAmount;
             }
             else if (bulletData.currentWeaponName == BulletData.bulldog)
             {
@@ -251,54 +268,93 @@ public class BulletManager : AbstractBullet<BulletManager>
                 Debug.Log("Check current weapon name");
             }
 
-            _currentWeaponObject.SetActive(true);
+            if (_currentWeaponObject)
+            {
+                _currentWeaponObject.SetActive(true);
 
-            _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.transform.position;
-            _currentWeaponObject.transform.rotation = PlayerManager.GetInstance._gunTransform.transform.rotation;
+                if (PlayerManager.GetInstance._gunTransform)
+                {
+                    _currentWeaponObject.transform.position = PlayerManager.GetInstance._gunTransform.transform.position;
+                    _currentWeaponObject.transform.rotation = PlayerManager.GetInstance._gunTransform.transform.rotation;
+                }
+            }
         }
     }
 
     public void SetWeaponTransform()//Getting finger transform parameter
     {
-        if (bulletData.currentWeaponName == BulletData.ak47)
+        if (PlayerManager.GetInstance._gunTransform)
         {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("Ak47Transform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.m4a4)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("M4a4Transform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.bulldog)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("BulldogTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.cow)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("CowTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.crystal)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("CrystalTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.demon)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("DemonTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.ice)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("IceTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.electro)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("ElectroTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.axe)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("AxeTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.pistol)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("PistolTransform");
+            if (bulletData.currentWeaponName == BulletData.shotGun)
+            {
+                if (GameObject.Find("ShotGunTransform"))
+                {
+                    PlayerManager.GetInstance._gunTransform = GameObject.Find("ShotGunTransform");
+                }
+            }
+            else if (bulletData.currentWeaponName == BulletData.machine)
+            {
+                if (GameObject.Find("MachineTransform"))
+                {
+                    PlayerManager.GetInstance._gunTransform = GameObject.Find("MachineTransform");
+                }
+            }
+            else if (bulletData.currentWeaponName == BulletData.bulldog)
+            {
+                if (GameObject.Find("BulldogTransform"))
+                {
+                    PlayerManager.GetInstance._gunTransform = GameObject.Find("BulldogTransform");
+                }
+            }
+            else if (bulletData.currentWeaponName == BulletData.cow)
+            {
+                if (GameObject.Find("CowTransform"))
+                {
+                    PlayerManager.GetInstance._gunTransform = GameObject.Find("CowTransform");
+                }
+            }
+            else if (bulletData.currentWeaponName == BulletData.crystal)
+            {
+                if (GameObject.Find("CrystalTransform"))
+                {
+                    PlayerManager.GetInstance._gunTransform = GameObject.Find("CrystalTransform");
+                }
+            }
+            else if (bulletData.currentWeaponName == BulletData.demon)
+            {
+                if (GameObject.Find("DemonTransform"))
+                {
+                    PlayerManager.GetInstance._gunTransform = GameObject.Find("DemonTransform");
+                }
+            }
+            else if (bulletData.currentWeaponName == BulletData.ice)
+            {
+                if (GameObject.Find("IceTransform"))
+                {
+                    PlayerManager.GetInstance._gunTransform = GameObject.Find("IceTransform");
+                }
+            }
+            else if (bulletData.currentWeaponName == BulletData.electro)
+            {
+                if (GameObject.Find("ElectroTransform"))
+                {
+                    PlayerManager.GetInstance._gunTransform = GameObject.Find("ElectroTransform");
+                }
+            }
+            else if (bulletData.currentWeaponName == BulletData.axe)
+            {
+                if (GameObject.Find("AxeTransform"))
+                {
+                    PlayerManager.GetInstance._gunTransform = GameObject.Find("AxeTransform");
+                }
+            }
+            else if (bulletData.currentWeaponName == BulletData.pistol)
+            {
+                if (GameObject.Find("PistolTransform"))
+                {
+                    PlayerManager.GetInstance._gunTransform = GameObject.Find("PistolTransform");
+                }
+            }
         }
     }
     public void SetSwordTransform(GameObject pinky)//Getting finger transform parameter
@@ -307,372 +363,75 @@ public class BulletManager : AbstractBullet<BulletManager>
         {
             PlayerManager.GetInstance._gunTransform = GameObject.Find("LowSwordTransform");
         }
-        else if (bulletData.currentWeaponName == BulletData.warriorSword)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("WarriorSwordTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.hummer)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("HummerTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.orcSword)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("OrcSwordTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.axeSword)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("AxeSwordTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.axeKnight)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("AxeKnightTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.barbarianSword)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("BarbarianSwordTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.demonSword)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("DemonSwordTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.magicSword)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("MagicSwordTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.longHummer)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("LongHummerTransform");
-        }
-        else if (bulletData.currentWeaponName == BulletData.club)
-        {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("ClubTransform");
-        }
     }
     public void DestroyWeaponObject()
     {
-        if (_playerData.isWinning)
+        if (_playerData && bulletData)
         {
-            Destroy(_currentWeaponObject);
-        }
-        if (bulletData.isM4a4)
-        {
-            if (bulletData.currentWeaponName != BulletData.m4a4)
+            if (_playerData.isWinning && _currentWeaponObject)
             {
                 Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.m4a4;
-                bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
-
-                BulletData.currentWeaponID = 9;
-                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
-
-                CreateWeaponObject();
-
-                PlayerData.currentBulletExplosionIsChanged = true;                
             }
-            bulletData.isM4a4 = false;
+
+            HandleWeaponChange(BulletData.machine, ref bulletData.isMachine, 9, bulletData.machineShootFrequency);
+            HandleWeaponChange(BulletData.shotGun, ref bulletData.isShotGun, 8, bulletData.shotGunShootFrequency);
+            HandleWeaponChange(BulletData.axe, ref bulletData.isAxe, 1, bulletData.axeShootFrequency);
+            HandleWeaponChange(BulletData.electro, ref bulletData.isElectro, 7, bulletData.electroShootFrequency);
+            HandleWeaponChange(BulletData.crystal, ref bulletData.isCrystal, 4, bulletData.crystalShootFrequency);
+            HandleWeaponChange(BulletData.demon, ref bulletData.isDemon, 5, bulletData.demonShootFrequency);
+            HandleWeaponChange(BulletData.ice, ref bulletData.isIce, 6, bulletData.iceShootFrequency);
+            HandleWeaponChange(BulletData.bulldog, ref bulletData.isBulldog, 2, bulletData.bulldogShootFrequency);
+            HandleWeaponChange(BulletData.cow, ref bulletData.isCow, 3, bulletData.cowShootFrequency);
+            HandleWeaponChange(BulletData.pistol, ref bulletData.isPistol, 0, bulletData.pistolShootFrequency);
         }
-        else if (bulletData.isAk47)
+    }
+
+    private void HandleWeaponChange(string weaponName, ref bool isWeaponActive, int weaponID, float shootFrequency)
+    {
+        if (isWeaponActive && bulletData.currentWeaponName != weaponName)
         {
-            if (bulletData.currentWeaponName != BulletData.ak47)
+            if (_currentWeaponObject)
             {
                 Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.ak47;
-                bulletData.currentShootFrequency = bulletData.m4a4ShootFrequency;
-
-                BulletData.currentWeaponID = 8;
-                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
-
-                CreateWeaponObject();
-
-                PlayerData.currentBulletExplosionIsChanged = true;
             }
-            bulletData.isAk47 = false;
-        }
-        else if (bulletData.isAxe)
-        {
-            if (bulletData.currentWeaponName != BulletData.axe)
-            {
-                Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.axe;
-                bulletData.currentShootFrequency = bulletData.axeShootFrequency;
+           
+            bulletData.currentWeaponName = weaponName;
+            bulletData.currentShootFrequency = shootFrequency;
 
-                BulletData.currentWeaponID = 1;
-                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
+            BulletData.currentWeaponID = weaponID;
+            PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
 
-                CreateWeaponObject();
+            CreateWeaponObject();
+            PlayerData.currentBulletExplosionIsChanged = true;
 
-                PlayerData.currentBulletExplosionIsChanged = true;
-            }
-            bulletData.isAxe = false;
-        }
-        else if (bulletData.isElectro)
-        {
-            if (bulletData.currentWeaponName != BulletData.electro)
-            {
-                Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.electro;
-                bulletData.currentShootFrequency = bulletData.electroShootFrequency;
-
-                BulletData.currentWeaponID = 7;
-                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
-
-                CreateWeaponObject();
-
-                PlayerData.currentBulletExplosionIsChanged = true;
-            }
-            bulletData.isElectro = false;
-        }
-        else if (bulletData.isCrystal)
-        {
-            if (bulletData.currentWeaponName != BulletData.crystal)
-            {
-                Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.crystal;
-                bulletData.currentShootFrequency = bulletData.crystalShootFrequency;
-
-                BulletData.currentWeaponID = 4;
-                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
-
-                CreateWeaponObject();
-
-                PlayerData.currentBulletExplosionIsChanged = true;
-            }
-            bulletData.isCrystal = false;
-        }
-        else if (bulletData.isDemon)
-        {
-            if (bulletData.currentWeaponName != BulletData.demon)
-            {
-                Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.demon;
-                bulletData.currentShootFrequency = bulletData.demonShootFrequency;
-
-                BulletData.currentWeaponID = 5;
-                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
-
-                CreateWeaponObject();
-
-                PlayerData.currentBulletExplosionIsChanged = true;
-            }
-            bulletData.isDemon = false;
-        }
-        else if (bulletData.isIce)
-        {
-            if (bulletData.currentWeaponName != BulletData.ice)
-            {
-                Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.ice;
-                bulletData.currentShootFrequency = bulletData.iceShootFrequency;
-
-                BulletData.currentWeaponID = 6;
-                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
-
-                CreateWeaponObject();
-
-                PlayerData.currentBulletExplosionIsChanged = true;
-            }
-            bulletData.isIce = false;
-        }
-        else if (bulletData.isBulldog)
-        {
-            if (bulletData.currentWeaponName != BulletData.bulldog)
-            {
-                Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.bulldog;
-                bulletData.currentShootFrequency = bulletData.bulldogShootFrequency;
-
-                BulletData.currentWeaponID = 2;
-                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
-
-                CreateWeaponObject();
-
-                PlayerData.currentBulletExplosionIsChanged = true;
-            }
-            bulletData.isBulldog = false;
-        }
-        else if (bulletData.isCow)
-        {
-            if (bulletData.currentWeaponName != BulletData.cow)
-            {
-                Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.cow;
-                bulletData.currentShootFrequency = bulletData.cowShootFrequency;
-
-                BulletData.currentWeaponID = 3;
-                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
-
-                CreateWeaponObject();
-
-                PlayerData.currentBulletExplosionIsChanged = true;
-            }
-            bulletData.isCow = false;
-        }
-        else if (bulletData.isPistol)
-        {
-            if (bulletData.currentWeaponName != BulletData.pistol)
-            {
-                Destroy(_currentWeaponObject);
-                bulletData.currentWeaponName = BulletData.pistol;
-                bulletData.currentShootFrequency = bulletData.pistolShootFrequency;
-
-                BulletData.currentWeaponID = 0;
-                PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
-
-                CreateWeaponObject();
-
-                PlayerData.currentBulletExplosionIsChanged = true;
-            }
-            bulletData.isPistol = false;
+            isWeaponActive = false;
         }
     }
     public void DestroySwordObject()
     {
-        if (_playerData.isWinning)
+        if (_playerData && bulletData)
         {
-            Destroy(_currentSwordObject);
-        }
-        if (bulletData.isLowSword)
-        {
-            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
-                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
-                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
-                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
+            if (_playerData.isWinning && _currentSwordObject)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentSwordName = BulletData.lowSword;
-                CreateSwordObject();
             }
-            bulletData.isLowSword = false;
+            HandleSwordChange(BulletData.lowSword, ref bulletData.isLowSword);
         }
-        else if (bulletData.isWarriorSword)
+    }
+
+    private void HandleSwordChange(string swordName, ref bool isSwordActive)
+    {
+        string[] incompatibleSwords = {BulletData.lowSword };
+
+        if (isSwordActive && Array.Exists(incompatibleSwords, name => bulletData.currentSwordName == name))
         {
-            if (bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
-                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
-                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
-                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
+            if (_currentSwordObject && bulletData)
             {
                 Destroy(_currentSwordObject);
-                bulletData.currentSwordName = BulletData.warriorSword;
+                bulletData.currentSwordName = swordName;
                 CreateSwordObject();
+                isSwordActive = false;
             }
-            bulletData.isWarriorSword = false;
-        }
-        else if (bulletData.isHummer)
-        {
-            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.orcSword
-                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
-                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
-                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
-            {
-                Destroy(_currentSwordObject);
-                bulletData.currentSwordName = BulletData.hummer;
-                CreateSwordObject();
-            }
-            bulletData.isHummer = false;
-        }
-        else if (bulletData.isOrcSword)
-        {
-            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.lowSword
-                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
-                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
-                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
-            {
-                Destroy(_currentSwordObject);
-                bulletData.currentSwordName = BulletData.orcSword;
-                CreateSwordObject();
-            }
-            bulletData.isOrcSword = false;
-        }
-        else if (bulletData.isAxeSword)
-        {
-            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
-                || bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.axeKnight ||
-                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
-                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
-            {
-                Destroy(_currentSwordObject);
-                bulletData.currentSwordName = BulletData.axeSword;
-                CreateSwordObject();
-            }
-            bulletData.isAxeSword = false;
-        }
-        else if (bulletData.isAxeKnight)
-        {
-            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
-                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.lowSword ||
-                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
-                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
-            {
-                Destroy(_currentSwordObject);
-                bulletData.currentSwordName = BulletData.axeKnight;
-                CreateSwordObject();
-            }
-            bulletData.isAxeKnight = false;
-        }
-        else if (bulletData.isBarbarianSword)
-        {
-            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
-                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
-                bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
-                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
-            {
-                Destroy(_currentSwordObject);
-                bulletData.currentSwordName = BulletData.barbarianSword;
-                CreateSwordObject();
-            }
-            bulletData.isBarbarianSword = false;
-        }
-        else if (bulletData.isDemonSword)
-        {
-            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
-                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
-                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.magicSword
-                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
-            {
-                Destroy(_currentSwordObject);
-                bulletData.currentSwordName = BulletData.demonSword;
-                CreateSwordObject();
-            }
-            bulletData.isDemonSword = false;
-        }
-        else if (bulletData.isMagicSword)
-        {
-            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
-                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
-                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.lowSword
-                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.club)
-            {
-                Destroy(_currentSwordObject);
-                bulletData.currentSwordName = BulletData.magicSword;
-                CreateSwordObject();
-            }
-            bulletData.isMagicSword = false;
-        }
-        else if (bulletData.isLongHummer)
-        {
-            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
-                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
-                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
-                || bulletData.currentSwordName == BulletData.lowSword || bulletData.currentSwordName == BulletData.club)
-            {
-                Destroy(_currentSwordObject);
-                bulletData.currentSwordName = BulletData.longHummer;
-                CreateSwordObject();
-            }
-            bulletData.isLongHummer = false;
-        }
-        else if (bulletData.isClub)
-        {
-            if (bulletData.currentSwordName == BulletData.warriorSword || bulletData.currentSwordName == BulletData.hummer || bulletData.currentSwordName == BulletData.orcSword
-                || bulletData.currentSwordName == BulletData.axeSword || bulletData.currentSwordName == BulletData.axeKnight ||
-                bulletData.currentSwordName == BulletData.barbarianSword || bulletData.currentSwordName == BulletData.demonSword || bulletData.currentSwordName == BulletData.magicSword
-                || bulletData.currentSwordName == BulletData.longHummer || bulletData.currentSwordName == BulletData.lowSword)
-            {
-                Destroy(_currentSwordObject);
-                bulletData.currentSwordName = BulletData.club;
-                CreateSwordObject();
-            }
-            bulletData.isClub = false;
         }
     }
     void FixedUpdate()
@@ -684,7 +443,6 @@ public class BulletManager : AbstractBullet<BulletManager>
         BulletRotation(PlayerManager.GetInstance._currentCamera,
                        _bulletSpawnTransform);
 
-        SwordFire();
         WeaponFire();
 
         SetCurrentWeaponID();
@@ -693,226 +451,258 @@ public class BulletManager : AbstractBullet<BulletManager>
 
     public void SetCurrentWeaponID()
     {
-        if (bulletData.currentWeaponName == BulletData.pistol)
+        if (bulletData)
         {
-            BulletData.currentWeaponID = 0;
-        }
-        else if (bulletData.currentWeaponName == BulletData.axe)
-        {
-            BulletData.currentWeaponID = 1;
-        }
-        else if (bulletData.currentWeaponName == BulletData.bulldog)
-        {
-            BulletData.currentWeaponID = 2;
-        }
-        else if (bulletData.currentWeaponName == BulletData.cow)
-        {
-            BulletData.currentWeaponID = 3;
-        }
-        else if (bulletData.currentWeaponName == BulletData.crystal)
-        {
-            BulletData.currentWeaponID = 4;
-        }
-        else if (bulletData.currentWeaponName == BulletData.demon)
-        {
-            BulletData.currentWeaponID = 5;
-        }
-        else if (bulletData.currentWeaponName == BulletData.ice)
-        {
-            BulletData.currentWeaponID = 6;
-        }
-        else if (bulletData.currentWeaponName == BulletData.electro)
-        {
-            BulletData.currentWeaponID = 7;
-        }
-        else if (bulletData.currentWeaponName == BulletData.ak47)
-        {
-            BulletData.currentWeaponID = 8;
-        }
-        else if (bulletData.currentWeaponName == BulletData.m4a4)
-        {
-            BulletData.currentWeaponID = 9;
+            if (bulletData.currentWeaponName == BulletData.pistol)
+            {
+                BulletData.currentWeaponID = 0;
+            }
+            else if (bulletData.currentWeaponName == BulletData.axe)
+            {
+                BulletData.currentWeaponID = 1;
+            }
+            else if (bulletData.currentWeaponName == BulletData.bulldog)
+            {
+                BulletData.currentWeaponID = 2;
+            }
+            else if (bulletData.currentWeaponName == BulletData.cow)
+            {
+                BulletData.currentWeaponID = 3;
+            }
+            else if (bulletData.currentWeaponName == BulletData.crystal)
+            {
+                BulletData.currentWeaponID = 4;
+            }
+            else if (bulletData.currentWeaponName == BulletData.demon)
+            {
+                BulletData.currentWeaponID = 5;
+            }
+            else if (bulletData.currentWeaponName == BulletData.ice)
+            {
+                BulletData.currentWeaponID = 6;
+            }
+            else if (bulletData.currentWeaponName == BulletData.electro)
+            {
+                BulletData.currentWeaponID = 7;
+            }
+            else if (bulletData.currentWeaponName == BulletData.shotGun)
+            {
+                BulletData.currentWeaponID = 8;
+            }
+            else if (bulletData.currentWeaponName == BulletData.machine)
+            {
+                BulletData.currentWeaponID = 9;
+            }
         }
     }
 
 
     public void SetCurrentSwordID()
     {
-        if (bulletData.currentSwordName == BulletData.lowSword)
+        if (bulletData)
         {
-            BulletData.currentSwordID = 0;
-        }
-        else if (bulletData.currentSwordName == BulletData.warriorSword)
-        {
-            BulletData.currentWeaponID = 1;
-        }
-        else if (bulletData.currentSwordName == BulletData.hummer)
-        {
-            BulletData.currentWeaponID = 2;
-        }
-        else if (bulletData.currentSwordName == BulletData.orcSword)
-        {
-            BulletData.currentWeaponID = 3;
-        }
-        else if (bulletData.currentSwordName == BulletData.axeSword)
-        {
-            BulletData.currentWeaponID = 4;
-        }
-        else if (bulletData.currentSwordName == BulletData.axeKnight)
-        {
-            BulletData.currentWeaponID = 5;
-        }
-        else if (bulletData.currentSwordName == BulletData.barbarianSword)
-        {
-            BulletData.currentWeaponID = 6;
-        }
-        else if (bulletData.currentSwordName == BulletData.demonSword)
-        {
-            BulletData.currentWeaponID = 7;
-        }
-        else if (bulletData.currentSwordName == BulletData.magicSword)
-        {
-            BulletData.currentWeaponID = 8;
-        }
-        else if (bulletData.currentSwordName == BulletData.longHummer)
-        {
-            BulletData.currentWeaponID = 9;
-        }
-        else if (bulletData.currentSwordName == BulletData.club)
-        {
-            BulletData.currentWeaponID = 10;
+            if (bulletData.currentSwordName == BulletData.lowSword)
+            {
+                BulletData.currentSwordID = 0;
+            }
+            else if (bulletData.currentSwordName == BulletData.warriorSword)
+            {
+                BulletData.currentWeaponID = 1;
+            }
+            else if (bulletData.currentSwordName == BulletData.hummer)
+            {
+                BulletData.currentWeaponID = 2;
+            }
+            else if (bulletData.currentSwordName == BulletData.orcSword)
+            {
+                BulletData.currentWeaponID = 3;
+            }
+            else if (bulletData.currentSwordName == BulletData.axeSword)
+            {
+                BulletData.currentWeaponID = 4;
+            }
+            else if (bulletData.currentSwordName == BulletData.axeKnight)
+            {
+                BulletData.currentWeaponID = 5;
+            }
+            else if (bulletData.currentSwordName == BulletData.barbarianSword)
+            {
+                BulletData.currentWeaponID = 6;
+            }
+            else if (bulletData.currentSwordName == BulletData.demonSword)
+            {
+                BulletData.currentWeaponID = 7;
+            }
+            else if (bulletData.currentSwordName == BulletData.magicSword)
+            {
+                BulletData.currentWeaponID = 8;
+            }
+            else if (bulletData.currentSwordName == BulletData.longHummer)
+            {
+                BulletData.currentWeaponID = 9;
+            }
+            else if (bulletData.currentSwordName == BulletData.club)
+            {
+                BulletData.currentWeaponID = 10;
+            }
         }
     }
 
-    public void SwordFire()
+    public void SwordFire(float delayValue, int objectPoolCount)
     {
-        if (_playerData.isSword)
+        if (_playerData)
         {
-            StartCoroutine(Delay(0.5f, _playerData.playerSwordBulletObjectPoolCount));
+            if (objectPoolCount == _playerData.playerSwordBulletObjectPoolCount)
+            {//SwordBullet
+                if (_currentWeaponObject)
+                {
+                    _currentWeaponObject.SetActive(false);
+                }
+                if (_currentSwordObject)
+                {
+                    _currentSwordObject.SetActive(true);
+                }
+
+
+                SwordSoundTypeState();
+
+                if (_bulletSpawnTransform && _objectPool)
+                {
+                    CreatePlayerBullet(_bulletSpawnTransform, bulletData.swordSpeed, objectPoolCount, _objectPool, 0f, 1f);
+                }
+
+                /* _bulletSpawnTransform.position = new Vector3(_bulletSpawnTransform.transform.position.x,
+                                                              _bulletSpawnTransform.transform.position.y,
+                                                              _bulletSpawnTransform.transform.position.z);*/
+            }
         }
     }
 
     public void WeaponFire()
     {
-        if ((_playerData.isFire || _playerData.isFire) && !_playerData.isSwordAnimate && bulletData.bulletDelayCounter == 0 && _playerData.isFireTime)
+        if (_playerData && bulletData)
         {
-            bulletData.bulletDelayCounter++;
+            if ((_playerData.isFire || _playerData.isFire) && !_playerData.isSwordAnimate && bulletData.bulletDelayCounter == 0 && _playerData.isFireTime)
+            {
+                bulletData.bulletDelayCounter++;
 
-            StartCoroutine(Delay(bulletData.weaponBulletDelay, _playerData.playerWeaponBulletObjectPoolCount));
+                StartCoroutine(Delay(bulletData.weaponBulletDelay, _playerData.playerWeaponBulletObjectPoolCount));
+            }
         }
     }
 
     public void WeaponSoundTypeState()
     {//PlayerManager.GetInstance.SwordSFX(_playerData);
-        if (bulletData.currentWeaponName == BulletData.ak47)
+        if (bulletData)
         {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Ak47);
-        }
-        else if (bulletData.currentWeaponName == BulletData.m4a4)
-        {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.M4a4);
-        }
-        else if (bulletData.currentWeaponName == BulletData.bulldog)
-        {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Bulldog);
-        }
-        else if (bulletData.currentWeaponName == BulletData.cow)
-        {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Cow);
-        }
-        else if (bulletData.currentWeaponName == BulletData.crystal)
-        {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Crystal);
-        }
-        else if (bulletData.currentWeaponName == BulletData.demon)
-        {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Demon);
-        }
-        else if (bulletData.currentWeaponName == BulletData.ice)
-        {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Ice);
-        }
-        else if (bulletData.currentWeaponName == BulletData.electro)
-        {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Electro);
-        }
-        else if (bulletData.currentWeaponName == BulletData.axe)
-        {            
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Axe);
-        }
-        else if (bulletData.currentWeaponName == BulletData.pistol)
-        {
-            PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Pistol);
+            if (bulletData.currentWeaponName == BulletData.shotGun)
+            {
+                PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.ShotGun);
+            }
+            else if (bulletData.currentWeaponName == BulletData.machine)
+            {
+                PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Machine);
+            }
+            else if (bulletData.currentWeaponName == BulletData.bulldog)
+            {
+                PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Bulldog);
+            }
+            else if (bulletData.currentWeaponName == BulletData.cow)
+            {
+                PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Cow);
+            }
+            else if (bulletData.currentWeaponName == BulletData.crystal)
+            {
+                PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Crystal);
+            }
+            else if (bulletData.currentWeaponName == BulletData.demon)
+            {
+                PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Demon);
+            }
+            else if (bulletData.currentWeaponName == BulletData.ice)
+            {
+                PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Ice);
+            }
+            else if (bulletData.currentWeaponName == BulletData.electro)
+            {
+                PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Electro);
+            }
+            else if (bulletData.currentWeaponName == BulletData.axe)
+            {
+                PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Axe);
+            }
+            else if (bulletData.currentWeaponName == BulletData.pistol)
+            {
+                PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(PlayerSoundEffect.ShootSoundEffectTypes.Pistol);
+            }
         }
     }
 
     public void SwordSoundTypeState()
     {
-        if (bulletData.currentSwordName == BulletData.lowSword)
+        if (bulletData)
         {
-            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.LowSword);
-        }
-        else if (bulletData.currentSwordName == BulletData.warriorSword)
-        {
-            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.WarriorSword);
-        }
-        else if (bulletData.currentSwordName == BulletData.hummer)
-        {
-            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.Hummer);
-        }
-        else if (bulletData.currentSwordName == BulletData.orcSword)
-        {
-            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.OrcSword);
-        }
-        else if (bulletData.currentSwordName == BulletData.axeSword)
-        {
-            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.AxeSword);
-        }
-        else if (bulletData.currentSwordName == BulletData.axeKnight)
-        {
-            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.AxeKnight);
-        }
-        else if (bulletData.currentSwordName == BulletData.barbarianSword)
-        {
-            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.BarbarianSword);
-        }
-        else if (bulletData.currentSwordName == BulletData.demonSword)
-        {
-            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.DemonSword);
-        }
-        else if (bulletData.currentSwordName == BulletData.magicSword)
-        {
-            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.MagicSword);
-        }
-        else if (bulletData.currentSwordName == BulletData.longHummer)
-        {
-            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.LongHummer);
-        }
-        else if (bulletData.currentSwordName == BulletData.club)
-        {
-            PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.Club);
+            if (bulletData.currentSwordName == BulletData.lowSword)
+            {
+                PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.LowSword);
+            }
+            else if (bulletData.currentSwordName == BulletData.warriorSword)
+            {
+                PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.WarriorSword);
+            }
+            else if (bulletData.currentSwordName == BulletData.hummer)
+            {
+                PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.Hummer);
+            }
+            else if (bulletData.currentSwordName == BulletData.orcSword)
+            {
+                PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.OrcSword);
+            }
+            else if (bulletData.currentSwordName == BulletData.axeSword)
+            {
+                PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.AxeSword);
+            }
+            else if (bulletData.currentSwordName == BulletData.axeKnight)
+            {
+                PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.AxeKnight);
+            }
+            else if (bulletData.currentSwordName == BulletData.barbarianSword)
+            {
+                PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.BarbarianSword);
+            }
+            else if (bulletData.currentSwordName == BulletData.demonSword)
+            {
+                PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.DemonSword);
+            }
+            else if (bulletData.currentSwordName == BulletData.magicSword)
+            {
+                PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.MagicSword);
+            }
+            else if (bulletData.currentSwordName == BulletData.longHummer)
+            {
+                PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.LongHummer);
+            }
+            else if (bulletData.currentSwordName == BulletData.club)
+            {
+                PlayerSoundEffect.GetInstance.SwordSoundEffectStatement(PlayerSoundEffect.SwordSoundEffectTypes.Club);
+            }
         }
     }
     IEnumerator Delay(float delayValue, int objectPoolCount)
     {        
-        if (objectPoolCount == _playerData.playerSwordBulletObjectPoolCount)
-        {//SwordBullet
-            _currentSwordObject.SetActive(true);
-            _currentWeaponObject.SetActive(false);
-            yield return new WaitForSeconds(delayValue);
-             
-            SwordSoundTypeState();
-
-            CreatePlayerBullet(_bulletSpawnTransform, bulletData.swordSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 1f);
-
-            _bulletSpawnTransform.position = new Vector3(_bulletSpawnTransform.transform.position.x,
-                                                         _bulletSpawnTransform.transform.position.y,
-                                                         _bulletSpawnTransform.transform.position.z);
-        }
-        else if (objectPoolCount == _playerData.playerWeaponBulletObjectPoolCount)
+        
+        if (objectPoolCount == _playerData.playerWeaponBulletObjectPoolCount)
         {//WeaponBullet
-            _currentWeaponObject.SetActive(true);
-            _currentSwordObject.SetActive(false);
+            if (_currentWeaponObject)
+            {
+                _currentWeaponObject.SetActive(true);
+            }
+
+            if (_currentSwordObject)
+            {
+                _currentSwordObject.SetActive(false);
+            }
+            
             yield return new WaitForSeconds(delayValue);
             if (_playerData.bulletAmount <= 0)
             {
@@ -922,13 +712,17 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 WeaponSoundTypeState();
 
-                CreatePlayerBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, PlayerManager.GetInstance._objectPool, 0f, 1f);
-                isCreatedWeaponBullet = true;
+                if (_bulletSpawnTransform && _objectPool)
+                {
+                    CreatePlayerBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, _objectPool, 0f, 1f);
+
+                    isCreatedWeaponBullet = true;
+                }
             }
             //PlayerManager.GetInstance._currentCamera.transform.position.x
-            _bulletSpawnTransform.position = new Vector3(_bulletSpawnTransform.transform.position.x, 
+           /* _bulletSpawnTransform.position = new Vector3(_bulletSpawnTransform.transform.position.x, 
                                                          _bulletSpawnTransform.transform.position.y, 
-                                                         _bulletSpawnTransform.transform.position.z);
+                                                         _bulletSpawnTransform.transform.position.z);*/
             bulletData.bulletDelayCounter = 0;
         }
         

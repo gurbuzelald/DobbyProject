@@ -453,31 +453,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1101 &-7099241231579167233
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: isSword
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 3902318041974053590}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.9781659
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1109 &-7052757983441339485
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -559,7 +534,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Walk Backwards
-  m_Speed: 2
+  m_Speed: 3
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7338479739144412034}
@@ -743,7 +718,6 @@ AnimatorState:
   - {fileID: 469736260095891844}
   - {fileID: -3515452567398637348}
   - {fileID: 7093542066799669289}
-  - {fileID: 5422842295434622843}
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -779,36 +753,6 @@ AnimatorStateMachine:
   m_ExitPosition: {x: 330, y: 130, z: 0}
   m_ParentStateMachinePosition: {x: 370, y: 30, z: 0}
   m_DefaultState: {fileID: 0}
---- !u!1102 &-5532054914427934290
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Idle1
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 7231984839482585481}
-  - {fileID: -4769188024886290199}
-  - {fileID: 7828817390077742131}
-  - {fileID: -7099241231579167233}
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: fa9b1dd009339764f9e9c188285c1867, type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1101 &-5263663797946400951
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -829,28 +773,6 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.60526323
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
---- !u!1101 &-4769188024886290199
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions: []
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 8628960722963615677}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.9781659
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -905,7 +827,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: cbfe6ba0fdfc35d4bbdb3555592eb759, type: 3}
+  m_Motion: {fileID: 0}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -953,7 +875,7 @@ AnimatorStateMachine:
     m_Position: {x: 690, y: -70, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4330317724367132694}
-    m_Position: {x: 363.22037, y: -66.27118, z: 0}
+    m_Position: {x: 360, y: -70, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: 8351831033050571336}
@@ -1205,7 +1127,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Right Strafe Walking
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4276507289993694626}
@@ -1731,7 +1653,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Walking
     m_StateMachine: {fileID: -4268772575346619581}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 09e4542caf596471790ef6fb525b5d32, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1743,7 +1665,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: BackWalking
     m_StateMachine: {fileID: -4257624709825862336}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 230c6f0e1c1b04ba7bc68ec92af02362, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1779,7 +1701,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: LeftWalk
     m_StateMachine: {fileID: -4332942784788073882}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 230c6f0e1c1b04ba7bc68ec92af02362, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1791,7 +1713,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: RightWalk
     m_StateMachine: {fileID: 6192337168580918227}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 230c6f0e1c1b04ba7bc68ec92af02362, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1803,7 +1725,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Death
     m_StateMachine: {fileID: 2453491637296163448}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 09e4542caf596471790ef6fb525b5d32, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1815,7 +1737,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Victory
     m_StateMachine: {fileID: -7006745751483065187}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 09e4542caf596471790ef6fb525b5d32, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1875,7 +1797,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: JumpForward
     m_StateMachine: {fileID: -7363283377681168820}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 09e4542caf596471790ef6fb525b5d32, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1887,7 +1809,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: JumpRight
     m_StateMachine: {fileID: 7953431439670382878}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 09e4542caf596471790ef6fb525b5d32, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1899,7 +1821,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: JumpLeft
     m_StateMachine: {fileID: 3360091635578671696}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 09e4542caf596471790ef6fb525b5d32, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1911,7 +1833,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: FireWalk
     m_StateMachine: {fileID: 5308496409514249089}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 8ae9e9506d4a0496baa3816d5c11336e, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -1923,7 +1845,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: FireAnimation
     m_StateMachine: {fileID: -7652001749059238316}
-    m_Mask: {fileID: 0}
+    m_Mask: {fileID: 31900000, guid: 8ae9e9506d4a0496baa3816d5c11336e, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -2199,9 +2121,6 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 3902318041974053590}
     m_Position: {x: 560, y: -70, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -5532054914427934290}
-    m_Position: {x: 390, y: 70, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -2318,7 +2237,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Left Strafe Walking
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7694388976472099714}
@@ -2519,28 +2438,6 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 1
---- !u!1101 &5422842295434622843
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions: []
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -5532054914427934290}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.97619045
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1109 &5864318932973643980
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -2781,28 +2678,6 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1101 &7231984839482585481
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions: []
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -5722311225557234456}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.9781659
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1107 &7279946037897489985
 AnimatorStateMachine:
   serializedVersion: 6
@@ -2939,31 +2814,6 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 1
---- !u!1101 &7828817390077742131
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: isJumping
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 517777060806473851}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.9781659
-  m_HasExitTime: 1
-  m_HasFixedDuration: 1
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1107 &7953431439670382878
 AnimatorStateMachine:
   serializedVersion: 6
@@ -3107,7 +2957,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FireWalk
-  m_Speed: 1
+  m_Speed: 2.5
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []

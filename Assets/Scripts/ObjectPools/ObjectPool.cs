@@ -17,6 +17,7 @@ public class ObjectPool : MonoBehaviour
 
     [SerializeField] LevelData levelData;
     [SerializeField] PlayerData playerData;
+    [SerializeField] BulletData playerBulletData;
 
     [SerializeField] Pool[] pools = null;
 
@@ -27,6 +28,12 @@ public class ObjectPool : MonoBehaviour
     public static bool creatableEnemyBullet;
     public static bool creatableSwordBullet;
 
+    private GameObject instantiateObject;
+
+    private void Awake()
+    {
+        SetPlayerBulletIDAtStart(playerBulletData);
+    }
 
     void Start()
     {
@@ -62,6 +69,50 @@ public class ObjectPool : MonoBehaviour
         }
     }
 
+    void SetPlayerBulletIDAtStart(BulletData bulletData)
+    {
+        if (bulletData.currentWeaponName == BulletData.pistol)
+        {
+            BulletData.currentWeaponID = 0;
+        }
+        else if (bulletData.currentWeaponName == BulletData.axe)
+        {
+            BulletData.currentWeaponID = 1;
+        }
+        else if (bulletData.currentWeaponName == BulletData.bulldog)
+        {
+            BulletData.currentWeaponID = 2;
+        }
+        else if (bulletData.currentWeaponName == BulletData.cow)
+        {
+            BulletData.currentWeaponID = 3;
+        }
+        else if (bulletData.currentWeaponName == BulletData.crystal)
+        {
+            BulletData.currentWeaponID = 4;
+        }
+        else if (bulletData.currentWeaponName == BulletData.demon)
+        {
+            BulletData.currentWeaponID = 5;
+        }
+        else if (bulletData.currentWeaponName == BulletData.ice)
+        {
+            BulletData.currentWeaponID = 6;
+        }
+        else if (bulletData.currentWeaponName == BulletData.electro)
+        {
+            BulletData.currentWeaponID = 7;
+        }
+        else if (bulletData.currentWeaponName == BulletData.shotGun)
+        {
+            BulletData.currentWeaponID = 8;
+        }
+        else if (bulletData.currentWeaponName == BulletData.machine)
+        {
+            BulletData.currentWeaponID = 9;
+        }
+    }
+
     private int GetPlayerWeaponId(BulletData bulletData)
     {
         if (bulletData.isPistol) return 0;
@@ -72,11 +123,10 @@ public class ObjectPool : MonoBehaviour
         else if (bulletData.isDemon) return 5;
         else if (bulletData.isIce) return 6;
         else if (bulletData.isElectro) return 7;
-        else if (bulletData.isAk47) return 8;
-        else if (bulletData.isM4a4) return 9;
+        else if (bulletData.isShotGun) return 8;
+        else if (bulletData.isMachine) return 9;
         return -1;
     }
-
 
     public void CreateAndEnqueueObject()
     {
@@ -112,7 +162,6 @@ public class ObjectPool : MonoBehaviour
     // Helper Method to Instantiate Object Once
     GameObject InstantiateObject(int poolIndex, Pool pool)
     {
-        GameObject obj;
         int prefabIndex = 0; // Default prefab index
         Transform objTransform = pool.objectTransform;
 
@@ -138,17 +187,39 @@ public class ObjectPool : MonoBehaviour
                 return null; // Return null if poolIndex is out of range
         }
 
-        if (objTransform)
+        if (poolIndex == 0)
         {
-            obj = Instantiate(pool.objectPrefab[prefabIndex], objTransform.position, objTransform.rotation, objTransform);
+            if (PlayerManager.GetInstance)
+            {
+                if (PlayerManager.GetInstance.transform)
+                {
+                    if (PlayerManager.GetInstance.transform.childCount >= 1)
+                    {
+                        if (PlayerManager.GetInstance.transform.GetChild(0).childCount >=6)
+                        {
+                            instantiateObject = Instantiate(pool.objectPrefab[prefabIndex],
+                                PlayerManager.GetInstance.transform.GetChild(0).GetChild(5).position,
+                              PlayerManager.GetInstance.transform.GetChild(0).GetChild(5).rotation,
+                              objTransform);
+                        }
+                    }
+                }
+            }
+        }
+        else if (objTransform)
+        {
+            instantiateObject = Instantiate(pool.objectPrefab[prefabIndex], objTransform.position, objTransform.rotation, objTransform);
         }
         else
         {
-            Debug.Log($"{prefabIndex} object pool indeksinde transform girilmedi.");
-            obj = Instantiate(pool.objectPrefab[prefabIndex]);
+            if (prefabIndex != 0)
+            {
+                Debug.Log($"{prefabIndex} object pool indeksinde transform girilmedi.");
+            }
+            instantiateObject = Instantiate(pool.objectPrefab[prefabIndex]);
         }
 
-        return obj;
+        return instantiateObject;
     }
 
     public GameObject GetPooledObject(int objectType)

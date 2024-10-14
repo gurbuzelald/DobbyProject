@@ -9,7 +9,7 @@ public class BulletController : MonoBehaviour
     public LayerMask layerMask;
     [SerializeField] float delayFalseWhenTriggerEnemy;
 
-    public static bool AK47 { get; internal set; }
+    public static bool ShotGun { get; internal set; }
 
     public int damageValue;
     

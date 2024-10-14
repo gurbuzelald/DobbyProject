@@ -46,9 +46,4 @@ internal interface IPlayerTrigger
     IEnumerator DelayDestroyCoinObject(GameObject coinObject);
 
     IEnumerator DelayTransformOneGiftBoxWarnText(Collider other);
-
-
-
-
-    void CreateVictoryAnimation(PlayerData _playerData, ref Transform _jolleenTransform);
 }

@@ -10,10 +10,6 @@ public class CoinSpawner : MonoBehaviour
     private GameObject currentMapCoins;
     private GameObject _coinObject;
 
-    float max1 = 0;
-    float max2 = 0;
-    int max = 0;
-
 
     Transform randomTransform;
 
@@ -22,56 +18,90 @@ public class CoinSpawner : MonoBehaviour
         levelData.currentStaticCoinValue = levelData.coinlevelValues[levelCount];
     }
 
-    
+
     void Awake()
     {
-        CreateObjects(levelData.levelRectangles[LevelData.currentLevelCount], levelData._rotaterCoinObject, .5f);
-        CreateObjects(levelData.levelRectangles[LevelData.currentLevelCount], levelData._rotaterBulletCoinObject, .25f);
-        CreateObjects(levelData.levelRectangles[LevelData.currentLevelCount], levelData._coinGroupObject, .2f);
-        CreateObjects(levelData.levelRectangles[LevelData.currentLevelCount], levelData._cheeseObject, .2f);
-        CreateObjects(levelData.levelRectangles[LevelData.currentLevelCount], levelData._mushroomObject, .1f);
-        CreateObjects(levelData.levelRectangles[LevelData.currentLevelCount], levelData._levelUpKeyObject, .1f);
-        CreateObjects(levelData.levelRectangles[LevelData.currentLevelCount], levelData._healtCoinObject, .2f);
+        // Cache the current level rectangle to avoid redundant lookups
+        GameObject currentLevelRectangle = levelData.levelRectangles[LevelData.currentLevelCount];
+
+        // Group all object creation calls into a single method
+        CreateMultipleObjects(currentLevelRectangle, new (GameObject, float)[]
+        {
+        (levelData._rotaterCoinObject, 0.5f),
+        (levelData._rotaterBulletCoinObject, 0.25f),
+        (levelData._coinGroupObject, 0.2f),
+        (levelData._cheeseObject, 0.2f),
+        (levelData._mushroomObject, 0.1f),
+        (levelData._levelUpKeyObject, 0.1f),
+        (levelData._healtCoinObject, 0.2f)
+        });
+    }
+
+    void CreateMultipleObjects(GameObject currentLevelRectangleObject, (GameObject coinObject, float maxValueDecreaser)[] objectDataArray)
+    {
+        foreach (var objectData in objectDataArray)
+        {
+            CreateObjects(currentLevelRectangleObject, objectData.coinObject, objectData.maxValueDecreaser);
+        }
     }
 
     void CreateObjects(GameObject currentLevelRectangleObject, GameObject coinObject, float maxValueDecreaser)
     {
+        // Instantiate level rectangle object once
         _coinObject = Instantiate(currentLevelRectangleObject, gameObject.transform);
 
+        // Loop through children of the _coinObject transform
         for (int i = 0; i < _coinObject.transform.childCount; i++)
         {
-            CalculateCountOfCreateableObject(i, maxValueDecreaser);
-            for (int j = 0; j < max; j++)
+            // Calculate the number of objects to create
+            int objectCount = CalculateCountOfCreateableObject(i, maxValueDecreaser);
+
+            // Cache the current child transform
+            Transform currentChild = _coinObject.transform.GetChild(i);
+
+            // Instantiate coin objects
+            for (int j = 0; j < objectCount; j++)
             {
-                GameObject randomy = Instantiate(coinObject, _coinObject.transform.GetChild(i));
-                randomTransform = randomy.transform;
-                CreateRandomPosition(coinObject, i);
-            }            
-        }
-    }
-    void CalculateCountOfCreateableObject(int i, float maxValueDecreaser)
-    {
-        max1 = 0;
-        max2 = 0;
-        max = 0;
-        max1 = Mathf.Abs(Mathf.Abs(_coinObject.transform.GetChild(i).GetChild(1).localPosition.x) - Mathf.Abs(_coinObject.transform.GetChild(i).GetChild(3).localPosition.x));
-        max2 = Mathf.Abs(Mathf.Abs(_coinObject.transform.GetChild(i).GetChild(0).localPosition.z) - Mathf.Abs(_coinObject.transform.GetChild(i).GetChild(2).localPosition.z));
-        if (max1 > max2)
-        {
-            max = (int)(max1 * maxValueDecreaser);
-        }
-        else
-        {
-            max = (int)(max2 * maxValueDecreaser);
+                GameObject newCoin = Instantiate(coinObject, currentChild);
+
+                // Set random position for the newly created coin
+                SetRandomPosition(newCoin.transform, currentChild);
+            }
         }
     }
 
-    void CreateRandomPosition(GameObject coinObject, int i)
+    int CalculateCountOfCreateableObject(int i, float maxValueDecreaser)
     {
-        randomTransform.localPosition = new Vector3(Random.Range(_coinObject.transform.GetChild(i).GetChild(1).localPosition.x,
-                                                                     _coinObject.transform.GetChild(i).GetChild(3).localPosition.x),
-                                                        coinObject.transform.localPosition.y,
-                                                        Random.Range(_coinObject.transform.GetChild(i).GetChild(0).localPosition.z,
-                                                                     _coinObject.transform.GetChild(i).GetChild(2).localPosition.z));
+        // Cache the current child
+        Transform child = _coinObject.transform.GetChild(i);
+
+        // Cache the corner points of the current child for better performance
+        Vector3 corner1 = child.GetChild(1).localPosition;
+        Vector3 corner2 = child.GetChild(3).localPosition;
+        Vector3 corner3 = child.GetChild(0).localPosition;
+        Vector3 corner4 = child.GetChild(2).localPosition;
+
+        // Calculate differences
+        float xDifference = Mathf.Abs(corner1.x - corner2.x);
+        float zDifference = Mathf.Abs(corner3.z - corner4.z);
+
+        // Return the maximum difference scaled by maxValueDecreaser
+        return (int)(Mathf.Max(xDifference, zDifference) * maxValueDecreaser);
+    }
+
+    void SetRandomPosition(Transform coinTransform, Transform parentTransform)
+    {
+        // Cache the corner points of the parent to avoid repeated access
+        Vector3 corner1 = parentTransform.GetChild(1).localPosition;
+        Vector3 corner2 = parentTransform.GetChild(3).localPosition;
+        Vector3 corner3 = parentTransform.GetChild(0).localPosition;
+        Vector3 corner4 = parentTransform.GetChild(2).localPosition;
+
+        // Set random position within the defined area
+        coinTransform.localPosition = new Vector3(
+            Random.Range(corner1.x, corner2.x),
+            coinTransform.localPosition.y, // Maintain the y-position
+            Random.Range(corner3.z, corner4.z)
+        );
     }
 }

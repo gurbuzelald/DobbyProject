@@ -8,9 +8,16 @@ public class GameManagersSpawner : MonoBehaviour
     [SerializeField] GameObject audioListener;
     [SerializeField] GameObject particleController;
 
-    void Awake()
+    void Start()
     {
-        Instantiate(audioListener, gameObject.transform);
-        Instantiate(particleController, gameObject.transform);
+        if (audioListener)
+        {
+            Instantiate(audioListener, gameObject.transform);
+        }
+
+        if (particleController)
+        {
+            Instantiate(particleController, gameObject.transform);
+        }
     }
 }

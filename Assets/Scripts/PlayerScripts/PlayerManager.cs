@@ -1,11 +1,9 @@
 using Cinemachine;
-using System;
 using System.Collections;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
+
 
 public class PlayerManager : AbstractPlayer<PlayerManager>
 {
@@ -41,9 +39,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     public PlayerComponents playerComponents = new PlayerComponents();
 
-
-    [HideInInspector]
-    public float _initPlayerSpeed;
 
     [HideInInspector]
     public GameObject _gunTransform;
@@ -84,7 +79,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public GameObject cameraSpawner;
 
     [Header("Crosshair")]
-    public CanvasGroup crosshairImage;  
+    private CanvasGroup crosshairImage;  
 
 
     public ObjectPool _objectPool;
@@ -103,7 +98,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public TextMeshProUGUI bulletPackAmountText;
     [HideInInspector]
     public GameObject _healthBarObject;
-    public GameObject _topCanvasHealthBarObject;
+    private GameObject _topCanvasHealthBarObject;
     public Slider _topCanvasHealthBarSlider;
 
     public static float randomEnemyXPos;
@@ -123,26 +118,39 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     void Start()
     {
         Interfaces();
-        InitStates();
-        SpawnPlayerObject();
 
         PlayerComponentsOnStart();
+
+        InitStates();
+
+        SpawnPlayerObject();
     }
 
     //Init
     private void InitStates()
     {
+        if (GameObject.Find("ObjectPool"))
+        {
+            _objectPool = GameObject.Find("ObjectPool").GetComponent<ObjectPool>();
+        }
+        
+        if (GameObject.Find("EnemyObjectPool"))
+        {
+            _enemyObjectPool = GameObject.Find("EnemyObjectPool").GetComponent<EnemyObjectPool>();
+        }
+        
+
         inputMovement = new InputMovement();
+
+        if (GameObject.Find("CameraSpawner"))
+        {
+            cameraSpawner = GameObject.Find("CameraSpawner");
+        }        
 
         if (GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>())
         {
             messageText = GameObject.Find("MessageText").GetComponent<TextMeshProUGUI>();
         }
-        if (FindObjectOfType<ArrowRotationController>())
-        {
-            playerComponents._arrowRotationController = FindObjectOfType<ArrowRotationController>();
-        }
-
         //Audio
         if (GetComponent<AudioSource>())
         {
@@ -186,11 +194,18 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             }
         }
     }
+
+    
     void PlayerComponentsOnStart()
     {
         if (GetComponent<Transform>())
         {
             playerComponents.playerTransform = GetComponent<Transform>();
+        }
+
+        if (FindObjectOfType<ArrowRotationController>())
+        {
+            playerComponents._arrowRotationController = FindObjectOfType<ArrowRotationController>();
         }
 
         if (gameObject.GetComponent<Rigidbody>())
@@ -204,19 +219,13 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             playerComponents._playerController = FindObjectOfType<PlayerController>();
         }
 
-
-        if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>())
+        if (transform.childCount >= 2)
         {
-            playerComponents.healthBarSlider = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>();
-        }
-
-        if (transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>())
-        {
-            if (transform.GetChild(1))
+            if (transform.GetChild(1).childCount >= 1)
             {
-                if (transform.GetChild(1).GetChild(0))
+                if (transform.GetChild(1).GetChild(0).gameObject != null)
                 {
-                    if (transform.GetChild(1).GetChild(0).gameObject != null)
+                    if (transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>())
                     {
                         playerComponents.characterAnimator = transform.GetChild(1).GetChild(0).gameObject.GetComponent<Animator>();
                     }
@@ -227,7 +236,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
     void Interfaces()
     {
-        
         playerInterfaces = new PlayerInterfaces();
         playerInterfaces.iPlayerShoot = GetComponent<IPlayerShoot>();
         playerInterfaces.iPlayerCamera = GetComponent<IPlayerCamera>();
@@ -252,31 +260,37 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             if (_playerData)
             {
                 playerInterfaces.iPlayerInitial.CreateCharacterObject(_playerData, ref characterObject);
-
             }
 
             playerInterfaces.iPlayerInitial.GetHandObjectsTransform(ref _coinObject, ref _cheeseObject);
             if (_bulletData)
             {
-                playerInterfaces.iPlayerInitial.GetWeaponTransform(_bulletData, ref _gunTransform);
-                playerInterfaces.iPlayerInitial.GetSwordTransform(_bulletData, ref _swordTransform);
+                //playerInterfaces.iPlayerInitial.GetWeaponTransform(_bulletData, ref _gunTransform);
+                //playerInterfaces.iPlayerInitial.GetSwordTransform(_bulletData, ref _swordTransform);
             }
             if (_playerData)
             {
                 playerInterfaces.iPlayerInitial.CreateStartPlayerStaff(_playerData,
                                                   ref playerIconTransform,
                                                   ref _bulletsSpawnTransform,
-                                                  ref _cameraWasherTransform, healthBarTransform,
+                                                  ref _cameraWasherTransform,
+                                                  healthBarTransform,
                                                   ref _healthBarObject,
                                                   ref bulletAmountCanvas);
+                if (_healthBarObject)
+                {
+                    if (_healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>())
+                    {
+                        playerComponents.healthBarSlider = _healthBarObject.transform.GetChild(0).GetChild(0).GetComponent<Slider>();
+                    }
+                }
             }
             if (_levelData && _playerData && _bulletData)
             {
                 playerInterfaces.iPlayerInitial.DataStatesOnInitial(_levelData, _playerData, _bulletData,
                                  ref _healthBarObject,
                                  ref _topCanvasHealthBarObject,
-                                 ref bulletAmountCanvas,
-                                 ref _initPlayerSpeed);
+                                 ref bulletAmountCanvas);
             }
         }
     }
@@ -331,9 +345,13 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 // Show crosshair with delay
                 if (playerInterfaces.iPlayerShoot != null)
                 {
-                    if (crosshairImage)
+                    if (GameObject.Find("CrosshairImage").GetComponent<CanvasGroup>())
                     {
-                        StartCoroutine(playerInterfaces.iPlayerShoot.DelayShowingCrosshairAlpha(crosshairImage, 2f));
+                        crosshairImage = GameObject.Find("CrosshairImage").GetComponent<CanvasGroup>();
+                        if (crosshairImage)
+                        {
+                            StartCoroutine(playerInterfaces.iPlayerShoot.DelayShowingCrosshairAlpha(crosshairImage, 2f));
+                        }
                     }
                 }
 
@@ -521,11 +539,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     void OnCollisionExit(Collision collision)
     {
-        if (collision.collider.CompareTag(SceneController.Tags.Magma.ToString()))
-        {
-            Destroy(collision.collider.gameObject);
-        }
-        if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()))
+        if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()))
         {
             _playerData.isGround = false;
         }
@@ -753,7 +767,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             
             StartCoroutine(DelayMessageText(_playerData, PlayerData.alreadyHaveThisWeaponMessageTr, PlayerData.alreadyHaveThisWeaponMessage));
         }
-        else if (other.tag.ToString() == BulletData.ak47 || other.tag.ToString() == BulletData.m4a4 ||
+        else if (other.tag.ToString() == BulletData.shotGun || other.tag.ToString() == BulletData.machine ||
             other.tag.ToString() == BulletData.bulldog || other.tag.ToString() == BulletData.cow ||
             other.tag.ToString() == BulletData.crystal || other.tag.ToString() == BulletData.demon ||
             other.tag.ToString() == BulletData.ice || other.tag.ToString() == BulletData.electro ||
@@ -909,7 +923,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 if (playerComponents.playerTransform && playerComponents.characterAnimator && playerComponents.playerRigidbody)
                 {
                     iPlayerMovement.Walk(_playerData, ref playerComponents.playerTransform, ref playerComponents.characterAnimator);
-                    iPlayerMovement.Run(_playerData, _particleTransform.transform, 0f, playerComponents.playerRigidbody);
+                    iPlayerMovement.Run(_playerData, _particleTransform.transform, 0.1f, playerComponents.playerRigidbody);
                     iPlayerMovement.Jump(_playerData, ref playerComponents.playerRigidbody);
                 }                
             }
@@ -966,7 +980,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
                 yield return new WaitForSeconds(delayDying);
 
-                //Destroy(gameObject);
+                Destroy(gameObject);
                 //SceneController.DestroySingletonObjects();
                 SceneController.LoadEndScene();
             }

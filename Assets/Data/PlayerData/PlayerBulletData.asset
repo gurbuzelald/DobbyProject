@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1868c7cd3d74059489101668855dfd21, type: 3}
   m_Name: PlayerBulletData
   m_EditorClassIdentifier: 
+  currentSwordName: LowSword
+  currentWeaponName: demon
   giftBoxes:
   - {fileID: 8961598618424200994, guid: c9b0815641d6f3a4f898bef83cb6f012, type: 3}
   - {fileID: 1155883618481309716, guid: 2c0182fcbc961b549aaf76bac3601f5b, type: 3}
@@ -23,22 +25,22 @@ MonoBehaviour:
   - {fileID: 4766537959376769809, guid: 09184e7c332494e459c4eb6925522f79, type: 3}
   - {fileID: 2981881977126167581, guid: c4ca995896d51c4478d7397ec113d07e, type: 3}
   - {fileID: 587789775632349523, guid: 7e25305159a90ef45861d6bd25feacd2, type: 3}
-  swordBulletDelay: 0.05
   weaponBulletDelay: 0.05
+  swordBulletDelay: 0.05
   bulletSpeed: 5
   swordSpeed: 1
   bulletDelayCounter: 0
   _swordingObject: {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
   currentGiftBox: {fileID: 8957379851250910510, guid: 9892378f7235cce4d9f03984a358c0db, type: 3}
   pistolGiftBox: {fileID: 5953932990381375704, guid: 769e388e892fa6f47add655d24d29ce0, type: 3}
-  m4a4GiftBox: {fileID: 4850221878147488263, guid: 2b9e216addade824fb41b7bc668a5101, type: 3}
+  machineGiftBox: {fileID: 4850221878147488263, guid: 2b9e216addade824fb41b7bc668a5101, type: 3}
   bullDogGiftBox: {fileID: 6750732745314709050, guid: 3443f60ab08db384aaa3b04a8b272456, type: 3}
   cowGiftBox: {fileID: 8957379851250910510, guid: 9892378f7235cce4d9f03984a358c0db, type: 3}
   crystalGiftBox: {fileID: 4022412064357964157, guid: 028d4e3f0249529499c5a8c81d29ea0b, type: 3}
   demonGiftBox: {fileID: 8947880313132611291, guid: 43147d81d9fef8f4d9beda636a63dc03, type: 3}
   iceGiftBox: {fileID: 1107915910439118714, guid: ca5ee588c6380b74080b876dbde97c21, type: 3}
   electroGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
-  ak47GiftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
+  shotGunGiftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
   axeGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
   currentShootFrequency: 0.4
   pistolShootFrequency: 0.4
@@ -49,10 +51,10 @@ MonoBehaviour:
   demonShootFrequency: 0.23
   iceShootFrequency: 0.2
   electroShootFrequency: 0.18
-  ak47ShootFrequency: 0.15
-  m4a4ShootFrequency: 0.12
-  ak47Object: {fileID: 1285122605500510046, guid: b339fba6c87e1284296b951ba41f28ad, type: 3}
-  m4a4Object: {fileID: 4907868468083396717, guid: f7cbed3675ac52e459a75f65deb30f1c, type: 3}
+  shotGunShootFrequency: 0.15
+  machineShootFrequency: 0.14
+  shotGunObject: {fileID: 8897232894062872137, guid: de0204befe821450086cbe7b3f168442, type: 3}
+  machineObject: {fileID: 4797058508463431492, guid: eba982acb08ab42ab812b36334e36729, type: 3}
   bullDogObject: {fileID: 2611150449622927918, guid: e2a7ba7e091c8a64d89f057926284f5e, type: 3}
   cowObject: {fileID: 4045390288470663321, guid: 21788765404628840a013ba85ef9bc18, type: 3}
   crsytalObject: {fileID: 6090247001165047854, guid: f063e9ac4a8a0da47abeb4ea6b35b9e3, type: 3}
@@ -69,40 +71,40 @@ MonoBehaviour:
   demonPower: 15
   icePower: 16
   electroPower: 18
-  ak47Power: 24
-  m4a4Power: 25
+  shotGunPower: 20
+  machinePower: 21
   pistolPrice: 0
-  axePrice: 5000
-  bulldogPrice: 2000
-  cowPrice: 500
-  crystalPrice: 7000
-  demonPrice: 3000
-  icePrice: 4000
-  electroPrice: 6000
-  ak47Price: 9000
-  m4a4Price: 10000
+  axePrice: 1
+  bulldogPrice: 1
+  cowPrice: 1
+  crystalPrice: 1
+  demonPrice: 1
+  icePrice: 1
+  electroPrice: 1
+  shotGunPrice: 1
+  machinePrice: 1
   pistolLock: 
   axeLock: locked
-  bulldogLock: locked
+  bulldogLock: 
   cowLock: locked
   crystalLock: locked
   demonLock: locked
-  iceLock: locked
+  iceLock: 
   electroLock: locked
-  ak47Lock: locked
-  m4a4Lock: locked
+  shotGunLock: locked
+  machineLock: locked
   resetLocks: locked
   unLocked: 
   pistolUsageLimit: 3
-  bulldogUsageLimit: 0
+  bulldogUsageLimit: 2
   cowUsageLimit: 0
   crystalUsageLimit: 0
   demonUsageLimit: 0
-  iceUsageLimit: 0
+  iceUsageLimit: 1
   electroUsageLimit: 0
   axeUsageLimit: 0
-  m4a4UsageLimit: 0
-  ak47UsageLimit: 0
+  machineUsageLimit: 0
+  shotGunUsageLimit: 0
   isPistol: 0
   isBulldog: 0
   isCow: 0
@@ -111,8 +113,8 @@ MonoBehaviour:
   isIce: 0
   isElectro: 0
   isAxe: 0
-  isM4a4: 0
-  isAk47: 0
+  isMachine: 0
+  isShotGun: 0
   currentBulletPack: 21
   pistolBulletAmount: 21
   axeBulletAmount: 22
@@ -122,9 +124,9 @@ MonoBehaviour:
   demonBulletAmount: 26
   iceBulletAmount: 27
   electroBulletAmount: 28
-  ak47BulletAmount: 29
-  m4A4BulletAmount: 30
-  currentEnemyBulletDamage: 0
+  shotGunBulletAmount: 29
+  machineBulletAmount: 30
+  currentEnemyBulletDamage: 15
   chibiEnemyBulletDamage: 14
   minoEnemyBulletDamage: 15
   bigMonsterEnemyBulletDamage: 16
@@ -187,8 +189,6 @@ MonoBehaviour:
   isMagicSword: 0
   isLongHummer: 0
   isClub: 0
-  currentSwordName: LowSword
-  currentWeaponName: pistol
   swordDamageValue: 50
   enemyFireFrequency: 5
   enemyBulletDelayCounter: 0

@@ -23,12 +23,6 @@ public class SceneController : MonoBehaviour
     [Header("RotationControl")]
     public static bool rotateTouchOrMousePos = false;
 
-    private GameObject mouseOrTouch;
-    private TextMeshProUGUI mouseOrTouchText;
-
-    private GameObject lockWalking;
-    private TextMeshProUGUI lockWalkingText;
-
     private TextMeshProUGUI currentLevelText;
     private TextMeshProUGUI currentWeaponText;
     private TextMeshProUGUI currentCharacterText;
@@ -41,8 +35,6 @@ public class SceneController : MonoBehaviour
 
 
     TextMeshProUGUI[] currentTexts = new TextMeshProUGUI[200];
-
-    private GameObject menuMap;
 
     private void Awake()
     {
@@ -95,6 +87,7 @@ public class SceneController : MonoBehaviour
         if (_playerData)
         {
             currentTexts = FindObjectsOfType<TextMeshProUGUI>();
+
             ChangeMenuSceneLanguage();
 
             ChangeGameSceneLanguage();
@@ -172,6 +165,9 @@ public class SceneController : MonoBehaviour
                     case "Menu Sound Effects :":
                         currentText.text = "Menü Ses Efekti :";
                         continue;
+                    case "Sifirla":
+                        currentText.text = "Rest Game";
+                        continue;
                 }
             }
         }
@@ -234,6 +230,9 @@ public class SceneController : MonoBehaviour
                         continue;
                     case "Menü Ses Efekti :":
                         currentText.text = "Menu Sound Effects :";
+                        continue;
+                    case "Reset Game":
+                        currentText.text = "Sifirla";
                         continue;
                 }
             }
@@ -536,8 +535,8 @@ public class SceneController : MonoBehaviour
         PlayerPrefs.SetFloat("DemonLock", 0);
         PlayerPrefs.SetFloat("IceLock", 0);
         PlayerPrefs.SetFloat("ElectroLock", 0);
-        PlayerPrefs.SetFloat("Ak47Lock", 0);
-        PlayerPrefs.SetFloat("M4A4Lock", 0);
+        PlayerPrefs.SetFloat("ShotGunLock", 0);
+        PlayerPrefs.SetFloat("MachineLock", 0);
 
         PlayerPrefs.SetFloat("AxeUsageCount", 0);
         PlayerPrefs.SetFloat("BulldogUsageCount", 0);
@@ -546,8 +545,8 @@ public class SceneController : MonoBehaviour
         PlayerPrefs.SetFloat("DemonUsageCount", 0);
         PlayerPrefs.SetFloat("IceUsageCount", 0);
         PlayerPrefs.SetFloat("ElectroUsageCount", 0);
-        PlayerPrefs.SetFloat("Ak47UsageCount", 0);
-        PlayerPrefs.SetFloat("M4A4UsageCount", 0);
+        PlayerPrefs.SetFloat("ShotGunUsageCount", 0);
+        PlayerPrefs.SetFloat("MachineUsageCount", 0);
 
         if (bulletData)
         {
@@ -558,8 +557,8 @@ public class SceneController : MonoBehaviour
             bulletData.demonLock = BulletData.locked;
             bulletData.iceLock = BulletData.locked;
             bulletData.electroLock = BulletData.locked;
-            bulletData.ak47Lock = BulletData.locked;
-            bulletData.m4a4Lock = BulletData.locked;
+            bulletData.shotGunLock = BulletData.locked;
+            bulletData.machineLock = BulletData.locked;
         }
         PlayerPrefs.SetFloat("DobbyLock", 0);
         PlayerPrefs.SetFloat("JoleenLock", 0);
@@ -581,8 +580,8 @@ public class SceneController : MonoBehaviour
         PlayerPrefs.SetInt("DemonUsageCount", 0);
         PlayerPrefs.SetInt("IceUsageCount", 0);
         PlayerPrefs.SetInt("NegevUsageCount", 0);
-        PlayerPrefs.SetInt("Ak47UsageCount", 0);
-        PlayerPrefs.SetInt("M4A4UsageCount", 0);
+        PlayerPrefs.SetInt("ShotGunUsageCount", 0);
+        PlayerPrefs.SetInt("MachineUsageCount", 0);
 
         if (_playerData)
         {
@@ -634,17 +633,6 @@ public class SceneController : MonoBehaviour
                                                              pausePanel.transform.localPosition.z);
         }
     }
-    /*void SetCurrentLevelAtUpdate()
-    {
-        if (currentLevelText && levelData)
-        {
-            if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
-            {
-                currentLevelText.text = levelData.currentLevel.ToString();
-                EnemyData.enemyDeathCount = 0;
-            }
-        }
-    }*/
 
     void SetCurrentWeaponAtStart()
     {
@@ -679,15 +667,6 @@ public class SceneController : MonoBehaviour
             currentCharacterText.text = _playerData.currentCharacterName.ToString();
         }
     }
-
-    /*void SetCurrentCharacterAtUpdate()
-    {
-        if (currentCharacterText && _playerData)
-        {
-            currentCharacterText.text = _playerData.currentCharacterName.ToString();
-        }
-    }*/
-
     void OnEnable()
     {
         if (pauseGame)
@@ -704,50 +683,18 @@ public class SceneController : MonoBehaviour
     }
     void FindGameObjects()
     {
-        mouseOrTouch = GameObject.Find("MouseOrTouchText");
-        lockWalking = GameObject.Find("LockWalkingText");
         pausePanel = GameObject.Find("PausePanel");
-
-        if (mouseOrTouch != null && lockWalking != null && _playerData != null)
-        {
-            mouseOrTouchText= mouseOrTouch.GetComponent<TextMeshProUGUI>();
-            lockWalkingText = lockWalking.GetComponent<TextMeshProUGUI>();
-        }
     }
 
     void DefaulthVariableValues()
     {
         FindGameObjects();
-        if (mouseOrTouchText != null && lockWalkingText != null && _playerData != null)
-        {
-            lockWalkingText.text = "Not Locked";
-            mouseOrTouchText.text = "Touch";
-            rotateTouchOrMousePos = false;
-            _playerData.isLockedWalking = false;
-        }
         playAgainForScore = false;
         pauseGame = false;
-    }
-    public void LockWalking()
-    {
-        if (_playerData.isLockedWalking)
-        {
-            _playerData.isLockedWalking = false;
-
-            lockWalkingText.text = "Not Locked";
-        }
-        else
-        {
-            _playerData.isLockedWalking = true;
-
-            lockWalkingText.text = "Locked";
-        }
     }
     public void LevelUpGame()
     {
         playAgainForScore = true;
-
-        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Game.ToString());
 
@@ -758,8 +705,6 @@ public class SceneController : MonoBehaviour
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
         levelData.currentLevel = LevelData.Levels.Level1;
-
-        // DestroySingletonObjects();
 
         LevelData.currentLevelCount = 0;
         playAgainForScore = true;
@@ -774,7 +719,7 @@ public class SceneController : MonoBehaviour
         {
             if (bulletData.currentWeaponName == BulletData.axe && bulletData.axeUsageLimit > 0)
             {
-                --bulletData.axeUsageLimit;
+                bulletData.axeUsageLimit--;
                 PlayerPrefs.SetInt("AxeUsageCount", bulletData.axeUsageLimit);
             }
             else if (bulletData.currentWeaponName == BulletData.axe && bulletData.axeUsageLimit == 0)
@@ -784,7 +729,7 @@ public class SceneController : MonoBehaviour
 
             if (bulletData.currentWeaponName == BulletData.bulldog && bulletData.bulldogUsageLimit > 0)
             {
-                --bulletData.bulldogUsageLimit;
+                bulletData.bulldogUsageLimit--;
                 PlayerPrefs.SetInt("BulldogUsageCount", bulletData.bulldogUsageLimit);
             }
             else if (bulletData.currentWeaponName == BulletData.bulldog && bulletData.bulldogUsageLimit == 0)
@@ -794,7 +739,7 @@ public class SceneController : MonoBehaviour
 
             if (bulletData.currentWeaponName == BulletData.cow && bulletData.cowUsageLimit > 0)
             {
-                --bulletData.cowUsageLimit;
+                bulletData.cowUsageLimit--;
                 PlayerPrefs.SetInt("CowUsageCount", bulletData.cowUsageLimit);
             }
             else if (bulletData.currentWeaponName == BulletData.cow && bulletData.cowUsageLimit == 0)
@@ -804,7 +749,7 @@ public class SceneController : MonoBehaviour
 
             if (bulletData.currentWeaponName == BulletData.crystal && bulletData.crystalUsageLimit > 0)
             {
-                --bulletData.crystalUsageLimit;
+                bulletData.crystalUsageLimit--;
                 PlayerPrefs.SetInt("CrystalUsageCount", bulletData.crystalUsageLimit);
             }
             else if (bulletData.currentWeaponName == BulletData.crystal && bulletData.crystalUsageLimit == 0)
@@ -814,7 +759,7 @@ public class SceneController : MonoBehaviour
 
             if (bulletData.currentWeaponName == BulletData.demon && bulletData.demonUsageLimit > 0)
             {
-                --bulletData.demonUsageLimit;
+                bulletData.demonUsageLimit--;
                 PlayerPrefs.SetInt("DemonUsageCount", bulletData.demonUsageLimit);
             }
             else if (bulletData.currentWeaponName == BulletData.demon && bulletData.demonUsageLimit == 0)
@@ -824,7 +769,7 @@ public class SceneController : MonoBehaviour
 
             if (bulletData.currentWeaponName == BulletData.ice && bulletData.iceUsageLimit > 0)
             {
-                --bulletData.iceUsageLimit;
+                bulletData.iceUsageLimit--;
                 PlayerPrefs.SetInt("IceUsageCount", bulletData.iceUsageLimit);
             }
             else if (bulletData.currentWeaponName == BulletData.ice && bulletData.iceUsageLimit == 0)
@@ -834,7 +779,7 @@ public class SceneController : MonoBehaviour
 
             if (bulletData.currentWeaponName == BulletData.electro && bulletData.electroUsageLimit > 0)
             {
-                --bulletData.electroUsageLimit;
+                bulletData.electroUsageLimit--;
                 PlayerPrefs.SetInt("ElectroUsageCount", bulletData.electroUsageLimit);
             }
             else if (bulletData.currentWeaponName == BulletData.electro && bulletData.electroUsageLimit == 0)
@@ -842,22 +787,22 @@ public class SceneController : MonoBehaviour
                 bulletData.currentWeaponName = BulletData.pistol;
             }
 
-            if (bulletData.currentWeaponName == BulletData.ak47 && bulletData.ak47UsageLimit > 0)
+            if (bulletData.currentWeaponName == BulletData.shotGun && bulletData.shotGunUsageLimit > 0)
             {
-                --bulletData.ak47UsageLimit;
-                PlayerPrefs.SetInt("Ak47UsageCount", bulletData.ak47UsageLimit);
+                bulletData.shotGunUsageLimit--;
+                PlayerPrefs.SetInt("ShotGunUsageCount", bulletData.shotGunUsageLimit);
             }
-            else if (bulletData.currentWeaponName == BulletData.ak47 && bulletData.ak47UsageLimit == 0)
+            else if (bulletData.currentWeaponName == BulletData.shotGun && bulletData.shotGunUsageLimit == 0)
             {
                 bulletData.currentWeaponName = BulletData.pistol;
             }
 
-            if (bulletData.currentWeaponName == BulletData.m4a4 && bulletData.m4a4UsageLimit > 0)
+            if (bulletData.currentWeaponName == BulletData.machine && bulletData.machineUsageLimit > 0)
             {
-                --bulletData.m4a4UsageLimit;
-                PlayerPrefs.SetInt("M4A4UsageCount", bulletData.m4a4UsageLimit);
+                bulletData.machineUsageLimit--;
+                PlayerPrefs.SetInt("MachineUsageCount", bulletData.machineUsageLimit);
             }
-            else if (bulletData.currentWeaponName == BulletData.m4a4 && bulletData.m4a4UsageLimit == 0)
+            else if (bulletData.currentWeaponName == BulletData.machine && bulletData.machineUsageLimit == 0)
             {
                 bulletData.currentWeaponName = BulletData.pistol;
             }
@@ -869,8 +814,6 @@ public class SceneController : MonoBehaviour
 
         playAgainForScore = true;
 
-        //DestroySingletonObjects();
-
         SceneManager.LoadScene(Scenes.Game.ToString());
 
         DecreaseWeaponUsageLimit();
@@ -880,8 +823,6 @@ public class SceneController : MonoBehaviour
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
         playAgainForScore = true;
-
-        //DestroySingletonObjects();
 
         SetCurrentLevelCount();
 
@@ -1066,8 +1007,6 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        //DestroySingletonObjects();
-
         SceneManager.LoadScene(Scenes.Levels.ToString());
     }
 
@@ -1087,8 +1026,6 @@ public class SceneController : MonoBehaviour
             playAgainForScore = true;
         }
 
-        //DestroySingletonObjects();
-
         SceneManager.LoadScene(Scenes.Menu.ToString());
 
     }
@@ -1099,16 +1036,12 @@ public class SceneController : MonoBehaviour
 
         levelData.currentLevel = LevelData.Levels.Level1;
 
-        //DestroySingletonObjects();
-
         SceneManager.LoadScene(Scenes.Menu.ToString());
 
     }
     public static void LoadMenuSceneByWinScene()
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.Menu.ToString());
     }
@@ -1117,17 +1050,11 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        //levelData.currentLevel = LevelData.Levels.Level1;
-
-        //DestroySingletonObjects();
-
         SceneManager.LoadScene(Scenes.Win.ToString());
     }
     public static void LoadCharacterChoosingScene()
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.PickCharacter.ToString());
     }
@@ -1135,15 +1062,11 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        //DestroySingletonObjects();        
-
         SceneManager.LoadScene(Scenes.PickWeapon.ToString());
     }
     public static void LoadEndScene()
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-        //DestroySingletonObjects();
 
         SceneManager.LoadScene(Scenes.End.ToString());
     }
@@ -1206,21 +1129,6 @@ public class SceneController : MonoBehaviour
             _playerData.isPlayable = false;
         }
     }
-    public void ControlRotate()
-    {
-        if (rotateTouchOrMousePos == true)
-        {
-            mouseOrTouchText.text = "Touch";
-
-            rotateTouchOrMousePos = false;
-        }
-        else
-        {
-            mouseOrTouchText.text = "Mouse";
-
-            rotateTouchOrMousePos = true;
-        }
-    }
    
     public enum Tags
     {
@@ -1259,8 +1167,8 @@ public class SceneController : MonoBehaviour
         CloneDobby,
 
         //Weapons
-        m4a4,
-        ak47,
+        machine,
+        shotGun,
         bulldog,
         cow,
         crystal,

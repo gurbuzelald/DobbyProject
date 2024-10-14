@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
+  playerBulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
   pools:
   - objectPrefab:
     - {fileID: 1909073336618291390, guid: b7695403ddc774c4091d84bc56f787bb, type: 3}
@@ -59,7 +60,7 @@ MonoBehaviour:
     - {fileID: 4299486794394585338, guid: 48882e0557a3a8d4fadc8cd50ff511ca, type: 3}
     - {fileID: 8425098538945327761, guid: 3b0e63e296aac3241aad532e5a748ddf, type: 3}
     objectTransform: {fileID: 0}
-    poolSize: 5
+    poolSize: 7
     bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
   - objectPrefab:
     - {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
@@ -117,6 +118,11 @@ MonoBehaviour:
     bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
   - objectPrefab:
     - {fileID: 5597880929392322997, guid: c3d186f24e85b9549b8b845c134e0d97, type: 3}
+    objectTransform: {fileID: 0}
+    poolSize: 1
+    bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
+  - objectPrefab:
+    - {fileID: 7486198881408922905, guid: e0ca519d8f748de48b2cdc4e12d21e8f, type: 3}
     objectTransform: {fileID: 0}
     poolSize: 1
     bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}

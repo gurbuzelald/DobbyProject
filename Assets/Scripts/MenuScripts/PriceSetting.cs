@@ -138,20 +138,20 @@ public class PriceSetting : MonoBehaviour
                         }
                         break;
                     
-                    case BulletData.WeaponNames.ak47:
-                        if (BulletData.locked == bulletData.ak47Lock)
+                    case BulletData.WeaponNames.shotGun:
+                        if (BulletData.locked == bulletData.shotGunLock)
                         {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.ak47Price.ToString() + " Coin";
+                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.shotGunPrice.ToString() + " Coin";
                         }
                         else
                         {
                             weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "";
                         }
                         break;
-                    case BulletData.WeaponNames.m4a4:
-                        if (BulletData.locked == bulletData.m4a4Lock)
+                    case BulletData.WeaponNames.machine:
+                        if (BulletData.locked == bulletData.machineLock)
                         {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.m4a4Price.ToString() + " Coin";
+                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.machinePrice.ToString() + " Coin";
                         }
                         else
                         {

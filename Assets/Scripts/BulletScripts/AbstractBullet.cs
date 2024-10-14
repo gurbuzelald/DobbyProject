@@ -46,7 +46,9 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
     }
 
     // Ortak bir coroutine oluşturup hem ObjectPool hem de EnemyObjectPool için kullanıyoruz
+#pragma warning disable CS0693 // Type parameter has the same name as the type parameter from outer type
     private IEnumerator DelayBulletCreate<T>(Transform bulletSpawn, float bulletSpeed, int objectpoolCount, T objectPool, float delayCreate, float delayDestroy) where T : Component
+#pragma warning restore CS0693 // Type parameter has the same name as the type parameter from outer type
     {
         // Belirtilen süre kadar bekle
         yield return new WaitForSeconds(delayCreate);
@@ -65,7 +67,7 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
         Rigidbody bulletRigidbody = bulletObject.GetComponent<Rigidbody>();
         if (bulletRigidbody != null)
         {
-            bulletRigidbody.velocity = bulletSpawn.TransformDirection(Vector3.forward * bulletSpeed);
+            bulletRigidbody.linearVelocity = bulletSpawn.TransformDirection(Vector3.forward * bulletSpeed);
         }
 
         // Belirli bir süre sonra mermiyi devre dışı bırak

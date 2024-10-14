@@ -6,7 +6,7 @@ using UnityEngine;
 public class LightController : MonoBehaviour
 {
     [SerializeField] GameObject[] lights;
-    [SerializeField] float delayLevelUpLight = 1.2f;
+    //[SerializeField] float delayLevelUpLight = 1.2f;
 
     [SerializeField] PlayerData playerData;
     [SerializeField] LevelData levelData;

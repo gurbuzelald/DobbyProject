@@ -43,7 +43,7 @@ public class MiniMapController : MonoBehaviour
     {
         if (PlayerManager.GetInstance.gameObject)
         {
-            if (PlayerManager.GetInstance.gameObject.transform.GetChild(0))
+            if (PlayerManager.GetInstance.gameObject.transform.childCount >= 1)
             {
                 if (PlayerManager.GetInstance.gameObject.transform.GetChild(0).childCount >= 8)
                 {

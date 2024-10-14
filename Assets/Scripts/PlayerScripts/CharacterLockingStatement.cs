@@ -107,8 +107,8 @@ public class CharacterLockingStatement : MonoBehaviour
             {
                 switch (weaponNames[i])
                 {
-                    case BulletData.WeaponNames.ak47:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.ak47Lock.ToString();
+                    case BulletData.WeaponNames.shotGun:
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.shotGunLock.ToString();
                         break;
                     case BulletData.WeaponNames.axe:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.axeLock.ToString();
@@ -134,8 +134,8 @@ public class CharacterLockingStatement : MonoBehaviour
                     case BulletData.WeaponNames.pistol:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.pistolLock.ToString();
                         break;
-                    case BulletData.WeaponNames.m4a4:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.m4a4Lock.ToString();
+                    case BulletData.WeaponNames.machine:
+                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.machineLock.ToString();
                         break;
                     default:
                         gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "No Valid";

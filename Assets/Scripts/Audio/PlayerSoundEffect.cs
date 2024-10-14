@@ -75,11 +75,11 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
 
     public void ShootSoundEffectStatement(ShootSoundEffectTypes shootSoundEffectType)
     {
-        if (PlayerSoundEffect.ShootSoundEffectTypes.Ak47 == shootSoundEffectType)
+        if (PlayerSoundEffect.ShootSoundEffectTypes.ShotGun == shootSoundEffectType)
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
-        else if (PlayerSoundEffect.ShootSoundEffectTypes.M4a4 == shootSoundEffectType)
+        else if (PlayerSoundEffect.ShootSoundEffectTypes.Machine == shootSoundEffectType)
         {
             WeaponSFX(shootSoundEffectType, weaponAudioData);
         }
@@ -167,8 +167,8 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
 
     public enum ShootSoundEffectTypes
     {
-        Ak47,
-        M4a4,
+        ShotGun,
+        Machine,
         Bulldog,
         Cow,
         Crystal,

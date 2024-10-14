@@ -249,8 +249,6 @@ public class LevelUpController : MonoBehaviour
 
     private void Update()
     {
-        CurrentLevelID();
-        
         SetDetectionOfEnemyAtUpdate(LevelData.currentLevelCount);
         ArrowLevelRotation(LevelData.currentLevelCount);
 
@@ -606,7 +604,7 @@ public class LevelUpController : MonoBehaviour
 
             levelData.currentLevel = LevelData.Levels.Level9;
             levelData.currentEnemyObjects = levelData.enemyNinethObjects;
-            bulletData.currentGiftBox = bulletData.ak47GiftBox;
+            bulletData.currentGiftBox = bulletData.shotGunGiftBox;
             CurrentLevelID();
             coinSpawner.SetCoinValue(LevelData.currentLevelCount);
             mapController.SetSkybox(LevelData.currentLevelCount);
@@ -621,7 +619,7 @@ public class LevelUpController : MonoBehaviour
 
             levelData.currentLevel = LevelData.Levels.Level10;
             levelData.currentEnemyObjects = levelData.enemyTenthObjects;
-            bulletData.currentGiftBox = bulletData.m4a4GiftBox;
+            bulletData.currentGiftBox = bulletData.machineGiftBox;
             CurrentLevelID();
             coinSpawner.SetCoinValue(LevelData.currentLevelCount);
             mapController.SetSkybox(LevelData.currentLevelCount);

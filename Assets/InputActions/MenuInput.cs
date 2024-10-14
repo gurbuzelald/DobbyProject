@@ -938,7 +938,7 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Ak47"",
+                    ""name"": ""ShotGun"",
                     ""type"": ""Button"",
                     ""id"": ""35563838-c161-4bc0-b873-e4c3e5f4792b"",
                     ""expectedControlType"": ""Button"",
@@ -947,7 +947,7 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""M4A4"",
+                    ""name"": ""Machine"",
                     ""type"": ""Button"",
                     ""id"": ""7919ba87-efc5-4355-b281-cb5e84ba91d4"",
                     ""expectedControlType"": ""Button"",
@@ -1074,7 +1074,7 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Ak47"",
+                    ""action"": ""ShotGun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1085,7 +1085,7 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""M4A4"",
+                    ""action"": ""Machine"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1291,8 +1291,8 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
         m_PickWeaponSceneButtons_Demon = m_PickWeaponSceneButtons.FindAction("Demon", throwIfNotFound: true);
         m_PickWeaponSceneButtons_Ice = m_PickWeaponSceneButtons.FindAction("Ice", throwIfNotFound: true);
         m_PickWeaponSceneButtons_Electro = m_PickWeaponSceneButtons.FindAction("Electro", throwIfNotFound: true);
-        m_PickWeaponSceneButtons_Ak47 = m_PickWeaponSceneButtons.FindAction("Ak47", throwIfNotFound: true);
-        m_PickWeaponSceneButtons_M4A4 = m_PickWeaponSceneButtons.FindAction("M4A4", throwIfNotFound: true);
+        m_PickWeaponSceneButtons_ShotGun = m_PickWeaponSceneButtons.FindAction("ShotGun", throwIfNotFound: true);
+        m_PickWeaponSceneButtons_Machine = m_PickWeaponSceneButtons.FindAction("Machine", throwIfNotFound: true);
         // EndSceneButttons
         m_EndSceneButttons = asset.FindActionMap("EndSceneButttons", throwIfNotFound: true);
         m_EndSceneButttons_MenuButton = m_EndSceneButttons.FindAction("MenuButton", throwIfNotFound: true);
@@ -1876,8 +1876,8 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_PickWeaponSceneButtons_Demon;
     private readonly InputAction m_PickWeaponSceneButtons_Ice;
     private readonly InputAction m_PickWeaponSceneButtons_Electro;
-    private readonly InputAction m_PickWeaponSceneButtons_Ak47;
-    private readonly InputAction m_PickWeaponSceneButtons_M4A4;
+    private readonly InputAction m_PickWeaponSceneButtons_ShotGun;
+    private readonly InputAction m_PickWeaponSceneButtons_Machine;
     public struct PickWeaponSceneButtonsActions
     {
         private @MenuInput m_Wrapper;
@@ -1892,8 +1892,8 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
         public InputAction @Demon => m_Wrapper.m_PickWeaponSceneButtons_Demon;
         public InputAction @Ice => m_Wrapper.m_PickWeaponSceneButtons_Ice;
         public InputAction @Electro => m_Wrapper.m_PickWeaponSceneButtons_Electro;
-        public InputAction @Ak47 => m_Wrapper.m_PickWeaponSceneButtons_Ak47;
-        public InputAction @M4A4 => m_Wrapper.m_PickWeaponSceneButtons_M4A4;
+        public InputAction @Shotgun => m_Wrapper.m_PickWeaponSceneButtons_ShotGun;
+        public InputAction Machine => m_Wrapper.m_PickWeaponSceneButtons_Machine;
         public InputActionMap Get() { return m_Wrapper.m_PickWeaponSceneButtons; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1933,12 +1933,12 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
             @Electro.started += instance.OnElectro;
             @Electro.performed += instance.OnElectro;
             @Electro.canceled += instance.OnElectro;
-            @Ak47.started += instance.OnAk47;
-            @Ak47.performed += instance.OnAk47;
-            @Ak47.canceled += instance.OnAk47;
-            @M4A4.started += instance.OnM4A4;
-            @M4A4.performed += instance.OnM4A4;
-            @M4A4.canceled += instance.OnM4A4;
+            @Shotgun.started += instance.ONShotGun;
+            @Shotgun.performed += instance.ONShotGun;
+            @Shotgun.canceled += instance.ONShotGun;
+            Machine.started += instance.OnMachine;
+            Machine.performed += instance.OnMachine;
+            Machine.canceled += instance.OnMachine;
         }
 
         private void UnregisterCallbacks(IPickWeaponSceneButtonsActions instance)
@@ -1973,12 +1973,12 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
             @Electro.started -= instance.OnElectro;
             @Electro.performed -= instance.OnElectro;
             @Electro.canceled -= instance.OnElectro;
-            @Ak47.started -= instance.OnAk47;
-            @Ak47.performed -= instance.OnAk47;
-            @Ak47.canceled -= instance.OnAk47;
-            @M4A4.started -= instance.OnM4A4;
-            @M4A4.performed -= instance.OnM4A4;
-            @M4A4.canceled -= instance.OnM4A4;
+            @Shotgun.started -= instance.ONShotGun;
+            @Shotgun.performed -= instance.ONShotGun;
+            @Shotgun.canceled -= instance.ONShotGun;
+            Machine.started -= instance.OnMachine;
+            Machine.performed -= instance.OnMachine;
+            Machine.canceled -= instance.OnMachine;
         }
 
         public void RemoveCallbacks(IPickWeaponSceneButtonsActions instance)
@@ -2186,8 +2186,8 @@ public partial class @MenuInput: IInputActionCollection2, IDisposable
         void OnDemon(InputAction.CallbackContext context);
         void OnIce(InputAction.CallbackContext context);
         void OnElectro(InputAction.CallbackContext context);
-        void OnAk47(InputAction.CallbackContext context);
-        void OnM4A4(InputAction.CallbackContext context);
+        void ONShotGun(InputAction.CallbackContext context);
+        void OnMachine(InputAction.CallbackContext context);
     }
     public interface IEndSceneButttonsActions
     {

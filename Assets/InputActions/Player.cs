@@ -563,7 +563,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""AK47"",
+                    ""name"": ""ShotGun"",
                     ""type"": ""Button"",
                     ""id"": ""223c4f2b-6925-4002-856a-bfe0dce62ada"",
                     ""expectedControlType"": ""Button"",
@@ -644,7 +644,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""M4a4"",
+                    ""name"": ""Machine"",
                     ""type"": ""Button"",
                     ""id"": ""5fdc0c96-661b-4c0e-b213-c3b0d07a6bf3"",
                     ""expectedControlType"": ""Button"",
@@ -672,7 +672,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""AK47"",
+                    ""action"": ""ShotGun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -771,7 +771,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""M4a4"",
+                    ""action"": ""Machine"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -835,7 +835,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         // WeaponMenuInput
         m_WeaponMenuInput = asset.FindActionMap("WeaponMenuInput", throwIfNotFound: true);
         m_WeaponMenuInput_WeaponStick = m_WeaponMenuInput.FindAction("WeaponStick", throwIfNotFound: true);
-        m_WeaponMenuInput_AK47 = m_WeaponMenuInput.FindAction("AK47", throwIfNotFound: true);
+        m_WeaponMenuInput_ShotGun = m_WeaponMenuInput.FindAction("ShotGun", throwIfNotFound: true);
         m_WeaponMenuInput_Axe = m_WeaponMenuInput.FindAction("Axe", throwIfNotFound: true);
         m_WeaponMenuInput_Bulldog = m_WeaponMenuInput.FindAction("Bulldog", throwIfNotFound: true);
         m_WeaponMenuInput_Cow = m_WeaponMenuInput.FindAction("Cow", throwIfNotFound: true);
@@ -844,7 +844,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         m_WeaponMenuInput_Ice = m_WeaponMenuInput.FindAction("Ice", throwIfNotFound: true);
         m_WeaponMenuInput_Electro = m_WeaponMenuInput.FindAction("Electro", throwIfNotFound: true);
         m_WeaponMenuInput_Pistol = m_WeaponMenuInput.FindAction("Pistol", throwIfNotFound: true);
-        m_WeaponMenuInput_M4a4 = m_WeaponMenuInput.FindAction("M4a4", throwIfNotFound: true);
+        m_WeaponMenuInput_Machine = m_WeaponMenuInput.FindAction("Machine", throwIfNotFound: true);
         // GrowMap
         m_GrowMap = asset.FindActionMap("GrowMap", throwIfNotFound: true);
         m_GrowMap_GrowingStuate = m_GrowMap.FindAction("GrowingStuate", throwIfNotFound: true);
@@ -1118,7 +1118,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_WeaponMenuInput;
     private IWeaponMenuInputActions m_WeaponMenuInputActionsCallbackInterface;
     private readonly InputAction m_WeaponMenuInput_WeaponStick;
-    private readonly InputAction m_WeaponMenuInput_AK47;
+    private readonly InputAction m_WeaponMenuInput_ShotGun;
     private readonly InputAction m_WeaponMenuInput_Axe;
     private readonly InputAction m_WeaponMenuInput_Bulldog;
     private readonly InputAction m_WeaponMenuInput_Cow;
@@ -1127,13 +1127,13 @@ public partial class @Player : IInputActionCollection2, IDisposable
     private readonly InputAction m_WeaponMenuInput_Ice;
     private readonly InputAction m_WeaponMenuInput_Electro;
     private readonly InputAction m_WeaponMenuInput_Pistol;
-    private readonly InputAction m_WeaponMenuInput_M4a4;
+    private readonly InputAction m_WeaponMenuInput_Machine;
     public struct WeaponMenuInputActions
     {
         private @Player m_Wrapper;
         public WeaponMenuInputActions(@Player wrapper) { m_Wrapper = wrapper; }
         public InputAction @WeaponStick => m_Wrapper.m_WeaponMenuInput_WeaponStick;
-        public InputAction @AK47 => m_Wrapper.m_WeaponMenuInput_AK47;
+        public InputAction ShotGun => m_Wrapper.m_WeaponMenuInput_ShotGun;
         public InputAction @Axe => m_Wrapper.m_WeaponMenuInput_Axe;
         public InputAction @Bulldog => m_Wrapper.m_WeaponMenuInput_Bulldog;
         public InputAction @Cow => m_Wrapper.m_WeaponMenuInput_Cow;
@@ -1142,7 +1142,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         public InputAction @Ice => m_Wrapper.m_WeaponMenuInput_Ice;
         public InputAction Electro => m_Wrapper.m_WeaponMenuInput_Electro;
         public InputAction @Pistol => m_Wrapper.m_WeaponMenuInput_Pistol;
-        public InputAction @M4a4 => m_Wrapper.m_WeaponMenuInput_M4a4;
+        public InputAction @Machine => m_Wrapper.m_WeaponMenuInput_Machine;
         public InputActionMap Get() { return m_Wrapper.m_WeaponMenuInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1155,9 +1155,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @WeaponStick.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnWeaponStick;
                 @WeaponStick.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnWeaponStick;
                 @WeaponStick.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnWeaponStick;
-                @AK47.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnAK47;
-                @AK47.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnAK47;
-                @AK47.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnAK47;
+                ShotGun.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnShotGun;
+                ShotGun.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnShotGun;
+                ShotGun.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnShotGun;
                 @Axe.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnAxe;
                 @Axe.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnAxe;
                 @Axe.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnAxe;
@@ -1182,9 +1182,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Pistol.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnPistol;
                 @Pistol.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnPistol;
                 @Pistol.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnPistol;
-                @M4a4.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnM4a4;
-                @M4a4.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnM4a4;
-                @M4a4.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnM4a4;
+                @Machine.started -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnMachine;
+                @Machine.performed -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnMachine;
+                @Machine.canceled -= m_Wrapper.m_WeaponMenuInputActionsCallbackInterface.OnMachine;
             }
             m_Wrapper.m_WeaponMenuInputActionsCallbackInterface = instance;
             if (instance != null)
@@ -1192,9 +1192,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @WeaponStick.started += instance.OnWeaponStick;
                 @WeaponStick.performed += instance.OnWeaponStick;
                 @WeaponStick.canceled += instance.OnWeaponStick;
-                @AK47.started += instance.OnAK47;
-                @AK47.performed += instance.OnAK47;
-                @AK47.canceled += instance.OnAK47;
+                ShotGun.started += instance.OnShotGun;
+                ShotGun.performed += instance.OnShotGun;
+                ShotGun.canceled += instance.OnShotGun;
                 @Axe.started += instance.OnAxe;
                 @Axe.performed += instance.OnAxe;
                 @Axe.canceled += instance.OnAxe;
@@ -1219,9 +1219,9 @@ public partial class @Player : IInputActionCollection2, IDisposable
                 @Pistol.started += instance.OnPistol;
                 @Pistol.performed += instance.OnPistol;
                 @Pistol.canceled += instance.OnPistol;
-                @M4a4.started += instance.OnM4a4;
-                @M4a4.performed += instance.OnM4a4;
-                @M4a4.canceled += instance.OnM4a4;
+                Machine.started += instance.OnMachine;
+                Machine.performed += instance.OnMachine;
+                Machine.canceled += instance.OnMachine;
             }
         }
     }
@@ -1288,7 +1288,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
     public interface IWeaponMenuInputActions
     {
         void OnWeaponStick(InputAction.CallbackContext context);
-        void OnAK47(InputAction.CallbackContext context);
+        void OnShotGun(InputAction.CallbackContext context);
         void OnAxe(InputAction.CallbackContext context);
         void OnBulldog(InputAction.CallbackContext context);
         void OnCow(InputAction.CallbackContext context);
@@ -1297,7 +1297,7 @@ public partial class @Player : IInputActionCollection2, IDisposable
         void OnIce(InputAction.CallbackContext context);
         void OnElectro(InputAction.CallbackContext context);
         void OnPistol(InputAction.CallbackContext context);
-        void OnM4a4(InputAction.CallbackContext context);
+        void OnMachine(InputAction.CallbackContext context);
     }
     public interface IGrowMapActions
     {
