@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class ButtonController : MonoBehaviour
 {
     private MenuInput menuInput;
 
+    public PlayerData playerData;
+    public BulletData bulletData;
 
     //Game Scene Buttons
     private bool pauseButton;
@@ -224,6 +227,53 @@ public class ButtonController : MonoBehaviour
             PickWeaponEvents();
         }
     }
+    /*public bool GetButton(string weaponName)
+    {
+        if (weaponName == bulletData.weaponStruct[0].weaponName)
+        {
+            return Pistol;
+        }
+        else if (weaponName == bulletData.weaponStruct[1].weaponName)
+        {
+            return Axe;
+        }
+        else if (weaponName == bulletData.weaponStruct[2].weaponName)
+        {
+            return Bulldog;
+        }
+        else if (weaponName == bulletData.weaponStruct[3].weaponName)
+        {
+            return Cow;
+        }
+        else if (weaponName == bulletData.weaponStruct[4].weaponName)
+        {
+            return Crystal;
+        }
+        else if (weaponName == bulletData.weaponStruct[5].weaponName)
+        {
+            return Demon;
+        }
+        else if (weaponName == bulletData.weaponStruct[6].weaponName)
+        {
+            return Ice;
+        }
+        else if (weaponName == bulletData.weaponStruct[7].weaponName)
+        {
+            return Electro;
+        }
+        else if (weaponName == bulletData.weaponStruct[8].weaponName)
+        {
+            return ShotGun;
+        }
+        else if (weaponName == bulletData.weaponStruct[9].weaponName)
+        {
+            return Machine;
+        }
+        else
+        {
+            return false;
+        }
+    }*/
 
     void PickWeaponEvents()
     {
@@ -252,6 +302,7 @@ public class ButtonController : MonoBehaviour
             pickCharacterMenuButton = menuInput.PickCharacterSceneButtons.MenuButton.IsPressed();
             openPickWeaponSceneByPickCharacterSceneButton = menuInput.PickCharacterSceneButtons.PickWeaponButton.IsPressed();
 
+            
             Dobby = menuInput.PickCharacterSceneButtons.Dobby.IsPressed();
             Joleen = menuInput.PickCharacterSceneButtons.Joleen.IsPressed();
             Glassy = menuInput.PickCharacterSceneButtons.Glassy.IsPressed();
@@ -263,10 +314,61 @@ public class ButtonController : MonoBehaviour
             Boss = menuInput.PickCharacterSceneButtons.Boss.IsPressed();
             Ty = menuInput.PickCharacterSceneButtons.Ty.IsPressed();
             Mremireh = menuInput.PickCharacterSceneButtons.Mremireh.IsPressed();
-
+            
 
             PickCharacterEvents();
         }    
+    }
+    public bool GetButtonState(int characteID)
+    {
+        if (characteID == playerData.characterStruct[0].id)
+        {
+            return Dobby;
+        }
+        else if (characteID == playerData.characterStruct[1].id)
+        {
+            return Glassy;
+        }
+        else if (characteID == playerData.characterStruct[2].id)
+        {
+            return Guard;
+        }
+        else if (characteID == playerData.characterStruct[3].id)
+        {
+            return Joleen;
+        }
+        else if (characteID == playerData.characterStruct[4].id)
+        {
+            return Lusth;
+        }
+        else if (characteID == playerData.characterStruct[5].id)
+        {
+            return Eve;
+        }
+        else if (characteID == playerData.characterStruct[6].id)
+        {
+            return Michelle;
+        }
+        else if (characteID == playerData.characterStruct[7].id)
+        {
+            return Boss;
+        }
+        else if (characteID == playerData.characterStruct[8].id)
+        {
+            return Aj;
+        }
+        else if (characteID == playerData.characterStruct[9].id)
+        {
+            return Mremireh;
+        }
+        else if (characteID == playerData.characterStruct[10].id)
+        {
+            return Ty;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     void PickCharacterEvents()
@@ -308,6 +410,8 @@ public class ButtonController : MonoBehaviour
             LevelsEvents();
         }
     }
+
+    
 
     void LevelsEvents()
     {

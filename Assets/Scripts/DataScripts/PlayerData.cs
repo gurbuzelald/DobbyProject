@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -5,8 +6,29 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
 public class PlayerData : ScriptableObject
 {
+    [Serializable]
+    public struct CharacterStruct
+    {
+        public GameObject characterObject;
+        public int durability;
+        public int price;
+        public int jumpForce;
+        public int speed;
+        public int id;
+        public string name;
+        public string lockState;
+    }
+
+    public CharacterStruct[] characterStruct = new CharacterStruct[11];
+
+
+    [Header("Pick Character")]
+    public static int currentCharacterID;
+
+
     [Header("Player Object")]
     public GameObject playerObject;
+    public GameObject characterObject;
 
     [Header("Player Object Pool IDs")]
     public int playerWeaponBulletObjectPoolCount;//0
@@ -66,17 +88,6 @@ public class PlayerData : ScriptableObject
     
 
     [Header("Character Durabilities")]
-    public int dobbyDurability;
-    public int glassyDurability;
-    public int joleenDurability;
-    public int guardDurability;
-    public int lusthDurability;
-    public int eveDurability;
-    public int michelleDurability;
-    public int bossDurability;
-    public int ajDurability;
-    public int mremirehDurability;
-    public int tyDurability;
     public static int currentCharacterDurability;
     
     [Header("Enemy Names")]
@@ -102,33 +113,7 @@ public class PlayerData : ScriptableObject
     public TextMeshProUGUI damageHealthText;
     public int decreaseCounter;
 
-    [Header("Pick Character")]
-    public CharacterNames currentCharacterName;
-    public GameObject characterObject;
-    public GameObject dobby;
-    public GameObject glassy;
-    public GameObject joleen;
-    public GameObject guard;
-    public GameObject lusth;
-    public GameObject eve;
-    public GameObject michelle;
-    public GameObject boss;
-    public GameObject aj;
-    public GameObject mremireh;
-    public GameObject ty;
-
     [Header("Character Locking Modes")]
-    public string dobbyLock = "locked";
-    public string glassyLock = "locked";
-    public string joleenLock = "locked";
-    public string guardLock = "locked";
-    public string lusthLock = "locked";
-    public string eveLock = "locked";
-    public string michelleLock = "locked";
-    public string ajLock = "locked";
-    public string bossLock = "locked";
-    public string mremirehLock = "locked";
-    public string tyLock = "locked";
     public string resetLocks = "locked";
     public string locked = "locked";
     public string unLocked = "";
@@ -147,54 +132,15 @@ public class PlayerData : ScriptableObject
     public bool isTouchFinish;
     public bool isLose;
 
-    [Header("Character Prices")]
-    public int joleenPrice;
-    public int dobbyPrice;
-    public int glassyPrice;
-    public int lusthPrice;
-    public int guardPrice;
-    public int michellePrice;
-    public int evePrice;
-    public int ajPrice;
-    public int bossPrice;
-    public int tyPrice;
-    public int mremirehPrice;
-
     [Header("Speed")]
 
-    public float playerSpeed;
-    public float skateBoardSpeed;
-    public float climbSpeed;
+    public static float currentCharacterSpeed;
     public float rotateSpeed;
 
-    [Header("Character Speeds")]
-    public float dobbySpeed;
-    public float michelleSpeed;
-    public float glassySpeed;
-    public float ajSpeed;
-    public float eveSpeed;
-    public float mremirehSpeed;
-    public float lusthSpeed;
-    public float joleenSpeed;
-    public float bossSpeed;
-    public float tySpeed;
-    public float guardSpeed;
-        
 
     [Header("Character Jump Forces")]
-    public Dictionary<int, GameObject> characterStaffs;
-    public float currentJumpForce;
-    public float dobbyJumpForce;
-    public float michelleJumpForce;
-    public float glassyJumpForce;
-    public float ajJumpForce;
-    public float eveJumpForce;
-    public float mremirehJumpForce;
-    public float lusthJumpForce;
-    public float joleenJumpForce;
-    public float bossJumpForce;
-    public float tyJumpForce;
-    public float guardJumpForce;
+    public Dictionary<int, GameObject> characterInfos;
+    public static float currentJumpForce;
 
 
     [Header("Avaliable Characters")]
@@ -252,9 +198,6 @@ public class PlayerData : ScriptableObject
     public int particleCount;
     
 
-    [Header("Bullet Data")]
-    
-
 
     [Header("Destination Touch Control")]
     public bool isTouchFirst;
@@ -264,20 +207,13 @@ public class PlayerData : ScriptableObject
     [Header("Bullet Explosions")]
     public GameObject[] weaponBulletExplosionParticles;
 
-    public enum CharacterNames
+
+    public int GetCharacterID()
     {
-        Glassy,
-        Dobby,
-        Joleen,
-        Lusth,
-        Guard,
-        Eve,
-        Michelle,
-        Boss,
-        Aj, 
-        Mremireh,
-        Ty
+        return currentCharacterID;
     }
+
+    
     public enum Languages
     {
         Turkish,

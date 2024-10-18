@@ -9,8 +9,8 @@ public class PriceSetting : MonoBehaviour
     [SerializeField] PlayerData playerData;    
     [SerializeField] BulletData bulletData;    
 
-    private PlayerData.CharacterNames[] characterNames = new PlayerData.CharacterNames[12];
-    private BulletData.WeaponNames[] weaponNames = new BulletData.WeaponNames[10];
+    private string[] characterNames = new string[11];
+    private string[] weaponNames = new string[10];
 
 
     public GameObject[] characterStaffs;
@@ -33,7 +33,7 @@ public class PriceSetting : MonoBehaviour
         {
             for (int i = 0; i < characterStaffs.Length; i++)
             {
-                characterNames[i] = Enum.Parse<PlayerData.CharacterNames>(characterStaffs[i].transform.GetChild(0).name);
+                characterNames[i] = characterStaffs[i].transform.GetChild(0).name;
             }
         }        
     }
@@ -44,7 +44,7 @@ public class PriceSetting : MonoBehaviour
         {
             for (int i = 0; i < weaponStaffs.Length; i++)
             {
-                weaponNames[i] = Enum.Parse<BulletData.WeaponNames>(weaponStaffs[i].transform.GetChild(0).name);
+                weaponNames[i] = weaponStaffs[i].transform.GetChild(0).name;
             }            
 
         }
@@ -53,244 +53,61 @@ public class PriceSetting : MonoBehaviour
     {
         if (weaponStaffs.Length != 0)
         {
+            Dictionary<string, (string lockState, int price)> weaponDataMap = new Dictionary<string, (string, int)>
+        {
+            { bulletData.weaponStruct[0].weaponName, (bulletData.weaponStruct[0].lockState, bulletData.weaponStruct[0].price) },
+            { bulletData.weaponStruct[1].weaponName, (bulletData.weaponStruct[1].lockState, bulletData.weaponStruct[1].price) },
+            { bulletData.weaponStruct[2].weaponName, (bulletData.weaponStruct[2].lockState, bulletData.weaponStruct[2].price) },
+            { bulletData.weaponStruct[3].weaponName, (bulletData.weaponStruct[3].lockState, bulletData.weaponStruct[3].price) },
+            { bulletData.weaponStruct[4].weaponName, (bulletData.weaponStruct[4].lockState, bulletData.weaponStruct[4].price) },
+            { bulletData.weaponStruct[5].weaponName, (bulletData.weaponStruct[5].lockState, bulletData.weaponStruct[5].price) },
+            { bulletData.weaponStruct[6].weaponName, (bulletData.weaponStruct[6].lockState, bulletData.weaponStruct[6].price) },
+            { bulletData.weaponStruct[7].weaponName, (bulletData.weaponStruct[7].lockState, bulletData.weaponStruct[7].price) },
+            { bulletData.weaponStruct[8].weaponName, (bulletData.weaponStruct[8].lockState, bulletData.weaponStruct[8].price) },
+            { bulletData.weaponStruct[9].weaponName, (bulletData.weaponStruct[9].lockState, bulletData.weaponStruct[9].price) }
+        };
+
             for (int i = 0; i < weaponStaffs.Length; i++)
             {
-                switch (weaponNames[i])
+                if (weaponDataMap.TryGetValue(weaponNames[i], out var weaponData))
                 {
-                    case BulletData.WeaponNames.pistol:
-                        if (BulletData.locked == bulletData.pistolLock)
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.pistolPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "";
-                        }
-                        break;
-                    case BulletData.WeaponNames.axe:
-                        if (BulletData.locked == bulletData.axeLock)
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.axePrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "";
-                        }
-                        break;
-                    case BulletData.WeaponNames.bulldog:
-                        if (BulletData.locked == bulletData.bulldogLock)
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.bulldogPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "";
-                        }
-                        break;
-                    case BulletData.WeaponNames.cow:
-                        if (BulletData.locked == bulletData.cowLock)
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.cowPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "";
-                        }
-                        break;
-                    case BulletData.WeaponNames.crystal:
-                        if (BulletData.locked == bulletData.crystalLock)
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.crystalPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "";
-                        }
-                        break;
-                    case BulletData.WeaponNames.demon:
-                        if (BulletData.locked == bulletData.demonLock)
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.demonPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "";
-                        }
-                        break;
-                    case BulletData.WeaponNames.ice:
-                        if (BulletData.locked == bulletData.iceLock)
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.icePrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "";
-                        }
-                        break;
-                    case BulletData.WeaponNames.electro:
-                        if (BulletData.locked == bulletData.electroLock)
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.electroPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "";
-                        }
-                        break;
-                    
-                    case BulletData.WeaponNames.shotGun:
-                        if (BulletData.locked == bulletData.shotGunLock)
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.shotGunPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "";
-                        }
-                        break;
-                    case BulletData.WeaponNames.machine:
-                        if (BulletData.locked == bulletData.machineLock)
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = bulletData.machinePrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "";
-                        }
-                        break;
-                    default:
-                        weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text= "No Valid";
-                        break;
-
+                    // If the weapon is locked, display its price; otherwise, clear the text.
+                    weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text =
+                        BulletData.locked == weaponData.lockState ? weaponData.price.ToString() + " Coin" : "";
+                }
+                else
+                {
+                    weaponPriceTexts[i].transform.GetComponent<TextMeshProUGUI>().text = "No Valid";
                 }
             }
         }
     }
+
     public void SetCharacterPrices()
     {
         if (characterStaffs.Length != 0)
         {
             for (int i = 0; i < characterPriceTexts.Length; i++)
             {
-                switch (characterNames[i])
+                string characterName = characterNames[i];
+                for (int j = 0; j < playerData.characterStruct.Length; j++)
                 {
-                    case PlayerData.CharacterNames.Joleen:
-                        if (playerData.locked == playerData.joleenLock)
+                    if (playerData.characterStruct[j].name == characterName)
+                    {
+                        // Check lock state and set price text
+                        if (playerData.locked == playerData.characterStruct[j].lockState)
                         {
-                            characterPriceTexts[i].text = playerData.joleenPrice.ToString() + " Coin";
-
+                            characterPriceTexts[i].text = playerData.characterStruct[j].price.ToString() + " Coin";
                         }
-                        else
-                        {
-                            characterPriceTexts[i].text = "";
-                        }
-                        break;
-                    case PlayerData.CharacterNames.Dobby:
-                        if (playerData.locked == playerData.dobbyLock)
-                        {
-                            characterPriceTexts[i].text = playerData.dobbyPrice.ToString() + " Coin";
-                        }
-                        else
+                        else if (playerData.locked != playerData.characterStruct[j].lockState)
                         {
                             characterPriceTexts[i].text = "";
                         }
-                        break;
-                    case PlayerData.CharacterNames.Glassy:
-                        if (playerData.locked == playerData.glassyLock)
-                        {
-                            characterPriceTexts[i].text = playerData.glassyPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            characterPriceTexts[i].text = "";
-                        }
-                        break;
-                    case PlayerData.CharacterNames.Lusth:
-                        if (playerData.locked == playerData.lusthLock)
-                        {
-                            characterPriceTexts[i].text = playerData.lusthPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            characterPriceTexts[i].text = "";
-                        }
-                        break;
-                    case PlayerData.CharacterNames.Guard:
-                        if (playerData.locked == playerData.guardLock)
-                        {
-                            characterPriceTexts[i].text = playerData.guardPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            characterPriceTexts[i].text = "";
-                        }
-                        break;
-                    case PlayerData.CharacterNames.Michelle:
-                        if (playerData.locked == playerData.michelleLock)
-                        {
-                            characterPriceTexts[i].text = playerData.michellePrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            characterPriceTexts[i].text = "";
-                        }
-                        break;
-                    case PlayerData.CharacterNames.Eve:
-                        if (playerData.locked == playerData.eveLock)
-                        {
-                            characterPriceTexts[i].text = playerData.evePrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            characterPriceTexts[i].text = "";
-                        }
-                        break;
-                    case PlayerData.CharacterNames.Aj:
-                        if (playerData.locked == playerData.ajLock)
-                        {
-                            characterPriceTexts[i].text = playerData.ajPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            characterPriceTexts[i].text = "";
-                        }
-                        break;
-                    case PlayerData.CharacterNames.Boss:
-                        if (playerData.locked == playerData.bossLock)
-                        {
-                            characterPriceTexts[i].text = playerData.bossPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            characterPriceTexts[i].text = "";
-                        }
-                        break;
-                    case PlayerData.CharacterNames.Ty:
-                        if (playerData.locked == playerData.tyLock)
-                        {
-                            characterPriceTexts[i].text = playerData.tyPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            characterPriceTexts[i].text = "";
-                        }
-                        break;
-                    case PlayerData.CharacterNames.Mremireh:
-                        if (playerData.locked == playerData.mremirehLock)
-                        {
-                            characterPriceTexts[i].text = playerData.mremirehPrice.ToString() + " Coin";
-                        }
-                        else
-                        {
-                            characterPriceTexts[i].text = "";
-                        }
-                        break;
-                    default:
-                        characterPriceTexts[i].text = "No Valid";
-                        break;
-
+                        break; // Exit the loop once a match is found.
+                    }
                 }
             }
         }
     }
+
 }

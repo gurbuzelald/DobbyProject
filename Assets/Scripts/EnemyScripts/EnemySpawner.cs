@@ -45,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
         EnemyData.enemyDeathCount = 0;
         enemyData.isActivateCreateEnemy = false;
 
-        CreateEnemiesAtStart(LevelData.currentLevelCount);
+        CreateEnemiesAtStart(LevelData.currentLevelId);
     }
 
     

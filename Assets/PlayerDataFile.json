@@ -1,6 +1,143 @@
 {
+    "characterStruct": [
+        {
+            "characterObject": {
+                "instanceID": 49038
+            },
+            "durability": 1,
+            "price": 0,
+            "jumpForce": 10,
+            "speed": 1,
+            "id": 0,
+            "name": "Dobby",
+            "lockState": ""
+        },
+        {
+            "characterObject": {
+                "instanceID": 49040
+            },
+            "durability": 1,
+            "price": 2,
+            "jumpForce": 1,
+            "speed": 1,
+            "id": 1,
+            "name": "Glassy",
+            "lockState": "Locked"
+        },
+        {
+            "characterObject": {
+                "instanceID": 49044
+            },
+            "durability": 1,
+            "price": 3,
+            "jumpForce": 1,
+            "speed": 1,
+            "id": 2,
+            "name": "Guard",
+            "lockState": "Locked"
+        },
+        {
+            "characterObject": {
+                "instanceID": 49042
+            },
+            "durability": 1,
+            "price": 4,
+            "jumpForce": 1,
+            "speed": 1,
+            "id": 3,
+            "name": "Joleen",
+            "lockState": "Locked"
+        },
+        {
+            "characterObject": {
+                "instanceID": 49046
+            },
+            "durability": 1,
+            "price": 5,
+            "jumpForce": 1,
+            "speed": 1,
+            "id": 4,
+            "name": "Lusth",
+            "lockState": "Locked"
+        },
+        {
+            "characterObject": {
+                "instanceID": 49048
+            },
+            "durability": 1,
+            "price": 6,
+            "jumpForce": 1,
+            "speed": 1,
+            "id": 5,
+            "name": "Eve",
+            "lockState": "Locked"
+        },
+        {
+            "characterObject": {
+                "instanceID": 49050
+            },
+            "durability": 1,
+            "price": 7,
+            "jumpForce": 1,
+            "speed": 1,
+            "id": 6,
+            "name": "Michelle",
+            "lockState": "Locked"
+        },
+        {
+            "characterObject": {
+                "instanceID": 127110
+            },
+            "durability": 1,
+            "price": 8,
+            "jumpForce": 1,
+            "speed": 1,
+            "id": 7,
+            "name": "Boss",
+            "lockState": "Locked"
+        },
+        {
+            "characterObject": {
+                "instanceID": 49054
+            },
+            "durability": 1,
+            "price": 9,
+            "jumpForce": 1,
+            "speed": 1,
+            "id": 8,
+            "name": "Aj",
+            "lockState": "Locked"
+        },
+        {
+            "characterObject": {
+                "instanceID": 49056
+            },
+            "durability": 1,
+            "price": 10,
+            "jumpForce": 1,
+            "speed": 1,
+            "id": 9,
+            "name": "Mremireh",
+            "lockState": "Locked"
+        },
+        {
+            "characterObject": {
+                "instanceID": 49058
+            },
+            "durability": 1,
+            "price": 11,
+            "jumpForce": 1,
+            "speed": 1,
+            "id": 10,
+            "name": "Ty",
+            "lockState": "Locked"
+        }
+    ],
     "playerObject": {
-        "instanceID": 48770
+        "instanceID": 49030
+    },
+    "characterObject": {
+        "instanceID": 49036
     },
     "playerWeaponBulletObjectPoolCount": 0,
     "playerSwordBulletObjectPoolCount": 1,
@@ -22,111 +159,26 @@
     "currentLanguage": 0,
     "getCurrentEnemyDead": false,
     "currentMessageText": {
-        "instanceID": 207828
+        "instanceID": 875872
     },
     "currentMessageObject": {
-        "instanceID": 207824
+        "instanceID": 875868
     },
     "backgroundMap": {
-        "instanceID": 49016
+        "instanceID": 49032
     },
-    "dobbyDurability": 1,
-    "glassyDurability": 2,
-    "joleenDurability": 4,
-    "guardDurability": 5,
-    "lusthDurability": 6,
-    "eveDurability": 7,
-    "michelleDurability": 3,
-    "bossDurability": 5,
-    "ajDurability": 3,
-    "mremirehDurability": 8,
-    "tyDurability": 3,
     "playerSpawns": {
-        "instanceID": 49018
+        "instanceID": 49034
     },
     "isDecreaseHealth": true,
     "damageHealthText": {
-        "instanceID": 208136
+        "instanceID": -493470
     },
-    "decreaseCounter": 0,
-    "currentCharacterName": 3,
-    "characterObject": {
-        "instanceID": 49020
-    },
-    "dobby": {
-        "instanceID": 49022
-    },
-    "glassy": {
-        "instanceID": 49024
-    },
-    "joleen": {
-        "instanceID": 49026
-    },
-    "guard": {
-        "instanceID": 49028
-    },
-    "lusth": {
-        "instanceID": 49030
-    },
-    "eve": {
-        "instanceID": 49032
-    },
-    "michelle": {
-        "instanceID": 49034
-    },
-    "boss": {
-        "instanceID": 49036
-    },
-    "aj": {
-        "instanceID": 49038
-    },
-    "mremireh": {
-        "instanceID": 49040
-    },
-    "ty": {
-        "instanceID": 49042
-    },
-    "dobbyLock": "",
-    "glassyLock": "Locked",
-    "joleenLock": "Locked",
-    "guardLock": "Locked",
-    "lusthLock": "Locked",
-    "eveLock": "Locked",
-    "michelleLock": "Locked",
-    "ajLock": "Locked",
-    "bossLock": "Locked",
-    "mremirehLock": "Locked",
-    "tyLock": "Locked",
+    "decreaseCounter": 1,
     "resetLocks": "Locked",
     "locked": "Locked",
     "unLocked": "",
     "objects": [
-        {
-            "instanceID": 49044
-        },
-        {
-            "instanceID": 49046
-        },
-        {
-            "instanceID": 49048
-        },
-        {
-            "instanceID": 49050
-        },
-        {
-            "instanceID": 49052
-        },
-        {
-            "instanceID": 49054
-        },
-        {
-            "instanceID": 49056
-        }
-    ],
-    "slaveObjects": [
-        {
-            "instanceID": 49058
-        },
         {
             "instanceID": 49060
         },
@@ -149,51 +201,40 @@
             "instanceID": 49072
         }
     ],
+    "slaveObjects": [
+        {
+            "instanceID": 49074
+        },
+        {
+            "instanceID": 49076
+        },
+        {
+            "instanceID": 49078
+        },
+        {
+            "instanceID": 49080
+        },
+        {
+            "instanceID": 49082
+        },
+        {
+            "instanceID": 49084
+        },
+        {
+            "instanceID": 49086
+        },
+        {
+            "instanceID": 49088
+        }
+    ],
     "spawns": {
-        "instanceID": 49074
+        "instanceID": 49090
     },
     "sensivityX": 2.0,
     "sensivityY": 3.0,
     "isTouchFinish": false,
     "isLose": false,
-    "joleenPrice": 10000,
-    "dobbyPrice": 0,
-    "glassyPrice": 800,
-    "lusthPrice": 15000,
-    "guardPrice": 12000,
-    "michellePrice": 7500,
-    "evePrice": 15500,
-    "ajPrice": 5000,
-    "bossPrice": 23000,
-    "tyPrice": 2000,
-    "mremirehPrice": 20000,
-    "playerSpeed": 2.0,
-    "skateBoardSpeed": 14.0,
-    "climbSpeed": 3.0,
     "rotateSpeed": 6.0,
-    "dobbySpeed": 1.0,
-    "michelleSpeed": 4.0,
-    "glassySpeed": 3.5,
-    "ajSpeed": 3.700000047683716,
-    "eveSpeed": 4.5,
-    "mremirehSpeed": 4.599999904632568,
-    "lusthSpeed": 2.0,
-    "joleenSpeed": 4.099999904632568,
-    "bossSpeed": 4.300000190734863,
-    "tySpeed": 3.5,
-    "guardSpeed": 4.300000190734863,
-    "currentJumpForce": 9.0,
-    "dobbyJumpForce": 4.0,
-    "michelleJumpForce": 7.0,
-    "glassyJumpForce": 6.0,
-    "ajJumpForce": 8.0,
-    "eveJumpForce": 9.0,
-    "mremirehJumpForce": 10.0,
-    "lusthJumpForce": 9.0,
-    "joleenJumpForce": 8.0,
-    "bossJumpForce": 7.0,
-    "tyJumpForce": 7.0,
-    "guardJumpForce": 6.0,
     "isGround": true,
     "isWalking": false,
     "isSideWalking": false,
@@ -216,38 +257,38 @@
     "isJumping": false,
     "jumpCount": 0,
     "clickShiftCount": 0,
-    "bulletAmount": 23,
+    "bulletAmount": 21,
     "bulletPackAmount": 2,
     "danceTime": 5.0,
     "jolleenObject": {
-        "instanceID": 49076
+        "instanceID": 49092
     },
     "touchParticle": {
-        "instanceID": 49078
+        "instanceID": 49094
     },
     "birthParticle": {
-        "instanceID": 49080
+        "instanceID": 49096
     },
     "deathParticle": {
-        "instanceID": 49082
+        "instanceID": 49098
     },
     "burningParticle": {
-        "instanceID": 49084
+        "instanceID": 49100
     },
     "burningTouchParticle": {
-        "instanceID": 49084
+        "instanceID": 49100
     },
     "destroyRotateCoinParticle": {
-        "instanceID": 49086
+        "instanceID": 49102
     },
     "destroyHealthCoinParticle": {
-        "instanceID": 49088
+        "instanceID": 49104
     },
     "destroyBulletCoinParticle": {
-        "instanceID": 49090
+        "instanceID": 49106
     },
     "destroyMushroomCoinParticle": {
-        "instanceID": 49092
+        "instanceID": 49108
     },
     "particleCount": 0,
     "isTouchFirst": false,
@@ -255,34 +296,34 @@
     "isTouchThird": false,
     "weaponBulletExplosionParticles": [
         {
-            "instanceID": 49094
-        },
-        {
-            "instanceID": 49096
-        },
-        {
-            "instanceID": 49098
-        },
-        {
-            "instanceID": 49100
-        },
-        {
-            "instanceID": 49102
-        },
-        {
-            "instanceID": 49104
-        },
-        {
-            "instanceID": 49106
-        },
-        {
-            "instanceID": 49108
-        },
-        {
             "instanceID": 49110
         },
         {
             "instanceID": 49112
+        },
+        {
+            "instanceID": 49114
+        },
+        {
+            "instanceID": 49116
+        },
+        {
+            "instanceID": 49118
+        },
+        {
+            "instanceID": 49120
+        },
+        {
+            "instanceID": 49122
+        },
+        {
+            "instanceID": 49124
+        },
+        {
+            "instanceID": 49126
+        },
+        {
+            "instanceID": 49128
         }
     ]
 }

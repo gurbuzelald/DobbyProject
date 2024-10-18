@@ -71,60 +71,60 @@ public class ObjectPool : MonoBehaviour
 
     void SetPlayerBulletIDAtStart(BulletData bulletData)
     {
-        if (bulletData.currentWeaponName == BulletData.pistol)
+        if (bulletData.currentWeaponName == bulletData.weaponStruct[0].weaponName)
         {
-            BulletData.currentWeaponID = 0;
+            BulletData.currentWeaponID = bulletData.weaponStruct[0].id;
         }
-        else if (bulletData.currentWeaponName == BulletData.axe)
+        else if (bulletData.currentWeaponName == bulletData.weaponStruct[1].weaponName)
         {
-            BulletData.currentWeaponID = 1;
+            BulletData.currentWeaponID = bulletData.weaponStruct[1].id;
         }
-        else if (bulletData.currentWeaponName == BulletData.bulldog)
+        else if (bulletData.currentWeaponName == bulletData.weaponStruct[2].weaponName)
         {
-            BulletData.currentWeaponID = 2;
+            BulletData.currentWeaponID = bulletData.weaponStruct[2].id;
         }
-        else if (bulletData.currentWeaponName == BulletData.cow)
+        else if (bulletData.currentWeaponName == bulletData.weaponStruct[3].weaponName)
         {
-            BulletData.currentWeaponID = 3;
+            BulletData.currentWeaponID = bulletData.weaponStruct[3].id;
         }
-        else if (bulletData.currentWeaponName == BulletData.crystal)
+        else if (bulletData.currentWeaponName == bulletData.weaponStruct[4].weaponName)
         {
-            BulletData.currentWeaponID = 4;
+            BulletData.currentWeaponID = bulletData.weaponStruct[4].id;
         }
-        else if (bulletData.currentWeaponName == BulletData.demon)
+        else if (bulletData.currentWeaponName == bulletData.weaponStruct[5].weaponName)
         {
-            BulletData.currentWeaponID = 5;
+            BulletData.currentWeaponID = bulletData.weaponStruct[5].id;
         }
-        else if (bulletData.currentWeaponName == BulletData.ice)
+        else if (bulletData.currentWeaponName == bulletData.weaponStruct[6].weaponName)
         {
-            BulletData.currentWeaponID = 6;
+            BulletData.currentWeaponID = bulletData.weaponStruct[6].id;
         }
-        else if (bulletData.currentWeaponName == BulletData.electro)
+        else if (bulletData.currentWeaponName == bulletData.weaponStruct[7].weaponName)
         {
-            BulletData.currentWeaponID = 7;
+            BulletData.currentWeaponID = bulletData.weaponStruct[7].id;
         }
-        else if (bulletData.currentWeaponName == BulletData.shotGun)
+        else if (bulletData.currentWeaponName == bulletData.weaponStruct[8].weaponName)
         {
-            BulletData.currentWeaponID = 8;
+            BulletData.currentWeaponID = bulletData.weaponStruct[8].id;
         }
-        else if (bulletData.currentWeaponName == BulletData.machine)
+        else if (bulletData.currentWeaponName == bulletData.weaponStruct[9].weaponName)
         {
-            BulletData.currentWeaponID = 9;
+            BulletData.currentWeaponID = bulletData.weaponStruct[9].id;
         }
     }
 
     private int GetPlayerWeaponId(BulletData bulletData)
     {
-        if (bulletData.isPistol) return 0;
-        else if (bulletData.isAxe) return 1;
-        else if (bulletData.isBulldog) return 2;
-        else if (bulletData.isCow) return 3;
-        else if (bulletData.isCrystal) return 4;
-        else if (bulletData.isDemon) return 5;
-        else if (bulletData.isIce) return 6;
-        else if (bulletData.isElectro) return 7;
-        else if (bulletData.isShotGun) return 8;
-        else if (bulletData.isMachine) return 9;
+        if (bulletData.weaponStruct[0].isWeapon) return 0;
+        else if (bulletData.weaponStruct[1].isWeapon) return 1;
+        else if (bulletData.weaponStruct[2].isWeapon) return 2;
+        else if (bulletData.weaponStruct[3].isWeapon) return 3;
+        else if (bulletData.weaponStruct[4].isWeapon) return 4;
+        else if (bulletData.weaponStruct[5].isWeapon) return 5;
+        else if (bulletData.weaponStruct[6].isWeapon) return 6;
+        else if (bulletData.weaponStruct[7].isWeapon) return 7;
+        else if (bulletData.weaponStruct[8].isWeapon) return 8;
+        else if (bulletData.weaponStruct[9].isWeapon) return 9;
         return -1;
     }
 

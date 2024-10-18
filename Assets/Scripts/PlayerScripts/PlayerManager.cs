@@ -1,4 +1,5 @@
-using Cinemachine;
+using Unity.Cinemachine;
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -159,7 +160,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         if (_levelData)
         {
-            _levelData.currentEnemyDetectionDistance = _levelData.enemyDetectionDistances[LevelData.currentLevelCount];
+            _levelData.currentEnemyDetectionDistance = _levelData.enemyDetectionDistances[LevelData.currentLevelId];
         }
 
         if (_playerData)
@@ -298,10 +299,10 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     {
         if (_playerData)
         {
-            if (_playerData.playerSpawns.GetChild(LevelData.currentLevelCount))
+            if (_playerData.playerSpawns.GetChild(LevelData.currentLevelId))
             {
                 transform.position =
-                    _playerData.playerSpawns.GetChild(LevelData.currentLevelCount).transform.position;
+                    _playerData.playerSpawns.GetChild(LevelData.currentLevelId).transform.position;
             }            
         }        
     }
@@ -548,13 +549,17 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     
     void TriggerFinishControl(Collider other)
     {
+        if (other.gameObject.name == "FinishPlane")
+        {
+            GetLevelTag(other);
+        }
         if (other.gameObject.name == "FinishPlane" && LevelData.levelCanBeSkipped)
         {
             GetLevelTag(other);
 
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
             
-            _levelData.isCompleteMaps[LevelData.currentLevelCount] = true;
+            _levelData.isCompleteMaps[LevelData.currentLevelId] = true;
 
             _levelData.isLevelUp = true;
 
@@ -595,37 +600,37 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         switch (other.tag)
         {
             case (LevelData.FirstFinishArea):
-                LevelData.currentLevelCount = 0;
+                LevelData.currentLevelId = 1;
                 break;
             case (LevelData.SecondFinishArea):
-                LevelData.currentLevelCount = 1;
+                LevelData.currentLevelId = 2;
                 break;
             case (LevelData.ThirdFinishArea):
-                LevelData.currentLevelCount = 2;
+                LevelData.currentLevelId = 3;
                 break;
             case (LevelData.FourthFinishArea):
-                LevelData.currentLevelCount = 3;
+                LevelData.currentLevelId = 4;
                 break;
             case (LevelData.FifthFinishArea):
-                LevelData.currentLevelCount = 4;
+                LevelData.currentLevelId = 5;
                 break;
             case (LevelData.SixthFinishArea):
-                LevelData.currentLevelCount = 5;
+                LevelData.currentLevelId = 6;
                 break;
             case (LevelData.SeventhFinishArea):
-                LevelData.currentLevelCount = 6;
+                LevelData.currentLevelId = 7;
                 break;
             case (LevelData.EighthFinishArea):
-                LevelData.currentLevelCount = 7;
+                LevelData.currentLevelId = 8;
                 break;
             case (LevelData.NinethFinishArea):
-                LevelData.currentLevelCount = 8;
+                LevelData.currentLevelId = 9;
                 break;
             case (LevelData.TenthFinishArea):
-                LevelData.currentLevelCount = 9;
+                LevelData.currentLevelId = 9;
                 break;
             default:
-                LevelData.currentLevelCount = 0;
+                LevelData.currentLevelId = 0;
                 break;
         }
     }
@@ -758,45 +763,55 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         TriggerCoinControl(other);
 
+        TriggerWeapon(other);
 
+        TriggerSword(other);
+    }
 
-
-        if (other.tag.ToString() == _bulletData.currentWeaponName)
+    void TriggerWeapon(Collider other)
+    {
+        string otherTag = other.tag.ToString();
+        if (otherTag == _bulletData.currentWeaponName)
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Poison);
-            
             StartCoroutine(DelayMessageText(_playerData, PlayerData.alreadyHaveThisWeaponMessageTr, PlayerData.alreadyHaveThisWeaponMessage));
         }
-        else if (other.tag.ToString() == BulletData.shotGun || other.tag.ToString() == BulletData.machine ||
-            other.tag.ToString() == BulletData.bulldog || other.tag.ToString() == BulletData.cow ||
-            other.tag.ToString() == BulletData.crystal || other.tag.ToString() == BulletData.demon ||
-            other.tag.ToString() == BulletData.ice || other.tag.ToString() == BulletData.electro ||
-            other.tag.ToString() == BulletData.axe)
+        else if (IsWeaponInStruct(otherTag))
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject, 
-                                      ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
-                    ref _objectPool);//FreshBulletAmount
+            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject,
+                                                       ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
+                                                       ref _objectPool);
 
             PlayerData.currentBulletExplosionIsChanged = true;
-        }
-
-        if (other.tag.ToString() == _bulletData.currentSwordName)
-        {
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Poison);
-        }
-        else if (other.tag.ToString() == BulletData.lowSword || other.tag.ToString() == BulletData.warriorSword ||
-            other.tag.ToString() == BulletData.hummer || other.tag.ToString() == BulletData.orcSword ||
-            other.tag.ToString() == BulletData.axeSword || other.tag.ToString() == BulletData.axeKnight ||
-            other.tag.ToString() == BulletData.barbarianSword || other.tag.ToString() == BulletData.demonSword ||
-            other.tag.ToString() == BulletData.magicSword || other.tag.ToString() == BulletData.longHummer
-            || other.tag.ToString() == BulletData.club)
-        {
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
         }
         playerInterfaces.iPlayerTrigger.CheckWeaponCollect(other, _bulletData);
     }
 
+    // Helper function to check if the tag matches any weapon name in the struct
+    bool IsWeaponInStruct(string tag)
+    {
+        for (int i = 1; i <= 9; i++)
+        {
+            if (tag == _bulletData.weaponStruct[i].weaponName)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void TriggerSword(Collider other)
+    {
+        if (other.tag.ToString() == _bulletData.currentSwordName)
+        {
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Poison);
+        }
+        else if (other.tag.ToString() == BulletData.lowSword)
+        {
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
+        }
+    }
 
     public void SetTrueEnemy(Collider other)
     {

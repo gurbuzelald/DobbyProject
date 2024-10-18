@@ -26,47 +26,47 @@ public class PlayerSoundEffect : AbstractPlayerSFX<PlayerSoundEffect>
     public BulletData bulletData;
     public void SoundEffectStatement(SoundEffectTypes soundEffectType)
     {//Add Tag, Add Data Name, Add Data, Add If.
-        if (PlayerData.CharacterNames.Dobby == playerData.currentCharacterName)
+        if (playerData.characterStruct[0].id == PlayerData.currentCharacterID)
         {
             currentAudioData = dobbyAudioData;
         }
-        else if (PlayerData.CharacterNames.Glassy == playerData.currentCharacterName)
+        else if (playerData.characterStruct[1].id == PlayerData.currentCharacterID)
         {
             currentAudioData = glassyAudioData;
         }
-        else if (PlayerData.CharacterNames.Joleen == playerData.currentCharacterName)
-        {
-            currentAudioData = joleenAudioData;
-        }
-        else if (PlayerData.CharacterNames.Guard == playerData.currentCharacterName)
+        else if (playerData.characterStruct[2].id == PlayerData.currentCharacterID)
         {
             currentAudioData = guardAudioData;
         }
-        else if (PlayerData.CharacterNames.Lusth == playerData.currentCharacterName)
+        else if (playerData.characterStruct[3].id == PlayerData.currentCharacterID)
+        {
+            currentAudioData = joleenAudioData;
+        }
+        else if (playerData.characterStruct[4].id == PlayerData.currentCharacterID)
         {
             currentAudioData = lusthAudioData;
         }
-        else if (PlayerData.CharacterNames.Eve == playerData.currentCharacterName)
+        else if (playerData.characterStruct[5].id == PlayerData.currentCharacterID)
         {
             currentAudioData = eveAudioData;
         }
-        else if (PlayerData.CharacterNames.Michelle == playerData.currentCharacterName)
+        else if (playerData.characterStruct[6].id == PlayerData.currentCharacterID)
         {
             currentAudioData = michelleAudioData;
         }
-        else if (PlayerData.CharacterNames.Boss == playerData.currentCharacterName)
+        else if (playerData.characterStruct[7].id == PlayerData.currentCharacterID)
         {
             currentAudioData = bossAudioData;
         }
-        else if (PlayerData.CharacterNames.Aj == playerData.currentCharacterName)
+        else if (playerData.characterStruct[8].id == PlayerData.currentCharacterID)
         {
             currentAudioData = ajAudioData;
         }
-        else if (PlayerData.CharacterNames.Mremireh == playerData.currentCharacterName)
+        else if (playerData.characterStruct[9].id == PlayerData.currentCharacterID)
         {
             currentAudioData = mremirehAudioData;
         }
-        else if (PlayerData.CharacterNames.Ty == playerData.currentCharacterName)
+        else if (playerData.characterStruct[10].id == PlayerData.currentCharacterID)
         {
             currentAudioData = tyAudioData;
         }

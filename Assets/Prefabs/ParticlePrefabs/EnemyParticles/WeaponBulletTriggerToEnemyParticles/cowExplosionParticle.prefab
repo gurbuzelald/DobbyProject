@@ -42,7 +42,7 @@ ParticleSystem:
   m_GameObject: {fileID: 2689552222238927185}
   serializedVersion: 8
   lengthInSec: 2
-  simulationSpeed: 10
+  simulationSpeed: 5
   stopAction: 1
   cullingMode: 3
   ringBufferMode: 2
@@ -586,7 +586,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 10
+    maxNumParticles: 5
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -4768,6 +4768,9 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

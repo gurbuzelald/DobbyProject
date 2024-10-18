@@ -12,7 +12,97 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7cf749f686343c4b8d2ee7a82de493f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  characterStruct:
+  - characterObject: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
+    durability: 1
+    price: 0
+    jumpForce: 10
+    speed: 1
+    id: 0
+    name: Dobby
+    lockState: 
+  - characterObject: {fileID: 6616105739425805472, guid: c01ca076994204b1cb94249a12ece71c, type: 3}
+    durability: 1
+    price: 2
+    jumpForce: 1
+    speed: 1
+    id: 1
+    name: Glassy
+    lockState: Locked
+  - characterObject: {fileID: 5075507251047758960, guid: 121bbb1bd4eef57478721b5ef2cc4082, type: 3}
+    durability: 1
+    price: 3
+    jumpForce: 1
+    speed: 1
+    id: 2
+    name: Guard
+    lockState: Locked
+  - characterObject: {fileID: 1254244383937338342, guid: fa5afc234e9ba074795c420e9145256f, type: 3}
+    durability: 1
+    price: 4
+    jumpForce: 1
+    speed: 1
+    id: 3
+    name: Joleen
+    lockState: Locked
+  - characterObject: {fileID: 1804162575734578991, guid: 68835b9515214a54097ef287fe3f1c49, type: 3}
+    durability: 1
+    price: 5
+    jumpForce: 1
+    speed: 1
+    id: 4
+    name: Lusth
+    lockState: Locked
+  - characterObject: {fileID: 475003444043059358, guid: d20c2b271d372a642b352daa4599fa5c, type: 3}
+    durability: 1
+    price: 6
+    jumpForce: 1
+    speed: 1
+    id: 5
+    name: Eve
+    lockState: Locked
+  - characterObject: {fileID: 8160791800857959451, guid: 0ac9ad04e193f4a1693d750745c9cf5c, type: 3}
+    durability: 1
+    price: 7
+    jumpForce: 1
+    speed: 1
+    id: 6
+    name: Michelle
+    lockState: Locked
+  - characterObject: {fileID: 3933667997016493793, guid: 2834719b444937a439af0c31802ed607, type: 3}
+    durability: 1
+    price: 8
+    jumpForce: 1
+    speed: 1
+    id: 7
+    name: Boss
+    lockState: Locked
+  - characterObject: {fileID: 4229839607365370914, guid: db04c4e4b251642e596a18439cc381c3, type: 3}
+    durability: 1
+    price: 9
+    jumpForce: 1
+    speed: 1
+    id: 8
+    name: Aj
+    lockState: Locked
+  - characterObject: {fileID: 3269665489637412912, guid: cc265cd48b1f31c4cbb86e276d4a94d0, type: 3}
+    durability: 1
+    price: 10
+    jumpForce: 1
+    speed: 1
+    id: 9
+    name: Mremireh
+    lockState: Locked
+  - characterObject: {fileID: 5807339739709849361, guid: 5a65014f4e4764d1487af521aded9bea, type: 3}
+    durability: 1
+    price: 11
+    jumpForce: 1
+    speed: 1
+    id: 10
+    name: Ty
+    lockState: Locked
   playerObject: {fileID: 7193906221332498770, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
+  characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   playerWeaponBulletObjectPoolCount: 0
   playerSwordBulletObjectPoolCount: 1
   destroyCoinParticleObjectPoolCount: 2
@@ -35,45 +125,10 @@ MonoBehaviour:
   currentMessageText: {fileID: 0}
   currentMessageObject: {fileID: 0}
   backgroundMap: {fileID: 1345883776023317691, guid: 515afb887ab870a43b53ea7d70cb9035, type: 3}
-  dobbyDurability: 1
-  glassyDurability: 2
-  joleenDurability: 4
-  guardDurability: 5
-  lusthDurability: 6
-  eveDurability: 7
-  michelleDurability: 3
-  bossDurability: 5
-  ajDurability: 3
-  mremirehDurability: 8
-  tyDurability: 3
   playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
   isDecreaseHealth: 1
   damageHealthText: {fileID: 0}
   decreaseCounter: 0
-  currentCharacterName: 3
-  characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
-  dobby: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
-  glassy: {fileID: 5760870592736451290, guid: 87790596b0679dd47a976c70c24cca6a, type: 3}
-  joleen: {fileID: 1254244383937338342, guid: fa5afc234e9ba074795c420e9145256f, type: 3}
-  guard: {fileID: 5075507251047758960, guid: 121bbb1bd4eef57478721b5ef2cc4082, type: 3}
-  lusth: {fileID: 1804162575734578991, guid: 68835b9515214a54097ef287fe3f1c49, type: 3}
-  eve: {fileID: 475003444043059358, guid: d20c2b271d372a642b352daa4599fa5c, type: 3}
-  michelle: {fileID: 2089016085528094388, guid: 45b74fc28a8e7584cb93f6b6b213d8f7, type: 3}
-  boss: {fileID: 3933667997016493793, guid: 2834719b444937a439af0c31802ed607, type: 3}
-  aj: {fileID: 2416847389608877635, guid: a700b507a30e0be4ead42ca0bfc5c998, type: 3}
-  mremireh: {fileID: 3269665489637412912, guid: cc265cd48b1f31c4cbb86e276d4a94d0, type: 3}
-  ty: {fileID: 5945881725241583734, guid: 5dbe1f8c957aa354d8786aba50aaf083, type: 3}
-  dobbyLock: 
-  glassyLock: Locked
-  joleenLock: Locked
-  guardLock: Locked
-  lusthLock: Locked
-  eveLock: Locked
-  michelleLock: Locked
-  ajLock: Locked
-  bossLock: Locked
-  mremirehLock: Locked
-  tyLock: Locked
   resetLocks: Locked
   locked: Locked
   unLocked: 
@@ -95,48 +150,11 @@ MonoBehaviour:
   - {fileID: 7971067666596210365, guid: 48f6891f360c67a488d3fe548e1e8d5f, type: 3}
   - {fileID: 7971067666596210365, guid: 0ba857b35eeb15e4da33c0bc95bc1357, type: 3}
   spawns: {fileID: 2359986759738939504, guid: aabf96d4f82bfd84cadaf35e1afe1e4b, type: 3}
-  sensivityX: 3
+  sensivityX: 2
   sensivityY: 3
   isTouchFinish: 0
   isLose: 0
-  joleenPrice: 10000
-  dobbyPrice: 0
-  glassyPrice: 800
-  lusthPrice: 15000
-  guardPrice: 12000
-  michellePrice: 7500
-  evePrice: 15500
-  ajPrice: 5000
-  bossPrice: 23000
-  tyPrice: 2000
-  mremirehPrice: 20000
-  playerSpeed: 1
-  skateBoardSpeed: 14
-  climbSpeed: 3
   rotateSpeed: 6
-  dobbySpeed: 1
-  michelleSpeed: 4
-  glassySpeed: 3.5
-  ajSpeed: 3.7
-  eveSpeed: 4.5
-  mremirehSpeed: 4.6
-  lusthSpeed: 2
-  joleenSpeed: 4.1
-  bossSpeed: 4.3
-  tySpeed: 3.5
-  guardSpeed: 4.3
-  currentJumpForce: 4
-  dobbyJumpForce: 4
-  michelleJumpForce: 7
-  glassyJumpForce: 6
-  ajJumpForce: 8
-  eveJumpForce: 9
-  mremirehJumpForce: 10
-  lusthJumpForce: 9
-  joleenJumpForce: 8
-  bossJumpForce: 7
-  tyJumpForce: 7
-  guardJumpForce: 6
   isGround: 1
   isWalking: 0
   isSideWalking: 0
@@ -159,7 +177,7 @@ MonoBehaviour:
   isJumping: 0
   jumpCount: 0
   clickShiftCount: 0
-  bulletAmount: 21
+  bulletAmount: 23
   bulletPackAmount: 2
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

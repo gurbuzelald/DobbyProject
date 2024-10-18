@@ -12,7 +12,7 @@ public class LevelData : ScriptableObject
         public int levelUpKeys;
         public bool isBossEnemyDead;
     }
-
+    public LevelUpRequirements[] levelUpRequirements = new LevelUpRequirements[10];
 
     public GameObject _rotaterCoinObject;
     public GameObject _rotaterBulletCoinObject;
@@ -99,7 +99,7 @@ public class LevelData : ScriptableObject
 
     [Header("Current Level")]
     public Levels currentLevel;
-    public static int currentLevelCount;
+    public static int currentLevelId;
 
     public enum Levels
     {

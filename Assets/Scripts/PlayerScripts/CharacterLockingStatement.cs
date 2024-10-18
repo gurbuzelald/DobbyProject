@@ -10,8 +10,8 @@ public class CharacterLockingStatement : MonoBehaviour
     [SerializeField] BulletData bulletData;
     private ChooseCharacterController pickCharacterController;
 
-    private PlayerData.CharacterNames[] characterNames = new PlayerData.CharacterNames[12];
-    private BulletData.WeaponNames[] weaponNames = new BulletData.WeaponNames[10];
+    private string[] characterNames = new string[11];
+    private string[] weaponNames = new string[10];
 
     public GameObject[] characterStaffs;
     public GameObject[] weaponStaffs;
@@ -20,7 +20,7 @@ public class CharacterLockingStatement : MonoBehaviour
     {
         //ResetCharactersLocks();
 
-        SetCharacterNames();
+        SetCharacterIDs();
         SetWeaponNames();
 
         SetCharacterLockingMode();
@@ -28,13 +28,13 @@ public class CharacterLockingStatement : MonoBehaviour
     }
     
 
-    void SetCharacterNames()
+    void SetCharacterIDs()
     {
         if (characterStaffs.Length != 0)
         {
             for (int i = 0; i < characterStaffs.Length; i++)
             {
-                characterNames[i] = Enum.Parse<PlayerData.CharacterNames>(characterStaffs[i].transform.GetChild(0).name);
+                characterNames[i] = characterStaffs[i].transform.GetChild(0).name;
             }
         }        
     }
@@ -44,7 +44,7 @@ public class CharacterLockingStatement : MonoBehaviour
         {
             for (int i = 0; i < weaponStaffs.Length; i++)
             {
-                weaponNames[i] = Enum.Parse<BulletData.WeaponNames>(weaponStaffs[i].transform.GetChild(0).name);
+                weaponNames[i] = weaponStaffs[i].transform.GetChild(0).name;
             }
         }
     }
@@ -55,95 +55,37 @@ public class CharacterLockingStatement : MonoBehaviour
         {
             for (int i = 0; i < gameObject.transform.childCount; i++)
             {
-                switch (characterNames[i])
+                string characterName = characterNames[i];
+                for (int j = 0; j < playerData.characterStruct.Length; j++)
                 {
-                    case PlayerData.CharacterNames.Joleen:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.joleenLock.ToString();
-                        break;
-                    case PlayerData.CharacterNames.Dobby:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.dobbyLock.ToString();
-                        break;
-                    case PlayerData.CharacterNames.Glassy:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.glassyLock.ToString();
-                        break;
-                    case PlayerData.CharacterNames.Lusth:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.lusthLock.ToString();
-                        break;
-                    case PlayerData.CharacterNames.Guard:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.guardLock.ToString();
-                        break;
-                    case PlayerData.CharacterNames.Michelle:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.michelleLock.ToString();
-                        break;
-                    case PlayerData.CharacterNames.Eve:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.eveLock.ToString();
-                        break;
-                    case PlayerData.CharacterNames.Aj:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.ajLock.ToString();
-                        break;
-                    case PlayerData.CharacterNames.Boss:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.bossLock.ToString();
-                        break;
-                    case PlayerData.CharacterNames.Ty:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.tyLock.ToString();
-                        break;
-                    case PlayerData.CharacterNames.Mremireh:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = playerData.mremirehLock.ToString();
-                        break;
-                    default:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "No Valid";
-                        break;
-
+                    if (playerData.characterStruct[j].name == characterName)
+                    {
+                        gameObject.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = playerData.characterStruct[j].lockState.ToString();
+                        break; // Exit the loop once a match is found.
+                    }
                 }
             }
         }
-        
     }
+
     void SetWeaponLockingMode(BulletData bulletData)
     {
+        int childCount = gameObject.transform.childCount;
+
         if (weaponStaffs.Length != 0)
         {
-            for (int i = 0; i < gameObject.transform.childCount; i++)
+            for (int i = 0; i < childCount; i++)
             {
-                switch (weaponNames[i])
+                for (int j = 0; j < bulletData.weaponStruct.Length; j++)
                 {
-                    case BulletData.WeaponNames.shotGun:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.shotGunLock.ToString();
+                    if (bulletData.weaponStruct[j].weaponName == weaponNames[i])
+                    {
+                        gameObject.transform.GetChild(i).GetComponent<TextMeshProUGUI>().text = bulletData.weaponStruct[j].lockState.ToString();
                         break;
-                    case BulletData.WeaponNames.axe:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.axeLock.ToString();
-                        break;
-                    case BulletData.WeaponNames.bulldog:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.bulldogLock.ToString();
-                        break;
-                    case BulletData.WeaponNames.cow:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.cowLock.ToString();
-                        break;
-                    case BulletData.WeaponNames.crystal:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.crystalLock.ToString();
-                        break;
-                    case BulletData.WeaponNames.demon:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.demonLock.ToString();
-                        break;
-                    case BulletData.WeaponNames.ice:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.iceLock.ToString();
-                        break;
-                    case BulletData.WeaponNames.electro:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.electroLock.ToString();
-                        break;
-                    case BulletData.WeaponNames.pistol:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.pistolLock.ToString();
-                        break;
-                    case BulletData.WeaponNames.machine:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = bulletData.machineLock.ToString();
-                        break;
-                    default:
-                        gameObject.transform.GetChild(i).transform.GetComponent<TextMeshProUGUI>().text = "No Valid";
-                        break;
-
+                    }
                 }
             }
         }
-        
     }
+
 }

@@ -8,14 +8,14 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Orange
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 045772399bb678644aa0b9dcdf6546c9, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _EMISSION
-  m_InvalidKeywords: []
   m_LightmapFlags: 1
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -201,6 +201,8 @@ Material:
     - _Float2: 0.6
     - _Float3: 0
     - _Float4: 0.5
+    - _FogIntensity: 0
+    - _FogMaxIntensity: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
@@ -226,7 +228,7 @@ Material:
     - _BaseColor2: {r: 0.5, g: 0.56551623, b: 1, a: 0}
     - _CarColor: {r: 0.08832457, g: 0.07493501, b: 0.46323526, a: 0}
     - _CarPaintColor: {r: 0.088324, g: 0.074934505, b: 0.46323526, a: 0}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 0.60249305, b: 0, a: 1}
     - _Color0: {r: 0.9528302, g: 0.3754838, b: 0, a: 0}
     - _Color1: {r: 0.021626277, g: 0.056079105, b: 0.7352942, a: 0.953}
     - _Color3: {r: 0.035034638, g: 0.08247225, b: 0.39705884, a: 0}
@@ -237,5 +239,7 @@ Material:
     - _FlakesColor: {r: 0.73529416, g: 0.021626318, b: 0.36123332, a: 0.953}
     - _FlakesColor1: {r: 0.7794118, g: 0.9361055, b: 1, a: 0}
     - _FlakesColor2: {r: 0.74264705, g: 0.89350915, b: 1, a: 0}
+    - _FogColor: {r: 0.14705876, g: 1, b: 0.63399994, a: 0}
     - _Offset1: {r: 1.2, g: 6.53, b: -6.86, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

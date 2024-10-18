@@ -12,23 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1868c7cd3d74059489101668855dfd21, type: 3}
   m_Name: OrcBulletData 7
   m_EditorClassIdentifier: 
+  currentSwordName: WarriorSword
+  currentWeaponName: Ak47
   giftBoxes: []
-  swordBulletDelay: 0.05
   weaponBulletDelay: 0.05
+  swordBulletDelay: 0.05
   bulletSpeed: 0.5
   swordSpeed: 1
   bulletDelayCounter: 0
   _swordingObject: {fileID: 0}
   currentGiftBox: {fileID: 0}
   pistolGiftBox: {fileID: 0}
-  m4a4GiftBox: {fileID: 0}
+  machineGiftBox: {fileID: 0}
   bullDogGiftBox: {fileID: 0}
   cowGiftBox: {fileID: 0}
   crystalGiftBox: {fileID: 0}
   demonGiftBox: {fileID: 0}
   iceGiftBox: {fileID: 0}
   electroGiftBox: {fileID: 0}
-  ak47GiftBox: {fileID: 0}
+  shotGunGiftBox: {fileID: 0}
   axeGiftBox: {fileID: 0}
   currentShootFrequency: 0
   pistolShootFrequency: 0
@@ -39,10 +41,10 @@ MonoBehaviour:
   demonShootFrequency: 0
   iceShootFrequency: 0
   electroShootFrequency: 0
-  ak47ShootFrequency: 0
-  m4a4ShootFrequency: 0
-  ak47Object: {fileID: 0}
-  m4a4Object: {fileID: 0}
+  shotGunShootFrequency: 0
+  machineShootFrequency: 0
+  shotGunObject: {fileID: 0}
+  machineObject: {fileID: 0}
   bullDogObject: {fileID: 0}
   cowObject: {fileID: 0}
   crsytalObject: {fileID: 0}
@@ -59,8 +61,8 @@ MonoBehaviour:
   demonPower: 0
   icePower: 0
   electroPower: 0
-  ak47Power: 0
-  m4a4Power: 0
+  shotGunPower: 0
+  machinePower: 0
   pistolPrice: 0
   axePrice: 0
   bulldogPrice: 0
@@ -69,8 +71,8 @@ MonoBehaviour:
   demonPrice: 0
   icePrice: 0
   electroPrice: 0
-  ak47Price: 0
-  m4a4Price: 0
+  shotGunPrice: 0
+  machinePrice: 0
   pistolLock: locked
   axeLock: locked
   bulldogLock: locked
@@ -79,8 +81,8 @@ MonoBehaviour:
   demonLock: locked
   iceLock: locked
   electroLock: 
-  ak47Lock: locked
-  m4a4Lock: 
+  shotGunLock: 
+  machineLock: 
   resetLocks: locked
   unLocked: 
   pistolUsageLimit: 0
@@ -91,8 +93,8 @@ MonoBehaviour:
   iceUsageLimit: 0
   electroUsageLimit: 0
   axeUsageLimit: 0
-  m4a4UsageLimit: 0
-  ak47UsageLimit: 0
+  machineUsageLimit: 0
+  shotGunUsageLimit: 0
   isPistol: 0
   isBulldog: 0
   isCow: 0
@@ -101,8 +103,8 @@ MonoBehaviour:
   isIce: 0
   isElectro: 0
   isAxe: 0
-  isM4a4: 0
-  isAk47: 0
+  isMachine: 0
+  isShotGun: 0
   currentBulletPack: 0
   pistolBulletAmount: 0
   axeBulletAmount: 0
@@ -112,8 +114,8 @@ MonoBehaviour:
   demonBulletAmount: 0
   iceBulletAmount: 0
   electroBulletAmount: 0
-  ak47BulletAmount: 0
-  m4A4BulletAmount: 0
+  shotGunBulletAmount: 0
+  machineBulletAmount: 0
   currentEnemyBulletDamage: 0
   chibiEnemyBulletDamage: 0
   minoEnemyBulletDamage: 0
@@ -177,11 +179,9 @@ MonoBehaviour:
   isMagicSword: 0
   isLongHummer: 0
   isClub: 0
-  currentSwordName: WarriorSword
-  currentWeaponName: Ak47
   swordDamageValue: 0
-  enemyFireFrequency: 3
-  enemyBulletDelayCounter: 0
+  enemyFireFrequency: 2
+  enemyBulletDelayCounter: 0.6113034
   enemyBulletDelay: 0.05
   enemyBulletSpeed: 3
-  isFirable: 1
+  isFirable: 0

@@ -44,5 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58a41fd90e7fe4a3caf6c4fa8a1b9361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
+  bulletData: {fileID: 11400000, guid: 5ac157e57a3180e46bbef72bac298a0b, type: 2}
+  endSceneMenuButton: 0
+  endScenePlayAgainButton: 0
+  endSceneQuitButton: 0
+  winSceneMenuButton: 0
+  winScenePlayAgainButton: 0
+  winSceneQuitButton: 0
   sceneController: {fileID: 0}
   settingController: {fileID: 0}
+  levelUpButtonController: {fileID: 0}
+  buttonTime: 0

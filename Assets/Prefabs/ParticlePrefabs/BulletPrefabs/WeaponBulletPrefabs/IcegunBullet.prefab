@@ -270,9 +270,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.1
-  m_Height: 1
+  m_Height: 0.25
   m_Direction: 1
-  m_Center: {x: 0, y: 0.0000014901161, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6893855574279549004
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -361,8 +361,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.48584908, g: 0.97966075, b: 1, a: 1}
-  m_Intensity: 1.12028
-  m_Range: 1.0540315
+  m_Intensity: 1.041651
+  m_Range: 1.0601486
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

@@ -550,15 +550,15 @@ public class SceneController : MonoBehaviour
 
         if (bulletData)
         {
-            bulletData.axeLock = BulletData.locked;
-            bulletData.bulldogLock = BulletData.locked;
-            bulletData.cowLock = BulletData.locked;
-            bulletData.crystalLock = BulletData.locked;
-            bulletData.demonLock = BulletData.locked;
-            bulletData.iceLock = BulletData.locked;
-            bulletData.electroLock = BulletData.locked;
-            bulletData.shotGunLock = BulletData.locked;
-            bulletData.machineLock = BulletData.locked;
+            bulletData.weaponStruct[1].lockState = BulletData.locked;
+            bulletData.weaponStruct[2].lockState = BulletData.locked;
+            bulletData.weaponStruct[3].lockState = BulletData.locked;
+            bulletData.weaponStruct[4].lockState = BulletData.locked;
+            bulletData.weaponStruct[5].lockState = BulletData.locked;
+            bulletData.weaponStruct[6].lockState = BulletData.locked;
+            bulletData.weaponStruct[7].lockState = BulletData.locked;
+            bulletData.weaponStruct[8].lockState = BulletData.locked;
+            bulletData.weaponStruct[9].lockState = BulletData.locked;
         }
         PlayerPrefs.SetFloat("DobbyLock", 0);
         PlayerPrefs.SetFloat("JoleenLock", 0);
@@ -585,19 +585,19 @@ public class SceneController : MonoBehaviour
 
         if (_playerData)
         {
-            _playerData.joleenLock = _playerData.locked;
-            _playerData.lusthLock = _playerData.locked;
-            _playerData.guardLock = _playerData.locked;
-            _playerData.michelleLock = _playerData.locked;
-            _playerData.eveLock = _playerData.locked;
-            _playerData.ajLock = _playerData.locked;
-            _playerData.bossLock = _playerData.locked;
-            _playerData.tyLock = _playerData.locked;
-            _playerData.mremirehLock = _playerData.locked;
-            _playerData.glassyLock = _playerData.locked;
+            _playerData.characterStruct[1].lockState = _playerData.locked;
+            _playerData.characterStruct[2].lockState = _playerData.locked;
+            _playerData.characterStruct[3].lockState = _playerData.locked;
+            _playerData.characterStruct[4].lockState = _playerData.locked;
+            _playerData.characterStruct[5].lockState = _playerData.locked;
+            _playerData.characterStruct[6].lockState = _playerData.locked;
+            _playerData.characterStruct[7].lockState = _playerData.locked;
+            _playerData.characterStruct[8].lockState = _playerData.locked;
+            _playerData.characterStruct[9].lockState = _playerData.locked;
+            _playerData.characterStruct[10].lockState = _playerData.locked;
 
 
-            _playerData.currentCharacterName = PlayerData.CharacterNames.Dobby;
+            PlayerData.currentCharacterID = _playerData.characterStruct[0].id;
         }
 
 
@@ -610,7 +610,7 @@ public class SceneController : MonoBehaviour
 
         LevelData.highestLevel = 0;
         PlayerPrefs.SetInt("HighestLevel", 0);
-        LevelData.currentLevelCount = 0;
+        LevelData.currentLevelId = 0;
     }
 
 
@@ -664,9 +664,21 @@ public class SceneController : MonoBehaviour
         }
         if (currentCharacterText && _playerData)
         {
-            currentCharacterText.text = _playerData.currentCharacterName.ToString();
+            SetCurrentCharacterName();
         }
     }
+    void SetCurrentCharacterName()
+    {
+        for (int i = 0; i < _playerData.characterStruct.Length; i++)
+        {
+            if (PlayerData.currentCharacterID == _playerData.characterStruct[i].id)
+            {
+                currentCharacterText.text = _playerData.characterStruct[i].name;
+                break; // Exit loop once a match is found
+            }
+        }
+    }
+
     void OnEnable()
     {
         if (pauseGame)
@@ -706,7 +718,7 @@ public class SceneController : MonoBehaviour
 
         levelData.currentLevel = LevelData.Levels.Level1;
 
-        LevelData.currentLevelCount = 0;
+        LevelData.currentLevelId = 0;
         playAgainForScore = true;
 
         SceneManager.LoadScene(Scenes.Game.ToString());
@@ -717,97 +729,29 @@ public class SceneController : MonoBehaviour
     {
         if (bulletData)
         {
-            if (bulletData.currentWeaponName == BulletData.axe && bulletData.axeUsageLimit > 0)
+            // Iterate through the weaponStruct array to find the current weapon
+            for (int i = 1; i < bulletData.weaponStruct.Length; i++)
             {
-                bulletData.axeUsageLimit--;
-                PlayerPrefs.SetInt("AxeUsageCount", bulletData.axeUsageLimit);
-            }
-            else if (bulletData.currentWeaponName == BulletData.axe && bulletData.axeUsageLimit == 0)
-            {
-                bulletData.currentWeaponName = BulletData.pistol;
-            }
+                if (bulletData.currentWeaponName == bulletData.weaponStruct[i].weaponName)
+                {
+                    // Decrease usage limit if it's greater than zero
+                    if (bulletData.weaponStruct[i].usageLimit > 0)
+                    {
+                        bulletData.weaponStruct[i].usageLimit--;
+                        PlayerPrefs.SetInt($"{bulletData.weaponStruct[i].weaponName}UsageCount", bulletData.weaponStruct[i].usageLimit);
+                    }
+                    // If usage limit reaches zero, switch to default weapon
+                    else if (bulletData.weaponStruct[i].usageLimit == 0)
+                    {
+                        bulletData.currentWeaponName = bulletData.weaponStruct[0].weaponName;
+                    }
 
-            if (bulletData.currentWeaponName == BulletData.bulldog && bulletData.bulldogUsageLimit > 0)
-            {
-                bulletData.bulldogUsageLimit--;
-                PlayerPrefs.SetInt("BulldogUsageCount", bulletData.bulldogUsageLimit);
+                    break; // Exit loop once the matching weapon is found
+                }
             }
-            else if (bulletData.currentWeaponName == BulletData.bulldog && bulletData.bulldogUsageLimit == 0)
-            {
-                bulletData.currentWeaponName = BulletData.pistol;
-            }
-
-            if (bulletData.currentWeaponName == BulletData.cow && bulletData.cowUsageLimit > 0)
-            {
-                bulletData.cowUsageLimit--;
-                PlayerPrefs.SetInt("CowUsageCount", bulletData.cowUsageLimit);
-            }
-            else if (bulletData.currentWeaponName == BulletData.cow && bulletData.cowUsageLimit == 0)
-            {
-                bulletData.currentWeaponName = BulletData.pistol;
-            }
-
-            if (bulletData.currentWeaponName == BulletData.crystal && bulletData.crystalUsageLimit > 0)
-            {
-                bulletData.crystalUsageLimit--;
-                PlayerPrefs.SetInt("CrystalUsageCount", bulletData.crystalUsageLimit);
-            }
-            else if (bulletData.currentWeaponName == BulletData.crystal && bulletData.crystalUsageLimit == 0)
-            {
-                bulletData.currentWeaponName = BulletData.pistol;
-            }
-
-            if (bulletData.currentWeaponName == BulletData.demon && bulletData.demonUsageLimit > 0)
-            {
-                bulletData.demonUsageLimit--;
-                PlayerPrefs.SetInt("DemonUsageCount", bulletData.demonUsageLimit);
-            }
-            else if (bulletData.currentWeaponName == BulletData.demon && bulletData.demonUsageLimit == 0)
-            {
-                bulletData.currentWeaponName = BulletData.pistol;
-            }
-
-            if (bulletData.currentWeaponName == BulletData.ice && bulletData.iceUsageLimit > 0)
-            {
-                bulletData.iceUsageLimit--;
-                PlayerPrefs.SetInt("IceUsageCount", bulletData.iceUsageLimit);
-            }
-            else if (bulletData.currentWeaponName == BulletData.ice && bulletData.iceUsageLimit == 0)
-            {
-                bulletData.currentWeaponName = BulletData.pistol;
-            }
-
-            if (bulletData.currentWeaponName == BulletData.electro && bulletData.electroUsageLimit > 0)
-            {
-                bulletData.electroUsageLimit--;
-                PlayerPrefs.SetInt("ElectroUsageCount", bulletData.electroUsageLimit);
-            }
-            else if (bulletData.currentWeaponName == BulletData.electro && bulletData.electroUsageLimit == 0)
-            {
-                bulletData.currentWeaponName = BulletData.pistol;
-            }
-
-            if (bulletData.currentWeaponName == BulletData.shotGun && bulletData.shotGunUsageLimit > 0)
-            {
-                bulletData.shotGunUsageLimit--;
-                PlayerPrefs.SetInt("ShotGunUsageCount", bulletData.shotGunUsageLimit);
-            }
-            else if (bulletData.currentWeaponName == BulletData.shotGun && bulletData.shotGunUsageLimit == 0)
-            {
-                bulletData.currentWeaponName = BulletData.pistol;
-            }
-
-            if (bulletData.currentWeaponName == BulletData.machine && bulletData.machineUsageLimit > 0)
-            {
-                bulletData.machineUsageLimit--;
-                PlayerPrefs.SetInt("MachineUsageCount", bulletData.machineUsageLimit);
-            }
-            else if (bulletData.currentWeaponName == BulletData.machine && bulletData.machineUsageLimit == 0)
-            {
-                bulletData.currentWeaponName = BulletData.pistol;
-            }
-        }        
+        }
     }
+
     public void PlayAgainInLevel()
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
@@ -835,43 +779,43 @@ public class SceneController : MonoBehaviour
     {
         if (levelData.currentLevel == LevelData.Levels.Level1)
         {
-            LevelData.currentLevelCount = 0;
+            LevelData.currentLevelId = 0;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level2)
         {
-            LevelData.currentLevelCount = 1;
+            LevelData.currentLevelId = 1;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level3)
         {
-            LevelData.currentLevelCount = 2;
+            LevelData.currentLevelId = 2;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level4)
         {
-            LevelData.currentLevelCount = 3;
+            LevelData.currentLevelId = 3;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level5)
         {
-            LevelData.currentLevelCount = 4;
+            LevelData.currentLevelId = 4;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level6)
         {
-            LevelData.currentLevelCount = 5;
+            LevelData.currentLevelId = 5;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level7)
         {
-            LevelData.currentLevelCount = 6;
+            LevelData.currentLevelId = 6;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level8)
         {
-            LevelData.currentLevelCount = 7;
+            LevelData.currentLevelId = 7;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level9)
         {
-            LevelData.currentLevelCount = 8;
+            LevelData.currentLevelId = 8;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level10)
         {
-            LevelData.currentLevelCount = 9;
+            LevelData.currentLevelId = 9;
         }
     }
 
@@ -887,7 +831,7 @@ public class SceneController : MonoBehaviour
                 LevelData.highestLevel = 0;
                 PlayerPrefs.SetInt("ResetGame", 0);
             }
-            else if (LevelData.currentLevelCount == 0)
+            else if (LevelData.currentLevelId == 0)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") == 0)
                 {
@@ -895,7 +839,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", 0);
                 }                
             }
-            else if (LevelData.currentLevelCount == 1)
+            else if (LevelData.currentLevelId == 1)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 1)
                 {
@@ -903,7 +847,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelCount == 2)
+            else if (LevelData.currentLevelId == 2)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 2)
                 {
@@ -911,7 +855,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelCount == 3)
+            else if (LevelData.currentLevelId == 3)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 3)
                 {
@@ -919,7 +863,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelCount == 4)
+            else if (LevelData.currentLevelId == 4)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 4)
                 {
@@ -927,7 +871,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelCount == 5)
+            else if (LevelData.currentLevelId == 5)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 5)
                 {
@@ -935,7 +879,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelCount == 6)
+            else if (LevelData.currentLevelId == 6)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 6)
                 {
@@ -943,7 +887,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelCount == 7)
+            else if (LevelData.currentLevelId == 7)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 7)
                 {
@@ -951,7 +895,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelCount == 8)
+            else if (LevelData.currentLevelId == 8)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 8)
                 {
@@ -959,7 +903,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelCount == 9)
+            else if (LevelData.currentLevelId == 9)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 9)
                 {
@@ -967,7 +911,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelCount == 10)
+            else if (LevelData.currentLevelId == 10)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 10)
                 {

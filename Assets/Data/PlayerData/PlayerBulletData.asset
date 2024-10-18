@@ -12,8 +12,130 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1868c7cd3d74059489101668855dfd21, type: 3}
   m_Name: PlayerBulletData
   m_EditorClassIdentifier: 
+  weaponStruct:
+  - weaponObject: {fileID: 8853850299777618421, guid: 39aa8c7ebaa670646b7147b6d3cfdd63, type: 3}
+    giftBox: {fileID: 5953932990381375704, guid: 769e388e892fa6f47add655d24d29ce0, type: 3}
+    shootFrequency: 0.4
+    power: 12
+    lockState: 
+    weaponName: pistol
+    usageLimit: 0
+    bulletPackAmount: 21
+    price: 1
+    id: 0
+    isWeapon: 0
+  - weaponObject: {fileID: 1684248174472265961, guid: a331718668949cc43b683202d1396a03, type: 3}
+    giftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
+    shootFrequency: 0.35
+    power: 17
+    lockState: locked
+    weaponName: axe
+    usageLimit: 0
+    bulletPackAmount: 22
+    price: 1
+    id: 1
+    isWeapon: 0
+  - weaponObject: {fileID: 2611150449622927918, guid: e2a7ba7e091c8a64d89f057926284f5e, type: 3}
+    giftBox: {fileID: 6750732745314709050, guid: 3443f60ab08db384aaa3b04a8b272456, type: 3}
+    shootFrequency: 0.3
+    power: 14
+    lockState: 
+    weaponName: bulldog
+    usageLimit: 2
+    bulletPackAmount: 23
+    price: 2
+    id: 2
+    isWeapon: 0
+  - weaponObject: {fileID: 4045390288470663321, guid: 21788765404628840a013ba85ef9bc18, type: 3}
+    giftBox: {fileID: 8957379851250910510, guid: 9892378f7235cce4d9f03984a358c0db, type: 3}
+    shootFrequency: 0.33
+    power: 13
+    lockState: locked
+    weaponName: cow
+    usageLimit: 0
+    bulletPackAmount: 24
+    price: 3
+    id: 3
+    isWeapon: 0
+  - weaponObject: {fileID: 6090247001165047854, guid: f063e9ac4a8a0da47abeb4ea6b35b9e3, type: 3}
+    giftBox: {fileID: 4022412064357964157, guid: 028d4e3f0249529499c5a8c81d29ea0b, type: 3}
+    shootFrequency: 0.25
+    power: 19
+    lockState: locked
+    weaponName: crystal
+    usageLimit: 0
+    bulletPackAmount: 19
+    price: 4
+    id: 4
+    isWeapon: 0
+  - weaponObject: {fileID: 2171148302848499809, guid: 63a007e6a0d63be42ae9e8aadda4784f, type: 3}
+    giftBox: {fileID: 8947880313132611291, guid: 43147d81d9fef8f4d9beda636a63dc03, type: 3}
+    shootFrequency: 0.23
+    power: 15
+    lockState: locked
+    weaponName: demon
+    usageLimit: 0
+    bulletPackAmount: 26
+    price: 5
+    id: 5
+    isWeapon: 0
+  - weaponObject: {fileID: 576073428898831781, guid: 0963f4d0c58abf04bb05b0993ba61424, type: 3}
+    giftBox: {fileID: 1107915910439118714, guid: ca5ee588c6380b74080b876dbde97c21, type: 3}
+    shootFrequency: 0.2
+    power: 16
+    lockState: locked
+    weaponName: ice
+    usageLimit: 0
+    bulletPackAmount: 27
+    price: 6
+    id: 6
+    isWeapon: 0
+  - weaponObject: {fileID: 1492883090361208011, guid: 6e1df7167d924f94f85f18de66dd6675, type: 3}
+    giftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
+    shootFrequency: 0.18
+    power: 18
+    lockState: locked
+    weaponName: electro
+    usageLimit: 0
+    bulletPackAmount: 28
+    price: 7
+    id: 7
+    isWeapon: 0
+  - weaponObject: {fileID: 8897232894062872137, guid: de0204befe821450086cbe7b3f168442, type: 3}
+    giftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
+    shootFrequency: 0.15
+    power: 20
+    lockState: locked
+    weaponName: shotGun
+    usageLimit: 0
+    bulletPackAmount: 29
+    price: 8
+    id: 8
+    isWeapon: 0
+  - weaponObject: {fileID: 4797058508463431492, guid: eba982acb08ab42ab812b36334e36729, type: 3}
+    giftBox: {fileID: 4850221878147488263, guid: 2b9e216addade824fb41b7bc668a5101, type: 3}
+    shootFrequency: 0.14
+    power: 21
+    lockState: locked
+    weaponName: machine
+    usageLimit: 0
+    bulletPackAmount: 30
+    price: 9
+    id: 9
+    isWeapon: 0
+  - weaponObject: {fileID: 0}
+    giftBox: {fileID: 0}
+    shootFrequency: 0
+    power: 0
+    lockState: 
+    weaponName: 
+    usageLimit: 0
+    bulletPackAmount: 0
+    price: 0
+    id: 0
+    isWeapon: 0
   currentSwordName: LowSword
-  currentWeaponName: demon
+  currentWeaponName: bulldog
   giftBoxes:
   - {fileID: 8961598618424200994, guid: c9b0815641d6f3a4f898bef83cb6f012, type: 3}
   - {fileID: 1155883618481309716, guid: 2c0182fcbc961b549aaf76bac3601f5b, type: 3}
@@ -31,101 +153,11 @@ MonoBehaviour:
   swordSpeed: 1
   bulletDelayCounter: 0
   _swordingObject: {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
-  currentGiftBox: {fileID: 8957379851250910510, guid: 9892378f7235cce4d9f03984a358c0db, type: 3}
-  pistolGiftBox: {fileID: 5953932990381375704, guid: 769e388e892fa6f47add655d24d29ce0, type: 3}
-  machineGiftBox: {fileID: 4850221878147488263, guid: 2b9e216addade824fb41b7bc668a5101, type: 3}
-  bullDogGiftBox: {fileID: 6750732745314709050, guid: 3443f60ab08db384aaa3b04a8b272456, type: 3}
-  cowGiftBox: {fileID: 8957379851250910510, guid: 9892378f7235cce4d9f03984a358c0db, type: 3}
-  crystalGiftBox: {fileID: 4022412064357964157, guid: 028d4e3f0249529499c5a8c81d29ea0b, type: 3}
-  demonGiftBox: {fileID: 8947880313132611291, guid: 43147d81d9fef8f4d9beda636a63dc03, type: 3}
-  iceGiftBox: {fileID: 1107915910439118714, guid: ca5ee588c6380b74080b876dbde97c21, type: 3}
-  electroGiftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
-  shotGunGiftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
-  axeGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
-  currentShootFrequency: 0.4
-  pistolShootFrequency: 0.4
-  axeShootFrequency: 0.35
-  bulldogShootFrequency: 0.3
-  cowShootFrequency: 0.33
-  crystalShootFrequency: 0.25
-  demonShootFrequency: 0.23
-  iceShootFrequency: 0.2
-  electroShootFrequency: 0.18
-  shotGunShootFrequency: 0.15
-  machineShootFrequency: 0.14
-  shotGunObject: {fileID: 8897232894062872137, guid: de0204befe821450086cbe7b3f168442, type: 3}
-  machineObject: {fileID: 4797058508463431492, guid: eba982acb08ab42ab812b36334e36729, type: 3}
-  bullDogObject: {fileID: 2611150449622927918, guid: e2a7ba7e091c8a64d89f057926284f5e, type: 3}
-  cowObject: {fileID: 4045390288470663321, guid: 21788765404628840a013ba85ef9bc18, type: 3}
-  crsytalObject: {fileID: 6090247001165047854, guid: f063e9ac4a8a0da47abeb4ea6b35b9e3, type: 3}
-  demonObject: {fileID: 2171148302848499809, guid: 63a007e6a0d63be42ae9e8aadda4784f, type: 3}
-  iceObject: {fileID: 576073428898831781, guid: 0963f4d0c58abf04bb05b0993ba61424, type: 3}
-  electroObject: {fileID: 1492883090361208011, guid: 6e1df7167d924f94f85f18de66dd6675, type: 3}
-  axeObject: {fileID: 1684248174472265961, guid: a331718668949cc43b683202d1396a03, type: 3}
-  pistolObject: {fileID: 8853850299777618421, guid: 39aa8c7ebaa670646b7147b6d3cfdd63, type: 3}
-  pistolPower: 12
-  axePower: 17
-  bulldogPower: 14
-  cowPower: 13
-  crystalPower: 19
-  demonPower: 15
-  icePower: 16
-  electroPower: 18
-  shotGunPower: 20
-  machinePower: 21
-  pistolPrice: 0
-  axePrice: 1
-  bulldogPrice: 1
-  cowPrice: 1
-  crystalPrice: 1
-  demonPrice: 1
-  icePrice: 1
-  electroPrice: 1
-  shotGunPrice: 1
-  machinePrice: 1
-  pistolLock: 
-  axeLock: locked
-  bulldogLock: 
-  cowLock: locked
-  crystalLock: locked
-  demonLock: locked
-  iceLock: 
-  electroLock: locked
-  shotGunLock: locked
-  machineLock: locked
+  currentGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
+  currentShootFrequency: 0.3
   resetLocks: locked
   unLocked: 
-  pistolUsageLimit: 3
-  bulldogUsageLimit: 2
-  cowUsageLimit: 0
-  crystalUsageLimit: 0
-  demonUsageLimit: 0
-  iceUsageLimit: 1
-  electroUsageLimit: 0
-  axeUsageLimit: 0
-  machineUsageLimit: 0
-  shotGunUsageLimit: 0
-  isPistol: 0
-  isBulldog: 0
-  isCow: 0
-  isCrystal: 0
-  isDemon: 0
-  isIce: 0
-  isElectro: 0
-  isAxe: 0
-  isMachine: 0
-  isShotGun: 0
-  currentBulletPack: 21
-  pistolBulletAmount: 21
-  axeBulletAmount: 22
-  bulldogBulletAmount: 23
-  cowBulletAmount: 24
-  crystalBulletAmount: 25
-  demonBulletAmount: 26
-  iceBulletAmount: 27
-  electroBulletAmount: 28
-  shotGunBulletAmount: 29
-  machineBulletAmount: 30
+  currentBulletPackAmount: 23
   currentEnemyBulletDamage: 15
   chibiEnemyBulletDamage: 14
   minoEnemyBulletDamage: 15
@@ -168,16 +200,6 @@ MonoBehaviour:
   chestMonsterEnemyCollisionDamage: 26
   chestMonster2EnemyCollisionDamage: 27
   lowSwordObject: {fileID: 7486198881408922905, guid: e0ca519d8f748de48b2cdc4e12d21e8f, type: 3}
-  warriorSwordObject: {fileID: 9112861893149409468, guid: ab8cd70057c95d84f85dcd677bb1a249, type: 3}
-  hummerObject: {fileID: 2768828069807502141, guid: b55a81b3910ea5748a6e80d5db666505, type: 3}
-  orcObject: {fileID: 59555108974462787, guid: 53bf718842405794086625555bde97fa, type: 3}
-  axeSwordObject: {fileID: 5664214437994040534, guid: 8b52764e0908aa4498f79a7254ea1704, type: 3}
-  axeKnightObject: {fileID: 6968853562753055218, guid: 0f8bf7c5a7e518442a1bae83535526ab, type: 3}
-  barbarianSwordObject: {fileID: 3089508391633436098, guid: 1d7f6a02a94431f4d9ebf6521ad8e1fb, type: 3}
-  demonSwordObject: {fileID: 4426474884974521336, guid: 79303260231974541bacdeb104d6f960, type: 3}
-  magicWeaponObject: {fileID: 8046374085066996882, guid: bf35d7a5290a3d04fb54636d904f9424, type: 3}
-  longHummerObject: {fileID: 1291317392893337651, guid: 9c6a5483a1e057a42bbc8a1bb2033c89, type: 3}
-  clubObject: {fileID: 1401163679098770771, guid: 45f52a9e20fe23c47b83f588dd15dcab, type: 3}
   isLowSword: 0
   isWarriorSword: 0
   isHummer: 0

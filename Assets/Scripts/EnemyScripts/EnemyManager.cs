@@ -436,45 +436,45 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         float weaponPower = 0;
 
         // Determine the weapon power based on the current weapon
-        if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.shotGun)
+        if (PlayerManager.GetInstance._bulletData.currentWeaponName == bulletData.weaponStruct[8].weaponName)
         {
-            weaponPower = PlayerManager.GetInstance._bulletData.shotGunPower;
+            weaponPower = PlayerManager.GetInstance._bulletData.weaponStruct[8].power;
         }
-        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.machine)
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == bulletData.weaponStruct[9].weaponName)
         {
-            weaponPower = PlayerManager.GetInstance._bulletData.machinePower;
+            weaponPower = PlayerManager.GetInstance._bulletData.weaponStruct[9].power;
         }
-        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.bulldog)
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == bulletData.weaponStruct[2].weaponName)
         {
-            weaponPower = PlayerManager.GetInstance._bulletData.bulldogPower;
+            weaponPower = PlayerManager.GetInstance._bulletData.weaponStruct[2].power;
         }
-        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.cow)
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == bulletData.weaponStruct[3].weaponName)
         {
-            weaponPower = PlayerManager.GetInstance._bulletData.cowPower;
+            weaponPower = PlayerManager.GetInstance._bulletData.weaponStruct[3].power;
         }
-        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.crystal)
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == bulletData.weaponStruct[4].weaponName)
         {
-            weaponPower = PlayerManager.GetInstance._bulletData.crystalPower;
+            weaponPower = PlayerManager.GetInstance._bulletData.weaponStruct[4].power;
         }
-        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.demon)
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == bulletData.weaponStruct[5].weaponName)
         {
-            weaponPower = PlayerManager.GetInstance._bulletData.demonPower;
+            weaponPower = PlayerManager.GetInstance._bulletData.weaponStruct[5].power;
         }
-        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.ice)
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == bulletData.weaponStruct[6].weaponName)
         {
-            weaponPower = PlayerManager.GetInstance._bulletData.icePower;
+            weaponPower = PlayerManager.GetInstance._bulletData.weaponStruct[6].power;
         }
-        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.electro)
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == bulletData.weaponStruct[7].weaponName)
         {
-            weaponPower = PlayerManager.GetInstance._bulletData.electroPower;
+            weaponPower = PlayerManager.GetInstance._bulletData.weaponStruct[7].power;
         }
-        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.axe)
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == bulletData.weaponStruct[1].weaponName)
         {
-            weaponPower = PlayerManager.GetInstance._bulletData.axePower;
+            weaponPower = PlayerManager.GetInstance._bulletData.weaponStruct[1].power;
         }
-        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == BulletData.pistol)
+        else if (PlayerManager.GetInstance._bulletData.currentWeaponName == bulletData.weaponStruct[0].weaponName)
         {
-            weaponPower = PlayerManager.GetInstance._bulletData.pistolPower;
+            weaponPower = PlayerManager.GetInstance._bulletData.weaponStruct[0].power;
         }
         else
         {
@@ -589,13 +589,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 }
 
 
-                if (PlayerManager.GetInstance._bulletData.currentBulletPack - playerData.bulletAmount >= 5)
+                if (PlayerManager.GetInstance._bulletData.currentBulletPackAmount - playerData.bulletAmount >= 5)
                 {
                     playerData.bulletAmount += 5;
                 }
                 else
                 {
-                    playerData.bulletAmount += PlayerManager.GetInstance._bulletData.currentBulletPack - playerData.bulletAmount;
+                    playerData.bulletAmount += PlayerManager.GetInstance._bulletData.currentBulletPackAmount - playerData.bulletAmount;
                 }
 
                 //_healthBar.SetActive(false);
@@ -711,16 +711,16 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 if (gameObject.transform.parent.name == "bossEnemyTransform")
                 {
                     _healthBarSlider.value -= swordPower / 3;
+                    StartCoroutine(ShowDamage((int)swordPower, 0.1f, 3f));
                 }
                 else
                 {
                     _healthBarSlider.value -= swordPower;
+                    StartCoroutine(ShowDamage((int)swordPower, 0.1f, 3f));
                 }
             }
 
             _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = _healthBarSlider.value;
-
-            StartCoroutine(ShowDamage((int)swordPower, 0.1f, 3f));
         }
     }
 
@@ -728,7 +728,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (levelData)
         {
-            levelData.currentBackToWalkingValue = levelData.backToWalkingDelays[LevelData.currentLevelCount];
+            levelData.currentBackToWalkingValue = levelData.backToWalkingDelays[LevelData.currentLevelId];
         }
     }
 

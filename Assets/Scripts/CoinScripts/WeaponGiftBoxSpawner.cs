@@ -12,7 +12,7 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
     {
         GiftBoxControllerAtStart();
         yield return new WaitForSeconds(1f);
-        CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelCount);
+        CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelId);
     }
     public void CreateMapGiftBoxes(GameObject weaponObject, int levelCount)
     {
@@ -42,43 +42,43 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
     {
         if (levelData.currentLevel == LevelData.Levels.Level1)
         {
-            bulletData.currentGiftBox = bulletData.cowGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[1].giftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level2)
         {
-            bulletData.currentGiftBox = bulletData.iceGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[2].giftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level3)
         {
-            bulletData.currentGiftBox = bulletData.demonGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[3].giftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level4)
         {
-            bulletData.currentGiftBox = bulletData.electroGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[4].giftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level5)
         {
-            bulletData.currentGiftBox = bulletData.axeGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[5].giftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level6)
         {
-            bulletData.currentGiftBox = bulletData.crystalGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[6].giftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level7)
         {
-            bulletData.currentGiftBox = bulletData.iceGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[7].giftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level8)
         {
-            bulletData.currentGiftBox = bulletData.demonGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[8].giftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level9)
         {
-            bulletData.currentGiftBox = bulletData.shotGunGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[9].giftBox;
         }
         else if (levelData.currentLevel == LevelData.Levels.Level10)
         {
-            bulletData.currentGiftBox = bulletData.machineGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[9].giftBox;
         }
     }
 

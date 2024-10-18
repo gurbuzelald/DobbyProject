@@ -13,9 +13,9 @@ public class PostProcessingLevelController : MonoBehaviour
     {
         if (postProcessingData)
         {
-            if (postProcessingData.postProcessingObjects[LevelData.currentLevelCount])
+            if (postProcessingData.postProcessingObjects[LevelData.currentLevelId])
             {
-                gameObject.transform.GetComponent<PostProcessVolume>().profile = postProcessingData.postProcessingObjects[LevelData.currentLevelCount];
+                gameObject.transform.GetComponent<PostProcessVolume>().profile = postProcessingData.postProcessingObjects[LevelData.currentLevelId];
             }
         }
         

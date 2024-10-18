@@ -76,7 +76,7 @@ MonoBehaviour:
   - {fileID: 4587650376425843672, guid: 1b751cc55971bc646b8869604b1ad0cc, type: 3}
   - {fileID: 1830643733571907168, guid: 45c1cd0bddac9c54e874614e2284f36d, type: 3}
   - {fileID: 8471416527786168667, guid: 9e3968580393e3b48bf3fda563bc5195, type: 3}
-  currentBackToWalkingValue: 6
+  currentBackToWalkingValue: 4
   backToWalkingDelays:
   - 6
   - 5
@@ -110,7 +110,7 @@ MonoBehaviour:
   - {fileID: 2069131866433038514, guid: 0631fd9d083ad824d88983459fe5c980, type: 3}
   - {fileID: 6429664179785294311, guid: 47fba03113633c646853342c46cf6702, type: 3}
   - {fileID: 4442325361749624510, guid: 1a3a1a5ca70152749958c309ee04903d, type: 3}
-  currentStaticCoinValue: 1
+  currentStaticCoinValue: 8
   coinlevelValues: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
   levelSkyboxes:
   - {fileID: 2100000, guid: 1cf6f4c6e6e0518419839d3f5448dd99, type: 2}
@@ -123,7 +123,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
   - {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
   - {fileID: 2100000, guid: 1cf6f4c6e6e0518419839d3f5448dd99, type: 2}
-  currentEnemyDetectionDistance: 30
+  currentEnemyDetectionDistance: 8
   enemyDetectionDistances:
   - 5
   - 6
@@ -148,7 +148,7 @@ MonoBehaviour:
   - {fileID: 7739160499251517144, guid: 75dafef2553d8a5459878c981d1a1779, type: 3}
   - {fileID: 2266118862413915206, guid: 5c65a733b8e76f840b4a384e3969c4f1, type: 3}
   - {fileID: 1287685689511572656, guid: e9a6d20abff80c44683f9ae403b8eb46, type: 3}
-  currentFinishArea: {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
+  currentFinishArea: {fileID: 4339553883614235754, guid: 849af36619bad4b4580b4a875f374142, type: 3}
   finishTransforms:
   - {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
   - {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
@@ -162,4 +162,4 @@ MonoBehaviour:
   - {fileID: 9069361647760937000, guid: 89af43945948f3043b72818822d3fc05, type: 3}
   isCompleteMaps: 00000000000000000000
   isLevelUp: 0
-  currentLevel: 0
+  currentLevel: 7

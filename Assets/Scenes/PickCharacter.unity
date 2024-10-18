@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 6aac568ebf8b44c448ae2317cc3f7c3d, type: 2}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -366,6 +366,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2910071426469407072, guid: 54bf7b4b7523cb74891bb9c6a51eb0bc, type: 3}
   m_PrefabInstance: {fileID: 2910071426798459808}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1122898315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6408401303601693601, guid: d695b1b0e05434b4485275dbd929d556, type: 3}
+  m_PrefabInstance: {fileID: 216647168}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a41fd90e7fe4a3caf6c4fa8a1b9361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1283124260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -822,6 +833,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1724788851}
+    - target: {fileID: 8042373582000692751, guid: d45c3a8cdde8d4f419cd40c4d777d2dc, type: 3}
+      propertyPath: buttonController
+      value: 
+      objectReference: {fileID: 1122898315}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

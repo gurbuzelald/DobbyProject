@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using Cinemachine;
+using Unity.Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -54,43 +54,43 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
     public virtual void GetWeaponTransform(BulletData _bulletData, ref GameObject _gunTransform)//Getting finger transform parameter
     {
-        if (_bulletData.currentWeaponName == BulletData.shotGun && GameObject.Find("ShotGunTransform"))
+        if (_bulletData.currentWeaponName == _bulletData.weaponStruct[8].weaponName && GameObject.Find("ShotGunTransform"))
         {
             _gunTransform = GameObject.Find("ShotGunTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.machine && GameObject.Find("MachineTransform"))
+        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[9].weaponName && GameObject.Find("MachineTransform"))
         {
             _gunTransform = GameObject.Find("MachineTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.bulldog && GameObject.Find("BulldogTransform"))
+        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[2].weaponName && GameObject.Find("BulldogTransform"))
         {
             _gunTransform = GameObject.Find("BulldogTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.cow && GameObject.Find("CowTransform"))
+        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[3].weaponName && GameObject.Find("CowTransform"))
         {
             _gunTransform = GameObject.Find("CowTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.crystal && GameObject.Find("CrystalTransform"))
+        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[4].weaponName && GameObject.Find("CrystalTransform"))
         {
             _gunTransform = GameObject.Find("CrystalTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.demon && GameObject.Find("DemonTransform"))
+        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[5].weaponName && GameObject.Find("DemonTransform"))
         {
             _gunTransform = GameObject.Find("DemonTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.ice && GameObject.Find("IceTransform"))
+        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[6].weaponName && GameObject.Find("IceTransform"))
         {
             _gunTransform = GameObject.Find("IceTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.electro && GameObject.Find("ElectroTransform"))
+        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[7].weaponName && GameObject.Find("ElectroTransform"))
         {
             _gunTransform = GameObject.Find("ElectroTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.axe && GameObject.Find("AxeTransform"))
+        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[1].weaponName && GameObject.Find("AxeTransform"))
         {
             _gunTransform = GameObject.Find("AxeTransform");
         }
-        else if (_bulletData.currentWeaponName == BulletData.pistol && GameObject.Find("PistolTransform"))
+        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[0].weaponName && GameObject.Find("PistolTransform"))
         {
             _gunTransform = GameObject.Find("PistolTransform");
         }
@@ -109,53 +109,53 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             characterObject = Instantiate(_playerData.characterObject, gameObject.transform);
 
             GameObject current;
-            if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
+            if (PlayerData.currentCharacterID == _playerData.characterStruct[0].id)
             {
-                current = _playerData.dobby;
+                current = _playerData.characterStruct[0].characterObject;
             }
-            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
+            else if (PlayerData.currentCharacterID == _playerData.characterStruct[1].id)
             {
-                current = _playerData.glassy;
+                current = _playerData.characterStruct[1].characterObject;
             }
-            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
+            else if (PlayerData.currentCharacterID == _playerData.characterStruct[2].id)
             {
-                current = _playerData.guard;
+                current = _playerData.characterStruct[2].characterObject;
             }
-            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Joleen)
+            else if (PlayerData.currentCharacterID == _playerData.characterStruct[3].id)
             {
-                current = _playerData.joleen;
+                current = _playerData.characterStruct[3].characterObject;
             }
-            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
+            else if (PlayerData.currentCharacterID == _playerData.characterStruct[4].id)
             {
-                current = _playerData.lusth;
+                current = _playerData.characterStruct[4].characterObject;
             }
-            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Eve)
+            else if (PlayerData.currentCharacterID == _playerData.characterStruct[5].id)
             {
-                current = _playerData.eve;
+                current = _playerData.characterStruct[5].characterObject;
             }
-            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Michelle)
+            else if (PlayerData.currentCharacterID == _playerData.characterStruct[6].id)
             {
-                current = _playerData.michelle;
+                current = _playerData.characterStruct[6].characterObject;
             }
-            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Boss)
+            else if (PlayerData.currentCharacterID == _playerData.characterStruct[7].id)
             {
-                current = _playerData.boss;
+                current = _playerData.characterStruct[7].characterObject;
             }
-            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Aj)
+            else if (PlayerData.currentCharacterID == _playerData.characterStruct[8].id)
             {
-                current = _playerData.aj;
+                current = _playerData.characterStruct[8].characterObject;
             }
-            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Mremireh)
+            else if (PlayerData.currentCharacterID == _playerData.characterStruct[9].id)
             {
-                current = _playerData.mremireh;
+                current = _playerData.characterStruct[9].characterObject;
             }
-            else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Ty)
+            else if (PlayerData.currentCharacterID == _playerData.characterStruct[10].id)
             {
-                current = _playerData.ty;
+                current = _playerData.characterStruct[10].characterObject;
             }
             else
             {
-                current = _playerData.dobby;
+                current = _playerData.characterStruct[0].characterObject;
             }
             Instantiate(current, characterObject.transform);
         }
@@ -346,7 +346,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 Debug.Log("_playerData.objects[3]");
             }
 
-            _playerData.bulletAmount = _bulletData.currentBulletPack;
+            _playerData.bulletAmount = _bulletData.currentBulletPackAmount;
             _playerData.isFireWalkAnimation = false;
             _playerData.isFire = false;
             levelData.isLevelUp = false;
@@ -375,101 +375,45 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     void CharacterJumpForce(PlayerData _playerData)
     {
-        if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
+        int characterIndex = PlayerData.currentCharacterID;
+
+        if (characterIndex >= 0 && characterIndex < _playerData.characterStruct.Length)
         {
-            _playerData.currentJumpForce = _playerData.dobbyJumpForce;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Michelle)
-        {
-            _playerData.currentJumpForce = _playerData.michelleJumpForce;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
-        {
-            _playerData.currentJumpForce = _playerData.glassyJumpForce;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Aj)
-        {
-            _playerData.currentJumpForce = _playerData.ajJumpForce;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Mremireh)
-        {
-            _playerData.currentJumpForce = _playerData.mremirehJumpForce;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
-        {
-            _playerData.currentJumpForce = _playerData.lusthJumpForce;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Joleen)
-        {
-            _playerData.currentJumpForce = _playerData.joleenJumpForce;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Boss)
-        {
-            _playerData.currentJumpForce = _playerData.bossJumpForce;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Ty)
-        {
-            _playerData.currentJumpForce = _playerData.tyJumpForce;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
-        {
-            _playerData.currentJumpForce = _playerData.guardJumpForce;
+            PlayerData.currentJumpForce = _playerData.characterStruct[characterIndex].jumpForce;  // Assuming jumpForce is the correct property.
         }
         else
         {
-            _playerData.currentJumpForce = _playerData.dobbyJumpForce;
+            PlayerData.currentJumpForce = _playerData.characterStruct[0].jumpForce;  // Default to first character's jump force.
         }
     }
+
     void CharacterSpeeds(PlayerData _playerData)
     {
-        if (_playerData.currentCharacterName == PlayerData.CharacterNames.Dobby)
+        int characterIndex = PlayerData.currentCharacterID;
+
+        if (characterIndex >= 0 && characterIndex < _playerData.characterStruct.Length)
         {
-            _playerData.playerSpeed = _playerData.dobbySpeed;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Michelle)
-        {
-            _playerData.playerSpeed = _playerData.michelleSpeed;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Glassy)
-        {
-            _playerData.playerSpeed = _playerData.glassySpeed;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Aj)
-        {
-            _playerData.playerSpeed = _playerData.ajSpeed;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Mremireh)
-        {
-            _playerData.playerSpeed = _playerData.mremirehSpeed;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Lusth)
-        {
-            _playerData.playerSpeed = _playerData.lusthSpeed;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Joleen)
-        {
-            _playerData.playerSpeed = _playerData.joleenSpeed;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Boss)
-        {
-            _playerData.playerSpeed = _playerData.bossSpeed;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Ty)
-        {
-            _playerData.playerSpeed = _playerData.tySpeed;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Guard)
-        {
-            _playerData.playerSpeed = _playerData.guardSpeed;
-        }
-        else if (_playerData.currentCharacterName == PlayerData.CharacterNames.Eve)
-        {
-            _playerData.playerSpeed = _playerData.eveSpeed;
+            PlayerData.currentCharacterSpeed = _playerData.characterStruct[characterIndex].speed; 
         }
         else
         {
-            _playerData.playerSpeed = _playerData.dobbySpeed;
+            PlayerData.currentCharacterSpeed = _playerData.characterStruct[0].speed;
         }
+    }
+
+    public virtual int CharacterDurability(ref PlayerData _playerData)
+    {
+        int characterIndex = PlayerData.currentCharacterID;
+
+        if (characterIndex >= 0 && characterIndex < _playerData.characterStruct.Length)
+        {
+            PlayerData.currentCharacterDurability = _playerData.characterStruct[characterIndex].durability;
+        }
+        else
+        {
+            PlayerData.currentCharacterDurability = _playerData.characterStruct[0].durability;
+        }
+        return PlayerData.currentCharacterDurability;
     }
 
     #endregion
@@ -491,7 +435,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             }
             else if (_playerData.bulletAmount <= 0 && _playerData.bulletPackAmount >= 0)
             {
-                _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPack;
+                _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
 
                 _playerData.bulletPackAmount--;
             }
@@ -515,12 +459,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                     _playerData.isFireAnimation = false;
                     _playerData.isFireWalkAnimation = true;
                 }
-                if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPack / 2f &&
+                if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f &&
                     _playerData.bulletAmount > 0 && _playerData.isWalking)
                 {
                     _playerData.isFire = true;
                 }
-                else if (_playerData.bulletAmount > PlayerManager.GetInstance._bulletData.currentBulletPack / 2f && _playerData.isWalking)
+                else if (_playerData.bulletAmount > PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f && _playerData.isWalking)
                 {
                     _playerData.isFire = true;
                 }
@@ -808,6 +752,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             case SceneController.Tags.LevelUpKey:
                 StartCoroutine(DelayMessageText(_playerData, PlayerData.pickedKeyMessageTr, PlayerData.pickedKeyMessage));
                 LevelData.currentOwnedLevelUpKeys++;
+
                 HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyBulletCoin,
                                  PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin, other, objectPool);
                 break;
@@ -819,10 +764,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         _coinObject.transform.localScale = Vector3.one;
 
-        if ((_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPack) ||
+        if ((_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPackAmount) ||
             (_playerData.bulletPackAmount == 0 && _playerData.bulletAmount == 0) ||
              _playerData.bulletPackAmount < 2 ||
-             (_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPack))
+             (_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPackAmount))
         {
             GameObject particleObject = objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.destroyBulletCoinParticleObjectPoolCount);
             particleObject.transform.position = other.gameObject.transform.position;
@@ -833,7 +778,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         if (_playerData.bulletPackAmount == 0 && _playerData.bulletAmount == 0)
         {
             other.gameObject.SetActive(false);
-            _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPack;
+            _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
             StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage));
         }
@@ -846,11 +791,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             bulletAmountCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
             bulletAmountCanvas.transform.GetChild(1).gameObject.transform.localScale = Vector3.one;
         }
-        else if (_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPack)
+        else if (_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPackAmount)
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
             other.gameObject.SetActive(false);
-            _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPack;
+            _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
             StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage));
         }
         else
@@ -906,13 +851,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         if (bulletData)
         {
-            if (bulletData.shotGunLock == BulletData.locked && bulletData.machineLock == BulletData.locked &&
-            bulletData.axeLock == BulletData.locked && bulletData.bulldogLock == BulletData.locked &&
-            bulletData.cowLock == BulletData.locked && bulletData.crystalLock == BulletData.locked &&
-            bulletData.demonLock == BulletData.locked && bulletData.iceLock == BulletData.locked &&
-            bulletData.electroLock == BulletData.locked && bulletData.pistolLock == BulletData.locked)
+            if (bulletData.weaponStruct[8].lockState == BulletData.locked && bulletData.weaponStruct[9].lockState == BulletData.locked &&
+            bulletData.weaponStruct[1].lockState == BulletData.locked && bulletData.weaponStruct[2].lockState == BulletData.locked &&
+            bulletData.weaponStruct[3].lockState == BulletData.locked && bulletData.weaponStruct[4].lockState == BulletData.locked &&
+            bulletData.weaponStruct[5].lockState == BulletData.locked && bulletData.weaponStruct[6].lockState == BulletData.locked &&
+            bulletData.weaponStruct[7].lockState == BulletData.locked && bulletData.weaponStruct[0].lockState == BulletData.locked)
             {
-                bulletData.currentWeaponName = BulletData.pistol;
+                bulletData.currentWeaponName = bulletData.weaponStruct[0].weaponName;
             }
         }        
     }
@@ -921,83 +866,83 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.machine,
-            BulletData.machine,
-            ref _bulletData.isMachine,
-            ref _bulletData.machineLock,
-            _bulletData.machineBulletAmount,
-            9);
+            _bulletData.weaponStruct[9].weaponName,
+            ref _bulletData.weaponStruct[9].isWeapon,
+            ref _bulletData.weaponStruct[9].lockState,
+            _bulletData.weaponStruct[9].bulletPackAmount,
+            _bulletData.weaponStruct[9].id);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.shotGun,
-            BulletData.shotGun,
-            ref _bulletData.isShotGun,
-            ref _bulletData.shotGunLock,
-            _bulletData.shotGunBulletAmount,
-            8);
+            _bulletData.weaponStruct[8].weaponName,
+            ref _bulletData.weaponStruct[8].isWeapon,
+            ref _bulletData.weaponStruct[8].lockState,
+            _bulletData.weaponStruct[8].bulletPackAmount,
+            _bulletData.weaponStruct[8].id);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.axe,
-            BulletData.axe,
-            ref _bulletData.isAxe,
-            ref _bulletData.axeLock,
-            _bulletData.axeBulletAmount,
-            1);
+            _bulletData.weaponStruct[1].weaponName,
+            ref _bulletData.weaponStruct[1].isWeapon,
+            ref _bulletData.weaponStruct[1].lockState,
+            _bulletData.weaponStruct[1].bulletPackAmount,
+            _bulletData.weaponStruct[1].id);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.bulldog,
-            BulletData.bulldog,
-            ref _bulletData.isBulldog,
-            ref _bulletData.bulldogLock,
-            _bulletData.bulldogBulletAmount,
-            2);
+            _bulletData.weaponStruct[2].weaponName,
+            ref _bulletData.weaponStruct[2].isWeapon,
+            ref _bulletData.weaponStruct[2].lockState,
+            _bulletData.weaponStruct[2].bulletPackAmount,
+            _bulletData.weaponStruct[2].id);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.cow,
-            BulletData.cow,
-            ref _bulletData.isCow,
-            ref _bulletData.cowLock,
-            _bulletData.cowBulletAmount,
-            3);
+            _bulletData.weaponStruct[3].weaponName,
+            ref _bulletData.weaponStruct[3].isWeapon,
+            ref _bulletData.weaponStruct[3].lockState,
+            _bulletData.weaponStruct[3].bulletPackAmount,
+            _bulletData.weaponStruct[3].id);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.crystal,
-            BulletData.crystal,
-            ref _bulletData.isCrystal,
-            ref _bulletData.crystalLock,
-            _bulletData.crystalBulletAmount,
-            4);
+            _bulletData.weaponStruct[4].weaponName,
+            ref _bulletData.weaponStruct[4].isWeapon,
+            ref _bulletData.weaponStruct[4].lockState,
+            _bulletData.weaponStruct[4].bulletPackAmount,
+            _bulletData.weaponStruct[4].id);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.demon,
-            BulletData.demon,
-            ref _bulletData.isDemon,
-            ref _bulletData.demonLock,
-            _bulletData.demonBulletAmount,
-            5);
+            _bulletData.weaponStruct[5].weaponName,
+            ref _bulletData.weaponStruct[5].isWeapon,
+            ref _bulletData.weaponStruct[5].lockState,
+            _bulletData.weaponStruct[5].bulletPackAmount,
+            _bulletData.weaponStruct[5].id);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.ice,
-            BulletData.ice,
-            ref _bulletData.isIce,
-            ref _bulletData.iceLock,
-            _bulletData.iceBulletAmount,
-            6);
+            _bulletData.weaponStruct[6].weaponName,
+            ref _bulletData.weaponStruct[6].isWeapon,
+            ref _bulletData.weaponStruct[6].lockState,
+            _bulletData.weaponStruct[6].bulletPackAmount,
+            _bulletData.weaponStruct[6].id);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.electro,
-            BulletData.electro,
-            ref _bulletData.isElectro,
-            ref _bulletData.electroLock,
-            _bulletData.electroBulletAmount,
-            7);
+            _bulletData.weaponStruct[7].weaponName,
+            ref _bulletData.weaponStruct[7].isWeapon,
+            ref _bulletData.weaponStruct[7].lockState,
+            _bulletData.weaponStruct[7].bulletPackAmount,
+            _bulletData.weaponStruct[7].id);
 
         HandleWeaponCollect(other, _bulletData,
             SceneController.Tags.pistol,
-            BulletData.pistol,
-            ref _bulletData.isPistol,
-            ref _bulletData.pistolLock,
-            _bulletData.pistolBulletAmount,
-            0);
+            _bulletData.weaponStruct[0].weaponName,
+            ref _bulletData.weaponStruct[0].isWeapon,
+            ref _bulletData.weaponStruct[0].lockState,
+            _bulletData.weaponStruct[0].bulletPackAmount,
+            _bulletData.weaponStruct[0].id);
     }
 
     // Helper method for handling weapon collection
@@ -1015,7 +960,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 ObjectPool.creatablePlayerBullet = true;
                 weaponLock = _bulletData.unLocked;
                 PlayerData.currentBulletExplosionIsChanged = true;
-                _bulletData.currentBulletPack = bulletAmount;
+                _bulletData.currentBulletPackAmount = bulletAmount;
                 PlayerManager.GetInstance._playerData.bulletAmount = bulletAmount;
                 BulletData.currentWeaponID = _currentWeaponID;
                 IncreaseUsageLimit(_bulletData, tag);
@@ -1034,35 +979,35 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         Dictionary<SceneController.Tags, (Action unlock, Action<int> setUsageLimit, string usageCountKey)> bulletMap = new Dictionary<SceneController.Tags, (Action, Action<int>, string)>
     {
-        { SceneController.Tags.shotGun,    (() => _bulletData.shotGunLock =
-        _bulletData.unLocked, value => _bulletData.shotGunUsageLimit = value, "ShotGunUsageCount") },
+        { SceneController.Tags.shotGun,    (() => _bulletData.weaponStruct[8].lockState =
+        _bulletData.unLocked, value => _bulletData.weaponStruct[8].usageLimit = value, "ShotGunUsageCount") },
 
-        { SceneController.Tags.machine,    (() => _bulletData.machineLock =
-        _bulletData.unLocked, value => _bulletData.machineUsageLimit = value, "MachineUsageCount") },
+        { SceneController.Tags.machine,    (() => _bulletData.weaponStruct[9].lockState =
+        _bulletData.unLocked, value => _bulletData.weaponStruct[9].usageLimit = value, "MachineUsageCount") },
 
-        { SceneController.Tags.cow,     (() => _bulletData.cowLock =
-        _bulletData.unLocked, value => _bulletData.cowUsageLimit = value, "CowUsageCount") },
+        { SceneController.Tags.cow,     (() => _bulletData.weaponStruct[3].lockState =
+        _bulletData.unLocked, value => _bulletData.weaponStruct[3].usageLimit = value, "CowUsageCount") },
 
-        { SceneController.Tags.axe,     (() => _bulletData.axeLock =
-        _bulletData.unLocked, value => _bulletData.axeUsageLimit = value, "AxeUsageCount") },
+        { SceneController.Tags.axe,     (() => _bulletData.weaponStruct[1].lockState =
+        _bulletData.unLocked, value => _bulletData.weaponStruct[1].usageLimit = value, "AxeUsageCount") },
 
-        { SceneController.Tags.crystal, (() => _bulletData.crystalLock =
-        _bulletData.unLocked, value => _bulletData.crystalUsageLimit = value, "CrystalUsageCount") },
+        { SceneController.Tags.crystal, (() => _bulletData.weaponStruct[4].lockState =
+        _bulletData.unLocked, value => _bulletData.weaponStruct[4].usageLimit = value, "CrystalUsageCount") },
 
-        { SceneController.Tags.demon,   (() => _bulletData.demonLock =
-        _bulletData.unLocked, value => _bulletData.demonUsageLimit = value, "DemonUsageCount") },
+        { SceneController.Tags.demon,   (() => _bulletData.weaponStruct[5].lockState =
+        _bulletData.unLocked, value => _bulletData.weaponStruct[5].usageLimit = value, "DemonUsageCount") },
 
-        { SceneController.Tags.pistol,  (() => _bulletData.pistolLock =
-        _bulletData.unLocked, value => _bulletData.pistolUsageLimit = value, "PistolUsageCount") },
+        { SceneController.Tags.pistol,  (() => _bulletData.weaponStruct[0].lockState =
+        _bulletData.unLocked, value => _bulletData.weaponStruct[0].usageLimit = value, "PistolUsageCount") },
 
-        { SceneController.Tags.ice,     (() => _bulletData.iceLock =
-        _bulletData.unLocked, value => _bulletData.iceUsageLimit = value, "IceUsageCount") },
+        { SceneController.Tags.ice,     (() => _bulletData.weaponStruct[6].lockState =
+        _bulletData.unLocked, value => _bulletData.weaponStruct[6].usageLimit = value, "IceUsageCount") },
 
-        { SceneController.Tags.electro, (() => _bulletData.electroLock =
-        _bulletData.unLocked, value => _bulletData.electroUsageLimit = value, "ElectroUsageCount") },
+        { SceneController.Tags.electro, (() => _bulletData.weaponStruct[7].lockState =
+        _bulletData.unLocked, value => _bulletData.weaponStruct[7].usageLimit = value, "ElectroUsageCount") },
 
-        { SceneController.Tags.bulldog, (() => _bulletData.bulldogLock =
-        _bulletData.unLocked, value => _bulletData.bulldogUsageLimit = value, "BulldogUsageCount") }
+        { SceneController.Tags.bulldog, (() => _bulletData.weaponStruct[2].lockState =
+        _bulletData.unLocked, value => _bulletData.weaponStruct[2].usageLimit = value, "BulldogUsageCount") }
     };
 
         if (bulletMap.ContainsKey(tag))
@@ -1084,17 +1029,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void SetBulletPackAndAmountTextSize(PlayerData _playerData, ref GameObject bulletAmountCanvas)
     {
-        if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPack / 2f * 3)
+        if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f * 3)
         {
             bulletAmountCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.75f, 1.75f, 1.75f);
             bulletAmountCanvas.transform.GetChild(1).transform.localScale = new Vector3(1.75f, 1.75f, 1.75f);
         }
-        else if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPack / 2f)
+        else if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f)
         {
             bulletAmountCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             bulletAmountCanvas.transform.GetChild(1).transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         }
-        else if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPack / 3f)
+        else if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 3f)
         {
             bulletAmountCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
             bulletAmountCanvas.transform.GetChild(1).transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
@@ -1269,54 +1214,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         StartCoroutine(DelayHealthSizeBack(_healthBarObject));
         StartCoroutine(DelayDamageHealthTextEnableFalse(damageHealthText));
     }
-    public virtual int CharacterDurability(ref PlayerData playerData)
-    {
-        if (PlayerData.CharacterNames.Glassy == playerData.currentCharacterName)
-        {
-            PlayerData.currentCharacterDurability = playerData.glassyDurability;
-        }
-        else if (PlayerData.CharacterNames.Dobby == playerData.currentCharacterName)
-        {
-            PlayerData.currentCharacterDurability = playerData.dobbyDurability;
-        }
-        else if (PlayerData.CharacterNames.Joleen == playerData.currentCharacterName)
-        {
-            PlayerData.currentCharacterDurability = playerData.joleenDurability;
-        }
-        else if (PlayerData.CharacterNames.Lusth == playerData.currentCharacterName)
-        {
-            PlayerData.currentCharacterDurability = playerData.lusthDurability;
-        }
-        else if (PlayerData.CharacterNames.Guard == playerData.currentCharacterName)
-        {
-            PlayerData.currentCharacterDurability = playerData.guardDurability;
-        }
-        else if (PlayerData.CharacterNames.Eve == playerData.currentCharacterName)
-        {
-            PlayerData.currentCharacterDurability = playerData.eveDurability;
-        }
-        else if (PlayerData.CharacterNames.Michelle == playerData.currentCharacterName)
-        {
-            PlayerData.currentCharacterDurability = playerData.michelleDurability;
-        }
-        else if (PlayerData.CharacterNames.Boss == playerData.currentCharacterName)
-        {
-            PlayerData.currentCharacterDurability = playerData.bossDurability;
-        }
-        else if (PlayerData.CharacterNames.Aj == playerData.currentCharacterName)
-        {
-            PlayerData.currentCharacterDurability = playerData.ajDurability;
-        }
-        else if (PlayerData.CharacterNames.Mremireh == playerData.currentCharacterName)
-        {
-            PlayerData.currentCharacterDurability = playerData.mremirehDurability;
-        }
-        else if (PlayerData.CharacterNames.Ty == playerData.currentCharacterName)
-        {
-            PlayerData.currentCharacterDurability = playerData.tyDurability;
-        }
-        return PlayerData.currentCharacterDurability;
-    }
+    
 
     public virtual IEnumerator DelayHealthSizeBack(GameObject _healthBarObject)
     {
@@ -1351,19 +1249,19 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             {
                 objectRigidbody.AddForce(transform.forward * Time.deltaTime * 15000);
             }
-            if (PlayerManager.GetInstance.GetZValue() < 0f)
+            else if (PlayerManager.GetInstance.GetZValue() < 0f)
             {
                 objectRigidbody.AddForce(-transform.forward * Time.deltaTime * 15000);
             }
-            if (PlayerManager.GetInstance.GetXValue() > 0f)
+            else if (PlayerManager.GetInstance.GetXValue() > 0f)
             {
                 objectRigidbody.AddForce(transform.right * Time.deltaTime * 15000);
             }
-            if (PlayerManager.GetInstance.GetXValue() < 0f)
+            else if (PlayerManager.GetInstance.GetXValue() < 0f)
             {
                 objectRigidbody.AddForce(-transform.right * Time.deltaTime * 15000);
             }
-            if(PlayerManager.GetInstance.GetZValue() == 0f && PlayerManager.GetInstance.GetXValue() == 0f)
+            else if(PlayerManager.GetInstance.GetZValue() == 0f && PlayerManager.GetInstance.GetXValue() == 0f)
             {
                 objectRigidbody.AddForce(transform.forward * Time.deltaTime * 15000);
             }            
@@ -1388,23 +1286,23 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         if (Mathf.Abs(xValue) > 0 && Mathf.Abs(zValue) < .4f)
         {
-            playerTransform.Translate((_playerData.playerSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue), 0f, 0f);
+            playerTransform.Translate((PlayerData.currentCharacterSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue), 0f, 0f);
         }
         if (zValue > 0 && Mathf.Abs(xValue) < .4f)
         {
-            playerTransform.Translate(0f, 0f, _playerData.playerSpeed * zValue * Time.deltaTime);
+            playerTransform.Translate(0f, 0f, PlayerData.currentCharacterSpeed * zValue * Time.deltaTime);
         }
         if (Mathf.Abs(zValue) > .4f && Mathf.Abs(xValue) > .4f)
         {
-            playerTransform.Translate(0f, 0f, _playerData.playerSpeed * zValue * Time.deltaTime);
-            playerTransform.Translate((_playerData.playerSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue), 0f, 0f);
+            playerTransform.Translate(0f, 0f, PlayerData.currentCharacterSpeed * zValue * Time.deltaTime);
+            playerTransform.Translate((PlayerData.currentCharacterSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue), 0f, 0f);
         }
 
 
         // Geri Yürüme Durumu
         if (zValue < 0f)
         {
-            playerTransform.Translate(0f, 0f, (-_playerData.playerSpeed * 2 / 3) * Time.deltaTime);
+            playerTransform.Translate(0f, 0f, (-PlayerData.currentCharacterSpeed * 2 / 3) * Time.deltaTime);
             _playerData.isBackWalking = true;
             _playerData.isWalking = false;
             _playerData.isSideWalking = false;
@@ -1436,7 +1334,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 _playerData.isJumping = true;
 
                 //AddForceForJump
-                playerRigidbody.AddForce(transform.up * _playerData.currentJumpForce, ForceMode.Impulse);
+                playerRigidbody.AddForce(transform.up * PlayerData.currentJumpForce, ForceMode.Impulse);
 
                 JumpDirectionZ(_playerData, ref playerRigidbody);
                 JumpDirectionX(_playerData, ref playerRigidbody);
@@ -1454,11 +1352,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         if (PlayerManager.GetInstance.GetZValue() < 0)
         {
-            playerRigidbody.AddForce(transform.forward * -1 * _playerData.currentJumpForce / 3, ForceMode.Impulse);
+            playerRigidbody.AddForce(transform.forward * -1 * PlayerData.currentJumpForce / 3, ForceMode.Impulse);
         }
         else if (PlayerManager.GetInstance.GetZValue() > 0)
         {
-            playerRigidbody.AddForce(transform.forward * _playerData.currentJumpForce / 3, ForceMode.Impulse);
+            playerRigidbody.AddForce(transform.forward * PlayerData.currentJumpForce / 3, ForceMode.Impulse);
         }
 
     }
@@ -1466,12 +1364,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         if (PlayerManager.GetInstance.GetXValue() < 0 && _playerData.isSideWalking)
         {
-            playerRigidbody.AddForce(transform.right * -1 * _playerData.currentJumpForce / 3, ForceMode.Impulse);
+            playerRigidbody.AddForce(transform.right * -1 * PlayerData.currentJumpForce / 3, ForceMode.Impulse);
 
         }
         else if (PlayerManager.GetInstance.GetXValue() > 0 && _playerData.isSideWalking)
         {
-            playerRigidbody.AddForce(transform.right * _playerData.currentJumpForce / 3, ForceMode.Impulse);
+            playerRigidbody.AddForce(transform.right * PlayerData.currentJumpForce / 3, ForceMode.Impulse);
         }
 
     }

@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class LevelUpController : MonoBehaviour
 {
-    public LevelData.LevelUpRequirements[] levelUpRequirements = null;
-
     [SerializeField] PlayerData playerData;
     [SerializeField] LevelData levelData;
     [SerializeField] BulletData bulletData;
@@ -94,7 +92,7 @@ public class LevelUpController : MonoBehaviour
     {
         if (coinSpawner)
         {
-            coinSpawner.SetCoinValue(LevelData.currentLevelCount);
+            coinSpawner.SetCoinValue(LevelData.currentLevelId);
         }        
     }
 
@@ -125,7 +123,7 @@ public class LevelUpController : MonoBehaviour
 
     IEnumerator SetLevelUpRequirementWarnTextMessages()
     {
-        if (levelUpRequirements != null && pickUpCoinLevelUpRequirementText)
+        if (levelData.levelUpRequirements != null && pickUpCoinLevelUpRequirementText)
         {
             pickUpCoinLevelUpRequirementText.text = "";
             if (playerData.currentLanguage == PlayerData.Languages.Turkish)
@@ -144,13 +142,13 @@ public class LevelUpController : MonoBehaviour
 
             if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                enemyKillLevelUpRequirementText.text = "Bölümü Geçmen İçin " + levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills.ToString() +
+                enemyKillLevelUpRequirementText.text = "Bölümü Geçmen İçin " + levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills.ToString() +
                 "  Düşman Öldürmen, ";
             }
             else
             {
                 enemyKillLevelUpRequirementText.text = "You Need To Take  " +
-                levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills.ToString() +
+                levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills.ToString() +
                 "  Kills";
             }
             
@@ -160,13 +158,13 @@ public class LevelUpController : MonoBehaviour
 
             if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                pickUpCoinLevelUpRequirementText.text = levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount.ToString() +
+                pickUpCoinLevelUpRequirementText.text = levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount.ToString() +
                 "  Coin Toplaman ve";
             }
             else
             {
                 pickUpCoinLevelUpRequirementText.text = "Pick Up  " +
-                levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount.ToString() +
+                levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount.ToString() +
                 "  Coins and";
             }
 
@@ -176,13 +174,13 @@ public class LevelUpController : MonoBehaviour
 
             if (playerData.currentLanguage == PlayerData.Languages.Turkish)
             {
-                levelUpKeysRequirementText.text = levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys.ToString() +
+                levelUpKeysRequirementText.text = levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys.ToString() +
                 "  Adet Anahtar Bulman Gerekiyor!!!";
             }
             else
             {
                 levelUpKeysRequirementText.text = "Pick Up  " +
-                levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys.ToString() +
+                levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys.ToString() +
                 "  Keys For Level Up!!!";
             }
 
@@ -197,17 +195,17 @@ public class LevelUpController : MonoBehaviour
 
     void InitStatements()
     {
-        if (levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount >= ScoreController._scoreAmount)
+        if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount >= ScoreController._scoreAmount)
         {
             scoreMissionCompletedImage.gameObject.SetActive(false);
         }
 
-        if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills >= EnemyData.enemyDeathCount)
+        if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills >= EnemyData.enemyDeathCount)
         {
             enemyKillMissionCompletedImage.gameObject.SetActive(false);
         }
 
-        if (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys >= LevelData.currentOwnedLevelUpKeys)
+        if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys >= LevelData.currentOwnedLevelUpKeys)
         {
             levelUpKeyMissionCompletedImage.gameObject.SetActive(false);
         }
@@ -241,20 +239,22 @@ public class LevelUpController : MonoBehaviour
         {
             mapController = mapControllerObject.GetComponent<MapController>();
         }
-        if (levelUpRequirements != null)
+        if (levelData.levelUpRequirements != null)
         {
-            levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead = false;
+            levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead = false;
         }
     }
 
     private void Update()
     {
-        SetDetectionOfEnemyAtUpdate(LevelData.currentLevelCount);
-        ArrowLevelRotation(LevelData.currentLevelCount);
+        SetDetectionOfEnemyAtUpdate(LevelData.currentLevelId);
+        ArrowLevelRotation(LevelData.currentLevelId);
 
         CheckCompleteLevel();
 
-        levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead = EnemySpawner.bossIsDead;
+        levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead = EnemySpawner.bossIsDead;
+
+        CurrentLevelID();
     }
 
 
@@ -277,7 +277,7 @@ public class LevelUpController : MonoBehaviour
     {
         if (levelData != null)
         {
-            LevelData.currentLevelCount = GetCurrentLevelID(levelData);
+            LevelData.currentLevelId = GetCurrentLevelID(levelData);
 
             CheckLevelUpRequirementsWhenTriggerFinisArea();
         } 
@@ -286,16 +286,16 @@ public class LevelUpController : MonoBehaviour
     {
         LevelData.currentLevelUpRequirement = GetCurrentLevelID(levelData);
 
-        if (levelUpRequirements != null)
+        if (levelData.levelUpRequirements != null)
         {
-            if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills != 0 &&
-            levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount != 0 &&
-            levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys != 0)
+            if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills != 0 &&
+            levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount != 0 &&
+            levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys != 0)
             {
-                if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead && enoughForLevelUp == 0)
+                if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead && enoughForLevelUp == 0)
                 {
                     ++enoughForLevelUp;
                     LevelData.levelCanBeSkipped = true;
@@ -311,10 +311,10 @@ public class LevelUpController : MonoBehaviour
 
                     StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
                 }
-                 else if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills > EnemyData.enemyDeathCount &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
+                 else if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills > EnemyData.enemyDeathCount &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
                     notEnoughEnemyKillsCount == 0)
                 {
                     ++notEnoughEnemyKillsCount;
@@ -322,22 +322,22 @@ public class LevelUpController : MonoBehaviour
                     if (playerData.currentLanguage == PlayerData.Languages.Turkish)
                     {
                         requirementMessage = "Bölümü Geçmek İçin " +
-                            (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills - EnemyData.enemyDeathCount).ToString() +
+                            (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills - EnemyData.enemyDeathCount).ToString() +
                             " Tane Daha Düşman Öldürmen Gerekiyor!!!";
                     }
                     else
                     {
                         requirementMessage = "You Need to Kill " +
-                            (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills - EnemyData.enemyDeathCount).ToString() +
+                            (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills - EnemyData.enemyDeathCount).ToString() +
                             " More Enemy!!!"; ;
                     }
 
                     StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
                 }
-                else if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount > ScoreController._scoreAmount &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
+                else if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount > ScoreController._scoreAmount &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
                     notEnoughCoinCount == 0)
                 {
                     ++notEnoughCoinCount;
@@ -345,23 +345,23 @@ public class LevelUpController : MonoBehaviour
                     if (playerData.currentLanguage == PlayerData.Languages.Turkish)
                     {
                         requirementMessage = "Bölümü Geçmek İçin " +
-                            (levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount - ScoreController._scoreAmount).ToString() +
+                            (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount - ScoreController._scoreAmount).ToString() +
                             " Tane Daha Skor Elde Etmen Gerekiyor!!!";
                     }
                     else
                     {
                         requirementMessage = "You Need to Make " +
-                            (levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount - ScoreController._scoreAmount).ToString() +
+                            (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount - ScoreController._scoreAmount).ToString() +
                             " More Score!!!"; ;
                     }
 
                     StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
                 }
 
-                else if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
+                else if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
                     notEnoughKeyCount == 0)
                 {
                     ++notEnoughKeyCount;
@@ -369,23 +369,23 @@ public class LevelUpController : MonoBehaviour
                     if (playerData.currentLanguage == PlayerData.Languages.Turkish)
                     {
                         requirementMessage = "Bölümü Geçmek İçin " +
-                            (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys - LevelData.currentOwnedLevelUpKeys).ToString() +
+                            (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys - LevelData.currentOwnedLevelUpKeys).ToString() +
                             " Tane Daha Anahtar Bulman Gerekiyor!!!";
                     }
                     else
                     {
                         requirementMessage = "You Need to Find " +
-                            (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys - LevelData.currentOwnedLevelUpKeys).ToString() +
+                            (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys - LevelData.currentOwnedLevelUpKeys).ToString() +
                             " More Key(s)!!!"; ;
                     }
 
                     StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
                 }
 
-                else if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
-                    levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
-                    !levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
+                else if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
+                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
+                    !levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
                     notEnoughBossDeadCount == 0)
                 {
                     ++notEnoughBossDeadCount;
@@ -403,7 +403,7 @@ public class LevelUpController : MonoBehaviour
                 }
                 else
                 {
-                    if (levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
+                    if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
                         enoughCoinCount == 0)
                     {
                         ++enoughCoinCount;
@@ -421,7 +421,7 @@ public class LevelUpController : MonoBehaviour
 
                         StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
                     }
-                    if (levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
+                    if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
                         enoughEnemyKillsCount == 0)
                     {
                         ++enoughEnemyKillsCount;
@@ -440,13 +440,13 @@ public class LevelUpController : MonoBehaviour
 
                         enemyKillMissionCompletedImage.gameObject.SetActive(true);
                     }
-                    if (levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys &&
+                    if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys &&
                         enoughKeyCount == 0)
                     {
                         ++enoughKeyCount;
 
-                        currentLevelUpKeysText.text = LevelData.currentOwnedLevelUpKeys.ToString() + "/" +
-                                                      levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys;
+                        currentLevelUpKeysText.text = $"{LevelData.currentOwnedLevelUpKeys}/{levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys}";
+
 
 
                         if (playerData.currentLanguage == PlayerData.Languages.Turkish)
@@ -463,13 +463,13 @@ public class LevelUpController : MonoBehaviour
                         levelUpKeyMissionCompletedImage.gameObject.SetActive(true);
                     }
                     else if (levelUpKeysRequirementText &&
-                        levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
+                        levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
                         currentLevelUpKeysText)
                     {
-                        currentLevelUpKeysText.text = $"{LevelData.currentOwnedLevelUpKeys}/{levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys}";
+                        currentLevelUpKeysText.text = $"{LevelData.currentOwnedLevelUpKeys}/{levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys}";
 
                     }
-                    if (levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
+                    if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
                         enoughBossDeadCount == 0)
                     {
                         ++enoughBossDeadCount;
@@ -503,10 +503,10 @@ public class LevelUpController : MonoBehaviour
 
             levelData.currentLevel = LevelData.Levels.Level2;
             levelData.currentEnemyObjects = levelData.enemySecondObjects;
-            bulletData.currentGiftBox = bulletData.cowGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[1].giftBox;
             CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.SetSkybox(LevelData.currentLevelCount);
+            coinSpawner.SetCoinValue(LevelData.currentLevelId);
+            mapController.SetSkybox(LevelData.currentLevelId);
             _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[0] = false;
@@ -517,10 +517,10 @@ public class LevelUpController : MonoBehaviour
 
             levelData.currentLevel = LevelData.Levels.Level3;
             levelData.currentEnemyObjects = levelData.enemyThirdObjects;
-            bulletData.currentGiftBox = bulletData.demonGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[2].giftBox; ;
             CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.SetSkybox(LevelData.currentLevelCount);
+            coinSpawner.SetCoinValue(LevelData.currentLevelId);
+            mapController.SetSkybox(LevelData.currentLevelId);
             _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[1] = false;
@@ -531,10 +531,10 @@ public class LevelUpController : MonoBehaviour
 
             levelData.currentLevel = LevelData.Levels.Level4;
             levelData.currentEnemyObjects = levelData.enemyFourthObjects;
-            bulletData.currentGiftBox = bulletData.electroGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[3].giftBox;
             CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.SetSkybox(LevelData.currentLevelCount);
+            coinSpawner.SetCoinValue(LevelData.currentLevelId);
+            mapController.SetSkybox(LevelData.currentLevelId);
 
             _sceneController.LevelUpGame();
 
@@ -546,10 +546,10 @@ public class LevelUpController : MonoBehaviour
 
             levelData.currentLevel = LevelData.Levels.Level5;
             levelData.currentEnemyObjects = levelData.enemyFifthObjects;
-            bulletData.currentGiftBox = bulletData.axeGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[4].giftBox;
             CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.SetSkybox(LevelData.currentLevelCount);
+            coinSpawner.SetCoinValue(LevelData.currentLevelId);
+            mapController.SetSkybox(LevelData.currentLevelId);
 
             _sceneController.LevelUpGame();
 
@@ -561,10 +561,10 @@ public class LevelUpController : MonoBehaviour
 
             levelData.currentLevel = LevelData.Levels.Level6;
             levelData.currentEnemyObjects = levelData.enemySixthObjects;
-            bulletData.currentGiftBox = bulletData.crystalGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[5].giftBox;
             CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.SetSkybox(LevelData.currentLevelCount);
+            coinSpawner.SetCoinValue(LevelData.currentLevelId);
+            mapController.SetSkybox(LevelData.currentLevelId);
 
             _sceneController.LevelUpGame();
 
@@ -576,10 +576,10 @@ public class LevelUpController : MonoBehaviour
 
             levelData.currentLevel = LevelData.Levels.Level7;
             levelData.currentEnemyObjects = levelData.enemySeventhObjects;
-            bulletData.currentGiftBox = bulletData.iceGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[6].giftBox;
             CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.SetSkybox(LevelData.currentLevelCount);
+            coinSpawner.SetCoinValue(LevelData.currentLevelId);
+            mapController.SetSkybox(LevelData.currentLevelId);
             _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[5] = false;
@@ -590,10 +590,10 @@ public class LevelUpController : MonoBehaviour
 
             levelData.currentLevel = LevelData.Levels.Level8;
             levelData.currentEnemyObjects = levelData.enemyEightthObjects;
-            bulletData.currentGiftBox = bulletData.pistolGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[7].giftBox;
             CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.SetSkybox(LevelData.currentLevelCount);
+            coinSpawner.SetCoinValue(LevelData.currentLevelId);
+            mapController.SetSkybox(LevelData.currentLevelId);
             _sceneController.LevelUpGame();
 
             levelData.isCompleteMaps[6] = false;
@@ -604,10 +604,10 @@ public class LevelUpController : MonoBehaviour
 
             levelData.currentLevel = LevelData.Levels.Level9;
             levelData.currentEnemyObjects = levelData.enemyNinethObjects;
-            bulletData.currentGiftBox = bulletData.shotGunGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[8].giftBox;
             CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.SetSkybox(LevelData.currentLevelCount);
+            coinSpawner.SetCoinValue(LevelData.currentLevelId);
+            mapController.SetSkybox(LevelData.currentLevelId);
 
             _sceneController.LevelUpGame();
 
@@ -619,10 +619,10 @@ public class LevelUpController : MonoBehaviour
 
             levelData.currentLevel = LevelData.Levels.Level10;
             levelData.currentEnemyObjects = levelData.enemyTenthObjects;
-            bulletData.currentGiftBox = bulletData.machineGiftBox;
+            bulletData.currentGiftBox = bulletData.weaponStruct[9].giftBox;
             CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelCount);
-            mapController.SetSkybox(LevelData.currentLevelCount);
+            coinSpawner.SetCoinValue(LevelData.currentLevelId);
+            mapController.SetSkybox(LevelData.currentLevelId);
 
             _sceneController.LevelUpGame();
 
