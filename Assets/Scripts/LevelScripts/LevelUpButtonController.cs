@@ -16,7 +16,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            levelData.currentLevel = LevelData.Levels.Level1;
+            LevelData.currentLevelId = 0;
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -35,7 +35,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            levelData.currentLevel = LevelData.Levels.Level2;
+            LevelData.currentLevelId = 1;
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -54,7 +54,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            levelData.currentLevel = LevelData.Levels.Level3;
+            LevelData.currentLevelId = 2;
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -73,7 +73,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            levelData.currentLevel = LevelData.Levels.Level4;
+            LevelData.currentLevelId = 3;
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -92,7 +92,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            levelData.currentLevel = LevelData.Levels.Level5;
+            LevelData.currentLevelId = 4;
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -111,7 +111,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            levelData.currentLevel = LevelData.Levels.Level6;
+            LevelData.currentLevelId = 5;
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -130,7 +130,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            levelData.currentLevel = LevelData.Levels.Level7;
+            LevelData.currentLevelId = 6;
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -149,7 +149,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            levelData.currentLevel = LevelData.Levels.Level8;
+            LevelData.currentLevelId = 7;
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -168,7 +168,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            levelData.currentLevel = LevelData.Levels.Level9;
+            LevelData.currentLevelId = 8;
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -187,7 +187,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            levelData.currentLevel = LevelData.Levels.Level10;
+            LevelData.currentLevelId = 9;
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 

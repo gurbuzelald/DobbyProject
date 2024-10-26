@@ -296,11 +296,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 Debug.Log("_healthBarObject");
             }
 
-            if (levelData.isCompleteMaps.Length >= 1)
+            if (levelData.levelStates.Length >= 1)
             {
-                for (int i = 0; i < levelData.isCompleteMaps.Length; i++)
+                for (int i = 0; i < levelData.levelStates.Length; i++)
                 {
-                    levelData.isCompleteMaps[i] = false;
+                    levelData.levelStates[i].isCompleteMap = false;
                 }
             }
             
@@ -349,7 +349,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.bulletAmount = _bulletData.currentBulletPackAmount;
             _playerData.isFireWalkAnimation = false;
             _playerData.isFire = false;
-            levelData.isLevelUp = false;
+            LevelData.isLevelUp = false;
             LevelData.levelCanBeSkipped = false;
             _playerData.clickShiftCount = 0;
             _playerData.isDestroyed = false;
@@ -685,12 +685,19 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
                 StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, .2f));
             }
-            //Debug.Log(other.gameObject.name);
 
-            //other.gameObject.transform.parent.GetComponent<EnemyManager>().CheckEnemyBulletDamage(ref other.gameObject.transform.parent.GetComponent<EnemyManager>().bulletData);
-
-            DecreaseHealth(ref _playerData, PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage,
+            if (other.gameObject.transform.parent.name == "bossEnemyTransform")
+            {
+                DecreaseHealth(ref _playerData, PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage*2,
                             ref _healthBarObject, ref healthBarSlider, ref topCanvasHealthBarSlider, ref damageHealthText);
+            }
+            else
+            {
+                DecreaseHealth(ref _playerData, PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage,
+                            ref _healthBarObject, ref healthBarSlider, ref topCanvasHealthBarSlider, ref damageHealthText);
+            }
+
+            
         }
     }
 
@@ -1068,7 +1075,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         yield return new WaitForSeconds(delayWait);
 
-        levelData.isLevelUp = false;
+        LevelData.isLevelUp = false;
         LevelData.levelCanBeSkipped = false;
     }
 

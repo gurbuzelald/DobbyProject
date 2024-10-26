@@ -13,7 +13,7 @@ public class PlayerData : ScriptableObject
         public int durability;
         public int price;
         public int jumpForce;
-        public int speed;
+        public float speed;
         public int id;
         public string name;
         public string lockState;

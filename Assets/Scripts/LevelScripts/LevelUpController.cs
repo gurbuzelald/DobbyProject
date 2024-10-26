@@ -52,6 +52,7 @@ public class LevelUpController : MonoBehaviour
     private int enoughBossDeadCount;
     private int notEnoughBossDeadCount;
     private int enoughForLevelUp;
+    private int enoughAllAchievments;
 
 
     void Awake()
@@ -65,8 +66,7 @@ public class LevelUpController : MonoBehaviour
         enoughBossDeadCount = 0;
         notEnoughBossDeadCount = 0;
         enoughForLevelUp = 0;
-
-        CurrentLevelID();
+        enoughAllAchievments = 0;
 
         weaponGiftBoxSpawnerObject = GameObject.Find("WeaponGiftBoxSpawner");
 
@@ -93,7 +93,7 @@ public class LevelUpController : MonoBehaviour
         if (coinSpawner)
         {
             coinSpawner.SetCoinValue(LevelData.currentLevelId);
-        }        
+        }
     }
 
 
@@ -123,530 +123,307 @@ public class LevelUpController : MonoBehaviour
 
     IEnumerator SetLevelUpRequirementWarnTextMessages()
     {
-        if (levelData.levelUpRequirements != null && pickUpCoinLevelUpRequirementText)
-        {
-            pickUpCoinLevelUpRequirementText.text = "";
-            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                enemyKillLevelUpRequirementText.text = TimeController.initialTimeValue.ToString() +
-                "  Saniyen Var: ";
-            }
-            else
-            {
-                enemyKillLevelUpRequirementText.text = "You Have  " +
-                TimeController.initialTimeValue.ToString() +
-                "  Seconds:";
-            }
+        if (levelData.levelUpRequirements == null || pickUpCoinLevelUpRequirementText == null)
+            yield break;
 
-            yield return new WaitForSeconds(4f);
+        yield return ShowTimeMessage();
 
-            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                enemyKillLevelUpRequirementText.text = "Bölümü Geçmen İçin " + levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills.ToString() +
-                "  Düşman Öldürmen, ";
-            }
-            else
-            {
-                enemyKillLevelUpRequirementText.text = "You Need To Take  " +
-                levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills.ToString() +
-                "  Kills";
-            }
-            
-            yield return new WaitForSeconds(4f);
+        yield return ShowEnemyKillRequirement();
 
-            enemyKillLevelUpRequirementText.text = "";
+        yield return ShowCoinCollectRequirement();
 
-            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                pickUpCoinLevelUpRequirementText.text = levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount.ToString() +
-                "  Coin Toplaman ve";
-            }
-            else
-            {
-                pickUpCoinLevelUpRequirementText.text = "Pick Up  " +
-                levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount.ToString() +
-                "  Coins and";
-            }
+        yield return ShowKeyRequirement();
 
-            yield return new WaitForSeconds(4f);
+        yield return ShowBossRequirement();
 
-            pickUpCoinLevelUpRequirementText.text = "";
-
-            if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-            {
-                levelUpKeysRequirementText.text = levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys.ToString() +
-                "  Adet Anahtar Bulman Gerekiyor!!!";
-            }
-            else
-            {
-                levelUpKeysRequirementText.text = "Pick Up  " +
-                levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys.ToString() +
-                "  Keys For Level Up!!!";
-            }
-
-            yield return new WaitForSeconds(4f);
-
-            enemyKillLevelUpRequirementText.text = "";
-            pickUpCoinLevelUpRequirementText.text = "";
-            levelUpKeysRequirementText.text = "";
-        }
-
+        ClearAllRequirementsText();
     }
+
+    IEnumerator ShowTimeMessage()
+    {
+        string timeMessage = playerData.currentLanguage == PlayerData.Languages.Turkish
+            ? $"{TimeController.initialTimeValue} Saniyen Var:"
+            : $"You Have {TimeController.initialTimeValue} Seconds:";
+
+        enemyKillLevelUpRequirementText.text = timeMessage;
+        yield return new WaitForSeconds(4f);
+    }
+
+    IEnumerator ShowEnemyKillRequirement()
+    {
+        string enemyKillMessage = playerData.currentLanguage == PlayerData.Languages.Turkish
+            ? $"Bölümü Geçmen İçin {levelData.levelUpRequirements[LevelData.currentLevelId].enemyKills} Düşman Öldürmen,"
+            : $"You Need To Take {levelData.levelUpRequirements[LevelData.currentLevelId].enemyKills} Kills";
+
+        enemyKillLevelUpRequirementText.text = enemyKillMessage;
+        yield return new WaitForSeconds(4f);
+        enemyKillLevelUpRequirementText.text = ""; // Clear after showing
+    }
+
+    IEnumerator ShowCoinCollectRequirement()
+    {
+        string coinMessage = playerData.currentLanguage == PlayerData.Languages.Turkish
+            ? $"{levelData.levelUpRequirements[LevelData.currentLevelId].coinCollectAmount} Coin Toplaman ve"
+            : $"Pick Up {levelData.levelUpRequirements[LevelData.currentLevelId].coinCollectAmount} Coins and";
+
+        pickUpCoinLevelUpRequirementText.text = coinMessage;
+        yield return new WaitForSeconds(4f);
+        pickUpCoinLevelUpRequirementText.text = ""; // Clear after showing
+    }
+
+    IEnumerator ShowKeyRequirement()
+    {
+        string keyMessage = playerData.currentLanguage == PlayerData.Languages.Turkish
+            ? $"{levelData.levelUpRequirements[LevelData.currentLevelId].levelUpKeys} Adet Anahtar Bulman Gerekiyor!!!"
+            : $"Pick Up {levelData.levelUpRequirements[LevelData.currentLevelId].levelUpKeys} Keys For Level Up!!!";
+
+        levelUpKeysRequirementText.text = keyMessage;
+        yield return new WaitForSeconds(4f);
+        levelUpKeysRequirementText.text = ""; // Clear after showing
+    }
+    IEnumerator ShowBossRequirement()
+    {
+        string keyMessage = playerData.currentLanguage == PlayerData.Languages.Turkish
+            ? $"Bölümü Geçmek İçin Bölümün Patron Düşmanını Öldürmen Gerekiyor!!!"
+            : $"You Need to Kill This Level's Boss Enemy"; 
+
+        levelUpKeysRequirementText.text = keyMessage;
+        yield return new WaitForSeconds(4f);
+        levelUpKeysRequirementText.text = ""; // Clear after showing
+    }
+
+    void ClearAllRequirementsText()
+    {
+        enemyKillLevelUpRequirementText.text = "";
+        pickUpCoinLevelUpRequirementText.text = "";
+        levelUpKeysRequirementText.text = "";
+    }
+
 
     void InitStatements()
     {
-        if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount >= ScoreController._scoreAmount)
-        {
-            scoreMissionCompletedImage.gameObject.SetActive(false);
-        }
+        // Check mission completion for current level requirements
+        var currentRequirements = levelData.levelUpRequirements[LevelData.currentLevelId];
 
-        if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills >= EnemyData.enemyDeathCount)
-        {
-            enemyKillMissionCompletedImage.gameObject.SetActive(false);
-        }
+        scoreMissionCompletedImage.gameObject.SetActive(currentRequirements.coinCollectAmount < ScoreController._scoreAmount);
+        enemyKillMissionCompletedImage.gameObject.SetActive(currentRequirements.enemyKills < EnemyData.enemyDeathCount);
+        levelUpKeyMissionCompletedImage.gameObject.SetActive(currentRequirements.levelUpKeys < LevelData.currentOwnedLevelUpKeys);
 
-        if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys >= LevelData.currentOwnedLevelUpKeys)
-        {
-            levelUpKeyMissionCompletedImage.gameObject.SetActive(false);
-        }
-
+        // Reset level-related data
         LevelData.currentOwnedLevelUpKeys = 0;
-
         LevelData.levelCanBeSkipped = false;
 
-        if (weaponGiftBoxSpawnerObject)
-        {
-            weaponGiftBoxSpawner = weaponGiftBoxSpawnerObject.GetComponent<WeaponGiftBoxSpawner>();
-        }
-        if (enemySpawnerObject)
-        {
-            enemySpawner = enemySpawnerObject.GetComponent<EnemySpawner>();
-        }
-        if (coinSpawnerObject)
-        {
-            coinSpawner = coinSpawnerObject.GetComponent<CoinSpawner>();
-        }
-        if (mirrorSpawnerObject)
-        {
-            mirrorSpawner = mirrorSpawnerObject.GetComponent<MirrorSpawner>();
+        // Initialize spawners and controllers if the objects are assigned
+        InitializeComponent(ref weaponGiftBoxSpawner, weaponGiftBoxSpawnerObject);
+        InitializeComponent(ref enemySpawner, enemySpawnerObject);
+        InitializeComponent(ref coinSpawner, coinSpawnerObject);
+        InitializeComponent(ref mirrorSpawner, mirrorSpawnerObject);
+        InitializeComponent(ref cameraSpawner, cameraSpawnerObject);
+        InitializeComponent(ref mapController, mapControllerObject);
 
-        }
-        if (cameraSpawnerObject)
+        // Reset boss enemy status for the current level
+        if (levelData != null)
         {
-            cameraSpawner = cameraSpawnerObject.GetComponent<CameraSpawner>();
-        }
-        if (mapControllerObject)
-        {
-            mapController = mapControllerObject.GetComponent<MapController>();
-        }
-        if (levelData.levelUpRequirements != null)
-        {
-            levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead = false;
+            currentRequirements.isBossEnemyDead = false;
         }
     }
 
+    void InitializeComponent<T>(ref T component, GameObject obj) where T : Component
+    {
+        if (obj && component == null)
+        {
+            component = obj.GetComponent<T>();
+        }
+    }
+
+
     private void Update()
     {
-        SetDetectionOfEnemyAtUpdate(LevelData.currentLevelId);
         ArrowLevelRotation(LevelData.currentLevelId);
 
         CheckCompleteLevel();
 
-        levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead = EnemySpawner.bossIsDead;
+        levelData.levelUpRequirements[LevelData.currentLevelId].isBossEnemyDead = EnemySpawner.bossIsDead;
 
-        CurrentLevelID();
+        CheckLevelUpRequirements();
     }
 
-
-    int GetCurrentLevelID(LevelData levelData)
+    void CheckLevelUpRequirements()
     {
-        if (levelData.currentLevel == LevelData.Levels.Level1) return 0;
-        else if (levelData.currentLevel == LevelData.Levels.Level2) return 1;
-        else if (levelData.currentLevel == LevelData.Levels.Level3) return 2;
-        else if (levelData.currentLevel == LevelData.Levels.Level4) return 3;
-        else if (levelData.currentLevel == LevelData.Levels.Level5) return 4;
-        else if (levelData.currentLevel == LevelData.Levels.Level6) return 5;
-        else if (levelData.currentLevel == LevelData.Levels.Level7) return 6;
-        else if (levelData.currentLevel == LevelData.Levels.Level8) return 7;
-        else if (levelData.currentLevel == LevelData.Levels.Level9) return 8;
-        else if (levelData.currentLevel == LevelData.Levels.Level10) return 9;
-        return -1;
+        if (levelData == null) return;
+        if (levelData.levelUpRequirements == null) return;
 
-    }
-    void CurrentLevelID()
-    {
-        if (levelData != null)
+        var currentRequirements = levelData.levelUpRequirements[LevelData.currentLevelId];
+        bool canLevelUp = false;
+
+        // Check if level-up requirements exist
+        if (currentRequirements.enemyKills != 0 || currentRequirements.coinCollectAmount != 0 || currentRequirements.levelUpKeys != 0)
         {
-            LevelData.currentLevelId = GetCurrentLevelID(levelData);
-
-            CheckLevelUpRequirementsWhenTriggerFinisArea();
-        } 
-    }
-    void CheckLevelUpRequirementsWhenTriggerFinisArea()
-    {
-        LevelData.currentLevelUpRequirement = GetCurrentLevelID(levelData);
-
-        if (levelData.levelUpRequirements != null)
-        {
-            if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills != 0 &&
-            levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount != 0 &&
-            levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys != 0)
+            if (IsRequirementsMet(currentRequirements) && enoughAllAchievments == 0)
             {
-                if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead && enoughForLevelUp == 0)
-                {
-                    ++enoughForLevelUp;
-                    LevelData.levelCanBeSkipped = true;
-
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        requirementMessage = "Bölümü Geçmek İçin Bitiş Alanını Bul!!!";
-                    }
-                    else
-                    {
-                        requirementMessage = "Find To Finish Area For Level Up!!!";
-                    }
-
-                    StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
-                }
-                 else if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills > EnemyData.enemyDeathCount &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
-                    notEnoughEnemyKillsCount == 0)
-                {
-                    ++notEnoughEnemyKillsCount;
-
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        requirementMessage = "Bölümü Geçmek İçin " +
-                            (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills - EnemyData.enemyDeathCount).ToString() +
-                            " Tane Daha Düşman Öldürmen Gerekiyor!!!";
-                    }
-                    else
-                    {
-                        requirementMessage = "You Need to Kill " +
-                            (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills - EnemyData.enemyDeathCount).ToString() +
-                            " More Enemy!!!"; ;
-                    }
-
-                    StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
-                }
-                else if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount > ScoreController._scoreAmount &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
-                    notEnoughCoinCount == 0)
-                {
-                    ++notEnoughCoinCount;
-
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        requirementMessage = "Bölümü Geçmek İçin " +
-                            (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount - ScoreController._scoreAmount).ToString() +
-                            " Tane Daha Skor Elde Etmen Gerekiyor!!!";
-                    }
-                    else
-                    {
-                        requirementMessage = "You Need to Make " +
-                            (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount - ScoreController._scoreAmount).ToString() +
-                            " More Score!!!"; ;
-                    }
-
-                    StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
-                }
-
-                else if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
-                    notEnoughKeyCount == 0)
-                {
-                    ++notEnoughKeyCount;
-
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        requirementMessage = "Bölümü Geçmek İçin " +
-                            (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys - LevelData.currentOwnedLevelUpKeys).ToString() +
-                            " Tane Daha Anahtar Bulman Gerekiyor!!!";
-                    }
-                    else
-                    {
-                        requirementMessage = "You Need to Find " +
-                            (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys - LevelData.currentOwnedLevelUpKeys).ToString() +
-                            " More Key(s)!!!"; ;
-                    }
-
-                    StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
-                }
-
-                else if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
-                    levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
-                    !levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
-                    notEnoughBossDeadCount == 0)
-                {
-                    ++notEnoughBossDeadCount;
-
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        requirementMessage = "Bölümü Geçmek İçin Bölümün Patron Düşmanını Öldürmen Gerekiyor!!!";
-                    }
-                    else
-                    {
-                        requirementMessage = "You Need to Kill This Level's Boss Enemy ";
-                    }
-
-                    StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
-                }
-                else
-                {
-                    if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].coinCollectAmount <= ScoreController._scoreAmount &&
-                        enoughCoinCount == 0)
-                    {
-                        ++enoughCoinCount;
-
-                        if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                        {
-                            requirementMessage = "Yeterince Coinin Var!!!";
-                        }
-                        else
-                        {
-                            requirementMessage = "You Have Pretty Enough Coins!!!";
-                        }
-
-                        scoreMissionCompletedImage.gameObject.SetActive(true);
-
-                        StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
-                    }
-                    if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].enemyKills <= EnemyData.enemyDeathCount &&
-                        enoughEnemyKillsCount == 0)
-                    {
-                        ++enoughEnemyKillsCount;
-
-                        if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                        {
-                            requirementMessage = "Öldürmen Gereken Düşman Sayısına Ulaştın!!!";
-                        }
-                        else
-                        {
-                            requirementMessage = "You Reached Pretty Enough Enemy Killing!!!";
-                        }
-
-                        StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
-
-
-                        enemyKillMissionCompletedImage.gameObject.SetActive(true);
-                    }
-                    if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys == LevelData.currentOwnedLevelUpKeys &&
-                        enoughKeyCount == 0)
-                    {
-                        ++enoughKeyCount;
-
-                        currentLevelUpKeysText.text = $"{LevelData.currentOwnedLevelUpKeys}/{levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys}";
-
-
-
-                        if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                        {
-                            requirementMessage = "Bütün Anahtarları Buldun!!!";
-                        }
-                        else
-                        {
-                            requirementMessage = "You Found All Keys!!!";
-                        }
-
-                        StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
-
-                        levelUpKeyMissionCompletedImage.gameObject.SetActive(true);
-                    }
-                    else if (levelUpKeysRequirementText &&
-                        levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
-                        currentLevelUpKeysText)
-                    {
-                        currentLevelUpKeysText.text = $"{LevelData.currentOwnedLevelUpKeys}/{levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].levelUpKeys}";
-
-                    }
-                    if (levelData.levelUpRequirements[LevelData.currentLevelUpRequirement].isBossEnemyDead &&
-                        enoughBossDeadCount == 0)
-                    {
-                        ++enoughBossDeadCount;
-
-                        if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                        {
-                            requirementMessage = "Bu Bölümün Patron Düşmanını Öldürdün!!!";
-                        }
-                        else
-                        {
-                            requirementMessage = "This Level's Boss Enemy is Defeated By You!!!";
-                        }
-
-                        StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
-                    }
-                }
+                canLevelUp = true;
+                LevelData.levelCanBeSkipped = true;
+                ShowRequirementMessage("Find To Finish Area For Level Up!!!", "Bölümü Geçmek İçin Bitiş Alanını Bul!!!");
+                enoughAllAchievments++;
             }
             else
             {
-                LevelData.levelCanBeSkipped = true;
-            }           
-
+                CheckNotMetRequirements(currentRequirements);
+            }
+        }
+        else
+        {
+            LevelData.levelCanBeSkipped = true; // No requirements, skip level
         }
     }
-    
+
+    bool IsRequirementsMet(LevelData.LevelUpRequirements requirements)
+    {
+        return requirements.enemyKills <= EnemyData.enemyDeathCount &&
+               requirements.coinCollectAmount <= ScoreController._scoreAmount &&
+               requirements.levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
+               requirements.isBossEnemyDead;
+    }
+
+    void CheckNotMetRequirements(LevelData.LevelUpRequirements requirements)
+    {
+        if (requirements.levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
+            requirements.coinCollectAmount <= ScoreController._scoreAmount &&
+            requirements.enemyKills > EnemyData.enemyDeathCount &&
+            requirements.isBossEnemyDead && notEnoughEnemyKillsCount == 0)
+        {
+            ShowRequirementMessage($"You Need to Kill {requirements.enemyKills - EnemyData.enemyDeathCount} More Enemy!!!",
+                                   $"Bölümü Geçmek İçin {requirements.enemyKills - EnemyData.enemyDeathCount} Tane Daha Düşman Öldürmen Gerekiyor!!!");
+            ++notEnoughEnemyKillsCount;
+        }
+        else if (requirements.levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
+            requirements.coinCollectAmount > ScoreController._scoreAmount &&
+            requirements.enemyKills <= EnemyData.enemyDeathCount &&
+            requirements.isBossEnemyDead && notEnoughCoinCount == 0)
+        {
+            ShowRequirementMessage($"You Need to Make {requirements.coinCollectAmount - ScoreController._scoreAmount} More Score!!!",
+                                   $"Bölümü Geçmek İçin {requirements.coinCollectAmount - ScoreController._scoreAmount} Tane Daha Skor Elde Etmen Gerekiyor!!!");
+            ++notEnoughCoinCount;
+        }
+        else if (requirements.levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
+            requirements.coinCollectAmount <= ScoreController._scoreAmount &&
+            requirements.enemyKills <= EnemyData.enemyDeathCount &&
+            requirements.isBossEnemyDead && notEnoughKeyCount == 0)
+        {
+            ShowRequirementMessage($"You Need to Find {requirements.levelUpKeys - LevelData.currentOwnedLevelUpKeys} More Key(s)!!!",
+                                   $"Bölümü Geçmek İçin {requirements.levelUpKeys - LevelData.currentOwnedLevelUpKeys} Tane Daha Anahtar Bulman Gerekiyor!!!");
+            ++notEnoughKeyCount;
+        }
+        else if (requirements.levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
+            requirements.coinCollectAmount <= ScoreController._scoreAmount &&
+            requirements.enemyKills <= EnemyData.enemyDeathCount &&
+            !requirements.isBossEnemyDead && notEnoughBossDeadCount == 0)
+        {
+            ShowRequirementMessage("You Need to Kill This Level's Boss Enemy",
+                                   "Bölümü Geçmek İçin Bölümün Patron Düşmanını Öldürmen Gerekiyor!!!");
+            ++notEnoughBossDeadCount;
+        }
+        else
+        {
+            CheckAchievements(requirements);
+        }
+    }
+
+    void CheckAchievements(LevelData.LevelUpRequirements requirements)
+    {
+        if (requirements.coinCollectAmount <= ScoreController._scoreAmount && enoughCoinCount == 0)
+        {
+            ShowAchievementMessage("You Have Pretty Enough Coins!!!", "Yeterince Coinin Var!!!");
+            scoreMissionCompletedImage.gameObject.SetActive(true);
+            ++enoughCoinCount;
+        }
+        if (requirements.enemyKills <= EnemyData.enemyDeathCount && enoughEnemyKillsCount == 0)
+        {
+            ShowAchievementMessage("You Reached Pretty Enough Enemy Killing!!!", "Öldürmen Gereken Düşman Sayısına Ulaştın!!!");
+            enemyKillMissionCompletedImage.gameObject.SetActive(true);
+            ++enoughEnemyKillsCount;
+        }
+        if (requirements.levelUpKeys == LevelData.currentOwnedLevelUpKeys && enoughKeyCount == 0)
+        {
+            currentLevelUpKeysText.text = $"{LevelData.currentOwnedLevelUpKeys}/{requirements.levelUpKeys}";
+            ShowAchievementMessage("You Found All Keys!!!", "Bütün Anahtarları Buldun!!!");
+            levelUpKeyMissionCompletedImage.gameObject.SetActive(true);
+            ++enoughKeyCount;
+        }
+        else if (requirements.levelUpKeys > LevelData.currentOwnedLevelUpKeys && currentLevelUpKeysText)
+        {
+            currentLevelUpKeysText.text = $"{LevelData.currentOwnedLevelUpKeys}/{requirements.levelUpKeys}";
+        }
+        if (requirements.isBossEnemyDead && enoughBossDeadCount == 0)
+        {
+            ShowAchievementMessage("This Level's Boss Enemy is Defeated By You!!!", "Bu Bölümün Patron Düşmanını Öldürdün!!!");
+            ++enoughBossDeadCount;
+        }
+    }
+
+    void ShowRequirementMessage(string englishMessage, string turkishMessage)
+    {
+        requirementMessage = playerData.currentLanguage == PlayerData.Languages.Turkish ? turkishMessage : englishMessage;
+        if (PlayerManager.GetInstance)
+        {
+            StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
+        }
+    }
+
+    void ShowAchievementMessage(string englishMessage, string turkishMessage)
+    {
+        requirementMessage = playerData.currentLanguage == PlayerData.Languages.Turkish ? turkishMessage : englishMessage;
+        if (PlayerManager.GetInstance)
+        {
+            StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
+        }
+    }
+
+
     void CheckCompleteLevel()
     {
-        if (levelData.isCompleteMaps[0])
+        for (int i = 0; i < levelData.levelStates.Length; i++)
         {
-            ObjectPool.creatableEnemyBullet = true;
+            if (levelData.levelStates[i].isCompleteMap)
+            {
+                // Enable enemy bullet creation
+                ObjectPool.creatableEnemyBullet = true;
 
-            levelData.currentLevel = LevelData.Levels.Level2;
-            levelData.currentEnemyObjects = levelData.enemySecondObjects;
-            bulletData.currentGiftBox = bulletData.weaponStruct[1].giftBox;
-            CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelId);
-            mapController.SetSkybox(LevelData.currentLevelId);
-            _sceneController.LevelUpGame();
+                // Set current level ID and corresponding gift box
+                LevelData.currentLevelId++;
 
-            levelData.isCompleteMaps[0] = false;
+                bulletData.currentGiftBox = bulletData.weaponStruct[LevelData.currentLevelId].giftBox;
+
+                // Call necessary methods for the level transition
+                CheckLevelUpRequirements();
+                coinSpawner.SetCoinValue(LevelData.currentLevelId);
+                mapController.SetSkybox(LevelData.currentLevelId);
+                _sceneController.LevelUpGame();
+
+                // Reset the completion flag
+                levelData.levelStates[i].isCompleteMap = false;
+
+                return; // Exit the loop once the level is processed
+            }
         }
-        else if (levelData.isCompleteMaps[1])
+
+        // Handle the case when the last level is passed
+        if (levelData.levelStates[levelData.levelStates.Length - 1].isCompleteMap)
         {
-            ObjectPool.creatableEnemyBullet = true;
-
-            levelData.currentLevel = LevelData.Levels.Level3;
-            levelData.currentEnemyObjects = levelData.enemyThirdObjects;
-            bulletData.currentGiftBox = bulletData.weaponStruct[2].giftBox; ;
-            CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelId);
-            mapController.SetSkybox(LevelData.currentLevelId);
-            _sceneController.LevelUpGame();
-
-            levelData.isCompleteMaps[1] = false;
-        }
-        else if (levelData.isCompleteMaps[2])
-        {
-            ObjectPool.creatableEnemyBullet = true;
-
-            levelData.currentLevel = LevelData.Levels.Level4;
-            levelData.currentEnemyObjects = levelData.enemyFourthObjects;
-            bulletData.currentGiftBox = bulletData.weaponStruct[3].giftBox;
-            CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelId);
-            mapController.SetSkybox(LevelData.currentLevelId);
-
-            _sceneController.LevelUpGame();
-
-            levelData.isCompleteMaps[2] = false;
-        }
-        else if (levelData.isCompleteMaps[3])
-        {
-            ObjectPool.creatableEnemyBullet = true;
-
-            levelData.currentLevel = LevelData.Levels.Level5;
-            levelData.currentEnemyObjects = levelData.enemyFifthObjects;
-            bulletData.currentGiftBox = bulletData.weaponStruct[4].giftBox;
-            CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelId);
-            mapController.SetSkybox(LevelData.currentLevelId);
-
-            _sceneController.LevelUpGame();
-
-            levelData.isCompleteMaps[3] = false;
-        }
-        else if (levelData.isCompleteMaps[4])
-        {
-            ObjectPool.creatableEnemyBullet = true;
-
-            levelData.currentLevel = LevelData.Levels.Level6;
-            levelData.currentEnemyObjects = levelData.enemySixthObjects;
-            bulletData.currentGiftBox = bulletData.weaponStruct[5].giftBox;
-            CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelId);
-            mapController.SetSkybox(LevelData.currentLevelId);
-
-            _sceneController.LevelUpGame();
-
-            levelData.isCompleteMaps[4] = false;
-        }
-        else if (levelData.isCompleteMaps[5])
-        {
-            ObjectPool.creatableEnemyBullet = true;
-
-            levelData.currentLevel = LevelData.Levels.Level7;
-            levelData.currentEnemyObjects = levelData.enemySeventhObjects;
-            bulletData.currentGiftBox = bulletData.weaponStruct[6].giftBox;
-            CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelId);
-            mapController.SetSkybox(LevelData.currentLevelId);
-            _sceneController.LevelUpGame();
-
-            levelData.isCompleteMaps[5] = false;
-        }
-        else if (levelData.isCompleteMaps[6])
-        {
-            ObjectPool.creatableEnemyBullet = true;
-
-            levelData.currentLevel = LevelData.Levels.Level8;
-            levelData.currentEnemyObjects = levelData.enemyEightthObjects;
-            bulletData.currentGiftBox = bulletData.weaponStruct[7].giftBox;
-            CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelId);
-            mapController.SetSkybox(LevelData.currentLevelId);
-            _sceneController.LevelUpGame();
-
-            levelData.isCompleteMaps[6] = false;
-        }
-        else if (levelData.isCompleteMaps[7])
-        {
-            ObjectPool.creatableEnemyBullet = true;
-
-            levelData.currentLevel = LevelData.Levels.Level9;
-            levelData.currentEnemyObjects = levelData.enemyNinethObjects;
-            bulletData.currentGiftBox = bulletData.weaponStruct[8].giftBox;
-            CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelId);
-            mapController.SetSkybox(LevelData.currentLevelId);
-
-            _sceneController.LevelUpGame();
-
-            levelData.isCompleteMaps[7] = false;
-        }
-        else if (levelData.isCompleteMaps[8])
-        {
-            ObjectPool.creatableEnemyBullet = true;
-
-            levelData.currentLevel = LevelData.Levels.Level10;
-            levelData.currentEnemyObjects = levelData.enemyTenthObjects;
-            bulletData.currentGiftBox = bulletData.weaponStruct[9].giftBox;
-            CurrentLevelID();
-            coinSpawner.SetCoinValue(LevelData.currentLevelId);
-            mapController.SetSkybox(LevelData.currentLevelId);
-
-            _sceneController.LevelUpGame();
-
-            levelData.isCompleteMaps[8] = false;
-        }
-        else if (levelData.isCompleteMaps[levelData.isCompleteMaps.Length - 1])
-        {//When last level is passed
             playerData.isWinning = true;
             StartCoroutine(DelayGoToWinScene());
         }
     }
+
 
     IEnumerator DelayGoToWinScene()
     {
         yield return new WaitForSeconds(5f);
         _sceneController.LoadWinScene();
     }
-    void SetDetectionOfEnemyAtUpdate(int levelCount)
-    {
-        levelData.currentEnemyDetectionDistance = levelData.enemyDetectionDistances[levelCount];
-    }
     
-    public void ArrowLevelRotation(int levelCount)
+    public void ArrowLevelRotation(int levelID)
     {
-        levelData.currentFinishArea = levelData.finishTransforms[levelCount];
+        levelData.currentFinishArea = levelData.levelStates[levelID].finishTransform;
     }
 }

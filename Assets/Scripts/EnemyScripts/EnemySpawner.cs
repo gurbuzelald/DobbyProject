@@ -49,11 +49,9 @@ public class EnemySpawner : MonoBehaviour
     }
 
     
-    void CreateEnemiesAtStart(int levelCount)
+    void CreateEnemiesAtStart(int levelID)
     {
-        enemyTransformsObject = Instantiate(levelData.enemyTransformsInMap[levelCount].gameObject, gameObject.transform);
-
-        SetEnemyObjectsAtStart(); //Setted Enemy Object Character Before Instantiate Enemy Objects
+        enemyTransformsObject = Instantiate(levelData.levelStates[levelID].enemySpawnInMap.gameObject, gameObject.transform);
 
         if (GameObject.Find("bossEnemyTransform"))
         {
@@ -70,49 +68,6 @@ public class EnemySpawner : MonoBehaviour
         else
         {
             bossEnemyBoxes[1] = GameObject.Find("bossEnemyBox");
-        }
-    }
-    void SetEnemyObjectsAtStart()
-    {
-        if (levelData.currentLevel == LevelData.Levels.Level1)
-        {
-            levelData.currentEnemyObjects = levelData.enemyFirstObjects;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level2)
-        {
-            levelData.currentEnemyObjects = levelData.enemySecondObjects;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level3)
-        {
-            levelData.currentEnemyObjects = levelData.enemyThirdObjects;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level4)
-        {
-            levelData.currentEnemyObjects = levelData.enemyFourthObjects;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level5)
-        {
-            levelData.currentEnemyObjects = levelData.enemyFifthObjects;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level6)
-        {
-            levelData.currentEnemyObjects = levelData.enemySixthObjects;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level7)
-        {
-            levelData.currentEnemyObjects = levelData.enemySeventhObjects;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level8)
-        {
-            levelData.currentEnemyObjects = levelData.enemyEightthObjects;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level9)
-        {
-            levelData.currentEnemyObjects = levelData.enemyNinethObjects;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level10)
-        {
-            levelData.currentEnemyObjects = levelData.enemyTenthObjects;
         }
     }
 }

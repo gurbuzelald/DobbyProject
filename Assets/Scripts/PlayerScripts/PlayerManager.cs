@@ -4,7 +4,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Collections.Generic;
 
 public class PlayerManager : AbstractPlayer<PlayerManager>
 {
@@ -160,7 +160,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         if (_levelData)
         {
-            _levelData.currentEnemyDetectionDistance = _levelData.enemyDetectionDistances[LevelData.currentLevelId];
+            _levelData.currentEnemyDetectionDistance = _levelData.levelStates[LevelData.currentLevelId].enemyDetectionDistance;
         }
 
         if (_playerData)
@@ -306,6 +306,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             }            
         }        
     }
+
     void FixedUpdate()
     {
         // If the player is not in sword animation, allow firing
@@ -346,12 +347,15 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 // Show crosshair with delay
                 if (playerInterfaces.iPlayerShoot != null)
                 {
-                    if (GameObject.Find("CrosshairImage").GetComponent<CanvasGroup>())
+                    if (GameObject.Find("CrosshairImage"))
                     {
-                        crosshairImage = GameObject.Find("CrosshairImage").GetComponent<CanvasGroup>();
-                        if (crosshairImage)
+                        if (GameObject.Find("CrosshairImage").GetComponent<CanvasGroup>())
                         {
-                            StartCoroutine(playerInterfaces.iPlayerShoot.DelayShowingCrosshairAlpha(crosshairImage, 2f));
+                            crosshairImage = GameObject.Find("CrosshairImage").GetComponent<CanvasGroup>();
+                            if (crosshairImage)
+                            {
+                                StartCoroutine(playerInterfaces.iPlayerShoot.DelayShowingCrosshairAlpha(crosshairImage, 2f));
+                            }
                         }
                     }
                 }
@@ -434,7 +438,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         
     }
-
     
     void DontFallDown()
     {
@@ -459,78 +462,85 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
     void OnCollisionEnter(Collision collision)
     {
-        if (gameObject != null && _playerData.objects[3] != null)
+        if (gameObject == null || _playerData.objects[3] == null) return;
+
+        // Define a set of ground-related tags to simplify the comparison
+        var groundTags = new HashSet<string>
+    {
+        SceneController.Tags.Ground.ToString(),
+        SceneController.Tags.Bridge.ToString(),
+        SceneController.Tags.FanceWooden.ToString(),
+        SceneController.Tags.Magma.ToString()
+    };
+
+        // Check if collided object is ground-related
+        if (groundTags.Contains(collision.collider.tag))
         {
-            if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()) ||
-                collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()) || collision.collider.CompareTag(SceneController.Tags.Magma.ToString()))
-            {//Ground, Bridge, FanceWooden, Magma
-             //PlayerData
-                _playerData.isGround = true;
-                _playerData.jumpCount = 0;
-            }
-            else
+            _playerData.isGround = true;
+            _playerData.jumpCount = 0;
+        }
+        else
+        {
+            _playerData.isGround = false;
+        }
+
+        // Handle collision with enemies
+        if (collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()))
+        {
+            HandleEnemyCollision(collision);
+        }
+
+        // Handle collision with coins
+        if (collision.collider.CompareTag(SceneController.Tags.Coin.ToString()))
+        {
+            HandleCoinCollision(collision);
+        }
+    }
+
+    private void HandleEnemyCollision(Collision collision)
+    {
+        var enemyManager = collision.gameObject.GetComponent<EnemyManager>();
+
+        if (enemyManager == null) return;
+
+        if (playerComponents.healthBarSlider.value == 0)
+        {
+            playerInterfaces.iPlayerTouch.TouchEnemy(collision, _playerData, ref playerComponents.healthBarSlider, ref _topCanvasHealthBarSlider, ref _particleTransform);
+            StartCoroutine(DelayPlayerDestroy(3f));
+        }
+        else
+        {
+            enemyManager.enemyData.isTouchable = enemyManager._healthBar != null;
+
+            if (enemyManager.enemyData.isTouchable)
             {
-                //PlayerData
-                _playerData.isGround = false;
-            }
-            if (collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()))
-            {
-                if (playerComponents.healthBarSlider.value == 0)
-                {
-                    playerInterfaces.iPlayerTouch.TouchEnemy(collision, _playerData, ref playerComponents.healthBarSlider, ref _topCanvasHealthBarSlider, ref _particleTransform);
-
-                    StartCoroutine(DelayPlayerDestroy(3f));
-                }
-                else
-                {
-                    if (collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) && collision.gameObject.GetComponent<EnemyManager>()._healthBar == null)
-                    {
-                        //Hit
-                        collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable = false;
-                    }
-                    else if(collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) && collision.gameObject.GetComponent<EnemyManager>()._healthBar)
-                    {
-                        collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable = true;
-                    }
-
-                    if (collision.gameObject.GetComponent<EnemyManager>().enemyData.isTouchable)
-                    {
-                        //Touch ParticleEffect
-                        //ParticleController.GetInstance.CreateParticle(ParticleController.ParticleNames.Touch, _particleTransform.transform);
-
-                        GameObject particleObject = null;
-
-                        if (particleObject == null)
-                        {
-                            particleObject =
-                                _objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.playerTouchParticleObjectPoolCount);
-                            particleObject.transform.position = _particleTransform.transform.position;
-
-                            StartCoroutine(DelaySetActiveFalseParticle(particleObject, 1f));
-                        }
-
-                        //SoundEffect
-                        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetEnemyHit);
-                        //GetHitSFX(_playerData);                        
-                    }
-                }
-            }
-            if (collision.collider.CompareTag(SceneController.Tags.Coin.ToString()))
-            {//For Big Coins
-                //SoundEffect
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
-                //PickUpCoinSFX(_playerData);
-
-                //HitCoinBigObject
-                collision.collider.gameObject.SetActive(false);
-
-                //SettingScore
-                ScoreController.GetInstance.SetScore(_levelData.currentStaticCoinValue * 2);
-                playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
-                //CreateSlaveObject();
+                CreateTouchParticleEffect();
+                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetEnemyHit);
             }
         }
     }
+
+    private void HandleCoinCollision(Collision collision)
+    {
+        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpCoin);
+
+        collision.collider.gameObject.SetActive(false);
+
+        ScoreController.GetInstance.SetScore(_levelData.currentStaticCoinValue * 2);
+        playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
+    }
+
+    private void CreateTouchParticleEffect()
+    {
+        GameObject particleObject = _objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.playerTouchParticleObjectPoolCount);
+
+        if (particleObject != null)
+        {
+            particleObject.transform.position = _particleTransform.transform.position;
+            StartCoroutine(DelaySetActiveFalseParticle(particleObject, 1f));
+        }
+    }
+
     void OnCollisionStay(Collision collision)
     {
         if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()))
@@ -546,94 +556,68 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
     }
 
-    
+
     void TriggerFinishControl(Collider other)
     {
-        if (other.gameObject.name == "FinishPlane")
-        {
-            GetLevelTag(other);
-        }
-        if (other.gameObject.name == "FinishPlane" && LevelData.levelCanBeSkipped)
-        {
-            GetLevelTag(other);
+        if (other.gameObject.name != "FinishPlane") return;
 
+        // Get the level tag once since the name matches "FinishPlane"
+        GetLevelTag(other);
+
+        // Handle when level can be skipped
+        if (LevelData.levelCanBeSkipped)
+        {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
-            
-            _levelData.isCompleteMaps[LevelData.currentLevelId] = true;
 
-            _levelData.isLevelUp = true;
+            _levelData.levelStates[LevelData.currentLevelId].isCompleteMap = true;
+            LevelData.isLevelUp = true;
 
+            // Reset health bar sliders
             playerComponents.healthBarSlider.value = 100;
             _topCanvasHealthBarSlider.value = playerComponents.healthBarSlider.value;
 
+            // Update score and initiate level up
             ScoreController.GetInstance.SetScoreWithLevelUp();
-
             StartCoroutine(playerInterfaces.iPlayerTrigger.DelayLevelUp(_levelData, 2f));
         }
-        else if (other.gameObject.name == "FinishPlane")
+        else
         {
-            if (PlayerData.Languages.Turkish == _playerData.currentLanguage)
-            {
-                LevelUpController.requirementMessage = "Bölümü Geçmen İçin Bölüm Görevlerini Bitirmen Gerekiyor!!!";
-            }
-            else
-            {
-                LevelUpController.requirementMessage = "You Need To Finish Current Level's Mission(s)!!!";
-            }
-            StartCoroutine(ShowRequirements(LevelUpController.requirementMessage, 3f));
+            // Show requirement message based on the current language
+            string requirementMessage = PlayerData.Languages.Turkish == _playerData.currentLanguage
+                ? "Bölümü Geçmen İçin Bölüm Görevlerini Bitirmen Gerekiyor!!!"
+                : "You Need To Finish Current Level's Mission(s)!!!";
+
+            StartCoroutine(ShowRequirements(requirementMessage, 3f));
         }
     }
+
 
     public IEnumerator ShowRequirements(string requirementMessage, float delayValue)
     {
-        if (messageText)
+        if (PlayerManager.GetInstance.gameObject)
         {
-            messageText.text = requirementMessage;
+            if (messageText)
+            {
+                messageText.text = requirementMessage;
 
-            yield return new WaitForSeconds(delayValue);
+                yield return new WaitForSeconds(delayValue);
 
-            messageText.text = "";
-        }        
+                messageText.text = "";
+            }
+        } 
     }
     void GetLevelTag(Collider other)
     {
-        switch (other.tag)
+        for (int i = 0; i < _levelData.levels.Length; i++)
         {
-            case (LevelData.FirstFinishArea):
-                LevelData.currentLevelId = 1;
-                break;
-            case (LevelData.SecondFinishArea):
-                LevelData.currentLevelId = 2;
-                break;
-            case (LevelData.ThirdFinishArea):
-                LevelData.currentLevelId = 3;
-                break;
-            case (LevelData.FourthFinishArea):
-                LevelData.currentLevelId = 4;
-                break;
-            case (LevelData.FifthFinishArea):
-                LevelData.currentLevelId = 5;
-                break;
-            case (LevelData.SixthFinishArea):
-                LevelData.currentLevelId = 6;
-                break;
-            case (LevelData.SeventhFinishArea):
-                LevelData.currentLevelId = 7;
-                break;
-            case (LevelData.EighthFinishArea):
-                LevelData.currentLevelId = 8;
-                break;
-            case (LevelData.NinethFinishArea):
-                LevelData.currentLevelId = 9;
-                break;
-            case (LevelData.TenthFinishArea):
-                LevelData.currentLevelId = 9;
-                break;
-            default:
-                LevelData.currentLevelId = 0;
-                break;
+            if (_levelData.levels[i].finishAreaName == other.tag)
+            {
+                //LevelData.currentLevelId = i + 1; // Assuming the level IDs start from 1
+                return; // Exit once the match is found
+            }
         }
     }
+
     void TriggerCoinControl(Collider other)
     {
         if (other.CompareTag(SceneController.Tags.Coin.ToString()))
@@ -990,14 +974,12 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                     particleObject = _objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.deathParticleObjectPoolCount);
                     particleObject.transform.position = _particleTransform.transform.position;
 
-                    StartCoroutine(DelaySetActiveFalseParticle(particleObject, 2f));
+                    StartCoroutine(DelaySetActiveFalseParticle(particleObject, 5f));
                 }
 
                 yield return new WaitForSeconds(delayDying);
 
-                Destroy(gameObject);
-                //SceneController.DestroySingletonObjects();
-                SceneController.LoadEndScene();
+                
             }
         }        
     }

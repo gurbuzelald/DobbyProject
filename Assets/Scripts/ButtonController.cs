@@ -46,17 +46,17 @@ public class ButtonController : MonoBehaviour
     //Pick Character Scene Buttons
     private bool pickCharacterMenuButton;
     private bool openPickWeaponSceneByPickCharacterSceneButton;
-    public static bool Dobby;
-    public static bool Joleen;
-    public static bool Glassy;
-    public static bool Lusth;
-    public static bool Guard;
-    public static bool Michelle;
-    public static bool Eve;
-    public static bool Aj;
-    public static bool Boss;
-    public static bool Ty;
-    public static bool Mremireh;
+    public static bool A;
+    public static bool D;
+    public static bool B;
+    public static bool E;
+    public static bool C;
+    public static bool G;
+    public static bool F;
+    public static bool J;
+    public static bool I;
+    public static bool L;
+    public static bool K;
 
     //Pick Weapon Scene Buttons
     private bool pickWeaponMenuButton;
@@ -303,17 +303,17 @@ public class ButtonController : MonoBehaviour
             openPickWeaponSceneByPickCharacterSceneButton = menuInput.PickCharacterSceneButtons.PickWeaponButton.IsPressed();
 
             
-            Dobby = menuInput.PickCharacterSceneButtons.Dobby.IsPressed();
-            Joleen = menuInput.PickCharacterSceneButtons.Joleen.IsPressed();
-            Glassy = menuInput.PickCharacterSceneButtons.Glassy.IsPressed();
-            Lusth = menuInput.PickCharacterSceneButtons.Lusth.IsPressed();
-            Guard = menuInput.PickCharacterSceneButtons.Guard.IsPressed();
-            Michelle = menuInput.PickCharacterSceneButtons.Michelle.IsPressed();
-            Eve = menuInput.PickCharacterSceneButtons.Eve.IsPressed();
-            Aj = menuInput.PickCharacterSceneButtons.Aj.IsPressed();
-            Boss = menuInput.PickCharacterSceneButtons.Boss.IsPressed();
-            Ty = menuInput.PickCharacterSceneButtons.Ty.IsPressed();
-            Mremireh = menuInput.PickCharacterSceneButtons.Mremireh.IsPressed();
+            A = menuInput.PickCharacterSceneButtons.A.IsPressed();
+            D = menuInput.PickCharacterSceneButtons.D.IsPressed();
+            B = menuInput.PickCharacterSceneButtons.B.IsPressed();
+            E = menuInput.PickCharacterSceneButtons.E.IsPressed();
+            C = menuInput.PickCharacterSceneButtons.C.IsPressed();
+            G = menuInput.PickCharacterSceneButtons.G.IsPressed();
+            F = menuInput.PickCharacterSceneButtons.F.IsPressed();
+            J = menuInput.PickCharacterSceneButtons.J.IsPressed();
+            I = menuInput.PickCharacterSceneButtons.I.IsPressed();
+            L = menuInput.PickCharacterSceneButtons.L.IsPressed();
+            K = menuInput.PickCharacterSceneButtons.K.IsPressed();
             
 
             PickCharacterEvents();
@@ -323,47 +323,47 @@ public class ButtonController : MonoBehaviour
     {
         if (characteID == playerData.characterStruct[0].id)
         {
-            return Dobby;
+            return A;
         }
         else if (characteID == playerData.characterStruct[1].id)
         {
-            return Glassy;
+            return B;
         }
         else if (characteID == playerData.characterStruct[2].id)
         {
-            return Guard;
+            return C;
         }
         else if (characteID == playerData.characterStruct[3].id)
         {
-            return Joleen;
+            return D;
         }
         else if (characteID == playerData.characterStruct[4].id)
         {
-            return Lusth;
+            return E;
         }
         else if (characteID == playerData.characterStruct[5].id)
         {
-            return Eve;
+            return F;
         }
         else if (characteID == playerData.characterStruct[6].id)
         {
-            return Michelle;
+            return G;
         }
         else if (characteID == playerData.characterStruct[7].id)
         {
-            return Boss;
+            return I;
         }
         else if (characteID == playerData.characterStruct[8].id)
         {
-            return Aj;
+            return J;
         }
         else if (characteID == playerData.characterStruct[9].id)
         {
-            return Mremireh;
+            return K;
         }
         else if (characteID == playerData.characterStruct[10].id)
         {
-            return Ty;
+            return L;
         }
         else
         {

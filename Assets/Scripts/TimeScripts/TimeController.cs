@@ -7,7 +7,7 @@ public class TimeController : MonoBehaviour
 {
     //[SerializeField] TextMeshProUGUI test;
 
-    private float _time;
+    private float time;
     private float _weaponTime;
 
     [SerializeField] TextMeshProUGUI _timeText;
@@ -25,7 +25,7 @@ public class TimeController : MonoBehaviour
     {
         _warnTimeText.transform.localScale = Vector3.zero;
         _timeText.text = "0";
-        _time = 0;
+        time = 0;
         _weaponTime = 0;
     }
 
@@ -40,16 +40,16 @@ public class TimeController : MonoBehaviour
     {
         if (!SceneController.pauseGame)
         {
-            _time += Time.deltaTime;
+            time += Time.deltaTime;
             //Debug.Log(_time);
-            _timeText.text = (((int)(timeValue - _time))).ToString();
-            _warnTimeText.text = ((int)(timeValue - _time)).ToString();
+            _timeText.text = (((int)(timeValue - time))).ToString();
+            _warnTimeText.text = ((int)(timeValue - time)).ToString();
 
-            if ((int)_time > timeValue - 1)
+            if ((int)time > timeValue - 1)
             {
                 StartCoroutine(PlayerManager.GetInstance.DelayPlayerDestroy(4));
             }
-            if ((((int)(timeValue - _time))) <= 10)
+            if ((((int)(timeValue - time))) <= 10)
             {
                 _warnTimeText.transform.localScale = Vector3.one;
             }
@@ -57,10 +57,10 @@ public class TimeController : MonoBehaviour
             {
                 _warnTimeText.transform.localScale = Vector3.zero;
             }
-            if (levelData.isLevelUp && LevelData.levelCanBeSkipped)
+            if (LevelData.isLevelUp && LevelData.levelCanBeSkipped)
             {
                 timeValue = initialTimeValue;
-                _time = 0;
+                time = 0;
             }
         }        
     }

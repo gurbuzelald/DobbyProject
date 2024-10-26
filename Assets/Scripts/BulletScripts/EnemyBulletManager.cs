@@ -40,30 +40,32 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     }
     public void RayBullet()
     {
-        if (!_enemyManager.enemyData.isDying && _enemyManager.bulletData.isFirable && _enemyManager.enemyData.isFiring &&
-            !playerData.isDying && _enemyManager.bulletData.enemyBulletDelayCounter == 0 && enemySpawner != null &&
-            Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward), out hit,
-                            50, enemySpawner.layerMask))
+        if (_enemyManager.enemyData.isDying || !_enemyManager.bulletData.isFirable || !_enemyManager.enemyData.isFiring ||
+            playerData.isDying || _enemyManager.bulletData.enemyBulletDelayCounter != 0 || enemySpawner == null)
+        {
+            return;  // Early return if any of these conditions are not met
+        }
+
+        if (Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward),
+                            out hit, 50, enemySpawner.layerMask))
         {
             _enemyManager.enemyData.isFiring = false;
             _enemyManager.bulletData.isFirable = false;
-            //_enemyManager.enemyData.isWalking = false;
-            if (gameObject.transform.parent.parent.name == "bossEnemyTransform")
-            {
-                CreateEnemyBullet(_bulletSpawnTransform.transform,
-                         _enemyManager.bulletData.enemyBulletSpeed,
-                         playerData.enemyBulletParticleObjectPoolCount, _enemySpawner.enemyObjectPool, 0f, 1f);
-            }
-            else
-            {
-                CreateEnemyBullet(_bulletSpawnTransform.transform,
-                         _enemyManager.bulletData.enemyBulletSpeed,
-                         playerData.enemyBulletParticleObjectPoolCount, _enemySpawner.enemyObjectPool, 0f, 5);
-            }
+
+            // Adjust bullet settings based on whether it's a boss or regular enemy
+            float bulletSpread = (gameObject.transform.parent.parent.name == "bossEnemyTransform") ? 1f : 5f;
+
+            CreateEnemyBullet(_bulletSpawnTransform.transform,
+                              _enemyManager.bulletData.enemyBulletSpeed,
+                              playerData.enemyBulletParticleObjectPoolCount,
+                              _enemySpawner.enemyObjectPool,
+                              0f, bulletSpread);
 
             _enemyManager.CheckEnemyBulletDamage(ref _enemyManager.bulletData);
 
+            // Update the bullet data for the player
             PlayerManager.GetInstance.enemyBulletData = _enemyManager.bulletData;
-        }        
+        }
     }
+
 }

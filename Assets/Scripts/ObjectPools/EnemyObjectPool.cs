@@ -28,38 +28,11 @@ public class EnemyObjectPool : MonoBehaviour
         CreateAndEnqueueObject();
     }
 
-    int GetEnemyWeaponId(LevelData levelData)
-    {
-        if (levelData.currentLevel == LevelData.Levels.Level1) return 0;
-        else if (levelData.currentLevel == LevelData.Levels.Level2) return 1;
-        else if (levelData.currentLevel == LevelData.Levels.Level3) return 2;
-        else if (levelData.currentLevel == LevelData.Levels.Level4) return 3;
-        else if (levelData.currentLevel == LevelData.Levels.Level5) return 4;
-        else if (levelData.currentLevel == LevelData.Levels.Level6) return 5;
-        else if (levelData.currentLevel == LevelData.Levels.Level7) return 6;
-        else if (levelData.currentLevel == LevelData.Levels.Level8) return 7;
-        else if (levelData.currentLevel == LevelData.Levels.Level9) return 8;
-        else if (levelData.currentLevel == LevelData.Levels.Level10) return 9;
-        return -1;
-    }
-
-    void SetEnemyBulletID()
-    {
-        if (GetEnemyWeaponId(levelData) != -1)
-        {
-            BulletData.currentEnemyBulletID = GetEnemyWeaponId(levelData);
-        }
-    }
     public void CreateAndEnqueueObject()
     {
         for (int j = 0; j < pools.Length; j++)
         {
             pools[j].pooledObjects = new Queue<GameObject>();
-
-            if (j == playerData.enemyBulletParticleObjectPoolCount)
-            {
-                SetEnemyBulletID();  // Set Enemy Bullet ID once for this pool
-            }
 
             // Pool objects exactly poolSize times
             for (int i = 0; i < pools[j].poolSize; i++)
@@ -89,7 +62,7 @@ public class EnemyObjectPool : MonoBehaviour
             case 0: // Enemy Bullet
             case 2: // Enemies
             case 3: // Boss Enemy
-                prefabIndex = BulletData.currentEnemyBulletID;
+                prefabIndex = LevelData.currentLevelId;
                 break;
             case 1: // Mid Particle
             case 4: // Chest Monsters

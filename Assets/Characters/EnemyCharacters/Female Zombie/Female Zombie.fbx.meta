@@ -3,7 +3,32 @@ guid: 4f03e20214a7e4a938404e8dda7ea8f6
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BottomMaterial
+    second: {fileID: 2100000, guid: 8df02b4e775b849149089d9650915ef7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: HairMaterial
+    second: {fileID: 2100000, guid: 35ddd1c5513cc4365b98af02bacf09fe, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MainMaterial
+    second: {fileID: 2100000, guid: 580f8bcf2855f4653acfc3ff7115dcd8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShoesMaterial
+    second: {fileID: 2100000, guid: 37ebc32b0ea6142e4af0bc6b8942cd41, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TopMaterial
+    second: {fileID: 2100000, guid: 22d710f37a80b4609b3970ef26c38b0f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -16,8 +41,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 

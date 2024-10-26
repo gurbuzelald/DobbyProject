@@ -14,7 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
-  currentEnemyName: Orc(Clone)
+  enemyID: 0
+  enemyStruct:
+  - id: 0
+    name: 
+  - id: 1
+    name: 
+  - id: 2
+    name: 
+  - id: 3
+    name: 
+  - id: 4
+    name: 
+  - id: 5
+    name: 
+  - id: 6
+    name: 
+  - id: 7
+    name: 
+  - id: 8
+    name: 
+  - id: 9
+    name: 
+  - id: 10
+    name: 
   getHitClip: {fileID: 8300000, guid: 8218cc78f9645414ca4dfa90bf077f35, type: 3}
   giveHitClip: {fileID: 8300000, guid: d9321f885211d4816ad4474ad7b56c0f, type: 3}
   dyingClip: {fileID: 8300000, guid: 78bfc09efb2974198a5436eebb4dc901, type: 3}

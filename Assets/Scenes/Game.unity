@@ -20,10 +20,10 @@ RenderSettings:
   m_FogDensity: 1
   m_LinearFogStart: 5
   m_LinearFogEnd: 20
-  m_AmbientSkyColor: {r: 0.09433961, g: 0.07965467, b: 0.07965467, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientGroundColor: {r: 0, g: 0, b: 0, a: 1}
-  m_AmbientIntensity: 2.53
+  m_AmbientIntensity: 1.61
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.5377358, g: 0.5250534, b: 0.5250534, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -1697,11 +1697,105 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sortAxis: {x: 0, y: 0, z: 0}
-  objsToMesh: []
+  objsToMesh:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   useObjsToMeshFromTexBaker: 0
   clearBuffersAfterBake: 1
   bakeAssetsInPlaceFolderPath: 
-  resultPrefab: {fileID: 0}
+  resultPrefab: {fileID: 2173188791860509793, guid: 2ce394be398e141adb263e0fab4dddec, type: 3}
   resultPrefabLeaveInstanceInSceneAfterBake: 0
   parentSceneObject: {fileID: 0}
   _meshCombiner:
@@ -1757,7 +1851,7 @@ MonoBehaviour:
     blendShapesInCombined: []
     submeshTris: []
     _meshBirth: 1
-    _mesh: {fileID: 0}
+    _mesh: {fileID: 4300000, guid: b6c29af621bcc43a1acdb881f84fa768, type: 2}
 --- !u!1 &2124036259
 GameObject:
   m_ObjectHideFlags: 0
@@ -1936,6 +2030,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 844188062}
     m_Modifications:
+    - target: {fileID: 910948553, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 910948553, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 910948553, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 910948553, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 115
+      objectReference: {fileID: 0}
     - target: {fileID: 1723833432, guid: bc9845333c9b8ee479ad9788170b2d3b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

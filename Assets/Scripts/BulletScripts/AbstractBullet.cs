@@ -46,9 +46,8 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
     }
 
     // Ortak bir coroutine oluşturup hem ObjectPool hem de EnemyObjectPool için kullanıyoruz
-#pragma warning disable CS0693 // Type parameter has the same name as the type parameter from outer type
-    private IEnumerator DelayBulletCreate<T>(Transform bulletSpawn, float bulletSpeed, int objectpoolCount, T objectPool, float delayCreate, float delayDestroy) where T : Component
-#pragma warning restore CS0693 // Type parameter has the same name as the type parameter from outer type
+    private IEnumerator DelayBulletCreate<T>(Transform bulletSpawn, float bulletSpeed,
+        int objectpoolCount, T objectPool, float delayCreate, float delayDestroy) where T : Component
     {
         // Belirtilen süre kadar bekle
         yield return new WaitForSeconds(delayCreate);
@@ -60,7 +59,7 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
         if (bulletObject == null) yield break; // Havuzda geçerli bir obje yoksa çık
 
         // Mermiyi uygun pozisyon ve rotasyonla yerleştir
-        bulletObject.transform.position = bulletSpawn.position;
+        bulletObject.transform.position = bulletSpawn.transform.position;
         bulletObject.transform.rotation = bulletSpawn.rotation;
 
         // Mermiyi hızlandır

@@ -18,6 +18,9 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
         bulletManager = FindObjectOfType<BulletManager>();
 
         playerData = this.gameObject.transform.parent.transform.parent.GetComponent<PlayerManager>()._playerData;
+
+
+        StartAnimations(playerData, _animator);
     }
     void OnEnable()
     {
@@ -34,22 +37,19 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
     }
     public void AnimationStates()
     {
-        PickupAnimation(playerData, _animator);
-        IdleAnimation(playerData, _animator);
-        JumpAnimation(playerData, _animator);
-        WalkAnimation(playerData, _animator);
-        FireNonWalkAnimation(playerData, _animator);
-        SwordAnimation(playerData, _animator);
-        DeathAnimation(playerData, _animator);
-        VictoryAnimation(playerData, _animator);
-        RunAnimation(playerData, _animator);
-        PickRotateAnimation(playerData, _animator);
-
+        UpdateAnimations(playerData, _animator);
     }
     public void SwordAnimationCompleted()
     {
         //bulletManager.SwordFire();
         playerData.isSwordAnimate = false;
+        if (bulletManager)
+        {
+            if (bulletManager._currentSwordObject)
+            {
+                bulletManager._currentSwordObject.SetActive(false);
+            }
+        }
     }
     public void SwordFireBulletParticle()
     {
@@ -58,5 +58,11 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
             bulletManager.SwordFire(PlayerManager.GetInstance._bulletData.swordBulletDelay,
                                     PlayerManager.GetInstance._playerData.playerSwordBulletObjectPoolCount);
         }
+    }
+
+    public void LoadEndScene()
+    {
+        Destroy(gameObject.transform.parent.gameObject);
+        SceneController.LoadEndScene();
     }
 }

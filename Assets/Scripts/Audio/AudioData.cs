@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,83 +7,52 @@ using UnityEngine;
 public class AudioData : ScriptableObject
 {
     [Header("Musics")]
-    public AudioClip currentGameMusic;
     public AudioClip menuMusic;
     public AudioClip endMusic;    
     public AudioClip winMusic;
 
     [Header("Game Musics")]
-    public AudioClip level1GameMusic;
-    public AudioClip level2GameMusic;
-    public AudioClip level3GameMusic;
-    public AudioClip level4GameMusic;
-    public AudioClip level5GameMusic;
-    public AudioClip level6GameMusic;
-    public AudioClip level7GameMusic;
-    public AudioClip level8GameMusic;
-    public AudioClip level9GameMusic;
-    public AudioClip level10GameMusic;
+    public AudioClip currentGameMusic;
+    public AudioClip[] levelsGameMusic;
+
+    [Serializable]
+    public struct PlayerCharacterClip
+    {
+        public AudioClip poison;
+        public AudioClip getEnemyHit;
+        public AudioClip jumping;
+        public AudioClip dying;
+    }
+    public PlayerCharacterClip[] playerClip = new PlayerCharacterClip[11];
 
 
-    [Header("Sounds")]
+    public AudioClip nonShoot;
+    public AudioClip pickUpCoin;
+    public AudioClip pickUpBulletCoin;
+    public AudioClip errorPickUpCoin;
+    public AudioClip errorPickUpBulletCoin;
+    public AudioClip destroyGiftBox;
+    public AudioClip touchGiftBox;
+    public AudioClip teleport;
+    public AudioClip health;
+    public AudioClip levelUp;
 
-    //Defaulth
-    [Header("Player Clips")]
-    //public AudioClip shootClip;
-    public AudioClip nonShootClip;
-    public AudioClip poisonClip;
-    public AudioClip getEnemyHitClip;    
-    public AudioClip jumpingClip;
-    public AudioClip dyingClip;
-    public AudioClip pickupCoinClip;
-    public AudioClip pickupBulletCoinClip;
-    public AudioClip errorPickupBulletCoinClip;
-    public AudioClip destroyGiftBoxClip;
-    public AudioClip touchGiftBoxClip;
-    public AudioClip levelUpClip;
-    public AudioClip jumpingSeaClip;
-    public AudioClip teleportClip;
-    public AudioClip healthClip;
 
     public AudioClip currentBulletHitClip;
     public AudioClip currentSwordHitClip;
 
-    [Header("BulletHits")]
-    public AudioClip pistolHitClip;
-    public AudioClip axeHitClip;
-    public AudioClip bulldogHitClip;
-    public AudioClip cowHitClip;
-    public AudioClip crystalHitClip;
-    public AudioClip demonHitClip;
-    public AudioClip iceHitClip;
-    public AudioClip electroHitClip;
-    public AudioClip shotGunHitClip;
-    public AudioClip machineHitClip;
+    [Serializable]
+    public struct WeaponClip
+    {
+        public string name;
+        public AudioClip weaponClip;
+        public AudioClip weaponHitClip;
+    }
 
-    [Header("Weapons")]
-    public AudioClip ShotGunClip;
-    public AudioClip MachineClip;
-    public AudioClip BulldogClip;
-    public AudioClip CowClip;
-    public AudioClip CrystalClip;
-    public AudioClip DemonClip;
-    public AudioClip IceClip;
-    public AudioClip ElectroClip;
-    public AudioClip AxeClip;
-    public AudioClip PistolClip;
+    public WeaponClip[] weaponClip = new WeaponClip[10];
 
     [Header("Swords")]
     public AudioClip LowSwordClip;
-    public AudioClip WarriorSwordClip;
-    public AudioClip HummerClip;
-    public AudioClip OrcSwordClip;
-    public AudioClip AxeSwordClip;
-    public AudioClip AxeKnightClip;
-    public AudioClip BarbarianSwordClip;
-    public AudioClip DemonSwordClip;
-    public AudioClip MagicSwordClip;
-    public AudioClip LongHummerClip;
-    public AudioClip ClubClip;
 
     [Header("Menu Sounds")]
     public AudioClip menuClickClip;

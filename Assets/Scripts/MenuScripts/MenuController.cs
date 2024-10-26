@@ -24,11 +24,11 @@ public class MenuController : AbstractPlayer<MenuController>
         {
             if (PlayerData.Languages.Turkish == playerData.currentLanguage)
             {
-                continueButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm " + (GetCurrentLevelID(levelData) + 1).ToString();
+                continueButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm " + (LevelData.currentLevelId + 1).ToString();
             }
             else
             {
-                continueButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level " + (GetCurrentLevelID(levelData) + 1).ToString();
+                continueButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level " + (LevelData.currentLevelId + 1).ToString();
             }
 
         }
@@ -57,20 +57,5 @@ public class MenuController : AbstractPlayer<MenuController>
                 
             }
         }
-    }
-
-    int GetCurrentLevelID(LevelData levelData)
-    {
-        if (levelData.currentLevel == LevelData.Levels.Level1) return 0;
-        else if (levelData.currentLevel == LevelData.Levels.Level2) return 1;
-        else if (levelData.currentLevel == LevelData.Levels.Level3) return 2;
-        else if (levelData.currentLevel == LevelData.Levels.Level4) return 3;
-        else if (levelData.currentLevel == LevelData.Levels.Level5) return 4;
-        else if (levelData.currentLevel == LevelData.Levels.Level6) return 5;
-        else if (levelData.currentLevel == LevelData.Levels.Level7) return 6;
-        else if (levelData.currentLevel == LevelData.Levels.Level8) return 7;
-        else if (levelData.currentLevel == LevelData.Levels.Level9) return 8;
-        else if (levelData.currentLevel == LevelData.Levels.Level10) return 9;
-        return -1;
     }
 }

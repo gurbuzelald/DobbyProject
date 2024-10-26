@@ -13,16 +13,16 @@ public class CoinSpawner : MonoBehaviour
 
     Transform randomTransform;
 
-    public void SetCoinValue(int levelCount)
+    public void SetCoinValue(int levelID)
     {
-        levelData.currentStaticCoinValue = levelData.coinlevelValues[levelCount];
+        levelData.currentStaticCoinValue = levelData.levelStates[levelID].coinlevelValue;
     }
 
 
     void Awake()
     {
         // Cache the current level rectangle to avoid redundant lookups
-        GameObject currentLevelRectangle = levelData.levelRectangles[LevelData.currentLevelId];
+        GameObject currentLevelRectangle = levelData.levelStates[LevelData.currentLevelId].levelRectangle;
 
         // Group all object creation calls into a single method
         CreateMultipleObjects(currentLevelRectangle, new (GameObject, float)[]
@@ -39,9 +39,9 @@ public class CoinSpawner : MonoBehaviour
 
     void CreateMultipleObjects(GameObject currentLevelRectangleObject, (GameObject coinObject, float maxValueDecreaser)[] objectDataArray)
     {
-        foreach (var objectData in objectDataArray)
+        for (int i = 0; i < objectDataArray.Length; i++)
         {
-            CreateObjects(currentLevelRectangleObject, objectData.coinObject, objectData.maxValueDecreaser);
+            CreateObjects(currentLevelRectangleObject, objectDataArray[i].coinObject, objectDataArray[i].maxValueDecreaser);
         }
     }
 

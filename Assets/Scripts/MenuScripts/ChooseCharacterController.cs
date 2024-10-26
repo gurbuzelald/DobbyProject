@@ -66,10 +66,10 @@ public class ChooseCharacterController : MonoBehaviour
     {
         // Array of lock keys corresponding to each character
         string[] lockKeys = {
-        "DobbyLock", "GlassyLock", "GuardLock",
-        "JoleenLock", "LusthLock", "EveLock",
-        "MichelleLock", "BossLock", "AjLock",
-        "MremirehLock", "TyLock"
+        "ALock", "BLock", "CLock",
+        "DLock", "ELock", "FLock",
+        "GLock", "HLock", "ILock",
+        "JLock", "KLock"
     };
 
         // Iterate through each character and set the lock state based on PlayerPrefs
@@ -123,17 +123,17 @@ public class ChooseCharacterController : MonoBehaviour
         // Create a dictionary to map staff names to their corresponding indices
         var staffNameToIndex = new Dictionary<string, int>
     {
-        { "DobbyStaff", 0 },
-        { "GlassyStaff", 1 },
-        { "GuardStaff", 2 },
-        { "JoleenStaff", 3 },
-        { "LusthStaff", 4 },
-        { "EveStaff", 5 },
-        { "MichelleStaff", 6 },
-        { "BossStaff", 7 },
-        { "AjStaff", 8 },
-        { "MremirehStaff", 9 },
-        { "TyStaff", 10 }
+        { "AStaff", 0 },
+        { "BStaff", 1 },
+        { "CStaff", 2 },
+        { "DStaff", 3 },
+        { "EStaff", 4 },
+        { "FStaff", 5 },
+        { "GStaff", 6 },
+        { "HStaff", 7 },
+        { "IStaff", 8 },
+        { "JStaff", 9 },
+        { "KStaff", 10 }
     };
 
         for (int i = 0; i < playerData.characterInfos.Count; i++)
@@ -173,10 +173,10 @@ public class ChooseCharacterController : MonoBehaviour
         {
             // Array of lock keys corresponding to each character
             string[] lockKeys = {
-            "DobbyLock", "GlassyLock", "GuardLock",
-            "JoleenLock", "LusthLock", "EveLock",
-            "MichelleLock", "BossLock", "AjLock",
-            "MremirehLock", "TyLock"
+            "ALock", "BLock", "CLock",
+            "DLock", "ELock", "FLock",
+            "GLock", "HLock", "ILock",
+            "JLock", "KLock"
         };
 
             // Iterate through each character and pick their state

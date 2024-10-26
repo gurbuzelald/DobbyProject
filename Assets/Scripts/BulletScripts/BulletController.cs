@@ -19,17 +19,17 @@ public class BulletController : MonoBehaviour
         {
             if (gameObject != null)
             {
-                if (collision.collider.CompareTag(SceneController.Tags.Player.ToString()))
+                if (collision.gameObject.CompareTag(SceneController.Tags.Player.ToString()))
                 {
                     gameObject.SetActive(false);
                 }
             }
         }
-        if (gameObject.transform.name == "Bullet")
+        if (gameObject.transform.tag == "Bullet")
         {
             if (gameObject != null)
             {
-                if (collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()))
+                if (collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
                 {
                     gameObject.SetActive(false);
                 }
@@ -39,17 +39,23 @@ public class BulletController : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(SceneController.Tags.Player.ToString()))
-        {
-            gameObject.SetActive(false);
-        }
-
-        if (gameObject.transform.name == "WeaponBullet(Clone)")
+        if (gameObject.transform.tag == "Bullet")
         {
             if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) || 
                 other.gameObject.CompareTag(SceneController.Tags.WeaponBox.ToString()))
             {
                 StartCoroutine(DelayFalseBulletObject(delayFalseWhenTriggerEnemy));
+            }
+            if (other.gameObject.CompareTag(SceneController.Tags.Wall.ToString()))
+            {
+                gameObject.SetActive(false);
+            }
+        }
+        else if (gameObject.transform.tag == "EnemyBullet")
+        {
+            if (other.gameObject.CompareTag(SceneController.Tags.Player.ToString()))
+            {
+                gameObject.SetActive(false);
             }
         }
     }

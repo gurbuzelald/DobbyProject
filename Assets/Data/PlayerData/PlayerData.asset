@@ -13,91 +13,91 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   characterStruct:
-  - characterObject: {fileID: 4957245899588076005, guid: 74cf2780ea562a84a802969b1fd24e08, type: 3}
-    durability: 1
+  - characterObject: {fileID: 171899986160519204, guid: 5f88149415bce4e02bf516a821a9da86, type: 3}
+    durability: 0
     price: 0
-    jumpForce: 10
+    jumpForce: 5
     speed: 1
     id: 0
-    name: Dobby
+    name: Dummy
     lockState: 
   - characterObject: {fileID: 6616105739425805472, guid: c01ca076994204b1cb94249a12ece71c, type: 3}
-    durability: 1
+    durability: 2
     price: 2
-    jumpForce: 1
-    speed: 1
+    jumpForce: 6
+    speed: 1.6
     id: 1
     name: Glassy
-    lockState: Locked
+    lockState: 
   - characterObject: {fileID: 5075507251047758960, guid: 121bbb1bd4eef57478721b5ef2cc4082, type: 3}
-    durability: 1
+    durability: 9
     price: 3
-    jumpForce: 1
-    speed: 1
+    jumpForce: 6
+    speed: 1.7
     id: 2
     name: Guard
-    lockState: Locked
+    lockState: 
   - characterObject: {fileID: 1254244383937338342, guid: fa5afc234e9ba074795c420e9145256f, type: 3}
-    durability: 1
+    durability: 5
     price: 4
-    jumpForce: 1
-    speed: 1
+    jumpForce: 7
+    speed: 1.8
     id: 3
     name: Joleen
     lockState: Locked
   - characterObject: {fileID: 1804162575734578991, guid: 68835b9515214a54097ef287fe3f1c49, type: 3}
-    durability: 1
-    price: 5
-    jumpForce: 1
-    speed: 1
+    durability: 7
+    price: 6
+    jumpForce: 7
+    speed: 1.9
     id: 4
     name: Lusth
     lockState: Locked
   - characterObject: {fileID: 475003444043059358, guid: d20c2b271d372a642b352daa4599fa5c, type: 3}
-    durability: 1
-    price: 6
-    jumpForce: 1
-    speed: 1
+    durability: 7
+    price: 7
+    jumpForce: 8
+    speed: 1.9
     id: 5
     name: Eve
-    lockState: Locked
+    lockState: 
   - characterObject: {fileID: 8160791800857959451, guid: 0ac9ad04e193f4a1693d750745c9cf5c, type: 3}
-    durability: 1
+    durability: 5
     price: 7
-    jumpForce: 1
-    speed: 1
+    jumpForce: 7
+    speed: 1.5
     id: 6
     name: Michelle
     lockState: Locked
-  - characterObject: {fileID: 3933667997016493793, guid: 2834719b444937a439af0c31802ed607, type: 3}
-    durability: 1
-    price: 8
-    jumpForce: 1
-    speed: 1
+  - characterObject: {fileID: 2089016085528094388, guid: 45b74fc28a8e7584cb93f6b6b213d8f7, type: 3}
+    durability: 4
+    price: 5
+    jumpForce: 8
+    speed: 1.5
     id: 7
     name: Boss
     lockState: Locked
   - characterObject: {fileID: 4229839607365370914, guid: db04c4e4b251642e596a18439cc381c3, type: 3}
-    durability: 1
+    durability: 5
     price: 9
-    jumpForce: 1
-    speed: 1
+    jumpForce: 7
+    speed: 1.7
     id: 8
     name: Aj
     lockState: Locked
   - characterObject: {fileID: 3269665489637412912, guid: cc265cd48b1f31c4cbb86e276d4a94d0, type: 3}
-    durability: 1
+    durability: 9
     price: 10
-    jumpForce: 1
-    speed: 1
+    jumpForce: 8
+    speed: 2
     id: 9
     name: Mremireh
     lockState: Locked
   - characterObject: {fileID: 5807339739709849361, guid: 5a65014f4e4764d1487af521aded9bea, type: 3}
     durability: 1
     price: 11
-    jumpForce: 1
-    speed: 1
+    jumpForce: 8
+    speed: 1.3
     id: 10
     name: Ty
     lockState: Locked
@@ -150,8 +150,8 @@ MonoBehaviour:
   - {fileID: 7971067666596210365, guid: 48f6891f360c67a488d3fe548e1e8d5f, type: 3}
   - {fileID: 7971067666596210365, guid: 0ba857b35eeb15e4da33c0bc95bc1357, type: 3}
   spawns: {fileID: 2359986759738939504, guid: aabf96d4f82bfd84cadaf35e1afe1e4b, type: 3}
-  sensivityX: 2
-  sensivityY: 3
+  sensivityX: 5
+  sensivityY: 5
   isTouchFinish: 0
   isLose: 0
   rotateSpeed: 6
@@ -177,7 +177,7 @@ MonoBehaviour:
   isJumping: 0
   jumpCount: 0
   clickShiftCount: 0
-  bulletAmount: 23
+  bulletAmount: 21
   bulletPackAmount: 2
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

@@ -12,66 +12,199 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 283d3543a98d04ddd83ed4a82991e224, type: 3}
   m_Name: WeaponAudioData
   m_EditorClassIdentifier: 
-  currentGameMusic: {fileID: 0}
   menuMusic: {fileID: 0}
   endMusic: {fileID: 0}
   winMusic: {fileID: 0}
-  level1GameMusic: {fileID: 0}
-  level2GameMusic: {fileID: 0}
-  level3GameMusic: {fileID: 0}
-  level4GameMusic: {fileID: 0}
-  level5GameMusic: {fileID: 0}
-  level6GameMusic: {fileID: 0}
-  level7GameMusic: {fileID: 0}
-  level8GameMusic: {fileID: 0}
-  level9GameMusic: {fileID: 0}
-  level10GameMusic: {fileID: 0}
-  nonShootClip: {fileID: 0}
-  poisonClip: {fileID: 0}
-  getEnemyHitClip: {fileID: 0}
-  jumpingClip: {fileID: 0}
-  dyingClip: {fileID: 0}
-  pickupCoinClip: {fileID: 0}
-  pickupBulletCoinClip: {fileID: 0}
-  errorPickupBulletCoinClip: {fileID: 0}
-  destroyGiftBoxClip: {fileID: 0}
-  touchGiftBoxClip: {fileID: 0}
-  levelUpClip: {fileID: 0}
-  jumpingSeaClip: {fileID: 0}
-  teleportClip: {fileID: 0}
-  healthClip: {fileID: 0}
+  currentGameMusic: {fileID: 0}
+  levelsGameMusic: []
+  playerClip:
+  - nonShoot: {fileID: 0}
+    poison: {fileID: 0}
+    getEnemyHit: {fileID: 0}
+    jumping: {fileID: 0}
+    dying: {fileID: 0}
+    pickUpCoin: {fileID: 0}
+    pickUpBulletCoin: {fileID: 0}
+    errorPickUpCoin: {fileID: 0}
+    errorPickUpBulletCoin: {fileID: 0}
+    destroyGiftBox: {fileID: 0}
+    touchGiftBox: {fileID: 0}
+    teleport: {fileID: 0}
+    health: {fileID: 0}
+    levelUp: {fileID: 0}
+  - nonShoot: {fileID: 0}
+    poison: {fileID: 0}
+    getEnemyHit: {fileID: 0}
+    jumping: {fileID: 0}
+    dying: {fileID: 0}
+    pickUpCoin: {fileID: 0}
+    pickUpBulletCoin: {fileID: 0}
+    errorPickUpCoin: {fileID: 0}
+    errorPickUpBulletCoin: {fileID: 0}
+    destroyGiftBox: {fileID: 0}
+    touchGiftBox: {fileID: 0}
+    teleport: {fileID: 0}
+    health: {fileID: 0}
+    levelUp: {fileID: 0}
+  - nonShoot: {fileID: 0}
+    poison: {fileID: 0}
+    getEnemyHit: {fileID: 0}
+    jumping: {fileID: 0}
+    dying: {fileID: 0}
+    pickUpCoin: {fileID: 0}
+    pickUpBulletCoin: {fileID: 0}
+    errorPickUpCoin: {fileID: 0}
+    errorPickUpBulletCoin: {fileID: 0}
+    destroyGiftBox: {fileID: 0}
+    touchGiftBox: {fileID: 0}
+    teleport: {fileID: 0}
+    health: {fileID: 0}
+    levelUp: {fileID: 0}
+  - nonShoot: {fileID: 0}
+    poison: {fileID: 0}
+    getEnemyHit: {fileID: 0}
+    jumping: {fileID: 0}
+    dying: {fileID: 0}
+    pickUpCoin: {fileID: 0}
+    pickUpBulletCoin: {fileID: 0}
+    errorPickUpCoin: {fileID: 0}
+    errorPickUpBulletCoin: {fileID: 0}
+    destroyGiftBox: {fileID: 0}
+    touchGiftBox: {fileID: 0}
+    teleport: {fileID: 0}
+    health: {fileID: 0}
+    levelUp: {fileID: 0}
+  - nonShoot: {fileID: 0}
+    poison: {fileID: 0}
+    getEnemyHit: {fileID: 0}
+    jumping: {fileID: 0}
+    dying: {fileID: 0}
+    pickUpCoin: {fileID: 0}
+    pickUpBulletCoin: {fileID: 0}
+    errorPickUpCoin: {fileID: 0}
+    errorPickUpBulletCoin: {fileID: 0}
+    destroyGiftBox: {fileID: 0}
+    touchGiftBox: {fileID: 0}
+    teleport: {fileID: 0}
+    health: {fileID: 0}
+    levelUp: {fileID: 0}
+  - nonShoot: {fileID: 0}
+    poison: {fileID: 0}
+    getEnemyHit: {fileID: 0}
+    jumping: {fileID: 0}
+    dying: {fileID: 0}
+    pickUpCoin: {fileID: 0}
+    pickUpBulletCoin: {fileID: 0}
+    errorPickUpCoin: {fileID: 0}
+    errorPickUpBulletCoin: {fileID: 0}
+    destroyGiftBox: {fileID: 0}
+    touchGiftBox: {fileID: 0}
+    teleport: {fileID: 0}
+    health: {fileID: 0}
+    levelUp: {fileID: 0}
+  - nonShoot: {fileID: 0}
+    poison: {fileID: 0}
+    getEnemyHit: {fileID: 0}
+    jumping: {fileID: 0}
+    dying: {fileID: 0}
+    pickUpCoin: {fileID: 0}
+    pickUpBulletCoin: {fileID: 0}
+    errorPickUpCoin: {fileID: 0}
+    errorPickUpBulletCoin: {fileID: 0}
+    destroyGiftBox: {fileID: 0}
+    touchGiftBox: {fileID: 0}
+    teleport: {fileID: 0}
+    health: {fileID: 0}
+    levelUp: {fileID: 0}
+  - nonShoot: {fileID: 0}
+    poison: {fileID: 0}
+    getEnemyHit: {fileID: 0}
+    jumping: {fileID: 0}
+    dying: {fileID: 0}
+    pickUpCoin: {fileID: 0}
+    pickUpBulletCoin: {fileID: 0}
+    errorPickUpCoin: {fileID: 0}
+    errorPickUpBulletCoin: {fileID: 0}
+    destroyGiftBox: {fileID: 0}
+    touchGiftBox: {fileID: 0}
+    teleport: {fileID: 0}
+    health: {fileID: 0}
+    levelUp: {fileID: 0}
+  - nonShoot: {fileID: 0}
+    poison: {fileID: 0}
+    getEnemyHit: {fileID: 0}
+    jumping: {fileID: 0}
+    dying: {fileID: 0}
+    pickUpCoin: {fileID: 0}
+    pickUpBulletCoin: {fileID: 0}
+    errorPickUpCoin: {fileID: 0}
+    errorPickUpBulletCoin: {fileID: 0}
+    destroyGiftBox: {fileID: 0}
+    touchGiftBox: {fileID: 0}
+    teleport: {fileID: 0}
+    health: {fileID: 0}
+    levelUp: {fileID: 0}
+  - nonShoot: {fileID: 0}
+    poison: {fileID: 0}
+    getEnemyHit: {fileID: 0}
+    jumping: {fileID: 0}
+    dying: {fileID: 0}
+    pickUpCoin: {fileID: 0}
+    pickUpBulletCoin: {fileID: 0}
+    errorPickUpCoin: {fileID: 0}
+    errorPickUpBulletCoin: {fileID: 0}
+    destroyGiftBox: {fileID: 0}
+    touchGiftBox: {fileID: 0}
+    teleport: {fileID: 0}
+    health: {fileID: 0}
+    levelUp: {fileID: 0}
+  - nonShoot: {fileID: 0}
+    poison: {fileID: 0}
+    getEnemyHit: {fileID: 0}
+    jumping: {fileID: 0}
+    dying: {fileID: 0}
+    pickUpCoin: {fileID: 0}
+    pickUpBulletCoin: {fileID: 0}
+    errorPickUpCoin: {fileID: 0}
+    errorPickUpBulletCoin: {fileID: 0}
+    destroyGiftBox: {fileID: 0}
+    touchGiftBox: {fileID: 0}
+    teleport: {fileID: 0}
+    health: {fileID: 0}
+    levelUp: {fileID: 0}
   currentBulletHitClip: {fileID: 0}
   currentSwordHitClip: {fileID: 8300000, guid: 28c27e828e8b6b540baa9afb526d529e, type: 3}
-  pistolHitClip: {fileID: 8300000, guid: 04a7f8cf5c8d66242bb0f2a26a78a22b, type: 3}
-  axeHitClip: {fileID: 8300000, guid: 3f46ff71947174020a87dc836d9c1bc4, type: 3}
-  bulldogHitClip: {fileID: 8300000, guid: b3658d2721370450cb2ca569c51ce10d, type: 3}
-  cowHitClip: {fileID: 8300000, guid: 3c8f5aa51bf33496889e402affd90a31, type: 3}
-  crystalHitClip: {fileID: 8300000, guid: 0a2b306d6e7554474a0692b44f87c514, type: 3}
-  demonHitClip: {fileID: 8300000, guid: bb338f5dee6254f798807d775b347a9b, type: 3}
-  iceHitClip: {fileID: 8300000, guid: d6c86dc9f7e384b6ebdb68d60b76b47f, type: 3}
-  electroHitClip: {fileID: 8300000, guid: 9af0f4d9dc9434d0eae9e447add97502, type: 3}
-  shotGunHitClip: {fileID: 0}
-  machineHitClip: {fileID: 0}
-  ShotGunClip: {fileID: 8300000, guid: d1f2b15d8a6bf465898dee70970bdf4b, type: 3}
-  MachineClip: {fileID: 8300000, guid: 7f90284bfd26f40fc831d84854f5fdb9, type: 3}
-  BulldogClip: {fileID: 8300000, guid: 67b0359bfdbdd4185a59a6a16fafb3b7, type: 3}
-  CowClip: {fileID: 8300000, guid: 2133a8764b9d94c36926497a9b623aca, type: 3}
-  CrystalClip: {fileID: 8300000, guid: 6bd939b24c96a40179c0cdc4455b2793, type: 3}
-  DemonClip: {fileID: 8300000, guid: 58c4b07aeabad4303b04487e9f53ebb7, type: 3}
-  IceClip: {fileID: 8300000, guid: 28b73a70ea4ee43beb52ed8d14c92475, type: 3}
-  ElectroClip: {fileID: 8300000, guid: 480f14cb597e14f82849826b3f9161d2, type: 3}
-  AxeClip: {fileID: 8300000, guid: afa69f9317b9e4dd4bdce29796b6991b, type: 3}
-  PistolClip: {fileID: 8300000, guid: d9cbd1973c2024949bbeb78a50c17929, type: 3}
-  LowSwordClip: {fileID: 0}
-  WarriorSwordClip: {fileID: 0}
-  HummerClip: {fileID: 0}
-  OrcSwordClip: {fileID: 0}
-  AxeSwordClip: {fileID: 0}
-  AxeKnightClip: {fileID: 0}
-  BarbarianSwordClip: {fileID: 0}
-  DemonSwordClip: {fileID: 0}
-  MagicSwordClip: {fileID: 0}
-  LongHummerClip: {fileID: 0}
-  ClubClip: {fileID: 0}
+  weaponClip:
+  - name: 
+    weaponClip: {fileID: 0}
+    weaponHitClip: {fileID: 0}
+  - name: 
+    weaponClip: {fileID: 0}
+    weaponHitClip: {fileID: 0}
+  - name: 
+    weaponClip: {fileID: 0}
+    weaponHitClip: {fileID: 0}
+  - name: 
+    weaponClip: {fileID: 0}
+    weaponHitClip: {fileID: 0}
+  - name: 
+    weaponClip: {fileID: 0}
+    weaponHitClip: {fileID: 0}
+  - name: 
+    weaponClip: {fileID: 0}
+    weaponHitClip: {fileID: 0}
+  - name: 
+    weaponClip: {fileID: 0}
+    weaponHitClip: {fileID: 0}
+  - name: 
+    weaponClip: {fileID: 0}
+    weaponHitClip: {fileID: 0}
+  - name: 
+    weaponClip: {fileID: 0}
+    weaponHitClip: {fileID: 0}
+  - name: 
+    weaponClip: {fileID: 0}
+    weaponHitClip: {fileID: 0}
+  LowSwordClip: {fileID: 8300000, guid: 112e0adc11c868243af2349811a397d4, type: 3}
   menuClickClip: {fileID: 0}
   menuNotClickClip: {fileID: 0}

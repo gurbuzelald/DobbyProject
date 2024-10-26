@@ -36,12 +36,6 @@ public class SceneController : MonoBehaviour
 
     TextMeshProUGUI[] currentTexts = new TextMeshProUGUI[200];
 
-    private void Awake()
-    {
-        SetCurrentLevelCount();
-    }
-
-
     void Start()
     {
         AudioManager.GetInstance.SetCurrentMusic();
@@ -560,17 +554,17 @@ public class SceneController : MonoBehaviour
             bulletData.weaponStruct[8].lockState = BulletData.locked;
             bulletData.weaponStruct[9].lockState = BulletData.locked;
         }
-        PlayerPrefs.SetFloat("DobbyLock", 0);
-        PlayerPrefs.SetFloat("JoleenLock", 0);
-        PlayerPrefs.SetFloat("GlassyLock", 0);
-        PlayerPrefs.SetFloat("LusthLock", 0);
-        PlayerPrefs.SetFloat("GuardLock", 0);
-        PlayerPrefs.SetFloat("MichelleLock", 0);
-        PlayerPrefs.SetFloat("EveLock", 0);
-        PlayerPrefs.SetFloat("AjLock", 0);
-        PlayerPrefs.SetFloat("BossLock", 0);
-        PlayerPrefs.SetFloat("TyLock", 0);
-        PlayerPrefs.SetFloat("MremirehLock", 0);
+        PlayerPrefs.SetFloat("ALock", 0);
+        PlayerPrefs.SetFloat("BLock", 0);
+        PlayerPrefs.SetFloat("CLock", 0);
+        PlayerPrefs.SetFloat("DLock", 0);
+        PlayerPrefs.SetFloat("ELock", 0);
+        PlayerPrefs.SetFloat("FLock", 0);
+        PlayerPrefs.SetFloat("GLock", 0);
+        PlayerPrefs.SetFloat("HLock", 0);
+        PlayerPrefs.SetFloat("ILock", 0);
+        PlayerPrefs.SetFloat("JLock", 0);
+        PlayerPrefs.SetFloat("KLock", 0);
 
 
         PlayerPrefs.SetInt("AxeUsageCount", 0);
@@ -603,10 +597,7 @@ public class SceneController : MonoBehaviour
 
         PlayerPrefs.SetInt("AvaliableCoin", 0);
 
-        if (levelData)
-        {
-            levelData.currentLevel = LevelData.Levels.Level1;
-        }
+        LevelData.currentLevelId = 0;
 
         LevelData.highestLevel = 0;
         PlayerPrefs.SetInt("HighestLevel", 0);
@@ -624,7 +615,7 @@ public class SceneController : MonoBehaviour
         }
         if (currentLevelText && levelData)
         {
-            currentLevelText.text = levelData.currentLevel.ToString();
+            currentLevelText.text = levelData.GetCurrentLevelName();
         }
         if (pausePanel)
         {
@@ -716,8 +707,6 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        levelData.currentLevel = LevelData.Levels.Level1;
-
         LevelData.currentLevelId = 0;
         playAgainForScore = true;
 
@@ -768,58 +757,10 @@ public class SceneController : MonoBehaviour
 
         playAgainForScore = true;
 
-        SetCurrentLevelCount();
-
         AudioManager.GetInstance.SetCurrentMusic();
 
         DecreaseWeaponUsageLimit();
-    }
-
-    void SetCurrentLevelCount()
-    {
-        if (levelData.currentLevel == LevelData.Levels.Level1)
-        {
-            LevelData.currentLevelId = 0;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level2)
-        {
-            LevelData.currentLevelId = 1;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level3)
-        {
-            LevelData.currentLevelId = 2;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level4)
-        {
-            LevelData.currentLevelId = 3;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level5)
-        {
-            LevelData.currentLevelId = 4;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level6)
-        {
-            LevelData.currentLevelId = 5;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level7)
-        {
-            LevelData.currentLevelId = 6;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level8)
-        {
-            LevelData.currentLevelId = 7;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level9)
-        {
-            LevelData.currentLevelId = 8;
-        }
-        else if (levelData.currentLevel == LevelData.Levels.Level10)
-        {
-            LevelData.currentLevelId = 9;
-        }
-    }
-
-    
+    }    
 
     void SetHighestLevel()
     {
@@ -978,10 +919,7 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        levelData.currentLevel = LevelData.Levels.Level1;
-
         SceneManager.LoadScene(Scenes.Menu.ToString());
-
     }
     public static void LoadMenuSceneByWinScene()
     {
@@ -1084,6 +1022,7 @@ public class SceneController : MonoBehaviour
         Sword,
         Player,
         Water,
+        Wall,
         FanceWooden,
         LevelUpKey,
         EnemyTriggerBox,
@@ -1107,8 +1046,7 @@ public class SceneController : MonoBehaviour
         Lava,
         FirstTarget,
         MainTarget,
-        EnemyBullet, 
-        CloneDobby,
+        EnemyBullet,
 
         //Weapons
         machine,

@@ -33,175 +33,55 @@ public abstract class AbstractPlayerSFX<T> : MonoBehaviour where T : MonoBehavio
             //DontDestroyOnLoad(gameObject);
         }
     }
-    public void SFXStatement(PlayerSoundEffect.SoundEffectTypes soundEffect, AudioData audioData)
+    public void SFXStatement(PlayerSoundEffect.SoundEffectTypes soundEffectName, AudioData audioData)
     {
-        if (soundEffect == PlayerSoundEffect.SoundEffectTypes.NonShoot)
+        // Create a dictionary to map sound effect types to corresponding audio clips
+        var soundEffectMap = new Dictionary<PlayerSoundEffect.SoundEffectTypes, AudioClip>
+    {
+        { PlayerSoundEffect.SoundEffectTypes.NonShoot, audioData.nonShoot },
+        { PlayerSoundEffect.SoundEffectTypes.Poison, audioData.playerClip[PlayerData.currentCharacterID].poison },
+        { PlayerSoundEffect.SoundEffectTypes.GetEnemyHit, audioData.playerClip[PlayerData.currentCharacterID].getEnemyHit },
+        { PlayerSoundEffect.SoundEffectTypes.Jump, audioData.playerClip[PlayerData.currentCharacterID].jumping },
+        { PlayerSoundEffect.SoundEffectTypes.Death, audioData.playerClip[PlayerData.currentCharacterID].dying },
+        { PlayerSoundEffect.SoundEffectTypes.PickUpCoin, audioData.pickUpCoin },
+        { PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin, audioData.pickUpBulletCoin },
+        { PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin, audioData.errorPickUpBulletCoin },
+        { PlayerSoundEffect.SoundEffectTypes.DestroyGiftBox, audioData.destroyGiftBox },
+        { PlayerSoundEffect.SoundEffectTypes.TouchGiftBox, audioData.touchGiftBox },
+        { PlayerSoundEffect.SoundEffectTypes.LevelUp, audioData.levelUp },
+        { PlayerSoundEffect.SoundEffectTypes.Teleport, audioData.teleport },
+        { PlayerSoundEffect.SoundEffectTypes.IncreasingHealth, audioData.health }
+    };
+
+        // Play the corresponding sound effect if it exists in the map
+        if (soundEffectMap.TryGetValue(soundEffectName, out AudioClip clip))
         {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.nonShootClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Poison)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.poisonClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.GetEnemyHit)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.getEnemyHitClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Jump)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.jumpingClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Death)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.dyingClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpCoin)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.pickupCoinClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.pickupBulletCoinClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.ErrorPickUpBulletCoin)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.errorPickupBulletCoinClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.DestroyGiftBox)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.destroyGiftBoxClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.TouchGiftBox)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.touchGiftBoxClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.LevelUp)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.levelUpClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.JumpToSea)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.jumpingSeaClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.Teleport)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.teleportClip);
-        }
-        else if (soundEffect == PlayerSoundEffect.SoundEffectTypes.IncreasingHealth)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.healthClip);
+            PlayerManager.GetInstance.audioSource.PlayOneShot(clip);
         }
     }
 
-    public void WeaponSFX(PlayerSoundEffect.ShootSoundEffectTypes shootSoundEffectType, AudioData audioData)
+
+    public void WeaponSFX(string shootSoundEffectName, AudioData audioData)
     {
-        if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.ShotGun)
+        // Loop through the weapon clips to find the correct one
+        for (int i = 0; i < audioData.weaponClip.Length; i++)
         {
-            audioData.currentBulletHitClip = audioData.shotGunHitClip;
+            if (shootSoundEffectName == audioData.weaponClip[i].name)
+            {
+                audioData.currentBulletHitClip = audioData.weaponClip[i].weaponHitClip;
 
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ShotGunClip);
-        }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Machine)
-        {
-            audioData.currentBulletHitClip = audioData.machineHitClip;
-
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.MachineClip);
-        }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Bulldog)
-        {
-            audioData.currentBulletHitClip = audioData.bulldogHitClip;
-
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.BulldogClip);
-        }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Cow)
-        {
-            audioData.currentBulletHitClip = audioData.cowHitClip;
-
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.CowClip);
-        }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Crystal)
-        {
-            audioData.currentBulletHitClip = audioData.crystalHitClip;
-
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.CrystalClip);
-        }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Demon)
-        {
-            audioData.currentBulletHitClip = audioData.demonHitClip;
-
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.DemonClip);
-        }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Ice)
-        {
-            audioData.currentBulletHitClip = audioData.iceHitClip;
-
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.IceClip);
-        }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Electro)
-        {
-            audioData.currentBulletHitClip = audioData.electroHitClip;
-
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ElectroClip);
-        }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Axe)
-        {
-            audioData.currentBulletHitClip = audioData.axeHitClip;
-
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.AxeClip);
-        }
-        else if (shootSoundEffectType == PlayerSoundEffect.ShootSoundEffectTypes.Pistol)
-        {
-            audioData.currentBulletHitClip = audioData.pistolHitClip;
-
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.PistolClip);
+                PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.weaponClip[i].weaponClip);
+                return; // Exit the function once the correct clip is found
+            }
         }
     }
+
 
     public void SwordSFX(PlayerSoundEffect.SwordSoundEffectTypes swordSoundEffectType, AudioData audioData)
     {
         if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.LowSword)
         {
             PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.LowSwordClip);
-        }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.WarriorSword)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.WarriorSwordClip);
-        }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.Hummer)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.HummerClip);
-        }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.OrcSword)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.OrcSwordClip);
-        }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.AxeSword)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.AxeSwordClip);
-        }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.AxeKnight)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.AxeKnightClip);
-        }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.BarbarianSword)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.BarbarianSwordClip);
-        }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.DemonSword)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.DemonSwordClip);
-        }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.MagicSword)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.MagicSwordClip);
-        }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.LongHummer)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.LongHummerClip);
-        }
-        else if (swordSoundEffectType == PlayerSoundEffect.SwordSoundEffectTypes.Club)
-        {
-            PlayerManager.GetInstance.audioSource.PlayOneShot(audioData.ClubClip);
         }
     }
 

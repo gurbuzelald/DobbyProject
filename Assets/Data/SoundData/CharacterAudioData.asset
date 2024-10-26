@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283d3543a98d04ddd83ed4a82991e224, type: 3}
+  m_Name: CharacterAudioData
+  m_EditorClassIdentifier: 
+  menuMusic: {fileID: 0}
+  endMusic: {fileID: 0}
+  winMusic: {fileID: 0}
+  currentGameMusic: {fileID: 0}
+  levelsGameMusic:
+  - {fileID: 8300000, guid: 6edc268fc78ed4a42a2fcb10404bd2c3, type: 3}
+  - {fileID: 8300000, guid: 77c3a60f7d2824885b12c77834f694c1, type: 3}
+  - {fileID: 8300000, guid: 2e9d04efaed964f27862f3c82c53c5d4, type: 3}
+  - {fileID: 8300000, guid: 18bcc63339c134f3980c2c3ee2f91f67, type: 3}
+  - {fileID: 8300000, guid: 390593ac1c4f240b49b9eeb03169d5d9, type: 3}
+  - {fileID: 8300000, guid: dc4124c34735a4967a36d1c1d3633368, type: 3}
+  - {fileID: 8300000, guid: d99c6e9972f284de5af65e4b471bb491, type: 3}
+  - {fileID: 8300000, guid: dc4124c34735a4967a36d1c1d3633368, type: 3}
+  - {fileID: 8300000, guid: 390593ac1c4f240b49b9eeb03169d5d9, type: 3}
+  - {fileID: 8300000, guid: 18bcc63339c134f3980c2c3ee2f91f67, type: 3}
+  playerClip:
+  - poison: {fileID: 8300000, guid: d2d11996a99484d33a615f856046b978, type: 3}
+    getEnemyHit: {fileID: 8300000, guid: 66578c668ce7b47a2927f0d4506283fb, type: 3}
+    jumping: {fileID: 8300000, guid: 014cacc434d04e542a88c90a131a2148, type: 3}
+    dying: {fileID: 8300000, guid: f3046f59fc1e6455ab98444b7122ea57, type: 3}
+  - poison: {fileID: 8300000, guid: a429b4286ca7640c68ec9e94470ab2e7, type: 3}
+    getEnemyHit: {fileID: 8300000, guid: c1d8fdac1a0b18a44b9dfb29564cd69d, type: 3}
+    jumping: {fileID: 8300000, guid: b1bcb13aeec7aba4bab4561ecb11b341, type: 3}
+    dying: {fileID: 8300000, guid: f391770fc29004325a15637017c51cf7, type: 3}
+  - poison: {fileID: 8300000, guid: ce3aa7cee3c78416999f7e793908fcb9, type: 3}
+    getEnemyHit: {fileID: 8300000, guid: 4aad172054a34e44bace105d57d1bed5, type: 3}
+    jumping: {fileID: 8300000, guid: f556a7311a079634ab0ab10cedea9f0f, type: 3}
+    dying: {fileID: 8300000, guid: e0713ba40b6d249a1bbda01c1bac50b2, type: 3}
+  - poison: {fileID: 8300000, guid: 8cba796ca88494f84b6ca8258a721291, type: 3}
+    getEnemyHit: {fileID: 8300000, guid: 45e2fb781d3e04c4db0e15c01915b25d, type: 3}
+    jumping: {fileID: 8300000, guid: b1bcb13aeec7aba4bab4561ecb11b341, type: 3}
+    dying: {fileID: 8300000, guid: 45e2fb781d3e04c4db0e15c01915b25d, type: 3}
+  - poison: {fileID: 8300000, guid: a23d8db2a0cb2485ca8eb133a797f67a, type: 3}
+    getEnemyHit: {fileID: 8300000, guid: a1dd8d9a283af5e4f9f9d908d55609c6, type: 3}
+    jumping: {fileID: 8300000, guid: 04b2d9cfc12cfe54e8a9ae704bff9dbb, type: 3}
+    dying: {fileID: 8300000, guid: d6abc9d01da5f4a42ad64a96dcf0f157, type: 3}
+  - poison: {fileID: 8300000, guid: 7cb7ccd4448e2415ba25c448e119964b, type: 3}
+    getEnemyHit: {fileID: 8300000, guid: 06f11068a3df1934b9e9395bcf967e77, type: 3}
+    jumping: {fileID: 8300000, guid: 48a236d72d75aad418c02b949d2ca30f, type: 3}
+    dying: {fileID: 8300000, guid: c28240dbcf481428782e905d0db960ec, type: 3}
+  - poison: {fileID: 8300000, guid: 2fb34cad4fe454026bdb42fcafcaddc8, type: 3}
+    getEnemyHit: {fileID: 8300000, guid: dd91b5c0a2dccc44aa2f9d6f719a2964, type: 3}
+    jumping: {fileID: 8300000, guid: c568a1f70dbebcf459312567b2bd5f2a, type: 3}
+    dying: {fileID: 8300000, guid: e800bf09380e04556b4423059c444ca5, type: 3}
+  - poison: {fileID: 8300000, guid: 2fb34cad4fe454026bdb42fcafcaddc8, type: 3}
+    getEnemyHit: {fileID: 8300000, guid: dd91b5c0a2dccc44aa2f9d6f719a2964, type: 3}
+    jumping: {fileID: 8300000, guid: c568a1f70dbebcf459312567b2bd5f2a, type: 3}
+    dying: {fileID: 8300000, guid: e800bf09380e04556b4423059c444ca5, type: 3}
+  - poison: {fileID: 8300000, guid: 7cb7ccd4448e2415ba25c448e119964b, type: 3}
+    getEnemyHit: {fileID: 8300000, guid: 06f11068a3df1934b9e9395bcf967e77, type: 3}
+    jumping: {fileID: 8300000, guid: 48a236d72d75aad418c02b949d2ca30f, type: 3}
+    dying: {fileID: 8300000, guid: c28240dbcf481428782e905d0db960ec, type: 3}
+  - poison: {fileID: 8300000, guid: 244a38734de68416f95f31e1ebec8371, type: 3}
+    getEnemyHit: {fileID: 8300000, guid: 0eaa6fc4d12532a4eb23a128051abcaf, type: 3}
+    jumping: {fileID: 8300000, guid: 014cacc434d04e542a88c90a131a2148, type: 3}
+    dying: {fileID: 8300000, guid: 2357ce0132c9d3a4a95cace8823f0a7b, type: 3}
+  - poison: {fileID: 8300000, guid: 8cba796ca88494f84b6ca8258a721291, type: 3}
+    getEnemyHit: {fileID: 8300000, guid: 06f11068a3df1934b9e9395bcf967e77, type: 3}
+    jumping: {fileID: 8300000, guid: b1bcb13aeec7aba4bab4561ecb11b341, type: 3}
+    dying: {fileID: 8300000, guid: 45e2fb781d3e04c4db0e15c01915b25d, type: 3}
+  nonShoot: {fileID: 8300000, guid: 2858e67a8bea042a69c9a9585288902a, type: 3}
+  pickUpCoin: {fileID: 8300000, guid: 808c4bf3192b36e4aa9365737800255f, type: 3}
+  pickUpBulletCoin: {fileID: 8300000, guid: 808c4bf3192b36e4aa9365737800255f, type: 3}
+  errorPickUpCoin: {fileID: 8300000, guid: 782b25cb1de332a4d90deb66c2f8a34d, type: 3}
+  errorPickUpBulletCoin: {fileID: 8300000, guid: 782b25cb1de332a4d90deb66c2f8a34d, type: 3}
+  destroyGiftBox: {fileID: 8300000, guid: 777110000c118ee42b3a423432fa179e, type: 3}
+  touchGiftBox: {fileID: 8300000, guid: 97bf604b551f96e42b9e4e326f99ae8d, type: 3}
+  teleport: {fileID: 8300000, guid: e804f95efdf7a5e4791331cd713764b2, type: 3}
+  health: {fileID: 8300000, guid: 9a0cfdd9a871b504a98f6b3e2d5c220e, type: 3}
+  levelUp: {fileID: 8300000, guid: c7361ae8b620e2b49a88af5d63f3dbe9, type: 3}
+  currentBulletHitClip: {fileID: 8300000, guid: 37ca78aa1cce9ed4496db0b4fd17ac74, type: 3}
+  currentSwordHitClip: {fileID: 0}
+  weaponClip:
+  - name: pistol
+    weaponClip: {fileID: 8300000, guid: d9cbd1973c2024949bbeb78a50c17929, type: 3}
+    weaponHitClip: {fileID: 8300000, guid: 37ca78aa1cce9ed4496db0b4fd17ac74, type: 3}
+  - name: axe
+    weaponClip: {fileID: 8300000, guid: afa69f9317b9e4dd4bdce29796b6991b, type: 3}
+    weaponHitClip: {fileID: 8300000, guid: 3f46ff71947174020a87dc836d9c1bc4, type: 3}
+  - name: bulldog
+    weaponClip: {fileID: 8300000, guid: 67b0359bfdbdd4185a59a6a16fafb3b7, type: 3}
+    weaponHitClip: {fileID: 8300000, guid: b3658d2721370450cb2ca569c51ce10d, type: 3}
+  - name: cow
+    weaponClip: {fileID: 8300000, guid: 2133a8764b9d94c36926497a9b623aca, type: 3}
+    weaponHitClip: {fileID: 8300000, guid: 3c8f5aa51bf33496889e402affd90a31, type: 3}
+  - name: crystal
+    weaponClip: {fileID: 8300000, guid: 6bd939b24c96a40179c0cdc4455b2793, type: 3}
+    weaponHitClip: {fileID: 8300000, guid: 0a2b306d6e7554474a0692b44f87c514, type: 3}
+  - name: demon
+    weaponClip: {fileID: 8300000, guid: 58c4b07aeabad4303b04487e9f53ebb7, type: 3}
+    weaponHitClip: {fileID: 8300000, guid: bb338f5dee6254f798807d775b347a9b, type: 3}
+  - name: ice
+    weaponClip: {fileID: 8300000, guid: 28b73a70ea4ee43beb52ed8d14c92475, type: 3}
+    weaponHitClip: {fileID: 8300000, guid: 28b73a70ea4ee43beb52ed8d14c92475, type: 3}
+  - name: electro
+    weaponClip: {fileID: 8300000, guid: 480f14cb597e14f82849826b3f9161d2, type: 3}
+    weaponHitClip: {fileID: 8300000, guid: 480f14cb597e14f82849826b3f9161d2, type: 3}
+  - name: shotgun
+    weaponClip: {fileID: 8300000, guid: d1f2b15d8a6bf465898dee70970bdf4b, type: 3}
+    weaponHitClip: {fileID: 8300000, guid: ae04e9287d4c3da45beb4cf5404346ac, type: 3}
+  - name: machine
+    weaponClip: {fileID: 8300000, guid: 7f90284bfd26f40fc831d84854f5fdb9, type: 3}
+    weaponHitClip: {fileID: 8300000, guid: 04a7f8cf5c8d66242bb0f2a26a78a22b, type: 3}
+  LowSwordClip: {fileID: 8300000, guid: 112e0adc11c868243af2349811a397d4, type: 3}
+  menuClickClip: {fileID: 0}
+  menuNotClickClip: {fileID: 0}

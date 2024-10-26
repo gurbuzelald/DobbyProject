@@ -13,9 +13,31 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
-  currentBulletExplosionParticle: {fileID: 2689552222238927185, guid: 3d4521ca9e6a94bd2a9a4e107b87100f, type: 3}
-  currentSwordBulletExplosionParticle: {fileID: 2689552222238927185, guid: 76a9d0317209b42d5a4e6704c3561791, type: 3}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
+  enemyID: 0
+  enemyStruct:
+  - id: 0
+    name: 
+  - id: 1
+    name: 
+  - id: 2
+    name: 
+  - id: 3
+    name: 
+  - id: 4
+    name: 
+  - id: 5
+    name: 
+  - id: 6
+    name: 
+  - id: 7
+    name: 
+  - id: 8
+    name: 
+  - id: 9
+    name: 
+  - id: 10
+    name: 
   getHitClip: {fileID: 8300000, guid: a6519293710bb5749a4734619dd06379, type: 3}
   giveHitClip: {fileID: 8300000, guid: cf10e1f403c454c47a380a649fc10e7d, type: 3}
   dyingClip: {fileID: 8300000, guid: b28d6b87881543d4f8ab153b9c5aa5c7, type: 3}
@@ -29,8 +51,8 @@ MonoBehaviour:
   isActivateMagnet: 0
   enemySpeed: 0
   bulletDamageValue: 0
+  enemyDurability: 0
   isSpeedZero: 0
-  isWalkable: 0
   isActivateCreateEnemy: 1
   currentBottomParticle: {fileID: 0}
   currentMiddleParticle: {fileID: 0}

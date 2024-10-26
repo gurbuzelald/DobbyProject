@@ -5,7 +5,7 @@ public class CameraSpawner : MonoBehaviour
     [SerializeField] GameObject[] _cameraObjects;
     private GameObject cameraObjects;
 
-    public Camera cameraObject;
+    private Camera cameraObject;
 
 
 

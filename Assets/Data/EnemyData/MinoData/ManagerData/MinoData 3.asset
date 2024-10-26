@@ -14,7 +14,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
-  currentEnemyName: Laygo(Clone)
+  enemyID: 0
+  enemyStruct:
+  - id: 0
+    name: 
+  - id: 1
+    name: 
+  - id: 2
+    name: 
+  - id: 3
+    name: 
+  - id: 4
+    name: 
+  - id: 5
+    name: 
+  - id: 6
+    name: 
+  - id: 7
+    name: 
+  - id: 8
+    name: 
+  - id: 9
+    name: 
+  - id: 10
+    name: 
   getHitClip: {fileID: 8300000, guid: e83b0607beada4fc7a6aa5e1cd158f26, type: 3}
   giveHitClip: {fileID: 8300000, guid: 7e57fadc2e4684c10a7d4a9e1e9847fd, type: 3}
   dyingClip: {fileID: 8300000, guid: 28d7f37d586834241aabb6f86f8b40ad, type: 3}

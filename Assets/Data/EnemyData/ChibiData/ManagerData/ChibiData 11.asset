@@ -14,15 +14,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
   _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
-  currentEnemyName: normalEnemyTransform
-  getHitClip: {fileID: 8300000, guid: 18b38e3d1fc5f498687012905a46970f, type: 3}
-  giveHitClip: {fileID: 8300000, guid: 3e7bcde5c8adc4ba48e03f0d71a12ba6, type: 3}
-  dyingClip: {fileID: 8300000, guid: 9a2f688b041404c529944fb5aea8002b, type: 3}
-  giveBulletHitClip: {fileID: 8300000, guid: 31a4ceb58ede646f1a20bb2c17b500e6, type: 3}
+  enemyID: 0
+  enemyStruct:
+  - id: 0
+    name: 
+  - id: 1
+    name: 
+  - id: 2
+    name: 
+  - id: 3
+    name: 
+  - id: 0
+    name: 
+  - id: 0
+    name: 
+  - id: 0
+    name: 
+  - id: 0
+    name: 
+  - id: 0
+    name: 
+  - id: 0
+    name: 
+  - id: 0
+    name: 
+  getHitClip: {fileID: 0}
+  giveHitClip: {fileID: 0}
+  dyingClip: {fileID: 0}
+  giveBulletHitClip: {fileID: 0}
   isGround: 1
   isDying: 0
   isWalking: 1
-  isFiring: 1
+  isFiring: 0
   isAttacking: 0
   isTouchable: 1
   isActivateMagnet: 1

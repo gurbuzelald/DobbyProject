@@ -3,7 +3,7 @@
 --- !u!30 &1
 GraphicsSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 14
+  serializedVersion: 16
   m_Deferred:
     m_Mode: 0
     m_Shader: {fileID: 0}
@@ -11,9 +11,6 @@ GraphicsSettings:
     m_Mode: 0
     m_Shader: {fileID: 0}
   m_ScreenSpaceShadows:
-    m_Mode: 0
-    m_Shader: {fileID: 0}
-  m_LegacyDeferred:
     m_Mode: 0
     m_Shader: {fileID: 0}
   m_DepthNormals:
@@ -59,9 +56,12 @@ GraphicsSettings:
   m_FogKeepExp: 1
   m_FogKeepExp2: 1
   m_AlbedoSwatchInfos: []
+  m_RenderPipelineGlobalSettingsMap:
+    UnityEngine.Rendering.HighDefinition.HDRenderPipeline: {fileID: 11400000, guid: e03a5c832ff274c4cb92d56eec1369c6, type: 2}
+    UnityEngine.Rendering.Universal.UniversalRenderPipeline: {fileID: 11400000, guid: 3656099c8ac854ffcb96debf9a9b5528, type: 2}
   m_LightsUseLinearIntensity: 0
   m_LightsUseColorTemperature: 0
-  m_DefaultRenderingLayerMask: 0
   m_LogWhenShaderIsCompiled: 0
-  m_SRPDefaultSettings:
-    UnityEngine.Rendering.HighDefinition.HDRenderPipeline: {fileID: 11400000, guid: e03a5c832ff274c4cb92d56eec1369c6, type: 2}
+  m_LightProbeOutsideHullStrategy: 0
+  m_CameraRelativeLightCulling: 0
+  m_CameraRelativeShadowCulling: 0

@@ -70,42 +70,16 @@ public class AudioManager : AbstractPlayerSFX<AudioManager>
 
     void SetCurrentGameLevelMusic(LevelData levelData)
     {
-        switch (levelData.currentLevel)
+        for (int i = 0; i < levelData.levels.Length; i++)
         {
-            case LevelData.Levels.Level1:
-                audioData.currentGameMusic = audioData.level1GameMusic;
-                break;
-            case LevelData.Levels.Level2:
-                audioData.currentGameMusic = audioData.level2GameMusic;
-                break;
-            case LevelData.Levels.Level3:
-                audioData.currentGameMusic = audioData.level3GameMusic;
-                break;
-            case LevelData.Levels.Level4:
-                audioData.currentGameMusic = audioData.level4GameMusic;
-                break;
-            case LevelData.Levels.Level5:
-                audioData.currentGameMusic = audioData.level5GameMusic;
-                break;
-            case LevelData.Levels.Level6:
-                audioData.currentGameMusic = audioData.level6GameMusic;
-                break;
-            case LevelData.Levels.Level7:
-                audioData.currentGameMusic = audioData.level7GameMusic;
-                break;
-            case LevelData.Levels.Level8:
-                audioData.currentGameMusic = audioData.level8GameMusic;
-                break;
-            case LevelData.Levels.Level9:
-                audioData.currentGameMusic = audioData.level9GameMusic;
-                break;
-            case LevelData.Levels.Level10:
-                audioData.currentGameMusic = audioData.level10GameMusic;
-                break;
+            if (LevelData.currentLevelId == levelData.levels[i].id)
+            {
+                audioData.currentGameMusic = audioData.levelsGameMusic[i];
+                return; // Exit once the matching level is found
+            }
         }
-            
-
     }
+
     public enum ExposedParameters
     {
         MusicVolume,

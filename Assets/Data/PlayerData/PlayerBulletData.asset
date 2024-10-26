@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponStruct:
   - weaponObject: {fileID: 8853850299777618421, guid: 39aa8c7ebaa670646b7147b6d3cfdd63, type: 3}
-    giftBox: {fileID: 5953932990381375704, guid: 769e388e892fa6f47add655d24d29ce0, type: 3}
+    giftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
+    giftBoxTransform: {fileID: 8961598618424200994, guid: c9b0815641d6f3a4f898bef83cb6f012, type: 3}
     shootFrequency: 0.4
     power: 12
     lockState: 
@@ -25,9 +26,10 @@ MonoBehaviour:
     id: 0
     isWeapon: 0
   - weaponObject: {fileID: 1684248174472265961, guid: a331718668949cc43b683202d1396a03, type: 3}
-    giftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
+    giftBox: {fileID: 6750732745314709050, guid: 3443f60ab08db384aaa3b04a8b272456, type: 3}
+    giftBoxTransform: {fileID: 1155883618481309716, guid: 2c0182fcbc961b549aaf76bac3601f5b, type: 3}
     shootFrequency: 0.35
-    power: 17
+    power: 13
     lockState: locked
     weaponName: axe
     usageLimit: 0
@@ -36,7 +38,8 @@ MonoBehaviour:
     id: 1
     isWeapon: 0
   - weaponObject: {fileID: 2611150449622927918, guid: e2a7ba7e091c8a64d89f057926284f5e, type: 3}
-    giftBox: {fileID: 6750732745314709050, guid: 3443f60ab08db384aaa3b04a8b272456, type: 3}
+    giftBox: {fileID: 8957379851250910510, guid: 9892378f7235cce4d9f03984a358c0db, type: 3}
+    giftBoxTransform: {fileID: 4005587169595579027, guid: dc96519d3829f3c4bbf128913090c40c, type: 3}
     shootFrequency: 0.3
     power: 14
     lockState: 
@@ -47,9 +50,10 @@ MonoBehaviour:
     id: 2
     isWeapon: 0
   - weaponObject: {fileID: 4045390288470663321, guid: 21788765404628840a013ba85ef9bc18, type: 3}
-    giftBox: {fileID: 8957379851250910510, guid: 9892378f7235cce4d9f03984a358c0db, type: 3}
+    giftBox: {fileID: 4022412064357964157, guid: 028d4e3f0249529499c5a8c81d29ea0b, type: 3}
+    giftBoxTransform: {fileID: 2638599540784326576, guid: 62fd21db8b232674aad8d559edf830d2, type: 3}
     shootFrequency: 0.33
-    power: 13
+    power: 15
     lockState: locked
     weaponName: cow
     usageLimit: 0
@@ -58,9 +62,10 @@ MonoBehaviour:
     id: 3
     isWeapon: 0
   - weaponObject: {fileID: 6090247001165047854, guid: f063e9ac4a8a0da47abeb4ea6b35b9e3, type: 3}
-    giftBox: {fileID: 4022412064357964157, guid: 028d4e3f0249529499c5a8c81d29ea0b, type: 3}
+    giftBox: {fileID: 8947880313132611291, guid: 43147d81d9fef8f4d9beda636a63dc03, type: 3}
+    giftBoxTransform: {fileID: 179516629189754435, guid: dde88981eced10641b731a210fd3df46, type: 3}
     shootFrequency: 0.25
-    power: 19
+    power: 16
     lockState: locked
     weaponName: crystal
     usageLimit: 0
@@ -69,9 +74,10 @@ MonoBehaviour:
     id: 4
     isWeapon: 0
   - weaponObject: {fileID: 2171148302848499809, guid: 63a007e6a0d63be42ae9e8aadda4784f, type: 3}
-    giftBox: {fileID: 8947880313132611291, guid: 43147d81d9fef8f4d9beda636a63dc03, type: 3}
+    giftBox: {fileID: 1107915910439118714, guid: ca5ee588c6380b74080b876dbde97c21, type: 3}
+    giftBoxTransform: {fileID: 7154336006081633562, guid: be9a55a22443a7b4681a7938de5110de, type: 3}
     shootFrequency: 0.23
-    power: 15
+    power: 17
     lockState: locked
     weaponName: demon
     usageLimit: 0
@@ -80,9 +86,10 @@ MonoBehaviour:
     id: 5
     isWeapon: 0
   - weaponObject: {fileID: 576073428898831781, guid: 0963f4d0c58abf04bb05b0993ba61424, type: 3}
-    giftBox: {fileID: 1107915910439118714, guid: ca5ee588c6380b74080b876dbde97c21, type: 3}
+    giftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
+    giftBoxTransform: {fileID: 3261474249918593515, guid: e7895dc5f93f08340aef8908dc137206, type: 3}
     shootFrequency: 0.2
-    power: 16
+    power: 18
     lockState: locked
     weaponName: ice
     usageLimit: 0
@@ -91,9 +98,10 @@ MonoBehaviour:
     id: 6
     isWeapon: 0
   - weaponObject: {fileID: 1492883090361208011, guid: 6e1df7167d924f94f85f18de66dd6675, type: 3}
-    giftBox: {fileID: 7782060441067145523, guid: 2e87b686cc38e384c9e9e125e20fec6a, type: 3}
+    giftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
+    giftBoxTransform: {fileID: 4766537959376769809, guid: 09184e7c332494e459c4eb6925522f79, type: 3}
     shootFrequency: 0.18
-    power: 18
+    power: 19
     lockState: locked
     weaponName: electro
     usageLimit: 0
@@ -102,7 +110,8 @@ MonoBehaviour:
     id: 7
     isWeapon: 0
   - weaponObject: {fileID: 8897232894062872137, guid: de0204befe821450086cbe7b3f168442, type: 3}
-    giftBox: {fileID: 642318633107140907, guid: f2c1af775f500794b84c8ba8782d30b8, type: 3}
+    giftBox: {fileID: 4850221878147488263, guid: 2b9e216addade824fb41b7bc668a5101, type: 3}
+    giftBoxTransform: {fileID: 2981881977126167581, guid: c4ca995896d51c4478d7397ec113d07e, type: 3}
     shootFrequency: 0.15
     power: 20
     lockState: locked
@@ -114,6 +123,7 @@ MonoBehaviour:
     isWeapon: 0
   - weaponObject: {fileID: 4797058508463431492, guid: eba982acb08ab42ab812b36334e36729, type: 3}
     giftBox: {fileID: 4850221878147488263, guid: 2b9e216addade824fb41b7bc668a5101, type: 3}
+    giftBoxTransform: {fileID: 587789775632349523, guid: 7e25305159a90ef45861d6bd25feacd2, type: 3}
     shootFrequency: 0.14
     power: 21
     lockState: locked
@@ -123,97 +133,100 @@ MonoBehaviour:
     price: 9
     id: 9
     isWeapon: 0
-  - weaponObject: {fileID: 0}
-    giftBox: {fileID: 0}
-    shootFrequency: 0
-    power: 0
-    lockState: 
-    weaponName: 
+  - weaponObject: {fileID: 4797058508463431492, guid: eba982acb08ab42ab812b36334e36729, type: 3}
+    giftBox: {fileID: 4850221878147488263, guid: 2b9e216addade824fb41b7bc668a5101, type: 3}
+    giftBoxTransform: {fileID: 587789775632349523, guid: 7e25305159a90ef45861d6bd25feacd2, type: 3}
+    shootFrequency: 0.14
+    power: 22
+    lockState: locked
+    weaponName: machine
     usageLimit: 0
-    bulletPackAmount: 0
-    price: 0
-    id: 0
+    bulletPackAmount: 30
+    price: 10
+    id: 10
     isWeapon: 0
   currentSwordName: LowSword
-  currentWeaponName: bulldog
-  giftBoxes:
-  - {fileID: 8961598618424200994, guid: c9b0815641d6f3a4f898bef83cb6f012, type: 3}
-  - {fileID: 1155883618481309716, guid: 2c0182fcbc961b549aaf76bac3601f5b, type: 3}
-  - {fileID: 4005587169595579027, guid: dc96519d3829f3c4bbf128913090c40c, type: 3}
-  - {fileID: 2638599540784326576, guid: 62fd21db8b232674aad8d559edf830d2, type: 3}
-  - {fileID: 179516629189754435, guid: dde88981eced10641b731a210fd3df46, type: 3}
-  - {fileID: 7154336006081633562, guid: be9a55a22443a7b4681a7938de5110de, type: 3}
-  - {fileID: 3261474249918593515, guid: e7895dc5f93f08340aef8908dc137206, type: 3}
-  - {fileID: 4766537959376769809, guid: 09184e7c332494e459c4eb6925522f79, type: 3}
-  - {fileID: 2981881977126167581, guid: c4ca995896d51c4478d7397ec113d07e, type: 3}
-  - {fileID: 587789775632349523, guid: 7e25305159a90ef45861d6bd25feacd2, type: 3}
+  currentWeaponName: pistol
+  currentBulletPackAmount: 21
   weaponBulletDelay: 0.05
-  swordBulletDelay: 0.05
+  swordBulletDelay: 0.3
   bulletSpeed: 5
-  swordSpeed: 1
+  swordSpeed: 7
   bulletDelayCounter: 0
   _swordingObject: {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
   currentGiftBox: {fileID: 100296067197415640, guid: 754441e23280adc4da86bdc6b53102e3, type: 3}
-  currentShootFrequency: 0.3
+  currentShootFrequency: 0.4
   resetLocks: locked
   unLocked: 
-  currentBulletPackAmount: 23
-  currentEnemyBulletDamage: 15
-  chibiEnemyBulletDamage: 14
-  minoEnemyBulletDamage: 15
-  bigMonsterEnemyBulletDamage: 16
-  orcEnemyBulletDamage: 17
-  boneEnemyBulletDamage: 18
-  morakEnemyBulletDamage: 30
-  beholderEnemyBulletDamage: 19
-  femaleZombieEnemyBulletDamage: 20
-  doctorEnemyBulletDamage: 21
-  giantEnemyBulletDamage: 22
-  clothyBoneEnemyBulletDamage: 23
-  chestMonsterEnemyBulletDamage: 24
-  chestMonster2EnemyBulletDamage: 25
+  enemyAttackInfos:
+  - bulletName: ChibiBullet(Clone)
+    id: 0
+    bulletDamage: 12
+    attackDamage: 13
+    hitDamage: 14
+  - bulletName: MinoBullet(Clone)
+    id: 1
+    bulletDamage: 13
+    attackDamage: 14
+    hitDamage: 15
+  - bulletName: BigMonsterBullet(Clone)
+    id: 2
+    bulletDamage: 14
+    attackDamage: 15
+    hitDamage: 16
+  - bulletName: OrcBullet(Clone)
+    id: 3
+    bulletDamage: 15
+    attackDamage: 16
+    hitDamage: 17
+  - bulletName: BeholderBullet(Clone)
+    id: 4
+    bulletDamage: 16
+    attackDamage: 17
+    hitDamage: 18
+  - bulletName: FemaleZombieBullet(Clone)
+    id: 5
+    bulletDamage: 17
+    attackDamage: 18
+    hitDamage: 19
+  - bulletName: DoctorBullet(Clone)
+    id: 6
+    bulletDamage: 18
+    attackDamage: 19
+    hitDamage: 20
+  - bulletName: GiantBullet(Clone)
+    id: 7
+    bulletDamage: 19
+    attackDamage: 20
+    hitDamage: 21
+  - bulletName: BoneBullet(Clone)
+    id: 8
+    bulletDamage: 20
+    attackDamage: 21
+    hitDamage: 22
+  - bulletName: ClothyBoneBullet(Clone)
+    id: 9
+    bulletDamage: 21
+    attackDamage: 22
+    hitDamage: 23
+  - bulletName: ChestMonsterBullet(Clone)
+    id: 10
+    bulletDamage: 22
+    attackDamage: 23
+    hitDamage: 24
+  - bulletName: ChestMonster2Bullet(Clone)
+    id: 11
+    bulletDamage: 23
+    attackDamage: 24
+    hitDamage: 25
+  currentEnemyBulletDamage: 12
   currentEnemyAttackDamage: 0
-  chibiEnemyAttackDamage: 15
-  minoEnemyAttackDamage: 16
-  bigMonsterEnemyAttackDamage: 17
-  orcEnemyAttackDamage: 18
-  boneEnemyAttackDamage: 19
-  morakEnemyAttackDamage: 25
-  beholderEnemyAttackDamage: 20
-  femaleZombieEnemyAttackDamage: 21
-  doctorEnemyAttackDamage: 22
-  giantEnemyAttackDamage: 23
-  clothyBoneEnemyAttackDamage: 25
-  chestMonsterEnemyAttackDamage: 25
-  chestMonster2EnemyAttackDamage: 25
-  currentEnemyCollisionDamage: 0
-  chibiEnemyCollisionDamage: 16
-  minoEnemyCollisionDamage: 17
-  bigMonsterEnemyCollisionDamage: 18
-  orcEnemyCollisionDamage: 19
-  beholderEnemyCollisionDamage: 20
-  femaleZombieEnemyCollisionDamage: 21
-  doctorEnemyCollisionDamage: 22
-  giantEnemyCollisionDamage: 23
-  boneEnemyCollisionDamage: 24
-  clothyBoneEnemyCollisionDamage: 25
-  chestMonsterEnemyCollisionDamage: 26
-  chestMonster2EnemyCollisionDamage: 27
-  lowSwordObject: {fileID: 7486198881408922905, guid: e0ca519d8f748de48b2cdc4e12d21e8f, type: 3}
-  isLowSword: 0
-  isWarriorSword: 0
-  isHummer: 0
-  isOrcSword: 0
-  isAxeSword: 0
-  isAxeKnight: 0
-  isBarbarianSword: 0
-  isDemonSword: 0
-  isMagicSword: 0
-  isLongHummer: 0
-  isClub: 0
-  swordDamageValue: 50
+  currentEnemyHitDamage: 0
   enemyFireFrequency: 5
   enemyBulletDelayCounter: 0
   enemyBulletDelay: 0.05
   enemyBulletSpeed: 3
   isFirable: 0
+  lowSwordObject: {fileID: 7486198881408922905, guid: e0ca519d8f748de48b2cdc4e12d21e8f, type: 3}
+  isLowSword: 0
+  swordDamageValue: 50

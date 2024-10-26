@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f1bfa71a40809c2499d1cc3ec5ae932b
+guid: 6a3df7a87592a814db5ab24052ac7a87
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
@@ -7,38 +7,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Cigar_Mat
-    second: {fileID: 2100000, guid: cfb123ae9711d554db93247382ca9684, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Clothes_MAT
-    second: {fileID: 2100000, guid: 54246165350cf7c49b93337997f87c27, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Eyes_MAT
-    second: {fileID: 2100000, guid: f9c188be6c3c8264d9f1f39eff459b95, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Skin_MAT
-    second: {fileID: 2100000, guid: 00bd116717f696c46ae5a240e4878984, type: 2}
+      name: Ch03_Body
+    second: {fileID: 2100000, guid: 2820f181d17b780418b76eac69afdd8a, type: 2}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Boss_diffuse
-    second: {fileID: 2800000, guid: e968b3b9187c7434badde7079f5d4ce4, type: 3}
+      name: Ch03_1001_Diffuse
+    second: {fileID: 2800000, guid: eec617d01cdd7b144979cdccfe97937b, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Boss_normal
-    second: {fileID: 2800000, guid: 8359f58c6e98e6a4bb8801b0c452b232, type: 3}
+      name: Ch03_1001_Glossiness
+    second: {fileID: 2800000, guid: 72b614ec6559d9940bf70e3e40faff8b, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Boss_specular
-    second: {fileID: 2800000, guid: 53769902ab8585844a17a31dfd82878e, type: 3}
+      name: Ch03_1001_Normal
+    second: {fileID: 2800000, guid: 8cf062123c0531749a2111b6559db544, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Ch03_1001_Specular
+    second: {fileID: 2800000, guid: aa5ac2da465d3644daa6c3cf92514aff, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
