@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewPlayerData", menuName = "PlayerData")]
+[CreateAssetMenu(fileName = "NewPlayerData", menuName = "Scriptable Objects/PlayerData")]
 public class PlayerData : ScriptableObject
 {
     [Serializable]
@@ -22,8 +22,15 @@ public class PlayerData : ScriptableObject
     public CharacterStruct[] characterStruct = new CharacterStruct[11];
 
 
-    [Header("Pick Character")]
     public static int currentCharacterID;
+
+    public static int currentCharacterDurability;
+
+    public static bool currentBulletExplosionIsChanged;
+
+    public static float currentJumpForce;
+
+    public static float currentCharacterSpeed;
 
 
     [Header("Player Object")]
@@ -61,8 +68,7 @@ public class PlayerData : ScriptableObject
     [Header("Get Current Killing Enemy For Increase Health")]
     public bool getCurrentEnemyDead;
 
-    [Header("Weapon Changed")]
-    public static bool currentBulletExplosionIsChanged;
+    
 
     [Header("Message Text")]
     public TextMeshProUGUI currentMessageText;
@@ -83,13 +89,6 @@ public class PlayerData : ScriptableObject
     public const string pickedKeyMessageTr = "Anahtar Topladın!!!";
     public const string emptyMessage = "";
 
-    [Header("Background Maps")]
-    public GameObject backgroundMap;     
-    
-
-    [Header("Character Durabilities")]
-    public static int currentCharacterDurability;
-    
     [Header("Enemy Names")]
     public const string chibi = "Chibi(Clone)";
     public const string mino = "Mino(Clone)";
@@ -103,10 +102,7 @@ public class PlayerData : ScriptableObject
     public const string clothyBone = "ClothyBone(Clone)";
     public const string chestMonster = "ChestMonster(Clone)";
     public const string chestMonster2 = "ChestMonster2(Clone)";
-
-
-    [Header("Player Level Spawns")]
-    public Transform playerSpawns;     
+    public const string tazo = "Tazo(Clone)";
 
     [Header("Health State")]
     public bool isDecreaseHealth;
@@ -120,9 +116,6 @@ public class PlayerData : ScriptableObject
 
     [Header("Prefab Game Objects For Player")]
     public GameObject[] objects;
-    public GameObject[] slaveObjects;
-    //public static int slaveCounter;
-    public Transform spawns;
 
     [Header("Sensivity")]
     public float sensivityX = 250f;
@@ -133,18 +126,12 @@ public class PlayerData : ScriptableObject
     public bool isLose;
 
     [Header("Speed")]
-
-    public static float currentCharacterSpeed;
     public float rotateSpeed;
 
 
-    [Header("Character Jump Forces")]
     public Dictionary<int, GameObject> characterInfos;
-    public static float currentJumpForce;
+    
 
-
-    [Header("Avaliable Characters")]
-    //public string[] avaliableCharacters = new string[11];
 
     [Header("Animation Bools")]
     public bool isGround;

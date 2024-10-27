@@ -15,10 +15,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     private AudioSource _audioSource;
 
     [Header("Data")]
+    public MainEnemyData mainEnemyData;
     public EnemyData[] enemyListData;
     public EnemyData enemyData;  
-    public BulletData[] enemyListBulletData;
-    public BulletData bulletData;
+    public EnemyBulletData bulletData;
     public PlayerData playerData;
     public LevelData levelData;
 
@@ -48,12 +48,14 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     void Start()
     {
+
+        enemyData.currentEnemyName = gameObject.transform.name;
+
         playerObjectPool = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>();
 
         playerSFX = FindAnyObjectByType<PlayerSoundEffect>();
 
         enemyData = enemyListData[enemyDataNumber];
-        bulletData = enemyListBulletData[enemyBulletDataNumber];
 
         _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
         _healthBarSlider = _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>();
@@ -82,142 +84,47 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         SetBackToWalkingValueForStart();
     }
-    void CheckEnemyCollisionDamage()
+    // Static dictionary to map enemy names to their indices in `enemyAttackInfos`
+    private static readonly Dictionary<string, int> enemyIndexMap = new Dictionary<string, int>
     {
-        switch (enemyData.currentEnemyName)
-        {
-            case PlayerData.chibi:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[0].hitDamage;
-                break;
-            case PlayerData.mino:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[1].hitDamage;
-                break;
-            case PlayerData.bigMonster:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[2].hitDamage;
-                break;
-            case PlayerData.orc:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[3].hitDamage;
-                break;
-            case PlayerData.beholder:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[4].hitDamage;
-                break;
-            case PlayerData.femaleZombie:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[5].hitDamage;
-                break;
-            case PlayerData.doctor:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[6].hitDamage;
-                break;
-            case PlayerData.giant:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[7].hitDamage;
-                break;
-            case PlayerData.bone:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[8].hitDamage;
-                break;
-            case PlayerData.clothyBone:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[9].hitDamage;
-                break;
-            case PlayerData.chestMonster:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[10].hitDamage;
-                break;
-            case PlayerData.chestMonster2:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[11].hitDamage;
-                break;
-            default:
-                bulletData.currentEnemyHitDamage =
-                    PlayerManager.GetInstance._bulletData.enemyAttackInfos[0].hitDamage;
-                break;
-        }
+        { PlayerData.chibi, 0 },
+        { PlayerData.mino, 1 },
+        { PlayerData.bigMonster, 2 },
+        { PlayerData.orc, 3 },
+        { PlayerData.beholder, 4 },
+        { PlayerData.femaleZombie, 5 },
+        { PlayerData.doctor, 6 },
+        { PlayerData.giant, 7 },
+        { PlayerData.bone, 8 },
+        { PlayerData.clothyBone, 9 },
+        { PlayerData.chestMonster, 10 },
+        { PlayerData.chestMonster2, 11 },
+        { PlayerData.tazo, 12 }
+    };
 
+    void SetCurrentEnemyHitDamage()
+    {
+        int enemyIndex = GetEnemyIndex(enemyData.currentEnemyName);
+        bulletData.currentEnemyHitDamage = PlayerManager.GetInstance._enemyBulletData.enemyAttackInfos[enemyIndex].hitDamage;
     }
 
-    public void CheckEnemyBulletDamage(ref BulletData bulletData)
+    public void SetCurrentEnemyBulletDamage(ref EnemyBulletData bulletData)
     {
-        enemyData.currentEnemyName = gameObject.transform.name;
-
-        switch (enemyData.currentEnemyName)
-        {
-            case PlayerData.chibi:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[0].bulletDamage;
-                break;
-            case PlayerData.mino:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[1].bulletDamage;
-                break;
-            case PlayerData.bigMonster:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[2].bulletDamage;
-                break;
-            case PlayerData.orc:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[3].bulletDamage;
-                break;
-            case PlayerData.beholder:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[4].bulletDamage;
-                break;
-            case PlayerData.femaleZombie:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[5].bulletDamage;
-                break;
-            case PlayerData.doctor:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[6].bulletDamage;
-                break;
-            case PlayerData.giant:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[7].bulletDamage;
-                break;
-            case PlayerData.bone:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[8].bulletDamage;
-                break;
-            case PlayerData.clothyBone:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[9].bulletDamage;
-                break;
-            case PlayerData.chestMonster:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[10].bulletDamage;
-                break;
-            case PlayerData.chestMonster2:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[11].bulletDamage;
-                break;
-            default:
-                PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[0].bulletDamage;
-                break;
-        }
+        int enemyIndex = GetEnemyIndex(enemyData.currentEnemyName);
+        bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._enemyBulletData.enemyAttackInfos[enemyIndex].bulletDamage;
     }
 
-
-    public void SetCurrentAttacker(ref EnemyData enemyData, ref BulletData bulletData)
+    public void SetEnemyAttackDamage(ref EnemyData enemyData, ref EnemyBulletData bulletData)
     {
-        // Enemy name to index mapping
-        Dictionary<string, int> enemyIndexMap = new Dictionary<string, int>
-        {
-            { PlayerData.chibi, 0 },
-            { PlayerData.mino, 1 },
-            { PlayerData.bigMonster, 2 },
-            { PlayerData.orc, 3 },
-            { PlayerData.beholder, 4 },
-            { PlayerData.femaleZombie, 5 },
-            { PlayerData.doctor, 6 },
-            { PlayerData.giant, 7 },
-            { PlayerData.bone, 8 },
-            { PlayerData.clothyBone, 9 },
-            { PlayerData.chestMonster, 10 },
-            { PlayerData.chestMonster2, 11 }
-        };
-
-        // Try to get the index, default to 0 if not found
-        int enemyIndex = enemyIndexMap.TryGetValue(enemyData.currentEnemyName, out int index) ? index : 0;
-
-        // Set the enemy attack damage
-        bulletData.currentEnemyAttackDamage = PlayerManager.GetInstance._bulletData.enemyAttackInfos[enemyIndex].attackDamage;
-
+        int enemyIndex = GetEnemyIndex(enemyData.currentEnemyName);
+        bulletData.currentEnemyAttackDamage = PlayerManager.GetInstance._enemyBulletData.enemyAttackInfos[enemyIndex].attackDamage;
     }
 
+    // Helper function to get the enemy index, defaults to 0 if not found
+    private int GetEnemyIndex(string enemyName)
+    {
+        return enemyIndexMap.TryGetValue(enemyName, out int index) ? index : 0;
+    }
 
 
     void Update()
@@ -385,7 +292,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             if (collision.collider.CompareTag(SceneController.Tags.Player.ToString()) && enemyData.isTouchable)
             {
-                CheckEnemyCollisionDamage();               
+                SetCurrentEnemyHitDamage();               
 
                 TouchPlayer();
 
@@ -739,11 +646,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         else if (soundEffect == SoundEffectTypes.GiveHit)
         {
-            audioSource.PlayOneShot(enemyData.giveHitClip);
+            audioSource.PlayOneShot(mainEnemyData.giveHitClip);
         }
         else if (soundEffect == SoundEffectTypes.Death)
         {
-            audioSource.PlayOneShot(enemyData.dyingClip);
+            audioSource.PlayOneShot(mainEnemyData.dyingClip);
         }
         else if (soundEffect == SoundEffectTypes.BulletHit)
         {
@@ -755,7 +662,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         else if (soundEffect == SoundEffectTypes.GiveBulletHit)
         {
-            audioSource.PlayOneShot(enemyData.giveBulletHitClip);
+            audioSource.PlayOneShot(mainEnemyData.giveBulletHitClip);
         }
     }
     public enum SoundEffectTypes

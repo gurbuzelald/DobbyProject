@@ -12,13 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df28307b15eed744a58827ea4f595cc, type: 3}
   m_Name: TazoData 5
   m_EditorClassIdentifier: 
-  _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
-  _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
-  currentEnemyName: 
-  getHitClip: {fileID: 8300000, guid: 9d732e089aef246949f26127d40ad8ba, type: 3}
-  giveHitClip: {fileID: 8300000, guid: a3cb15014ae80460398a996fbc413719, type: 3}
-  dyingClip: {fileID: 8300000, guid: f6b0a246ab94a4ee0913b643c5245a1a, type: 3}
-  giveBulletHitClip: {fileID: 8300000, guid: 9ea15f148756241b580cef1b3d38639d, type: 3}
+  currentEnemyName: Tazo(Clone)
   isGround: 1
   isDying: 0
   isWalking: 1
@@ -30,8 +24,4 @@ MonoBehaviour:
   bulletDamageValue: 12
   enemyDurability: 0
   isSpeedZero: 0
-  isWalkable: 1
   isActivateCreateEnemy: 0
-  currentBottomParticle: {fileID: 6847440653780713590, guid: 54b95b008a4da472fad9094e21768081, type: 3}
-  currentMiddleParticle: {fileID: 971248542662641292, guid: 2f7ae11e5481b4410980b7b91fdc3dff, type: 3}
-  currentTopParticle: {fileID: 2336971284181270886, guid: fec8603a8201643e4ae2590b1c017295, type: 3}

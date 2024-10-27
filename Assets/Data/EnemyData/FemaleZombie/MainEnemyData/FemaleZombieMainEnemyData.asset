@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f515fbb97c5448fa281b5dc944e386, type: 3}
+  m_Name: FemaleZombieMainEnemyData
+  m_EditorClassIdentifier: 
+  getHitClip: {fileID: 8300000, guid: 06f11068a3df1934b9e9395bcf967e77, type: 3}
+  giveHitClip: {fileID: 8300000, guid: 48a236d72d75aad418c02b949d2ca30f, type: 3}
+  dyingClip: {fileID: 8300000, guid: c28240dbcf481428782e905d0db960ec, type: 3}
+  giveBulletHitClip: {fileID: 8300000, guid: 7cb7ccd4448e2415ba25c448e119964b, type: 3}

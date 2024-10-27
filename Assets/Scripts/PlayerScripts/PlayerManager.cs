@@ -58,8 +58,9 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     public PlayerData _playerData;
     public EnemyData _enemyData;
     public BulletData _bulletData;
+    public EnemyBulletData _enemyBulletData;
     public LevelData _levelData;
-    public BulletData enemyBulletData;
+    //public BulletData enemyBulletData;
 
     [Header("Current Spawn Transforms")]
     public Transform _particleTransform;
@@ -297,12 +298,12 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     private void SpawnPlayerObject()
     {
-        if (_playerData)
+        if (_levelData)
         {
-            if (_playerData.playerSpawns.GetChild(LevelData.currentLevelId))
+            if (_levelData.playerSpawns.GetChild(LevelData.currentLevelId))
             {
                 transform.position =
-                    _playerData.playerSpawns.GetChild(LevelData.currentLevelId).transform.position;
+                    _levelData.playerSpawns.GetChild(LevelData.currentLevelId).transform.position;
             }            
         }        
     }
@@ -901,7 +902,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 {
                     //VirtualCameraEulerAngle for Salsa Dance
                     _currentCameraTransform.transform.eulerAngles = new Vector3(_currentCameraTransform.transform.eulerAngles.x,
-                                                                                0f,
+                                                                                45f,
                                                                                 _currentCameraTransform.transform.eulerAngles.z);
                 }
                 else

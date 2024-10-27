@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewBulletData", menuName = "BulletData")]
+[CreateAssetMenu(fileName = "NewBulletData", menuName = "Scriptable Objects/BulletData")]
 public class BulletData : ScriptableObject
 {
     [Serializable]
@@ -55,31 +55,6 @@ public class BulletData : ScriptableObject
     public string resetLocks = "locked";
     public const string locked = "locked";
     public string unLocked = "";
-
-
-
-    [Serializable]
-    public struct EnemyAttackInfos
-    {
-        public string bulletName;
-        public int id;
-        public int bulletDamage;
-        public int attackDamage;
-        public int hitDamage;
-    }
-
-    public EnemyAttackInfos[] enemyAttackInfos = new EnemyAttackInfos[12];
-
-
-    public int currentEnemyBulletDamage;
-    public int currentEnemyAttackDamage;
-    public int currentEnemyHitDamage;
-
-    [Header("Bullet Transform")]
-    public float enemyFireFrequency;
-    public float enemyBulletDelayCounter = 0;
-    public float enemyBulletDelay = 0.05f;
-    public float enemyBulletSpeed;
 
 
     public bool isFirable;

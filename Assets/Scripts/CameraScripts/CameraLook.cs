@@ -22,7 +22,31 @@ public class CameraLook : MonoBehaviour
     {
         if (spawnCounter == 0)
         {
-            if (Screen.width > 1700)
+            if (Screen.width > 2100)
+            {
+                _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x - 1.2f,
+                                                        _finishArrowTransform.position.y,
+                                                        _finishArrowTransform.position.z);
+            }
+            if (Screen.width > 2000)
+            {
+                _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x - 1.1f,
+                                                        _finishArrowTransform.position.y,
+                                                        _finishArrowTransform.position.z);
+            }
+            if (Screen.width > 1900)
+            {
+                _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x - 1f,
+                                                        _finishArrowTransform.position.y,
+                                                        _finishArrowTransform.position.z);
+            }
+            else if (Screen.width > 1800)
+            {
+                _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x - 0.9f,
+                                                        _finishArrowTransform.position.y,
+                                                        _finishArrowTransform.position.z);
+            }
+            else if (Screen.width > 1700)
             {
                 _finishArrowTransform.position = new Vector3(_finishArrowTransform.position.x - 0.8f,
                                                         _finishArrowTransform.position.y,

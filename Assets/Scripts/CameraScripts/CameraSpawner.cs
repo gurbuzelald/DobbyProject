@@ -7,11 +7,16 @@ public class CameraSpawner : MonoBehaviour
 
     private Camera cameraObject;
 
-
-
     private void Start()
     {
-        Destroy(gameObject.transform.GetChild(0).gameObject);
+        if (gameObject.transform.childCount >= 1)
+        {
+            if (gameObject.transform.GetChild(0).gameObject)
+            {
+                Destroy(gameObject.transform.GetChild(0).gameObject);
+            }
+        }
+        
         for (int i = 0; i < _cameraObjects.Length; i++)
         {
             cameraObjects = Instantiate(_cameraObjects[i], gameObject.transform);

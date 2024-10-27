@@ -61,9 +61,9 @@ public class MiniMapController : MonoBehaviour
     void TouchMiniMap(Camera miniMapCamera)
     {
         growing = playerInput.GrowMap.GrowingStuate.IsPressed();
-        if (growing && _isMiniMapTouchable && miniMapMask.transform.localScale == new Vector3(0.25f, 0.25f, 0.25f))
+        if (growing && _isMiniMapTouchable && miniMapMask.transform.localScale == new Vector3(0.2f, 0.2f, 0.2f))
         {
-            miniMapCamera.orthographicSize = 25;
+            miniMapCamera.orthographicSize = 30;
             miniMapMask.transform.localScale = Vector3.one;
 
             _isMiniMapTouchable = false;
@@ -73,7 +73,7 @@ public class MiniMapController : MonoBehaviour
         else if (growing && _isMiniMapTouchable)
         {
             miniMapCamera.orthographicSize = 7;
-            miniMapMask.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+            miniMapMask.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
             _isMiniMapTouchable = false;
 

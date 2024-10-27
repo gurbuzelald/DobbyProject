@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewPlayerCoinData", menuName = "PlayerCoinData")]
+[CreateAssetMenu(fileName = "NewPlayerCoinData", menuName = "Scriptable Objects/PlayerCoinData")]
 [System.Serializable]
 public class PlayerCoinData : ScriptableObject
 {

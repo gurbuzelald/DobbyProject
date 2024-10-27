@@ -2034,6 +2034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 5420813492399416615}
+  mainEnemyData: {fileID: 11400000, guid: 4f9da03f2e81c40b5ab48b73a073b01d, type: 2}
   enemyListData:
   - {fileID: 11400000, guid: 94cd0c637080c4cf5a875d18f40ce497, type: 2}
   - {fileID: 11400000, guid: c90d5a6d21f3a4d3bbf5b5c79236bc14, type: 2}
@@ -2056,28 +2057,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 983b265092b0745e1a8bfcbcdc725e95, type: 2}
   - {fileID: 11400000, guid: e921b1de8abb84c0fa50b3d02d3d4b7e, type: 2}
   enemyData: {fileID: 11400000, guid: 94cd0c637080c4cf5a875d18f40ce497, type: 2}
-  enemyListBulletData:
-  - {fileID: 11400000, guid: c9272299df9884c988b039cc15350eb1, type: 2}
-  - {fileID: 11400000, guid: 66d8fee9c75a84de38867ee303ba6eb2, type: 2}
-  - {fileID: 11400000, guid: 9ddcc2e9075844008ae7727050f93a25, type: 2}
-  - {fileID: 11400000, guid: c7c6688cf6f0045a1a03525c889acb3b, type: 2}
-  - {fileID: 11400000, guid: c275703508aa643b49bb490d2c613eb3, type: 2}
-  - {fileID: 11400000, guid: 71b90638f5e014293a6e41bb8bdc63df, type: 2}
-  - {fileID: 11400000, guid: ab94ec5a6bf664dca91341e52445a698, type: 2}
-  - {fileID: 11400000, guid: 5a05e69c2dada40e0b8882f713a70d37, type: 2}
-  - {fileID: 11400000, guid: 0fb4a2ef917ce409dbbf99e2fbba956a, type: 2}
-  - {fileID: 11400000, guid: 0158065ec511749769e7a451ca897580, type: 2}
-  - {fileID: 11400000, guid: 1c25c7f7201354137909a11d18fb331d, type: 2}
-  - {fileID: 11400000, guid: df3dd35a5da024db18079a9b83b1d419, type: 2}
-  - {fileID: 11400000, guid: 4c7458d780c5d4734b264f12f761b024, type: 2}
-  - {fileID: 11400000, guid: 24de98cdaf4c842549927d68a4e22355, type: 2}
-  - {fileID: 11400000, guid: 0ed5aaf3c84924d79bb096a55be1652b, type: 2}
-  - {fileID: 11400000, guid: f3c00a63e05194c208121f0e58c10565, type: 2}
-  - {fileID: 11400000, guid: 609c7133c4d324924aaaf8d29ce1cebf, type: 2}
-  - {fileID: 11400000, guid: 617eef80300d3485a9fd56bb41503945, type: 2}
-  - {fileID: 11400000, guid: 47fec5956a76a4b2fb9452d6c557f30a, type: 2}
-  - {fileID: 11400000, guid: 3d2c3fa498adb46d4bebf2cc9eb68db0, type: 2}
-  bulletData: {fileID: 11400000, guid: c9272299df9884c988b039cc15350eb1, type: 2}
+  bulletData: {fileID: 11400000, guid: b9e9e6e09b90b43648442b02e801c64a, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
   enemyDataNumber: 0

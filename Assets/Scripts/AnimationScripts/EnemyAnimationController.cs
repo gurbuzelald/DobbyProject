@@ -76,13 +76,13 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
 
         _enemyManager.enemyData.currentEnemyName = gameObject.transform.parent.name;
 
-        _enemyManager.SetCurrentAttacker(ref _enemyManager.enemyData, ref _enemyManager.bulletData);
+        _enemyManager.SetEnemyAttackDamage(ref _enemyManager.enemyData, ref _enemyManager.bulletData);
         _playerData.decreaseCounter = 0;
     }
 
     public void EnemySetActiveFalse()
     {
-        EnemyData.enemyDeathCount++;
+        MainEnemyData.enemyDeathCount++;
         gameObject.transform.parent.gameObject.SetActive(false);
         _enemyManager.enemyData.isDying = false;
     }

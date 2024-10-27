@@ -688,12 +688,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             if (other.gameObject.transform.parent.name == "bossEnemyTransform")
             {
-                DecreaseHealth(ref _playerData, PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage*2,
+                DecreaseHealth(ref _playerData, PlayerManager.GetInstance._enemyBulletData.currentEnemyBulletDamage*2,
                             ref _healthBarObject, ref healthBarSlider, ref topCanvasHealthBarSlider, ref damageHealthText);
             }
             else
             {
-                DecreaseHealth(ref _playerData, PlayerManager.GetInstance._bulletData.currentEnemyBulletDamage,
+                DecreaseHealth(ref _playerData, PlayerManager.GetInstance._enemyBulletData.currentEnemyBulletDamage,
                             ref _healthBarObject, ref healthBarSlider, ref topCanvasHealthBarSlider, ref damageHealthText);
             }
 
@@ -1281,7 +1281,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         float zValue = PlayerManager.GetInstance.GetZValue();
         float xValue = PlayerManager.GetInstance.GetXValue();
 
-        if (Mathf.Abs(xValue)*2 >= zValue)
+        if (Mathf.Abs(xValue)*(2.5f) >= zValue)
         {
             _playerData.isSideWalking = true;
             _playerData.isWalking = false;            

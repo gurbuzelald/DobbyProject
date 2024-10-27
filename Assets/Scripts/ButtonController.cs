@@ -46,32 +46,14 @@ public class ButtonController : MonoBehaviour
     //Pick Character Scene Buttons
     private bool pickCharacterMenuButton;
     private bool openPickWeaponSceneByPickCharacterSceneButton;
-    public static bool A;
-    public static bool D;
-    public static bool B;
-    public static bool E;
-    public static bool C;
-    public static bool G;
-    public static bool F;
-    public static bool J;
-    public static bool I;
-    public static bool L;
-    public static bool K;
+
+    public static bool[] characterButtonBools = new bool[11];
 
     //Pick Weapon Scene Buttons
     private bool pickWeaponMenuButton;
     private bool openPickCharacterSceneByPickWeaponSceneButton;
 
-    public static bool Pistol;
-    public static bool Axe;
-    public static bool Bulldog;
-    public static bool Cow;
-    public static bool Crystal;
-    public static bool Demon;
-    public static bool Ice;
-    public static bool Electro;
-    public static bool ShotGun;
-    public static bool Machine;
+    public static bool[] weaponButtonBools = new bool[10];
 
     //End Scene Buttons
     public bool endSceneMenuButton;
@@ -214,16 +196,16 @@ public class ButtonController : MonoBehaviour
             pickWeaponMenuButton = menuInput.PickWeaponSceneButtons.MenuButton.IsPressed();
             openPickCharacterSceneByPickWeaponSceneButton = menuInput.PickWeaponSceneButtons.PickCharacterButton.IsPressed();
 
-            Pistol = menuInput.PickWeaponSceneButtons.Pistol.IsPressed();
-            Axe = menuInput.PickWeaponSceneButtons.Axe.IsPressed();
-            Bulldog = menuInput.PickWeaponSceneButtons.Bulldog.IsPressed();
-            Cow = menuInput.PickWeaponSceneButtons.Cow.IsPressed();
-            Crystal = menuInput.PickWeaponSceneButtons.Crystal.IsPressed();
-            Demon = menuInput.PickWeaponSceneButtons.Demon.IsPressed();
-            Ice = menuInput.PickWeaponSceneButtons.Ice.IsPressed();
-            Electro = menuInput.PickWeaponSceneButtons.Electro.IsPressed();
-            ShotGun = menuInput.PickWeaponSceneButtons.Shotgun.IsPressed();
-            Machine = menuInput.PickWeaponSceneButtons.Machine.IsPressed();
+            weaponButtonBools[0] = menuInput.PickWeaponSceneButtons.Pistol.IsPressed();
+            weaponButtonBools[1] = menuInput.PickWeaponSceneButtons.Axe.IsPressed();
+            weaponButtonBools[2] = menuInput.PickWeaponSceneButtons.Bulldog.IsPressed();
+            weaponButtonBools[3] = menuInput.PickWeaponSceneButtons.Cow.IsPressed();
+            weaponButtonBools[4] = menuInput.PickWeaponSceneButtons.Crystal.IsPressed();
+            weaponButtonBools[5] = menuInput.PickWeaponSceneButtons.Demon.IsPressed();
+            weaponButtonBools[6] = menuInput.PickWeaponSceneButtons.Ice.IsPressed();
+            weaponButtonBools[7] = menuInput.PickWeaponSceneButtons.Electro.IsPressed();
+            weaponButtonBools[8] = menuInput.PickWeaponSceneButtons.Shotgun.IsPressed();
+            weaponButtonBools[9] = menuInput.PickWeaponSceneButtons.Machine.IsPressed();
             PickWeaponEvents();
         }
     }
@@ -302,18 +284,18 @@ public class ButtonController : MonoBehaviour
             pickCharacterMenuButton = menuInput.PickCharacterSceneButtons.MenuButton.IsPressed();
             openPickWeaponSceneByPickCharacterSceneButton = menuInput.PickCharacterSceneButtons.PickWeaponButton.IsPressed();
 
-            
-            A = menuInput.PickCharacterSceneButtons.A.IsPressed();
-            D = menuInput.PickCharacterSceneButtons.D.IsPressed();
-            B = menuInput.PickCharacterSceneButtons.B.IsPressed();
-            E = menuInput.PickCharacterSceneButtons.E.IsPressed();
-            C = menuInput.PickCharacterSceneButtons.C.IsPressed();
-            G = menuInput.PickCharacterSceneButtons.G.IsPressed();
-            F = menuInput.PickCharacterSceneButtons.F.IsPressed();
-            J = menuInput.PickCharacterSceneButtons.J.IsPressed();
-            I = menuInput.PickCharacterSceneButtons.I.IsPressed();
-            L = menuInput.PickCharacterSceneButtons.L.IsPressed();
-            K = menuInput.PickCharacterSceneButtons.K.IsPressed();
+
+            characterButtonBools[0] = menuInput.PickCharacterSceneButtons.A.IsPressed();
+            characterButtonBools[1] = menuInput.PickCharacterSceneButtons.B.IsPressed();
+            characterButtonBools[2] = menuInput.PickCharacterSceneButtons.C.IsPressed();
+            characterButtonBools[3] = menuInput.PickCharacterSceneButtons.D.IsPressed();
+            characterButtonBools[4] = menuInput.PickCharacterSceneButtons.E.IsPressed();
+            characterButtonBools[5] = menuInput.PickCharacterSceneButtons.F.IsPressed();
+            characterButtonBools[6] = menuInput.PickCharacterSceneButtons.G.IsPressed();
+            characterButtonBools[7] = menuInput.PickCharacterSceneButtons.I.IsPressed();
+            characterButtonBools[8] = menuInput.PickCharacterSceneButtons.J.IsPressed();
+            characterButtonBools[9] = menuInput.PickCharacterSceneButtons.K.IsPressed();
+            characterButtonBools[10] = menuInput.PickCharacterSceneButtons.L.IsPressed();
             
 
             PickCharacterEvents();
@@ -323,47 +305,47 @@ public class ButtonController : MonoBehaviour
     {
         if (characteID == playerData.characterStruct[0].id)
         {
-            return A;
+            return characterButtonBools[0];
         }
         else if (characteID == playerData.characterStruct[1].id)
         {
-            return B;
+            return characterButtonBools[1];
         }
         else if (characteID == playerData.characterStruct[2].id)
         {
-            return C;
+            return characterButtonBools[2];
         }
         else if (characteID == playerData.characterStruct[3].id)
         {
-            return D;
+            return characterButtonBools[3];
         }
         else if (characteID == playerData.characterStruct[4].id)
         {
-            return E;
+            return characterButtonBools[4];
         }
         else if (characteID == playerData.characterStruct[5].id)
         {
-            return F;
+            return characterButtonBools[5];
         }
         else if (characteID == playerData.characterStruct[6].id)
         {
-            return G;
+            return characterButtonBools[6];
         }
         else if (characteID == playerData.characterStruct[7].id)
         {
-            return I;
+            return characterButtonBools[7];
         }
         else if (characteID == playerData.characterStruct[8].id)
         {
-            return J;
+            return characterButtonBools[8];
         }
         else if (characteID == playerData.characterStruct[9].id)
         {
-            return K;
+            return characterButtonBools[9];
         }
         else if (characteID == playerData.characterStruct[10].id)
         {
-            return L;
+            return characterButtonBools[10];
         }
         else
         {

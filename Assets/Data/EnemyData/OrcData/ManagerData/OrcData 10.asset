@@ -12,16 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df28307b15eed744a58827ea4f595cc, type: 3}
   m_Name: OrcData 10
   m_EditorClassIdentifier: 
-  _enemyDestroyParticle: {fileID: 2689552222238927185, guid: b84310a6ca44b1c4299b137e3da18d7b, type: 3}
-  _playerBulletObject: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
   currentEnemyName: Orc(Clone)
-  getHitClip: {fileID: 8300000, guid: 8218cc78f9645414ca4dfa90bf077f35, type: 3}
-  giveHitClip: {fileID: 8300000, guid: d9321f885211d4816ad4474ad7b56c0f, type: 3}
-  dyingClip: {fileID: 8300000, guid: 78bfc09efb2974198a5436eebb4dc901, type: 3}
-  giveBulletHitClip: {fileID: 8300000, guid: dcc281671c1eb420cbedbedf2f02487c, type: 3}
   isGround: 1
   isDying: 0
-  isWalking: 0
+  isWalking: 1
   isFiring: 0
   isAttacking: 0
   isTouchable: 1
@@ -31,6 +25,3 @@ MonoBehaviour:
   enemyDurability: 4
   isSpeedZero: 0
   isActivateCreateEnemy: 0
-  currentBottomParticle: {fileID: 6847440653780713590, guid: 54b95b008a4da472fad9094e21768081, type: 3}
-  currentMiddleParticle: {fileID: 971248542662641292, guid: 2f7ae11e5481b4410980b7b91fdc3dff, type: 3}
-  currentTopParticle: {fileID: 2336971284181270886, guid: fec8603a8201643e4ae2590b1c017295, type: 3}

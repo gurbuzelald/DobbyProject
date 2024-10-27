@@ -17,7 +17,7 @@ MonoBehaviour:
     durability: 0
     price: 0
     jumpForce: 5
-    speed: 1
+    speed: 1.5
     id: 0
     name: Dummy
     lockState: 
@@ -124,8 +124,6 @@ MonoBehaviour:
   getCurrentEnemyDead: 0
   currentMessageText: {fileID: 0}
   currentMessageObject: {fileID: 0}
-  backgroundMap: {fileID: 1345883776023317691, guid: 515afb887ab870a43b53ea7d70cb9035, type: 3}
-  playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
   isDecreaseHealth: 1
   damageHealthText: {fileID: 0}
   decreaseCounter: 0
@@ -140,18 +138,8 @@ MonoBehaviour:
   - {fileID: 2613066168305214933, guid: 26cc8ebb945008b409049e7880d85d78, type: 3}
   - {fileID: 3102288607414887448, guid: 291ccd016fce448479fcd5813069629a, type: 3}
   - {fileID: 4849532061827766971, guid: 0475ff0f49311f1439d5dacc468f03fd, type: 3}
-  slaveObjects:
-  - {fileID: 7971067666596210365, guid: 1ba2500ecb2e6f64385f5eb4aa2331e7, type: 3}
-  - {fileID: 7971067666596210365, guid: 85db7fc5363ca954496d7c81ea303618, type: 3}
-  - {fileID: 7971067666596210365, guid: 53f927e811a21ca40a7e93d2d868c692, type: 3}
-  - {fileID: 7971067666596210365, guid: 9afc770cc7112b545879b52abc2e7bcd, type: 3}
-  - {fileID: 7971067666596210365, guid: 91c1344d54766e9428cd1537b4e1e767, type: 3}
-  - {fileID: 7971067666596210365, guid: b673724b4164dbe45874ae5da70d6493, type: 3}
-  - {fileID: 7971067666596210365, guid: 48f6891f360c67a488d3fe548e1e8d5f, type: 3}
-  - {fileID: 7971067666596210365, guid: 0ba857b35eeb15e4da33c0bc95bc1357, type: 3}
-  spawns: {fileID: 2359986759738939504, guid: aabf96d4f82bfd84cadaf35e1afe1e4b, type: 3}
   sensivityX: 5
-  sensivityY: 5
+  sensivityY: 6
   isTouchFinish: 0
   isLose: 0
   rotateSpeed: 6
@@ -177,7 +165,7 @@ MonoBehaviour:
   isJumping: 0
   jumpCount: 0
   clickShiftCount: 0
-  bulletAmount: 21
+  bulletAmount: 5
   bulletPackAmount: 2
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

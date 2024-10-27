@@ -50,9 +50,7 @@ public class SceneController : MonoBehaviour
 
     private void Update()
     {
-        //SetCurrentLevelAtUpdate();
         SetCurrentWeaponAtUpdate();
-        //SetCurrentCharacterAtUpdate();
 
         buttonTimer += Time.deltaTime;
     }

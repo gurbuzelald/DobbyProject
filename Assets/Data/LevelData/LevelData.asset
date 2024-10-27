@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11bd5ee0fd3b6564f95fa990dbc67b4b, type: 3}
   m_Name: LevelData
   m_EditorClassIdentifier: 
+  playerSpawns: {fileID: 7437380302104283975, guid: c9d74408d71f595449cf1df448fadfb4, type: 3}
   levelUpRequirements:
   - enemyKills: 10
     coinCollectAmount: 100
@@ -89,7 +90,7 @@ MonoBehaviour:
     mirrorCouple: {fileID: 9044617553140458651, guid: e7f4d5f6e375e4548a69d4d890e6ec8c, type: 3}
     levelRectangle: {fileID: 1707016675134421311, guid: 06d257ec3674d9446806cfc13725069b, type: 3}
     enemySpawnInMap: {fileID: 4800993404208530312, guid: 3d29ac6f533cd934aa6c138e17a35d1d, type: 3}
-    finishTransform: {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
+    finishTransform: {fileID: 6638308534334436021, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
     levelSkybox: {fileID: 2100000, guid: 1cf6f4c6e6e0518419839d3f5448dd99, type: 2}
     enemyDetectionDistance: 5
     coinlevelValue: 1
@@ -99,7 +100,7 @@ MonoBehaviour:
     mirrorCouple: {fileID: 6167717323233158170, guid: e039fe0c70ee28544a24b18517c302fe, type: 3}
     levelRectangle: {fileID: 2602705668131860869, guid: 16b30ccc6b22aee44b1deac6fb497ceb, type: 3}
     enemySpawnInMap: {fileID: 1263667095781669195, guid: ad26437bc9128a846aa39bf61721823b, type: 3}
-    finishTransform: {fileID: 1444362004390390883, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
+    finishTransform: {fileID: 1046114872631786153, guid: a97eac2fdafb42146adaa53185b8c51e, type: 3}
     levelSkybox: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
     enemyDetectionDistance: 6
     coinlevelValue: 2
@@ -109,77 +110,77 @@ MonoBehaviour:
     mirrorCouple: {fileID: 2808162707802702247, guid: ae0befe520627db47823e83467a22361, type: 3}
     levelRectangle: {fileID: 1198534576858581768, guid: b91f8c0951dc9aa419cdd62f0d11a1e3, type: 3}
     enemySpawnInMap: {fileID: 1648237712056192549, guid: cec4a0974b78bf34192878e0ef01c380, type: 3}
-    finishTransform: {fileID: 5566931848723951372, guid: 4585e76964e5f6b47a170518135f316f, type: 3}
+    finishTransform: {fileID: 5119596653984369684, guid: 4585e76964e5f6b47a170518135f316f, type: 3}
     levelSkybox: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
     enemyDetectionDistance: 7
     coinlevelValue: 3
     backToWalkingDelay: 4
     isCompleteMap: 0
-  - mapObject: {fileID: 7138293202800543776, guid: b58971eee7eabb341a9e50612b070986, type: 3}
+  - mapObject: {fileID: 5480728508910450060, guid: ab0797fee52c342c187e2b38b965eee4, type: 3}
     mirrorCouple: {fileID: 6022340288675348387, guid: 0e6ca9137dddb924fb941e3a65e4e1ac, type: 3}
     levelRectangle: {fileID: 6848931167675852839, guid: 6ec948522583f334b9bdcc24159a6354, type: 3}
     enemySpawnInMap: {fileID: 1611781249427093311, guid: 123130910ec612642868fea7b0101736, type: 3}
-    finishTransform: {fileID: 1149033832906918883, guid: 14ee547a4dde40b4a8847f703ec8d8a9, type: 3}
+    finishTransform: {fileID: 353827118097471633, guid: 14ee547a4dde40b4a8847f703ec8d8a9, type: 3}
     levelSkybox: {fileID: 2100000, guid: 1cf6f4c6e6e0518419839d3f5448dd99, type: 2}
     enemyDetectionDistance: 8
     coinlevelValue: 4
     backToWalkingDelay: 3
     isCompleteMap: 0
-  - mapObject: {fileID: 6995526888015887884, guid: 79af744eb362dbe45b39dfc062a6f120, type: 3}
+  - mapObject: {fileID: 4318855673437137538, guid: 777953c0ecce44f3ca6c1ad4b4c3fff4, type: 3}
     mirrorCouple: {fileID: 2738821458815677874, guid: 6d4781b31466160458f078fd3a07582f, type: 3}
     levelRectangle: {fileID: 1014725745505510010, guid: ffb435699512ea448bda3ab977722a0e, type: 3}
     enemySpawnInMap: {fileID: 3630268105010323256, guid: acda9d0d06d6c664698e878a9f61914a, type: 3}
-    finishTransform: {fileID: 3196894676368351631, guid: f977ff14ba82aa74c8bcf79f99d10a52, type: 3}
+    finishTransform: {fileID: 5806126710352464683, guid: f977ff14ba82aa74c8bcf79f99d10a52, type: 3}
     levelSkybox: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
     enemyDetectionDistance: 9
     coinlevelValue: 5
     backToWalkingDelay: 2
     isCompleteMap: 0
-  - mapObject: {fileID: 7027907883889466725, guid: b20c320e397228c42b81eab8162a7969, type: 3}
+  - mapObject: {fileID: 6474324742252174290, guid: 56fc8df8c0c1e420b907a88aafb573fc, type: 3}
     mirrorCouple: {fileID: 2791360359372293479, guid: 5cbcdc42b8937414fa6a85dc0f501092, type: 3}
     levelRectangle: {fileID: 7706149888603649641, guid: c5ca1f3a07e07ed45b2dc6cb3a31fea6, type: 3}
     enemySpawnInMap: {fileID: 5837493608098216917, guid: 2b5da2bb21c7cc54fa0b86a587e7d2e0, type: 3}
-    finishTransform: {fileID: 9154957637249261400, guid: c49d3ecc4cc0b6547a5c457407d4c7c2, type: 3}
+    finishTransform: {fileID: 5659370456284774352, guid: c49d3ecc4cc0b6547a5c457407d4c7c2, type: 3}
     levelSkybox: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
     enemyDetectionDistance: 10
     coinlevelValue: 6
     backToWalkingDelay: 1
     isCompleteMap: 0
-  - mapObject: {fileID: 972172793346135744, guid: 66c5077f2d2e4e84bb0f24cf699b3235, type: 3}
+  - mapObject: {fileID: 6191220906091441276, guid: cd357cff091bc4a2ea7f15ea040cea57, type: 3}
     mirrorCouple: {fileID: 433718354989737442, guid: ab5d4910a2865ec4bb0d7b22f01fef10, type: 3}
     levelRectangle: {fileID: 6164672908949520978, guid: 7369ae7b20f4f554793dd9b92a8d745c, type: 3}
     enemySpawnInMap: {fileID: 8308926993957250800, guid: aa24cc4341f7fbb4a90004ad590411fc, type: 3}
-    finishTransform: {fileID: 4944450160673891494, guid: 617c3a03c6b4aab46a0fe7d474253c2c, type: 3}
+    finishTransform: {fileID: 1743673643480476014, guid: 617c3a03c6b4aab46a0fe7d474253c2c, type: 3}
     levelSkybox: {fileID: 2100000, guid: 1cf6f4c6e6e0518419839d3f5448dd99, type: 2}
     enemyDetectionDistance: 11
     coinlevelValue: 7
     backToWalkingDelay: 1
     isCompleteMap: 0
-  - mapObject: {fileID: 4587650376425843672, guid: 1b751cc55971bc646b8869604b1ad0cc, type: 3}
+  - mapObject: {fileID: 3899109822712251586, guid: b06e1a659f0ad49818492757e78db0e5, type: 3}
     mirrorCouple: {fileID: 7739160499251517144, guid: 75dafef2553d8a5459878c981d1a1779, type: 3}
     levelRectangle: {fileID: 9060865742140260884, guid: 5b54ea421aa862f438271a853561c17f, type: 3}
     enemySpawnInMap: {fileID: 2069131866433038514, guid: 0631fd9d083ad824d88983459fe5c980, type: 3}
-    finishTransform: {fileID: 4339553883614235754, guid: 849af36619bad4b4580b4a875f374142, type: 3}
+    finishTransform: {fileID: 1950455895879398322, guid: 849af36619bad4b4580b4a875f374142, type: 3}
     levelSkybox: {fileID: 2100000, guid: 2bd8959f5fbd3644aa33af1a155fc147, type: 2}
     enemyDetectionDistance: 12
     coinlevelValue: 8
     backToWalkingDelay: 1
     isCompleteMap: 0
-  - mapObject: {fileID: 1830643733571907168, guid: 45c1cd0bddac9c54e874614e2284f36d, type: 3}
+  - mapObject: {fileID: 8453344128080262884, guid: 9e08550966a45451e8470409a0101a30, type: 3}
     mirrorCouple: {fileID: 2266118862413915206, guid: 5c65a733b8e76f840b4a384e3969c4f1, type: 3}
     levelRectangle: {fileID: 356006846822794186, guid: 4e0209cb0b48cde4ab1da46d6e582bc4, type: 3}
     enemySpawnInMap: {fileID: 6429664179785294311, guid: 47fba03113633c646853342c46cf6702, type: 3}
-    finishTransform: {fileID: 2932971535877270188, guid: 21cfa8ac1a674624a9c8e5df7f159282, type: 3}
+    finishTransform: {fileID: 4558781920706753811, guid: 21cfa8ac1a674624a9c8e5df7f159282, type: 3}
     levelSkybox: {fileID: 2100000, guid: cc421da483ed06c49933077a621bff25, type: 2}
     enemyDetectionDistance: 13
     coinlevelValue: 9
     backToWalkingDelay: 1
     isCompleteMap: 0
-  - mapObject: {fileID: 8471416527786168667, guid: 9e3968580393e3b48bf3fda563bc5195, type: 3}
+  - mapObject: {fileID: 5245140020765867921, guid: 32a97e87afd9443d9859ebc888026d85, type: 3}
     mirrorCouple: {fileID: 1287685689511572656, guid: e9a6d20abff80c44683f9ae403b8eb46, type: 3}
     levelRectangle: {fileID: 5887261281958614937, guid: 2c58ca2c8f0700d42842a11f5d3cb016, type: 3}
     enemySpawnInMap: {fileID: 4442325361749624510, guid: 1a3a1a5ca70152749958c309ee04903d, type: 3}
-    finishTransform: {fileID: 9069361647760937000, guid: 89af43945948f3043b72818822d3fc05, type: 3}
+    finishTransform: {fileID: 6903556497280218134, guid: 89af43945948f3043b72818822d3fc05, type: 3}
     levelSkybox: {fileID: 2100000, guid: 1cf6f4c6e6e0518419839d3f5448dd99, type: 2}
     enemyDetectionDistance: 14
     coinlevelValue: 10
@@ -196,4 +197,4 @@ MonoBehaviour:
   currentMirrorName: Mirror1
   currentBackToWalkingValue: 6
   currentStaticCoinValue: 1
-  currentFinishArea: {fileID: 1674515596265592456, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}
+  currentFinishArea: {fileID: 6638308534334436021, guid: 835fb8cfe1627974f860842f6621a0d5, type: 3}

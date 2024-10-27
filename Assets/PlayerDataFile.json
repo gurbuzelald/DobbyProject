@@ -2,19 +2,19 @@
     "characterStruct": [
         {
             "characterObject": {
-                "instanceID": 53260
+                "instanceID": 52812
             },
             "durability": 0,
             "price": 0,
             "jumpForce": 5,
-            "speed": 1.0,
+            "speed": 1.5,
             "id": 0,
             "name": "Dummy",
             "lockState": ""
         },
         {
             "characterObject": {
-                "instanceID": 53262
+                "instanceID": 52814
             },
             "durability": 2,
             "price": 2,
@@ -26,7 +26,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 53264
+                "instanceID": 52816
             },
             "durability": 9,
             "price": 3,
@@ -38,7 +38,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 53266
+                "instanceID": 52818
             },
             "durability": 5,
             "price": 4,
@@ -50,7 +50,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 53268
+                "instanceID": 52820
             },
             "durability": 7,
             "price": 6,
@@ -62,7 +62,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 53270
+                "instanceID": 52822
             },
             "durability": 7,
             "price": 7,
@@ -74,7 +74,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 53272
+                "instanceID": 52824
             },
             "durability": 5,
             "price": 7,
@@ -86,7 +86,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 53274
+                "instanceID": 52826
             },
             "durability": 4,
             "price": 5,
@@ -98,7 +98,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 53276
+                "instanceID": 52828
             },
             "durability": 5,
             "price": 9,
@@ -110,7 +110,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 53278
+                "instanceID": 52830
             },
             "durability": 9,
             "price": 10,
@@ -122,7 +122,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 53280
+                "instanceID": 52832
             },
             "durability": 1,
             "price": 11,
@@ -134,10 +134,10 @@
         }
     ],
     "playerObject": {
-        "instanceID": 53282
+        "instanceID": 52834
     },
     "characterObject": {
-        "instanceID": 53284
+        "instanceID": 52836
     },
     "playerWeaponBulletObjectPoolCount": 0,
     "playerSwordBulletObjectPoolCount": 1,
@@ -159,86 +159,51 @@
     "currentLanguage": 0,
     "getCurrentEnemyDead": false,
     "currentMessageText": {
-        "instanceID": 190818
+        "instanceID": 323732
     },
     "currentMessageObject": {
-        "instanceID": 190814
+        "instanceID": 323728
     },
-    "backgroundMap": {
-        "instanceID": 53286
-    },
-    "playerSpawns": {
-        "instanceID": 53288
-    },
-    "isDecreaseHealth": false,
+    "isDecreaseHealth": true,
     "damageHealthText": {
-        "instanceID": 190626
+        "instanceID": 323784
     },
-    "decreaseCounter": 1,
+    "decreaseCounter": 0,
     "resetLocks": "Locked",
     "locked": "Locked",
     "unLocked": "",
     "objects": [
         {
-            "instanceID": 53290
+            "instanceID": 52838
         },
         {
-            "instanceID": 53292
+            "instanceID": 52840
         },
         {
-            "instanceID": 53294
+            "instanceID": 52842
         },
         {
-            "instanceID": 53296
+            "instanceID": 52844
         },
         {
-            "instanceID": 53298
+            "instanceID": 52846
         },
         {
-            "instanceID": 53300
+            "instanceID": 52848
         },
         {
-            "instanceID": 53302
+            "instanceID": 52850
         }
     ],
-    "slaveObjects": [
-        {
-            "instanceID": 53304
-        },
-        {
-            "instanceID": 53306
-        },
-        {
-            "instanceID": 53308
-        },
-        {
-            "instanceID": 53310
-        },
-        {
-            "instanceID": 53312
-        },
-        {
-            "instanceID": 53314
-        },
-        {
-            "instanceID": 53316
-        },
-        {
-            "instanceID": 53318
-        }
-    ],
-    "spawns": {
-        "instanceID": 53320
-    },
-    "sensivityX": 6.0,
-    "sensivityY": 5.0,
+    "sensivityX": 5.0,
+    "sensivityY": 6.0,
     "isTouchFinish": false,
     "isLose": false,
     "rotateSpeed": 6.0,
     "isGround": true,
     "isWalking": false,
     "isSideWalking": false,
-    "isBackWalking": true,
+    "isBackWalking": false,
     "isIdling": false,
     "isDying": true,
     "isWinning": false,
@@ -261,34 +226,34 @@
     "bulletPackAmount": 2,
     "danceTime": 5.0,
     "jolleenObject": {
-        "instanceID": 53322
+        "instanceID": 52852
     },
     "touchParticle": {
-        "instanceID": 53324
+        "instanceID": 52854
     },
     "birthParticle": {
-        "instanceID": 53326
+        "instanceID": 52856
     },
     "deathParticle": {
-        "instanceID": 53328
+        "instanceID": 52858
     },
     "burningParticle": {
-        "instanceID": 53330
+        "instanceID": 52860
     },
     "burningTouchParticle": {
-        "instanceID": 53330
+        "instanceID": 52860
     },
     "destroyRotateCoinParticle": {
-        "instanceID": 53332
+        "instanceID": 52862
     },
     "destroyHealthCoinParticle": {
-        "instanceID": 53334
+        "instanceID": 52864
     },
     "destroyBulletCoinParticle": {
-        "instanceID": 53336
+        "instanceID": 52866
     },
     "destroyMushroomCoinParticle": {
-        "instanceID": 53338
+        "instanceID": 52868
     },
     "particleCount": 0,
     "isTouchFirst": false,
@@ -296,34 +261,34 @@
     "isTouchThird": false,
     "weaponBulletExplosionParticles": [
         {
-            "instanceID": 53340
+            "instanceID": 52870
         },
         {
-            "instanceID": 53342
+            "instanceID": 52872
         },
         {
-            "instanceID": 53344
+            "instanceID": 52874
         },
         {
-            "instanceID": 53346
+            "instanceID": 52876
         },
         {
-            "instanceID": 53348
+            "instanceID": 52878
         },
         {
-            "instanceID": 53350
+            "instanceID": 52880
         },
         {
-            "instanceID": 53352
+            "instanceID": 52882
         },
         {
-            "instanceID": 53354
+            "instanceID": 52884
         },
         {
-            "instanceID": 53356
+            "instanceID": 52886
         },
         {
-            "instanceID": 53358
+            "instanceID": 52888
         }
     ]
 }

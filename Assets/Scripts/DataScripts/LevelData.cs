@@ -1,9 +1,13 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewLevelData", menuName = "LevelData")]
+[CreateAssetMenu(fileName = "NewLevelData", menuName = "Scriptable Objects/LevelData")]
 public class LevelData : ScriptableObject
 {
+
+    [Header("Player Level Spawns")]
+    public Transform playerSpawns;
+
     [Serializable]
     public struct LevelUpRequirements
     {

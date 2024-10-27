@@ -91,6 +91,9 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
 
                 _animator.SetLayerWeight(1, 1);
 
+                _animator.SetLayerWeight(5, 0);
+                _animator.SetLayerWeight(6, 0);
+
             }
             else if (playerData.isFire || playerData.isBackWalking || playerData.isJumping ||
                 playerData.isSwordAnimate || playerData.isSideWalking ||

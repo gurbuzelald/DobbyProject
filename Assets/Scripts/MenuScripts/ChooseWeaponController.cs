@@ -313,16 +313,10 @@ public class ChooseWeaponController : MonoBehaviour
     {
         if (weaponPriceErrorTextObjects.Length != 0)
         {
-            PickShotGun(bulletData.weaponStruct[8].price);
-            PickAxe(bulletData.weaponStruct[1].price);
-            PickBulldog(bulletData.weaponStruct[2].price);
-            PickCow(bulletData.weaponStruct[3].price);
-            PickCrystal(bulletData.weaponStruct[4].price);
-            PickDemon(bulletData.weaponStruct[5].price);
-            PickIce(bulletData.weaponStruct[6].price);
-            PickElectro(bulletData.weaponStruct[7].price);
-            PickPistol(bulletData.weaponStruct[0].price);
-            PickMachine(bulletData.weaponStruct[9].price);
+            for (int i = 0; i < 10; i++)
+            {
+                PickWeapon(bulletData.weaponStruct[i].price, i);
+            }
         }
     }
     void WeaponPriceError()
@@ -408,748 +402,79 @@ public class ChooseWeaponController : MonoBehaviour
         _panelObject.transform.position = newPosition;
     }
 
-
-
-    public void PickShotGun(int avaliableCoinAmount)
+    public void PickWeapon(int availableCoinAmount, int weaponIndex)
     {
-        if (bulletData.weaponStruct[8].usageLimit <= 0)
+        // If the weapon has no remaining uses, lock it and enable bullet creation
+        if (bulletData.weaponStruct[weaponIndex].usageLimit <= 0)
         {
             ObjectPool.creatablePlayerBullet = true;
-            bulletData.weaponStruct[8].lockState = BulletData.locked;
+            bulletData.weaponStruct[weaponIndex].lockState = BulletData.locked;
+            bulletData.weaponStruct[weaponIndex].usageLimit = 0;
+            PlayerPrefs.SetInt("MachineUsageCount", bulletData.weaponStruct[weaponIndex].usageLimit);
         }
-        if (ButtonController.ShotGun && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-            bulletData.currentWeaponName != bulletData.weaponStruct[8].weaponName)
+
+        // Check if the player can unlock the weapon
+        bool hasEnoughCoins = playerCoinData.avaliableCoin >= availableCoinAmount;
+        bool weaponNotInUse = bulletData.currentWeaponName != bulletData.weaponStruct[weaponIndex].weaponName;
+        bool weaponLocked = bulletData.weaponStruct[weaponIndex].lockState == BulletData.locked;
+
+        if (ButtonController.weaponButtonBools[weaponIndex])
         {
-            if (bulletData.weaponStruct[8].lockState == BulletData.locked)
+            if (hasEnoughCoins && weaponNotInUse)
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
-                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
+                if (weaponLocked)
+                {
+                    // Unlock the weapon
+                    playerCoinData.avaliableCoin -= availableCoinAmount;
+                    PlayerPrefs.SetInt("AvailableCoin", playerCoinData.avaliableCoin);
 
-                bulletData.weaponStruct[8].lockState = bulletData.unLocked;
+                    bulletData.weaponStruct[weaponIndex].lockState = bulletData.unLocked;
+                    bulletData.weaponStruct[weaponIndex].usageLimit = 3;
+                    PlayerPrefs.SetInt("MachineUsageCount", bulletData.weaponStruct[weaponIndex].usageLimit);
+                    PlayerPrefs.SetFloat("MachineLock", 1);
+                }
 
-                ObjectPool.creatablePlayerBullet = true;
-
-                bulletData.weaponStruct[8].usageLimit = 3;
-                PlayerPrefs.SetInt("ShotGunUsageCount", bulletData.weaponStruct[8].usageLimit);
-
-                PlayerPrefs.SetFloat("ShotGunLock", 1);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[8].bulletPackAmount;                
+                // Set weapon as the current weapon
+                SetCurrentWeapon(weaponIndex);
             }
-
-            BulletData.currentWeaponID = bulletData.weaponStruct[8].id;
-
-            bulletData.currentWeaponName = bulletData.weaponStruct[8].weaponName;
-
-            weaponPriceErrorTextObjectChilds[0].text = "";
-
-            SceneController.LoadMenuScene();
-
-            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-        }
-        else if (ButtonController.ShotGun && bulletData.weaponStruct[8].lockState == bulletData.unLocked)
-        {
-            if (bulletData.weaponStruct[8].usageLimit > 0 && bulletData.currentWeaponName != bulletData.weaponStruct[8].weaponName)
+            else if (!hasEnoughCoins && weaponLocked)
             {
-                bulletData.currentWeaponName = bulletData.weaponStruct[8].weaponName;
-
-                SceneController.LoadMenuScene();
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[8].bulletPackAmount;
-
-                BulletData.currentWeaponID = bulletData.weaponStruct[8].id;
-            }
-        }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.weaponStruct[8].lockState == BulletData.locked)
-        {
-            if (ButtonController.ShotGun)
-            {
+                // Display error for insufficient coins
+                DisplayPriceError(availableCoinAmount - playerCoinData.avaliableCoin);
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
-
-            for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
+            else if (bulletData.weaponStruct[weaponIndex].lockState == bulletData.unLocked && bulletData.weaponStruct[weaponIndex].usageLimit > 0 && weaponNotInUse)
             {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "ShotGunPriceErrorText")
-                {
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
-                    }
-                    else
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                    }
-                }
+                // Set unlocked weapon with remaining usage limit as the current weapon
+                SetCurrentWeapon(weaponIndex);
             }
-            bulletData.weaponStruct[8].usageLimit = 0;
-            PlayerPrefs.SetInt("ShotGunUsageCount", bulletData.weaponStruct[8].usageLimit);
         }
     }
 
-    public void PickAxe(int avaliableCoinAmount)
+    private void SetCurrentWeapon(int weaponIndex)
     {
-        if (bulletData.weaponStruct[1].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-            bulletData.weaponStruct[1].lockState = BulletData.locked;
-        }
+        bulletData.currentWeaponName = bulletData.weaponStruct[weaponIndex].weaponName;
+        BulletData.currentWeaponID = bulletData.weaponStruct[weaponIndex].id;
+        bulletData.currentBulletPackAmount = bulletData.weaponStruct[weaponIndex].bulletPackAmount;
+        ObjectPool.creatablePlayerBullet = true;
 
-        if (ButtonController.Axe && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-           bulletData.currentWeaponName != bulletData.weaponStruct[1].weaponName && bulletData.weaponStruct[1].lockState == BulletData.locked)
-        {
-            if (bulletData.weaponStruct[1].lockState == BulletData.locked)
-            {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
-                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
+        SceneController.LoadMenuScene();
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-                bulletData.weaponStruct[1].lockState = bulletData.unLocked;
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                bulletData.weaponStruct[1].usageLimit = 3;
-                PlayerPrefs.SetInt("AxeUsageCount", bulletData.weaponStruct[1].usageLimit);
-
-                PlayerPrefs.SetFloat("AxeLock", 1);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[2].bulletPackAmount;
-            }
-            BulletData.currentWeaponID = bulletData.weaponStruct[1].id;
-
-            bulletData.currentWeaponName = bulletData.weaponStruct[1].weaponName;
-
-            weaponPriceErrorTextObjectChilds[0].text = "";
-
-            SceneController.LoadMenuScene();
-
-            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-        }
-        else if (ButtonController.Axe && bulletData.weaponStruct[1].lockState == bulletData.unLocked)
-        {
-            if (bulletData.weaponStruct[1].usageLimit > 0 && bulletData.currentWeaponName != bulletData.weaponStruct[1].weaponName)
-            {
-                bulletData.currentWeaponName = bulletData.weaponStruct[1].weaponName;
-
-                SceneController.LoadMenuScene();
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[2].bulletPackAmount;
-
-                BulletData.currentWeaponID = bulletData.weaponStruct[1].id;
-            }  
-        }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.weaponStruct[1].lockState == BulletData.locked)
-        {
-            if (ButtonController.Axe)
-            {
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
-            }
-            for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
-            {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "AXEPriceErrorText")
-                {
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
-                    }
-                    else
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                    }
-                }
-            }
-            bulletData.weaponStruct[1].usageLimit = 0;
-            PlayerPrefs.SetInt("AxeUsageCount", bulletData.weaponStruct[1].usageLimit);
-        }
-        
+        weaponPriceErrorTextObjectChilds[0].text = "";
     }
-    public void PickBulldog(int avaliableCoinAmount)
+
+    private void DisplayPriceError(int missingCoins)
     {
-        if (bulletData.weaponStruct[2].usageLimit <= 0)
+        foreach (var textObject in weaponPriceErrorTextObjectChilds)
         {
-            ObjectPool.creatablePlayerBullet = true;
-            bulletData.weaponStruct[2].lockState = BulletData.locked;
-        }
-        if (ButtonController.Bulldog && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-          bulletData.currentWeaponName != bulletData.weaponStruct[2].weaponName)
-        {
-            if (bulletData.weaponStruct[2].lockState == BulletData.locked)
+            if (textObject.gameObject.name == "MachinePriceErrorText")
             {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
-                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
-
-                bulletData.weaponStruct[2].lockState = bulletData.unLocked;
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                bulletData.weaponStruct[2].usageLimit = 3;
-                PlayerPrefs.SetInt("BulldogUsageCount", bulletData.weaponStruct[2].usageLimit);
-
-                PlayerPrefs.SetFloat("BulldogLock", 1);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[2].bulletPackAmount;
-            }
-            BulletData.currentWeaponID = bulletData.weaponStruct[2].id;
-
-            bulletData.currentWeaponName = bulletData.weaponStruct[2].weaponName;
-
-            weaponPriceErrorTextObjectChilds[0].text = "";
-
-            SceneController.LoadMenuScene();
-
-            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-        }
-        else if (ButtonController.Bulldog && bulletData.weaponStruct[2].lockState == bulletData.unLocked)
-        {
-            if (bulletData.weaponStruct[2].usageLimit > 0 && bulletData.currentWeaponName != bulletData.weaponStruct[2].weaponName)
-            {
-                bulletData.currentWeaponName = bulletData.weaponStruct[2].weaponName;
-
-                SceneController.LoadMenuScene();
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[2].bulletPackAmount;
-
-                BulletData.currentWeaponID = bulletData.weaponStruct[2].id;
-            }
-        }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.weaponStruct[2].lockState == BulletData.locked)
-        {
-            if (ButtonController.Bulldog)
-            {
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
-            }
-            for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
-            {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "BULLDOGPriceErrorText")
-                {
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
-                    }
-                    else
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                    }
-                }
-            }
-            bulletData.weaponStruct[2].usageLimit = 0;
-            PlayerPrefs.SetInt("BulldogUsageCount", bulletData.weaponStruct[2].usageLimit);
-        }
-    }
-    public void PickCow(int avaliableCoinAmount)
-    {
-        if (bulletData.weaponStruct[3].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-            bulletData.weaponStruct[3].lockState = BulletData.locked;
-        }
-        if (ButtonController.Cow && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-          bulletData.currentWeaponName != bulletData.weaponStruct[3].weaponName)
-        {
-            if (bulletData.weaponStruct[3].lockState == BulletData.locked)
-            {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
-                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
-
-                bulletData.weaponStruct[3].lockState = bulletData.unLocked;
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                bulletData.weaponStruct[3].usageLimit = 3;
-                PlayerPrefs.SetInt("CowUsageCount", bulletData.weaponStruct[3].usageLimit);
-
-                PlayerPrefs.SetFloat("CowLock", 1);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[3].bulletPackAmount;
-            }
-
-            BulletData.currentWeaponID = bulletData.weaponStruct[3].id;
-
-            bulletData.currentWeaponName = bulletData.weaponStruct[3].weaponName;
-
-            weaponPriceErrorTextObjectChilds[0].text = "";
-
-            SceneController.LoadMenuScene();
-
-            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-        }
-        else if (ButtonController.Cow && bulletData.weaponStruct[3].lockState == bulletData.unLocked)
-        {
-            if (bulletData.weaponStruct[3].usageLimit > 0 && bulletData.currentWeaponName != bulletData.weaponStruct[3].weaponName)
-            {
-                bulletData.currentWeaponName = bulletData.weaponStruct[3].weaponName;
-
-                SceneController.LoadMenuScene();
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[3].bulletPackAmount;
-
-                BulletData.currentWeaponID = bulletData.weaponStruct[3].id;
-            }
-        }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.weaponStruct[3].lockState == BulletData.locked)
-        {
-            if (ButtonController.Cow)
-            {
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
-            }
-            for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
-            {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "COWPriceErrorText")
-                {
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
-                    }
-                    else
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                    }
-                }
-            }
-            bulletData.weaponStruct[3].usageLimit = 0;
-            PlayerPrefs.SetInt("CowUsageCount", bulletData.weaponStruct[3].usageLimit);
-        }
-    }
-    public void PickCrystal(int avaliableCoinAmount)
-    {
-        if (bulletData.weaponStruct[4].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-            bulletData.weaponStruct[4].lockState = BulletData.locked;
-        }
-        if (ButtonController.Crystal && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-            bulletData.currentWeaponName != bulletData.weaponStruct[4].weaponName)
-        {
-            if (bulletData.weaponStruct[4].lockState == BulletData.locked)
-            {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
-                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
-
-                bulletData.weaponStruct[4].lockState = bulletData.unLocked;
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                bulletData.weaponStruct[4].usageLimit = 3;
-                PlayerPrefs.SetInt("CrystalUsageCount", bulletData.weaponStruct[4].usageLimit);
-
-                PlayerPrefs.SetFloat("CrystalLock", 1);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[4].bulletPackAmount;
-            }
-            BulletData.currentWeaponID = bulletData.weaponStruct[4].id;
-
-            bulletData.currentWeaponName = bulletData.weaponStruct[4].weaponName;
-
-            weaponPriceErrorTextObjectChilds[0].text = "";
-
-            SceneController.LoadMenuScene();
-
-            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-        }
-        else if (ButtonController.Crystal && bulletData.weaponStruct[4].lockState == bulletData.unLocked)
-        {
-            if (bulletData.weaponStruct[4].usageLimit > 0 && bulletData.currentWeaponName != bulletData.weaponStruct[4].weaponName)
-            {
-                bulletData.currentWeaponName = bulletData.weaponStruct[4].weaponName;
-
-                SceneController.LoadMenuScene();
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[4].bulletPackAmount;
-
-                BulletData.currentWeaponID = bulletData.weaponStruct[4].id;
-            }
-        }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.weaponStruct[4].lockState == BulletData.locked)
-        {
-            if (ButtonController.Crystal)
-            {
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
-            }
-            for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
-            {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "CRYSTALPriceErrorText")
-                {
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
-                    }
-                    else
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                    }
-                }
-            }
-            bulletData.weaponStruct[4].usageLimit = 0;
-            PlayerPrefs.SetInt("CrystalUsageCount", bulletData.weaponStruct[4].usageLimit);
-        }
-    }
-    public void PickDemon(int avaliableCoinAmount)
-    {
-        if (bulletData.weaponStruct[5].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-            bulletData.weaponStruct[5].lockState = BulletData.locked;
-        }
-        if (ButtonController.Demon && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-          bulletData.currentWeaponName != bulletData.weaponStruct[5].weaponName)
-        {
-            if (bulletData.weaponStruct[5].lockState == BulletData.locked)
-            {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
-                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
-
-                bulletData.weaponStruct[5].lockState = bulletData.unLocked;
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                bulletData.weaponStruct[5].usageLimit = 3;
-                PlayerPrefs.SetInt("DemonUsageCount", bulletData.weaponStruct[5].usageLimit);
-
-                PlayerPrefs.SetFloat("DemonLock", 1);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[5].bulletPackAmount;
-            }
-
-            BulletData.currentWeaponID = bulletData.weaponStruct[5].id;
-
-            bulletData.currentWeaponName = bulletData.weaponStruct[5].weaponName;
-
-            weaponPriceErrorTextObjectChilds[0].text = "";
-
-            SceneController.LoadMenuScene();
-
-            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-        }
-        else if (ButtonController.Demon && bulletData.weaponStruct[5].lockState == bulletData.unLocked)
-        {
-            if (bulletData.weaponStruct[5].usageLimit > 0 && bulletData.currentWeaponName != bulletData.weaponStruct[5].weaponName)
-            {
-                bulletData.currentWeaponName = bulletData.weaponStruct[5].weaponName;
-
-                SceneController.LoadMenuScene();
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[5].bulletPackAmount;
-
-                BulletData.currentWeaponID = bulletData.weaponStruct[5].id;
-            }
-        }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.weaponStruct[5].lockState == BulletData.locked)
-        {
-            if (ButtonController.Demon)
-            {
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
-            }
-            for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
-            {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "DEMONPriceErrorText")
-                {
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
-                    }
-                    else
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                    }
-                }
-            }
-            bulletData.weaponStruct[5].usageLimit = 0;
-            PlayerPrefs.SetInt("DemonUsageCount", bulletData.weaponStruct[5].usageLimit);
-        }
-    }
-    public void PickIce(int avaliableCoinAmount)
-    {
-        if (bulletData.weaponStruct[6].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-            bulletData.weaponStruct[6].lockState = BulletData.locked;
-        }
-        if (ButtonController.Ice && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-          bulletData.currentWeaponName != bulletData.weaponStruct[6].weaponName)
-        {
-            if (bulletData.weaponStruct[6].lockState == BulletData.locked)
-            {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
-                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
-
-                bulletData.weaponStruct[6].lockState = bulletData.unLocked;
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                bulletData.weaponStruct[6].usageLimit = 3;
-                PlayerPrefs.SetInt("IceUsageCount", bulletData.weaponStruct[6].usageLimit);
-
-                PlayerPrefs.SetFloat("IceLock", 1);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[6].bulletPackAmount;
-            }
-            BulletData.currentWeaponID = bulletData.weaponStruct[6].id;
-
-            bulletData.currentWeaponName = bulletData.weaponStruct[6].weaponName;
-
-            weaponPriceErrorTextObjectChilds[0].text = "";
-
-            SceneController.LoadMenuScene();
-
-            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-        }
-        else if (ButtonController.Ice && bulletData.weaponStruct[6].lockState == bulletData.unLocked)
-        {
-            if (bulletData.weaponStruct[6].usageLimit > 0 && bulletData.currentWeaponName != bulletData.weaponStruct[6].weaponName)
-            {
-                bulletData.currentWeaponName = bulletData.weaponStruct[6].weaponName;
-
-                SceneController.LoadMenuScene();
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[6].bulletPackAmount;
-
-                BulletData.currentWeaponID = bulletData.weaponStruct[6].id;
-            }
-        }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.weaponStruct[6].lockState == BulletData.locked)
-        {
-            if (ButtonController.Ice)
-            {
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
-            }
-            for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
-            {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "ICEPriceErrorText")
-                {
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
-                    }
-                    else
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                    }
-                }
-            }
-            bulletData.weaponStruct[6].usageLimit = 0;
-            PlayerPrefs.SetInt("IceUsageCount", bulletData.weaponStruct[6].usageLimit);
-        }
-    }
-    public void PickElectro(int avaliableCoinAmount)
-    {
-        if (bulletData.weaponStruct[7].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-            bulletData.weaponStruct[7].lockState = BulletData.locked;
-        }
-        if (ButtonController.Electro && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-          bulletData.currentWeaponName != bulletData.weaponStruct[7].weaponName)
-        {
-            if (bulletData.weaponStruct[7].lockState == BulletData.locked)
-            {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
-                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
-
-                bulletData.weaponStruct[7].lockState = bulletData.unLocked;
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                bulletData.weaponStruct[7].usageLimit = 3;
-                PlayerPrefs.SetInt("ElectroUsageCount", bulletData.weaponStruct[7].usageLimit);
-
-                PlayerPrefs.SetFloat("ElectroLock", 1);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[7].bulletPackAmount;
-            }
-            BulletData.currentWeaponID = bulletData.weaponStruct[7].id;
-
-            bulletData.currentWeaponName = bulletData.weaponStruct[7].weaponName;
-
-            weaponPriceErrorTextObjectChilds[0].text = "";
-
-            SceneController.LoadMenuScene();
-
-            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-        }
-        else if (ButtonController.Electro && bulletData.weaponStruct[7].lockState == bulletData.unLocked)
-        {
-            if (bulletData.weaponStruct[7].usageLimit > 0 && bulletData.currentWeaponName != bulletData.weaponStruct[7].weaponName)
-            {
-                bulletData.currentWeaponName = bulletData.weaponStruct[7].weaponName;
-
-                SceneController.LoadMenuScene();
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[7].bulletPackAmount;
-
-                BulletData.currentWeaponID = bulletData.weaponStruct[7].id;
-            }
-        }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.weaponStruct[7].lockState == BulletData.locked)
-        {
-            if (ButtonController.Electro)
-            {
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
-            }
-            for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
-            {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "ELECTROPriceErrorText")
-                {
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
-                    }
-                    else
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                    }
-                }
-            }
-            bulletData.weaponStruct[7].usageLimit = 0;
-            PlayerPrefs.SetInt("ElectroUsageCount", bulletData.weaponStruct[7].usageLimit);
-        }
-    }
-
-    public void PickPistol(int avaliableCoinAmount)
-    {
-        if (bulletData.weaponStruct[0].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-        }
-        if (ButtonController.Pistol &&
-          bulletData.currentWeaponName != bulletData.weaponStruct[0].weaponName)
-        {
-            BulletData.currentWeaponID = bulletData.weaponStruct[0].id;
-
-            bulletData.currentWeaponName = bulletData.weaponStruct[0].weaponName;
-
-            weaponPriceErrorTextObjectChilds[0].text = "";
-
-            SceneController.LoadMenuScene();
-
-            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-            BulletData.currentWeaponID = bulletData.weaponStruct[0].id;
-        }
-        else if (ButtonController.Pistol && bulletData.weaponStruct[0].lockState == bulletData.unLocked)
-        {
-            if (bulletData.weaponStruct[0].usageLimit > 0 && bulletData.currentWeaponName != bulletData.weaponStruct[0].weaponName)
-            {
-                bulletData.currentWeaponName = bulletData.weaponStruct[0].weaponName;
-
-                SceneController.LoadMenuScene();
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[0].bulletPackAmount;
-
-                BulletData.currentWeaponID = bulletData.weaponStruct[0].id;
+                textObject.text = playerData.currentLanguage == PlayerData.Languages.Turkish
+                    ? $"Satin Almak İçin {missingCoins} Daha Coin'e İhtiyacin Var!"
+                    : $"You need {missingCoins} More Coin!";
             }
         }
     }
 
-    public void PickMachine(int avaliableCoinAmount)
-    {
-        if (bulletData.weaponStruct[9].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-            bulletData.weaponStruct[9].lockState = BulletData.locked;
-        }
-        if (ButtonController.Machine && playerCoinData.avaliableCoin >= avaliableCoinAmount &&
-          bulletData.currentWeaponName != bulletData.weaponStruct[9].weaponName)
-        {
-            if (bulletData.weaponStruct[9].lockState == BulletData.locked)
-            {
-                playerCoinData.avaliableCoin -= avaliableCoinAmount;
-                PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
-
-                bulletData.weaponStruct[9].lockState = bulletData.unLocked;
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                bulletData.weaponStruct[9].usageLimit = 3;
-                PlayerPrefs.SetInt("MachineUsageCount", bulletData.weaponStruct[9].usageLimit);
-
-                PlayerPrefs.SetFloat("MachineLock", 1);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[9].bulletPackAmount;
-            }
-            BulletData.currentWeaponID = bulletData.weaponStruct[9].id;
-
-            bulletData.currentWeaponName = bulletData.weaponStruct[9].weaponName;
-
-            weaponPriceErrorTextObjectChilds[0].text = "";
-
-            SceneController.LoadMenuScene();
-
-            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-        }
-        else if (ButtonController.Machine && bulletData.weaponStruct[9].lockState == bulletData.unLocked)
-        {
-            if (bulletData.weaponStruct[9].usageLimit > 0 && bulletData.currentWeaponName != bulletData.weaponStruct[9].weaponName)
-            {
-                bulletData.currentWeaponName = bulletData.weaponStruct[9].weaponName;
-
-                SceneController.LoadMenuScene();
-
-                ObjectPool.creatablePlayerBullet = true;
-
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
-                bulletData.currentBulletPackAmount = bulletData.weaponStruct[9].bulletPackAmount;
-
-                BulletData.currentWeaponID = bulletData.weaponStruct[9].id;
-            }
-        }
-        else if ((avaliableCoinAmount - playerCoinData.avaliableCoin) > 0 && bulletData.weaponStruct[9].lockState == BulletData.locked)
-        {
-            if (ButtonController.Machine)
-            {
-                MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
-            }
-            for (int i = 0; i < weaponPriceErrorTextObjectChilds.Length; i++)
-            {
-                if (weaponPriceErrorTextObjectChilds[i].gameObject.name == "MachinePriceErrorText")
-                {
-                    if (playerData.currentLanguage == PlayerData.Languages.Turkish)
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "Satin Almak İçİn " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " Daha Coin' e İhtİyacin Var!";
-                    }
-                    else
-                    {
-                        weaponPriceErrorTextObjectChilds[i].text = "You need " + (avaliableCoinAmount - playerCoinData.avaliableCoin).ToString() + " More Coin!";
-                    }
-                }
-            }
-        }
-        bulletData.weaponStruct[9].usageLimit = 0;
-        PlayerPrefs.SetInt("MachineUsageCount", bulletData.weaponStruct[9].usageLimit);
-    }
 }

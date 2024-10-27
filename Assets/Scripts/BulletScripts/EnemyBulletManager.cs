@@ -16,7 +16,7 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     private EnemySpawner enemySpawner;
     RaycastHit hit;
    
-    private void OnEnable()
+    private void Awake()
     {
         enemySpawnerObject = GameObject.Find("EnemySpawner");
         enemySpawner = enemySpawnerObject.GetComponent<EnemySpawner>();
@@ -61,10 +61,7 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
                               _enemySpawner.enemyObjectPool,
                               0f, bulletSpread);
 
-            _enemyManager.CheckEnemyBulletDamage(ref _enemyManager.bulletData);
-
-            // Update the bullet data for the player
-            PlayerManager.GetInstance.enemyBulletData = _enemyManager.bulletData;
+            _enemyManager.SetCurrentEnemyBulletDamage(ref _enemyManager.bulletData);
         }
     }
 

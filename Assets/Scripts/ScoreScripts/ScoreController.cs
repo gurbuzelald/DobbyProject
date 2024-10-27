@@ -71,7 +71,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
         // Update enemy kill value text if both components exist
         if (enemyKillValueText && levelUpController)
         {
-            enemyKillValueText.text = $"{EnemyData.enemyDeathCount}/{levelData.levelUpRequirements[LevelData.currentLevelId].enemyKills}";
+            enemyKillValueText.text = $"{MainEnemyData.enemyDeathCount}/{levelData.levelUpRequirements[LevelData.currentLevelId].enemyKills}";
         }
 
         // Save coin data to JSON

@@ -206,7 +206,7 @@ public class LevelUpController : MonoBehaviour
         var currentRequirements = levelData.levelUpRequirements[LevelData.currentLevelId];
 
         scoreMissionCompletedImage.gameObject.SetActive(currentRequirements.coinCollectAmount < ScoreController._scoreAmount);
-        enemyKillMissionCompletedImage.gameObject.SetActive(currentRequirements.enemyKills < EnemyData.enemyDeathCount);
+        enemyKillMissionCompletedImage.gameObject.SetActive(currentRequirements.enemyKills < MainEnemyData.enemyDeathCount);
         levelUpKeyMissionCompletedImage.gameObject.SetActive(currentRequirements.levelUpKeys < LevelData.currentOwnedLevelUpKeys);
 
         // Reset level-related data
@@ -226,6 +226,7 @@ public class LevelUpController : MonoBehaviour
         {
             currentRequirements.isBossEnemyDead = false;
         }
+        ArrowLevelRotation(LevelData.currentLevelId);
     }
 
     void InitializeComponent<T>(ref T component, GameObject obj) where T : Component
@@ -239,8 +240,6 @@ public class LevelUpController : MonoBehaviour
 
     private void Update()
     {
-        ArrowLevelRotation(LevelData.currentLevelId);
-
         CheckCompleteLevel();
 
         levelData.levelUpRequirements[LevelData.currentLevelId].isBossEnemyDead = EnemySpawner.bossIsDead;
@@ -279,7 +278,7 @@ public class LevelUpController : MonoBehaviour
 
     bool IsRequirementsMet(LevelData.LevelUpRequirements requirements)
     {
-        return requirements.enemyKills <= EnemyData.enemyDeathCount &&
+        return requirements.enemyKills <= MainEnemyData.enemyDeathCount &&
                requirements.coinCollectAmount <= ScoreController._scoreAmount &&
                requirements.levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
                requirements.isBossEnemyDead;
@@ -289,16 +288,16 @@ public class LevelUpController : MonoBehaviour
     {
         if (requirements.levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
             requirements.coinCollectAmount <= ScoreController._scoreAmount &&
-            requirements.enemyKills > EnemyData.enemyDeathCount &&
+            requirements.enemyKills > MainEnemyData.enemyDeathCount &&
             requirements.isBossEnemyDead && notEnoughEnemyKillsCount == 0)
         {
-            ShowRequirementMessage($"You Need to Kill {requirements.enemyKills - EnemyData.enemyDeathCount} More Enemy!!!",
-                                   $"Bölümü Geçmek İçin {requirements.enemyKills - EnemyData.enemyDeathCount} Tane Daha Düşman Öldürmen Gerekiyor!!!");
+            ShowRequirementMessage($"You Need to Kill {requirements.enemyKills - MainEnemyData.enemyDeathCount} More Enemy!!!",
+                                   $"Bölümü Geçmek İçin {requirements.enemyKills - MainEnemyData.enemyDeathCount} Tane Daha Düşman Öldürmen Gerekiyor!!!");
             ++notEnoughEnemyKillsCount;
         }
         else if (requirements.levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
             requirements.coinCollectAmount > ScoreController._scoreAmount &&
-            requirements.enemyKills <= EnemyData.enemyDeathCount &&
+            requirements.enemyKills <= MainEnemyData.enemyDeathCount &&
             requirements.isBossEnemyDead && notEnoughCoinCount == 0)
         {
             ShowRequirementMessage($"You Need to Make {requirements.coinCollectAmount - ScoreController._scoreAmount} More Score!!!",
@@ -307,7 +306,7 @@ public class LevelUpController : MonoBehaviour
         }
         else if (requirements.levelUpKeys > LevelData.currentOwnedLevelUpKeys &&
             requirements.coinCollectAmount <= ScoreController._scoreAmount &&
-            requirements.enemyKills <= EnemyData.enemyDeathCount &&
+            requirements.enemyKills <= MainEnemyData.enemyDeathCount &&
             requirements.isBossEnemyDead && notEnoughKeyCount == 0)
         {
             ShowRequirementMessage($"You Need to Find {requirements.levelUpKeys - LevelData.currentOwnedLevelUpKeys} More Key(s)!!!",
@@ -316,7 +315,7 @@ public class LevelUpController : MonoBehaviour
         }
         else if (requirements.levelUpKeys <= LevelData.currentOwnedLevelUpKeys &&
             requirements.coinCollectAmount <= ScoreController._scoreAmount &&
-            requirements.enemyKills <= EnemyData.enemyDeathCount &&
+            requirements.enemyKills <= MainEnemyData.enemyDeathCount &&
             !requirements.isBossEnemyDead && notEnoughBossDeadCount == 0)
         {
             ShowRequirementMessage("You Need to Kill This Level's Boss Enemy",
@@ -337,7 +336,7 @@ public class LevelUpController : MonoBehaviour
             scoreMissionCompletedImage.gameObject.SetActive(true);
             ++enoughCoinCount;
         }
-        if (requirements.enemyKills <= EnemyData.enemyDeathCount && enoughEnemyKillsCount == 0)
+        if (requirements.enemyKills <= MainEnemyData.enemyDeathCount && enoughEnemyKillsCount == 0)
         {
             ShowAchievementMessage("You Reached Pretty Enough Enemy Killing!!!", "Öldürmen Gereken Düşman Sayısına Ulaştın!!!");
             enemyKillMissionCompletedImage.gameObject.SetActive(true);
