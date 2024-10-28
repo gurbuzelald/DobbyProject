@@ -2,7 +2,7 @@
     "characterStruct": [
         {
             "characterObject": {
-                "instanceID": 52812
+                "instanceID": 52810
             },
             "durability": 0,
             "price": 0,
@@ -14,7 +14,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52814
+                "instanceID": 52812
             },
             "durability": 2,
             "price": 2,
@@ -26,7 +26,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52816
+                "instanceID": 52814
             },
             "durability": 9,
             "price": 3,
@@ -38,7 +38,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52818
+                "instanceID": 52816
             },
             "durability": 5,
             "price": 4,
@@ -50,7 +50,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52820
+                "instanceID": 52818
             },
             "durability": 7,
             "price": 6,
@@ -62,7 +62,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52822
+                "instanceID": 52820
             },
             "durability": 7,
             "price": 7,
@@ -74,7 +74,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52824
+                "instanceID": 52822
             },
             "durability": 5,
             "price": 7,
@@ -86,7 +86,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52826
+                "instanceID": 52824
             },
             "durability": 4,
             "price": 5,
@@ -98,7 +98,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52828
+                "instanceID": 52826
             },
             "durability": 5,
             "price": 9,
@@ -110,7 +110,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52830
+                "instanceID": 52828
             },
             "durability": 9,
             "price": 10,
@@ -122,7 +122,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52832
+                "instanceID": 52830
             },
             "durability": 1,
             "price": 11,
@@ -134,10 +134,10 @@
         }
     ],
     "playerObject": {
-        "instanceID": 52834
+        "instanceID": 52832
     },
     "characterObject": {
-        "instanceID": 52836
+        "instanceID": 52834
     },
     "playerWeaponBulletObjectPoolCount": 0,
     "playerSwordBulletObjectPoolCount": 1,
@@ -159,20 +159,23 @@
     "currentLanguage": 0,
     "getCurrentEnemyDead": false,
     "currentMessageText": {
-        "instanceID": 323732
+        "instanceID": 204486
     },
     "currentMessageObject": {
-        "instanceID": 323728
+        "instanceID": 204482
     },
     "isDecreaseHealth": true,
     "damageHealthText": {
-        "instanceID": 323784
+        "instanceID": -131222
     },
     "decreaseCounter": 0,
     "resetLocks": "Locked",
     "locked": "Locked",
     "unLocked": "",
     "objects": [
+        {
+            "instanceID": 52836
+        },
         {
             "instanceID": 52838
         },
@@ -190,9 +193,6 @@
         },
         {
             "instanceID": 52848
-        },
-        {
-            "instanceID": 52850
         }
     ],
     "sensivityX": 5.0,
@@ -205,7 +205,7 @@
     "isSideWalking": false,
     "isBackWalking": false,
     "isIdling": false,
-    "isDying": true,
+    "isDying": false,
     "isWinning": false,
     "isRunning": false,
     "isPicking": false,
@@ -214,7 +214,7 @@
     "isSword": false,
     "isLookingUp": false,
     "isDestroyed": false,
-    "isPlayable": false,
+    "isPlayable": true,
     "isFire": false,
     "isFireWalkAnimation": false,
     "isFireAnimation": false,
@@ -226,40 +226,43 @@
     "bulletPackAmount": 2,
     "danceTime": 5.0,
     "jolleenObject": {
-        "instanceID": 52852
+        "instanceID": 52850
     },
     "touchParticle": {
-        "instanceID": 52854
+        "instanceID": 52852
     },
     "birthParticle": {
-        "instanceID": 52856
+        "instanceID": 52854
     },
     "deathParticle": {
-        "instanceID": 52858
+        "instanceID": 52856
     },
     "burningParticle": {
-        "instanceID": 52860
+        "instanceID": 52858
     },
     "burningTouchParticle": {
-        "instanceID": 52860
+        "instanceID": 52858
     },
     "destroyRotateCoinParticle": {
-        "instanceID": 52862
+        "instanceID": 52860
     },
     "destroyHealthCoinParticle": {
-        "instanceID": 52864
+        "instanceID": 52862
     },
     "destroyBulletCoinParticle": {
-        "instanceID": 52866
+        "instanceID": 52864
     },
     "destroyMushroomCoinParticle": {
-        "instanceID": 52868
+        "instanceID": 52866
     },
     "particleCount": 0,
     "isTouchFirst": false,
     "isTouchSecond": false,
     "isTouchThird": false,
     "weaponBulletExplosionParticles": [
+        {
+            "instanceID": 52868
+        },
         {
             "instanceID": 52870
         },
@@ -286,9 +289,6 @@
         },
         {
             "instanceID": 52886
-        },
-        {
-            "instanceID": 52888
         }
     ]
 }

@@ -576,11 +576,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         deactivateCamera.SetActive(false);
         activateCamera.SetActive(true);
 
-        var currentCamera = activateCamera.GetComponent<CinemachineVirtualCamera>();
+        var currentCamera = activateCamera.GetComponent<CinemachineCamera>();
         PlayerManager.GetInstance._currentCamera = currentCamera;
 
-        currentCamera.m_Follow = transform;
-        currentCamera.m_LookAt = transform;
+        currentCamera.Follow = transform;
+        currentCamera.LookAt = transform;
     }
 
     public virtual void CheckCameraEulerX(PlayerData _playerData, Transform _currentCameraTransform)

@@ -148,7 +148,7 @@ MonoBehaviour:
   currentSwordName: LowSword
   currentWeaponName: pistol
   currentBulletPackAmount: 21
-  weaponBulletDelay: 0.05
+  weaponBulletDelay: 0.3
   swordBulletDelay: 0.3
   bulletSpeed: 5
   swordSpeed: 7
@@ -158,74 +158,6 @@ MonoBehaviour:
   currentShootFrequency: 0.4
   resetLocks: locked
   unLocked: 
-  enemyAttackInfos:
-  - bulletName: ChibiBullet(Clone)
-    id: 0
-    bulletDamage: 12
-    attackDamage: 13
-    hitDamage: 14
-  - bulletName: MinoBullet(Clone)
-    id: 1
-    bulletDamage: 13
-    attackDamage: 14
-    hitDamage: 15
-  - bulletName: BigMonsterBullet(Clone)
-    id: 2
-    bulletDamage: 14
-    attackDamage: 15
-    hitDamage: 16
-  - bulletName: OrcBullet(Clone)
-    id: 3
-    bulletDamage: 15
-    attackDamage: 16
-    hitDamage: 17
-  - bulletName: BeholderBullet(Clone)
-    id: 4
-    bulletDamage: 16
-    attackDamage: 17
-    hitDamage: 18
-  - bulletName: FemaleZombieBullet(Clone)
-    id: 5
-    bulletDamage: 17
-    attackDamage: 18
-    hitDamage: 19
-  - bulletName: DoctorBullet(Clone)
-    id: 6
-    bulletDamage: 18
-    attackDamage: 19
-    hitDamage: 20
-  - bulletName: GiantBullet(Clone)
-    id: 7
-    bulletDamage: 19
-    attackDamage: 20
-    hitDamage: 21
-  - bulletName: BoneBullet(Clone)
-    id: 8
-    bulletDamage: 20
-    attackDamage: 21
-    hitDamage: 22
-  - bulletName: ClothyBoneBullet(Clone)
-    id: 9
-    bulletDamage: 21
-    attackDamage: 22
-    hitDamage: 23
-  - bulletName: ChestMonsterBullet(Clone)
-    id: 10
-    bulletDamage: 22
-    attackDamage: 23
-    hitDamage: 24
-  - bulletName: ChestMonster2Bullet(Clone)
-    id: 11
-    bulletDamage: 23
-    attackDamage: 24
-    hitDamage: 25
-  currentEnemyBulletDamage: 12
-  currentEnemyAttackDamage: 0
-  currentEnemyHitDamage: 0
-  enemyFireFrequency: 5
-  enemyBulletDelayCounter: 0
-  enemyBulletDelay: 0.05
-  enemyBulletSpeed: 3
   isFirable: 0
   lowSwordObject: {fileID: 7486198881408922905, guid: e0ca519d8f748de48b2cdc4e12d21e8f, type: 3}
   isLowSword: 0

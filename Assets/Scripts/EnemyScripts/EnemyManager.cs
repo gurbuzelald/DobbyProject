@@ -280,9 +280,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (bulletData.enemyBulletDelayCounter >= enemyFireFrequency)
         {
-            bulletData.enemyBulletDelayCounter = 0;
             enemyData.isFiring = true;
             bulletData.isFirable = true;
+
+            bulletData.enemyBulletDelayCounter = 0;
         }
     }
 
@@ -456,7 +457,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         if (_healthBarSlider.value == 0)
         {
             HandleEnemyDeath(other, isSword);
-            gameObject.transform.GetComponent<Collider>().enabled = false;
             return;
         }
 
@@ -507,7 +507,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     // Handles the enemy hit reaction
     private void HandleEnemyHit(float power, Collider other, bool isSword, SoundEffectTypes hitSound)
     {
-        if (_healthBarSlider.value <= 50)
+        if (_healthBarSlider.value > 0)
         {
             BulletOrSwordExplosionParticleWithObjectPool(other, playerData.enemyMidParticleObjectPoolCount);
         }
@@ -567,7 +567,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
         }
 
-        if (enemyObjectPool && isDying)
+        if (enemyObjectPool)
         {
             particleObject = GetPooledObjectFromEnemy(objectPoolValue, other);
             if (particleObject != null)

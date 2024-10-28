@@ -454,7 +454,9 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 bulletData.bulletDelayCounter++;
 
-                StartCoroutine(Delay(bulletData.weaponBulletDelay, _playerData.playerWeaponBulletObjectPoolCount));
+                _playerData.isFireTime = false;
+
+                StartCoroutine(Delay(bulletData.currentShootFrequency, _playerData.playerWeaponBulletObjectPoolCount));
             }
         }
     }

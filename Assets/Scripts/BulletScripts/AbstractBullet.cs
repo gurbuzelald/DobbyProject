@@ -21,7 +21,7 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
             return _instance;
         }
     }
-    public virtual void BulletRotation(CinemachineVirtualCamera CurrentCamera, Transform bulletSpawnTransform)
+    public virtual void BulletRotation(CinemachineCamera CurrentCamera, Transform bulletSpawnTransform)
     {
         if (CurrentCamera != null)
         {
@@ -66,7 +66,7 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
         Rigidbody bulletRigidbody = bulletObject.GetComponent<Rigidbody>();
         if (bulletRigidbody != null)
         {
-            bulletRigidbody.linearVelocity = bulletSpawn.TransformDirection(Vector3.forward * bulletSpeed);
+            bulletRigidbody.linearVelocity = bulletSpawn.TransformDirection(Vector3.forward * bulletSpeed*Time.deltaTime*100);
         }
 
         // Belirli bir süre sonra mermiyi devre dışı bırak

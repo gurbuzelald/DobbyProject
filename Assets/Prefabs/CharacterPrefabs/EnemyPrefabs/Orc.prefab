@@ -8661,12 +8661,12 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.03
-  m_Height: 2.6332552
+  m_Radius: 1
+  m_Height: 3
   m_Direction: 1
-  m_Center: {x: 0, y: 2.4387443, z: -0.000003905139}
+  m_Center: {x: 0, y: 2.35, z: -0.000003905139}
 --- !u!82 &3074047275957377899
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10213,7 +10213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6252705932158133517
 Transform:
   m_ObjectHideFlags: 0

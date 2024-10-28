@@ -77,7 +77,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
 
     [Header("CinemachineVirtualCamera")]
-    public CinemachineVirtualCamera _currentCamera;
+    public CinemachineCamera _currentCamera;
     public GameObject cameraSpawner;
 
     [Header("Crosshair")]
