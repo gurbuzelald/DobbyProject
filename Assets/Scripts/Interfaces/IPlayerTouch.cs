@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 internal interface IPlayerTouch
 {
-    void TouchEnemy(Collision collision, PlayerData _playerData, 
+    void TouchEnemy(PlayerData _playerData, 
                     ref Slider _healthBarSlider, 
-                    ref Slider _topCanvasHealthBarSlider, 
-                    ref Transform _particleTransform);
+                    ref Slider _topCanvasHealthBarSlider);
 }

@@ -379,7 +379,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e21d0d90fbe034aba8545cb5440cbdf2, type: 2}
   - {fileID: 11400000, guid: f07c97d8e681a4aa89928c3fcfd9aed4, type: 2}
   - {fileID: 11400000, guid: 8fe7def2e1ac1492d9fbe6e3691c3d2c, type: 2}
-  enemyData: {fileID: 11400000, guid: baaf8f01c0e61432498b0081d46d6d8b, type: 2}
+  enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
   bulletData: {fileID: 11400000, guid: cfd5b0a8e93204327ba296dbcb89a1d1, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
@@ -414,7 +414,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!136 &7221490672401020505
 CapsuleCollider:
@@ -1851,7 +1851,7 @@ Transform:
   m_GameObject: {fileID: 5484465876954184652}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0, y: 2.5, z: 1.55}
+  m_LocalPosition: {x: 0, y: 1, z: 1.55}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3002,6 +3002,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 92a011218db144bf5a7a1c2af70ab5e3, type: 2}
   - {fileID: 9100000, guid: 1ad93c1052fe14b16b60b9c92a7ee17c, type: 2}
   - {fileID: 9100000, guid: c9a4d8fc0c1d949269d8e112283e65e9, type: 2}
+  runAnimatorController: {fileID: 0}
 --- !u!1 &8497058413530391954
 GameObject:
   m_ObjectHideFlags: 0

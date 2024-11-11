@@ -226,6 +226,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 208bc691d217544dd93899384922641d, type: 2}
   - {fileID: 9100000, guid: 1042b901529a74d5d8cce84a7be5bace, type: 2}
   - {fileID: 9100000, guid: 922a55101b95c4256be43480aee47e3a, type: 2}
+  runAnimatorController: {fileID: 0}
 --- !u!95 &1326677998286999452
 Animator:
   serializedVersion: 7
@@ -2667,7 +2668,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d443fd6367e049a0978b6c5ed15a2d1, type: 2}
   - {fileID: 11400000, guid: 9aeeca7743d6c48c5ad873863b536329, type: 2}
   - {fileID: 11400000, guid: ab9209b953bc24e23bcb54b78845ad6b, type: 2}
-  enemyData: {fileID: 11400000, guid: e0d4fdce4c4504b75a44e629793dea24, type: 2}
+  enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
   bulletData: {fileID: 11400000, guid: b71e18780cc4c459eb550eb84f967f10, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
@@ -2702,7 +2703,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!136 &748167851912027726
 CapsuleCollider:
@@ -2917,7 +2918,7 @@ Transform:
   m_GameObject: {fileID: 7291430558305807767}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

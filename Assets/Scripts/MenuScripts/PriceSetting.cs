@@ -49,6 +49,10 @@ public class PriceSetting : MonoBehaviour
 
         }
     }
+    private void Update()
+    {
+        SetWeaponPrices();
+    }
     public void SetWeaponPrices()
     {
         if (weaponStaffs.Length != 0)

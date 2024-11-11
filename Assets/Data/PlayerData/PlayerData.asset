@@ -21,86 +21,97 @@ MonoBehaviour:
     id: 0
     name: Dummy
     lockState: 
-  - characterObject: {fileID: 6616105739425805472, guid: c01ca076994204b1cb94249a12ece71c, type: 3}
+    swordDamageValue: 100
+  - characterObject: {fileID: 1254244383937338342, guid: fa5afc234e9ba074795c420e9145256f, type: 3}
     durability: 2
     price: 2
     jumpForce: 6
     speed: 1.6
     id: 1
-    name: Glassy
+    name: Joleen
     lockState: 
-  - characterObject: {fileID: 5075507251047758960, guid: 121bbb1bd4eef57478721b5ef2cc4082, type: 3}
+    swordDamageValue: 100
+  - characterObject: {fileID: 6616105739425805472, guid: c01ca076994204b1cb94249a12ece71c, type: 3}
     durability: 9
     price: 3
     jumpForce: 6
     speed: 1.7
     id: 2
-    name: Guard
+    name: Glassy
     lockState: 
-  - characterObject: {fileID: 1254244383937338342, guid: fa5afc234e9ba074795c420e9145256f, type: 3}
+    swordDamageValue: 100
+  - characterObject: {fileID: 1804162575734578991, guid: 68835b9515214a54097ef287fe3f1c49, type: 3}
     durability: 5
     price: 4
     jumpForce: 7
     speed: 1.8
     id: 3
-    name: Joleen
+    name: Lusth
     lockState: Locked
-  - characterObject: {fileID: 1804162575734578991, guid: 68835b9515214a54097ef287fe3f1c49, type: 3}
+    swordDamageValue: 100
+  - characterObject: {fileID: 5075507251047758960, guid: 121bbb1bd4eef57478721b5ef2cc4082, type: 3}
     durability: 7
     price: 6
     jumpForce: 7
     speed: 1.9
     id: 4
-    name: Lusth
+    name: Guard
     lockState: Locked
-  - characterObject: {fileID: 475003444043059358, guid: d20c2b271d372a642b352daa4599fa5c, type: 3}
+    swordDamageValue: 100
+  - characterObject: {fileID: 8160791800857959451, guid: 0ac9ad04e193f4a1693d750745c9cf5c, type: 3}
     durability: 7
     price: 7
     jumpForce: 8
     speed: 1.9
     id: 5
-    name: Eve
+    name: Michelle
     lockState: 
-  - characterObject: {fileID: 8160791800857959451, guid: 0ac9ad04e193f4a1693d750745c9cf5c, type: 3}
+    swordDamageValue: 100
+  - characterObject: {fileID: 475003444043059358, guid: d20c2b271d372a642b352daa4599fa5c, type: 3}
     durability: 5
     price: 7
     jumpForce: 7
     speed: 1.5
     id: 6
-    name: Michelle
-    lockState: Locked
-  - characterObject: {fileID: 2089016085528094388, guid: 45b74fc28a8e7584cb93f6b6b213d8f7, type: 3}
+    name: Eve
+    lockState: 
+    swordDamageValue: 100
+  - characterObject: {fileID: 4229839607365370914, guid: db04c4e4b251642e596a18439cc381c3, type: 3}
     durability: 4
     price: 5
     jumpForce: 8
     speed: 1.5
     id: 7
-    name: Boss
+    name: Aj
     lockState: Locked
-  - characterObject: {fileID: 4229839607365370914, guid: db04c4e4b251642e596a18439cc381c3, type: 3}
+    swordDamageValue: 100
+  - characterObject: {fileID: 2089016085528094388, guid: 45b74fc28a8e7584cb93f6b6b213d8f7, type: 3}
     durability: 5
     price: 9
     jumpForce: 7
     speed: 1.7
     id: 8
-    name: Aj
+    name: Boss
     lockState: Locked
-  - characterObject: {fileID: 3269665489637412912, guid: cc265cd48b1f31c4cbb86e276d4a94d0, type: 3}
+    swordDamageValue: 100
+  - characterObject: {fileID: 5807339739709849361, guid: 5a65014f4e4764d1487af521aded9bea, type: 3}
     durability: 9
     price: 10
     jumpForce: 8
     speed: 2
     id: 9
-    name: Mremireh
+    name: Ty
     lockState: Locked
-  - characterObject: {fileID: 5807339739709849361, guid: 5a65014f4e4764d1487af521aded9bea, type: 3}
+    swordDamageValue: 100
+  - characterObject: {fileID: 3269665489637412912, guid: cc265cd48b1f31c4cbb86e276d4a94d0, type: 3}
     durability: 1
     price: 11
     jumpForce: 8
     speed: 1.3
     id: 10
-    name: Ty
+    name: Mremireh
     lockState: Locked
+    swordDamageValue: 100
   playerObject: {fileID: 7193906221332498770, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   playerWeaponBulletObjectPoolCount: 0
@@ -114,12 +125,13 @@ MonoBehaviour:
   playerBurningTouchParticleObjectPoolCount: 8
   playerTouchParticleObjectPoolCount: 9
   deathParticleObjectPoolCount: 10
-  enemyBulletParticleObjectPoolCount: 0
-  enemyMidParticleObjectPoolCount: 1
-  enemyPrefabObjectPoolCount: 2
-  bossEnemyPrefabObjectPoolCount: 3
-  chestMonsterEnemyPrefabObjectPoolCount: 4
-  chestMonster2EnemyPrefabObjectPoolCount: 5
+  enemyDeathParticleOjectPoolID: 11
+  enemyBulletParticleObjectPoolID: 0
+  enemyMidParticleObjectPoolID: 1
+  enemyPrefabObjectPoolID: 2
+  bossEnemyPrefabObjectPoolID: 3
+  chestMonsterEnemyPrefabObjectPoolID: 4
+  chestMonster2EnemyPrefabObjectPoolID: 5
   currentLanguage: 0
   getCurrentEnemyDead: 0
   currentMessageText: {fileID: 0}
@@ -138,7 +150,7 @@ MonoBehaviour:
   - {fileID: 2613066168305214933, guid: 26cc8ebb945008b409049e7880d85d78, type: 3}
   - {fileID: 3102288607414887448, guid: 291ccd016fce448479fcd5813069629a, type: 3}
   - {fileID: 4849532061827766971, guid: 0475ff0f49311f1439d5dacc468f03fd, type: 3}
-  sensivityX: 5
+  sensivityX: 1
   sensivityY: 6
   isTouchFinish: 0
   isLose: 0
@@ -165,8 +177,8 @@ MonoBehaviour:
   isJumping: 0
   jumpCount: 0
   clickShiftCount: 0
-  bulletAmount: 16
-  bulletPackAmount: 1
+  bulletAmount: 21
+  bulletPackAmount: 2
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}
   touchParticle: {fileID: 2098394851902305992, guid: 9bd5863dac0a07144a968a375408214b, type: 3}

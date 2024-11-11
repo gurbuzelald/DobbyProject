@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MiniMapController : MonoBehaviour
 {
-    private Player playerInput;
+    private GameInput gameInput;
     public bool growing;
     GameObject miniMapMask;
     private bool _isMiniMapTouchable;
@@ -15,22 +15,22 @@ public class MiniMapController : MonoBehaviour
     {
         miniMapCamera = gameObject.GetComponent<Camera>();
         _isMiniMapTouchable = true;
-        playerInput = new Player();
+        gameInput = new GameInput();
 
         miniMapMask = GameObject.Find("MiniMapMask");
     }
     private void OnEnable()
     {
-        if (playerInput != null)
+        if (gameInput != null)
         {
-            playerInput.Enable();
+            gameInput.Enable();
         }
     }
     private void OnDisable()
     {
-        if (playerInput != null)
+        if (gameInput != null)
         {
-            playerInput.Disable();
+            gameInput.Disable();
         }
     }
     void Update()
@@ -60,7 +60,7 @@ public class MiniMapController : MonoBehaviour
     }
     void TouchMiniMap(Camera miniMapCamera)
     {
-        growing = playerInput.GrowMap.GrowingStuate.IsPressed();
+        growing = gameInput.GrowMap.GrowingState.IsPressed();
         if (growing && _isMiniMapTouchable && miniMapMask.transform.localScale == new Vector3(0.2f, 0.2f, 0.2f))
         {
             miniMapCamera.orthographicSize = 30;

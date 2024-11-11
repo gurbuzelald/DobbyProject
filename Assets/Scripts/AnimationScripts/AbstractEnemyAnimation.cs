@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehaviour
 {
-    public virtual void AnimationState(EnemyData _enemyData, Animator _animator, PlayerData _playerData, int _animationCount)
+    public virtual void AnimationState(EnemyData _enemyData, Animator _animator, PlayerData _playerData, int _animationCount, int enemyIndex, int enemyDataID)
     {
         if (_playerData.isPlayable)
         {
-            if (_enemyData.isDying)
+            if (_enemyData.enemyStats[enemyIndex].enemyDying[enemyDataID])
             {
                 _animator.SetBool("isDying", true);
 
@@ -17,7 +17,8 @@ public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehavi
                 _animator.SetLayerWeight(3, 0);
                 _animator.SetLayerWeight(4, 0);
             }
-            else if (_enemyData.isWalking && !_enemyData.isAttacking)
+            else if (_enemyData.enemyStats[enemyIndex].isWalking[enemyDataID] &&
+                !_enemyData.enemyStats[enemyIndex].isAttacking[enemyDataID])
             {
                 _animator.SetBool("isWalking", true);
 
@@ -26,7 +27,8 @@ public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehavi
                 _animator.SetLayerWeight(3, 0);
                 _animator.SetLayerWeight(4, 0);
             }
-            else if (_enemyData.isAttacking && !_enemyData.isWalking)
+            else if (_enemyData.enemyStats[enemyIndex].isAttacking[enemyDataID] &&
+                !_enemyData.enemyStats[enemyIndex].isWalking[enemyDataID])
             {
                 _animator.SetBool("isAttacking", true);
 
@@ -35,7 +37,9 @@ public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehavi
                 _animator.SetLayerWeight(2, 0);
                 _animator.SetLayerWeight(3, 0);
             }
-            else if (!_enemyData.isWalking && !_enemyData.isAttacking && !_enemyData.isFiring)
+            else if (!_enemyData.enemyStats[enemyIndex].isWalking[enemyDataID] &&
+                !_enemyData.enemyStats[enemyIndex].isAttacking[enemyDataID] &&
+                !_enemyData.enemyStats[enemyIndex].isFiring[enemyDataID])
             {
                 _animator.SetBool("isIdling", true);
 
@@ -45,7 +49,7 @@ public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehavi
                 _animator.SetLayerWeight(3, 0);
                 _animator.SetLayerWeight(4, 0);
             }
-            else if (_enemyData.isFiring)
+            else if (_enemyData.enemyStats[enemyIndex].isFiring[enemyDataID])
             {
                 _animator.SetBool("isFiring", true);
 

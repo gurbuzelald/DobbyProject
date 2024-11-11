@@ -207,7 +207,7 @@ public class ChooseCharacterController : MonoBehaviour
 
     public void PickCharacter(int characterID, ref string characterLock, int characterPrice, int characterIndex, string lockKey)
     {
-        if (buttonController.GetButtonState(characterID) && playerCoinData.avaliableCoin >= characterPrice &&
+        if (buttonController.GetCharacterButtonState(characterID) && playerCoinData.avaliableCoin >= characterPrice &&
             PlayerData.currentCharacterID != characterID)
         {
             if (characterLock == playerData.locked)
@@ -220,21 +220,24 @@ public class ChooseCharacterController : MonoBehaviour
             }
 
             characterPriceErrorTextObjectChilds[characterIndex].text = "";
+
             PlayerData.currentCharacterID = characterID;
 
+            PlayerPrefs.SetInt("CurrentCharacterID", PlayerData.currentCharacterID);
+
             SceneController.LoadMenuScene();
-            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
-        else if (buttonController.GetButtonState(characterID) && characterLock == playerData.unLocked)
+        else if (buttonController.GetCharacterButtonState(characterID) && characterLock == playerData.unLocked)
         {
             PlayerData.currentCharacterID = characterID;
 
+            PlayerPrefs.SetInt("CurrentCharacterID", PlayerData.currentCharacterID);
+
             SceneController.LoadMenuScene();
-            MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
         }
         else if ((characterPrice - playerCoinData.avaliableCoin) > 0 && characterLock == playerData.locked)
         {
-            if (buttonController.GetButtonState(characterID))
+            if (buttonController.GetCharacterButtonState(characterID))
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }

@@ -34,76 +34,13 @@ public class BulletManager : AbstractBullet<BulletManager>
 
         CreateSwordObject();
 
-        bulletData.bulletDelayCounter = 0;
         _initTransform = gameObject.transform;
         _initTransform.eulerAngles = gameObject.transform.eulerAngles;
-
-
-        if (bulletData)
-        {
-            CheckWeaponUsageLimitAtStart();
-        }
 
         _objectPool = GameObject.Find("ObjectPool").GetComponent<ObjectPool>();
     }
 
-    void CheckWeaponUsageLimitAtStart()
-    {
-        if (bulletData.weaponStruct[1].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-
-            bulletData.weaponStruct[1].lockState = BulletData.locked;
-        }
-        if (bulletData.weaponStruct[2].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-
-            bulletData.weaponStruct[2].lockState = BulletData.locked;
-        }
-        if (bulletData.weaponStruct[3].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-
-            bulletData.weaponStruct[3].lockState = BulletData.locked;
-        }
-        if (bulletData.weaponStruct[4].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-
-            bulletData.weaponStruct[4].lockState = BulletData.locked;
-        }
-        if (bulletData.weaponStruct[5].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-
-            bulletData.weaponStruct[5].lockState = BulletData.locked;
-        }
-        if (bulletData.weaponStruct[6].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-
-            bulletData.weaponStruct[6].lockState = BulletData.locked;
-        }
-        if (bulletData.weaponStruct[7].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-
-            bulletData.weaponStruct[7].lockState = BulletData.locked;
-        }
-        if (bulletData.weaponStruct[8].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-
-            bulletData.weaponStruct[8].lockState = BulletData.locked;
-        }
-        if (bulletData.weaponStruct[9].usageLimit <= 0)
-        {
-            ObjectPool.creatablePlayerBullet = true;
-
-            bulletData.weaponStruct[9].lockState = BulletData.locked;
-        }
-    }
+    
     public void CreateSwordObject()
     {
         if (PlayerManager.GetInstance._bulletData)
@@ -190,90 +127,34 @@ public class BulletManager : AbstractBullet<BulletManager>
     }
 
 
-    public void SetWeaponTransform()//Getting finger transform parameter
+    public void SetWeaponTransform()
     {
         if (PlayerManager.GetInstance._gunTransform)
         {
-            if (bulletData.currentWeaponName == bulletData.weaponStruct[8].weaponName)
+            for (int i = 0; i < bulletData.weaponStruct.Length; i++)
             {
-                if (GameObject.Find("ShotGunTransform"))
+                var weaponName = bulletData.weaponStruct[i].weaponName;
+                if (bulletData.currentWeaponName == weaponName)
                 {
-                    PlayerManager.GetInstance._gunTransform = GameObject.Find("ShotGunTransform");
-                }
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[9].weaponName)
-            {
-                if (GameObject.Find("MachineTransform"))
-                {
-                    PlayerManager.GetInstance._gunTransform = GameObject.Find("MachineTransform");
-                }
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[2].weaponName)
-            {
-                if (GameObject.Find("BulldogTransform"))
-                {
-                    PlayerManager.GetInstance._gunTransform = GameObject.Find("BulldogTransform");
-                }
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[3].weaponName)
-            {
-                if (GameObject.Find("CowTransform"))
-                {
-                    PlayerManager.GetInstance._gunTransform = GameObject.Find("CowTransform");
-                }
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[4].weaponName)
-            {
-                if (GameObject.Find("CrystalTransform"))
-                {
-                    PlayerManager.GetInstance._gunTransform = GameObject.Find("CrystalTransform");
-                }
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[5].weaponName)
-            {
-                if (GameObject.Find("DemonTransform"))
-                {
-                    PlayerManager.GetInstance._gunTransform = GameObject.Find("DemonTransform");
-                }
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[6].weaponName)
-            {
-                if (GameObject.Find("IceTransform"))
-                {
-                    PlayerManager.GetInstance._gunTransform = GameObject.Find("IceTransform");
-                }
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[7].weaponName)
-            {
-                if (GameObject.Find("ElectroTransform"))
-                {
-                    PlayerManager.GetInstance._gunTransform = GameObject.Find("ElectroTransform");
-                }
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[1].weaponName)
-            {
-                if (GameObject.Find("AxeTransform"))
-                {
-                    PlayerManager.GetInstance._gunTransform = GameObject.Find("AxeTransform");
-                }
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[0].weaponName)
-            {
-                if (GameObject.Find("PistolTransform"))
-                {
-                    PlayerManager.GetInstance._gunTransform = GameObject.Find("PistolTransform");
+                    var weaponTransform = GameObject.Find($"{weaponName}Transform");
+                    if (weaponTransform)
+                    {
+                        PlayerManager.GetInstance._gunTransform = weaponTransform;
+                    }
+                    break; // Exit the loop once the matching weapon is found
                 }
             }
         }
     }
+
     public void SetSwordTransform(GameObject pinky)//Getting finger transform parameter
     {
         if (bulletData.currentWeaponName == BulletData.lowSword)
         {
-            PlayerManager.GetInstance._gunTransform = GameObject.Find("LowSwordTransform");
+            PlayerManager.GetInstance._gunTransform = GameObject.Find("lowSwordTransform");
         }
     }
-    public void DestroyWeaponObject()
+    public void ChangeWeaponObject()
     {
         if (_playerData && bulletData)
         {
@@ -281,17 +162,10 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
             }
-
-            HandleWeaponChange(bulletData.weaponStruct[9].weaponName, ref bulletData.weaponStruct[9].isWeapon, bulletData.weaponStruct[9].id, bulletData.weaponStruct[9].shootFrequency);
-            HandleWeaponChange(bulletData.weaponStruct[8].weaponName, ref bulletData.weaponStruct[8].isWeapon, bulletData.weaponStruct[8].id, bulletData.weaponStruct[8].shootFrequency);
-            HandleWeaponChange(bulletData.weaponStruct[1].weaponName, ref bulletData.weaponStruct[1].isWeapon, bulletData.weaponStruct[1].id, bulletData.weaponStruct[1].shootFrequency);
-            HandleWeaponChange(bulletData.weaponStruct[7].weaponName, ref bulletData.weaponStruct[7].isWeapon, bulletData.weaponStruct[7].id, bulletData.weaponStruct[7].shootFrequency);
-            HandleWeaponChange(bulletData.weaponStruct[4].weaponName, ref bulletData.weaponStruct[4].isWeapon, bulletData.weaponStruct[4].id, bulletData.weaponStruct[4].shootFrequency);
-            HandleWeaponChange(bulletData.weaponStruct[5].weaponName, ref bulletData.weaponStruct[5].isWeapon, bulletData.weaponStruct[5].id, bulletData.weaponStruct[5].shootFrequency);
-            HandleWeaponChange(bulletData.weaponStruct[6].weaponName, ref bulletData.weaponStruct[6].isWeapon, bulletData.weaponStruct[6].id, bulletData.weaponStruct[6].shootFrequency);
-            HandleWeaponChange(bulletData.weaponStruct[2].weaponName, ref bulletData.weaponStruct[2].isWeapon, bulletData.weaponStruct[2].id, bulletData.weaponStruct[2].shootFrequency);
-            HandleWeaponChange(bulletData.weaponStruct[3].weaponName, ref bulletData.weaponStruct[3].isWeapon, bulletData.weaponStruct[3].id, bulletData.weaponStruct[3].shootFrequency);
-            HandleWeaponChange(bulletData.weaponStruct[0].weaponName, ref bulletData.weaponStruct[0].isWeapon, bulletData.weaponStruct[0].id, bulletData.weaponStruct[0].shootFrequency);
+            for (int i = 0; i < bulletData.weaponStruct.Length; i++)
+            {
+                HandleWeaponChange(bulletData.weaponStruct[i].weaponName, ref bulletData.weaponStruct[i].isWeapon, bulletData.weaponStruct[i].id, bulletData.weaponStruct[i].shootFrequency);
+            }
         }
     }
 
@@ -308,6 +182,9 @@ public class BulletManager : AbstractBullet<BulletManager>
             bulletData.currentShootFrequency = shootFrequency;
 
             BulletData.currentWeaponID = weaponID;
+
+            PlayerPrefs.SetInt("CurrentWeaponID", BulletData.currentWeaponID);
+
             PlayerManager.GetInstance._objectPool.SetPlayerBulletsAndExplosionsAtUpdate();
 
             CreateWeaponObject();
@@ -316,7 +193,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             isWeaponActive = false;
         }
     }
-    public void DestroySwordObject()
+    public void ChangeSwordObject()
     {
         if (_playerData && bulletData)
         {
@@ -346,64 +223,37 @@ public class BulletManager : AbstractBullet<BulletManager>
     void FixedUpdate()
     {//Bullet Sound Opening With Fix Because Of This Method
 
-        DestroyWeaponObject();
-        DestroySwordObject();
+        ChangeWeaponObject();
+        ChangeSwordObject();
 
         BulletRotation(PlayerManager.GetInstance._currentCamera,
                        _bulletSpawnTransform);
 
         WeaponFire();
 
-        SetCurrentWeaponID();
-        SetCurrentSwordID();
+        //SetCurrentWeaponID();
+       // SetCurrentSwordID();
     }
 
     public void SetCurrentWeaponID()
     {
         if (bulletData)
         {
-            if (bulletData.currentWeaponName == bulletData.weaponStruct[0].weaponName)
+            // Loop through weaponStruct and match the currentWeaponName
+            for (int i = 0; i < bulletData.weaponStruct.Length; i++)
             {
-                BulletData.currentWeaponID = bulletData.weaponStruct[0].id;
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[1].weaponName)
-            {
-                BulletData.currentWeaponID = bulletData.weaponStruct[1].id;
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[2].weaponName)
-            {
-                BulletData.currentWeaponID = bulletData.weaponStruct[2].id;
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[3].weaponName)
-            {
-                BulletData.currentWeaponID = bulletData.weaponStruct[3].id;
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[4].weaponName)
-            {
-                BulletData.currentWeaponID = bulletData.weaponStruct[4].id;
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[5].weaponName)
-            {
-                BulletData.currentWeaponID = bulletData.weaponStruct[5].id;
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[6].weaponName)
-            {
-                BulletData.currentWeaponID = bulletData.weaponStruct[6].id;
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[7].weaponName)
-            {
-                BulletData.currentWeaponID = bulletData.weaponStruct[7].id;
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[8].weaponName)
-            {
-                BulletData.currentWeaponID = bulletData.weaponStruct[8].id;
-            }
-            else if (bulletData.currentWeaponName == bulletData.weaponStruct[9].weaponName)
-            {
-                BulletData.currentWeaponID = bulletData.weaponStruct[9].id;
+                if (bulletData.currentWeaponName == bulletData.weaponStruct[i].weaponName)
+                {
+                    BulletData.currentWeaponID = bulletData.weaponStruct[i].id;
+
+                    PlayerPrefs.SetInt("CurrentWeaponID", BulletData.currentWeaponID);
+
+                    break; // Exit loop once the matching weapon is found
+                }
             }
         }
     }
+
 
 
     public void SetCurrentSwordID()
@@ -440,7 +290,7 @@ public class BulletManager : AbstractBullet<BulletManager>
                     _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._gunTransform.transform.position.x,
                                                       PlayerManager.GetInstance._gunTransform.transform.position.y + .03f,
                                                       PlayerManager.GetInstance._gunTransform.transform.position.z + .01f);
-                    CreatePlayerBullet(_bulletSpawnTransform, bulletData.swordSpeed, objectPoolCount, _objectPool, 0f, delayValue);
+                    CreatePlayerBullet(_bulletSpawnTransform, bulletData.weaponStruct[BulletData.currentSwordID].swordSpeed, objectPoolCount, _objectPool, 0f, delayValue);
                 }
             }
         }
@@ -450,10 +300,8 @@ public class BulletManager : AbstractBullet<BulletManager>
     {
         if (_playerData && bulletData)
         {
-            if (_playerData.isFire && !_playerData.isSwordAnimate && bulletData.bulletDelayCounter == 0 && _playerData.isFireTime)
+            if (_playerData.isFire && !_playerData.isSwordAnimate && _playerData.isFireTime)
             {
-                bulletData.bulletDelayCounter++;
-
                 _playerData.isFireTime = false;
 
                 StartCoroutine(Delay(bulletData.currentShootFrequency, _playerData.playerWeaponBulletObjectPoolCount));
@@ -494,6 +342,7 @@ public class BulletManager : AbstractBullet<BulletManager>
         // Return early if objectPoolCount doesn't match player's weapon bullet object pool count
         if (objectPoolCount != _playerData.playerWeaponBulletObjectPoolCount) yield break;
 
+
         // Activate the current weapon object and deactivate the sword object if applicable
         _currentWeaponObject?.SetActive(true);
         _currentSwordObject?.SetActive(false);
@@ -516,12 +365,8 @@ public class BulletManager : AbstractBullet<BulletManager>
             _bulletSpawnTransform.position = new Vector3(PlayerManager.GetInstance._gunTransform.transform.position.x,
                                                       PlayerManager.GetInstance._gunTransform.transform.position.y + .03f,
                                                       PlayerManager.GetInstance._gunTransform.transform.position.z + .01f);
-            CreatePlayerBullet(_bulletSpawnTransform, bulletData.bulletSpeed, objectPoolCount, _objectPool, 0f, 1);
+            CreatePlayerBullet(_bulletSpawnTransform, bulletData.weaponStruct[BulletData.currentWeaponID].bulletSpeed, objectPoolCount, _objectPool, 0f, 1);
             isCreatedWeaponBullet = true;
         }
-
-        // Reset bullet delay counter
-        bulletData.bulletDelayCounter = 0;
     }
-
 }

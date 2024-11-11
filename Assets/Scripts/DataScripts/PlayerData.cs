@@ -17,10 +17,10 @@ public class PlayerData : ScriptableObject
         public int id;
         public string name;
         public string lockState;
+        public float swordDamageValue;
     }
 
     public CharacterStruct[] characterStruct = new CharacterStruct[11];
-
 
     public static int currentCharacterID;
 
@@ -49,16 +49,17 @@ public class PlayerData : ScriptableObject
     public int playerBurningTouchParticleObjectPoolCount;//8
     public int playerTouchParticleObjectPoolCount;//9
     public int deathParticleObjectPoolCount;//10
+    public int enemyDeathParticleOjectPoolID;//11
 
 
     //EnemyBullet = 0
     [Header("Enemy Object Pool IDs")]
-    public int enemyBulletParticleObjectPoolCount;//0
-    public int enemyMidParticleObjectPoolCount;//1
-    public int enemyPrefabObjectPoolCount;//2
-    public int bossEnemyPrefabObjectPoolCount;//3
-    public int chestMonsterEnemyPrefabObjectPoolCount;//4
-    public int chestMonster2EnemyPrefabObjectPoolCount;//5
+    public int enemyBulletParticleObjectPoolID;//0
+    public int enemyMidParticleObjectPoolID;//1
+    public int enemyPrefabObjectPoolID;//2
+    public int bossEnemyPrefabObjectPoolID;//3
+    public int chestMonsterEnemyPrefabObjectPoolID;//4
+    public int chestMonster2EnemyPrefabObjectPoolID;//5
 
 
     [Header("Current Language")]

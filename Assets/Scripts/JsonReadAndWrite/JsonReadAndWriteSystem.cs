@@ -12,6 +12,8 @@ public class JsonReadAndWriteSystem : MonoBehaviour
 
     public void SaveCoinToJson()
     {
+        playerCoinData.avaliableCoin = PlayerPrefs.GetInt("AvaliableCoin");
+
         playerCoinData.avaliableCoinJson = playerCoinData.avaliableCoin.ToString();
 
 

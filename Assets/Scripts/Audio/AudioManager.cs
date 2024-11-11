@@ -18,8 +18,6 @@ public class AudioManager : AbstractPlayerSFX<AudioManager>
     // Start is called before the first frame update
     void Start()
     {
-        //buttonDelayTimer = 0;
-
         SetCurrentMusic();
         LoadVolume();   
     }
@@ -27,10 +25,10 @@ public class AudioManager : AbstractPlayerSFX<AudioManager>
 
     private void Update()
     {
-        DelayButton();//This Code Writen for ButtonController's Button Delay
+        DelayButtonFlow();//This Code Writen for ButtonController's Button Delay
     }
 
-    void DelayButton()
+    void DelayButtonFlow()
     {
         buttonDelayTimer += Time.deltaTime;
     }
@@ -89,7 +87,7 @@ public class AudioManager : AbstractPlayerSFX<AudioManager>
     }
     void LoadVolume()
     {
-        float _musicVolume = PlayerPrefs.GetFloat(ExposedParameters.MusicVolume.ToString(), 0f);
+        float _musicVolume = PlayerPrefs.GetFloat(ExposedParameters.MusicVolume.ToString(), 1f);
         float _playerSfxVolume = PlayerPrefs.GetFloat(ExposedParameters.PlayerSFXVolume.ToString(), 1f);
         float _enemySFXVolume = PlayerPrefs.GetFloat(ExposedParameters.EnemySFXVolume.ToString(), 1f);
         float _menuSFXVolume = PlayerPrefs.GetFloat(ExposedParameters.MenuSFXVolume.ToString(), 1f);

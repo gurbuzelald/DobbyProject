@@ -18,6 +18,8 @@ public class LevelUpButtonController : MonoBehaviour
 
             LevelData.currentLevelId = 0;
 
+            PlayerPrefs.SetInt("CurrentLevelID", 0);
+
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
             SceneController.playAgainForScore = true;
@@ -36,6 +38,8 @@ public class LevelUpButtonController : MonoBehaviour
             sceneController.DecreaseWeaponUsageLimit();
 
             LevelData.currentLevelId = 1;
+
+            PlayerPrefs.SetInt("CurrentLevelID", 1);
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -56,6 +60,8 @@ public class LevelUpButtonController : MonoBehaviour
 
             LevelData.currentLevelId = 2;
 
+            PlayerPrefs.SetInt("CurrentLevelID", 2);
+
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
             SceneController.playAgainForScore = true;
@@ -74,6 +80,8 @@ public class LevelUpButtonController : MonoBehaviour
             sceneController.DecreaseWeaponUsageLimit();
 
             LevelData.currentLevelId = 3;
+
+            PlayerPrefs.SetInt("CurrentLevelID", 3);
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -94,6 +102,8 @@ public class LevelUpButtonController : MonoBehaviour
 
             LevelData.currentLevelId = 4;
 
+            PlayerPrefs.SetInt("CurrentLevelID", 4);
+
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
             SceneController.playAgainForScore = true;
@@ -112,6 +122,8 @@ public class LevelUpButtonController : MonoBehaviour
             sceneController.DecreaseWeaponUsageLimit();
 
             LevelData.currentLevelId = 5;
+
+            PlayerPrefs.SetInt("CurrentLevelID", 5);
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -132,6 +144,8 @@ public class LevelUpButtonController : MonoBehaviour
 
             LevelData.currentLevelId = 6;
 
+            PlayerPrefs.SetInt("CurrentLevelID", 6);
+
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
             SceneController.playAgainForScore = true;
@@ -150,6 +164,8 @@ public class LevelUpButtonController : MonoBehaviour
             sceneController.DecreaseWeaponUsageLimit();
 
             LevelData.currentLevelId = 7;
+
+            PlayerPrefs.SetInt("CurrentLevelID", 7);
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
@@ -170,6 +186,8 @@ public class LevelUpButtonController : MonoBehaviour
 
             LevelData.currentLevelId = 8;
 
+            PlayerPrefs.SetInt("CurrentLevelID", 8);
+
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
             SceneController.playAgainForScore = true;
@@ -188,6 +206,8 @@ public class LevelUpButtonController : MonoBehaviour
             sceneController.DecreaseWeaponUsageLimit();
 
             LevelData.currentLevelId = 9;
+
+            PlayerPrefs.SetInt("CurrentLevelID", 9);
 
             MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 

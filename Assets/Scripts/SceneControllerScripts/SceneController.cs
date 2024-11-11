@@ -35,6 +35,11 @@ public class SceneController : MonoBehaviour
 
 
     TextMeshProUGUI[] currentTexts = new TextMeshProUGUI[200];
+    private void Awake()
+    {
+        PlayerData.currentCharacterID = PlayerPrefs.GetInt("CurrentCharacterID");
+        BulletData.currentWeaponID = PlayerPrefs.GetInt("CurrentWeaponID");
+    }
 
     void Start()
     {
@@ -46,6 +51,8 @@ public class SceneController : MonoBehaviour
         SetCurrentLevelAtStart();
         SetCurrentWeaponAtStart();
         SetCurrentCharacterAtStart();
+
+        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
     }
 
     private void Update()
@@ -512,95 +519,45 @@ public class SceneController : MonoBehaviour
 
 
     public void CheckNeedResetWeaponsAndCharacters()
-    {//For Developer
-
+    {
+        // For Developer
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        PlayerPrefs.GetInt("ResetGame", 1);
+        PlayerPrefs.SetInt("ResetGame", 1);
 
-
-        PlayerPrefs.SetFloat("PistolLock", 0);
-        PlayerPrefs.SetFloat("AxeLock", 0);
-        PlayerPrefs.SetFloat("BulldogLock", 0);
-        PlayerPrefs.SetFloat("CowLock", 0);
-        PlayerPrefs.SetFloat("CrystalLock", 0);
-        PlayerPrefs.SetFloat("DemonLock", 0);
-        PlayerPrefs.SetFloat("IceLock", 0);
-        PlayerPrefs.SetFloat("ElectroLock", 0);
-        PlayerPrefs.SetFloat("ShotGunLock", 0);
-        PlayerPrefs.SetFloat("MachineLock", 0);
-
-        PlayerPrefs.SetFloat("AxeUsageCount", 0);
-        PlayerPrefs.SetFloat("BulldogUsageCount", 0);
-        PlayerPrefs.SetFloat("CowUsageCount", 0);
-        PlayerPrefs.SetFloat("CrystalUsageCount", 0);
-        PlayerPrefs.SetFloat("DemonUsageCount", 0);
-        PlayerPrefs.SetFloat("IceUsageCount", 0);
-        PlayerPrefs.SetFloat("ElectroUsageCount", 0);
-        PlayerPrefs.SetFloat("ShotGunUsageCount", 0);
-        PlayerPrefs.SetFloat("MachineUsageCount", 0);
-
-        if (bulletData)
+        // Reset all weapon lock and usage count data
+        for (int i = 1; i <= 9; i++)
         {
-            bulletData.weaponStruct[1].lockState = BulletData.locked;
-            bulletData.weaponStruct[2].lockState = BulletData.locked;
-            bulletData.weaponStruct[3].lockState = BulletData.locked;
-            bulletData.weaponStruct[4].lockState = BulletData.locked;
-            bulletData.weaponStruct[5].lockState = BulletData.locked;
-            bulletData.weaponStruct[6].lockState = BulletData.locked;
-            bulletData.weaponStruct[7].lockState = BulletData.locked;
-            bulletData.weaponStruct[8].lockState = BulletData.locked;
-            bulletData.weaponStruct[9].lockState = BulletData.locked;
+            var weaponName = bulletData.weaponStruct[i].weaponName;
+            PlayerPrefs.SetFloat($"{weaponName}Lock", 0);
+            PlayerPrefs.SetInt($"{weaponName}UsageCount", 0);
+            bulletData.weaponStruct[i].lockState = BulletData.locked;
         }
-        PlayerPrefs.SetFloat("ALock", 0);
-        PlayerPrefs.SetFloat("BLock", 0);
-        PlayerPrefs.SetFloat("CLock", 0);
-        PlayerPrefs.SetFloat("DLock", 0);
-        PlayerPrefs.SetFloat("ELock", 0);
-        PlayerPrefs.SetFloat("FLock", 0);
-        PlayerPrefs.SetFloat("GLock", 0);
-        PlayerPrefs.SetFloat("HLock", 0);
-        PlayerPrefs.SetFloat("ILock", 0);
-        PlayerPrefs.SetFloat("JLock", 0);
-        PlayerPrefs.SetFloat("KLock", 0);
 
+        // Reset any other lock flags (A-K)
+        char[] lockFlags = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K' };
+        foreach (var flag in lockFlags)
+        {
+            PlayerPrefs.SetFloat($"{flag}Lock", 0);
+        }
 
-        PlayerPrefs.SetInt("AxeUsageCount", 0);
-        PlayerPrefs.SetInt("BulldogUsageCount", 0);
-        PlayerPrefs.SetInt("CowUsageCount", 0);
-        PlayerPrefs.SetInt("CrystalUsageCount", 0);
-        PlayerPrefs.SetInt("DemonUsageCount", 0);
-        PlayerPrefs.SetInt("IceUsageCount", 0);
-        PlayerPrefs.SetInt("NegevUsageCount", 0);
-        PlayerPrefs.SetInt("ShotGunUsageCount", 0);
-        PlayerPrefs.SetInt("MachineUsageCount", 0);
-
+        // Reset character lock states
         if (_playerData)
         {
-            _playerData.characterStruct[1].lockState = _playerData.locked;
-            _playerData.characterStruct[2].lockState = _playerData.locked;
-            _playerData.characterStruct[3].lockState = _playerData.locked;
-            _playerData.characterStruct[4].lockState = _playerData.locked;
-            _playerData.characterStruct[5].lockState = _playerData.locked;
-            _playerData.characterStruct[6].lockState = _playerData.locked;
-            _playerData.characterStruct[7].lockState = _playerData.locked;
-            _playerData.characterStruct[8].lockState = _playerData.locked;
-            _playerData.characterStruct[9].lockState = _playerData.locked;
-            _playerData.characterStruct[10].lockState = _playerData.locked;
-
-
+            for (int i = 1; i <= 10; i++)
+            {
+                _playerData.characterStruct[i].lockState = _playerData.locked;
+            }
             PlayerData.currentCharacterID = _playerData.characterStruct[0].id;
         }
 
-
+        // Reset other game data
         PlayerPrefs.SetInt("AvaliableCoin", 0);
-
         LevelData.currentLevelId = 0;
-
         LevelData.highestLevel = 0;
         PlayerPrefs.SetInt("HighestLevel", 0);
-        LevelData.currentLevelId = 0;
     }
+
 
 
 
@@ -698,14 +655,12 @@ public class SceneController : MonoBehaviour
         playAgainForScore = true;
 
         SceneManager.LoadScene(Scenes.Game.ToString());
-
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
     }
     public void PlayAgain()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
         LevelData.currentLevelId = 0;
+        PlayerPrefs.SetInt("CurrentLevelID", LevelData.currentLevelId);
+
         playAgainForScore = true;
 
         SceneManager.LoadScene(Scenes.Game.ToString());
@@ -719,7 +674,7 @@ public class SceneController : MonoBehaviour
             // Iterate through the weaponStruct array to find the current weapon
             for (int i = 1; i < bulletData.weaponStruct.Length; i++)
             {
-                if (bulletData.currentWeaponName == bulletData.weaponStruct[i].weaponName)
+                if (BulletData.currentWeaponID == bulletData.weaponStruct[i].id)
                 {
                     // Decrease usage limit if it's greater than zero
                     if (bulletData.weaponStruct[i].usageLimit > 0)
@@ -730,6 +685,10 @@ public class SceneController : MonoBehaviour
                     // If usage limit reaches zero, switch to default weapon
                     else if (bulletData.weaponStruct[i].usageLimit == 0)
                     {
+                        BulletData.currentWeaponID = 0;
+
+                        PlayerPrefs.SetInt("CurrentWeaponID", 0);
+
                         bulletData.currentWeaponName = bulletData.weaponStruct[0].weaponName;
                     }
 
@@ -741,8 +700,6 @@ public class SceneController : MonoBehaviour
 
     public void PlayAgainInLevel()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
         playAgainForScore = true;
 
         SceneManager.LoadScene(Scenes.Game.ToString());
@@ -751,11 +708,11 @@ public class SceneController : MonoBehaviour
     }
     public void ContinueLastLevel()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
         playAgainForScore = true;
 
         AudioManager.GetInstance.SetCurrentMusic();
+
+        SceneManager.LoadScene(Scenes.Game.ToString());
 
         DecreaseWeaponUsageLimit();
     }    
@@ -864,8 +821,6 @@ public class SceneController : MonoBehaviour
 
     void OpenLevelButtons()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
         SetHighestLevel();
         if (levelData && CheckSceneName() == Scenes.Levels.ToString() && levelsObject)
         {
@@ -888,7 +843,6 @@ public class SceneController : MonoBehaviour
 
     public void LoadLevelsScene()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
         SceneManager.LoadScene(Scenes.Levels.ToString());
     }
@@ -902,8 +856,6 @@ public class SceneController : MonoBehaviour
     public static void LoadMenuScene()
     {//Load By Click Menu Scene
 
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
         if (CheckSceneName() != Scenes.End.ToString())
         {
             playAgainForScore = true;
@@ -915,72 +867,33 @@ public class SceneController : MonoBehaviour
 
     public void LoadByCodeMenuScene()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
         SceneManager.LoadScene(Scenes.Menu.ToString());
     }
     public static void LoadMenuSceneByWinScene()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
         SceneManager.LoadScene(Scenes.Menu.ToString());
     }
 
     public void LoadWinScene()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
         SceneManager.LoadScene(Scenes.Win.ToString());
     }
     public static void LoadCharacterChoosingScene()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
         SceneManager.LoadScene(Scenes.PickCharacter.ToString());
     }
     public void LoadWeaponChoosingScene()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
         SceneManager.LoadScene(Scenes.PickWeapon.ToString());
     }
     public static void LoadEndScene()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
         SceneManager.LoadScene(Scenes.End.ToString());
     }
-    /*public void LevelUp()
-    {
-        if (SceneManager.sceneCountInBuildSettings - 3 == SceneManager.GetActiveScene().buildIndex)
-        {
-            LoadWinScene();
-        }
-        else
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-    }*/
     public void QuitGame()
     {
-        MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
-
         Application.Quit();
     }
-
-
-    /*public static void DestroySingletonObjects()
-    {
-        if (PlayerManager.GetInstance.gameObject)
-        {
-            Destroy(PlayerManager.GetInstance.gameObject);
-        }
-        if (AudioManager.GetInstance.gameObject)
-        {
-            Destroy(AudioManager.GetInstance.gameObject);
-        }
-    }
-    */
     public void PauseGame()
     {
         if (pauseGame) {

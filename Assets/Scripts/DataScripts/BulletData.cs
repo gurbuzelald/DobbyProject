@@ -20,9 +20,11 @@ public class BulletData : ScriptableObject
         public int price;
         public int id;
         public bool isWeapon;
+        public float bulletSpeed;
+        public float swordSpeed;
     }
 
-    public WeaponStruct[] weaponStruct = new WeaponStruct[11];
+    public WeaponStruct[] weaponStruct = new WeaponStruct[11];    
 
     [Header("Player")]
     public string currentSwordName = lowSword;
@@ -33,9 +35,7 @@ public class BulletData : ScriptableObject
     [Header("Bullet Transform")]
     public float weaponBulletDelay;
     public float swordBulletDelay;
-    public float bulletSpeed = 5f;
-    public float swordSpeed = 1f;
-    public int bulletDelayCounter;
+    
     public GameObject _swordingObject;
 
     [Header("Weapon GiftBoxes")]
@@ -67,7 +67,4 @@ public class BulletData : ScriptableObject
     public const string lowSword = "LowSword";
 
     public bool isLowSword;
-
-    [Header("Sword Power")]
-    public float swordDamageValue;
 }

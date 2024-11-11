@@ -52,114 +52,61 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _cheeseObject.transform.localScale = Vector3.zero;
         }
     }
-    public virtual void GetWeaponTransform(BulletData _bulletData, ref GameObject _gunTransform)//Getting finger transform parameter
+    public virtual void GetWeaponTransform(BulletData _bulletData, ref GameObject _gunTransform)
     {
-        if (_bulletData.currentWeaponName == _bulletData.weaponStruct[8].weaponName && GameObject.Find("ShotGunTransform"))
+        for (int i = 0; i < _bulletData.weaponStruct.Length; i++)
         {
-            _gunTransform = GameObject.Find("ShotGunTransform");
-        }
-        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[9].weaponName && GameObject.Find("MachineTransform"))
-        {
-            _gunTransform = GameObject.Find("MachineTransform");
-        }
-        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[2].weaponName && GameObject.Find("BulldogTransform"))
-        {
-            _gunTransform = GameObject.Find("BulldogTransform");
-        }
-        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[3].weaponName && GameObject.Find("CowTransform"))
-        {
-            _gunTransform = GameObject.Find("CowTransform");
-        }
-        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[4].weaponName && GameObject.Find("CrystalTransform"))
-        {
-            _gunTransform = GameObject.Find("CrystalTransform");
-        }
-        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[5].weaponName && GameObject.Find("DemonTransform"))
-        {
-            _gunTransform = GameObject.Find("DemonTransform");
-        }
-        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[6].weaponName && GameObject.Find("IceTransform"))
-        {
-            _gunTransform = GameObject.Find("IceTransform");
-        }
-        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[7].weaponName && GameObject.Find("ElectroTransform"))
-        {
-            _gunTransform = GameObject.Find("ElectroTransform");
-        }
-        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[1].weaponName && GameObject.Find("AxeTransform"))
-        {
-            _gunTransform = GameObject.Find("AxeTransform");
-        }
-        else if (_bulletData.currentWeaponName == _bulletData.weaponStruct[0].weaponName && GameObject.Find("PistolTransform"))
-        {
-            _gunTransform = GameObject.Find("PistolTransform");
+            var weaponName = _bulletData.weaponStruct[i].weaponName;
+            if (_bulletData.currentWeaponName == weaponName)
+            {
+                var weaponTransform = GameObject.Find($"{weaponName}Transform");
+                if (weaponTransform)
+                {
+                    _gunTransform = weaponTransform;
+                    return; // Exit early once the matching transform is found
+                }
+            }
         }
     }
+
     public virtual void GetSwordTransform(BulletData _bulletData, ref GameObject _swordTransform)
     {
-        if (_bulletData.currentSwordName == BulletData.lowSword && GameObject.Find("LowSwordTransform"))
+        if (_bulletData.currentSwordName == BulletData.lowSword && GameObject.Find("lowSwordTransform"))
         {
-            _swordTransform = GameObject.Find("LowSwordTransform");
+            _swordTransform = GameObject.Find("lowSwordTransform");
         }
     }
     public void CreateCharacterObject(PlayerData _playerData, ref GameObject characterObject)
     {
         if (_playerData.characterObject)
         {
-            characterObject = Instantiate(_playerData.characterObject, gameObject.transform);
+            characterObject = Instantiate(_playerData.characterObject, transform);
 
-            GameObject current;
-            if (PlayerData.currentCharacterID == _playerData.characterStruct[0].id)
+            GameObject current = null;
+
+            // Find the character matching the currentCharacterID
+            foreach (var character in _playerData.characterStruct)
+            {
+                if (character.id == PlayerData.currentCharacterID)
+                {
+                    current = character.characterObject;
+                    break;
+                }
+            }
+
+            // Fallback to the first character if no match is found
+            if (current == null && _playerData.characterStruct.Length > 0)
             {
                 current = _playerData.characterStruct[0].characterObject;
             }
-            else if (PlayerData.currentCharacterID == _playerData.characterStruct[1].id)
+
+            if (current != null)
             {
-                current = _playerData.characterStruct[1].characterObject;
+                Instantiate(current, characterObject.transform);
             }
-            else if (PlayerData.currentCharacterID == _playerData.characterStruct[2].id)
-            {
-                current = _playerData.characterStruct[2].characterObject;
-            }
-            else if (PlayerData.currentCharacterID == _playerData.characterStruct[3].id)
-            {
-                current = _playerData.characterStruct[3].characterObject;
-            }
-            else if (PlayerData.currentCharacterID == _playerData.characterStruct[4].id)
-            {
-                current = _playerData.characterStruct[4].characterObject;
-            }
-            else if (PlayerData.currentCharacterID == _playerData.characterStruct[5].id)
-            {
-                current = _playerData.characterStruct[5].characterObject;
-            }
-            else if (PlayerData.currentCharacterID == _playerData.characterStruct[6].id)
-            {
-                current = _playerData.characterStruct[6].characterObject;
-            }
-            else if (PlayerData.currentCharacterID == _playerData.characterStruct[7].id)
-            {
-                current = _playerData.characterStruct[7].characterObject;
-            }
-            else if (PlayerData.currentCharacterID == _playerData.characterStruct[8].id)
-            {
-                current = _playerData.characterStruct[8].characterObject;
-            }
-            else if (PlayerData.currentCharacterID == _playerData.characterStruct[9].id)
-            {
-                current = _playerData.characterStruct[9].characterObject;
-            }
-            else if (PlayerData.currentCharacterID == _playerData.characterStruct[10].id)
-            {
-                current = _playerData.characterStruct[10].characterObject;
-            }
-            else
-            {
-                current = _playerData.characterStruct[0].characterObject;
-            }
-            Instantiate(current, characterObject.transform);
         }
     }
+
 
 
     public virtual void CreateStartPlayerStaff(PlayerData _playerData, ref Transform playerIconTransform, ref Transform _bulletsTransform,
@@ -422,7 +369,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     #region //Shoot
     public virtual void Fire(PlayerData _playerData)
     {
-        if (_playerData.isPlayable && PlayerManager.GetInstance.playerComponents._playerController.fire && !_playerData.isWinning)
+        if (_playerData.isPlayable && PlayerManager.GetInstance.playerComponents._playerController.fire &&
+            !_playerData.isWinning && !_playerData.isDying)
         {
             //PlayerData
             if (_playerData.bulletAmount <= 0 && _playerData.bulletPackAmount <= 0)
@@ -438,6 +386,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
 
                 _playerData.bulletPackAmount--;
+
+                _playerData.isFire = true;
             }
             else if(_playerData.bulletPackAmount >= 0)
             {
@@ -605,6 +555,54 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     #endregion
 
+
+    public virtual void HandleDeathScenario(PlayerData _playerData,
+                                  ref GameObject _healthBarObject,
+                                  ref GameObject _topCanvasHealthBarObject,
+                                  ref Transform _particleTransform,
+                                  ref Slider healthBarSlider,
+                                  ref Slider topCanvasHealthBarSlider,
+                                  ref TextMeshProUGUI damageHealthText)
+    {
+        // Handle death scenario
+        if (healthBarSlider.value == 0 && !_playerData.isWinning)
+        {
+
+            GameObject particleObject = null;
+
+            if (particleObject == null)
+            {
+                particleObject =
+                    PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.playerBurningTouchParticleObjectPoolCount);
+                particleObject.transform.position = _particleTransform.transform.position;
+
+                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 2f));
+            }
+
+
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
+
+            // Mark player as destroyed and handle enemy-related effects
+            _playerData.isDestroyed = true;
+
+            // Sync top canvas health bar and set player states
+            topCanvasHealthBarSlider.value = healthBarSlider.value;
+            _playerData.isDying = true;
+            _playerData.isIdling = false;
+            _playerData.isPlayable = false;
+
+            // Hide the player object
+            _playerData.objects[3].transform.localScale = Vector3.zero;
+
+            // Trigger delayed destruction
+            StartCoroutine(PlayerManager.GetInstance.DelayPlayerDestroy(3f));
+
+            healthBarSlider.value += 1;
+
+            return; // Early exit since the player is dead
+        }
+    }
+
     #region //Trigger
 
     public virtual void TriggerBullet(Collider other, PlayerData _playerData, 
@@ -623,48 +621,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         // Cache health value
         float healthValue = healthBarSlider.value;        
 
-        // Handle death scenario
-        if (healthValue == 0 && !_playerData.isWinning)
-        {
-            GameObject particleObject = null;
-
-            if (particleObject == null)
-            {
-                particleObject =
-                    PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.playerBurningTouchParticleObjectPoolCount);
-                particleObject.transform.position = _particleTransform.transform.position;
-
-                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 2f));
-            }
-            
-
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-
-            // Mark player as destroyed and handle enemy-related effects
-            _playerData.isDestroyed = true;
-
-            // Sync top canvas health bar and set player states
-            topCanvasHealthBarSlider.value = healthValue;
-            _playerData.isDying = true;
-            _playerData.isIdling = false;
-            _playerData.isPlayable = false;
-
-            // Hide the player object
-            playerObject.transform.localScale = Vector3.zero;
-
-            // Play death sound again
-            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-
-            // Trigger delayed destruction
-            StartCoroutine(PlayerManager.GetInstance.DelayPlayerDestroy(3f));
-            return; // Early exit since the player is dead
-        }
-
         // Handle non-death hit
-        if (!_playerData.isWinning && healthValue != 0)
+        if (!_playerData.isWinning && healthValue > 0)
         {
-            
-            //Debug.Log("in");
             GameObject particleObject = null;
             GameObject particleObject1 = null;
 
@@ -696,8 +655,6 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 DecreaseHealth(ref _playerData, PlayerManager.GetInstance._enemyBulletData.currentEnemyBulletDamage,
                             ref _healthBarObject, ref healthBarSlider, ref topCanvasHealthBarSlider, ref damageHealthText);
             }
-
-            
         }
     }
 
@@ -713,57 +670,56 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         _playerData.isPicking = true; // Set player state once at the start
 
-        
 
-        // Switch-case for different tag types
-        switch (value)
+
+        // If-else for different tag types
+        if (value == SceneController.Tags.Coin)
         {
-            case SceneController.Tags.Coin:
-                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin,
-                    other, objectPool);
-                ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
-                break;
-
-            case SceneController.Tags.RotateCoin:
-                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin,
-                    other, objectPool);
-                ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
-                break;
-
-            case SceneController.Tags.CheeseCoin:
-                _cheeseObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
-                HandleCoinPickup(_cheeseObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin,
-                    other, objectPool);
-                ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
-                break;
-
-            case SceneController.Tags.MushroomCoin:
-                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyMushroomCoin, PlayerSoundEffect.SoundEffectTypes.Poison,
-                    other, objectPool);
-                StartCoroutine(DelayMessageText(_playerData, PlayerData.poisonMessageTr, PlayerData.poisonMessage));
-                break;
-
-            case SceneController.Tags.BulletCoin:
-                HandleBulletCoinPickup(_coinObject, other, bulletAmountCanvas, _playerData, bulletAmountText, bulletPackAmountText, objectPool);
-                break;
-
-            case SceneController.Tags.HealthCoin:
-                if (PlayerManager.GetInstance.playerComponents.healthBarSlider.value < 75)
-                {
-                    HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyHealthCoin,
-                                     PlayerSoundEffect.SoundEffectTypes.IncreasingHealth, other, objectPool);
-                    StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessageTr, PlayerData.pickHealthObjectMessage));
-                }
-                break;
-
-            case SceneController.Tags.LevelUpKey:
-                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickedKeyMessageTr, PlayerData.pickedKeyMessage));
-                LevelData.currentOwnedLevelUpKeys++;
-
-                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyBulletCoin,
-                                 PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin, other, objectPool);
-                break;
+            HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin,
+                             other, objectPool);
+            ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
         }
+        else if (value == SceneController.Tags.RotateCoin)
+        {
+            HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin,
+                             other, objectPool);
+            ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
+        }
+        else if (value == SceneController.Tags.CheeseCoin)
+        {
+            _cheeseObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+            HandleCoinPickup(_cheeseObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin,
+                             other, objectPool);
+            ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
+        }
+        else if (value == SceneController.Tags.MushroomCoin)
+        {
+            HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyMushroomCoin, PlayerSoundEffect.SoundEffectTypes.Poison,
+                             other, objectPool);
+            StartCoroutine(DelayMessageText(_playerData, PlayerData.poisonMessageTr, PlayerData.poisonMessage));
+        }
+        else if (value == SceneController.Tags.BulletCoin)
+        {
+            HandleBulletCoinPickup(_coinObject, other, bulletAmountCanvas, _playerData, bulletAmountText, bulletPackAmountText, objectPool);
+        }
+        else if (value == SceneController.Tags.HealthCoin)
+        {
+            if (PlayerManager.GetInstance.playerComponents.healthBarSlider.value < 75)
+            {
+                HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyHealthCoin,
+                                 PlayerSoundEffect.SoundEffectTypes.IncreasingHealth, other, objectPool);
+                StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessageTr, PlayerData.pickHealthObjectMessage));
+            }
+        }
+        else if (value == SceneController.Tags.LevelUpKey)
+        {
+            StartCoroutine(DelayMessageText(_playerData, PlayerData.pickedKeyMessageTr, PlayerData.pickedKeyMessage));
+            LevelData.currentOwnedLevelUpKeys++;
+
+            HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyBulletCoin,
+                             PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin, other, objectPool);
+        }
+
     }
 
     void HandleBulletCoinPickup(GameObject _coinObject, Collider other, GameObject bulletAmountCanvas,
@@ -792,7 +748,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         else if (_playerData.bulletPackAmount < 2)
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-            _playerData.bulletPackAmount += 1;
+            ++_playerData.bulletPackAmount;
             StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage));
             other.gameObject.SetActive(false);
             bulletAmountCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
@@ -871,89 +827,21 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void CheckWeaponCollect(Collider other, BulletData _bulletData)
     {
-        HandleWeaponCollect(other, _bulletData,
-            SceneController.Tags.machine,
-            _bulletData.weaponStruct[9].weaponName,
-            ref _bulletData.weaponStruct[9].isWeapon,
-            ref _bulletData.weaponStruct[9].lockState,
-            _bulletData.weaponStruct[9].bulletPackAmount,
-            _bulletData.weaponStruct[9].id);
-
-        HandleWeaponCollect(other, _bulletData,
-            SceneController.Tags.shotGun,
-            _bulletData.weaponStruct[8].weaponName,
-            ref _bulletData.weaponStruct[8].isWeapon,
-            ref _bulletData.weaponStruct[8].lockState,
-            _bulletData.weaponStruct[8].bulletPackAmount,
-            _bulletData.weaponStruct[8].id);
-
-        HandleWeaponCollect(other, _bulletData,
-            SceneController.Tags.axe,
-            _bulletData.weaponStruct[1].weaponName,
-            ref _bulletData.weaponStruct[1].isWeapon,
-            ref _bulletData.weaponStruct[1].lockState,
-            _bulletData.weaponStruct[1].bulletPackAmount,
-            _bulletData.weaponStruct[1].id);
-
-        HandleWeaponCollect(other, _bulletData,
-            SceneController.Tags.bulldog,
-            _bulletData.weaponStruct[2].weaponName,
-            ref _bulletData.weaponStruct[2].isWeapon,
-            ref _bulletData.weaponStruct[2].lockState,
-            _bulletData.weaponStruct[2].bulletPackAmount,
-            _bulletData.weaponStruct[2].id);
-
-        HandleWeaponCollect(other, _bulletData,
-            SceneController.Tags.cow,
-            _bulletData.weaponStruct[3].weaponName,
-            ref _bulletData.weaponStruct[3].isWeapon,
-            ref _bulletData.weaponStruct[3].lockState,
-            _bulletData.weaponStruct[3].bulletPackAmount,
-            _bulletData.weaponStruct[3].id);
-
-        HandleWeaponCollect(other, _bulletData,
-            SceneController.Tags.crystal,
-            _bulletData.weaponStruct[4].weaponName,
-            ref _bulletData.weaponStruct[4].isWeapon,
-            ref _bulletData.weaponStruct[4].lockState,
-            _bulletData.weaponStruct[4].bulletPackAmount,
-            _bulletData.weaponStruct[4].id);
-
-        HandleWeaponCollect(other, _bulletData,
-            SceneController.Tags.demon,
-            _bulletData.weaponStruct[5].weaponName,
-            ref _bulletData.weaponStruct[5].isWeapon,
-            ref _bulletData.weaponStruct[5].lockState,
-            _bulletData.weaponStruct[5].bulletPackAmount,
-            _bulletData.weaponStruct[5].id);
-
-        HandleWeaponCollect(other, _bulletData,
-            SceneController.Tags.ice,
-            _bulletData.weaponStruct[6].weaponName,
-            ref _bulletData.weaponStruct[6].isWeapon,
-            ref _bulletData.weaponStruct[6].lockState,
-            _bulletData.weaponStruct[6].bulletPackAmount,
-            _bulletData.weaponStruct[6].id);
-
-        HandleWeaponCollect(other, _bulletData,
-            SceneController.Tags.electro,
-            _bulletData.weaponStruct[7].weaponName,
-            ref _bulletData.weaponStruct[7].isWeapon,
-            ref _bulletData.weaponStruct[7].lockState,
-            _bulletData.weaponStruct[7].bulletPackAmount,
-            _bulletData.weaponStruct[7].id);
-
-        HandleWeaponCollect(other, _bulletData,
-            SceneController.Tags.pistol,
-            _bulletData.weaponStruct[0].weaponName,
-            ref _bulletData.weaponStruct[0].isWeapon,
-            ref _bulletData.weaponStruct[0].lockState,
-            _bulletData.weaponStruct[0].bulletPackAmount,
-            _bulletData.weaponStruct[0].id);
+        for (int i = 0; i < _bulletData.weaponStruct.Length; i++)
+        {
+            HandleWeaponCollect(other, _bulletData,
+            _bulletData.weaponStruct[i].weaponName,
+            _bulletData.weaponStruct[i].weaponName,
+            ref _bulletData.weaponStruct[i].isWeapon,
+            ref _bulletData.weaponStruct[i].lockState,
+            _bulletData.weaponStruct[i].bulletPackAmount,
+            _bulletData.weaponStruct[i].id);
+        }
+        
     }
 
     // Helper method for handling weapon collection
-    private void HandleWeaponCollect(Collider other, BulletData _bulletData, SceneController.Tags tag,
+    private void HandleWeaponCollect(Collider other, BulletData _bulletData, string tag,
         string weaponName, ref bool weaponStatus, ref string weaponLock, int bulletAmount, int _currentWeaponID)
     {
         string tagString = tag.ToString();
@@ -963,13 +851,23 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             if (_bulletData.currentWeaponName != weaponName)
             {
                 Destroy(other.gameObject);
+
                 weaponStatus = true;
+
                 ObjectPool.creatablePlayerBullet = true;
+
                 weaponLock = _bulletData.unLocked;
+
                 PlayerData.currentBulletExplosionIsChanged = true;
+
                 _bulletData.currentBulletPackAmount = bulletAmount;
+
                 PlayerManager.GetInstance._playerData.bulletAmount = bulletAmount;
+
                 BulletData.currentWeaponID = _currentWeaponID;
+
+                PlayerPrefs.SetInt("CurrentWeaponID", BulletData.currentWeaponID);
+
                 IncreaseUsageLimit(_bulletData, tag);
 
                 StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, tagString, tagString));
@@ -982,49 +880,37 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
     }
 
-    void IncreaseUsageLimit(BulletData _bulletData, SceneController.Tags tag)
+    void IncreaseUsageLimit(BulletData _bulletData, string tag)
     {
-        Dictionary<SceneController.Tags, (Action unlock, Action<int> setUsageLimit, string usageCountKey)> bulletMap = new Dictionary<SceneController.Tags, (Action, Action<int>, string)>
+        // Define the bullet map only if it’s not already defined, reducing memory allocation.
+        var bulletMap = new Dictionary<string, Action>
     {
-        { SceneController.Tags.shotGun,    (() => _bulletData.weaponStruct[8].lockState =
-        _bulletData.unLocked, value => _bulletData.weaponStruct[8].usageLimit = value, "ShotGunUsageCount") },
-
-        { SceneController.Tags.machine,    (() => _bulletData.weaponStruct[9].lockState =
-        _bulletData.unLocked, value => _bulletData.weaponStruct[9].usageLimit = value, "MachineUsageCount") },
-
-        { SceneController.Tags.cow,     (() => _bulletData.weaponStruct[3].lockState =
-        _bulletData.unLocked, value => _bulletData.weaponStruct[3].usageLimit = value, "CowUsageCount") },
-
-        { SceneController.Tags.axe,     (() => _bulletData.weaponStruct[1].lockState =
-        _bulletData.unLocked, value => _bulletData.weaponStruct[1].usageLimit = value, "AxeUsageCount") },
-
-        { SceneController.Tags.crystal, (() => _bulletData.weaponStruct[4].lockState =
-        _bulletData.unLocked, value => _bulletData.weaponStruct[4].usageLimit = value, "CrystalUsageCount") },
-
-        { SceneController.Tags.demon,   (() => _bulletData.weaponStruct[5].lockState =
-        _bulletData.unLocked, value => _bulletData.weaponStruct[5].usageLimit = value, "DemonUsageCount") },
-
-        { SceneController.Tags.pistol,  (() => _bulletData.weaponStruct[0].lockState =
-        _bulletData.unLocked, value => _bulletData.weaponStruct[0].usageLimit = value, "PistolUsageCount") },
-
-        { SceneController.Tags.ice,     (() => _bulletData.weaponStruct[6].lockState =
-        _bulletData.unLocked, value => _bulletData.weaponStruct[6].usageLimit = value, "IceUsageCount") },
-
-        { SceneController.Tags.electro, (() => _bulletData.weaponStruct[7].lockState =
-        _bulletData.unLocked, value => _bulletData.weaponStruct[7].usageLimit = value, "ElectroUsageCount") },
-
-        { SceneController.Tags.bulldog, (() => _bulletData.weaponStruct[2].lockState =
-        _bulletData.unLocked, value => _bulletData.weaponStruct[2].usageLimit = value, "BulldogUsageCount") }
+        { _bulletData.weaponStruct[0].weaponName,    () => SetWeaponLimit(_bulletData, 0) },
+        { _bulletData.weaponStruct[1].weaponName,    () => SetWeaponLimit(_bulletData, 1) },
+        { _bulletData.weaponStruct[2].weaponName,        () => SetWeaponLimit(_bulletData, 2) },
+        { _bulletData.weaponStruct[3].weaponName,        () => SetWeaponLimit(_bulletData, 3) },
+        { _bulletData.weaponStruct[4].weaponName,    () => SetWeaponLimit(_bulletData, 4) },
+        { _bulletData.weaponStruct[5].weaponName,      () => SetWeaponLimit(_bulletData, 5) },
+        { _bulletData.weaponStruct[6].weaponName,     () => SetWeaponLimit(_bulletData, 6) },
+        { _bulletData.weaponStruct[7].weaponName,        () => SetWeaponLimit(_bulletData, 7) },
+        { _bulletData.weaponStruct[8].weaponName,    () => SetWeaponLimit(_bulletData, 8) },
+        { _bulletData.weaponStruct[9].weaponName,    () => SetWeaponLimit(_bulletData, 9) }
     };
 
-        if (bulletMap.ContainsKey(tag))
+        if (bulletMap.TryGetValue(tag, out var action))
         {
-            var actions = bulletMap[tag];
-            actions.unlock();
-            actions.setUsageLimit(1);
-            PlayerPrefs.SetInt(actions.usageCountKey, 1);
+            action();
         }
     }
+
+    // Helper function to handle setting lock state, usage limit, and PlayerPrefs.
+    void SetWeaponLimit(BulletData _bulletData, int index)
+    {
+        _bulletData.weaponStruct[index].lockState = _bulletData.unLocked;
+        _bulletData.weaponStruct[index].usageLimit = 1;
+        PlayerPrefs.SetInt($"{_bulletData.weaponStruct[index].weaponName}UsageCount", 1);
+    }
+
 
     public virtual void DamageArrowDirection(ref GameObject _damageArrow)
     {
@@ -1108,22 +994,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     #region //Touch
 
-    public virtual void TouchEnemy(Collision collision, 
-                                    PlayerData _playerData, 
+    public virtual void TouchEnemy(PlayerData _playerData, 
                                     ref Slider _healthBarSlider, 
-                                    ref Slider _topCanvasHealthBarSlider, 
-                                    ref Transform _particleTransform)
+                                    ref Slider _topCanvasHealthBarSlider)
     {
         //SoundEffect
         PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-        //DeathSFX(_playerData);
 
-        //EnemyAnimation--Collision
-        if (collision.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()))
-        {
-            //collision.gameObject.GetComponent<EnemyManager>().enemyData.isWalking = false;
-        }
-        
 
         _topCanvasHealthBarSlider.value = _healthBarSlider.value;
 
@@ -1331,7 +1208,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         if (PlayerManager.GetInstance.playerComponents._playerController)
         {
-            if (PlayerManager.GetInstance.playerComponents._playerController.jump && _playerData.jumpCount == 0 && _playerData.isGround)
+            if (PlayerManager.GetInstance.playerComponents._playerController.jump && _playerData.jumpCount == 0 && _playerData.isGround &&
+                !_playerData.isDying && _playerData.isPlayable)
             {
 
                 //SoundEffect

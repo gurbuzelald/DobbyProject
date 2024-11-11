@@ -7348,7 +7348,7 @@ GameObject:
   - component: {fileID: 1144495558397730457}
   - component: {fileID: 1144495558397730456}
   m_Layer: 0
-  m_Name: ILockText
+  m_Name: HLockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7485,7 +7485,7 @@ GameObject:
   - component: {fileID: 1144495558567542639}
   - component: {fileID: 1144495558567542625}
   m_Layer: 0
-  m_Name: GButtonImage
+  m_Name: FButtonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7660,7 +7660,7 @@ GameObject:
   - component: {fileID: 1144495558631091804}
   - component: {fileID: 1144495558631091803}
   m_Layer: 0
-  m_Name: FPriceText
+  m_Name: GPriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7796,7 +7796,7 @@ GameObject:
   - component: {fileID: 1144495558740298036}
   - component: {fileID: 1144495558740298035}
   m_Layer: 0
-  m_Name: IPriceText
+  m_Name: HPriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7932,7 +7932,7 @@ GameObject:
   - component: {fileID: 1144495558741304245}
   - component: {fileID: 1144495558741304244}
   m_Layer: 0
-  m_Name: JPriceErrorText
+  m_Name: KPriceErrorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8068,7 +8068,7 @@ GameObject:
   - component: {fileID: 1144495558752235333}
   - component: {fileID: 1144495558752235332}
   m_Layer: 0
-  m_Name: FPriceErrorText
+  m_Name: GPriceErrorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8204,7 +8204,7 @@ GameObject:
   - component: {fileID: 1144495558783667221}
   - component: {fileID: 1144495558783667220}
   m_Layer: 0
-  m_Name: BPriceErrorText
+  m_Name: CPriceErrorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8429,7 +8429,7 @@ GameObject:
   - component: {fileID: 1144495558797184978}
   - component: {fileID: 1144495558797184977}
   m_Layer: 0
-  m_Name: HPriceErrorText
+  m_Name: IPriceErrorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8565,7 +8565,7 @@ GameObject:
   - component: {fileID: 1144495558849629891}
   - component: {fileID: 1144495558849629890}
   m_Layer: 0
-  m_Name: HPriceText
+  m_Name: IPriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8701,7 +8701,7 @@ GameObject:
   - component: {fileID: 1144495558889860640}
   - component: {fileID: 1144495558889860655}
   m_Layer: 0
-  m_Name: EPriceText
+  m_Name: DPriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8838,7 +8838,7 @@ GameObject:
   - component: {fileID: 1144495558904335324}
   - component: {fileID: 1144495558904335326}
   m_Layer: 0
-  m_Name: FButtonImage
+  m_Name: GButtonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9062,7 +9062,7 @@ GameObject:
   - component: {fileID: 1144495558924915978}
   - component: {fileID: 1144495558924915977}
   m_Layer: 0
-  m_Name: CPriceErrorText
+  m_Name: EPriceErrorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9198,7 +9198,7 @@ GameObject:
   - component: {fileID: 1144495558934093637}
   - component: {fileID: 1144495558934093636}
   m_Layer: 0
-  m_Name: CLockText
+  m_Name: ELockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9334,7 +9334,7 @@ GameObject:
   - component: {fileID: 1144495558962904422}
   - component: {fileID: 1144495558962904421}
   m_Layer: 0
-  m_Name: KPriceErrorText
+  m_Name: JPriceErrorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9471,7 +9471,7 @@ GameObject:
   - component: {fileID: 1144495559076088551}
   - component: {fileID: 1144495559076088537}
   m_Layer: 0
-  m_Name: JButtonImage
+  m_Name: KButtonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9546,7 +9546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Keyboard>/#(Z)
+  m_ControlPath: <Gamepad>/start
 --- !u!1 &1144495559100692572
 GameObject:
   m_ObjectHideFlags: 0
@@ -9594,7 +9594,7 @@ GameObject:
   - component: {fileID: 1144495559106207461}
   - component: {fileID: 1144495559106207460}
   m_Layer: 0
-  m_Name: BLockText
+  m_Name: CLockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9730,7 +9730,7 @@ GameObject:
   - component: {fileID: 1144495559161674237}
   - component: {fileID: 1144495559161674236}
   m_Layer: 0
-  m_Name: BPriceText
+  m_Name: CPriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10002,7 +10002,7 @@ GameObject:
   - component: {fileID: 1144495559279222507}
   - component: {fileID: 1144495559279222506}
   m_Layer: 0
-  m_Name: EPriceErrorText
+  m_Name: DPriceErrorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10138,7 +10138,7 @@ GameObject:
   - component: {fileID: 1144495559332108182}
   - component: {fileID: 1144495559332108181}
   m_Layer: 0
-  m_Name: GPriceText
+  m_Name: FPriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10274,7 +10274,7 @@ GameObject:
   - component: {fileID: 1144495559383176185}
   - component: {fileID: 1144495559383176184}
   m_Layer: 0
-  m_Name: DPriceText
+  m_Name: BPriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10410,7 +10410,7 @@ GameObject:
   - component: {fileID: 1144495559415470609}
   - component: {fileID: 1144495559415470608}
   m_Layer: 0
-  m_Name: KLockText
+  m_Name: JLockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10547,7 +10547,7 @@ GameObject:
   - component: {fileID: 1144495559417147323}
   - component: {fileID: 1144495559417147322}
   m_Layer: 0
-  m_Name: BButtonImage
+  m_Name: CButtonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10635,7 +10635,7 @@ GameObject:
   - component: {fileID: 1144495559437961807}
   - component: {fileID: 1144495559437961806}
   m_Layer: 0
-  m_Name: DLockText
+  m_Name: BLockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10834,7 +10834,7 @@ GameObject:
   - component: {fileID: 1144495559556965171}
   - component: {fileID: 1144495559556965170}
   m_Layer: 0
-  m_Name: FLockText
+  m_Name: GLockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10970,7 +10970,7 @@ GameObject:
   - component: {fileID: 1144495559590536402}
   - component: {fileID: 1144495559590536401}
   m_Layer: 0
-  m_Name: JLockText
+  m_Name: KLockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11106,7 +11106,7 @@ GameObject:
   - component: {fileID: 1144495559643803249}
   - component: {fileID: 1144495559643803248}
   m_Layer: 0
-  m_Name: HLockText
+  m_Name: ILockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11243,7 +11243,7 @@ GameObject:
   - component: {fileID: 1144495559685322876}
   - component: {fileID: 1144495559685322875}
   m_Layer: 0
-  m_Name: DButtonImage
+  m_Name: BButtonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11331,7 +11331,7 @@ GameObject:
   - component: {fileID: 1144495559735158404}
   - component: {fileID: 1144495559735158403}
   m_Layer: 0
-  m_Name: CPriceText
+  m_Name: EPriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11467,7 +11467,7 @@ GameObject:
   - component: {fileID: 1144495559761499367}
   - component: {fileID: 1144495559761499366}
   m_Layer: 0
-  m_Name: KPriceText
+  m_Name: JPriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11604,7 +11604,7 @@ GameObject:
   - component: {fileID: 1144495559888734879}
   - component: {fileID: 1144495559888734878}
   m_Layer: 0
-  m_Name: IButtonImage
+  m_Name: HButtonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11828,7 +11828,7 @@ GameObject:
   - component: {fileID: 1144495559996489617}
   - component: {fileID: 1144495559996489616}
   m_Layer: 0
-  m_Name: ELockText
+  m_Name: DLockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11965,7 +11965,7 @@ GameObject:
   - component: {fileID: 1144495560030430780}
   - component: {fileID: 1144495560030430779}
   m_Layer: 0
-  m_Name: HButtonImage
+  m_Name: IButtonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12053,7 +12053,7 @@ GameObject:
   - component: {fileID: 1144495560035951691}
   - component: {fileID: 1144495560035951690}
   m_Layer: 0
-  m_Name: DPriceErrorText
+  m_Name: BPriceErrorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12189,7 +12189,7 @@ GameObject:
   - component: {fileID: 1144495560129725769}
   - component: {fileID: 1144495560129725768}
   m_Layer: 0
-  m_Name: JPriceText
+  m_Name: KPriceText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12325,7 +12325,7 @@ GameObject:
   - component: {fileID: 1144495560228238965}
   - component: {fileID: 1144495560228238964}
   m_Layer: 0
-  m_Name: IPriceErrorText
+  m_Name: HPriceErrorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12461,7 +12461,7 @@ GameObject:
   - component: {fileID: 1144495560243284215}
   - component: {fileID: 1144495560243284214}
   m_Layer: 0
-  m_Name: GLockText
+  m_Name: FLockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12598,7 +12598,7 @@ GameObject:
   - component: {fileID: 1144495560247295853}
   - component: {fileID: 1144495560247295855}
   m_Layer: 0
-  m_Name: CButtonImage
+  m_Name: EButtonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12687,7 +12687,7 @@ GameObject:
   - component: {fileID: 1144495560271896804}
   - component: {fileID: 1144495560271896806}
   m_Layer: 0
-  m_Name: EButtonImage
+  m_Name: DButtonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12776,7 +12776,7 @@ GameObject:
   - component: {fileID: 1144495560278716970}
   - component: {fileID: 1144495560278716972}
   m_Layer: 0
-  m_Name: KButtonImage
+  m_Name: JButtonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12864,7 +12864,7 @@ GameObject:
   - component: {fileID: 1144495560316583017}
   - component: {fileID: 1144495560316583016}
   m_Layer: 0
-  m_Name: GPriceErrorText
+  m_Name: FPriceErrorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38760,7 +38760,6 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 5d6b809286a714a518f11ca5591f7e6a, type: 2}
-  - {fileID: 2100000, guid: 08af90c85d3a240419f994245b5ba57e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -40013,7 +40012,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5089017429157080013}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_ConstrainProportionsScale: 0
@@ -40021,7 +40020,7 @@ Transform:
   - {fileID: 4339427289471711942}
   - {fileID: 8862644031100635293}
   m_Father: {fileID: 8042373581755383088}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &7818744466101354356
 Animator:
   serializedVersion: 7
@@ -40032,7 +40031,7 @@ Animator:
   m_GameObject: {fileID: 5089017429157080013}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 63f21c8aab397457489fc94e198150e1, type: 2}
+  m_Controller: {fileID: 9100000, guid: f72b59192508248898e90ca7d5a347e1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -60134,7 +60133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8042373581584470835}
   m_Layer: 0
-  m_Name: KStaff
+  m_Name: JStaff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60171,7 +60170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8042373581591915605}
   m_Layer: 0
-  m_Name: EStaff
+  m_Name: DStaff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60390,7 +60389,7 @@ GameObject:
   - component: {fileID: 8042373581843319713}
   - component: {fileID: 8042373581843319710}
   m_Layer: 0
-  m_Name: CNameText
+  m_Name: ENameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60524,7 +60523,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8042373581920027613}
   m_Layer: 0
-  m_Name: JStaff
+  m_Name: KStaff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60561,7 +60560,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8042373581924102202}
   m_Layer: 0
-  m_Name: HStaff
+  m_Name: IStaff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60754,19 +60753,19 @@ MonoBehaviour:
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
   characterPriceErrorTextObjects:
   - {fileID: 1144495558921256670}
-  - {fileID: 1144495558783667218}
-  - {fileID: 1144495558924915991}
   - {fileID: 1144495560035951688}
+  - {fileID: 1144495558783667218}
   - {fileID: 1144495559279222504}
-  - {fileID: 1144495558752235330}
+  - {fileID: 1144495558924915991}
   - {fileID: 1144495560316583030}
-  - {fileID: 1144495558797184991}
+  - {fileID: 1144495558752235330}
   - {fileID: 1144495560228238962}
-  - {fileID: 1144495558741304242}
+  - {fileID: 1144495558797184991}
   - {fileID: 1144495558962904419}
+  - {fileID: 1144495558741304242}
   characterStaffs:
-  - {fileID: 8042373583003342668}
   - {fileID: 8042373581755383089}
+  - {fileID: 8042373583003342668}
   - {fileID: 8042373582885913806}
   - {fileID: 8042373581591915602}
   - {fileID: 8042373583058046585}
@@ -61066,7 +61065,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8042373582479448305}
   m_Layer: 0
-  m_Name: GStaff
+  m_Name: FStaff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61105,7 +61104,7 @@ GameObject:
   - component: {fileID: 8042373582502179135}
   - component: {fileID: 8042373582502179132}
   m_Layer: 0
-  m_Name: FNameText
+  m_Name: GNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61241,7 +61240,7 @@ GameObject:
   - component: {fileID: 8042373582515061432}
   - component: {fileID: 8042373582515061433}
   m_Layer: 0
-  m_Name: HNameText
+  m_Name: INameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61530,7 +61529,7 @@ GameObject:
   - component: {fileID: 8042373582586785997}
   - component: {fileID: 8042373582586785994}
   m_Layer: 0
-  m_Name: BNameText
+  m_Name: CNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61666,7 +61665,7 @@ GameObject:
   - component: {fileID: 8042373582595874794}
   - component: {fileID: 8042373582595874795}
   m_Layer: 0
-  m_Name: ENameText
+  m_Name: DNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61802,7 +61801,7 @@ GameObject:
   - component: {fileID: 8042373582839057326}
   - component: {fileID: 8042373582839057327}
   m_Layer: 0
-  m_Name: KNameText
+  m_Name: JNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61936,7 +61935,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8042373582882525775}
   m_Layer: 0
-  m_Name: IStaff
+  m_Name: HStaff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61973,7 +61972,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8042373582885913809}
   m_Layer: 0
-  m_Name: BStaff
+  m_Name: CStaff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62095,7 +62094,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8042373583003342671}
   m_Layer: 0
-  m_Name: DStaff
+  m_Name: BStaff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62133,7 +62132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8042373583058046584}
   m_Layer: 0
-  m_Name: CStaff
+  m_Name: EStaff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62204,7 +62203,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8042373583167063534}
   m_Layer: 0
-  m_Name: FStaff
+  m_Name: GStaff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62285,7 +62284,7 @@ GameObject:
   - component: {fileID: 8042373583306413037}
   - component: {fileID: 8042373583306413034}
   m_Layer: 0
-  m_Name: GNameText
+  m_Name: FNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62650,7 +62649,7 @@ GameObject:
   - component: {fileID: 8042373583543091963}
   - component: {fileID: 8042373583543091960}
   m_Layer: 0
-  m_Name: JNameText
+  m_Name: KNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62786,7 +62785,7 @@ GameObject:
   - component: {fileID: 8042373583577848949}
   - component: {fileID: 8042373583577848946}
   m_Layer: 0
-  m_Name: INameText
+  m_Name: HNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62964,7 +62963,7 @@ GameObject:
   - component: {fileID: 8042373583650275903}
   - component: {fileID: 8042373583650275900}
   m_Layer: 0
-  m_Name: DNameText
+  m_Name: BNameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64729,7 +64728,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8356983375292620145}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 200, y: 200, z: 200}
   m_ConstrainProportionsScale: 0
@@ -64737,7 +64736,7 @@ Transform:
   - {fileID: 5598942422684044815}
   - {fileID: 6432504578956408134}
   m_Father: {fileID: 8042373581755383088}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &134158268692084643
 Animator:
   serializedVersion: 7
@@ -64748,7 +64747,7 @@ Animator:
   m_GameObject: {fileID: 8356983375292620145}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 63f21c8aab397457489fc94e198150e1, type: 2}
+  m_Controller: {fileID: 9100000, guid: f72b59192508248898e90ca7d5a347e1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

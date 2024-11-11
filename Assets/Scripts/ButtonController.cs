@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ButtonController : MonoBehaviour
 {
-    private MenuInput menuInput;
+    private GameInput gameInput;
 
     public PlayerData playerData;
     public BulletData bulletData;
@@ -69,26 +69,26 @@ public class ButtonController : MonoBehaviour
     [SerializeField] SettingController settingController;
     [SerializeField] LevelUpButtonController levelUpButtonController;
 
-    public float buttonTime;
+    public static float buttonTimeFlow;
 
     void Awake()
     {
-        buttonTime = 0;
+        buttonTimeFlow = 0;
 
-        menuInput = new MenuInput();
+        gameInput = new GameInput();
     }
     private void OnEnable()
     {
-        if (menuInput != null)
+        if (gameInput != null)
         {
-            menuInput.Enable();
+            gameInput.Enable();
         }        
     }
     private void OnDisable()
     {
-        if (menuInput != null)
+        if (gameInput != null)
         {
-            menuInput.Disable();
+            gameInput.Disable();
         }        
     }
 
@@ -103,15 +103,13 @@ public class ButtonController : MonoBehaviour
         EndSceneButtons();
         WinSceneButtons();
 
-        DelayButton();
-        //Debug.Log(buttonTime);
-
+        ButtonTimeFlow();
     }
     
 
-    void DelayButton()
+    void ButtonTimeFlow()
     {
-        buttonTime += Time.deltaTime;
+        buttonTimeFlow += Time.deltaTime;
     }
 
 
@@ -120,9 +118,9 @@ public class ButtonController : MonoBehaviour
     {
         if (SceneController.CheckSceneName() == SceneController.Scenes.Win.ToString())
         {
-            winSceneMenuButton = menuInput.WinSceneButtons.MenuButton.IsPressed();
-            winScenePlayAgainButton = menuInput.WinSceneButtons.PlayAgainButton.IsPressed();
-            winSceneQuitButton = menuInput.WinSceneButtons.QuitButton.IsPressed();
+            winSceneMenuButton = gameInput.WinSceneButtons.MenuButton.IsPressed();
+            winScenePlayAgainButton = gameInput.WinSceneButtons.PlayAgainButton.IsPressed();
+            winSceneQuitButton = gameInput.WinSceneButtons.QuitButton.IsPressed();
 
             WinSceneEvents();
         }
@@ -130,23 +128,23 @@ public class ButtonController : MonoBehaviour
 
     void WinSceneEvents()
     {
-        if (winSceneMenuButton && buttonTime >= .2f && sceneController)
+        if (winSceneMenuButton && buttonTimeFlow >= .2f && sceneController)
         {
             SceneController.LoadMenuScene();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (winScenePlayAgainButton && buttonTime >= .2f && sceneController)
+        if (winScenePlayAgainButton && buttonTimeFlow >= .2f && sceneController)
         {
             sceneController.PlayAgain();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (winSceneQuitButton && buttonTime >= .2f && sceneController)
+        if (winSceneQuitButton && buttonTimeFlow >= .2f && sceneController)
         {
             sceneController.QuitGame();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
     }
     #endregion
@@ -157,9 +155,9 @@ public class ButtonController : MonoBehaviour
     {
         if (SceneController.CheckSceneName() == SceneController.Scenes.End.ToString())
         {
-            endSceneMenuButton = menuInput.EndSceneButttons.MenuButton.IsPressed();
-            endScenePlayAgainButton = menuInput.EndSceneButttons.PlayAgainButton.IsPressed();
-            endSceneQuitButton = menuInput.EndSceneButttons.QuitButton.IsPressed();
+            endSceneMenuButton = gameInput.EndSceneButttons.MenuButton.IsPressed();
+            endScenePlayAgainButton = gameInput.EndSceneButttons.PlayAgainButton.IsPressed();
+            endSceneQuitButton = gameInput.EndSceneButttons.QuitButton.IsPressed();
 
             EndSceneEvents();
         }        
@@ -167,23 +165,23 @@ public class ButtonController : MonoBehaviour
 
     void EndSceneEvents()
     {
-        if (endSceneMenuButton && buttonTime >= .2f && sceneController)
+        if (endSceneMenuButton && buttonTimeFlow >= .2f && sceneController)
         {
             SceneController.LoadMenuScene();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (endScenePlayAgainButton && buttonTime >= .2f && sceneController)
+        if (endScenePlayAgainButton && buttonTimeFlow >= .2f && sceneController)
         {
             sceneController.PlayAgain();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (endSceneQuitButton && buttonTime >= .2f && sceneController)
+        if (endSceneQuitButton && buttonTimeFlow >= .2f && sceneController)
         {
             sceneController.QuitGame();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
     }
     #endregion
@@ -193,84 +191,37 @@ public class ButtonController : MonoBehaviour
     {
         if (SceneController.CheckSceneName() == SceneController.Scenes.PickWeapon.ToString())
         {
-            pickWeaponMenuButton = menuInput.PickWeaponSceneButtons.MenuButton.IsPressed();
-            openPickCharacterSceneByPickWeaponSceneButton = menuInput.PickWeaponSceneButtons.PickCharacterButton.IsPressed();
+            pickWeaponMenuButton = gameInput.PickWeaponSceneButtons.MenuButton.IsPressed();
+            openPickCharacterSceneByPickWeaponSceneButton = gameInput.PickWeaponSceneButtons.PickCharacterButton.IsPressed();
 
-            weaponButtonBools[0] = menuInput.PickWeaponSceneButtons.Pistol.IsPressed();
-            weaponButtonBools[1] = menuInput.PickWeaponSceneButtons.Axe.IsPressed();
-            weaponButtonBools[2] = menuInput.PickWeaponSceneButtons.Bulldog.IsPressed();
-            weaponButtonBools[3] = menuInput.PickWeaponSceneButtons.Cow.IsPressed();
-            weaponButtonBools[4] = menuInput.PickWeaponSceneButtons.Crystal.IsPressed();
-            weaponButtonBools[5] = menuInput.PickWeaponSceneButtons.Demon.IsPressed();
-            weaponButtonBools[6] = menuInput.PickWeaponSceneButtons.Ice.IsPressed();
-            weaponButtonBools[7] = menuInput.PickWeaponSceneButtons.Electro.IsPressed();
-            weaponButtonBools[8] = menuInput.PickWeaponSceneButtons.Shotgun.IsPressed();
-            weaponButtonBools[9] = menuInput.PickWeaponSceneButtons.Machine.IsPressed();
+            weaponButtonBools[0] = gameInput.PickWeaponSceneButtons.A.IsPressed();
+            weaponButtonBools[1] = gameInput.PickWeaponSceneButtons.B.IsPressed();
+            weaponButtonBools[2] = gameInput.PickWeaponSceneButtons.C.IsPressed();
+            weaponButtonBools[3] = gameInput.PickWeaponSceneButtons.D.IsPressed();
+            weaponButtonBools[4] = gameInput.PickWeaponSceneButtons.E.IsPressed();
+            weaponButtonBools[5] = gameInput.PickWeaponSceneButtons.F.IsPressed();
+            weaponButtonBools[6] = gameInput.PickWeaponSceneButtons.G.IsPressed();
+            weaponButtonBools[7] = gameInput.PickWeaponSceneButtons.H.IsPressed();
+            weaponButtonBools[8] = gameInput.PickWeaponSceneButtons.I.IsPressed();
+            weaponButtonBools[9] = gameInput.PickWeaponSceneButtons.J.IsPressed();
             PickWeaponEvents();
         }
     }
-    /*public bool GetButton(string weaponName)
-    {
-        if (weaponName == bulletData.weaponStruct[0].weaponName)
-        {
-            return Pistol;
-        }
-        else if (weaponName == bulletData.weaponStruct[1].weaponName)
-        {
-            return Axe;
-        }
-        else if (weaponName == bulletData.weaponStruct[2].weaponName)
-        {
-            return Bulldog;
-        }
-        else if (weaponName == bulletData.weaponStruct[3].weaponName)
-        {
-            return Cow;
-        }
-        else if (weaponName == bulletData.weaponStruct[4].weaponName)
-        {
-            return Crystal;
-        }
-        else if (weaponName == bulletData.weaponStruct[5].weaponName)
-        {
-            return Demon;
-        }
-        else if (weaponName == bulletData.weaponStruct[6].weaponName)
-        {
-            return Ice;
-        }
-        else if (weaponName == bulletData.weaponStruct[7].weaponName)
-        {
-            return Electro;
-        }
-        else if (weaponName == bulletData.weaponStruct[8].weaponName)
-        {
-            return ShotGun;
-        }
-        else if (weaponName == bulletData.weaponStruct[9].weaponName)
-        {
-            return Machine;
-        }
-        else
-        {
-            return false;
-        }
-    }*/
 
     void PickWeaponEvents()
     {
-        if (pickWeaponMenuButton && buttonTime >= .2f && sceneController)
+        if (pickWeaponMenuButton && buttonTimeFlow >= .2f && sceneController)
         {
             SceneController.LoadMenuScene();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
 
-        if (openPickCharacterSceneByPickWeaponSceneButton && buttonTime >= .2f && sceneController)
+        if (openPickCharacterSceneByPickWeaponSceneButton && buttonTimeFlow >= .2f && sceneController)
         {
             SceneController.LoadCharacterChoosingScene();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
     }
     #endregion
@@ -281,71 +232,46 @@ public class ButtonController : MonoBehaviour
     {
         if (SceneController.CheckSceneName() == SceneController.Scenes.PickCharacter.ToString())
         {
-            pickCharacterMenuButton = menuInput.PickCharacterSceneButtons.MenuButton.IsPressed();
-            openPickWeaponSceneByPickCharacterSceneButton = menuInput.PickCharacterSceneButtons.PickWeaponButton.IsPressed();
+            pickCharacterMenuButton = gameInput.PickCharacterSceneButtons.MenuButton.IsPressed();
+            openPickWeaponSceneByPickCharacterSceneButton = gameInput.PickCharacterSceneButtons.PickWeaponButton.IsPressed();
 
 
-            characterButtonBools[0] = menuInput.PickCharacterSceneButtons.A.IsPressed();
-            characterButtonBools[1] = menuInput.PickCharacterSceneButtons.B.IsPressed();
-            characterButtonBools[2] = menuInput.PickCharacterSceneButtons.C.IsPressed();
-            characterButtonBools[3] = menuInput.PickCharacterSceneButtons.D.IsPressed();
-            characterButtonBools[4] = menuInput.PickCharacterSceneButtons.E.IsPressed();
-            characterButtonBools[5] = menuInput.PickCharacterSceneButtons.F.IsPressed();
-            characterButtonBools[6] = menuInput.PickCharacterSceneButtons.G.IsPressed();
-            characterButtonBools[7] = menuInput.PickCharacterSceneButtons.I.IsPressed();
-            characterButtonBools[8] = menuInput.PickCharacterSceneButtons.J.IsPressed();
-            characterButtonBools[9] = menuInput.PickCharacterSceneButtons.K.IsPressed();
-            characterButtonBools[10] = menuInput.PickCharacterSceneButtons.L.IsPressed();
+            characterButtonBools[0] = gameInput.PickCharacterSceneButtons.A.IsPressed();
+            characterButtonBools[1] = gameInput.PickCharacterSceneButtons.B.IsPressed();
+            characterButtonBools[2] = gameInput.PickCharacterSceneButtons.C.IsPressed();
+            characterButtonBools[3] = gameInput.PickCharacterSceneButtons.D.IsPressed();
+            characterButtonBools[4] = gameInput.PickCharacterSceneButtons.E.IsPressed();
+            characterButtonBools[5] = gameInput.PickCharacterSceneButtons.F.IsPressed();
+            characterButtonBools[6] = gameInput.PickCharacterSceneButtons.G.IsPressed();
+            characterButtonBools[7] = gameInput.PickCharacterSceneButtons.H.IsPressed();
+            characterButtonBools[8] = gameInput.PickCharacterSceneButtons.I.IsPressed();
+            characterButtonBools[9] = gameInput.PickCharacterSceneButtons.J.IsPressed();
+            characterButtonBools[10] = gameInput.PickCharacterSceneButtons.K.IsPressed();
             
 
             PickCharacterEvents();
         }    
     }
-    public bool GetButtonState(int characteID)
+    public bool GetCharacterButtonState(int characterID)
     {
-        if (characteID == playerData.characterStruct[0].id)
+        if (buttonTimeFlow >= .2f)
         {
-            return characterButtonBools[0];
-        }
-        else if (characteID == playerData.characterStruct[1].id)
-        {
-            return characterButtonBools[1];
-        }
-        else if (characteID == playerData.characterStruct[2].id)
-        {
-            return characterButtonBools[2];
-        }
-        else if (characteID == playerData.characterStruct[3].id)
-        {
-            return characterButtonBools[3];
-        }
-        else if (characteID == playerData.characterStruct[4].id)
-        {
-            return characterButtonBools[4];
-        }
-        else if (characteID == playerData.characterStruct[5].id)
-        {
-            return characterButtonBools[5];
-        }
-        else if (characteID == playerData.characterStruct[6].id)
-        {
-            return characterButtonBools[6];
-        }
-        else if (characteID == playerData.characterStruct[7].id)
-        {
-            return characterButtonBools[7];
-        }
-        else if (characteID == playerData.characterStruct[8].id)
-        {
-            return characterButtonBools[8];
-        }
-        else if (characteID == playerData.characterStruct[9].id)
-        {
-            return characterButtonBools[9];
-        }
-        else if (characteID == playerData.characterStruct[10].id)
-        {
-            return characterButtonBools[10];
+            for (int i = 1; i < playerData.characterStruct.Length; i++)
+            {
+                if (characterID == playerData.characterStruct[i].id)
+                {
+                    return characterButtonBools[i];
+                }
+                
+            }
+            if (characterID == playerData.characterStruct[0].id)
+            {
+                return characterButtonBools[0];
+            }
+            else
+            {
+                return false;
+            }
         }
         else
         {
@@ -355,18 +281,18 @@ public class ButtonController : MonoBehaviour
 
     void PickCharacterEvents()
     {
-        if (pickCharacterMenuButton && buttonTime >= .2f && sceneController)
+        if (pickCharacterMenuButton && buttonTimeFlow >= .2f && sceneController)
         {
             SceneController.LoadMenuScene();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
 
-        if (openPickWeaponSceneByPickCharacterSceneButton && buttonTime >= .2f && sceneController)
+        if (openPickWeaponSceneByPickCharacterSceneButton && buttonTimeFlow >= .2f && sceneController)
         {
             sceneController.LoadWeaponChoosingScene();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
     }
     #endregion
@@ -376,18 +302,18 @@ public class ButtonController : MonoBehaviour
     {
         if (SceneController.CheckSceneName() == SceneController.Scenes.Levels.ToString())
         {
-            levelsMenuButton = menuInput.LevelsSceneButtons.LevelsMenubutton.IsPressed();
+            levelsMenuButton = gameInput.LevelsSceneButtons.LevelsMenuButton.IsPressed();
 
-            level1 = menuInput.LevelsSceneButtons.Level1.IsPressed();
-            level2 = menuInput.LevelsSceneButtons.Level2.IsPressed();
-            level3 = menuInput.LevelsSceneButtons.Level3.IsPressed();
-            level4 = menuInput.LevelsSceneButtons.Level4.IsPressed();
-            level5 = menuInput.LevelsSceneButtons.Level5.IsPressed();
-            level6 = menuInput.LevelsSceneButtons.Level6.IsPressed();
-            level7 = menuInput.LevelsSceneButtons.Level7.IsPressed();
-            level8 = menuInput.LevelsSceneButtons.Level8.IsPressed();
-            level9 = menuInput.LevelsSceneButtons.Level9.IsPressed();
-            level10 = menuInput.LevelsSceneButtons.Level10.IsPressed();
+            level1 = gameInput.LevelsSceneButtons.Level1.IsPressed();
+            level2 = gameInput.LevelsSceneButtons.Level2.IsPressed();
+            level3 = gameInput.LevelsSceneButtons.Level3.IsPressed();
+            level4 = gameInput.LevelsSceneButtons.Level4.IsPressed();
+            level5 = gameInput.LevelsSceneButtons.Level5.IsPressed();
+            level6 = gameInput.LevelsSceneButtons.Level6.IsPressed();
+            level7 = gameInput.LevelsSceneButtons.Level7.IsPressed();
+            level8 = gameInput.LevelsSceneButtons.Level8.IsPressed();
+            level9 = gameInput.LevelsSceneButtons.Level9.IsPressed();
+            level10 = gameInput.LevelsSceneButtons.Level10.IsPressed();
 
             LevelsEvents();
         }
@@ -397,72 +323,72 @@ public class ButtonController : MonoBehaviour
 
     void LevelsEvents()
     {
-        if (levelsMenuButton && buttonTime >= .2f && sceneController)
+        if (levelsMenuButton && buttonTimeFlow >= .2f && sceneController)
         {
             SceneController.LoadMenuScene();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
 
-        if (level1 && buttonTime >= .2f && levelUpButtonController)
+        if (level1 && buttonTimeFlow >= .2f && levelUpButtonController)
         {
             levelUpButtonController.Level1();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (level2 && buttonTime >= .2f && levelUpButtonController)
+        if (level2 && buttonTimeFlow >= .2f && levelUpButtonController)
         {
             levelUpButtonController.Level2();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (level3 && buttonTime >= .2f && levelUpButtonController)
+        if (level3 && buttonTimeFlow >= .2f && levelUpButtonController)
         {
             levelUpButtonController.Level3();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (level4 && buttonTime >= .2f && levelUpButtonController)
+        if (level4 && buttonTimeFlow >= .2f && levelUpButtonController)
         {
             levelUpButtonController.Level4();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (level5 && buttonTime >= .2f && levelUpButtonController)
+        if (level5 && buttonTimeFlow >= .2f && levelUpButtonController)
         {
             levelUpButtonController.Level5();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (level6 && buttonTime >= .2f && levelUpButtonController)
+        if (level6 && buttonTimeFlow >= .2f && levelUpButtonController)
         {
             levelUpButtonController.Level6();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (level7 && buttonTime >= .2f && levelUpButtonController)
+        if (level7 && buttonTimeFlow >= .2f && levelUpButtonController)
         {
             levelUpButtonController.Level7();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (level8 && buttonTime >= .2f && levelUpButtonController)
+        if (level8 && buttonTimeFlow >= .2f && levelUpButtonController)
         {
             levelUpButtonController.Level8();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (level9 && buttonTime >= .2f && levelUpButtonController)
+        if (level9 && buttonTimeFlow >= .2f && levelUpButtonController)
         {
             levelUpButtonController.Level9();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (level10 && buttonTime >= .2f && levelUpButtonController)
+        if (level10 && buttonTimeFlow >= .2f && levelUpButtonController)
         {
             levelUpButtonController.Level10();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
     }
     #endregion
@@ -472,16 +398,16 @@ public class ButtonController : MonoBehaviour
     {
         if (SceneController.CheckSceneName() == SceneController.Scenes.Menu.ToString())
         {
-            playButton = menuInput.MenuSceneButtons.PlayButton.IsPressed();
-            levelsButton = menuInput.MenuSceneButtons.LevelsButton.IsPressed();
-            settingButton = menuInput.MenuSceneButtons.SettingButton.IsPressed();
-            quitButton = menuInput.MenuSceneButtons.QuitButton.IsPressed();
-            languageButton = menuInput.MenuSceneButtons.LanguageButton.IsPressed();
-            menuDefaultButton = menuInput.MenuSceneButtons.MenuDefaultButton.IsPressed();
-            pickCharacterButton = menuInput.MenuSceneButtons.PickCharacterButton.IsPressed();
-            pickWeaponButton = menuInput.MenuSceneButtons.PickWeaponButton.IsPressed();
-            continueButton = menuInput.MenuSceneButtons.ContinueButton.IsPressed();
-            resetGameButton = menuInput.MenuSceneButtons.ResetGameButton.IsPressed();
+            playButton = gameInput.MenuSceneButtons.PlayButton.IsPressed();
+            levelsButton = gameInput.MenuSceneButtons.LevelsButton.IsPressed();
+            settingButton = gameInput.MenuSceneButtons.SettingButton.IsPressed();
+            quitButton = gameInput.MenuSceneButtons.QuitButton.IsPressed();
+            languageButton = gameInput.MenuSceneButtons.LanguageButton.IsPressed();
+            menuDefaultButton = gameInput.MenuSceneButtons.MenuDefaultButton.IsPressed();
+            pickCharacterButton = gameInput.MenuSceneButtons.PickCharacterButton.IsPressed();
+            pickWeaponButton = gameInput.MenuSceneButtons.PickWeaponButton.IsPressed();
+            continueButton = gameInput.MenuSceneButtons.ContinueButton.IsPressed();
+            resetGameButton = gameInput.MenuSceneButtons.ResetGameButton.IsPressed();
 
             MenuSceneEvents();
         }
@@ -569,16 +495,16 @@ public class ButtonController : MonoBehaviour
 
     void TopPanelButtons()
     {
-        pauseButton = menuInput.TopPanelButtons.PauseButton.IsPressed();
-        playAgainButton = menuInput.TopPanelButtons.PlayAgainButton.IsPressed();
+        pauseButton = gameInput.TopPanelButtons.PauseButton.IsPressed();
+        playAgainButton = gameInput.TopPanelButtons.PlayAgainButton.IsPressed();
 
         TopPanelEvents();
     }
 
     void PausePanelButtons()
     {
-        menuButton = menuInput.PausePanelButtons.MenuButton.IsPressed();
-        defaultButton = menuInput.PausePanelButtons.DefaultButton.IsPressed();
+        menuButton = gameInput.PausePanelButtons.MenuButton.IsPressed();
+        defaultButton = gameInput.PausePanelButtons.DefaultButton.IsPressed();
 
         PausePanelEvents();
     }
@@ -586,33 +512,33 @@ public class ButtonController : MonoBehaviour
 
     void TopPanelEvents()
     {
-        if (pauseButton && buttonTime >= .2f && sceneController)
+        if (pauseButton && buttonTimeFlow >= .2f && sceneController)
         {
             sceneController.PauseGame();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (playAgainButton && buttonTime >= .2f)
+        if (playAgainButton && buttonTimeFlow >= .2f)
         {
             sceneController.PlayAgainInLevel();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
     }
 
     void PausePanelEvents()
     {
-        if (menuButton && buttonTime >= .2f)
+        if (menuButton && buttonTimeFlow >= .2f)
         {
             SceneController.LoadMenuScene();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
-        if (defaultButton && buttonTime >= .2f && settingController)
+        if (defaultButton && buttonTimeFlow >= .2f && settingController)
         {
             settingController.SetDefaulth();
 
-            buttonTime = 0;
+            buttonTimeFlow = 0;
         }
     }
     #endregion

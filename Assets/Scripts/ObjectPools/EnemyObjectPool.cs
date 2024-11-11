@@ -59,15 +59,18 @@ public class EnemyObjectPool : MonoBehaviour
         // Select prefab index based on the poolIndex
         switch (poolIndex)
         {
-            case 0: // Enemy Bullet
-            case 2: // Enemies
-            case 3: // Boss Enemy
+            case 0:
+            case 2:
+            case 3:
                 prefabIndex = LevelData.currentLevelId;
                 break;
-            case 1: // Mid Particle
-            case 4: // Chest Monsters
-            case 5: // Chest Monsters2
+            case 1: 
+            case 4: 
+            case 5: 
                 prefabIndex = 0;
+                break;
+            case 6:
+                prefabIndex = BulletData.currentWeaponID;
                 break;
             default:
                 return null; // Return null if poolIndex is out of range

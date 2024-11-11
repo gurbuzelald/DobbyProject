@@ -30,10 +30,6 @@ public class ObjectPool : MonoBehaviour
 
     private GameObject instantiateObject;
 
-    private void Awake()
-    {
-        SetPlayerBulletIDAtStart(playerBulletData);
-    }
 
     void Start()
     {
@@ -56,77 +52,6 @@ public class ObjectPool : MonoBehaviour
             }
         }
     }
-    
-    void SetPlayerBulletID(int objectPoolLine)
-    {
-        if (pools[objectPoolLine].bulletData != null)
-        {
-            int weaponId = GetPlayerWeaponId(pools[objectPoolLine].bulletData);
-            if (weaponId != -1)
-            {
-                BulletData.currentWeaponID = weaponId;
-            }
-        }
-    }
-
-    void SetPlayerBulletIDAtStart(BulletData bulletData)
-    {
-        if (bulletData.currentWeaponName == bulletData.weaponStruct[0].weaponName)
-        {
-            BulletData.currentWeaponID = bulletData.weaponStruct[0].id;
-        }
-        else if (bulletData.currentWeaponName == bulletData.weaponStruct[1].weaponName)
-        {
-            BulletData.currentWeaponID = bulletData.weaponStruct[1].id;
-        }
-        else if (bulletData.currentWeaponName == bulletData.weaponStruct[2].weaponName)
-        {
-            BulletData.currentWeaponID = bulletData.weaponStruct[2].id;
-        }
-        else if (bulletData.currentWeaponName == bulletData.weaponStruct[3].weaponName)
-        {
-            BulletData.currentWeaponID = bulletData.weaponStruct[3].id;
-        }
-        else if (bulletData.currentWeaponName == bulletData.weaponStruct[4].weaponName)
-        {
-            BulletData.currentWeaponID = bulletData.weaponStruct[4].id;
-        }
-        else if (bulletData.currentWeaponName == bulletData.weaponStruct[5].weaponName)
-        {
-            BulletData.currentWeaponID = bulletData.weaponStruct[5].id;
-        }
-        else if (bulletData.currentWeaponName == bulletData.weaponStruct[6].weaponName)
-        {
-            BulletData.currentWeaponID = bulletData.weaponStruct[6].id;
-        }
-        else if (bulletData.currentWeaponName == bulletData.weaponStruct[7].weaponName)
-        {
-            BulletData.currentWeaponID = bulletData.weaponStruct[7].id;
-        }
-        else if (bulletData.currentWeaponName == bulletData.weaponStruct[8].weaponName)
-        {
-            BulletData.currentWeaponID = bulletData.weaponStruct[8].id;
-        }
-        else if (bulletData.currentWeaponName == bulletData.weaponStruct[9].weaponName)
-        {
-            BulletData.currentWeaponID = bulletData.weaponStruct[9].id;
-        }
-    }
-
-    private int GetPlayerWeaponId(BulletData bulletData)
-    {
-        if (bulletData.weaponStruct[0].isWeapon) return 0;
-        else if (bulletData.weaponStruct[1].isWeapon) return 1;
-        else if (bulletData.weaponStruct[2].isWeapon) return 2;
-        else if (bulletData.weaponStruct[3].isWeapon) return 3;
-        else if (bulletData.weaponStruct[4].isWeapon) return 4;
-        else if (bulletData.weaponStruct[5].isWeapon) return 5;
-        else if (bulletData.weaponStruct[6].isWeapon) return 6;
-        else if (bulletData.weaponStruct[7].isWeapon) return 7;
-        else if (bulletData.weaponStruct[8].isWeapon) return 8;
-        else if (bulletData.weaponStruct[9].isWeapon) return 9;
-        return -1;
-    }
 
     public void CreateAndEnqueueObject()
     {
@@ -134,15 +59,6 @@ public class ObjectPool : MonoBehaviour
         {
             pools[j].pooledObjects = new Queue<GameObject>();
 
-            // Initialize ID once based on the pool type (Player Bullet, Enemy Bullet, etc.)
-            if (j == playerData.playerWeaponBulletObjectPoolCount)
-            {
-                SetPlayerBulletID(playerData.playerWeaponBulletObjectPoolCount);  // Set Player Bullet ID once for this pool
-            }
-            else if (j == playerData.playerBulletsExplosionObjectPoolCount)
-            {
-                SetPlayerBulletID(playerData.playerBulletsExplosionObjectPoolCount);  // Set Player Bullet Explosion ID once for this pool
-            }   
 
             // Pool objects exactly poolSize times
             for (int i = 0; i < pools[j].poolSize; i++)
@@ -170,6 +86,7 @@ public class ObjectPool : MonoBehaviour
         {
             case 0: // Player Bullet
             case 6: // Bullet Explosion
+            case 11: //Enemy Death Particle
                 prefabIndex = BulletData.currentWeaponID;
                 break;
             case 1: // Player Sword Bullet

@@ -45,11 +45,12 @@ public class EnemySpawner : MonoBehaviour
         MainEnemyData.enemyDeathCount = 0;
         enemyData.isActivateCreateEnemy = false;
 
-        CreateEnemiesAtStart(LevelData.currentLevelId);
+        CreateEnemyBoxes(LevelData.currentLevelId);
     }
 
+
     
-    void CreateEnemiesAtStart(int levelID)
+    void CreateEnemyBoxes(int levelID)
     {
         enemyTransformsObject = Instantiate(levelData.levelStates[levelID].enemySpawnInMap.gameObject, gameObject.transform);
 

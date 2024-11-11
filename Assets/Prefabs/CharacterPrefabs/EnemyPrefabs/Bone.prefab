@@ -602,27 +602,27 @@ MonoBehaviour:
   _healthBar: {fileID: 2269490649772480396}
   mainEnemyData: {fileID: 11400000, guid: c0bfb7efd5ab54e4e981c558d22da7c3, type: 2}
   enemyListData:
-  - {fileID: 11400000, guid: 1c26dca8c93d24e37a26abc7b8907a6f, type: 2}
-  - {fileID: 11400000, guid: 74fbddf411f6b45969c86e9054cd26d0, type: 2}
-  - {fileID: 11400000, guid: 72adf82299b7f4f42a11da4a69420e78, type: 2}
-  - {fileID: 11400000, guid: 86169bf8d638a465a9b127dfd16819d7, type: 2}
-  - {fileID: 11400000, guid: b634f6a169a004717b9e0f8c2e854fc8, type: 2}
-  - {fileID: 11400000, guid: 5cb099d351f2f4b79be1a903fc79daaa, type: 2}
-  - {fileID: 11400000, guid: 7da43238ed4714c4ba38d76d89441743, type: 2}
-  - {fileID: 11400000, guid: c2eda9916df8d41f59fa343567884d4b, type: 2}
-  - {fileID: 11400000, guid: 45533481aebc9425cbbb123a7b211646, type: 2}
-  - {fileID: 11400000, guid: cbd752d3c9c984446843fb1be70b13c9, type: 2}
-  - {fileID: 11400000, guid: 9d2565f5f1e4e4f439a4b5c61d109247, type: 2}
-  - {fileID: 11400000, guid: 45cb5013177954e2b9bcf90357d1834c, type: 2}
-  - {fileID: 11400000, guid: 24dc8b5ca20d04ea2a6d3e8db56b77a8, type: 2}
-  - {fileID: 11400000, guid: d7e8e953c60fc45c2b7d30392dad66e1, type: 2}
-  - {fileID: 11400000, guid: 63b4ce7b0006c4b7081dbb8c949395f2, type: 2}
-  - {fileID: 11400000, guid: be1e5c8aff8e74c6ba0b441bf4f1c872, type: 2}
-  - {fileID: 11400000, guid: 2a74dcdc418894962b88e0c68fec58e1, type: 2}
-  - {fileID: 11400000, guid: 19292e16ca1f241598cbd30ba9e8c826, type: 2}
-  - {fileID: 11400000, guid: 1d923c9bbf5e64aa6a729fea4a4dcd40, type: 2}
-  - {fileID: 11400000, guid: a0ae1f6ba57bf48a2a9d832147bc6442, type: 2}
-  enemyData: {fileID: 11400000, guid: 1c26dca8c93d24e37a26abc7b8907a6f, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
   bulletData: {fileID: 11400000, guid: b67b7feeb758a4b27b2d51d20d4516e1, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
@@ -657,7 +657,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!136 &9175473434813958557
 CapsuleCollider:
@@ -1128,6 +1128,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 8bed4408b0ac2456c9d352d83e919882, type: 2}
   - {fileID: 9100000, guid: 2a22ae3e24ede4d88a0d34901a25a362, type: 2}
   - {fileID: 9100000, guid: 98ee3f094bbcb4c3e8eb6b687cee6339, type: 2}
+  runAnimatorController: {fileID: 0}
 --- !u!1 &2000584971699228970
 GameObject:
   m_ObjectHideFlags: 0
@@ -3532,7 +3533,7 @@ Transform:
   m_GameObject: {fileID: 5741978401537892582}
   serializedVersion: 2
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 0, y: 2.5, z: 1.55}
+  m_LocalPosition: {x: 0, y: 1, z: 1.55}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

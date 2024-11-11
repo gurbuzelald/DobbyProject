@@ -414,6 +414,14 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         
         DontFallDown();
         IncreaseHealthWhenEnemyKilledAtUpdate(10);
+
+        HandleDeathScenario(_playerData,
+                                          ref _healthBarObject,
+                                          ref _topCanvasHealthBarObject,
+                                          ref _particleTransform,
+                                          ref playerComponents.healthBarSlider,
+                                          ref _topCanvasHealthBarSlider,
+                                          ref _playerData.damageHealthText);
     }
     
 
@@ -506,14 +514,15 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         if (playerComponents.healthBarSlider.value == 0)
         {
-            playerInterfaces.iPlayerTouch.TouchEnemy(collision, _playerData, ref playerComponents.healthBarSlider, ref _topCanvasHealthBarSlider, ref _particleTransform);
+            playerInterfaces.iPlayerTouch.TouchEnemy(_playerData, ref playerComponents.healthBarSlider,
+                                            ref _topCanvasHealthBarSlider);
             StartCoroutine(DelayPlayerDestroy(3f));
         }
         else
         {
-            enemyManager.enemyData.isTouchable = enemyManager._healthBar != null;
+            enemyManager.enemyData.enemyStats[enemyManager.GetEnemyIndex()].isTouchable[enemyManager.enemyDataNumber] = enemyManager._healthBar != null;
 
-            if (enemyManager.enemyData.isTouchable)
+            if (enemyManager.enemyData.enemyStats[enemyManager.GetEnemyIndex()].isTouchable[enemyManager.enemyDataNumber])
             {
                 CreateTouchParticleEffect();
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetEnemyHit);
@@ -804,7 +813,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             for (int i = 0; i < other.gameObject.transform.childCount; i++)
             {
-                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.enemyPrefabObjectPoolCount);
+                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.enemyPrefabObjectPoolID);
 
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
@@ -822,7 +831,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             for (int i = 0; i < other.gameObject.transform.childCount; i++)
             {
-                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.bossEnemyPrefabObjectPoolCount);
+                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.bossEnemyPrefabObjectPoolID);
 
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
@@ -844,7 +853,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             for (int i = 0; i < other.gameObject.transform.childCount; i++)
             {
-                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.chestMonsterEnemyPrefabObjectPoolCount);
+                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.chestMonsterEnemyPrefabObjectPoolID);
 
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
@@ -865,7 +874,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             for (int i = 0; i < other.gameObject.transform.childCount; i++)
             {
-                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.chestMonster2EnemyPrefabObjectPoolCount);
+                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.chestMonster2EnemyPrefabObjectPoolID);
 
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;

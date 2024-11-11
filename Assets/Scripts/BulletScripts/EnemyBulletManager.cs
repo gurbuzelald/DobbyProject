@@ -40,7 +40,7 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     }
     public void RayBullet()
     {
-        if (_enemyManager.enemyData.isDying ||
+        if (_enemyManager.enemyData.enemyStats[_enemyManager.GetEnemyIndex()].enemyDying[_enemyManager.enemyDataNumber] ||
             playerData.isDying || enemySpawner == null)
         {
             return;  // Early return if any of these conditions are not met
@@ -53,9 +53,11 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
 
             if (_enemyManager.bulletData.enemyBulletDelayCounter == 0)
             {
-                CreateEnemyBullet(_bulletSpawnTransform.transform,
+
+                _bulletSpawnTransform.LookAt(PlayerManager.GetInstance.gameObject.transform.position);
+                CreateEnemyBullet(_bulletSpawnTransform,
                               _enemyManager.bulletData.enemyBulletSpeed,
-                              playerData.enemyBulletParticleObjectPoolCount,
+                              playerData.enemyBulletParticleObjectPoolID,
                               _enemySpawner.enemyObjectPool,
                               0f, bulletSpread);
 

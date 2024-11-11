@@ -272,9 +272,10 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
             bool isGrounded = playerData.isGround;
             bool isJumping = playerData.isJumping;
             bool isSwordAnimate = playerData.isSwordAnimate;
+            bool isDying = playerData.isDying;
 
             // Zemin üzerinde zıplama ve hareket etme durumu
-            if (isJumping && isGrounded && isMoving && !isSwordAnimate)
+            if (isJumping && isGrounded && isMoving && !isSwordAnimate && !isDying)
             {
                 SetAnimatorLayer(_animator, 1, true);
                 SetAnimatorParameters(_animator, false, true, false, false, false);

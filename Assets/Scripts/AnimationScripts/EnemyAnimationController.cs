@@ -4,7 +4,7 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
 {
     [Header("Animator")]
     [SerializeField] RuntimeAnimatorController[] runtimeAnimatorControllers;
-    private RuntimeAnimatorController runAnimatorController;
+    [SerializeField] RuntimeAnimatorController runAnimatorController;
     private Animator _animator;
     private int _animationCount;
 
@@ -21,8 +21,8 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
 
         _enemyData = _enemyManager.enemyData;
 
-        _enemyData.isDying = false;
-        _enemyData.isWalking = true;
+        _enemyData.enemyStats[_enemyManager.GetEnemyIndex()].enemyDying[_enemyManager.enemyDataNumber] = false;
+        _enemyData.enemyStats[_enemyManager.GetEnemyIndex()].isWalking[_enemyManager.enemyDataNumber] = true;
         _animationCount = 0;
         SetAnimator();
     }
@@ -55,7 +55,9 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
     {
         if (_animator)
         {
-            AnimationState(_enemyData, _animator, _playerData, _animationCount);
+            AnimationState(_enemyData, _animator, _playerData,
+                _animationCount, _enemyManager.GetEnemyIndex(),
+                _enemyManager.enemyDataNumber);
         }              
         
     }
@@ -74,8 +76,6 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
         }
         _playerData.isDecreaseHealth = false;
 
-        _enemyManager.enemyData.currentEnemyName = gameObject.transform.parent.name;
-
         _enemyManager.SetEnemyAttackDamage(ref _enemyManager.enemyData, ref _enemyManager.bulletData);
         _playerData.decreaseCounter = 0;
     }
@@ -83,7 +83,9 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
     public void EnemySetActiveFalse()
     {
         MainEnemyData.enemyDeathCount++;
+
         gameObject.transform.parent.gameObject.SetActive(false);
-        _enemyManager.enemyData.isDying = false;
+
+        _enemyManager.enemyData.enemyStats[_enemyManager.GetEnemyIndex()].enemyDying[_enemyManager.enemyDataNumber] = false;
     }
 }

@@ -9,8 +9,6 @@ public class BulletController : MonoBehaviour
     public LayerMask layerMask;
     [SerializeField] float delayFalseWhenTriggerEnemy;
 
-    public static bool ShotGun { get; internal set; }
-
     public int damageValue;
     
     private void OnCollisionEnter(Collision collision)

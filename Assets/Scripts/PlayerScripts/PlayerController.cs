@@ -3,10 +3,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Input")]
-    private Player playerInput;
+    private GameInput gameInput;
     
     public Vector2 movement;
     public Vector2 lookRotation;
+    public static Vector2 fireDirection;
     public bool fire;
     public bool sword;
     public bool extraSpeed;
@@ -20,20 +21,20 @@ public class PlayerController : MonoBehaviour
 
     private void Awake() 
     {
-        playerInput = new Player();        
+        gameInput = new GameInput();        
     }
     private void OnEnable()
     {
-        if (playerInput != null)
+        if (gameInput != null)
         {
-            playerInput.Enable();
+            gameInput.Enable();
         }        
     }
     private void OnDisable()
     {
-        if (playerInput != null)
+        if (gameInput != null)
         {
-            playerInput.Disable();
+            gameInput.Disable();
         }
     }  
     void Update()
@@ -54,22 +55,21 @@ public class PlayerController : MonoBehaviour
     }
     public void ControlStates()
     {
-        movement = playerInput.PlayerMain.Move.ReadValue<Vector2>();
-        lookRotation = playerInput.PlayerMain.Look.ReadValue<Vector2>();
-        fire = playerInput.PlayerMain.Fire.IsPressed();
-        sword = playerInput.PlayerMain.Sword.IsPressed();    
-        extraSpeed = playerInput.PlayerMain.ExtraSpeed.IsPressed();
-        jump = playerInput.PlayerMain.Jump.IsPressed();
-        skateBoard = playerInput.PlayerMain.Skate.IsPressed();
-        run = playerInput.PlayerMain.Run.IsPressed();       
+        movement = gameInput.PlayerMain.Move.ReadValue<Vector2>();
+        lookRotation = gameInput.PlayerMain.Look.ReadValue<Vector2>();
+        fireDirection = gameInput.PlayerMain.FireDirection.ReadValue<Vector2>();
+        fire = gameInput.PlayerMain.Fire.IsPressed();
+        sword = gameInput.PlayerMain.Sword.IsPressed();
+        jump = gameInput.PlayerMain.Jump.IsPressed();
+        run = gameInput.PlayerMain.Run.IsPressed();       
     }
     void PickCharacter()
     {
-        characterStick = playerInput.CharacterMenuInput.CharacterStick.ReadValue<Vector2>();
+        characterStick = gameInput.PickCharacterSceneButtons.CharacterMenuInput.ReadValue<Vector2>();
     }
     void PickWeapon()
     {
-        weaponStick = playerInput.WeaponMenuInput.WeaponStick.ReadValue<Vector2>();
+        weaponStick = gameInput.PickWeaponSceneButtons.WeaponMenuInput.ReadValue<Vector2>();
     }
 
     

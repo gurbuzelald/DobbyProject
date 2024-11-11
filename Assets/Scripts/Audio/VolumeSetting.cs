@@ -42,7 +42,7 @@ public class VolumeSetting : MonoBehaviour
     }
     public void SetPlayerSFXVolume(float volume)
     {
-        _audioMixer.SetFloat(ExposedParameters.PlayerSFXVolume.ToString(), Mathf.Log10(volume)*20);
+        _audioMixer.SetFloat(ExposedParameters.PlayerSFXVolume.ToString(), Mathf.Log10(volume) * 20);
     }
     public void SetEnemySFXVolume(float volume)
     {
