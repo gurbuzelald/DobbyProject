@@ -162,6 +162,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
             }
+
             for (int i = 0; i < bulletData.weaponStruct.Length; i++)
             {
                 HandleWeaponChange(bulletData.weaponStruct[i].weaponName, ref bulletData.weaponStruct[i].isWeapon, bulletData.weaponStruct[i].id, bulletData.weaponStruct[i].shootFrequency);
@@ -171,13 +172,13 @@ public class BulletManager : AbstractBullet<BulletManager>
 
     private void HandleWeaponChange(string weaponName, ref bool isWeaponActive, int weaponID, float shootFrequency)
     {
-        if (isWeaponActive && bulletData.currentWeaponName != weaponName)
+        if (isWeaponActive)
         {
             if (_currentWeaponObject)
             {
                 Destroy(_currentWeaponObject);
             }
-           
+            
             bulletData.currentWeaponName = weaponName;
             bulletData.currentShootFrequency = shootFrequency;
 

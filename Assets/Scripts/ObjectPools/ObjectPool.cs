@@ -36,6 +36,10 @@ public class ObjectPool : MonoBehaviour
         CreateAndEnqueueObject();
     }
 
+    private void Update()
+    {
+        SetPlayerBulletsAndExplosionsAtUpdate();
+    }
 
     public void SetPlayerBulletsAndExplosionsAtUpdate()
     {

@@ -520,18 +520,22 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     private void SwitchCamera(GameObject cameraSpawner, int activateIndex, int deactivateIndex)
     {
         var activateCamera = cameraSpawner.transform.GetChild(activateIndex).gameObject;
-        var deactivateCamera = cameraSpawner.transform.GetChild(deactivateIndex).gameObject;
+        //var deactivateCamera = cameraSpawner.transform.GetChild(deactivateIndex).gameObject;
 
-        activateCamera.transform.SetPositionAndRotation(deactivateCamera.transform.position, deactivateCamera.transform.rotation);
+        activateCamera.transform.SetPositionAndRotation(activateCamera.transform.position, activateCamera.transform.rotation);
 
-        deactivateCamera.SetActive(false);
+        //deactivateCamera.SetActive(false);
         activateCamera.SetActive(true);
 
         var currentCamera = activateCamera.GetComponent<CinemachineCamera>();
-        PlayerManager.GetInstance._currentCamera = currentCamera;
 
-        currentCamera.Follow = transform;
-        currentCamera.LookAt = transform;
+        if (currentCamera)
+        {
+            PlayerManager.GetInstance._currentCamera = currentCamera;
+
+            currentCamera.Follow = transform;
+            currentCamera.LookAt = transform;
+        }        
     }
 
     public virtual void CheckCameraEulerX(PlayerData _playerData, Transform _currentCameraTransform)
@@ -1185,9 +1189,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
         if (_playerData.isSideWalking && _playerData.isWalking)
         {
-            playerTransform.Translate((PlayerData.currentCharacterSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue),
+
+            Vector3 normal = new Vector3((PlayerData.currentCharacterSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue),
                                        0f,
                                        PlayerData.currentCharacterSpeed * zValue * Time.deltaTime);
+            playerTransform.Translate(normal.normalized*Time.deltaTime);
             
         }
         else if (_playerData.isSideWalking || (Mathf.Abs(xValue) >= .5f && Mathf.Abs(zValue) >= .5f))
