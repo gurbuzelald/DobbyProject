@@ -149,7 +149,7 @@ public class BulletManager : AbstractBullet<BulletManager>
 
     public void SetSwordTransform(GameObject pinky)//Getting finger transform parameter
     {
-        if (bulletData.currentWeaponName == BulletData.lowSword)
+        if (bulletData.currentSwordName == BulletData.lowSword)
         {
             PlayerManager.GetInstance._gunTransform = GameObject.Find("lowSwordTransform");
         }
@@ -248,6 +248,8 @@ public class BulletManager : AbstractBullet<BulletManager>
 
                     PlayerPrefs.SetInt("CurrentWeaponID", BulletData.currentWeaponID);
 
+                    bulletData.currentWeaponName = bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
+
                     break; // Exit loop once the matching weapon is found
                 }
             }
@@ -315,11 +317,12 @@ public class BulletManager : AbstractBullet<BulletManager>
         if (bulletData)
         {
             // Loop through the weaponStruct array to find a matching weapon
-            foreach (var weapon in bulletData.weaponStruct)
+            for (int i = 0; i < bulletData.weaponStruct.Length; i++)
             {
-                if (bulletData.currentWeaponName == weapon.weaponName)
+                if (BulletData.currentWeaponID == bulletData.weaponStruct[i].id)
                 {
-                    PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(weapon.weaponName);
+                    bulletData.currentWeaponName = bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
+                    PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(bulletData.weaponStruct[i].weaponName);
                     return; // Exit once a match is found to avoid unnecessary iterations
                 }
             }

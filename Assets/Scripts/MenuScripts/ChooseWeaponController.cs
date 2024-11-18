@@ -121,9 +121,19 @@ public class ChooseWeaponController : MonoBehaviour
                     if (bulletData.weaponStruct[j].lockState == "")
                     {
                         weaponUsageLimits[i].enabled = true;
-                        weaponUsageLimits[i].text = bulletData.weaponStruct[j].usageLimit > 0
+                        if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                        {
+                            weaponUsageLimits[i].text = bulletData.weaponStruct[j].usageLimit > 0
+                            ? $"Kullanım Limiti: {bulletData.weaponStruct[j].usageLimit}"
+                            : "";
+                        }
+                        else
+                        {
+                            weaponUsageLimits[i].text = bulletData.weaponStruct[j].usageLimit > 0
                             ? $"Usage Limit: {bulletData.weaponStruct[j].usageLimit}"
                             : "";
+                        }
+                        
                     }
                     else
                     {

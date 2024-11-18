@@ -37,8 +37,12 @@ public class SceneController : MonoBehaviour
     TextMeshProUGUI[] currentTexts = new TextMeshProUGUI[200];
     private void Awake()
     {
+        pauseGame = false;//Important for passing Game Scene to Menu Scene
+
         PlayerData.currentCharacterID = PlayerPrefs.GetInt("CurrentCharacterID");
         BulletData.currentWeaponID = PlayerPrefs.GetInt("CurrentWeaponID");
+
+        bulletData.currentWeaponName = bulletData?.weaponStruct[BulletData.currentWeaponID].weaponName;
     }
 
     void Start()
@@ -556,6 +560,16 @@ public class SceneController : MonoBehaviour
         LevelData.currentLevelId = 0;
         LevelData.highestLevel = 0;
         PlayerPrefs.SetInt("HighestLevel", 0);
+
+        PlayerData.currentCharacterID = 0;
+        PlayerPrefs.SetInt("CurrentCharacterID", PlayerData.currentCharacterID);
+
+        BulletData.currentWeaponID = 0;
+        PlayerPrefs.SetInt("CurrentWeaponID", BulletData.currentWeaponID);
+
+        bulletData.currentWeaponName = bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
+
+        bulletData.currentWeaponName = "pistol";
     }
 
 
@@ -687,9 +701,9 @@ public class SceneController : MonoBehaviour
                     {
                         BulletData.currentWeaponID = 0;
 
-                        PlayerPrefs.SetInt("CurrentWeaponID", 0);
+                        PlayerPrefs.SetInt("CurrentWeaponID", BulletData.currentWeaponID);
 
-                        bulletData.currentWeaponName = bulletData.weaponStruct[0].weaponName;
+                        bulletData.currentWeaponName = bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
                     }
 
                     break; // Exit loop once the matching weapon is found

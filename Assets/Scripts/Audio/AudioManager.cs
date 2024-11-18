@@ -13,24 +13,11 @@ public class AudioManager : AbstractPlayerSFX<AudioManager>
     public AudioMixer _audiomixer;
     private AudioSource _audioSource;
 
-    public static float buttonDelayTimer;
-
     // Start is called before the first frame update
     void Start()
     {
         SetCurrentMusic();
         LoadVolume();   
-    }
-
-
-    private void Update()
-    {
-        DelayButtonFlow();//This Code Writen for ButtonController's Button Delay
-    }
-
-    void DelayButtonFlow()
-    {
-        buttonDelayTimer += Time.deltaTime;
     }
 
     public void SetCurrentMusic()

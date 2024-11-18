@@ -571,12 +571,11 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     {
         if (other.gameObject.name != "FinishPlane") return;
 
-        // Get the level tag once since the name matches "FinishPlane"
-        GetLevelTag(other);
-
         // Handle when level can be skipped
         if (LevelData.levelCanBeSkipped)
         {
+            //GetLevelTag(other);
+
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
 
             _levelData.levelStates[LevelData.currentLevelId].isCompleteMap = true;
@@ -622,7 +621,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             if (_levelData.levels[i].finishAreaName == other.tag)
             {
-                //LevelData.currentLevelId = i + 1; // Assuming the level IDs start from 1
+                LevelData.currentLevelId = i + 1; // Assuming the level IDs start from 1
                 return; // Exit once the match is found
             }
         }

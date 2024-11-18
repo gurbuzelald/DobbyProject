@@ -389,7 +389,9 @@ public class LevelUpController : MonoBehaviour
                 ObjectPool.creatableEnemyBullet = true;
 
                 // Set current level ID and corresponding gift box
-                LevelData.currentLevelId++;
+                ++LevelData.currentLevelId;
+
+                PlayerPrefs.SetInt("CurrentLevelID", LevelData.currentLevelId);
 
                 bulletData.currentGiftBox = bulletData.weaponStruct[LevelData.currentLevelId].giftBox;
 

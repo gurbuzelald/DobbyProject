@@ -71,8 +71,12 @@ public class ButtonController : MonoBehaviour
 
     public static float buttonTimeFlow;
 
+    private bool buttonClickable;
+
     void Awake()
     {
+        buttonClickable = true;
+
         buttonTimeFlow = 0;
 
         gameInput = new GameInput();
@@ -412,71 +416,67 @@ public class ButtonController : MonoBehaviour
             MenuSceneEvents();
         }
     }
-
     void MenuSceneEvents()
     {
-        if (playButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
+        if (playButton && buttonTimeFlow >= .2f)
         {
-            sceneController.PlayAgain();
+            sceneController?.PlayAgain();
 
-            AudioManager.buttonDelayTimer = 0;
+            buttonTimeFlow = 0;
         }
-        if (levelsButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
+        if (levelsButton && buttonTimeFlow >= .2f)
         {
-            sceneController.LoadLevelsScene();
+            sceneController?.LoadLevelsScene();
 
-            AudioManager.buttonDelayTimer = 0;
+            buttonTimeFlow = 0;
         }
-        if (settingButton && settingController && AudioManager.buttonDelayTimer >= .2f)
+        if (settingButton && buttonClickable && buttonTimeFlow >= .2f)
         {
-            settingController.ClickSettingButton();
+            settingController?.ClickSettingButton();
 
-            AudioManager.buttonDelayTimer = 0;
+            buttonTimeFlow = 0;
         }
-        if (quitButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
+        if (quitButton && buttonTimeFlow >= .2f)
         {
-            sceneController.QuitGame();
+            sceneController?.QuitGame();
 
-            AudioManager.buttonDelayTimer = 0;
+            buttonTimeFlow = 0;
         }
-        if (languageButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
+        if (languageButton && buttonTimeFlow >= .2f)
         {
-            sceneController.ClickChangeLanguageButton();
+            sceneController?.ClickChangeLanguageButton();
 
-            AudioManager.buttonDelayTimer = 0;
+            buttonTimeFlow = 0;
         }
-        if (menuDefaultButton && settingController && AudioManager.buttonDelayTimer >= .2f)
+        if (menuDefaultButton && buttonTimeFlow >= .2f)
         {
-            if (settingController)
-            {
-                settingController.SetDefaulth();
-            }               
+            settingController?.SetDefaulth();
 
-            AudioManager.buttonDelayTimer = 0;
+            buttonTimeFlow = 0;
         }
-        if (pickCharacterButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
+        if (pickCharacterButton && buttonTimeFlow >= .2f)
         {
             SceneController.LoadCharacterChoosingScene();
 
-            AudioManager.buttonDelayTimer = 0;
+            buttonTimeFlow = 0;
         }
-        if (pickWeaponButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
+        if (pickWeaponButton && buttonTimeFlow >= .2f)
         {
-            sceneController.LoadWeaponChoosingScene();
+            sceneController?.LoadWeaponChoosingScene();
 
-            AudioManager.buttonDelayTimer = 0;
+            buttonTimeFlow = 0;
         }
-        if (continueButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
+        if (continueButton && buttonTimeFlow >= .2f)
         {
-            sceneController.ContinueLastLevel();
+            sceneController?.ContinueLastLevel();
 
-            AudioManager.buttonDelayTimer = 0;
+            buttonTimeFlow = 0;
         }
-        if (resetGameButton && AudioManager.buttonDelayTimer >= .2f && sceneController)
+        if (resetGameButton && buttonTimeFlow >= .2f)
         {
-            sceneController.CheckNeedResetWeaponsAndCharacters();
+            sceneController?.CheckNeedResetWeaponsAndCharacters();
 
-            AudioManager.buttonDelayTimer = 0;
+            buttonTimeFlow = 0;
         }
     }
 

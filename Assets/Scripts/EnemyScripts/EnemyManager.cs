@@ -350,11 +350,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     void WeaponBulletPower()
     {
         float weaponPower = 0;
-        string currentWeaponName = PlayerManager.GetInstance._bulletData.currentWeaponName;
+        int currentWeaponID = BulletData.currentWeaponID;
 
         // weaponStruct dizisinde currentWeaponName ile eşleşen silahı bul.
         BulletData.WeaponStruct selectedWeapon = PlayerManager.GetInstance._bulletData.weaponStruct
-            .FirstOrDefault(weapon => weapon.weaponName == currentWeaponName);
+            .FirstOrDefault(weapon => weapon.id == currentWeaponID);
 
         // Eğer mevcut silah yoksa fonksiyondan çık.
         if (selectedWeapon.weaponObject == null)

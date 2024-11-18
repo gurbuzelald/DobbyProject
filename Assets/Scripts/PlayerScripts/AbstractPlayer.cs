@@ -493,14 +493,15 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             {
                 if (PlayerManager.GetInstance.gameObject)
                 {
-                    if (PlayerManager.GetInstance.GetZValue() == 0 && PlayerManager.GetInstance.GetXValue() == 0)
+                    /*if (PlayerManager.GetInstance.GetZValue() == 0 && PlayerManager.GetInstance.GetXValue() == 0)
                     {
                         ConvertToFarCamera(cameraSpawner);
                     }
                     else
                     {
                         ConvertToCloseCamera(cameraSpawner);
-                    }
+                    }*/
+                    ConvertToCloseCamera(cameraSpawner);
                 }
             }
         }
@@ -565,7 +566,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                                   ref TextMeshProUGUI damageHealthText)
     {
         // Handle death scenario
-        if (healthBarSlider.value == 0 && !_playerData.isWinning)
+        if (healthBarSlider.value == 0 && !_playerData.isWinning && _playerData.isGround)
         {
 
             GameObject particleObject = null;
@@ -821,6 +822,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             bulletData.weaponStruct[7].lockState == BulletData.locked && bulletData.weaponStruct[0].lockState == BulletData.locked)
             {
                 bulletData.currentWeaponName = bulletData.weaponStruct[0].weaponName;
+                PlayerPrefs.SetInt("CurrentWeaponID", 0);
             }
         }        
     }
@@ -867,6 +869,8 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 BulletData.currentWeaponID = _currentWeaponID;
 
                 PlayerPrefs.SetInt("CurrentWeaponID", BulletData.currentWeaponID);
+
+                _bulletData.currentWeaponName = _bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
 
                 IncreaseUsageLimit(_bulletData, tag);
 
@@ -946,16 +950,19 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void GettingPoisonDamage(PlayerData _playerData, ref Slider _topCanvasHealthBarSlider, ref Slider _healthBarSlider)
     {
-        //SoundEffect
-        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
-        _topCanvasHealthBarSlider.value = _healthBarSlider.value;
+        if (_playerData.isGround)
+        {
+            //SoundEffect
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
+            _topCanvasHealthBarSlider.value = _healthBarSlider.value;
 
-        //PlayerData
-        _playerData.isDestroyed = true;
-        _playerData.isDying = true;
-        _playerData.isIdling = false;
-        _playerData.isPlayable = false;
-        _playerData.objects[3].transform.localScale = Vector3.zero;
+            //PlayerData
+            _playerData.isDestroyed = true;
+            _playerData.isDying = true;
+            _playerData.isIdling = false;
+            _playerData.isPlayable = false;
+            _playerData.objects[3].transform.localScale = Vector3.zero;
+        }
     }
     public virtual IEnumerator DelayLevelUp(LevelData levelData, float delayWait)
     {
@@ -998,19 +1005,21 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                                     ref Slider _healthBarSlider, 
                                     ref Slider _topCanvasHealthBarSlider)
     {
-        //SoundEffect
-        PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
+        if (_playerData.isGround)
+        {
+            //SoundEffect
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
 
 
-        _topCanvasHealthBarSlider.value = _healthBarSlider.value;
+            _topCanvasHealthBarSlider.value = _healthBarSlider.value;
 
-        //PlayerData
-        _playerData.isDestroyed = true;
-        _playerData.isDying = true;
-        _playerData.isIdling = false;
-        _playerData.isPlayable = false;
-        _playerData.objects[3].transform.localScale = Vector3.zero;
-
+            //PlayerData
+            _playerData.isDestroyed = true;
+            _playerData.isDying = true;
+            _playerData.isIdling = false;
+            _playerData.isPlayable = false;
+            _playerData.objects[3].transform.localScale = Vector3.zero;
+        }
     }
     #endregion
 
@@ -1158,29 +1167,42 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         float zValue = PlayerManager.GetInstance.GetZValue();
         float xValue = PlayerManager.GetInstance.GetXValue();
 
-        if (Mathf.Abs(xValue)*(2.5f) >= zValue)
+        if (Mathf.Abs(xValue) >= .4f && Mathf.Abs(zValue) >= .4f)
         {
             _playerData.isSideWalking = true;
-            _playerData.isWalking = false;            
+            _playerData.isWalking = true;
         }
-        else
+        else if (Mathf.Abs(xValue) * (2.5f) > zValue)
+        {
+            _playerData.isSideWalking = true;
+            _playerData.isWalking = false;
+        }
+        else if (Mathf.Abs(xValue) * (2.5f) < zValue)
         {
             _playerData.isWalking = true;
             _playerData.isSideWalking = false;
         }
-        if (Mathf.Abs(xValue) > 0 && Mathf.Abs(zValue) < .4f)
+
+        if (_playerData.isSideWalking && _playerData.isWalking)
+        {
+            playerTransform.Translate((PlayerData.currentCharacterSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue),
+                                       0f,
+                                       PlayerData.currentCharacterSpeed * zValue * Time.deltaTime);
+            
+        }
+        else if (_playerData.isSideWalking || (Mathf.Abs(xValue) >= .5f && Mathf.Abs(zValue) >= .5f))
         {
             playerTransform.Translate((PlayerData.currentCharacterSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue), 0f, 0f);
         }
-        if (zValue > 0 && Mathf.Abs(xValue) < .4f)
+        else if (_playerData.isWalking)
         {
             playerTransform.Translate(0f, 0f, PlayerData.currentCharacterSpeed * zValue * Time.deltaTime);
         }
-        if (Mathf.Abs(zValue) > .4f && Mathf.Abs(xValue) > .4f)
+        /*if (Mathf.Abs(zValue) > .4f && Mathf.Abs(xValue) > .4f)
         {
             playerTransform.Translate(0f, 0f, PlayerData.currentCharacterSpeed * zValue * Time.deltaTime);
             playerTransform.Translate((PlayerData.currentCharacterSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue), 0f, 0f);
-        }
+        }*/
 
 
         // Geri Yürüme Durumu

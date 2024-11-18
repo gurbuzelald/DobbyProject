@@ -129,8 +129,9 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         {
             if (playerData.isDying) return;
 
-            if (playerData.isBackWalking && !playerData.isSwordAnimate &&
-            !playerData.isSwordAnimate)
+            if (playerData.isBackWalking &&
+                !playerData.isSwordAnimate &&
+                !playerData.isSwordAnimate)
             {
                 _animator.SetBool(AnimatorParameters.isBackWalking.ToString(), true);
 
@@ -151,18 +152,20 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         {
             if (playerData.isDying) return;
 
-            if ((PlayerManager.GetInstance.GetXValue() < -0.001f) &&
-           !playerData.isRunning && !playerData.isSwordAnimate &&
-           playerData.isSideWalking && !playerData.isWalking)
+            if (!playerData.isRunning &&
+                !playerData.isSwordAnimate &&
+                 playerData.isSideWalking &&
+                 PlayerManager.GetInstance.GetXValue() < 0)
             {
                 _animator.SetBool(AnimatorParameters.isLeftWalk.ToString(), true);
 
                 _animator.SetLayerWeight(5, 1);
 
             }
-            else if (PlayerManager.GetInstance.GetXValue() >= 0 ||
-                     playerData.isJumping ||
-                     playerData.isSwordAnimate)
+            else if (!playerData.isSideWalking ||
+                    playerData.isJumping ||
+                     playerData.isSwordAnimate ||
+                     PlayerManager.GetInstance.GetXValue() >= 0)
             {
                 _animator.SetLayerWeight(5, 0);
             }
@@ -174,18 +177,20 @@ public abstract class AbstractPlayerAnimation<T> : MonoBehaviour where T : MonoB
         {
             if (playerData.isDying) return;
 
-            if (PlayerManager.GetInstance.GetXValue() > 0.001f &&
-            !playerData.isRunning && !playerData.isSwordAnimate &&
-            playerData.isSideWalking && !playerData.isWalking)
+            if (!playerData.isRunning &&
+                !playerData.isSwordAnimate &&
+                playerData.isSideWalking &&
+                PlayerManager.GetInstance.GetXValue() > 0)
             {
                 _animator.SetBool(AnimatorParameters.isRightWalk.ToString(), true);
 
                 _animator.SetLayerWeight(6, 1);
 
             }
-            else if (PlayerManager.GetInstance.GetXValue() <= 0 ||
+            else if (!playerData.isSideWalking ||
                     !playerData.isJumping ||
-                    !playerData.isSwordAnimate)
+                    !playerData.isSwordAnimate ||
+                    PlayerManager.GetInstance.GetXValue() <= 0)
             {
                 _animator.SetLayerWeight(6, 0);
             }

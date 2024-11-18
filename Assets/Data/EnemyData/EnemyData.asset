@@ -16,14 +16,14 @@ MonoBehaviour:
   - currentEnemyName: Chibi(Clone)
     isGround: 01010101010101010101010101010101010101
     enemyDying: 00000000000000000000000000000000000000
-    isWalking: 00010101010101010101010101010101010101
-    isFiring: 00010000010000000000000000000000000000
+    isWalking: 00000000000000000000000000000000000000
+    isFiring: 00000000000000000000000000000000000000
     isAttacking: 00000000000000000000000000000000000000
-    isTouchable: 00000000000000000000000000000000000001
+    isTouchable: 00010000000000000000000000000000000001
     isActivateMagnet: 00000000000000000000000000000000000000
     isSpeedZero: 00000000000000000000000000000000000000
     bulletDamageValue:
-    - 11
+    - 0
     - 0
     - 0
     - 0
@@ -104,7 +104,7 @@ MonoBehaviour:
     bulletDamageValue: []
     enemySpeed: 0.7
     enemyDurability: 6
-  - currentEnemyName: Doctor
+  - currentEnemyName: Doctor(Clone)
     isGround: 
     enemyDying: 
     isWalking: 
@@ -118,15 +118,15 @@ MonoBehaviour:
     enemyDurability: 7
   - currentEnemyName: Giant(Clone)
     isGround: 01
-    enemyDying: 00
-    isWalking: 01
-    isFiring: 01
+    enemyDying: 01
+    isWalking: 00
+    isFiring: 00
     isAttacking: 00
     isTouchable: 01
     isActivateMagnet: 00
     isSpeedZero: 00
     bulletDamageValue:
-    - 3
+    - 5.25
     enemySpeed: 0.8
     enemyDurability: 8
   - currentEnemyName: Bone(Clone)
@@ -156,8 +156,8 @@ MonoBehaviour:
   - currentEnemyName: ChestMonster(Clone)
     isGround: 01010101010101010000000000000000
     enemyDying: 00000000000000000000000000000000
-    isWalking: 01010101010101010000000000000000
-    isFiring: 00000100000000000000000000000000
+    isWalking: 00000000000000000000000000000000
+    isFiring: 00000000000000000000000000000000
     isAttacking: 00000000000000000000000000000000
     isTouchable: 00000000000000010000000000000000
     isActivateMagnet: 00000000000000000000000000000000
@@ -196,7 +196,7 @@ MonoBehaviour:
   - currentEnemyName: Tazo(Clone)
     isGround: 01010101010101010000000000000000
     enemyDying: 00000000000000000000000000000000
-    isWalking: 01010101010101010000000000000000
+    isWalking: 00000000000000000000000000000000
     isFiring: 00000000000000000000000000000000
     isAttacking: 00000000000000000000000000000000
     isTouchable: 00000000000000010000000000000000
