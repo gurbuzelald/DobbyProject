@@ -23,7 +23,7 @@ public class EnemyObjectPool : MonoBehaviour
 
     public PlayerData playerData;
 
-    void Start()
+    void Awake()
     {
         CreateAndEnqueueObject();
     }

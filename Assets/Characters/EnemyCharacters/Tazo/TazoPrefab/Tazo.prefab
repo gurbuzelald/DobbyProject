@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7263526633792723530}
   - component: {fileID: 3801466768989242999}
+  - component: {fileID: 5450105477370880998}
   m_Layer: 6
   m_Name: eye
   m_TagString: Untagged
@@ -94,6 +95,18 @@ SkinnedMeshRenderer:
     m_Center: {x: 1.2730179, y: 36.234295, z: 2.4228172}
     m_Extent: {x: 72.21185, y: 45.163433, z: 45.19437}
   m_DirtyAABB: 0
+--- !u!114 &5450105477370880998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 35011109124585876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8311c4603b149409d9a4ac99259bbb34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &434274182495577270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2065,7 +2078,7 @@ MonoBehaviour:
   bulletData: {fileID: 11400000, guid: 5c461753e58b6472d927113a95c8eaff, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
-  enemyDataNumber: 0
+  enemyChildID: 0
   enemyBulletDataNumber: 0
   _enemyIcon: {fileID: 3685341479179299519}
   _bulletCoin: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}

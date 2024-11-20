@@ -21,8 +21,8 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
 
         _enemyData = _enemyManager.enemyData;
 
-        _enemyData.enemyStats[_enemyManager.GetEnemyIndex()].enemyDying[_enemyManager.enemyDataNumber] = false;
-        _enemyData.enemyStats[_enemyManager.GetEnemyIndex()].isWalking[_enemyManager.enemyDataNumber] = true;
+        _enemyData.enemyStats[_enemyManager.GetEnemyIndex()].enemyDying[_enemyManager.enemyChildID] = false;
+        _enemyData.enemyStats[_enemyManager.GetEnemyIndex()].isWalking[_enemyManager.enemyChildID] = true;
         _animationCount = 0;
         SetAnimator();
     }
@@ -35,9 +35,9 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
         {
             if (runtimeAnimatorControllers != null)
             {
-                if (runtimeAnimatorControllers[_enemyManager.enemyDataNumber] != null)
+                if (runtimeAnimatorControllers[_enemyManager.enemyChildID] != null)
                 {
-                    runAnimatorController = runtimeAnimatorControllers[_enemyManager.enemyDataNumber];
+                    runAnimatorController = runtimeAnimatorControllers[_enemyManager.enemyChildID];
                 }
 
             }
@@ -57,7 +57,7 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
         {
             AnimationState(_enemyData, _animator, _playerData,
                 _animationCount, _enemyManager.GetEnemyIndex(),
-                _enemyManager.enemyDataNumber);
+                _enemyManager.enemyChildID);
         }              
         
     }
@@ -86,6 +86,6 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
 
         gameObject.transform.parent.gameObject.SetActive(false);
 
-        _enemyManager.enemyData.enemyStats[_enemyManager.GetEnemyIndex()].enemyDying[_enemyManager.enemyDataNumber] = false;
+        _enemyManager.enemyData.enemyStats[_enemyManager.GetEnemyIndex()].enemyDying[_enemyManager.enemyChildID] = false;
     }
 }

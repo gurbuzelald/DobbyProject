@@ -521,9 +521,9 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         else
         {
-            enemyManager.enemyData.enemyStats[enemyManager.GetEnemyIndex()].isTouchable[enemyManager.enemyDataNumber] = enemyManager._healthBar != null;
+            enemyManager.enemyData.enemyStats[enemyManager.GetEnemyIndex()].isTouchable[enemyManager.enemyChildID] = enemyManager._healthBar != null;
 
-            if (enemyManager.enemyData.enemyStats[enemyManager.GetEnemyIndex()].isTouchable[enemyManager.enemyDataNumber])
+            if (enemyManager.enemyData.enemyStats[enemyManager.GetEnemyIndex()].isTouchable[enemyManager.enemyChildID])
             {
                 CreateTouchParticleEffect();
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetEnemyHit);
@@ -703,7 +703,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     void OnTriggerEnter(Collider other)
     {
 
-        if (other.CompareTag(SceneController.Tags.EnemyTriggerBox.ToString()))
+        /*if (other.CompareTag(SceneController.Tags.EnemyTriggerBox.ToString()))
         {
             SetTrueEnemy(other);
 
@@ -729,7 +729,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             SetTrueTazo(other);
 
             Destroy(other.gameObject);
-        }
+        }*/
 
         if (other.CompareTag(SceneController.Tags.EnemyBullet.ToString()))
         {
@@ -807,87 +807,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
     }
 
-    public void SetTrueEnemy(Collider other)
-    {
-        if (_enemyObjectPool)
-        {
-            for (int i = 0; i < other.gameObject.transform.childCount; i++)
-            {
-                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.enemyPrefabObjectPoolID);
-
-                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
-                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
-                currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
-                currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(i).position.x,
-                                                                     1f,
-                                                                     other.gameObject.transform.GetChild(i).position.z);
-            }
-        }
-
-    }
-    public void SetTrueBoss(Collider other)
-    {
-        if (_enemyObjectPool)
-        {
-            for (int i = 0; i < other.gameObject.transform.childCount; i++)
-            {
-                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.bossEnemyPrefabObjectPoolID);
-
-                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
-                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
-                currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
-                currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(i).position.x,
-                                                                     1f,
-                                                                     other.gameObject.transform.GetChild(i).position.z);
-                currentEnemyObjects.transform.localScale = new Vector3(currentEnemyObjects.transform.localScale.x,
-                                                                       currentEnemyObjects.transform.localScale.y,
-                                                                       currentEnemyObjects.transform.localScale.z);
-            }
-        }
-
-    }
-
-    public void SetTrueChestMonster(Collider other)
-    {
-        if (_enemyObjectPool)
-        {
-            for (int i = 0; i < other.gameObject.transform.childCount; i++)
-            {
-                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.chestMonsterEnemyPrefabObjectPoolID);
-
-                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
-                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
-                currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
-                currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(i).position.x,
-                                                                     1f,
-                                                                     other.gameObject.transform.GetChild(i).position.z);
-                currentEnemyObjects.transform.localScale = new Vector3(currentEnemyObjects.transform.localScale.x,
-                                                                       currentEnemyObjects.transform.localScale.y,
-                                                                       currentEnemyObjects.transform.localScale.z);
-            }            
-        }
-    }
-
-    public void SetTrueTazo(Collider other)
-    {
-        if (_enemyObjectPool)
-        {
-            for (int i = 0; i < other.gameObject.transform.childCount; i++)
-            {
-                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.tazoEnemyPrefabObjectPoolID);
-
-                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
-                currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
-                currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
-                currentEnemyObjects.transform.position = new Vector3(other.gameObject.transform.GetChild(i).position.x,
-                                                                     1f,
-                                                                     other.gameObject.transform.GetChild(i).position.z);
-                currentEnemyObjects.transform.localScale = new Vector3(currentEnemyObjects.transform.localScale.x,
-                                                                       currentEnemyObjects.transform.localScale.y,
-                                                                       currentEnemyObjects.transform.localScale.z);
-            }
-        }
-    }
+    
     #region //Move and Rotation
     private void Movement(PlayerData _playerData)
     {

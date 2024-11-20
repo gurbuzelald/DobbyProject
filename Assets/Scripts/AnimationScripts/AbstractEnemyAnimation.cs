@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehaviour
 {
-    public virtual void AnimationState(EnemyData _enemyData, Animator _animator, PlayerData _playerData, int _animationCount, int enemyIndex, int enemyDataID)
+    public virtual void AnimationState(EnemyData _enemyData, Animator _animator,
+        PlayerData _playerData, int _animationCount, int enemyIndex, int enemyDataID)
     {
         if (_playerData.isPlayable)
         {

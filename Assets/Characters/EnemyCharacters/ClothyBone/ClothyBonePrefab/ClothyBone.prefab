@@ -833,8 +833,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9a4214d6459832d42a9454a6f750d3dc, type: 2}
-  - {fileID: 2100000, guid: e039c910de08c3f4c9b08c9772f4aacf, type: 2}
+  - {fileID: 2100000, guid: a4ff36e73c00240c39c4bca981375838, type: 2}
+  - {fileID: 2100000, guid: a4ff36e73c00240c39c4bca981375838, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2032,7 +2032,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 02f156ce1b691df44be2820fc0cb15db, type: 2}
+  - {fileID: 2100000, guid: 426bdd4c84f5c274bb764dc7a3d92491, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2672,7 +2672,7 @@ MonoBehaviour:
   bulletData: {fileID: 11400000, guid: b71e18780cc4c459eb550eb84f967f10, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
-  enemyDataNumber: 0
+  enemyChildID: 0
   enemyBulletDataNumber: 0
   _enemyIcon: {fileID: 6016059061660792932}
   _bulletCoin: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}

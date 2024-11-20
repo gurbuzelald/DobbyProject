@@ -53,15 +53,22 @@ MonoBehaviour:
     enemySpeed: 0.5
     enemyDurability: 3
   - currentEnemyID: 3
-    isGround: 01
-    enemyDying: 00
-    isWalking: 01
-    isFiring: 01
-    isAttacking: 00
-    isTouchable: 00
-    isActivateMagnet: 00
-    isSpeedZero: 00
+    isGround: 0000000000000000
+    enemyDying: 0000000000000000
+    isWalking: 0000000000000000
+    isFiring: 0000000000000000
+    isAttacking: 0000000000000000
+    isTouchable: 0000000000000000
+    isActivateMagnet: 0000000000000000
+    isSpeedZero: 0000000000000000
     bulletDamageValue:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
     - 0
     enemySpeed: 0.6
     enemyDurability: 4
@@ -92,15 +99,33 @@ MonoBehaviour:
     enemySpeed: 0.7
     enemyDurability: 6
   - currentEnemyID: 6
-    isGround: 00
-    enemyDying: 00
-    isWalking: 00
-    isFiring: 00
-    isAttacking: 00
-    isTouchable: 00
-    isActivateMagnet: 00
-    isSpeedZero: 00
+    isGround: 01010101000000000000000000000000000000
+    enemyDying: 00000000000000000000000000000000000000
+    isWalking: 01010101000000000000000000000000000000
+    isFiring: 01000000000000000000000000000000000000
+    isAttacking: 00000000000000000000000000000000000000
+    isTouchable: 01010101000000000000000000000000000000
+    isActivateMagnet: 00000000000000000000000000000000000000
+    isSpeedZero: 00000000000000000000000000000000000000
     bulletDamageValue:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
     - 0
     enemySpeed: 0.8
     enemyDurability: 7
@@ -157,27 +182,45 @@ MonoBehaviour:
     enemySpeed: 0.4
     enemyDurability: 0
   - currentEnemyID: 11
-    isGround: 00
-    enemyDying: 00
-    isWalking: 00
-    isFiring: 01
-    isAttacking: 01
-    isTouchable: 00
-    isActivateMagnet: 00
-    isSpeedZero: 00
+    isGround: 00010100000000000000000000000000000000
+    enemyDying: 00000000000000000000000000000000000000
+    isWalking: 00000000000000000000000000000000000000
+    isFiring: 00000000000000000000000000000000000000
+    isAttacking: 00000000000000000000000000000000000000
+    isTouchable: 01000001000000000000000000000000000001
+    isActivateMagnet: 00000000000000000000000000000000000000
+    isSpeedZero: 00000000000000000000000000000000000000
     bulletDamageValue:
+    - 0
+    - 0
+    - 21
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
     - 0
     enemySpeed: 0.4
     enemyDurability: 0
   - currentEnemyID: 12
-    isGround: 01
-    enemyDying: 00
-    isWalking: 01
-    isFiring: 01
-    isAttacking: 00
-    isTouchable: 00
-    isActivateMagnet: 00
-    isSpeedZero: 00
+    isGround: 0000000000000000
+    enemyDying: 0000000000000000
+    isWalking: 0000000000000000
+    isFiring: 0000000000000000
+    isAttacking: 0000000000000000
+    isTouchable: 0000000000000000
+    isActivateMagnet: 0000000000000000
+    isSpeedZero: 0000000000000000
     bulletDamageValue:
     - 0
     - 0

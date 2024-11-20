@@ -34,7 +34,9 @@ public class EnemySpawner : MonoBehaviour
 
     public static bool bossIsDead;
 
-    
+    private GameObject currentLevelRectangle;
+
+
 
     private void Start()
     {
@@ -45,30 +47,115 @@ public class EnemySpawner : MonoBehaviour
         MainEnemyData.enemyDeathCount = 0;
         enemyData.isActivateCreateEnemy = false;
 
-        CreateEnemyBoxes(LevelData.currentLevelId);
+        currentLevelRectangle = levelData.levelStates[LevelData.currentLevelId].levelRectangle;
+
+        SetTrueEnemy();
+        SetTrueBoss();
+        SetTrueChestMonster();
+        SetTrueTazo();
     }
 
-
-    
-    void CreateEnemyBoxes(int levelID)
+    public void SetTrueEnemy()
     {
-        enemyTransformsObject = Instantiate(levelData.levelStates[levelID].enemySpawnInMap.gameObject, gameObject.transform);
+        if (enemyObjectPool)
+        {
+            if (!currentLevelRectangle) return;
 
-        if (GameObject.Find("bossEnemyTransform"))
-        {
-            bossEnemyTransformObject = GameObject.Find("bossEnemyTransform");
+            for (int i = 0; i < currentLevelRectangle.transform.childCount; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    GameObject currentEnemyObjects = enemyObjectPool.GetPooledObject(playerData.enemyPrefabObjectPoolID);
+
+                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyChildID = i;
+                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
+                    currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
+
+                    SetRandomPosition(currentEnemyObjects.transform, currentLevelRectangle.transform.GetChild(i).transform);
+                }
+                
+            }
         }
-        if (GameObject.Find("bossEnemyBox"))
+
+    }
+
+    public void SetTrueBoss()
+    {
+        if (enemyObjectPool)
         {
-            bossEnemyBoxes[0] = GameObject.Find("bossEnemyBox");
+            if (!currentLevelRectangle) return;
+
+            for (int i = 0; i < currentLevelRectangle.transform.childCount; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    GameObject currentEnemyObjects = enemyObjectPool.GetPooledObject(playerData.bossEnemyPrefabObjectPoolID);
+
+                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyChildID = i;
+                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
+                    currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
+
+                    SetRandomPosition(currentEnemyObjects.transform, currentLevelRectangle.transform.GetChild(i).transform);
+                }
+            }
         }
-        if (GameObject.Find("bossEnemyBox1"))
+    }
+
+    public void SetTrueChestMonster()
+    {
+        if (enemyObjectPool)
         {
-            bossEnemyBoxes[1] = GameObject.Find("bossEnemyBox1");
+            if (!currentLevelRectangle) return;
+
+            for (int i = 0; i < currentLevelRectangle.transform.childCount; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    GameObject currentEnemyObjects = enemyObjectPool.GetPooledObject(playerData.chestMonsterEnemyPrefabObjectPoolID);
+
+                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyChildID = i;
+                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
+                    currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
+
+                    SetRandomPosition(currentEnemyObjects.transform, currentLevelRectangle.transform.GetChild(i).transform);
+                }                   
+            }
         }
-        else
+    }
+
+    public void SetTrueTazo()
+    {
+        if (enemyObjectPool)
         {
-            bossEnemyBoxes[1] = GameObject.Find("bossEnemyBox");
+            if (!currentLevelRectangle) return;
+
+            for (int i = 0; i < currentLevelRectangle.transform.childCount; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    GameObject currentEnemyObjects = enemyObjectPool.GetPooledObject(playerData.tazoEnemyPrefabObjectPoolID);
+
+                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyChildID = i;
+                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
+                    currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
+
+                    SetRandomPosition(currentEnemyObjects.transform, currentLevelRectangle.transform.GetChild(i).transform);
+                }
+            }
         }
+    }
+
+    void SetRandomPosition(Transform enemyTransform, Transform parentTransform)
+    {
+        Vector3 corner1 = parentTransform.GetChild(1).position;
+        Vector3 corner2 = parentTransform.GetChild(3).position;
+        Vector3 corner3 = parentTransform.GetChild(0).position;
+        Vector3 corner4 = parentTransform.GetChild(2).position;
+
+        enemyTransform.position = new Vector3(
+            Random.Range(corner1.x, corner2.x),
+            enemyTransform.position.y,
+            Random.Range(corner3.z, corner4.z)
+        );
     }
 }

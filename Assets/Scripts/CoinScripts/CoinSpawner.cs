@@ -21,10 +21,8 @@ public class CoinSpawner : MonoBehaviour
 
     void Awake()
     {
-        // Cache the current level rectangle to avoid redundant lookups
         GameObject currentLevelRectangle = levelData.levelStates[LevelData.currentLevelId].levelRectangle;
 
-        // Group all object creation calls into a single method
         CreateMultipleObjects(currentLevelRectangle, new (GameObject, float)[]
         {
         (levelData._rotaterCoinObject, 0.5f),

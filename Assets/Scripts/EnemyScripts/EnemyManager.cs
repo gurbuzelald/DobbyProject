@@ -22,7 +22,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     public PlayerData playerData;
     public LevelData levelData;
 
-    public int enemyDataNumber;
+    public int enemyChildID;
     public int enemyBulletDataNumber;
 
     private Transform _initTransform;
@@ -48,6 +48,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     private Collider objectCollider;
     private Rigidbody objectRigidbody;
 
+
+    private void Awake()
+    {
+        SetEnemyDataStateLength();
+    }
     void Start()
     {
         objectCollider = GetComponent<Collider>();
@@ -61,9 +66,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         playerObjectPool = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>();
 
         playerSFX = FindAnyObjectByType<PlayerSoundEffect>();
-
-        //enemyData = enemyListData[enemyDataNumber];
-
+        
         _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
         _healthBarSlider = _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>();
 
@@ -71,6 +74,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         enemyBulletManager = gameObject.transform.GetChild(0).transform.GetComponent<EnemyBulletManager>();
 
+        for (int i = 0; i < gameObject.transform.parent.childCount; i++)
+        {
+            if (gameObject.transform.parent.GetChild(i).gameObject == gameObject)
+            {
+                enemyChildID = i;
+            }
+        }
 
         if (GameObject.Find("EnemySpawner"))
         {
@@ -79,12 +89,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             enemyObjectPool = enemySpawner.enemyObjectPool;
         }
 
-        SetEnemyDataStateLength();
-
         _damageText.text = "";
         _damageText.gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
-        enemyData.enemyStats[GetEnemyIndex()].isSpeedZero[enemyDataNumber] = false;
+        enemyData.enemyStats[GetEnemyIndex()].isSpeedZero[enemyChildID] = false;
 
         _enemyIcon.GetComponent<MeshRenderer>().enabled = true;
         _initTransform = gameObject.transform;
@@ -188,8 +196,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         else
         {
-            enemyData.enemyStats[GetEnemyIndex()].isFiring[enemyDataNumber] = false;
-            enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyDataNumber] = false;
+            enemyData.enemyStats[GetEnemyIndex()].isFiring[enemyChildID] = false;
+            enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyChildID] = false;
             bulletData.isFirable = false;
         }
     }
@@ -199,7 +207,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                          ref Transform _particleTransform)
     {
         // Exit early if no damage is dealt
-        if (bulletData.currentEnemyAttackDamage == 0 && !enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyDataNumber]) return;
+        if (bulletData.currentEnemyAttackDamage == 0 && !enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyChildID]) return;
 
         if (_playerData.decreaseCounter == 0 && healthBarSlider.value > 0)
         {
@@ -225,7 +233,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (enemyData == null || bulletData == null || enemyBulletManager == null) return;
 
-        if (!playerData.isPlayable || enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyDataNumber] || SceneController.pauseGame)
+        if (!playerData.isPlayable || enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyChildID] || SceneController.pauseGame)
         {
             // Reset states when player is not playable or enemy is dying/paused
             ResetEnemyState();
@@ -239,8 +247,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         if (distanceToPlayer >= 0.6f && distanceToPlayer < levelData.currentEnemyDetectionDistance)
         {
             // Enemy moves towards the player
-            enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyDataNumber] = true;
-            enemyData.enemyStats[GetEnemyIndex()].isAttacking[enemyDataNumber] = false;
+            enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyChildID] = true;
+            enemyData.enemyStats[GetEnemyIndex()].isAttacking[enemyChildID] = false;
             bulletData.isFirable = true;
 
             if (enemySpawner?.targetTransform != null)
@@ -253,8 +261,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         else if (distanceToPlayer < 1)
         {
             // Enemy attacks the player
-            enemyData.enemyStats[GetEnemyIndex()].isAttacking[enemyDataNumber] = true;
-            enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyDataNumber] = false;
+            enemyData.enemyStats[GetEnemyIndex()].isAttacking[enemyChildID] = true;
+            enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyChildID] = false;
             playerData.isDecreaseHealth = true;
 
             EnemyAttack(ref playerData, ref PlayerManager.GetInstance._topCanvasHealthBarSlider,
@@ -264,22 +272,22 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         else
         {
             // Enemy is idle or beyond detection range
-            enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyDataNumber] = true;
-            enemyData.enemyStats[GetEnemyIndex()].isAttacking[enemyDataNumber] = false;
+            enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyChildID] = true;
+            enemyData.enemyStats[GetEnemyIndex()].isAttacking[enemyChildID] = false;
         }
 
         // Handle firing based on distance
         if (distanceToPlayer > 0.1f && distanceToPlayer < 10f)
         {
             bulletData.isFirable = true;
-            enemyData.enemyStats[GetEnemyIndex()].isFiring[enemyDataNumber] = true;
+            enemyData.enemyStats[GetEnemyIndex()].isFiring[enemyChildID] = true;
 
             bulletData.enemyBulletDelayCounter += Time.deltaTime;
             FiringFalse(bulletData.enemyFireFrequency);
         }
         else
         {
-            enemyData.enemyStats[GetEnemyIndex()].isFiring[enemyDataNumber] = false;
+            enemyData.enemyStats[GetEnemyIndex()].isFiring[enemyChildID] = false;
             bulletData.isFirable = false;
         }
     }
@@ -288,9 +296,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     void ResetEnemyState()
     {
         bulletData.isFirable = false;
-        enemyData.enemyStats[GetEnemyIndex()].isFiring[enemyDataNumber] = false;
-        enemyData.enemyStats[GetEnemyIndex()].isAttacking[enemyDataNumber] = false;
-        enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyDataNumber] = false;
+        enemyData.enemyStats[GetEnemyIndex()].isFiring[enemyChildID] = false;
+        enemyData.enemyStats[GetEnemyIndex()].isAttacking[enemyChildID] = false;
+        enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyChildID] = false;
     }
 
 
@@ -298,7 +306,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (bulletData.enemyBulletDelayCounter >= enemyFireFrequency)
         {
-            enemyData.enemyStats[GetEnemyIndex()].isFiring[enemyDataNumber] = true;
+            enemyData.enemyStats[GetEnemyIndex()].isFiring[enemyChildID] = true;
             bulletData.isFirable = true;
 
             bulletData.enemyBulletDelayCounter = 0;
@@ -310,7 +318,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         if (enemyData != null || gameObject != null)
         {
             if (collision.collider.CompareTag(SceneController.Tags.Player.ToString()) &&
-                enemyData.enemyStats[GetEnemyIndex()].isTouchable[enemyDataNumber])
+                enemyData.enemyStats[GetEnemyIndex()].isTouchable[enemyChildID])
             {
                 SetCurrentEnemyHitDamage();               
 
@@ -334,7 +342,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 
             }
             if (collision.collider.CompareTag(SceneController.Tags.FanceWooden.ToString()) &&
-                enemyData.enemyStats[GetEnemyIndex()].isTouchable[enemyDataNumber])
+                enemyData.enemyStats[GetEnemyIndex()].isTouchable[enemyChildID])
             {
                 TouchWall();
             }
@@ -342,7 +350,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                 collision.collider.CompareTag(SceneController.Tags.Enemy.ToString()) || 
                 collision.collider.CompareTag(SceneController.Tags.Ladder.ToString()))
             {//Ground, Ladder, Enemy
-                enemyData.enemyStats[GetEnemyIndex()].isGround[enemyDataNumber] = true;
+                enemyData.enemyStats[GetEnemyIndex()].isGround[enemyChildID] = true;
             }
         }        
     }
@@ -351,7 +359,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         if (other.CompareTag(SceneController.Tags.Bullet.ToString()))
         {
             WeaponBulletPower();
-            TriggerBullet(enemyData.enemyStats[GetEnemyIndex()].bulletDamageValue[enemyDataNumber], other);
+            TriggerBullet(enemyData.enemyStats[GetEnemyIndex()].bulletDamageValue[enemyChildID], other);
         }
         if (other.CompareTag(SceneController.Tags.Sword.ToString()))
         {
@@ -381,15 +389,15 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         string parentName = gameObject.transform.parent.name;
         if (parentName == "bossEnemyTransform")
         {
-            enemyData.enemyStats[GetEnemyIndex()].bulletDamageValue[enemyDataNumber] = weaponPower / 4;
+            enemyData.enemyStats[GetEnemyIndex()].bulletDamageValue[enemyChildID] = weaponPower / 4;
         }
         else if (parentName == "chestMonsterTransform" || parentName == "tazoTransform")
         {
-            enemyData.enemyStats[GetEnemyIndex()].bulletDamageValue[enemyDataNumber] = weaponPower * 3;
+            enemyData.enemyStats[GetEnemyIndex()].bulletDamageValue[enemyChildID] = weaponPower * 3;
         }
         else
         {
-            enemyData.enemyStats[GetEnemyIndex()].bulletDamageValue[enemyDataNumber] =
+            enemyData.enemyStats[GetEnemyIndex()].bulletDamageValue[enemyChildID] =
                                 weaponPower - enemyData.enemyStats[GetEnemyIndex()].enemyDurability;
         }
     }
@@ -442,7 +450,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     }
     public void TouchWall()
     {
-        if (!enemyData.enemyStats[GetEnemyIndex()].isActivateMagnet[enemyDataNumber])
+        if (!enemyData.enemyStats[GetEnemyIndex()].isActivateMagnet[enemyChildID])
         {
             gameObject.transform.Rotate(0f, 180f, 0f);
         }
@@ -484,7 +492,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     // Handles the enemy's death logic
     private void HandleEnemyDeath(Collider other = null, bool isSword = true)
     {
-        if (_healthBar == null || enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyDataNumber]) return;
+        if (_healthBar == null || enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyChildID]) return;
 
         
         if (_healthBarSlider.value == 0)
@@ -504,10 +512,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
             EnemyDeathParticle();
 
-            enemyData.enemyStats[GetEnemyIndex()].isTouchable[enemyDataNumber] = false;
-            enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyDataNumber] = true;
-            enemyData.enemyStats[GetEnemyIndex()].isFiring[enemyDataNumber] = false;
-            enemyData.enemyStats[GetEnemyIndex()].isSpeedZero[enemyDataNumber] = true;
+            enemyData.enemyStats[GetEnemyIndex()].isTouchable[enemyChildID] = false;
+            enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyChildID] = true;
+            enemyData.enemyStats[GetEnemyIndex()].isFiring[enemyChildID] = false;
+            enemyData.enemyStats[GetEnemyIndex()].isSpeedZero[enemyChildID] = true;
 
 
             if (gameObject.transform.parent.name == "bossEnemyTransform")
@@ -604,7 +612,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     void BulletOrSwordExplosionParticleWithObjectPool(Collider other, int objectPoolValue)
     {
-        if (enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyDataNumber])
+        if (enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyChildID])
         {
             HandleObjectPooling(other, objectPoolValue, true);
         }
@@ -702,8 +710,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         yield return new WaitForSeconds(backToWalkingValue);
         
-        enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyDataNumber] = true;
-        enemyData.enemyStats[GetEnemyIndex()].isSpeedZero[enemyDataNumber] = false;
+        enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyChildID] = true;
+        enemyData.enemyStats[GetEnemyIndex()].isSpeedZero[enemyChildID] = false;
 
     }
 
@@ -749,7 +757,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (enemyData != null)
         {
-            enemyData.enemyStats[GetEnemyIndex()].isTouchable[enemyDataNumber] = true;
+            enemyData.enemyStats[GetEnemyIndex()].isTouchable[enemyChildID] = true;
         }
     }
 }

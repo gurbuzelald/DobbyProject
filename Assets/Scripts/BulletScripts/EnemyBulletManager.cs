@@ -40,11 +40,8 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
     }
     public void RayBullet()
     {
-        if (_enemyManager.enemyData.enemyStats[_enemyManager.GetEnemyIndex()].enemyDying[_enemyManager.enemyDataNumber] ||
-            playerData.isDying || enemySpawner == null)
-        {
-            return;  // Early return if any of these conditions are not met
-        }
+        if (_enemyManager.enemyData.enemyStats[_enemyManager.GetEnemyIndex()].enemyDying[_enemyManager.enemyChildID] ||
+            enemySpawner == null) return;
         
         if (Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.forward),
                             out hit, 50, enemySpawner.layerMask))
