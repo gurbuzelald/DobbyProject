@@ -45,12 +45,18 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     private EnemyObjectPool enemyObjectPool;
     private Collider isSword;
 
-    private int enemyID;
+    private Collider objectCollider;
+    private Rigidbody objectRigidbody;
 
     void Start()
     {
+        objectCollider = GetComponent<Collider>();
+        objectRigidbody = GetComponent<Rigidbody>();
 
-        enemyData.enemyStats[GetEnemyIndex()].currentEnemyName = gameObject.transform.name;
+        objectRigidbody.isKinematic = false;
+        objectCollider.enabled = true;
+
+        //enemyData.enemyStats[GetEnemyIndex()].currentEnemyName = gameObject.transform.name;
 
         playerObjectPool = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>();
 
@@ -88,7 +94,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         SetBackToWalkingValueForStart();
     }
 
-    void SetEnemyDataStateLength()
+    private void OnEnable()
+    {
+        SetEnemyDataStateLength();
+    }
+
+    public void SetEnemyDataStateLength()
     {
         enemyData.enemyStats[GetEnemyIndex()].isGround = new bool[gameObject.transform.parent.childCount];
         enemyData.enemyStats[GetEnemyIndex()].enemyDying = new bool[gameObject.transform.parent.childCount];
@@ -99,7 +110,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         enemyData.enemyStats[GetEnemyIndex()].isActivateMagnet = new bool[gameObject.transform.parent.childCount];
         enemyData.enemyStats[GetEnemyIndex()].isSpeedZero = new bool[gameObject.transform.parent.childCount];
 
-        enemyData.enemyStats[GetEnemyIndex()].bulletDamageValue = new float[gameObject.transform.parent.childCount];
+        enemyData.enemyStats[mainEnemyData.enemyID].bulletDamageValue = new float[gameObject.transform.parent.childCount];
     }
 
     // Static dictionary to map enemy names to their indices in `enemyAttackInfos`
@@ -132,7 +143,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         bulletData.currentEnemyBulletDamage = PlayerManager.GetInstance._enemyBulletData.enemyAttackInfos[enemyIndex].bulletDamage;
     }
 
-    public void SetEnemyAttackDamage(ref EnemyData enemyData, ref EnemyBulletData bulletData)
+    public void SetEnemyAttackDamage(ref EnemyBulletData bulletData)
     {
         int enemyIndex = GetEnemyIndex();
         bulletData.currentEnemyAttackDamage = PlayerManager.GetInstance._enemyBulletData.enemyAttackInfos[enemyIndex].attackDamage;
@@ -141,7 +152,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     // Helper function to get the enemy index, defaults to 0 if not found
     public int GetEnemyIndex()
     {
-        return enemyIndexMap.TryGetValue(gameObject.name, out int index) ? index : 0;
+        return mainEnemyData.enemyID;
     }
 
 
@@ -372,7 +383,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         {
             enemyData.enemyStats[GetEnemyIndex()].bulletDamageValue[enemyDataNumber] = weaponPower / 4;
         }
-        else if (parentName == "chestMonsterTransform")
+        else if (parentName == "chestMonsterTransform" || parentName == "tazoTransform")
         {
             enemyData.enemyStats[GetEnemyIndex()].bulletDamageValue[enemyDataNumber] = weaponPower * 3;
         }
@@ -475,9 +486,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (_healthBar == null || enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyDataNumber]) return;
 
-
+        
         if (_healthBarSlider.value == 0)
         {
+
+            objectRigidbody.isKinematic = true;
+            objectCollider.enabled = false;
+
             PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
 
             if (other)

@@ -2,7 +2,7 @@
     "characterStruct": [
         {
             "characterObject": {
-                "instanceID": 52416
+                "instanceID": 52512
             },
             "durability": 0,
             "price": 0,
@@ -15,7 +15,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52418
+                "instanceID": 52514
             },
             "durability": 7,
             "price": 200,
@@ -23,12 +23,12 @@
             "speed": 2.299999952316284,
             "id": 1,
             "name": "Joleen",
-            "lockState": "",
+            "lockState": "Locked",
             "swordDamageValue": 100.0
         },
         {
             "characterObject": {
-                "instanceID": 52420
+                "instanceID": 52516
             },
             "durability": 9,
             "price": 1000,
@@ -41,7 +41,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52422
+                "instanceID": 52518
             },
             "durability": 4000,
             "price": 4,
@@ -54,7 +54,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52424
+                "instanceID": 52520
             },
             "durability": 10,
             "price": 2000,
@@ -67,7 +67,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52426
+                "instanceID": 52522
             },
             "durability": 9,
             "price": 1000,
@@ -80,7 +80,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52428
+                "instanceID": 52524
             },
             "durability": 11,
             "price": 4000,
@@ -93,7 +93,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52430
+                "instanceID": 52526
             },
             "durability": 8,
             "price": 500,
@@ -106,7 +106,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52432
+                "instanceID": 52528
             },
             "durability": 8,
             "price": 500,
@@ -119,7 +119,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52434
+                "instanceID": 52530
             },
             "durability": 9,
             "price": 1000,
@@ -132,7 +132,7 @@
         },
         {
             "characterObject": {
-                "instanceID": 52436
+                "instanceID": 52532
             },
             "durability": 10,
             "price": 2000,
@@ -145,10 +145,10 @@
         }
     ],
     "playerObject": {
-        "instanceID": 52438
+        "instanceID": 52534
     },
     "characterObject": {
-        "instanceID": 52440
+        "instanceID": 52536
     },
     "playerWeaponBulletObjectPoolCount": 0,
     "playerSwordBulletObjectPoolCount": 1,
@@ -167,44 +167,45 @@
     "enemyPrefabObjectPoolID": 2,
     "bossEnemyPrefabObjectPoolID": 3,
     "chestMonsterEnemyPrefabObjectPoolID": 4,
-    "chestMonster2EnemyPrefabObjectPoolID": 5,
+    "tazoEnemyPrefabObjectPoolID": 5,
+    "chestMonster2EnemyPrefabObjectPoolID": 6,
     "currentLanguage": 0,
     "getCurrentEnemyDead": false,
     "currentMessageText": {
-        "instanceID": 555042
+        "instanceID": 336236
     },
     "currentMessageObject": {
-        "instanceID": 555038
+        "instanceID": 336232
     },
     "isDecreaseHealth": true,
     "damageHealthText": {
-        "instanceID": 555232
+        "instanceID": 336326
     },
-    "decreaseCounter": 0,
+    "decreaseCounter": 1,
     "resetLocks": "Locked",
     "locked": "Locked",
     "unLocked": "",
     "objects": [
         {
-            "instanceID": 52442
+            "instanceID": 52538
         },
         {
-            "instanceID": 52444
+            "instanceID": 52540
         },
         {
-            "instanceID": 52446
+            "instanceID": 52542
         },
         {
-            "instanceID": 52448
+            "instanceID": 52544
         },
         {
-            "instanceID": 52450
+            "instanceID": 52546
         },
         {
-            "instanceID": 52452
+            "instanceID": 52548
         },
         {
-            "instanceID": 52454
+            "instanceID": 52550
         }
     ],
     "sensivityX": 2.0,
@@ -215,9 +216,9 @@
     "isGround": true,
     "isWalking": false,
     "isSideWalking": false,
-    "isBackWalking": false,
+    "isBackWalking": true,
     "isIdling": false,
-    "isDying": false,
+    "isDying": true,
     "isWinning": false,
     "isRunning": false,
     "isPicking": false,
@@ -225,8 +226,8 @@
     "isSwordAnimate": false,
     "isSword": false,
     "isLookingUp": false,
-    "isDestroyed": false,
-    "isPlayable": true,
+    "isDestroyed": true,
+    "isPlayable": false,
     "isFire": false,
     "isFireWalkAnimation": false,
     "isFireAnimation": false,
@@ -234,38 +235,38 @@
     "isJumping": false,
     "jumpCount": 0,
     "clickShiftCount": 0,
-    "bulletAmount": 94,
-    "bulletPackAmount": 2,
+    "bulletAmount": 6,
+    "bulletPackAmount": 1,
     "danceTime": 5.0,
     "jolleenObject": {
-        "instanceID": 52456
+        "instanceID": 52552
     },
     "touchParticle": {
-        "instanceID": 52458
+        "instanceID": 52554
     },
     "birthParticle": {
-        "instanceID": 52460
+        "instanceID": 52556
     },
     "deathParticle": {
-        "instanceID": 52462
+        "instanceID": 52558
     },
     "burningParticle": {
-        "instanceID": 52464
+        "instanceID": 52560
     },
     "burningTouchParticle": {
-        "instanceID": 52464
+        "instanceID": 52560
     },
     "destroyRotateCoinParticle": {
-        "instanceID": 52466
+        "instanceID": 52562
     },
     "destroyHealthCoinParticle": {
-        "instanceID": 52468
+        "instanceID": 52564
     },
     "destroyBulletCoinParticle": {
-        "instanceID": 52470
+        "instanceID": 52566
     },
     "destroyMushroomCoinParticle": {
-        "instanceID": 52472
+        "instanceID": 52568
     },
     "particleCount": 0,
     "isTouchFirst": false,
@@ -273,34 +274,34 @@
     "isTouchThird": false,
     "weaponBulletExplosionParticles": [
         {
-            "instanceID": 52474
+            "instanceID": 52570
         },
         {
-            "instanceID": 52476
+            "instanceID": 52572
         },
         {
-            "instanceID": 52478
+            "instanceID": 52574
         },
         {
-            "instanceID": 52480
+            "instanceID": 52576
         },
         {
-            "instanceID": 52482
+            "instanceID": 52578
         },
         {
-            "instanceID": 52484
+            "instanceID": 52580
         },
         {
-            "instanceID": 52486
+            "instanceID": 52582
         },
         {
-            "instanceID": 52488
+            "instanceID": 52584
         },
         {
-            "instanceID": 52490
+            "instanceID": 52586
         },
         {
-            "instanceID": 52492
+            "instanceID": 52588
         }
     ]
 }

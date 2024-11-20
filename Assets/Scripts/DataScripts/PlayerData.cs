@@ -59,7 +59,9 @@ public class PlayerData : ScriptableObject
     public int enemyPrefabObjectPoolID;//2
     public int bossEnemyPrefabObjectPoolID;//3
     public int chestMonsterEnemyPrefabObjectPoolID;//4
-    public int chestMonster2EnemyPrefabObjectPoolID;//5
+    public int tazoEnemyPrefabObjectPoolID;//5
+    public int chestMonster2EnemyPrefabObjectPoolID;//6
+    
 
 
     [Header("Current Language")]

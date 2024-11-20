@@ -1204,17 +1204,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             playerTransform.Translate(0f, 0f, PlayerData.currentCharacterSpeed * zValue * Time.deltaTime);
         }
-        /*if (Mathf.Abs(zValue) > .4f && Mathf.Abs(xValue) > .4f)
-        {
-            playerTransform.Translate(0f, 0f, PlayerData.currentCharacterSpeed * zValue * Time.deltaTime);
-            playerTransform.Translate((PlayerData.currentCharacterSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue), 0f, 0f);
-        }*/
 
 
         // Geri Yürüme Durumu
         if (zValue < 0f)
         {
-            playerTransform.Translate(0f, 0f, (-PlayerData.currentCharacterSpeed * 2 / 3) * Time.deltaTime);
             _playerData.isBackWalking = true;
             _playerData.isWalking = false;
             _playerData.isSideWalking = false;
@@ -1222,6 +1216,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         else
         {
             _playerData.isBackWalking = false;
+        }
+
+        if (_playerData.isBackWalking)
+        {
+            playerTransform.Translate(0f, 0f, (-PlayerData.currentCharacterSpeed * .2f) * Time.deltaTime);
         }
         // Durma Durumu
         if (zValue == 0f && xValue == 0f)

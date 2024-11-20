@@ -13,112 +13,35 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   enemyStats:
-  - currentEnemyName: Chibi(Clone)
-    isGround: 01010101010101010101010101010101010101
-    enemyDying: 00000000000000000000000000000000000000
-    isWalking: 00000000000000000000000000000000000000
-    isFiring: 00000000000000000000000000000000000000
-    isAttacking: 00000000000000000000000000000000000000
-    isTouchable: 00010000000000000000000000000000000001
-    isActivateMagnet: 00000000000000000000000000000000000000
-    isSpeedZero: 00000000000000000000000000000000000000
+  - currentEnemyID: 0
+    isGround: 00
+    enemyDying: 00
+    isWalking: 00
+    isFiring: 00
+    isAttacking: 00
+    isTouchable: 00
+    isActivateMagnet: 00
+    isSpeedZero: 00
     bulletDamageValue:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
     - 0
     enemySpeed: 0.3
     enemyDurability: 1
-  - currentEnemyName: Giant(Clone)
-    isGround: 
-    enemyDying: 
-    isWalking: 
-    isFiring: 
-    isAttacking: 
-    isTouchable: 
-    isActivateMagnet: 
-    isSpeedZero: 
-    bulletDamageValue: []
+  - currentEnemyID: 1
+    isGround: 00
+    enemyDying: 00
+    isWalking: 00
+    isFiring: 00
+    isAttacking: 00
+    isTouchable: 00
+    isActivateMagnet: 00
+    isSpeedZero: 00
+    bulletDamageValue:
+    - 0
     enemySpeed: 0.4
     enemyDurability: 2
-  - currentEnemyName: BigMonster(Clone)
-    isGround: 
-    enemyDying: 
-    isWalking: 
-    isFiring: 
-    isAttacking: 
-    isTouchable: 
-    isActivateMagnet: 
-    isSpeedZero: 
-    bulletDamageValue: []
-    enemySpeed: 0.5
-    enemyDurability: 3
-  - currentEnemyName: Orc(Clone)
-    isGround: 
-    enemyDying: 
-    isWalking: 
-    isFiring: 
-    isAttacking: 
-    isTouchable: 
-    isActivateMagnet: 
-    isSpeedZero: 
-    bulletDamageValue: []
-    enemySpeed: 0.6
-    enemyDurability: 4
-  - currentEnemyName: Beholder(Clone)
-    isGround: 
-    enemyDying: 
-    isWalking: 
-    isFiring: 
-    isAttacking: 
-    isTouchable: 
-    isActivateMagnet: 
-    isSpeedZero: 
-    bulletDamageValue: []
-    enemySpeed: 0.7
-    enemyDurability: 5
-  - currentEnemyName: FemaleZombie(Clone)
-    isGround: 
-    enemyDying: 
-    isWalking: 
-    isFiring: 
-    isAttacking: 
-    isTouchable: 
-    isActivateMagnet: 
-    isSpeedZero: 
-    bulletDamageValue: []
-    enemySpeed: 0.7
-    enemyDurability: 6
-  - currentEnemyName: Doctor(Clone)
-    isGround: 
-    enemyDying: 
-    isWalking: 
-    isFiring: 
-    isAttacking: 
-    isTouchable: 
-    isActivateMagnet: 
-    isSpeedZero: 
-    bulletDamageValue: []
-    enemySpeed: 0.8
-    enemyDurability: 7
-  - currentEnemyName: Giant(Clone)
+  - currentEnemyID: 2
     isGround: 01
-    enemyDying: 01
+    enemyDying: 00
     isWalking: 00
     isFiring: 00
     isAttacking: 00
@@ -126,91 +49,136 @@ MonoBehaviour:
     isActivateMagnet: 00
     isSpeedZero: 00
     bulletDamageValue:
-    - 5.25
+    - 0
+    enemySpeed: 0.5
+    enemyDurability: 3
+  - currentEnemyID: 3
+    isGround: 01
+    enemyDying: 00
+    isWalking: 01
+    isFiring: 01
+    isAttacking: 00
+    isTouchable: 00
+    isActivateMagnet: 00
+    isSpeedZero: 00
+    bulletDamageValue:
+    - 0
+    enemySpeed: 0.6
+    enemyDurability: 4
+  - currentEnemyID: 4
+    isGround: 00
+    enemyDying: 00
+    isWalking: 00
+    isFiring: 00
+    isAttacking: 00
+    isTouchable: 00
+    isActivateMagnet: 00
+    isSpeedZero: 00
+    bulletDamageValue:
+    - 0
+    enemySpeed: 0.7
+    enemyDurability: 5
+  - currentEnemyID: 5
+    isGround: 00
+    enemyDying: 00
+    isWalking: 00
+    isFiring: 00
+    isAttacking: 00
+    isTouchable: 00
+    isActivateMagnet: 00
+    isSpeedZero: 00
+    bulletDamageValue:
+    - 0
+    enemySpeed: 0.7
+    enemyDurability: 6
+  - currentEnemyID: 6
+    isGround: 00
+    enemyDying: 00
+    isWalking: 00
+    isFiring: 00
+    isAttacking: 00
+    isTouchable: 00
+    isActivateMagnet: 00
+    isSpeedZero: 00
+    bulletDamageValue:
+    - 0
+    enemySpeed: 0.8
+    enemyDurability: 7
+  - currentEnemyID: 7
+    isGround: 01
+    enemyDying: 00
+    isWalking: 00
+    isFiring: 00
+    isAttacking: 00
+    isTouchable: 01
+    isActivateMagnet: 00
+    isSpeedZero: 00
+    bulletDamageValue:
+    - 0
     enemySpeed: 0.8
     enemyDurability: 8
-  - currentEnemyName: Bone(Clone)
-    isGround: 
-    enemyDying: 
-    isWalking: 
-    isFiring: 
-    isAttacking: 
-    isTouchable: 
-    isActivateMagnet: 
-    isSpeedZero: 
-    bulletDamageValue: []
+  - currentEnemyID: 8
+    isGround: 00
+    enemyDying: 00
+    isWalking: 00
+    isFiring: 00
+    isAttacking: 00
+    isTouchable: 00
+    isActivateMagnet: 00
+    isSpeedZero: 00
+    bulletDamageValue:
+    - 0
     enemySpeed: 0.8
     enemyDurability: 10
-  - currentEnemyName: ClothyBone(Clone)
-    isGround: 01010101010101010000000000000000
-    enemyDying: 00000000000000000000000000000000
-    isWalking: 00010101010101010000000000000000
-    isFiring: 00010100000100010000000000000000
-    isAttacking: 00000000000000000000000000000000
-    isTouchable: 00000000000000010000000000000000
-    isActivateMagnet: 00000000000000000000000000000000
-    isSpeedZero: 01000000000000000000000000000000
-    bulletDamageValue: []
+  - currentEnemyID: 9
+    isGround: 00
+    enemyDying: 00
+    isWalking: 00
+    isFiring: 00
+    isAttacking: 00
+    isTouchable: 00
+    isActivateMagnet: 00
+    isSpeedZero: 00
+    bulletDamageValue:
+    - 0
     enemySpeed: 0.8
     enemyDurability: 11
-  - currentEnemyName: ChestMonster(Clone)
-    isGround: 01010101010101010000000000000000
-    enemyDying: 00000000000000000000000000000000
-    isWalking: 00000000000000000000000000000000
-    isFiring: 00000000000000000000000000000000
-    isAttacking: 00000000000000000000000000000000
-    isTouchable: 00000000000000010000000000000000
-    isActivateMagnet: 00000000000000000000000000000000
-    isSpeedZero: 00000000000000000000000000000000
+  - currentEnemyID: 10
+    isGround: 01
+    enemyDying: 00
+    isWalking: 01
+    isFiring: 01
+    isAttacking: 00
+    isTouchable: 01
+    isActivateMagnet: 00
+    isSpeedZero: 00
     bulletDamageValue:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
     - 0
     enemySpeed: 0.4
     enemyDurability: 0
-  - currentEnemyName: Tazo(Clone)
-    isGround: 01010101010101010000000000000000
-    enemyDying: 01000000000000000000000000000000
-    isWalking: 00010101010101010000000000000000
-    isFiring: 00010000010100010000000000000000
-    isAttacking: 00000000000000000000000000000000
-    isTouchable: 00000000000000010000000000000000
-    isActivateMagnet: 00000000000000000000000000000000
-    isSpeedZero: 01000000000000000000000000000000
-    bulletDamageValue: []
-    enemySpeed: 0.4
-    enemyDurability: 0
-  - currentEnemyName: Tazo(Clone)
-    isGround: 01010101010101010000000000000000
-    enemyDying: 00000000000000000000000000000000
-    isWalking: 00000000000000000000000000000000
-    isFiring: 00000000000000000000000000000000
-    isAttacking: 00000000000000000000000000000000
-    isTouchable: 00000000000000010000000000000000
-    isActivateMagnet: 00000000000000000000000000000000
-    isSpeedZero: 00000000000000000000000000000000
+  - currentEnemyID: 11
+    isGround: 00
+    enemyDying: 00
+    isWalking: 00
+    isFiring: 01
+    isAttacking: 01
+    isTouchable: 00
+    isActivateMagnet: 00
+    isSpeedZero: 00
     bulletDamageValue:
     - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
+    enemySpeed: 0.4
+    enemyDurability: 0
+  - currentEnemyID: 12
+    isGround: 01
+    enemyDying: 00
+    isWalking: 01
+    isFiring: 01
+    isAttacking: 00
+    isTouchable: 00
+    isActivateMagnet: 00
+    isSpeedZero: 00
+    bulletDamageValue:
     - 0
     - 0
     - 0

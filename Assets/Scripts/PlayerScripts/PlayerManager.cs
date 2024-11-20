@@ -119,6 +119,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     void Start()
     {
+
         Interfaces();
 
         PlayerComponentsOnStart();
@@ -725,7 +726,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         if (other.CompareTag(SceneController.Tags.ChestTrigger2Box.ToString()))
         {
-            SetTrueChestMonster2(other);
+            SetTrueTazo(other);
 
             Destroy(other.gameObject);
         }
@@ -867,13 +868,13 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
     }
 
-    public void SetTrueChestMonster2(Collider other)
+    public void SetTrueTazo(Collider other)
     {
         if (_enemyObjectPool)
         {
             for (int i = 0; i < other.gameObject.transform.childCount; i++)
             {
-                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.chestMonster2EnemyPrefabObjectPoolID);
+                GameObject currentEnemyObjects = _enemyObjectPool.GetPooledObject(_playerData.tazoEnemyPrefabObjectPoolID);
 
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyDataNumber = i;
                 currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;

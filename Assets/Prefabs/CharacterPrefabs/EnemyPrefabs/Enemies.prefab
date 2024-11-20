@@ -159,6 +159,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 373697536177982832}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7704945624715735855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1697212470940332007}
+  m_Layer: 0
+  m_Name: tazoTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1697212470940332007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7704945624715735855}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 373697535263641945}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8879973386241343065
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,7 +284,7 @@ PrefabInstance:
     - target: {fileID: 1198427531217201245, guid: fd14b49ab8fe2412a86759054e6ea35c, type: 3}
       propertyPath: pools.Array.data[5].objectTransform
       value: 
-      objectReference: {fileID: 2473186793805671549}
+      objectReference: {fileID: 1697212470940332007}
     - target: {fileID: 1198427531217201245, guid: fd14b49ab8fe2412a86759054e6ea35c, type: 3}
       propertyPath: pools.Array.data[6].objectTransform
       value: 
@@ -293,7 +324,7 @@ PrefabInstance:
     - target: {fileID: 1198427531217201245, guid: fd14b49ab8fe2412a86759054e6ea35c, type: 3}
       propertyPath: 'pools.Array.data[0].objectPrefab.Array.data[9]'
       value: 
-      objectReference: {fileID: 6315167284785218462, guid: e163bff1a7c754c52bd36d8c018611c3, type: 3}
+      objectReference: {fileID: 1214174750890122878, guid: 05ba40ff6090a4856a48c93a11357ad7, type: 3}
     - target: {fileID: 1198427531217201245, guid: fd14b49ab8fe2412a86759054e6ea35c, type: 3}
       propertyPath: 'pools.Array.data[1].objectPrefab.Array.data[0]'
       value: 
@@ -547,6 +578,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8621513305380422508, guid: fb3f6f63c0d21bc45a04ada5207e1bbb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2473186793805671549}
+    - targetCorrespondingSourceObject: {fileID: 8621513305380422508, guid: fb3f6f63c0d21bc45a04ada5207e1bbb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1697212470940332007}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb3f6f63c0d21bc45a04ada5207e1bbb, type: 3}
 --- !u!4 &373697535263641945 stripped

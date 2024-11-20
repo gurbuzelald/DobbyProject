@@ -76,7 +76,7 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
         }
         _playerData.isDecreaseHealth = false;
 
-        _enemyManager.SetEnemyAttackDamage(ref _enemyManager.enemyData, ref _enemyManager.bulletData);
+        _enemyManager.SetEnemyAttackDamage(ref _enemyManager.bulletData);
         _playerData.decreaseCounter = 0;
     }
 

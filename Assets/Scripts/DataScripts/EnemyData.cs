@@ -9,7 +9,7 @@ public class EnemyData : ScriptableObject
     [Serializable]
     public struct EnemyStats
     {
-        public string currentEnemyName;
+        public int currentEnemyID;
 
         public bool[] isGround;
         public bool[] enemyDying;

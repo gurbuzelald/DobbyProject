@@ -12,4 +12,6 @@ public class MainEnemyData : ScriptableObject
     public AudioClip giveHitClip;
     public AudioClip dyingClip;
     public AudioClip giveBulletHitClip;
+
+    public int enemyID;
 }
