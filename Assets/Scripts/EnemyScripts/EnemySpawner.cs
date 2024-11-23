@@ -36,11 +36,27 @@ public class EnemySpawner : MonoBehaviour
 
     private GameObject currentLevelRectangle;
 
+    [System.Serializable]
+    public struct AnimatorStruct
+    {
+        public RuntimeAnimatorController[] runtimeAnimatorControllers;
+        public RuntimeAnimatorController[] exampleRunAnimatorController;
+    }
 
+    public AnimatorStruct[] animatorStruct = new AnimatorStruct[4];
+    
+
+    private int animatorAmount;
 
     private void Start()
     {
-        targetTransform = PlayerManager.GetInstance.gameObject.transform;
+        if (GameObject.Find("PlayerSpawner"))
+        {
+            if (GameObject.Find("PlayerSpawner").transform.childCount > 0)
+            {
+                targetTransform = GameObject.Find("PlayerSpawner").transform.GetChild(0);
+            }
+        }  
 
         bossIsDead = false;
 
@@ -53,27 +69,54 @@ public class EnemySpawner : MonoBehaviour
         SetTrueBoss();
         SetTrueChestMonster();
         SetTrueTazo();
+
+        animatorAmount = 0;
+        
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            for (int j = 0; j < gameObject.transform.GetChild(i).childCount; j++)
+            {
+                animatorAmount++;
+            }
+        }
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            animatorStruct[i].exampleRunAnimatorController = new RuntimeAnimatorController[gameObject.transform.childCount];
+            animatorStruct[i].runtimeAnimatorControllers = new RuntimeAnimatorController[gameObject.transform.GetChild(i).childCount];
+        }
+        
+
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            animatorStruct[i].exampleRunAnimatorController[i] =
+                gameObject.transform.GetChild(i).GetChild(0).GetChild(1).GetComponent<EnemyAnimationController>().exampleRunAnimatorController;
+
+            for (int j = 0; j < gameObject.transform.GetChild(i).childCount; j++)
+            {
+                animatorStruct[i].runtimeAnimatorControllers[j] = Instantiate(animatorStruct[i].exampleRunAnimatorController[i]);
+            }            
+        }
     }
+
+
 
     public void SetTrueEnemy()
     {
         if (enemyObjectPool)
         {
             if (!currentLevelRectangle) return;
+            
 
             for (int i = 0; i < currentLevelRectangle.transform.childCount; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 5 + LevelData.currentLevelId; j++)
                 {
                     GameObject currentEnemyObjects = enemyObjectPool.GetPooledObject(playerData.enemyPrefabObjectPoolID);
 
-                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyChildID = i;
-                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
                     currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
 
                     SetRandomPosition(currentEnemyObjects.transform, currentLevelRectangle.transform.GetChild(i).transform);
                 }
-                
             }
         }
 
@@ -87,12 +130,10 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < currentLevelRectangle.transform.childCount; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 5 + LevelData.currentLevelId; j++)
                 {
                     GameObject currentEnemyObjects = enemyObjectPool.GetPooledObject(playerData.bossEnemyPrefabObjectPoolID);
 
-                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyChildID = i;
-                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
                     currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
 
                     SetRandomPosition(currentEnemyObjects.transform, currentLevelRectangle.transform.GetChild(i).transform);
@@ -109,12 +150,10 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < currentLevelRectangle.transform.childCount; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 5 + LevelData.currentLevelId; j++)
                 {
                     GameObject currentEnemyObjects = enemyObjectPool.GetPooledObject(playerData.chestMonsterEnemyPrefabObjectPoolID);
 
-                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyChildID = i;
-                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
                     currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
 
                     SetRandomPosition(currentEnemyObjects.transform, currentLevelRectangle.transform.GetChild(i).transform);
@@ -131,12 +170,10 @@ public class EnemySpawner : MonoBehaviour
 
             for (int i = 0; i < currentLevelRectangle.transform.childCount; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < 5 + LevelData.currentLevelId; j++)
                 {
                     GameObject currentEnemyObjects = enemyObjectPool.GetPooledObject(playerData.tazoEnemyPrefabObjectPoolID);
 
-                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyChildID = i;
-                    currentEnemyObjects.gameObject.transform.GetComponent<EnemyManager>().enemyBulletDataNumber = i;
                     currentEnemyObjects.gameObject.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
 
                     SetRandomPosition(currentEnemyObjects.transform, currentLevelRectangle.transform.GetChild(i).transform);

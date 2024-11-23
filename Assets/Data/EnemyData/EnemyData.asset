@@ -13,33 +13,95 @@ MonoBehaviour:
   m_Name: EnemyData
   m_EditorClassIdentifier: 
   enemyStats:
-  - currentEnemyID: 0
-    isGround: 00
-    enemyDying: 00
-    isWalking: 00
-    isFiring: 00
-    isAttacking: 00
-    isTouchable: 00
-    isActivateMagnet: 00
-    isSpeedZero: 00
+  - enemyName: Beholder
+    currentEnemyID: 0
+    isGround: 010101010100010100000001010000000100000000000001000100010101010100000101000000000000000000000000000000000000000000000000
+    enemyDying: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isWalking: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isFiring: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isAttacking: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isTouchable: 010101010100010101010101010101010101010101010101010101010101010101010101000000000000000000000000000000000000000000000000
+    isActivateMagnet: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isSpeedZero: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     bulletDamageValue:
+    - 20
+    - 20
+    - 20
     - 0
-    enemySpeed: 0.3
-    enemyDurability: 1
-  - currentEnemyID: 1
+    - 20
+    - 20
+    - 0
+    - 20
+    - 20
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 20
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    enemySpeed: 0.7
+    enemyDurability: 8
+  - enemyName: BigMonster
+    currentEnemyID: 1
     isGround: 00
     enemyDying: 00
     isWalking: 00
     isFiring: 00
     isAttacking: 00
-    isTouchable: 00
+    isTouchable: 01
     isActivateMagnet: 00
     isSpeedZero: 00
     bulletDamageValue:
     - 0
     enemySpeed: 0.4
     enemyDurability: 2
-  - currentEnemyID: 2
+  - enemyName: Bone
+    currentEnemyID: 2
     isGround: 01
     enemyDying: 00
     isWalking: 00
@@ -52,13 +114,14 @@ MonoBehaviour:
     - 0
     enemySpeed: 0.5
     enemyDurability: 3
-  - currentEnemyID: 3
-    isGround: 0000000000000000
+  - enemyName: Chestmonster
+    currentEnemyID: 3
+    isGround: 0101010101010101
     enemyDying: 0000000000000000
     isWalking: 0000000000000000
     isFiring: 0000000000000000
     isAttacking: 0000000000000000
-    isTouchable: 0000000000000000
+    isTouchable: 0101010101010101
     isActivateMagnet: 0000000000000000
     isSpeedZero: 0000000000000000
     bulletDamageValue:
@@ -70,9 +133,10 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    enemySpeed: 0.6
-    enemyDurability: 4
-  - currentEnemyID: 4
+    enemySpeed: 0.5
+    enemyDurability: 0
+  - enemyName: ChestMonster2
+    currentEnemyID: 4
     isGround: 00
     enemyDying: 00
     isWalking: 00
@@ -84,21 +148,82 @@ MonoBehaviour:
     bulletDamageValue:
     - 0
     enemySpeed: 0.7
-    enemyDurability: 5
-  - currentEnemyID: 5
-    isGround: 00
-    enemyDying: 00
-    isWalking: 00
-    isFiring: 00
-    isAttacking: 00
-    isTouchable: 00
-    isActivateMagnet: 00
-    isSpeedZero: 00
+    enemyDurability: 0
+  - enemyName: Chibi
+    currentEnemyID: 5
+    isGround: 010101010101010101010101010101010101010100000000000000000000000000000000000000000000000000000000000000000000000000000000
+    enemyDying: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isWalking: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isFiring: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isAttacking: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isTouchable: 010101010101010101010101000100010101010100000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isActivateMagnet: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isSpeedZero: 000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     bulletDamageValue:
     - 0
-    enemySpeed: 0.7
-    enemyDurability: 6
-  - currentEnemyID: 6
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 21
+    - 0
+    - 21
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    enemySpeed: 0.4
+    enemyDurability: 0
+  - enemyName: ClothyBone
+    currentEnemyID: 6
     isGround: 01010101000000000000000000000000000000
     enemyDying: 00000000000000000000000000000000000000
     isWalking: 01010101000000000000000000000000000000
@@ -127,9 +252,10 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-    enemySpeed: 0.8
-    enemyDurability: 7
-  - currentEnemyID: 7
+    enemySpeed: 0.4
+    enemyDurability: 0
+  - enemyName: Doctor
+    currentEnemyID: 7
     isGround: 01
     enemyDying: 00
     isWalking: 00
@@ -142,33 +268,36 @@ MonoBehaviour:
     - 0
     enemySpeed: 0.8
     enemyDurability: 8
-  - currentEnemyID: 8
+  - enemyName: FemaleZombie
+    currentEnemyID: 8
     isGround: 00
     enemyDying: 00
     isWalking: 00
     isFiring: 00
     isAttacking: 00
-    isTouchable: 00
+    isTouchable: 01
     isActivateMagnet: 00
     isSpeedZero: 00
     bulletDamageValue:
     - 0
     enemySpeed: 0.8
     enemyDurability: 10
-  - currentEnemyID: 9
-    isGround: 00
+  - enemyName: Giant
+    currentEnemyID: 9
+    isGround: 01
     enemyDying: 00
     isWalking: 00
     isFiring: 00
     isAttacking: 00
-    isTouchable: 00
+    isTouchable: 01
     isActivateMagnet: 00
     isSpeedZero: 00
     bulletDamageValue:
     - 0
     enemySpeed: 0.8
     enemyDurability: 11
-  - currentEnemyID: 10
+  - enemyName: Mino
+    currentEnemyID: 10
     isGround: 01
     enemyDying: 00
     isWalking: 01
@@ -181,19 +310,61 @@ MonoBehaviour:
     - 0
     enemySpeed: 0.4
     enemyDurability: 0
-  - currentEnemyID: 11
-    isGround: 00010100000000000000000000000000000000
-    enemyDying: 00000000000000000000000000000000000000
-    isWalking: 00000000000000000000000000000000000000
-    isFiring: 00000000000000000000000000000000000000
-    isAttacking: 00000000000000000000000000000000000000
-    isTouchable: 01000001000000000000000000000000000001
-    isActivateMagnet: 00000000000000000000000000000000000000
-    isSpeedZero: 00000000000000000000000000000000000000
+  - enemyName: Orc
+    currentEnemyID: 11
+    isGround: 000100000001000000000000000001000100000000000001010000010101000100000000000000000000000000000000000000000000000000000000
+    enemyDying: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isWalking: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isFiring: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isAttacking: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isTouchable: 010101010101010101010101010101010101010101010101010101010101010100000000000000000000000000000000000000000000000000000000
+    isActivateMagnet: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+    isSpeedZero: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     bulletDamageValue:
     - 0
     - 0
-    - 21
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
     - 0
     - 0
     - 0
@@ -212,13 +383,14 @@ MonoBehaviour:
     - 0
     enemySpeed: 0.4
     enemyDurability: 0
-  - currentEnemyID: 12
-    isGround: 0000000000000000
+  - enemyName: Tazo
+    currentEnemyID: 12
+    isGround: 0101010101010101
     enemyDying: 0000000000000000
     isWalking: 0000000000000000
     isFiring: 0000000000000000
     isAttacking: 0000000000000000
-    isTouchable: 0000000000000000
+    isTouchable: 0101010101010101
     isActivateMagnet: 0000000000000000
     isSpeedZero: 0000000000000000
     bulletDamageValue:

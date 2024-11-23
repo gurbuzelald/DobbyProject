@@ -15,18 +15,12 @@ public class ObjectPool : MonoBehaviour
         public BulletData bulletData;
     }
 
-    [SerializeField] LevelData levelData;
-    [SerializeField] PlayerData playerData;
-    [SerializeField] BulletData playerBulletData;
-
     [SerializeField] Pool[] pools = null;
 
     private GameObject _poolUpdateObject;
 
 
     public static bool creatablePlayerBullet;
-    public static bool creatableEnemyBullet;
-    public static bool creatableSwordBullet;
 
     private GameObject instantiateObject;
 
@@ -51,8 +45,6 @@ public class ObjectPool : MonoBehaviour
                 CreateAndEnqueueObject();
 
                 creatablePlayerBullet = false;
-
-                creatableEnemyBullet = false;
             }
         }
     }
@@ -87,22 +79,22 @@ public class ObjectPool : MonoBehaviour
 
         // Select prefab index based on the poolIndex
         switch (poolIndex)
-        {
+        {       
             case 0: // Player Bullet
-            case 6: // Bullet Explosion
-            case 11: //Enemy Death Particle
+            
+            case 2: // Bullet Explosion
+             
+            case 7: //Enemy Death Particle By Player Bullet
+            
                 prefabIndex = BulletData.currentWeaponID;
                 break;
             case 1: // Player Sword Bullet
-            case 2: // Player Coin Particle
-            case 3: // Destroy BulletCoin
-            case 4: // Health Particle
-            case 5: // PlayerMushroom Particle
-            case 7: // Player Sword Explosion
-            case 8: // Player Burning Touch Particle
-            case 9: // Player Touch Particle
-            case 10: // Player Death Particle
-                prefabIndex = 0;
+            case 3: // Player Sword Explosion
+            case 4: // Player Burning Touch Particle
+            case 5: // Player Touch Particle   
+            case 6: // Player Death Particle   
+            case 8: // Player Run Particle         
+                prefabIndex = PlayerData.currentCharacterID;
                 break;
             default:
                 return null; // Return null if poolIndex is out of range

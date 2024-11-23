@@ -3,8 +3,9 @@ using UnityEngine;
 public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationController>
 {
     [Header("Animator")]
-    [SerializeField] RuntimeAnimatorController[] runtimeAnimatorControllers;
+    //private RuntimeAnimatorController[] runtimeAnimatorControllers;
     [SerializeField] RuntimeAnimatorController runAnimatorController;
+    public RuntimeAnimatorController exampleRunAnimatorController;
     private Animator _animator;
     private int _animationCount;
 
@@ -12,9 +13,13 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
     private EnemyData _enemyData;
     private PlayerData _playerData;
     private EnemyManager _enemyManager;
+    private EnemySpawner _enemySpawner;
 
     void Start()
-    {      
+    {
+        _enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
+        //runtimeAnimatorControllers = new RuntimeAnimatorController[gameObject.transform.parent.parent.childCount];
+
         _playerData = gameObject.transform.parent.GetComponent<EnemyManager>().playerData;
 
         _enemyManager = gameObject.transform.parent.GetComponent<EnemyManager>();
@@ -33,14 +38,61 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
     {
         if (_enemyManager)
         {
-            if (runtimeAnimatorControllers != null)
+
+            /*for (int i = 0; i < gameObject.transform.parent.parent.childCount; i++)
             {
-                if (runtimeAnimatorControllers[_enemyManager.enemyChildID] != null)
+                runtimeAnimatorControllers[i] = Instantiate(exampleRunAnimatorController);
+            }*/
+
+            for (int i = 0; i < gameObject.transform.parent.parent.parent.childCount; i++)
+            {
+                if (gameObject.transform.parent.parent.name == "normalEnemyTransform")
                 {
-                    runAnimatorController = runtimeAnimatorControllers[_enemyManager.enemyChildID];
+                    if (_enemySpawner.animatorStruct[0].runtimeAnimatorControllers != null)
+                    {
+                        if (_enemySpawner.animatorStruct[0].runtimeAnimatorControllers[_enemyManager.enemyChildID] != null)
+                        {
+                            runAnimatorController = _enemySpawner.animatorStruct[0].runtimeAnimatorControllers[_enemyManager.enemyChildID];
+                        }
+
+                    }
+                }
+                else if (gameObject.transform.parent.parent.name == "bossEnemyTransform")
+                {
+                    if (_enemySpawner.animatorStruct[1].runtimeAnimatorControllers != null)
+                    {
+                        if (_enemySpawner.animatorStruct[1].runtimeAnimatorControllers[_enemyManager.enemyChildID] != null)
+                        {
+                            runAnimatorController = _enemySpawner.animatorStruct[1].runtimeAnimatorControllers[_enemyManager.enemyChildID];
+                        }
+
+                    }
+                }
+                else if (gameObject.transform.parent.parent.name == "chestMonsterTransform")
+                {
+                    if (_enemySpawner.animatorStruct[2].runtimeAnimatorControllers != null)
+                    {
+                        if (_enemySpawner.animatorStruct[2].runtimeAnimatorControllers[_enemyManager.enemyChildID] != null)
+                        {
+                            runAnimatorController = _enemySpawner.animatorStruct[2].runtimeAnimatorControllers[_enemyManager.enemyChildID];
+                        }
+
+                    }
+                }
+                else if (gameObject.transform.parent.parent.name == "tazoTransform")
+                {
+                    if (_enemySpawner.animatorStruct[3].runtimeAnimatorControllers != null)
+                    {
+                        if (_enemySpawner.animatorStruct[3].runtimeAnimatorControllers[_enemyManager.enemyChildID] != null)
+                        {
+                            runAnimatorController = _enemySpawner.animatorStruct[3].runtimeAnimatorControllers[_enemyManager.enemyChildID];
+                        }
+
+                    }
                 }
 
             }
+            
 
             _animator = gameObject.transform.GetComponent<Animator>();
 

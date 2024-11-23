@@ -2274,27 +2274,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 4039162827982202919}
   mainEnemyData: {fileID: 11400000, guid: 7065e4f119ae94b94b4b834f19bf9b85, type: 2}
-  enemyListData:
-  - {fileID: 11400000, guid: c3ec816fc7d794423be1ab525849f823, type: 2}
-  - {fileID: 11400000, guid: f2b4b18ab7e5e417bad2a538ebdc29f6, type: 2}
-  - {fileID: 11400000, guid: 71c628b8b3daf4dfdb29d02afa26886b, type: 2}
-  - {fileID: 11400000, guid: dde44c15424124c05964605a99c27081, type: 2}
-  - {fileID: 11400000, guid: 39096fa3c149e4ec28127c633707a689, type: 2}
-  - {fileID: 11400000, guid: b78fa3f5acf8d4813be866108c68b115, type: 2}
-  - {fileID: 11400000, guid: c8542130ab5224bd48c506237da80907, type: 2}
-  - {fileID: 11400000, guid: 98938822edc294a8f9f9aa87ba25361f, type: 2}
-  - {fileID: 11400000, guid: c151a5a6eebf44768b78936282254b8b, type: 2}
-  - {fileID: 11400000, guid: 6c3bc42e0f8b94169b3e7849012fa2e1, type: 2}
-  - {fileID: 11400000, guid: 9b5bab11c0a29470e9e551ff6c7dcb68, type: 2}
-  - {fileID: 11400000, guid: ab21ece5d46bd45e8be1ead83b25557b, type: 2}
-  - {fileID: 11400000, guid: c68dc9f8d344d41c79fd51fa8eb2593e, type: 2}
-  - {fileID: 11400000, guid: e2d165c0b76bf474292d74714dca2f5e, type: 2}
-  - {fileID: 11400000, guid: b35398707f9b44ce6ba8e54bc4e89199, type: 2}
-  - {fileID: 11400000, guid: 753587d77318f4d47a3e6d522a9ce64f, type: 2}
-  - {fileID: 11400000, guid: d55ec598fca6c4e4ab5dd422192462b4, type: 2}
-  - {fileID: 11400000, guid: 4d07c1e6de1704c9a9a7fcfcf69e9804, type: 2}
-  - {fileID: 11400000, guid: 90f463c6aba924223b2e48d8835bd936, type: 2}
-  - {fileID: 11400000, guid: 9313175936b7f4e8ab859ac475953d0d, type: 2}
   enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
   bulletData: {fileID: 11400000, guid: e29a903b8cadd4c2fb0806daab977a9f, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
@@ -2589,6 +2568,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: b53e29d0b35904705a6800c4263d0c4a, type: 2}
   - {fileID: 9100000, guid: 4403a1323291b4e3a8405d87df2ef465, type: 2}
   runAnimatorController: {fileID: 0}
+  exampleRunAnimatorController: {fileID: 9100000, guid: 63ad8dba2b376405182966fda345be25, type: 2}
 --- !u!95 &8742299082417034830
 Animator:
   serializedVersion: 7

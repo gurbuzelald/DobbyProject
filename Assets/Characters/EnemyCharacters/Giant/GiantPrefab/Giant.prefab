@@ -1351,7 +1351,7 @@ MonoBehaviour:
   bulletData: {fileID: 11400000, guid: dde52ca73408d4d8084e4e1e6340bf1c, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
-  enemyDataNumber: 0
+  enemyChildID: 0
   enemyBulletDataNumber: 0
   _enemyIcon: {fileID: 7330554945774580682}
   _bulletCoin: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}
@@ -2318,6 +2318,7 @@ MonoBehaviour:
   - {fileID: 9100000, guid: 9760b81dc636340e6a3112ed287d12b2, type: 2}
   - {fileID: 9100000, guid: f1e076eb00334459c82b574853e74a91, type: 2}
   runAnimatorController: {fileID: 0}
+  exampleRunAnimatorController: {fileID: 9100000, guid: e7b5a4591b54e4e68955c2f78bc8a682, type: 2}
 --- !u!1 &6043301696443495137
 GameObject:
   m_ObjectHideFlags: 0

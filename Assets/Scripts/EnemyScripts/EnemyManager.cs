@@ -16,7 +16,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     [Header("Data")]
     public MainEnemyData mainEnemyData;
-    public EnemyData[] enemyListData;
     public EnemyData enemyData;  
     public EnemyBulletData bulletData;
     public PlayerData playerData;
@@ -711,7 +710,6 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         yield return new WaitForSeconds(backToWalkingValue);
         
         enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyChildID] = true;
-        enemyData.enemyStats[GetEnemyIndex()].isSpeedZero[enemyChildID] = false;
 
     }
 

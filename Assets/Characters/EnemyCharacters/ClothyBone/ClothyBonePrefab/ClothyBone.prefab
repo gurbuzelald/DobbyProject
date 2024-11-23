@@ -205,28 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbab17b44bf9a0458fac80563059cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runtimeAnimatorControllers:
-  - {fileID: 9100000, guid: bae2626317fa14afebc63d06136b8b6e, type: 2}
-  - {fileID: 9100000, guid: 6a0bfc846390a4c4cb69cf0edde64c4c, type: 2}
-  - {fileID: 9100000, guid: 6f08ba07991694fddaad9028be66adf5, type: 2}
-  - {fileID: 9100000, guid: 26c34b6ae804a4c6895ea15b4556067d, type: 2}
-  - {fileID: 9100000, guid: 97a09695627224817bf9de43475e0fd5, type: 2}
-  - {fileID: 9100000, guid: 28d86c78b3bb7424d96b54d8b8695f73, type: 2}
-  - {fileID: 9100000, guid: c8a11930d7b624288949b5dffd071d75, type: 2}
-  - {fileID: 9100000, guid: 87661a66fb8724241940380949ad4cb7, type: 2}
-  - {fileID: 9100000, guid: 67f5264dda4ea4b9d9650b6f752ea128, type: 2}
-  - {fileID: 9100000, guid: b71f7fc4c26d743e699d70c6ae119f9f, type: 2}
-  - {fileID: 9100000, guid: a534a3696d3354af2aa35e2e6e7a0967, type: 2}
-  - {fileID: 9100000, guid: f3951d67295b64c5c9945b8ce715a46b, type: 2}
-  - {fileID: 9100000, guid: 9310f697a0e1747ffaa4d24ec399deec, type: 2}
-  - {fileID: 9100000, guid: 1f1df6357893347aa9acdbd467988a70, type: 2}
-  - {fileID: 9100000, guid: 1e4f834057dfc4dccb352d0ed5f4834a, type: 2}
-  - {fileID: 9100000, guid: d688ef59f98254ec29144a04afc2a39b, type: 2}
-  - {fileID: 9100000, guid: d66b920b7e00540b4a94bfe7c176b037, type: 2}
-  - {fileID: 9100000, guid: 208bc691d217544dd93899384922641d, type: 2}
-  - {fileID: 9100000, guid: 1042b901529a74d5d8cce84a7be5bace, type: 2}
-  - {fileID: 9100000, guid: 922a55101b95c4256be43480aee47e3a, type: 2}
   runAnimatorController: {fileID: 0}
+  exampleRunAnimatorController: {fileID: 9100000, guid: bae2626317fa14afebc63d06136b8b6e, type: 2}
 --- !u!95 &1326677998286999452
 Animator:
   serializedVersion: 7
@@ -2647,27 +2627,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 6755295171333727476}
   mainEnemyData: {fileID: 11400000, guid: aa49d07b7352b45e0aacf3173ab2fefe, type: 2}
-  enemyListData:
-  - {fileID: 11400000, guid: e0d4fdce4c4504b75a44e629793dea24, type: 2}
-  - {fileID: 11400000, guid: ddb566dcef9e04a028809f2ebc88ec0a, type: 2}
-  - {fileID: 11400000, guid: f0e01927caa3d4772b0c12eb58ba2d0e, type: 2}
-  - {fileID: 11400000, guid: 3a6a40aafbf424aff91159df5033011f, type: 2}
-  - {fileID: 11400000, guid: addd076f4b9d64706932d4af4fbb8792, type: 2}
-  - {fileID: 11400000, guid: 2a0012638c27e4d8f83a59ace5f374e1, type: 2}
-  - {fileID: 11400000, guid: 0348643717fd84cb8b8da231b10192c4, type: 2}
-  - {fileID: 11400000, guid: 37fdfa593eda941f296c9eab8dbd536c, type: 2}
-  - {fileID: 11400000, guid: 4ac076cff236c40aaae96e37cc95893c, type: 2}
-  - {fileID: 11400000, guid: 449bc12072e4945b785a50e611ad03fc, type: 2}
-  - {fileID: 11400000, guid: e397bd48e639a41319063626e1b1f72f, type: 2}
-  - {fileID: 11400000, guid: 93e9b8d75176049bfa3ee47d3b3b451c, type: 2}
-  - {fileID: 11400000, guid: 5d2c23e3876534ba9be4417930fe8160, type: 2}
-  - {fileID: 11400000, guid: 5db5a333616c04256b1da00c197a3280, type: 2}
-  - {fileID: 11400000, guid: 448fdc7388fe94fca9f0a46e9056df32, type: 2}
-  - {fileID: 11400000, guid: 533ff94b24b15427ca87e183d93aab60, type: 2}
-  - {fileID: 11400000, guid: 351e96ee89fff47258ec269d7a698b90, type: 2}
-  - {fileID: 11400000, guid: 0d443fd6367e049a0978b6c5ed15a2d1, type: 2}
-  - {fileID: 11400000, guid: 9aeeca7743d6c48c5ad873863b536329, type: 2}
-  - {fileID: 11400000, guid: ab9209b953bc24e23bcb54b78845ad6b, type: 2}
   enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
   bulletData: {fileID: 11400000, guid: b71e18780cc4c459eb550eb84f967f10, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}

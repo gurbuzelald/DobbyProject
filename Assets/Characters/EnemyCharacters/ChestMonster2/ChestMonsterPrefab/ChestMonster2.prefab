@@ -744,28 +744,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbab17b44bf9a0458fac80563059cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runtimeAnimatorControllers:
-  - {fileID: 9100000, guid: ee70831005b2b4e82a3d7a5121374d75, type: 2}
-  - {fileID: 9100000, guid: e940451af6d76432286fd953638c530a, type: 2}
-  - {fileID: 9100000, guid: d5ef5822bcb8b499f89396040ace0832, type: 2}
-  - {fileID: 9100000, guid: 7c5940792fc334bb2ac433a49c8fa359, type: 2}
-  - {fileID: 9100000, guid: f7315060857034e64b82fdac29e11fde, type: 2}
-  - {fileID: 9100000, guid: 6cd67c804db3e41a29005c0b38d2483e, type: 2}
-  - {fileID: 9100000, guid: e6be187485aa24314a25ae44d71595b7, type: 2}
-  - {fileID: 9100000, guid: f4cfbda414ad14f91ad054f64d34b621, type: 2}
-  - {fileID: 9100000, guid: 92abf0bbfc09a4f7ba84edfb0d3ab853, type: 2}
-  - {fileID: 9100000, guid: 6acb8c24a394147bdba3797eae96ebd0, type: 2}
-  - {fileID: 9100000, guid: 9ce440822387d455e93a433c2059f8ae, type: 2}
-  - {fileID: 9100000, guid: 11a20811c503742bf8aede4a61c25b2c, type: 2}
-  - {fileID: 9100000, guid: 627e8f55597e949f18ae40b79aa091c3, type: 2}
-  - {fileID: 9100000, guid: ef6d8132da4c04600b2bf60d9ffa3ab4, type: 2}
-  - {fileID: 9100000, guid: d0e89b8174d7248058512e27156abb1a, type: 2}
-  - {fileID: 9100000, guid: f08444d9bc1eb49f483a334188111505, type: 2}
-  - {fileID: 9100000, guid: 3bb918abbbb7645f2a1a4eec486b0728, type: 2}
-  - {fileID: 9100000, guid: 7ae1d6e660ae84908a45d51fa4752374, type: 2}
-  - {fileID: 9100000, guid: 78362669b054d4253b7254f4e3c645d5, type: 2}
-  - {fileID: 9100000, guid: eb39b7e9dcc034c848abb3b52caf50e0, type: 2}
   runAnimatorController: {fileID: 0}
+  exampleRunAnimatorController: {fileID: 9100000, guid: ee70831005b2b4e82a3d7a5121374d75, type: 2}
 --- !u!95 &5921840203306062801
 Animator:
   serializedVersion: 7
@@ -1605,32 +1585,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 8750141870223119989}
   mainEnemyData: {fileID: 11400000, guid: 82723a69a6e4048f683cef6225710d52, type: 2}
-  enemyListData:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
   bulletData: {fileID: 11400000, guid: 7d244788cc78049ee9dedd59de7b8010, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
   levelData: {fileID: 11400000, guid: 660b7078961b00845bb67913edbd33b7, type: 2}
-  enemyDataNumber: 0
+  enemyChildID: 0
   enemyBulletDataNumber: 0
   _enemyIcon: {fileID: 3791186559491139680}
   _bulletCoin: {fileID: 7707355688560459608, guid: 86900ef9254602249bba7c5e8c763ecb, type: 3}

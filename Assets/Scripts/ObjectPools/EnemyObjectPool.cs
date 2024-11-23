@@ -21,8 +21,6 @@ public class EnemyObjectPool : MonoBehaviour
 
     private GameObject _poolUpdateObject;
 
-    public PlayerData playerData;
-
     void Awake()
     {
         CreateAndEnqueueObject();

@@ -2035,27 +2035,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 5420813492399416615}
   mainEnemyData: {fileID: 11400000, guid: 4f9da03f2e81c40b5ab48b73a073b01d, type: 2}
-  enemyListData:
-  - {fileID: 11400000, guid: 94cd0c637080c4cf5a875d18f40ce497, type: 2}
-  - {fileID: 11400000, guid: c90d5a6d21f3a4d3bbf5b5c79236bc14, type: 2}
-  - {fileID: 11400000, guid: 9cf98c4e5452a424cab0c8ad4e30ac65, type: 2}
-  - {fileID: 11400000, guid: 401b1dff052d449f8a6b735be63842c0, type: 2}
-  - {fileID: 11400000, guid: 44f3b6a8c5aa74cc3b3d492bac32ac13, type: 2}
-  - {fileID: 11400000, guid: b23ff83ab8a554156972d8952f59a9c2, type: 2}
-  - {fileID: 11400000, guid: 4daef17bbbf3843dfa1e1a14aa10c878, type: 2}
-  - {fileID: 11400000, guid: 1f028e7372ed947cf91d076b6a8aeeda, type: 2}
-  - {fileID: 11400000, guid: e7f57aca59d63437bb0b620f6ea6989e, type: 2}
-  - {fileID: 11400000, guid: e3c363da0ed614a6b84ded64bda16993, type: 2}
-  - {fileID: 11400000, guid: d0b4f81192bb04c02a5426416463eec1, type: 2}
-  - {fileID: 11400000, guid: d3802412b7c164ee190033a28afff2dd, type: 2}
-  - {fileID: 11400000, guid: d7d40a7b6b02f43ed837110246a658d5, type: 2}
-  - {fileID: 11400000, guid: 3e2eb46c9149c4c6ea92aff07fa1f451, type: 2}
-  - {fileID: 11400000, guid: 0ad869c712128477b91cf374c9fe2cd3, type: 2}
-  - {fileID: 11400000, guid: 3c69b2e6eafa44492b65b8a352afab42, type: 2}
-  - {fileID: 11400000, guid: 56d8ad6313a654913a38ff657a4c391e, type: 2}
-  - {fileID: 11400000, guid: 8251040662f2d411a8d093f1e265c2e9, type: 2}
-  - {fileID: 11400000, guid: 983b265092b0745e1a8bfcbcdc725e95, type: 2}
-  - {fileID: 11400000, guid: e921b1de8abb84c0fa50b3d02d3d4b7e, type: 2}
   enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
   bulletData: {fileID: 11400000, guid: b9e9e6e09b90b43648442b02e801c64a, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
@@ -3773,28 +3752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbab17b44bf9a0458fac80563059cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runtimeAnimatorControllers:
-  - {fileID: 9100000, guid: 6a3c10895b9044f89ac61af9246d90e5, type: 2}
-  - {fileID: 9100000, guid: 68db3da0fec2d4e0884b85879fad7405, type: 2}
-  - {fileID: 9100000, guid: 207fce7b845be4eaa8697a317a46470b, type: 2}
-  - {fileID: 9100000, guid: 71913ba3bf4c24102b332b80a187b047, type: 2}
-  - {fileID: 9100000, guid: 819c1d1bf1f8d403bbf3fd4d07e011a5, type: 2}
-  - {fileID: 9100000, guid: 82970b567b2374b90b7ece5f264988b2, type: 2}
-  - {fileID: 9100000, guid: 0a907721856a54f1398c8a6146de57ed, type: 2}
-  - {fileID: 9100000, guid: 569fd01ce10944eb5b125c2872367689, type: 2}
-  - {fileID: 9100000, guid: a13338eddcf1b4f8a8a352389fe96e52, type: 2}
-  - {fileID: 9100000, guid: 622921ab935624e0a8009a11a40604b1, type: 2}
-  - {fileID: 9100000, guid: 7df55e89d4b80457ca4c6d50eb99b286, type: 2}
-  - {fileID: 9100000, guid: 3412c643316ba44958e428c7b8503164, type: 2}
-  - {fileID: 9100000, guid: f9cbc8721edac4e9cb0eb0c1bb0d5302, type: 2}
-  - {fileID: 9100000, guid: 78771748fa30b492bb8208113bd0bb89, type: 2}
-  - {fileID: 9100000, guid: 2fda26ac99d764b88bf9e34b9fcd0bca, type: 2}
-  - {fileID: 9100000, guid: f81d4d9e1037f48b29e12a77409978dc, type: 2}
-  - {fileID: 9100000, guid: 84c3d98a8e3f74137ab955930c01e9c7, type: 2}
-  - {fileID: 9100000, guid: 430f97cf47aa14692af8545186fbd2b6, type: 2}
-  - {fileID: 9100000, guid: 6e2e607452e11497999dcea537f4e25b, type: 2}
-  - {fileID: 9100000, guid: 937db6d96b699466eba47d87b5ff64df, type: 2}
   runAnimatorController: {fileID: 0}
+  exampleRunAnimatorController: {fileID: 9100000, guid: 6a3c10895b9044f89ac61af9246d90e5, type: 2}
 --- !u!1 &5308936831142581820
 GameObject:
   m_ObjectHideFlags: 0

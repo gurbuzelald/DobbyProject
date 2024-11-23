@@ -385,9 +385,6 @@ public class LevelUpController : MonoBehaviour
         {
             if (levelData.levelStates[i].isCompleteMap)
             {
-                // Enable enemy bullet creation
-                ObjectPool.creatableEnemyBullet = true;
-
                 // Set current level ID and corresponding gift box
                 ++LevelData.currentLevelId;
 

@@ -1,167 +1,169 @@
 {
     "characterStruct": [
         {
+            "name": "Dummy",
             "characterObject": {
-                "instanceID": 52516
+                "instanceID": 52416
             },
             "durability": 0,
             "price": 0,
             "jumpForce": 5,
             "speed": 1.5,
             "id": 0,
-            "name": "Dummy",
             "lockState": "",
             "swordDamageValue": 100.0
         },
         {
+            "name": "Joleen",
             "characterObject": {
-                "instanceID": 52518
+                "instanceID": 52418
             },
             "durability": 7,
             "price": 200,
             "jumpForce": 6,
             "speed": 2.299999952316284,
             "id": 1,
-            "name": "Joleen",
             "lockState": "Locked",
             "swordDamageValue": 100.0
         },
         {
+            "name": "Glassy",
             "characterObject": {
-                "instanceID": 52520
+                "instanceID": 52420
             },
             "durability": 9,
             "price": 1000,
             "jumpForce": 6,
             "speed": 1.7000000476837159,
             "id": 2,
-            "name": "Glassy",
             "lockState": "Locked",
             "swordDamageValue": 100.0
         },
         {
+            "name": "Lusth",
             "characterObject": {
-                "instanceID": 52522
+                "instanceID": 52422
             },
             "durability": 4000,
             "price": 4,
             "jumpForce": 7,
             "speed": 2.5,
             "id": 3,
-            "name": "Lusth",
             "lockState": "Locked",
             "swordDamageValue": 100.0
         },
         {
+            "name": "Guard",
             "characterObject": {
-                "instanceID": 52524
+                "instanceID": 52424
             },
             "durability": 10,
             "price": 2000,
             "jumpForce": 7,
             "speed": 2.299999952316284,
             "id": 4,
-            "name": "Guard",
             "lockState": "Locked",
             "swordDamageValue": 100.0
         },
         {
+            "name": "Michelle",
             "characterObject": {
-                "instanceID": 52526
+                "instanceID": 52426
             },
             "durability": 9,
             "price": 1000,
             "jumpForce": 8,
             "speed": 2.4000000953674318,
             "id": 5,
-            "name": "Michelle",
             "lockState": "Locked",
             "swordDamageValue": 100.0
         },
         {
+            "name": "Eve",
             "characterObject": {
-                "instanceID": 52528
+                "instanceID": 52428
             },
             "durability": 11,
             "price": 4000,
             "jumpForce": 7,
             "speed": 2.5,
             "id": 6,
-            "name": "Eve",
             "lockState": "Locked",
             "swordDamageValue": 100.0
         },
         {
+            "name": "Aj",
             "characterObject": {
-                "instanceID": 52530
+                "instanceID": 52430
             },
             "durability": 8,
             "price": 500,
             "jumpForce": 8,
             "speed": 2.0,
             "id": 7,
-            "name": "Aj",
             "lockState": "Locked",
             "swordDamageValue": 100.0
         },
         {
+            "name": "Boss",
             "characterObject": {
-                "instanceID": 52532
+                "instanceID": 52432
             },
             "durability": 8,
             "price": 500,
             "jumpForce": 7,
             "speed": 2.299999952316284,
             "id": 8,
-            "name": "Boss",
             "lockState": "Locked",
             "swordDamageValue": 100.0
         },
         {
+            "name": "Ty",
             "characterObject": {
-                "instanceID": 52534
+                "instanceID": 52434
             },
             "durability": 9,
             "price": 1000,
             "jumpForce": 8,
             "speed": 2.0,
             "id": 9,
-            "name": "Ty",
             "lockState": "Locked",
             "swordDamageValue": 100.0
         },
         {
+            "name": "Mremireh",
             "characterObject": {
-                "instanceID": 52536
+                "instanceID": 52436
             },
             "durability": 10,
             "price": 2000,
             "jumpForce": 8,
             "speed": 2.0,
             "id": 10,
-            "name": "Mremireh",
             "lockState": "Locked",
             "swordDamageValue": 100.0
         }
     ],
     "playerObject": {
-        "instanceID": 52538
+        "instanceID": 52438
     },
     "characterObject": {
-        "instanceID": 52540
+        "instanceID": 52440
     },
     "playerWeaponBulletObjectPoolCount": 0,
     "playerSwordBulletObjectPoolCount": 1,
-    "destroyCoinParticleObjectPoolCount": 2,
-    "destroyBulletCoinParticleObjectPoolCount": 3,
-    "destroyHealthCoinObjectPoolCount": 4,
-    "destroyMushroomCoinObjectPoolCount": 5,
-    "playerBulletsExplosionObjectPoolCount": 6,
-    "playerSwordExplosionObjectPoolCount": 7,
-    "playerBurningTouchParticleObjectPoolCount": 8,
-    "playerTouchParticleObjectPoolCount": 9,
-    "deathParticleObjectPoolCount": 10,
-    "enemyDeathParticleOjectPoolID": 11,
+    "playerBulletsExplosionObjectPoolCount": 2,
+    "playerSwordExplosionObjectPoolCount": 3,
+    "playerBurningTouchParticleObjectPoolCount": 4,
+    "playerTouchParticleObjectPoolCount": 5,
+    "deathParticleObjectPoolCount": 6,
+    "enemyDeathParticleOjectPoolID": 7,
+    "playerRunParticleOjectPoolID": 8,
+    "destroyCoinParticleObjectPoolCount": 0,
+    "destroyBulletCoinParticleObjectPoolCount": 1,
+    "destroyHealthCoinObjectPoolCount": 2,
+    "destroyMushroomCoinObjectPoolCount": 3,
+    "destroyGroupCoinParticleObjectPoolCount": 4,
     "enemyBulletParticleObjectPoolID": 0,
     "enemyMidParticleObjectPoolID": 1,
     "enemyPrefabObjectPoolID": 2,
@@ -172,14 +174,14 @@
     "currentLanguage": 0,
     "getCurrentEnemyDead": false,
     "currentMessageText": {
-        "instanceID": 648844
+        "instanceID": 253624
     },
     "currentMessageObject": {
-        "instanceID": 648840
+        "instanceID": 253620
     },
     "isDecreaseHealth": true,
     "damageHealthText": {
-        "instanceID": 648092
+        "instanceID": 253044
     },
     "decreaseCounter": 0,
     "resetLocks": "Locked",
@@ -187,28 +189,28 @@
     "unLocked": "",
     "objects": [
         {
-            "instanceID": 52542
+            "instanceID": 52442
         },
         {
-            "instanceID": 52544
+            "instanceID": 52444
         },
         {
-            "instanceID": 52546
+            "instanceID": 52446
         },
         {
-            "instanceID": 52548
+            "instanceID": 52448
         },
         {
-            "instanceID": 52550
+            "instanceID": 52450
         },
         {
-            "instanceID": 52552
+            "instanceID": 52452
         },
         {
-            "instanceID": 52554
+            "instanceID": 52454
         }
     ],
-    "sensivityX": 2.0,
+    "sensivityX": 3.0,
     "sensivityY": 3.0,
     "isTouchFinish": false,
     "isLose": false,
@@ -239,34 +241,34 @@
     "bulletPackAmount": 2,
     "danceTime": 5.0,
     "jolleenObject": {
-        "instanceID": 52556
+        "instanceID": 52456
     },
     "touchParticle": {
-        "instanceID": 52558
+        "instanceID": 52458
     },
     "birthParticle": {
-        "instanceID": 52560
+        "instanceID": 52460
     },
     "deathParticle": {
-        "instanceID": 52562
+        "instanceID": 52462
     },
     "burningParticle": {
-        "instanceID": 52564
+        "instanceID": 52464
     },
     "burningTouchParticle": {
-        "instanceID": 52564
+        "instanceID": 52464
     },
     "destroyRotateCoinParticle": {
-        "instanceID": 52566
+        "instanceID": 52466
     },
     "destroyHealthCoinParticle": {
-        "instanceID": 52568
+        "instanceID": 52468
     },
     "destroyBulletCoinParticle": {
-        "instanceID": 52570
+        "instanceID": 52470
     },
     "destroyMushroomCoinParticle": {
-        "instanceID": 52572
+        "instanceID": 52472
     },
     "particleCount": 0,
     "isTouchFirst": false,
@@ -274,34 +276,34 @@
     "isTouchThird": false,
     "weaponBulletExplosionParticles": [
         {
-            "instanceID": 52574
+            "instanceID": 52474
         },
         {
-            "instanceID": 52576
+            "instanceID": 52476
         },
         {
-            "instanceID": 52578
+            "instanceID": 52478
         },
         {
-            "instanceID": 52580
+            "instanceID": 52480
         },
         {
-            "instanceID": 52582
+            "instanceID": 52482
         },
         {
-            "instanceID": 52584
+            "instanceID": 52484
         },
         {
-            "instanceID": 52586
+            "instanceID": 52486
         },
         {
-            "instanceID": 52588
+            "instanceID": 52488
         },
         {
-            "instanceID": 52590
+            "instanceID": 52490
         },
         {
-            "instanceID": 52592
+            "instanceID": 52492
         }
     ]
 }

@@ -24,7 +24,7 @@ internal interface IPlayerTrigger
                     ref GameObject bulletAmountCanvas,
                     ref TextMeshProUGUI bulletAmountText,
                     ref TextMeshProUGUI bulletPackAmountText,
-                    ref ObjectPool objectPool);
+                    ref EnvironmentObjectPool environmentObjectPool);
 
     void CheckWeaponCollect(Collider other, BulletData _bulletData);
 

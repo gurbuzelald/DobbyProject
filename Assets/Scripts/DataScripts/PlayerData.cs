@@ -9,13 +9,13 @@ public class PlayerData : ScriptableObject
     [Serializable]
     public struct CharacterStruct
     {
+        public string name;
         public GameObject characterObject;
         public int durability;
         public int price;
         public int jumpForce;
         public float speed;
-        public int id;
-        public string name;
+        public int id;        
         public string lockState;
         public float swordDamageValue;
     }
@@ -39,17 +39,21 @@ public class PlayerData : ScriptableObject
 
     [Header("Player Object Pool IDs")]
     public int playerWeaponBulletObjectPoolCount;//0
-    public int playerSwordBulletObjectPoolCount;//1
-    public int destroyCoinParticleObjectPoolCount;//2
-    public int destroyBulletCoinParticleObjectPoolCount;//3
-    public int destroyHealthCoinObjectPoolCount;//4
-    public int destroyMushroomCoinObjectPoolCount;//5
-    public int playerBulletsExplosionObjectPoolCount;//6
-    public int playerSwordExplosionObjectPoolCount;//7
-    public int playerBurningTouchParticleObjectPoolCount;//8
-    public int playerTouchParticleObjectPoolCount;//9
-    public int deathParticleObjectPoolCount;//10
-    public int enemyDeathParticleOjectPoolID;//11
+    public int playerSwordBulletObjectPoolCount;//1    
+    public int playerBulletsExplosionObjectPoolCount;//2
+    public int playerSwordExplosionObjectPoolCount;//3
+    public int playerBurningTouchParticleObjectPoolCount;//4
+    public int playerTouchParticleObjectPoolCount;//5
+    public int deathParticleObjectPoolCount;//6
+    public int enemyDeathParticleOjectPoolID;//7
+    public int playerRunParticleOjectPoolID;//8
+
+    [Header("Environment Object Pool IDs")]
+    public int destroyCoinParticleObjectPoolCount;//0
+    public int destroyBulletCoinParticleObjectPoolCount;//1
+    public int destroyHealthCoinObjectPoolCount;//2
+    public int destroyMushroomCoinObjectPoolCount;//3
+    public int destroyGroupCoinParticleObjectPoolCount;//4
 
 
     //EnemyBullet = 0

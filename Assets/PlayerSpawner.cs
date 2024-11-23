@@ -10,7 +10,7 @@ public class PlayerSpawner : MonoBehaviour
         {
             if (playerData.playerObject)
             {
-                Instantiate(playerData.playerObject);
+                Instantiate(playerData.playerObject, gameObject.transform);
             }
         }
     }

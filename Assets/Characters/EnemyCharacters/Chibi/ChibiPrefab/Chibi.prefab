@@ -1492,28 +1492,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbab17b44bf9a0458fac80563059cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runtimeAnimatorControllers:
-  - {fileID: 9100000, guid: 4c14e12c0ee3241a7bb2bffd4587b9e7, type: 2}
-  - {fileID: 9100000, guid: fac5caccf07a947dc8806c841e3f34a0, type: 2}
-  - {fileID: 9100000, guid: 3302370d0eedc4409ad28bcb4e092a46, type: 2}
-  - {fileID: 9100000, guid: 537486427108942e29e9bd59ab0d209c, type: 2}
-  - {fileID: 9100000, guid: 82961bb18c35f43eba60b8f61b50b9e6, type: 2}
-  - {fileID: 9100000, guid: 0173bf845e8e44a2fa8b9cc2a6b5e2c4, type: 2}
-  - {fileID: 9100000, guid: 87cb10c5f8b354cd785846460517fb73, type: 2}
-  - {fileID: 9100000, guid: d4009dca00b0a4b258cfa4845485654a, type: 2}
-  - {fileID: 9100000, guid: eb42d87585a324f00b9741ded7cbdb60, type: 2}
-  - {fileID: 9100000, guid: 9fa9504e79a464e928ef699c6786fdd2, type: 2}
-  - {fileID: 9100000, guid: 6bf8335655d1e4f24863b66e096c2331, type: 2}
-  - {fileID: 9100000, guid: 30e79adcd7bb745a691462500fe75925, type: 2}
-  - {fileID: 9100000, guid: 7ab51ba3bdfdf4156bff09d08be1ea77, type: 2}
-  - {fileID: 9100000, guid: 306500c51d61840b8b388c833fcaeaed, type: 2}
-  - {fileID: 9100000, guid: bf10ec66c98de4c0c96fd9536c87a081, type: 2}
-  - {fileID: 9100000, guid: e45112882bffa4cab86bbbcca3c2e54e, type: 2}
-  - {fileID: 9100000, guid: bf5d321f165024a47a22cfe0060619ea, type: 2}
-  - {fileID: 9100000, guid: 24abc09386c1d4b55bc1923872716f48, type: 2}
-  - {fileID: 9100000, guid: 1821bb51454bb409eb0a7924beefe14c, type: 2}
-  - {fileID: 9100000, guid: b7aef8b704f624835a3de417c604443f, type: 2}
   runAnimatorController: {fileID: 0}
+  exampleRunAnimatorController: {fileID: 9100000, guid: 4c14e12c0ee3241a7bb2bffd4587b9e7, type: 2}
 --- !u!1 &5915069131032608826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,27 +2318,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 6381366233036022833}
   mainEnemyData: {fileID: 11400000, guid: 6b69ee011de8741b69504c48eb634ee5, type: 2}
-  enemyListData:
-  - {fileID: 11400000, guid: 6d0efad026b3740ff8a8f6d484bc4b66, type: 2}
-  - {fileID: 11400000, guid: 44e576e4560424bccb62c7c02731a020, type: 2}
-  - {fileID: 11400000, guid: 17a41db2b1a01445fabd9f7ebe5c7586, type: 2}
-  - {fileID: 11400000, guid: b7f5142aac35948cb9ce9b3106211174, type: 2}
-  - {fileID: 11400000, guid: c851c377fdb7749dca9697bf8be8fdea, type: 2}
-  - {fileID: 11400000, guid: a11e892702dd443ac8bb9931f9f084f2, type: 2}
-  - {fileID: 11400000, guid: bc30a518dfe504daebee66c7d8d466a6, type: 2}
-  - {fileID: 11400000, guid: 540c8734d821d45e68605753779b12b1, type: 2}
-  - {fileID: 11400000, guid: 830d28ffaa9c04788b62eeea3c65a118, type: 2}
-  - {fileID: 11400000, guid: c00023d13f80d4fd29ba47047e1ca2a1, type: 2}
-  - {fileID: 11400000, guid: 9d006684d455743c58373f7da39a4439, type: 2}
-  - {fileID: 11400000, guid: b611a07ee7fc1415a8db46ca97b2137d, type: 2}
-  - {fileID: 11400000, guid: ea777d5dad9fb4f2d93f9dc3e5cc8532, type: 2}
-  - {fileID: 11400000, guid: 4985bcd082b414686b2ada4024e01415, type: 2}
-  - {fileID: 11400000, guid: 2b9594a488c534eddae351163da253e6, type: 2}
-  - {fileID: 11400000, guid: a1a0a2046ab7e49379bc3d9a44e82c5d, type: 2}
-  - {fileID: 11400000, guid: 4029cebd7eca244519bbaec45a3d28cc, type: 2}
-  - {fileID: 11400000, guid: e3364f176c52c4142949583415a0242d, type: 2}
-  - {fileID: 11400000, guid: 28ee54e17ab8b42d1b6cab302357fbfe, type: 2}
-  - {fileID: 11400000, guid: b22b52c50c613495a8a413e2feaae468, type: 2}
   enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
   bulletData: {fileID: 11400000, guid: b56f711dc5f064e958ddbfd4419df127, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
