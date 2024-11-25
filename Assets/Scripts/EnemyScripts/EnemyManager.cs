@@ -438,11 +438,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
             if (gameObject.transform.parent.name == "bossEnemyTransform")
             {
-                StartCoroutine(DelayStopEnemy(0f));
+                DelayStopEnemy();
             }
             else
             {
-                StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue / 3));
+                Invoke("DelayStopEnemy", levelData.currentBackToWalkingValue / 3);
             }
             
         }        
@@ -520,11 +520,11 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             if (gameObject.transform.parent.name == "bossEnemyTransform")
             {
                 EnemySpawner.bossIsDead = true;
-                StartCoroutine(DelayStopEnemy(0f));
+                DelayStopEnemy();
             }
             else
             {
-                StartCoroutine(DelayStopEnemy(levelData.currentBackToWalkingValue));
+                Invoke("DelayStopEnemy", levelData.currentBackToWalkingValue);
             }
 
             // Update player's bullet count for bullets only
@@ -550,7 +550,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
         // Stop enemy temporarily based on whether it's a boss
         float delay = gameObject.transform.parent.name == "bossEnemyTransform" ? 0f : levelData.currentBackToWalkingValue;
-        StartCoroutine(DelayStopEnemy(delay));
+        Invoke("DelayStopEnemy", delay);
 
         // Play hit sound effects
         PlaySoundEffect(SoundEffectTypes.GetHit, _audioSource);
@@ -705,12 +705,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
     }
 
-    public IEnumerator DelayStopEnemy(float backToWalkingValue)
+    public void DelayStopEnemy()
     {
-        yield return new WaitForSeconds(backToWalkingValue);
-        
         enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyChildID] = true;
-
     }
 
     //SFX States

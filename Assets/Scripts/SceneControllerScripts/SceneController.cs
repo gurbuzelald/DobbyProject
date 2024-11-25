@@ -664,11 +664,29 @@ public class SceneController : MonoBehaviour
         playAgainForScore = false;
         pauseGame = false;
     }
+
+    void CleanUpUnusedAssets()
+    {
+        StartCoroutine(CleanupRoutine());
+    }
+
+    IEnumerator CleanupRoutine()
+    {
+        // Temizleme işlemi CPU yoğun olduğundan asenkron yap
+        yield return Resources.UnloadUnusedAssets();
+
+        // Garbage Collector'ı çalıştır
+        System.GC.Collect();
+
+        Debug.Log("Kullanılmayan varlıklar temizlendi.");
+    }
     public void LevelUpGame()
     {
         playAgainForScore = true;
 
-        SceneManager.LoadScene(Scenes.Game.ToString());
+        SceneManager.LoadSceneAsync(Scenes.Game.ToString());
+
+        CleanUpUnusedAssets();
     }
     public void PlayAgain()
     {
@@ -677,9 +695,11 @@ public class SceneController : MonoBehaviour
 
         playAgainForScore = true;
 
-        SceneManager.LoadScene(Scenes.Game.ToString());
+        SceneManager.LoadSceneAsync(Scenes.Game.ToString());
 
         DecreaseWeaponUsageLimit();
+
+        CleanUpUnusedAssets();
     }
     public void DecreaseWeaponUsageLimit()
     {
@@ -716,9 +736,11 @@ public class SceneController : MonoBehaviour
     {
         playAgainForScore = true;
 
-        SceneManager.LoadScene(Scenes.Game.ToString());
+        SceneManager.LoadSceneAsync(Scenes.Game.ToString());
 
         DecreaseWeaponUsageLimit();
+
+        CleanUpUnusedAssets();
     }
     public void ContinueLastLevel()
     {
@@ -726,9 +748,11 @@ public class SceneController : MonoBehaviour
 
         AudioManager.GetInstance.SetCurrentMusic();
 
-        SceneManager.LoadScene(Scenes.Game.ToString());
+        SceneManager.LoadSceneAsync(Scenes.Game.ToString());
 
         DecreaseWeaponUsageLimit();
+
+        CleanUpUnusedAssets();
     }    
 
     void SetHighestLevel()
@@ -857,8 +881,9 @@ public class SceneController : MonoBehaviour
 
     public void LoadLevelsScene()
     {
+        SceneManager.LoadSceneAsync(Scenes.Levels.ToString());
 
-        SceneManager.LoadScene(Scenes.Levels.ToString());
+        CleanUpUnusedAssets();
     }
 
     public static string CheckSceneName()
@@ -875,34 +900,34 @@ public class SceneController : MonoBehaviour
             playAgainForScore = true;
         }
 
-        SceneManager.LoadScene(Scenes.Menu.ToString());
-
+        SceneManager.LoadSceneAsync(Scenes.Menu.ToString());
     }
 
     public void LoadByCodeMenuScene()
     {
-        SceneManager.LoadScene(Scenes.Menu.ToString());
+        SceneManager.LoadSceneAsync(Scenes.Menu.ToString());
+        CleanUpUnusedAssets();
     }
     public static void LoadMenuSceneByWinScene()
     {
-        SceneManager.LoadScene(Scenes.Menu.ToString());
+        SceneManager.LoadSceneAsync(Scenes.Menu.ToString());
     }
 
     public void LoadWinScene()
     {
-        SceneManager.LoadScene(Scenes.Win.ToString());
+        SceneManager.LoadSceneAsync(Scenes.Win.ToString());
     }
     public static void LoadCharacterChoosingScene()
     {
-        SceneManager.LoadScene(Scenes.PickCharacter.ToString());
+        SceneManager.LoadSceneAsync(Scenes.PickCharacter.ToString());
     }
     public void LoadWeaponChoosingScene()
     {
-        SceneManager.LoadScene(Scenes.PickWeapon.ToString());
+        SceneManager.LoadSceneAsync(Scenes.PickWeapon.ToString());
     }
     public static void LoadEndScene()
     {
-        SceneManager.LoadScene(Scenes.End.ToString());
+        SceneManager.LoadSceneAsync(Scenes.End.ToString());
     }
     public void QuitGame()
     {

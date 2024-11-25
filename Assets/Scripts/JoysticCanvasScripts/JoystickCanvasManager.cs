@@ -71,16 +71,14 @@ public class JoystickCanvasManager : MonoBehaviour
     }
     void RunMode()
     {
-        if (playerData.isRunning && runButton)
+        if (PlayerData.isRunning && runButton)
         {
             runButton.SetActive(false);
-            StartCoroutine(RunDelay());
+            Invoke("RunDelay", 2);
         }
     }
-    IEnumerator RunDelay()
+    void RunDelay()
     {
-        yield return new WaitForSeconds(2f);
-
         runButton.SetActive(true);
     }
 }

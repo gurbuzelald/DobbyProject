@@ -44,7 +44,7 @@ public class TimeController : MonoBehaviour
             {
                 playerData.isPlayable = false;
                 playerData.isDying = true;
-                StartCoroutine(PlayerManager.GetInstance.DelayPlayerDestroy(4));
+                PlayerManager.GetInstance.DelayPlayerDestroy();
                 _warnTimeText.text = "";
             }
             else
@@ -72,7 +72,7 @@ public class TimeController : MonoBehaviour
     }
     public void WeaponTimer(PlayerData playerData)
     {
-        if (playerData.isFire && _weaponTime >= bulletData.currentShootFrequency)
+        if (PlayerData.isFire && _weaponTime >= bulletData.currentShootFrequency)
         {
             playerData.isFireTime = true;
             _weaponTime = 0;

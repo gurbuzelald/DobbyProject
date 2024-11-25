@@ -68,7 +68,7 @@ public class MiniMapController : MonoBehaviour
 
             _isMiniMapTouchable = false;
 
-            StartCoroutine(OpenSmoothMiniMap(delayTouching));
+            Invoke("OpenSmoothMiniMap", delayTouching);
         }
         else if (growing && _isMiniMapTouchable)
         {
@@ -77,13 +77,11 @@ public class MiniMapController : MonoBehaviour
 
             _isMiniMapTouchable = false;
 
-            StartCoroutine(OpenSmoothMiniMap(delayTouching));
+            Invoke("OpenSmoothMiniMap", delayTouching);
         }
     }
-    IEnumerator OpenSmoothMiniMap(float delay)
+    void OpenSmoothMiniMap()
     {
-        yield return new WaitForSeconds(delay);
-
         _isMiniMapTouchable = true;
     }
 }

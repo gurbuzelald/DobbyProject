@@ -10,7 +10,7 @@ internal interface IPlayerShoot
 
 
     IEnumerator DelayShowingCrosshairAlpha(CanvasGroup crosshairImage, float delay);
-    IEnumerator delayFireWalkDisactivity(PlayerData _playerData, float delay);
+    void SetFireFalse();
     #endregion
 
 

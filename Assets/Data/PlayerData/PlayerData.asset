@@ -13,105 +13,220 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   characterStruct:
-  - characterObject: {fileID: 171899986160519204, guid: 5f88149415bce4e02bf516a821a9da86, type: 3}
+  - name: Dummy
+    characterObject: {fileID: 171899986160519204, guid: 5f88149415bce4e02bf516a821a9da86, type: 3}
     durability: 0
     price: 0
     jumpForce: 5
     speed: 1.5
     id: 0
-    name: Dummy
     lockState: 
     swordDamageValue: 100
-  - characterObject: {fileID: 1254244383937338342, guid: fa5afc234e9ba074795c420e9145256f, type: 3}
+  - name: Joleen
+    characterObject: {fileID: 1254244383937338342, guid: fa5afc234e9ba074795c420e9145256f, type: 3}
     durability: 7
     price: 200
     jumpForce: 6
     speed: 2.3
     id: 1
-    name: Joleen
     lockState: Locked
     swordDamageValue: 100
-  - characterObject: {fileID: 6616105739425805472, guid: c01ca076994204b1cb94249a12ece71c, type: 3}
+  - name: Glassy
+    characterObject: {fileID: 6616105739425805472, guid: c01ca076994204b1cb94249a12ece71c, type: 3}
     durability: 9
     price: 1000
     jumpForce: 6
     speed: 1.7
     id: 2
-    name: Glassy
     lockState: Locked
     swordDamageValue: 100
-  - characterObject: {fileID: 1804162575734578991, guid: 68835b9515214a54097ef287fe3f1c49, type: 3}
+  - name: Lusth
+    characterObject: {fileID: 1804162575734578991, guid: 68835b9515214a54097ef287fe3f1c49, type: 3}
     durability: 4000
     price: 4
     jumpForce: 7
     speed: 2.5
     id: 3
-    name: Lusth
     lockState: Locked
     swordDamageValue: 100
-  - characterObject: {fileID: 5075507251047758960, guid: 121bbb1bd4eef57478721b5ef2cc4082, type: 3}
+  - name: Guard
+    characterObject: {fileID: 5075507251047758960, guid: 121bbb1bd4eef57478721b5ef2cc4082, type: 3}
     durability: 10
     price: 2000
     jumpForce: 7
     speed: 2.3
     id: 4
-    name: Guard
     lockState: Locked
     swordDamageValue: 100
-  - characterObject: {fileID: 8160791800857959451, guid: 0ac9ad04e193f4a1693d750745c9cf5c, type: 3}
+  - name: Michelle
+    characterObject: {fileID: 8160791800857959451, guid: 0ac9ad04e193f4a1693d750745c9cf5c, type: 3}
     durability: 9
     price: 1000
     jumpForce: 8
     speed: 2.4
     id: 5
-    name: Michelle
     lockState: Locked
     swordDamageValue: 100
-  - characterObject: {fileID: 475003444043059358, guid: d20c2b271d372a642b352daa4599fa5c, type: 3}
+  - name: Eve
+    characterObject: {fileID: 475003444043059358, guid: d20c2b271d372a642b352daa4599fa5c, type: 3}
     durability: 11
     price: 4000
     jumpForce: 7
     speed: 2.5
     id: 6
-    name: Eve
     lockState: Locked
     swordDamageValue: 100
-  - characterObject: {fileID: 4229839607365370914, guid: db04c4e4b251642e596a18439cc381c3, type: 3}
+  - name: Aj
+    characterObject: {fileID: 4229839607365370914, guid: db04c4e4b251642e596a18439cc381c3, type: 3}
     durability: 8
     price: 500
     jumpForce: 8
     speed: 2
     id: 7
-    name: Aj
     lockState: Locked
     swordDamageValue: 100
-  - characterObject: {fileID: 2089016085528094388, guid: 45b74fc28a8e7584cb93f6b6b213d8f7, type: 3}
+  - name: Boss
+    characterObject: {fileID: 2089016085528094388, guid: 45b74fc28a8e7584cb93f6b6b213d8f7, type: 3}
     durability: 8
     price: 500
     jumpForce: 7
     speed: 2.3
     id: 8
-    name: Boss
     lockState: Locked
     swordDamageValue: 100
-  - characterObject: {fileID: 5807339739709849361, guid: 5a65014f4e4764d1487af521aded9bea, type: 3}
+  - name: Ty
+    characterObject: {fileID: 5807339739709849361, guid: 5a65014f4e4764d1487af521aded9bea, type: 3}
     durability: 9
     price: 1000
     jumpForce: 8
     speed: 2
     id: 9
-    name: Ty
     lockState: Locked
     swordDamageValue: 100
-  - characterObject: {fileID: 3269665489637412912, guid: cc265cd48b1f31c4cbb86e276d4a94d0, type: 3}
+  - name: Mremireh
+    characterObject: {fileID: 3269665489637412912, guid: cc265cd48b1f31c4cbb86e276d4a94d0, type: 3}
     durability: 10
     price: 2000
     jumpForce: 8
     speed: 2
     id: 10
-    name: Mremireh
     lockState: Locked
     swordDamageValue: 100
+  pools:
+  - objectPrefab:
+    - {fileID: 1909073336618291390, guid: b7695403ddc774c4091d84bc56f787bb, type: 3}
+    - {fileID: 5851249046904561453, guid: bf946ab65b67694479fb7a4a3f8da5d7, type: 3}
+    - {fileID: 4003127254632040958, guid: 9943a0711d22ae44e865dbc952b83fd8, type: 3}
+    - {fileID: 5176671975488193012, guid: 351bd27ac1cb38d44aeb2c070e54ecc8, type: 3}
+    - {fileID: 6092724848995886242, guid: 9419197d42e5a624599f71e72f2df2e0, type: 3}
+    - {fileID: 4929793438697359993, guid: 4e9165f6675efe044924bc720a9c3c53, type: 3}
+    - {fileID: 6893855574279549006, guid: 8d53197387c8cc84b929ec23d39c1ce8, type: 3}
+    - {fileID: 1298455323346986048, guid: c6338ffb40c7f5c408750f2d2e7f31b3, type: 3}
+    - {fileID: 4299486794394585338, guid: 48882e0557a3a8d4fadc8cd50ff511ca, type: 3}
+    - {fileID: 8425098538945327761, guid: 3b0e63e296aac3241aad532e5a748ddf, type: 3}
+    poolSize: 20
+  - objectPrefab:
+    - {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
+    - {fileID: 4021812532560223838, guid: 91281b98bbc5449aa8b03117a64827b0, type: 3}
+    - {fileID: 4021812532560223838, guid: a8c842dc2067c4ed18b4f4440c428d1a, type: 3}
+    - {fileID: 4021812532560223838, guid: bde8f613b73ed4aaeab80b3a17d06c4b, type: 3}
+    - {fileID: 4021812532560223838, guid: 3559221c3c9964f429998cfc077dda76, type: 3}
+    - {fileID: 4021812532560223838, guid: fb2bdc4b081d34f21adbe9ef37bba4e2, type: 3}
+    - {fileID: 4021812532560223838, guid: 9b95e3955f70145ed907380ec6fa1159, type: 3}
+    - {fileID: 4021812532560223838, guid: e4396e99de9f04a948d50b0808d294f0, type: 3}
+    - {fileID: 4021812532560223838, guid: 59a83594b9f2b404b8bfe0979a759237, type: 3}
+    - {fileID: 4021812532560223838, guid: 2e9537b55c7694e938723a15f09042c2, type: 3}
+    - {fileID: 4021812532560223838, guid: 670b174b2a82948e78fd71904d1cf679, type: 3}
+    poolSize: 1
+  - objectPrefab:
+    - {fileID: 2689552222238927185, guid: 632812bd72b786d4c937d25598e0498d, type: 3}
+    - {fileID: 2689552222238927185, guid: 12a27057a7ea8472ea61224bc12b61d0, type: 3}
+    - {fileID: 2689552222238927185, guid: 0286d92a545234a6184211b5095a14ae, type: 3}
+    - {fileID: 2689552222238927185, guid: 57a28dad6beae4784a6047213e845170, type: 3}
+    - {fileID: 2689552222238927185, guid: bf2e4ed542e1147d6ab8f166c1a23794, type: 3}
+    - {fileID: 2689552222238927185, guid: a33290774f186463fad2470971c87822, type: 3}
+    - {fileID: 2689552222238927185, guid: 3d4521ca9e6a94bd2a9a4e107b87100f, type: 3}
+    - {fileID: 2689552222238927185, guid: af76e629c0e2d4f8a806761bf68740d5, type: 3}
+    - {fileID: 2689552222238927185, guid: 4f1a6f9db0bfb4f7cbe2e01a405e81fa, type: 3}
+    - {fileID: 2689552222238927185, guid: c378b71f5a7964c15aa142d686f6c740, type: 3}
+    poolSize: 1
+  - objectPrefab:
+    - {fileID: 2689552222238927185, guid: 76a9d0317209b42d5a4e6704c3561791, type: 3}
+    - {fileID: 2689552222238927185, guid: 8fdb96c5e3a7d48269a64988235eafb7, type: 3}
+    - {fileID: 2689552222238927185, guid: 5c5240f2a333544e58a0506d8ce81f00, type: 3}
+    - {fileID: 2689552222238927185, guid: 09809a0e195d84514bbc66470edfa381, type: 3}
+    - {fileID: 2689552222238927185, guid: d63befce233b74ea6b5c6ce0d33b5da9, type: 3}
+    - {fileID: 2689552222238927185, guid: 2f18bdfecb4f34dd192bee4646f7ef15, type: 3}
+    - {fileID: 2689552222238927185, guid: fc8757c523cdf4f948b0013c9e196bfb, type: 3}
+    - {fileID: 2689552222238927185, guid: ef18ca3c91dcd4c2dadd9a8b41e05e7e, type: 3}
+    - {fileID: 2689552222238927185, guid: cef1b3d08d8234d7b8ee18ae74707e05, type: 3}
+    - {fileID: 2689552222238927185, guid: 946e8c8536a49470e9c7005f87ee33ad, type: 3}
+    - {fileID: 2689552222238927185, guid: 31f43a552e48749989ae972e86759eb7, type: 3}
+    poolSize: 1
+  - objectPrefab:
+    - {fileID: 2629591580664575424, guid: d1da0b7ce7a5e4e4a9ed42ef14329904, type: 3}
+    - {fileID: 2629591580664575424, guid: 4d4cb0b18ade242228294f5ed0041538, type: 3}
+    - {fileID: 2629591580664575424, guid: 03b387f7c516a42d58d7298c05e4701d, type: 3}
+    - {fileID: 2629591580664575424, guid: f6ab1ce537cd544149aea9c0b05dda54, type: 3}
+    - {fileID: 2629591580664575424, guid: 4c49e5c1a0a4d4ea7b52a72dac9b88af, type: 3}
+    - {fileID: 2629591580664575424, guid: 9e21ee1e5b4364ec2b94d672b7ed072a, type: 3}
+    - {fileID: 2629591580664575424, guid: 2db6d10887fed401ca19246478765a43, type: 3}
+    - {fileID: 2629591580664575424, guid: dff424e2143644aeeb0f309c733cf245, type: 3}
+    - {fileID: 2629591580664575424, guid: 732f59d80c0e84373842b35187b85f25, type: 3}
+    - {fileID: 2629591580664575424, guid: 7889f9accd9e94aa0a25ca9f57a60351, type: 3}
+    - {fileID: 2629591580664575424, guid: dc31b3cbb63004ba1a803df1eedc5626, type: 3}
+    poolSize: 1
+  - objectPrefab:
+    - {fileID: 2295133503976437262, guid: 9bd5863dac0a07144a968a375408214b, type: 3}
+    - {fileID: 2295133503976437262, guid: 06d2f96192f0f4bd480c066bc3b44cbc, type: 3}
+    - {fileID: 2295133503976437262, guid: cd1580833ecff437290139dbed82b868, type: 3}
+    - {fileID: 2295133503976437262, guid: a69bd962389f841738942746d0174cbd, type: 3}
+    - {fileID: 2295133503976437262, guid: be870bc15f04f46ec8c0d3efe62a3702, type: 3}
+    - {fileID: 2295133503976437262, guid: ca026e6a766ce41049edc37a5babdcb0, type: 3}
+    - {fileID: 2295133503976437262, guid: e129a14a3220348c686d80e4e4ad5ef9, type: 3}
+    - {fileID: 2295133503976437262, guid: af465d12c0cd04513acdd3219d034bce, type: 3}
+    - {fileID: 2295133503976437262, guid: f70cb696cd51e48b6afb8d985f781970, type: 3}
+    - {fileID: 2295133503976437262, guid: 1e3c2a8c2945741cc9ed7f7978670066, type: 3}
+    - {fileID: 2295133503976437262, guid: 854573b81bc3440dc9e1b09869c85df4, type: 3}
+    poolSize: 1
+  - objectPrefab:
+    - {fileID: 5597880929392322997, guid: c3d186f24e85b9549b8b845c134e0d97, type: 3}
+    - {fileID: 5597880929392322997, guid: 7b8dcc3f8a85a42c5a900109c9d86ebc, type: 3}
+    - {fileID: 5597880929392322997, guid: 56aede4e20f1245f5b378d7ed9628774, type: 3}
+    - {fileID: 5597880929392322997, guid: c3f0a487f0193410e90d7dd5907c9e10, type: 3}
+    - {fileID: 5597880929392322997, guid: 32afc9f9add22424aad91e8c70ef1ef9, type: 3}
+    - {fileID: 5597880929392322997, guid: a85286f05d79d4f228229e0cfb6e482a, type: 3}
+    - {fileID: 5597880929392322997, guid: af31052cedde44985abeabb93a6f2290, type: 3}
+    - {fileID: 5597880929392322997, guid: aec0c65b465404b75914f66007864a1e, type: 3}
+    - {fileID: 5597880929392322997, guid: b300ba8aaf16a4e838d972866e730035, type: 3}
+    - {fileID: 5597880929392322997, guid: a9a74a5580ff647b3941fd9893ffdb82, type: 3}
+    - {fileID: 5597880929392322997, guid: 2677a54004f824734a4d5e6af4f1b957, type: 3}
+    poolSize: 1
+  - objectPrefab:
+    - {fileID: 7759854869545606040, guid: e55cd9012b4414ed4bc85b07c062d1fa, type: 3}
+    - {fileID: 7759854869545606040, guid: e12483e049b144bfeb6193bcac1675f1, type: 3}
+    - {fileID: 7759854869545606040, guid: 98de9677361304b42bd10a9ae2268045, type: 3}
+    - {fileID: 7759854869545606040, guid: 6b5f638c092f34606a058855504f5b98, type: 3}
+    - {fileID: 7759854869545606040, guid: 8085d142d5eec4d2dafd06b98e2e9f0d, type: 3}
+    - {fileID: 7759854869545606040, guid: 1e277f0568aab4dbe94cf106a0ff21db, type: 3}
+    - {fileID: 7759854869545606040, guid: f37db4b28181943efb56c0b19719352d, type: 3}
+    - {fileID: 7759854869545606040, guid: 3469b21b9bd1842ecb6be1842125c4c1, type: 3}
+    - {fileID: 2689552222238927185, guid: 4f1a6f9db0bfb4f7cbe2e01a405e81fa, type: 3}
+    - {fileID: 2689552222238927185, guid: c378b71f5a7964c15aa142d686f6c740, type: 3}
+    poolSize: 1
+  - objectPrefab:
+    - {fileID: 2629591580664575424, guid: b9e29583665984178987ca8e8ee2f600, type: 3}
+    - {fileID: 2629591580664575424, guid: 251422845c1b7481ba0073d90964840a, type: 3}
+    - {fileID: 2629591580664575424, guid: 5c9f31b5a3d7a4ea9ab18082577f9d6e, type: 3}
+    - {fileID: 2629591580664575424, guid: f762a205dc867476a88d9b16c7f3b748, type: 3}
+    - {fileID: 2629591580664575424, guid: 3e5e3574ed52f432d8ff6487a2b675d5, type: 3}
+    - {fileID: 2629591580664575424, guid: 7140a00824ffd42129c69812131d030a, type: 3}
+    - {fileID: 2629591580664575424, guid: 487151aa7adc94cfaa52517866e0168e, type: 3}
+    - {fileID: 2629591580664575424, guid: 288e68aa3d8564c218c0be02a8ae1428, type: 3}
+    - {fileID: 2629591580664575424, guid: bde70576fbb2d4b7fbd8db0915419725, type: 3}
+    - {fileID: 2629591580664575424, guid: f0e9f03d2008844ddaf33bf082f02e49, type: 3}
+    - {fileID: 2629591580664575424, guid: 55e8208e257854810bca800a3f50ae69, type: 3}
+    poolSize: 1
   playerObject: {fileID: 7193906221332498770, guid: d8c4f415d5992824c9d28c29c805b246, type: 3}
   characterObject: {fileID: 1964740074924895604, guid: 7018f3c1f5303374fbcbe582b905e360, type: 3}
   playerWeaponBulletObjectPoolCount: 0
@@ -165,7 +280,6 @@ MonoBehaviour:
   isIdling: 0
   isDying: 0
   isWinning: 0
-  isRunning: 0
   isPicking: 0
   isPickRotateCoin: 0
   isSwordAnimate: 0
@@ -173,7 +287,6 @@ MonoBehaviour:
   isLookingUp: 0
   isDestroyed: 0
   isPlayable: 0
-  isFire: 0
   isFireWalkAnimation: 0
   isFireAnimation: 0
   isFireTime: 0

@@ -15,7 +15,7 @@ public class MapController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         readWrite = FindObjectOfType<JsonReadAndWriteSystem>();
 
@@ -28,44 +28,11 @@ public class MapController : MonoBehaviour
             RenderSettings.skybox = levelData.levelStates[LevelData.currentLevelId].levelSkybox;
         }    
     }
-    IEnumerator DelayTruePlayable()
-    {
-        yield return new WaitForSeconds(0.5f);
-        if (playerData)
-        {
-            playerData.isPlayable = true;
-        }
-    }
     void Update()
     {
         if (readWrite)
         {
             readWrite.SavePlayerDataToJson();
-        }
-    }
-    /*public void CreateMap(int levelCount)
-    {
-        if (playerData && currentMap && levelData)
-        {
-            playerData.isPlayable = false;
-            Destroy(currentMap, levelCount);
-            CreateMap(levelData.Maps[levelCount], gameObject.transform);
-            StartCoroutine(DelayTruePlayable());
-        }
-    }*/
-
-    void CreateMap(GameObject mapObject, Transform mapTransform)
-    {
-        if (currentMap && mapObject != null)
-        {
-            currentMap = Instantiate(mapObject, mapTransform);
-        }        
-    }
-    public void SetSkybox(int levelCount)
-    {
-        if (levelData)
-        {
-            //RenderSettings.skybox = levelData.levelSkyboxes[levelCount];
         }
     }
 }

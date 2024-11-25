@@ -7,5 +7,5 @@ internal interface IPlayerScore
     void DecreaseScore(int scoreDamageValue);
     void IncreaseScore(int scoreDamageValue);
     void ScoreTextGrowing(int r, int g, int b);
-    IEnumerator DelayScoreSizeBack();
+    void DelayScoreSizeBack();
 }

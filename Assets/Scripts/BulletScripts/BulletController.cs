@@ -42,7 +42,7 @@ public class BulletController : MonoBehaviour
             if (other.gameObject.CompareTag(SceneController.Tags.Enemy.ToString()) || 
                 other.gameObject.CompareTag(SceneController.Tags.WeaponBox.ToString()))
             {
-                StartCoroutine(DelayFalseBulletObject(delayFalseWhenTriggerEnemy));
+                Invoke("DelayFalseBulletObject", delayFalseWhenTriggerEnemy);
             }
             if (other.gameObject.CompareTag(SceneController.Tags.Wall.ToString()))
             {
@@ -57,9 +57,8 @@ public class BulletController : MonoBehaviour
             }
         }
     }
-    IEnumerator DelayFalseBulletObject(float value)
+    void DelayFalseBulletObject()
     {
-        yield return new WaitForSeconds(value);
         gameObject.SetActive(false);
     }
 }

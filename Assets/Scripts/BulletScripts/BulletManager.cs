@@ -303,7 +303,7 @@ public class BulletManager : AbstractBullet<BulletManager>
     {
         if (_playerData && bulletData)
         {
-            if (_playerData.isFire && !_playerData.isSwordAnimate && _playerData.isFireTime)
+            if (PlayerData.isFire && !_playerData.isSwordAnimate && _playerData.isFireTime)
             {
                 _playerData.isFireTime = false;
 

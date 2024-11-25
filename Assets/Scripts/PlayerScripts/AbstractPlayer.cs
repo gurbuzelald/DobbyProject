@@ -295,7 +295,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             _playerData.bulletAmount = _bulletData.currentBulletPackAmount;
             _playerData.isFireWalkAnimation = false;
-            _playerData.isFire = false;
+            PlayerData.isFire = false;
             LevelData.isLevelUp = false;
             LevelData.levelCanBeSkipped = false;
             _playerData.clickShiftCount = 0;
@@ -307,7 +307,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.isPickRotateCoin = false;
             _playerData.isLookingUp = false;
             _playerData.isWinning = false;
-            _playerData.isRunning = false;
+            PlayerData.isRunning = false;
             _playerData.isPlayable = true;
             CharacterSpeeds(_playerData);
             CharacterJumpForce(_playerData);
@@ -379,7 +379,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
                 _playerData.isFireWalkAnimation = false;
 
-                _playerData.isFire = false;
+                PlayerData.isFire = false;
             }
             else if (_playerData.bulletAmount <= 0 && _playerData.bulletPackAmount >= 0)
             {
@@ -387,36 +387,36 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
                 _playerData.bulletPackAmount--;
 
-                _playerData.isFire = true;
+                PlayerData.isFire = true;
             }
             else if(_playerData.bulletPackAmount >= 0)
             {
                 if (_playerData.isSideWalking && !_playerData.isWalking || _playerData.isBackWalking)
                 {
-                    _playerData.isFire = true;
+                    PlayerData.isFire = true;
                     _playerData.isFireAnimation = false;
                     _playerData.isFireWalkAnimation = false;
                 }
                 if (!_playerData.isWalking && !_playerData.isSideWalking && !_playerData.isBackWalking && !_playerData.isSwordAnimate)
                 {
-                    _playerData.isFire = true;
+                    PlayerData.isFire = true;
                     _playerData.isFireAnimation = true;
                     _playerData.isFireWalkAnimation = false;
                 }
                 if (_playerData.isWalking && !_playerData.isSideWalking && !_playerData.isBackWalking)
                 {
-                    _playerData.isFire = true;
+                    PlayerData.isFire = true;
                     _playerData.isFireAnimation = false;
                     _playerData.isFireWalkAnimation = true;
                 }
                 if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f &&
                     _playerData.bulletAmount > 0 && _playerData.isWalking)
                 {
-                    _playerData.isFire = true;
+                    PlayerData.isFire = true;
                 }
                 else if (_playerData.bulletAmount > PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f && _playerData.isWalking)
                 {
-                    _playerData.isFire = true;
+                    PlayerData.isFire = true;
                 }
                 if (_playerData.bulletAmount > 0 && BulletManager.isCreatedWeaponBullet)
                 {
@@ -428,7 +428,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
         else
         {
-            _playerData.isFire = false;
+            PlayerData.isFire = false;
             _playerData.isFireAnimation = false;
             _playerData.isFireWalkAnimation = false;
         }
@@ -468,13 +468,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         }
     }
 
-    public virtual IEnumerator delayFireWalkDisactivity(PlayerData _playerData, float delay)
+    public virtual void SetFireFalse()
     {
-        if (_playerData)
-        {
-            yield return new WaitForSeconds(delay);
-            _playerData.isFire = false;
-        }
+        PlayerData.isFire = false;
     }
 
     #endregion
@@ -600,7 +596,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.objects[3].transform.localScale = Vector3.zero;
 
             // Trigger delayed destruction
-            StartCoroutine(PlayerManager.GetInstance.DelayPlayerDestroy(3f));
+            PlayerManager.GetInstance.DelayPlayerDestroy();
 
             healthBarSlider.value += 1;
 
@@ -985,10 +981,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.objects[3].transform.localScale = Vector3.zero;
         }
     }
-    public virtual IEnumerator DelayLevelUp(LevelData levelData, float delayWait)
+    public virtual void DelayLevelUp()
     {
-        yield return new WaitForSeconds(delayWait);
+        Invoke("InvokeLevelUp", 2);
+    }
 
+    void InvokeLevelUp()
+    {
         LevelData.isLevelUp = false;
         LevelData.levelCanBeSkipped = false;
     }
@@ -1079,12 +1078,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         ScoreController.GetInstance._scoreText.transform.localScale = new Vector3(2f, 2f, 2f);
         ScoreController.GetInstance._scoreText.color = new Color(r, g, b);
 
-        StartCoroutine(DelayScoreSizeBack());
+        Invoke(nameof(DelayScoreSizeBack), .5f);
     }
 
-    public virtual IEnumerator DelayScoreSizeBack()
+    public virtual void DelayScoreSizeBack()
     {
-        yield return new WaitForSeconds(0.5f);
         ScoreController.GetInstance._scoreText.transform.localScale = Vector3.one;
         ScoreController.GetInstance._scoreText.color = Color.white;
     }
@@ -1149,18 +1147,18 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {//FasterWalking
         if (PlayerController.run && !_playerData.isJumping && !_playerData.isBackWalking)
         {
-            _playerData.isRunning = true;
+            PlayerData.isRunning = true;
             _playerData.clickShiftCount++;
-            StartCoroutine(DelayFalseRunning(_playerData, runTimeAmount));
+            Invoke("DelayFalseRunning", runTimeAmount);
 
             CreateRunParticle(playerObjectPool, playerData);
         }
 
         if (_playerData.clickShiftCount > 1)
         {
-            _playerData.isRunning = false;
+            PlayerData.isRunning = false;
         }
-        if (_playerData.isRunning && !_playerData.isJumping && !_playerData.isBackWalking)
+        if (PlayerData.isRunning && !_playerData.isJumping && !_playerData.isBackWalking)
         {
             if (PlayerManager.GetInstance.GetZValue() > 0f)
             {
@@ -1325,10 +1323,9 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _playerData.currentMessageText.text = PlayerData.emptyMessage;
         }
     }
-    IEnumerator DelayFalseRunning(PlayerData _playerData, float delay)
+    void DelayFalseRunning()
     {
-        yield return new WaitForSeconds(delay);
-        _playerData.isRunning = false;
+        PlayerData.isRunning = false;
     }
     #endregion
 

@@ -378,7 +378,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 // Delayed fire walk disactivity if not actively firing
                 if (playerInterfaces.iPlayerShoot != null)
                 {
-                    StartCoroutine(playerInterfaces.iPlayerShoot.delayFireWalkDisactivity(_playerData, 0f));
+                    SetFireFalse();
                 }
             }
         }
@@ -522,7 +522,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             playerInterfaces.iPlayerTouch.TouchEnemy(_playerData, ref playerComponents.healthBarSlider,
                                             ref _topCanvasHealthBarSlider);
-            StartCoroutine(DelayPlayerDestroy(3f));
+            DelayPlayerDestroy();
         }
         else
         {
@@ -586,6 +586,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             _levelData.levelStates[LevelData.currentLevelId].isCompleteMap = true;
             LevelData.isLevelUp = true;
+            
 
             // Reset health bar sliders
             playerComponents.healthBarSlider.value = 100;
@@ -593,7 +594,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             // Update score and initiate level up
             ScoreController.GetInstance.SetScoreWithLevelUp();
-            StartCoroutine(playerInterfaces.iPlayerTrigger.DelayLevelUp(_levelData, 2f));
+            playerInterfaces.iPlayerTrigger.DelayLevelUp();
         }
         else
         {
@@ -679,7 +680,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             else
             {
                 playerInterfaces.iPlayerTrigger.GettingPoisonDamage(_playerData, ref _topCanvasHealthBarSlider, ref playerComponents.healthBarSlider);//Score
-                StartCoroutine(DelayPlayerDestroy(3f));
+                DelayPlayerDestroy();
             }
         }
         if (other.CompareTag(SceneController.Tags.BulletCoin.ToString()))
@@ -842,7 +843,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 else
                 {
                     //PlayerData
-                    _playerData.isFire = false;
+                    PlayerData.isFire = false;
                 }
             }            
         }        
@@ -895,7 +896,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     #endregion
 
-    public IEnumerator DelayPlayerDestroy(float delayDying)
+    public void DelayPlayerDestroy()
     {
         if (_objectPool && _playerData)
         {
@@ -911,10 +912,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
                     StartCoroutine(DelaySetActiveFalseParticle(particleObject, 5f));
                 }
-
-                yield return new WaitForSeconds(delayDying);
-
-                
             }
         }        
     }

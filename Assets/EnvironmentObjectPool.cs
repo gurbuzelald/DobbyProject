@@ -8,11 +8,7 @@ public class EnvironmentObjectPool : MonoBehaviour
     [Serializable]
     public struct Pool
     {
-        public Queue<GameObject> pooledObjects;
-        public GameObject[] objectPrefab;
         public Transform objectTransform;
-        public int poolSize;
-        public BulletData bulletData;
     }
 
     [SerializeField] Pool[] pools = null;
@@ -24,6 +20,8 @@ public class EnvironmentObjectPool : MonoBehaviour
 
     private GameObject instantiateObject;
 
+    [SerializeField] EnvironmentData environmentData;
+
 
     void Start()
     {
@@ -34,29 +32,29 @@ public class EnvironmentObjectPool : MonoBehaviour
     {
         for (int j = 0; j < pools.Length; j++)
         {
-            pools[j].pooledObjects = new Queue<GameObject>();
+            environmentData.pools[j].pooledObjects = new Queue<GameObject>();
 
 
             // Pool objects exactly poolSize times
-            for (int i = 0; i < pools[j].poolSize; i++)
+            for (int i = 0; i < environmentData.pools[j].poolSize; i++)
             {
-                GameObject pooledObject = InstantiateObject(j, pools[j]);
+                GameObject pooledObject = InstantiateObject(j, environmentData.pools[j], pools[j]);
                 if (pooledObject == null)
                 {
                     return;
                 }
 
                 pooledObject.SetActive(false);
-                pools[j].pooledObjects.Enqueue(pooledObject); // Add only one object per iteration
+                environmentData.pools[j].pooledObjects.Enqueue(pooledObject); // Add only one object per iteration
             }
         }
     }
 
     // Helper Method to Instantiate Object Once
-    GameObject InstantiateObject(int poolIndex, Pool pool)
+    GameObject InstantiateObject(int poolIndex, EnvironmentData.Pool staticPool, Pool dynamicPool)
     {
         int prefabIndex = 0; // Default prefab index
-        Transform objTransform = pool.objectTransform;
+        Transform objTransform = dynamicPool.objectTransform;
 
         // Select prefab index based on the poolIndex
         switch (poolIndex)
@@ -82,7 +80,7 @@ public class EnvironmentObjectPool : MonoBehaviour
                     {
                         if (PlayerManager.GetInstance.transform.GetChild(0).childCount >= 6)
                         {
-                            instantiateObject = Instantiate(pool.objectPrefab[prefabIndex],
+                            instantiateObject = Instantiate(staticPool.objectPrefab[prefabIndex],
                                 PlayerManager.GetInstance.transform.GetChild(0).GetChild(5).position,
                               PlayerManager.GetInstance.transform.GetChild(0).GetChild(5).rotation,
                               objTransform);
@@ -93,7 +91,7 @@ public class EnvironmentObjectPool : MonoBehaviour
         }
         else if (objTransform)
         {
-            instantiateObject = Instantiate(pool.objectPrefab[prefabIndex], objTransform.position, objTransform.rotation, objTransform);
+            instantiateObject = Instantiate(staticPool.objectPrefab[prefabIndex], objTransform.position, objTransform.rotation, objTransform);
         }
         else
         {
@@ -101,7 +99,7 @@ public class EnvironmentObjectPool : MonoBehaviour
             {
                 Debug.Log($"{prefabIndex} object pool indeksinde transform girilmedi.");
             }
-            instantiateObject = Instantiate(pool.objectPrefab[prefabIndex]);
+            instantiateObject = Instantiate(staticPool.objectPrefab[prefabIndex]);
         }
 
         return instantiateObject;
@@ -114,11 +112,11 @@ public class EnvironmentObjectPool : MonoBehaviour
             return null;
         }
 
-        _poolUpdateObject = pools[objectType].pooledObjects.Dequeue();
+        _poolUpdateObject = environmentData.pools[objectType].pooledObjects.Dequeue();
 
         _poolUpdateObject.SetActive(true);
 
-        pools[objectType].pooledObjects.Enqueue(_poolUpdateObject);
+        environmentData.pools[objectType].pooledObjects.Enqueue(_poolUpdateObject);
 
         return _poolUpdateObject;
     }

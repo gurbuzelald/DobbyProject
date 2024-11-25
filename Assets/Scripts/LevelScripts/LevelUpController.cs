@@ -395,7 +395,6 @@ public class LevelUpController : MonoBehaviour
                 // Call necessary methods for the level transition
                 CheckLevelUpRequirements();
                 coinSpawner.SetCoinValue(LevelData.currentLevelId);
-                mapController.SetSkybox(LevelData.currentLevelId);
                 _sceneController.LevelUpGame();
 
                 // Reset the completion flag
@@ -409,14 +408,13 @@ public class LevelUpController : MonoBehaviour
         if (levelData.levelStates[levelData.levelStates.Length - 1].isCompleteMap)
         {
             playerData.isWinning = true;
-            StartCoroutine(DelayGoToWinScene());
+            Invoke("DelayGoToWinScene", 5);
         }
     }
 
 
-    IEnumerator DelayGoToWinScene()
+    void DelayGoToWinScene()
     {
-        yield return new WaitForSeconds(5f);
         _sceneController.LoadWinScene();
     }
     

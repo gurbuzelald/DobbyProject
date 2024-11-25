@@ -82,11 +82,11 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
         }
 
         // Belirli bir süre sonra mermiyi devre dışı bırak
-        StartCoroutine(DelaySpawn(bulletObject, bulletSpawn, delayDestroy));
+        StartCoroutine(DelaySpawn(bulletObject, delayDestroy));
     }
 
     // Merminin devre dışı bırakılması
-    private IEnumerator DelaySpawn(GameObject bulletObject, Transform bulletSpawn, float delayDestroy)
+    private IEnumerator DelaySpawn(GameObject bulletObject, float delayDestroy)
     {
         // Belirtilen süre kadar bekle
         yield return new WaitForSeconds(delayDestroy);

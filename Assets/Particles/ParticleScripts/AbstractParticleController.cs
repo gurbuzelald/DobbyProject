@@ -46,10 +46,4 @@ public abstract class AbstractParticleController<T> : MonoBehaviour where T : Mo
         PlayerWalking,
         None
     }
-    IEnumerator DelayStopParticle(float value, GameObject particleObject)
-    {
-        yield return new WaitForSeconds(value);
-
-        Destroy(particleObject);
-    }
 }

@@ -8,16 +8,13 @@ public class EnemyObjectPool : MonoBehaviour
     [Serializable]
     public struct Pool
     {
-        public Queue<GameObject> pooledObjects;
-        public GameObject[] objectPrefab;
         public Transform objectTransform;
-        public int poolSize;
-        public BulletData bulletData;
     }
 
     [SerializeField] LevelData levelData;
+    [SerializeField] EnemyData enemyData;
 
-    [SerializeField] Pool[] pools = null;
+    public Pool[] pools = null;
 
     private GameObject _poolUpdateObject;
 
@@ -28,47 +25,44 @@ public class EnemyObjectPool : MonoBehaviour
 
     public void CreateAndEnqueueObject()
     {
-        for (int j = 0; j < pools.Length; j++)
+        for (int j = 0; j < enemyData.pools.Length; j++)
         {
-            pools[j].pooledObjects = new Queue<GameObject>();
+            enemyData.pools[j].pooledObjects = new Queue<GameObject>();
 
             // Pool objects exactly poolSize times
-            for (int i = 0; i < pools[j].poolSize; i++)
+            for (int i = 0; i < enemyData.pools[j].poolSize; i++)
             {
-                GameObject pooledObject = InstantiateObject(j, pools[j]);
+                GameObject pooledObject = InstantiateObject(j, enemyData.pools[j], pools[j]);
                 if (pooledObject == null)
                 {
                     return;
                 }
 
                 pooledObject.SetActive(false);
-                pools[j].pooledObjects.Enqueue(pooledObject); // Add only one object per iteration
+                enemyData.pools[j].pooledObjects.Enqueue(pooledObject); // Add only one object per iteration
             }
         }
     }
 
     // Helper Method to Instantiate Object Once
-    GameObject InstantiateObject(int poolIndex, Pool pool)
+    GameObject InstantiateObject(int poolIndex, EnemyData.EnemyObjectPoolStruct staticPool, Pool dynamicPool)
     {
         GameObject obj;
         int prefabIndex = 0; // Default prefab index
-        Transform objTransform = pool.objectTransform;
+        Transform objTransform = dynamicPool.objectTransform;
 
         // Select prefab index based on the poolIndex
         switch (poolIndex)
         {
-            case 0:
-            case 2:
-            case 3:
+            case 0://Enemy Bullet
+            case 2://EnemyPrefab
+            case 3://Boss Enemy Prefab
                 prefabIndex = LevelData.currentLevelId;
                 break;
-            case 1: 
-            case 4: 
-            case 5: 
+            case 1: //Middle Particle
+            case 4: //Chest Monster
+            case 5: //Tazo
                 prefabIndex = 0;
-                break;
-            case 6:
-                prefabIndex = BulletData.currentWeaponID;
                 break;
             default:
                 return null; // Return null if poolIndex is out of range
@@ -77,12 +71,12 @@ public class EnemyObjectPool : MonoBehaviour
         // Instantiate object with or without specific transform
         if (objTransform)
         {
-            obj = Instantiate(pool.objectPrefab[prefabIndex], objTransform.position, objTransform.rotation, objTransform);
+            obj = Instantiate(staticPool.objectPrefab[prefabIndex], objTransform.position, objTransform.rotation, objTransform);
         }
         else
         {
             Debug.Log($"{prefabIndex} object pool indeksinde transform girilmedi.");
-            obj = Instantiate(pool.objectPrefab[prefabIndex]);
+            obj = Instantiate(staticPool.objectPrefab[prefabIndex]);
         }
 
         return obj;
@@ -90,16 +84,16 @@ public class EnemyObjectPool : MonoBehaviour
 
     public GameObject GetPooledObject(int objectType)
     {
-        if (objectType >= pools.Length)
+        if (objectType >= enemyData.pools.Length)
         {
             return null;
         }
 
-        _poolUpdateObject = pools[objectType].pooledObjects.Dequeue();
+        _poolUpdateObject = enemyData.pools[objectType].pooledObjects.Dequeue();
 
         _poolUpdateObject.SetActive(true);
 
-        pools[objectType].pooledObjects.Enqueue(_poolUpdateObject);
+        enemyData.pools[objectType].pooledObjects.Enqueue(_poolUpdateObject);
 
         return _poolUpdateObject;
     }

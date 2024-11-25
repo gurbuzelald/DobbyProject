@@ -3,8 +3,7 @@ using UnityEngine;
 public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationController>
 {
     [Header("Animator")]
-    //private RuntimeAnimatorController[] runtimeAnimatorControllers;
-    [SerializeField] RuntimeAnimatorController runAnimatorController;
+    private RuntimeAnimatorController runAnimatorController;
     public RuntimeAnimatorController exampleRunAnimatorController;
     private Animator _animator;
     private int _animationCount;

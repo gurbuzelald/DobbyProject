@@ -29,4 +29,15 @@ public class EnemyData : ScriptableObject
     public EnemyStats[] enemyStats = new EnemyStats[14];
 
     public bool isActivateCreateEnemy;
+
+    public GameObject[] objects;
+
+    [Serializable]
+    public struct EnemyObjectPoolStruct
+    {
+        public Queue<GameObject> pooledObjects;
+        public GameObject[] objectPrefab;
+        public int poolSize;
+    }
+    public EnemyObjectPoolStruct[] pools;
 }

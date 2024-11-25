@@ -24,9 +24,7 @@ public class LevelUpButtonController : MonoBehaviour
 
             SceneController.playAgainForScore = true;
 
-            //SceneController.DestroySingletonObjects();
-
-            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+            SceneManager.LoadSceneAsync(SceneController.Scenes.Game.ToString());
 
             sceneController.DecreaseWeaponUsageLimit();
         }
@@ -45,9 +43,7 @@ public class LevelUpButtonController : MonoBehaviour
 
             SceneController.playAgainForScore = true;
 
-            //SceneController.DestroySingletonObjects();
-
-            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+            SceneManager.LoadSceneAsync(SceneController.Scenes.Game.ToString());
 
             sceneController.DecreaseWeaponUsageLimit();
         }
@@ -66,9 +62,7 @@ public class LevelUpButtonController : MonoBehaviour
 
             SceneController.playAgainForScore = true;
 
-            //SceneController.DestroySingletonObjects();
-
-            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+            SceneManager.LoadSceneAsync(SceneController.Scenes.Game.ToString());
 
             sceneController.DecreaseWeaponUsageLimit();
         }
@@ -87,9 +81,7 @@ public class LevelUpButtonController : MonoBehaviour
 
             SceneController.playAgainForScore = true;
 
-            //SceneController.DestroySingletonObjects();
-
-            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+            SceneManager.LoadSceneAsync(SceneController.Scenes.Game.ToString());
 
             sceneController.DecreaseWeaponUsageLimit();
         }
@@ -108,9 +100,7 @@ public class LevelUpButtonController : MonoBehaviour
 
             SceneController.playAgainForScore = true;
 
-            //SceneController.DestroySingletonObjects();
-
-            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+            SceneManager.LoadSceneAsync(SceneController.Scenes.Game.ToString());
 
             sceneController.DecreaseWeaponUsageLimit();
         }
@@ -129,9 +119,7 @@ public class LevelUpButtonController : MonoBehaviour
 
             SceneController.playAgainForScore = true;
 
-            //SceneController.DestroySingletonObjects();
-
-            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+            SceneManager.LoadSceneAsync(SceneController.Scenes.Game.ToString());
 
             sceneController.DecreaseWeaponUsageLimit();
         }
@@ -150,9 +138,7 @@ public class LevelUpButtonController : MonoBehaviour
 
             SceneController.playAgainForScore = true;
 
-            //SceneController.DestroySingletonObjects();
-
-            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+            SceneManager.LoadSceneAsync(SceneController.Scenes.Game.ToString());
 
             sceneController.DecreaseWeaponUsageLimit();
         }
@@ -171,9 +157,7 @@ public class LevelUpButtonController : MonoBehaviour
 
             SceneController.playAgainForScore = true;
 
-            //SceneController.DestroySingletonObjects();
-
-            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+            SceneManager.LoadSceneAsync(SceneController.Scenes.Game.ToString());
 
             sceneController.DecreaseWeaponUsageLimit();
         }
@@ -192,9 +176,7 @@ public class LevelUpButtonController : MonoBehaviour
 
             SceneController.playAgainForScore = true;
 
-            //SceneController.DestroySingletonObjects();
-
-            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+            SceneManager.LoadSceneAsync(SceneController.Scenes.Game.ToString());
 
             sceneController.DecreaseWeaponUsageLimit();
         }
@@ -213,9 +195,7 @@ public class LevelUpButtonController : MonoBehaviour
 
             SceneController.playAgainForScore = true;
 
-            //SceneController.DestroySingletonObjects();
-
-            SceneManager.LoadScene(SceneController.Scenes.Game.ToString());
+            SceneManager.LoadSceneAsync(SceneController.Scenes.Game.ToString());
 
             sceneController.DecreaseWeaponUsageLimit();
         }

@@ -32,6 +32,16 @@ public class PlayerData : ScriptableObject
 
     public static float currentCharacterSpeed;
 
+    [Serializable]
+    public struct Pool
+    {
+        public Queue<GameObject> pooledObjects;
+        public GameObject[] objectPrefab;
+        public int poolSize;
+    }
+
+    public Pool[] pools = null;
+
 
     [Header("Player Object")]
     public GameObject playerObject;
@@ -148,7 +158,7 @@ public class PlayerData : ScriptableObject
     public bool isIdling;
     public bool isDying;
     public bool isWinning;
-    public bool isRunning;
+    public static bool isRunning;
     public bool isPicking;
     public bool isPickRotateCoin;
     public bool isSwordAnimate;
@@ -164,7 +174,7 @@ public class PlayerData : ScriptableObject
     public bool isPlayable;
 
     [Header("Input")]
-    public bool isFire;
+    public static bool isFire;
     public bool isFireWalkAnimation;
     public bool isFireAnimation;
     public bool isFireTime;

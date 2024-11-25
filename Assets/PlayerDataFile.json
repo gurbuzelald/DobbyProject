@@ -3,7 +3,7 @@
         {
             "name": "Dummy",
             "characterObject": {
-                "instanceID": 52416
+                "instanceID": 52008
             },
             "durability": 0,
             "price": 0,
@@ -16,7 +16,7 @@
         {
             "name": "Joleen",
             "characterObject": {
-                "instanceID": 52418
+                "instanceID": 52010
             },
             "durability": 7,
             "price": 200,
@@ -29,7 +29,7 @@
         {
             "name": "Glassy",
             "characterObject": {
-                "instanceID": 52420
+                "instanceID": 52012
             },
             "durability": 9,
             "price": 1000,
@@ -42,7 +42,7 @@
         {
             "name": "Lusth",
             "characterObject": {
-                "instanceID": 52422
+                "instanceID": 52014
             },
             "durability": 4000,
             "price": 4,
@@ -55,7 +55,7 @@
         {
             "name": "Guard",
             "characterObject": {
-                "instanceID": 52424
+                "instanceID": 52016
             },
             "durability": 10,
             "price": 2000,
@@ -68,7 +68,7 @@
         {
             "name": "Michelle",
             "characterObject": {
-                "instanceID": 52426
+                "instanceID": 52018
             },
             "durability": 9,
             "price": 1000,
@@ -81,7 +81,7 @@
         {
             "name": "Eve",
             "characterObject": {
-                "instanceID": 52428
+                "instanceID": 52020
             },
             "durability": 11,
             "price": 4000,
@@ -94,7 +94,7 @@
         {
             "name": "Aj",
             "characterObject": {
-                "instanceID": 52430
+                "instanceID": 52022
             },
             "durability": 8,
             "price": 500,
@@ -107,7 +107,7 @@
         {
             "name": "Boss",
             "characterObject": {
-                "instanceID": 52432
+                "instanceID": 52024
             },
             "durability": 8,
             "price": 500,
@@ -120,7 +120,7 @@
         {
             "name": "Ty",
             "characterObject": {
-                "instanceID": 52434
+                "instanceID": 52026
             },
             "durability": 9,
             "price": 1000,
@@ -133,7 +133,7 @@
         {
             "name": "Mremireh",
             "characterObject": {
-                "instanceID": 52436
+                "instanceID": 52028
             },
             "durability": 10,
             "price": 2000,
@@ -145,10 +145,10 @@
         }
     ],
     "playerObject": {
-        "instanceID": 52438
+        "instanceID": 52030
     },
     "characterObject": {
-        "instanceID": 52440
+        "instanceID": 52032
     },
     "playerWeaponBulletObjectPoolCount": 0,
     "playerSwordBulletObjectPoolCount": 1,
@@ -174,43 +174,43 @@
     "currentLanguage": 0,
     "getCurrentEnemyDead": false,
     "currentMessageText": {
-        "instanceID": 253624
+        "instanceID": 166572
     },
     "currentMessageObject": {
-        "instanceID": 253620
+        "instanceID": 166568
     },
     "isDecreaseHealth": true,
     "damageHealthText": {
-        "instanceID": 253044
+        "instanceID": 166936
     },
-    "decreaseCounter": 0,
+    "decreaseCounter": 1,
     "resetLocks": "Locked",
     "locked": "Locked",
     "unLocked": "",
     "objects": [
         {
-            "instanceID": 52442
+            "instanceID": 52034
         },
         {
-            "instanceID": 52444
+            "instanceID": 52036
         },
         {
-            "instanceID": 52446
+            "instanceID": 52038
         },
         {
-            "instanceID": 52448
+            "instanceID": 52040
         },
         {
-            "instanceID": 52450
+            "instanceID": 52042
         },
         {
-            "instanceID": 52452
+            "instanceID": 52044
         },
         {
-            "instanceID": 52454
+            "instanceID": 52046
         }
     ],
-    "sensivityX": 3.0,
+    "sensivityX": 1.0,
     "sensivityY": 3.0,
     "isTouchFinish": false,
     "isLose": false,
@@ -222,7 +222,6 @@
     "isIdling": false,
     "isDying": false,
     "isWinning": false,
-    "isRunning": false,
     "isPicking": false,
     "isPickRotateCoin": false,
     "isSwordAnimate": false,
@@ -230,45 +229,44 @@
     "isLookingUp": false,
     "isDestroyed": false,
     "isPlayable": true,
-    "isFire": false,
     "isFireWalkAnimation": false,
     "isFireAnimation": false,
-    "isFireTime": false,
+    "isFireTime": true,
     "isJumping": false,
     "jumpCount": 0,
     "clickShiftCount": 0,
-    "bulletAmount": 22,
+    "bulletAmount": 17,
     "bulletPackAmount": 2,
     "danceTime": 5.0,
     "jolleenObject": {
-        "instanceID": 52456
+        "instanceID": 52048
     },
     "touchParticle": {
-        "instanceID": 52458
+        "instanceID": 52050
     },
     "birthParticle": {
-        "instanceID": 52460
+        "instanceID": 52052
     },
     "deathParticle": {
-        "instanceID": 52462
+        "instanceID": 52054
     },
     "burningParticle": {
-        "instanceID": 52464
+        "instanceID": 52056
     },
     "burningTouchParticle": {
-        "instanceID": 52464
+        "instanceID": 52056
     },
     "destroyRotateCoinParticle": {
-        "instanceID": 52466
+        "instanceID": 52058
     },
     "destroyHealthCoinParticle": {
-        "instanceID": 52468
+        "instanceID": 52060
     },
     "destroyBulletCoinParticle": {
-        "instanceID": 52470
+        "instanceID": 52062
     },
     "destroyMushroomCoinParticle": {
-        "instanceID": 52472
+        "instanceID": 52064
     },
     "particleCount": 0,
     "isTouchFirst": false,
@@ -276,34 +274,34 @@
     "isTouchThird": false,
     "weaponBulletExplosionParticles": [
         {
-            "instanceID": 52474
+            "instanceID": 52066
         },
         {
-            "instanceID": 52476
+            "instanceID": 52068
         },
         {
-            "instanceID": 52478
+            "instanceID": 52070
         },
         {
-            "instanceID": 52480
+            "instanceID": 52072
         },
         {
-            "instanceID": 52482
+            "instanceID": 52074
         },
         {
-            "instanceID": 52484
+            "instanceID": 52076
         },
         {
-            "instanceID": 52486
+            "instanceID": 52078
         },
         {
-            "instanceID": 52488
+            "instanceID": 52080
         },
         {
-            "instanceID": 52490
+            "instanceID": 52082
         },
         {
-            "instanceID": 52492
+            "instanceID": 52084
         }
     ]
 }

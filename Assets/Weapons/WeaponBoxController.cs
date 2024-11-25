@@ -12,13 +12,6 @@ public class WeaponBoxController : MonoBehaviour
     {
         damageToWeaponBox = 0;
     }
-    private void Update()
-    {
-        /*if (_damageGiftBoxParticle != null)
-        {
-            StartCoroutine(DelayDestroyParticle());
-        }*/
-    }
     IEnumerator DelayDestroyParticle()
     {
         yield return new WaitForSeconds(2);
