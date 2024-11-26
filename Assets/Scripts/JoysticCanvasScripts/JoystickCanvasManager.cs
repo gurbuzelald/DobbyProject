@@ -10,13 +10,21 @@ public class JoystickCanvasManager : MonoBehaviour
     private GameObject fire2Button;
     private GameObject runButton;
 
+    public static bool isSwordable;
+
+    private float buttonTimeFlow;
+
     void Start()
     {
+        buttonTimeFlow = 0;
+
+        isSwordable = false;
+
         if (GameObject.Find("Sword"))
         {
             swordButton = GameObject.Find("Sword");
 
-            //swordButton.SetActive(false);
+            swordButton.SetActive(false);
 
         }
         if (GameObject.Find("Fire"))
@@ -45,10 +53,11 @@ public class JoystickCanvasManager : MonoBehaviour
     {
         FiringMode();
         RunMode();
+        SwordingMode();
     }
     void FiringMode()
     {
-        if (playerData)
+        if (playerData && PlayerManager.GetInstance)
         {
             if (PlayerManager.GetInstance.bulletAmountText)
             {
@@ -67,8 +76,43 @@ public class JoystickCanvasManager : MonoBehaviour
                     }
                 }
             }           
-        }        
+        }
     }
+
+    void SwordingMode()
+    {
+        buttonTimeFlow += Time.deltaTime;
+
+        if (isSwordable)
+        {
+            swordButton.SetActive(true);
+        }
+        else
+        {
+            swordButton.SetActive(false);
+        }
+
+        if (swordButton)
+        {
+            DelayGrowSwordButton();
+        }
+
+
+    }
+    void DelayGrowSwordButton()
+    {
+        if (buttonTimeFlow > 1)
+        {
+            swordButton.transform.localScale = new Vector3(.92f, .92f, .92f);
+            buttonTimeFlow = 0;
+        }
+        else
+        {
+            swordButton.transform.localScale = new Vector3(1, 1, 1);
+        }        
+        
+    }
+
     void RunMode()
     {
         if (PlayerData.isRunning && runButton)

@@ -8,10 +8,9 @@ public class EnvironmentData : ScriptableObject
     [Serializable]
     public struct Pool
     {
-        public Queue<GameObject> pooledObjects;
-        public GameObject[] objectPrefab;
+        public GameObject[] objectPrefab; // Addressable Asset
         public int poolSize;
+        public Queue<GameObject> pooledObjects;
     }
-
     public Pool[] pools = null;
 }

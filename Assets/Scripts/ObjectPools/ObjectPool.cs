@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -97,29 +96,31 @@ public class ObjectPool : MonoBehaviour
             default:
                 return null; // Return null if poolIndex is out of range
         }
-
-        if (poolIndex == 0)
+        if (objTransform)
         {
-            if (PlayerManager.GetInstance)
+            if (poolIndex == 0 || poolIndex == 1)
             {
-                if (PlayerManager.GetInstance.transform)
+                if (PlayerManager.GetInstance)
                 {
-                    if (PlayerManager.GetInstance.transform.childCount >= 1)
+                    if (PlayerManager.GetInstance.transform)
                     {
-                        if (PlayerManager.GetInstance.transform.GetChild(0).childCount >=6)
+                        if (PlayerManager.GetInstance.transform.childCount >= 1)
                         {
-                            instantiateObject = Instantiate(staticPool.objectPrefab[prefabIndex],
-                                PlayerManager.GetInstance.transform.GetChild(0).GetChild(5).position,
-                              PlayerManager.GetInstance.transform.GetChild(0).GetChild(5).rotation,
-                              objTransform);
+                            if (PlayerManager.GetInstance.transform.GetChild(0).childCount >= 6)
+                            {
+                                instantiateObject = Instantiate(staticPool.objectPrefab[prefabIndex],
+                                    PlayerManager.GetInstance.transform.GetChild(0).GetChild(5).position,
+                                  PlayerManager.GetInstance.transform.GetChild(0).GetChild(5).rotation,
+                                  objTransform);
+                            }
                         }
                     }
                 }
             }
-        }
-        else if (objTransform)
-        {
-            instantiateObject = Instantiate(staticPool.objectPrefab[prefabIndex], objTransform.position, objTransform.rotation, objTransform);
+            else
+            {
+                instantiateObject = Instantiate(staticPool.objectPrefab[prefabIndex], objTransform.position, objTransform.rotation, objTransform);
+            }           
         }
         else
         {

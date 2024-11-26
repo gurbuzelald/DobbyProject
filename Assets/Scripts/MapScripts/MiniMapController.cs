@@ -41,6 +41,7 @@ public class MiniMapController : MonoBehaviour
     }
     void MiniMapRotation()
     {
+        if (!PlayerManager.GetInstance) return;
         if (PlayerManager.GetInstance.gameObject)
         {
             if (PlayerManager.GetInstance.gameObject.transform.childCount >= 1)

@@ -16,7 +16,7 @@ internal interface IPlayerTrigger
 
 
     void PickUpCoin(LevelData levelData,
-                    SceneController.Tags value, 
+                    string value, 
                     Collider other, 
                     PlayerData _playerData, 
                     ref GameObject _coinObject, 

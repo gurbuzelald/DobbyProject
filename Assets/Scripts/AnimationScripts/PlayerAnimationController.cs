@@ -32,7 +32,7 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
         }
     }
     void Update()
-    {       
+    {
         AnimationStates();
     }
     public void AnimationStates()
@@ -49,7 +49,7 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
             {
                 bulletManager._currentSwordObject.SetActive(false);
             }
-        }
+        }        
     }
     public void SwordFireBulletParticle()
     {
@@ -58,6 +58,7 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
             bulletManager.SwordFire(PlayerManager.GetInstance._bulletData.swordBulletDelay,
                                     PlayerManager.GetInstance._playerData.playerSwordBulletObjectPoolCount);
         }
+        JoystickCanvasManager.isSwordable = false;
     }
 
     public void LoadEndScene()

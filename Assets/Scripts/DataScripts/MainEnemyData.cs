@@ -5,6 +5,7 @@ public class MainEnemyData : ScriptableObject
 {
     [Header("Enemy Death Count")]
     public static int enemyDeathCount;
+    public static int tempDeathCount;
 
     [Header("Sounds")]
     //public AudioClip shootClip;

@@ -638,7 +638,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     {
         if (other.CompareTag(SceneController.Tags.Coin.ToString()))
         {
-            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.Coin, other, _playerData,
+            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.Coin.ToString(), other, _playerData,
                                         ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
                                         ref _environmentObjectPool);//GetScore
             playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
@@ -646,7 +646,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         if (other.CompareTag(SceneController.Tags.CheeseCoin.ToString()))
         {
-            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.CheeseCoin, other, _playerData,
+            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.CheeseCoin.ToString(), other, _playerData,
                                          ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
                                          ref _environmentObjectPool);//GetScore
             playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
@@ -654,7 +654,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         if (other.CompareTag(SceneController.Tags.RotateCoin.ToString()))
         {
-            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.RotateCoin, other, _playerData,
+            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.RotateCoin.ToString(), other, _playerData,
                                          ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
                                          ref _environmentObjectPool);//GetScore
             playerInterfaces.iPlayerScore.ScoreTextGrowing(0, 255, 0);
@@ -665,7 +665,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             playerInterfaces.iPlayerScore.DecreaseScore(10);
 
-            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.MushroomCoin, other, _playerData, ref _coinObject,
+            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.MushroomCoin.ToString(), other, _playerData, ref _coinObject,
                                           ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
                                           ref _environmentObjectPool);
             if (playerComponents.healthBarSlider.value > 0)
@@ -673,7 +673,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                 playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData, 30, ref _healthBarObject,
                     ref playerComponents.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
 
-                playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject,
+                playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin.ToString(), other, _playerData, ref _coinObject,
                                           ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
                                           ref _environmentObjectPool);//FreshBulletAmount
             }
@@ -685,14 +685,14 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         if (other.CompareTag(SceneController.Tags.BulletCoin.ToString()))
         {
-            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData,
+            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin.ToString(), other, _playerData,
                                       ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
                                       ref bulletAmountText, ref bulletPackAmountText,
                                       ref _environmentObjectPool);//FreshBulletAmount
         }
         if (other.CompareTag(SceneController.Tags.HealthCoin.ToString()))
         {
-            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.HealthCoin, other, _playerData,
+            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.HealthCoin.ToString(), other, _playerData,
                                       ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
                                       ref bulletAmountText, ref bulletPackAmountText,
                                       ref _environmentObjectPool);
@@ -700,7 +700,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         }
         if (other.CompareTag(SceneController.Tags.LevelUpKey.ToString()))
         {
-            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.LevelUpKey, other, _playerData,
+            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.LevelUpKey.ToString(), other, _playerData,
                                       ref _coinObject, ref _cheeseObject, ref bulletAmountCanvas,
                                       ref bulletAmountText, ref bulletPackAmountText,
                                       ref _environmentObjectPool);
@@ -708,35 +708,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     }
     void OnTriggerEnter(Collider other)
     {
-
-        /*if (other.CompareTag(SceneController.Tags.EnemyTriggerBox.ToString()))
-        {
-            SetTrueEnemy(other);
-
-            Destroy(other.gameObject);
-        }
-        if (other.CompareTag(SceneController.Tags.BossTriggerBox.ToString()))
-        {
-            SetTrueBoss(other);
-            for (int i = 0; i < EnemySpawner.bossEnemyBoxes.Length; i++)
-            {
-                Destroy(EnemySpawner.bossEnemyBoxes[i]);
-            }
-        }
-        if (other.CompareTag(SceneController.Tags.ChestTriggerBox.ToString()))
-        {
-            SetTrueChestMonster(other);
-
-            Destroy(other.gameObject);
-        }
-
-        if (other.CompareTag(SceneController.Tags.ChestTrigger2Box.ToString()))
-        {
-            SetTrueTazo(other);
-
-            Destroy(other.gameObject);
-        }*/
-
         if (other.CompareTag(SceneController.Tags.EnemyBullet.ToString()))
         {
             playerInterfaces.iPlayerTrigger.TriggerBullet(other, _playerData, 
@@ -779,7 +750,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         else if (IsWeaponInStruct(otherTag))
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin, other, _playerData, ref _coinObject,
+            playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, otherTag, other, _playerData, ref _coinObject,
                                                        ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
                                                        ref _environmentObjectPool);
 

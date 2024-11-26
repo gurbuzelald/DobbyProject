@@ -36,7 +36,10 @@ public class EnemyBulletManager : AbstractBullet<EnemyBulletManager>
 
     private void Start()
     {
-        playerData = PlayerManager.GetInstance._playerData;        
+        if (PlayerManager.GetInstance)
+        {
+            playerData = PlayerManager.GetInstance._playerData;
+        }
     }
     public void RayBullet()
     {

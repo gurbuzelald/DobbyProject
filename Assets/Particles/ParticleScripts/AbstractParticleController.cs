@@ -43,6 +43,7 @@ public abstract class AbstractParticleController<T> : MonoBehaviour where T : Mo
         DestroyMushroomCoin,
         DestroyBulletCoin,
         DestroyHealthCoin,
+        DestroyKeyCoin,
         PlayerWalking,
         None
     }

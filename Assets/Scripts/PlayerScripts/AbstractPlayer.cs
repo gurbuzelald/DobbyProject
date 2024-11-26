@@ -660,7 +660,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
 
     public virtual void PickUpCoin(LevelData levelData,
-                               SceneController.Tags tag, Collider other,
+                               string tag, Collider other,
                                PlayerData _playerData,
                                ref GameObject _coinObject,
                                ref GameObject _cheeseObject,
@@ -674,36 +674,36 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
 
         // If-else for different tag types
-        if (tag == SceneController.Tags.Coin)
+        if (tag == SceneController.Tags.Coin.ToString())
         {
             HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin,
                              other, environmentObjectPool);
             ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
         }
-        else if (tag == SceneController.Tags.RotateCoin)
+        else if (tag == SceneController.Tags.RotateCoin.ToString())
         {
             HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin,
                              other, environmentObjectPool);
             ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
         }
-        else if (tag == SceneController.Tags.CheeseCoin)
+        else if (tag == SceneController.Tags.CheeseCoin.ToString())
         {
             _cheeseObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
             HandleCoinPickup(_cheeseObject, ParticleController.ParticleNames.DestroyRotateCoin, PlayerSoundEffect.SoundEffectTypes.PickUpCoin,
                              other, environmentObjectPool);
             ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue);
         }
-        else if (tag == SceneController.Tags.MushroomCoin)
+        else if (tag == SceneController.Tags.MushroomCoin.ToString())
         {
             HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyMushroomCoin, PlayerSoundEffect.SoundEffectTypes.Poison,
                              other, environmentObjectPool);
             StartCoroutine(DelayMessageText(_playerData, PlayerData.poisonMessageTr, PlayerData.poisonMessage));
         }
-        else if (tag == SceneController.Tags.BulletCoin)
+        else if (tag == SceneController.Tags.BulletCoin.ToString())
         {
             HandleBulletCoinPickup(_coinObject, other, bulletAmountCanvas, _playerData, bulletAmountText, bulletPackAmountText, environmentObjectPool);
         }
-        else if (tag == SceneController.Tags.HealthCoin)
+        else if (tag == SceneController.Tags.HealthCoin.ToString())
         {
             if (PlayerManager.GetInstance.playerComponents.healthBarSlider.value < 75)
             {
@@ -712,13 +712,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 StartCoroutine(DelayMessageText(_playerData, PlayerData.pickHealthObjectMessageTr, PlayerData.pickHealthObjectMessage));
             }
         }
-        else if (tag == SceneController.Tags.LevelUpKey)
+        else if (tag == SceneController.Tags.LevelUpKey.ToString())
         {
             StartCoroutine(DelayMessageText(_playerData, PlayerData.pickedKeyMessageTr, PlayerData.pickedKeyMessage));
             LevelData.currentOwnedLevelUpKeys++;
 
-            HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyBulletCoin,
+            HandleCoinPickup(_coinObject, ParticleController.ParticleNames.DestroyKeyCoin,
                              PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin, other, environmentObjectPool);
+        }
+        if (other.gameObject.transform.parent.parent.name == "GiftBoxTransform")
+        {
+            HandleBulletCoinPickup(_coinObject, other, bulletAmountCanvas, _playerData, bulletAmountText, bulletPackAmountText, environmentObjectPool);
         }
 
     }
@@ -774,10 +778,21 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     void CreateBulletParticleEffect(EnvironmentObjectPool environmentObjectPool, Collider other, PlayerData _playerData)
     {
-        GameObject particleObject = environmentObjectPool.GetPooledObject(_playerData.destroyBulletCoinParticleObjectPoolCount);
-        particleObject.transform.position = other.gameObject.transform.position;
+        if (other.gameObject.transform.parent.parent.name == "GiftBoxTransform")
+        {
+            GameObject particleObject = environmentObjectPool.GetPooledObject(_playerData.destroyWeaponCollectParticleObjectPoolCount);
+            particleObject.transform.position = other.gameObject.transform.position;
 
-        StartCoroutine(DelaySetActiveFalseParticle(particleObject, 1f));
+            StartCoroutine(DelaySetActiveFalseParticle(particleObject, 1f));
+        }
+        else
+        {
+            GameObject particleObject = environmentObjectPool.GetPooledObject(_playerData.destroyBulletCoinParticleObjectPoolCount);
+            particleObject.transform.position = other.gameObject.transform.position;
+
+            StartCoroutine(DelaySetActiveFalseParticle(particleObject, 1f));
+        }
+        
     }
 
 
@@ -815,6 +830,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         else if (ParticleController.ParticleNames.DestroyMushroomCoin == particle)
         {
             particleObject2 = environmentObjectPool.GetPooledObject(PlayerManager.GetInstance._playerData.destroyMushroomCoinObjectPoolCount);
+            particleObject2.transform.position = other.gameObject.transform.position;
+            StartCoroutine(DelaySetActiveFalseParticle(particleObject2, 1f));
+        }
+        else if (ParticleController.ParticleNames.DestroyKeyCoin == particle)
+        {
+            particleObject2 = environmentObjectPool.GetPooledObject(PlayerManager.GetInstance._playerData.destroyKeyParticleObjectPoolCount);
             particleObject2.transform.position = other.gameObject.transform.position;
             StartCoroutine(DelaySetActiveFalseParticle(particleObject2, 1f));
         }

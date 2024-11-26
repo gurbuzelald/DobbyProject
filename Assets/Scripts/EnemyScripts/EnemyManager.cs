@@ -51,6 +51,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     private void Awake()
     {
         SetEnemyDataStateLength();
+
+        MainEnemyData.tempDeathCount = 0;
     }
     void Start()
     {
@@ -61,10 +63,17 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         objectCollider.enabled = true;
 
         //enemyData.enemyStats[GetEnemyIndex()].currentEnemyName = gameObject.transform.name;
+        if (GameObject.Find("Player(Clone)"))
+        {
+            playerObjectPool = GameObject.Find("Player(Clone)").GetComponent<PlayerManager>()._objectPool;
+        }
 
-        playerObjectPool = PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>();
+        if (GameObject.Find("PlayerSFXPrefab(Clone)"))
+        {
+            playerSFX = GameObject.Find("PlayerSFXPrefab(Clone)").GetComponent<PlayerSoundEffect>();
+        }
 
-        playerSFX = FindAnyObjectByType<PlayerSoundEffect>();
+       
         
         _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = 100;
         _healthBarSlider = _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>();
@@ -191,7 +200,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (!SceneController.pauseGame)
         {
-            enemyBulletManager.RayBullet();
+            if (enemyBulletManager)
+            {
+                enemyBulletManager.RayBullet();
+            }            
         }
         else
         {
@@ -231,6 +243,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     void FollowPlayer()
     {
         if (enemyData == null || bulletData == null || enemyBulletManager == null) return;
+        if (!PlayerManager.GetInstance) return;
 
         if (!playerData.isPlayable || enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyChildID] || SceneController.pauseGame)
         {
@@ -362,6 +375,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         }
         if (other.CompareTag(SceneController.Tags.Sword.ToString()))
         {
+            other.gameObject.SetActive(false);
             TriggerSword(PlayerManager.GetInstance._playerData.characterStruct[PlayerData.currentCharacterID].swordDamageValue, other);
         }
     }
@@ -457,7 +471,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
     public void TriggerBullet(float bulletPower, Collider other)
     {
-        TriggerHit(bulletPower, other, playerData.playerBulletsExplosionObjectPoolCount, SoundEffectTypes.BulletHit, false);
+        TriggerHit(bulletPower, other, playerData.playerBulletsExplosionObjectPoolCount, SoundEffectTypes.BulletHit, false);       
     }
 
     public void TriggerSword(float swordPower, Collider other)
@@ -487,11 +501,12 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         // Update health bar slider value
         _healthBar.transform.GetChild(0).GetChild(0).GetComponent<Slider>().value = _healthBarSlider.value;
     }
+    
 
     // Handles the enemy's death logic
-    private void HandleEnemyDeath(Collider other = null, bool isSword = true)
+    void HandleEnemyDeath(Collider other = null, bool isSword = true)
     {
-        if (_healthBar == null || enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyChildID]) return;
+        if (_healthBar == null || enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyChildID] || !_healthBarSlider) return;
 
         
         if (_healthBarSlider.value == 0)
@@ -502,8 +517,10 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
             PlaySoundEffect(SoundEffectTypes.Death, _audioSource);
 
+            ActivateSwordButton();
+
             if (other)
-            {
+            {    
                 if (burnParticleTransformObject || isSword)
                 {
                     BulletOrSwordExplosionParticleWithObjectPool(other, playerData.enemyMidParticleObjectPoolID);
@@ -537,6 +554,18 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             // Update score
             ScoreController.GetInstance.SetScore(levelData.currentStaticCoinValue * 2);
             return;
+        }
+    }
+    void ActivateSwordButton()
+    {
+        if (MainEnemyData.tempDeathCount % 3 == 0 && MainEnemyData.tempDeathCount != 0)
+        {
+            JoystickCanvasManager.isSwordable = true;
+            MainEnemyData.tempDeathCount = 0;
+        }
+        else if (!JoystickCanvasManager.isSwordable)
+        {
+            MainEnemyData.tempDeathCount++;
         }
     }
 
@@ -713,30 +742,36 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     //SFX States
     public void PlaySoundEffect(SoundEffectTypes soundEffect, AudioSource audioSource)
     {
-        if (soundEffect == SoundEffectTypes.GetHit)
+        if (audioSource)
         {
-            //audioSource.PlayOneShot(enemyData.getHitClip);
-        }
-        else if (soundEffect == SoundEffectTypes.GiveHit)
-        {
-            audioSource.PlayOneShot(mainEnemyData.giveHitClip);
-        }
-        else if (soundEffect == SoundEffectTypes.Death)
-        {
-            audioSource.PlayOneShot(mainEnemyData.dyingClip);
-        }
-        else if (soundEffect == SoundEffectTypes.BulletHit)
-        {
-            audioSource.PlayOneShot(playerSFX.characterAudioData.currentBulletHitClip);
-        }
-        else if (soundEffect == SoundEffectTypes.SwordHit)
-        {
-            audioSource.PlayOneShot(playerSFX.characterAudioData.currentSwordHitClip);
-        }
-        else if (soundEffect == SoundEffectTypes.GiveBulletHit)
-        {
-            audioSource.PlayOneShot(mainEnemyData.giveBulletHitClip);
-        }
+            if (playerSFX)
+            {
+                if (soundEffect == SoundEffectTypes.GetHit)
+                {
+                    //audioSource.PlayOneShot(enemyData.getHitClip);
+                }
+                else if (soundEffect == SoundEffectTypes.GiveHit)
+                {
+                    audioSource.PlayOneShot(mainEnemyData.giveHitClip);
+                }
+                else if (soundEffect == SoundEffectTypes.Death)
+                {
+                    audioSource.PlayOneShot(mainEnemyData.dyingClip);
+                }
+                else if (soundEffect == SoundEffectTypes.BulletHit)
+                {
+                    audioSource.PlayOneShot(playerSFX.characterAudioData.currentBulletHitClip);
+                }
+                else if (soundEffect == SoundEffectTypes.SwordHit)
+                {
+                    audioSource.PlayOneShot(playerSFX.characterAudioData.currentSwordHitClip);
+                }
+                else if (soundEffect == SoundEffectTypes.GiveBulletHit)
+                {
+                    audioSource.PlayOneShot(mainEnemyData.giveBulletHitClip);
+                }
+            }            
+        }        
     }
     public enum SoundEffectTypes
     {

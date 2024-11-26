@@ -243,6 +243,8 @@ MonoBehaviour:
   destroyHealthCoinObjectPoolCount: 2
   destroyMushroomCoinObjectPoolCount: 3
   destroyGroupCoinParticleObjectPoolCount: 4
+  destroyKeyParticleObjectPoolCount: 5
+  destroyWeaponCollectParticleObjectPoolCount: 6
   enemyBulletParticleObjectPoolID: 0
   enemyMidParticleObjectPoolID: 1
   enemyPrefabObjectPoolID: 2
@@ -269,7 +271,7 @@ MonoBehaviour:
   - {fileID: 3102288607414887448, guid: 291ccd016fce448479fcd5813069629a, type: 3}
   - {fileID: 4849532061827766971, guid: 0475ff0f49311f1439d5dacc468f03fd, type: 3}
   sensivityX: 1
-  sensivityY: 6
+  sensivityY: 3
   isTouchFinish: 0
   isLose: 0
   rotateSpeed: 6
@@ -286,14 +288,14 @@ MonoBehaviour:
   isSword: 0
   isLookingUp: 0
   isDestroyed: 0
-  isPlayable: 0
+  isPlayable: 1
   isFireWalkAnimation: 0
   isFireAnimation: 0
   isFireTime: 0
   isJumping: 0
   jumpCount: 0
   clickShiftCount: 0
-  bulletAmount: 21
+  bulletAmount: 22
   bulletPackAmount: 2
   danceTime: 5
   jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}

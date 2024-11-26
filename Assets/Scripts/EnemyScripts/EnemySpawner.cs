@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
@@ -52,12 +49,9 @@ public class EnemySpawner : MonoBehaviour
         {
             _finishPlane = GameObject.Find("FinishPlane").transform;
         }
-        if (GameObject.Find("PlayerSpawner"))
+        if (GameObject.Find("Player(Clone)"))
         {
-            if (GameObject.Find("PlayerSpawner").transform.childCount > 0)
-            {
-                targetTransform = GameObject.Find("PlayerSpawner").transform.GetChild(0);
-            }
+            targetTransform = GameObject.Find("Player(Clone)").transform;
         }  
 
         bossIsDead = false;
@@ -98,8 +92,6 @@ public class EnemySpawner : MonoBehaviour
             }            
         }
     }
-
-
 
     public void SetTrueEnemy()
     {

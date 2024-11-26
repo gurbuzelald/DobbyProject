@@ -64,6 +64,8 @@ public class PlayerData : ScriptableObject
     public int destroyHealthCoinObjectPoolCount;//2
     public int destroyMushroomCoinObjectPoolCount;//3
     public int destroyGroupCoinParticleObjectPoolCount;//4
+    public int destroyKeyParticleObjectPoolCount;//5
+    public int destroyWeaponCollectParticleObjectPoolCount;//6
 
 
     //EnemyBullet = 0

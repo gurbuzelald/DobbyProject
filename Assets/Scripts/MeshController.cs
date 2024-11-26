@@ -15,7 +15,7 @@ public class MeshController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (mesh)
+        if (mesh && PlayerManager.GetInstance)
         {
             if (Vector3.Distance(gameObject.transform.position,
            PlayerManager.GetInstance.gameObject.transform.position) > 10)
@@ -27,7 +27,7 @@ public class MeshController : MonoBehaviour
                 mesh.enabled = true;
             }
         }
-        if (skinnedMesh)
+        if (skinnedMesh && PlayerManager.GetInstance)
         {
             if (Vector3.Distance(gameObject.transform.position,
            PlayerManager.GetInstance.gameObject.transform.position) > 10)
