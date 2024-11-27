@@ -577,7 +577,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                     PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.playerBurningTouchParticleObjectPoolCount);
                 particleObject.transform.position = _particleTransform.transform.position;
 
-                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 2f));
+                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 1));
             }
 
 
@@ -634,7 +634,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                     PlayerManager.GetInstance._objectPool.GetComponent<ObjectPool>().GetPooledObject(_playerData.playerBurningTouchParticleObjectPoolCount);
                 particleObject.transform.position = _particleTransform.transform.position;
 
-                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 2f));                
+                StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 1));                
             }
 
             if (particleObject1 == null)
