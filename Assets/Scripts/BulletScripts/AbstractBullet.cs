@@ -25,13 +25,13 @@ public abstract class AbstractBullet<T> : MonoBehaviour where T : MonoBehaviour
     {
         if (CurrentCamera != null)
         {
-            if (PlayerController.fireDirection.x >= .1f || PlayerController.fireDirection.x <= -.1f ||
-                PlayerController.fireDirection.y >= .1f || PlayerController.fireDirection.y <= -.1f)
+            if (PlayerController.GetFireDirection().x >= .1f || PlayerController.GetFireDirection().x <= -.1f ||
+                PlayerController.GetFireDirection().y >= .1f || PlayerController.GetFireDirection().y <= -.1f)
             {
                 bulletSpawnTransform.transform.eulerAngles = new Vector3(CurrentCamera.transform.eulerAngles.x - 18f,
                                                                      PlayerManager.GetInstance.transform.eulerAngles.y +
-                                                                     Mathf.Atan2(PlayerController.fireDirection.x,
-                                                                                 PlayerController.fireDirection.y) * Mathf.Rad2Deg,
+                                                                     Mathf.Atan2(PlayerController.GetFireDirection().x,
+                                                                                 PlayerController.GetFireDirection().y) * Mathf.Rad2Deg,
                                                                      bulletSpawnTransform.transform.eulerAngles.z);
             }
             else

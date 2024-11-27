@@ -121,7 +121,7 @@ public class ChooseWeaponController : MonoBehaviour
                     if (bulletData.weaponStruct[j].lockState == "")
                     {
                         weaponUsageLimits[i].enabled = true;
-                        if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                        if (PlayerData.currentLanguage == PlayerData.Languages.Turkish)
                         {
                             weaponUsageLimits[i].text = bulletData.weaponStruct[j].usageLimit > 0
                             ? $"Kullanım Limiti: {bulletData.weaponStruct[j].usageLimit}"
@@ -227,7 +227,7 @@ public class ChooseWeaponController : MonoBehaviour
 
     void SlideMenu()
     {
-        float deltaX = _playerController.weaponStick.x * menuSlideSpeed * Time.deltaTime;
+        float deltaX = PlayerController.GetWeaponStick().x * menuSlideSpeed * Time.deltaTime;
 
         // Update the x position based on the player's stick input
         Vector3 newPosition = _panelObject.transform.position + new Vector3(deltaX, 0f, 0f);
@@ -310,7 +310,7 @@ public class ChooseWeaponController : MonoBehaviour
         {
             if (textObject.gameObject.name == $"{bulletData.weaponStruct[weaponID].weaponName}PriceErrorText")
             {
-                textObject.text = playerData.currentLanguage == PlayerData.Languages.Turkish
+                textObject.text = PlayerData.currentLanguage == PlayerData.Languages.Turkish
                     ? $"Satin Almak İçin {missingCoins} Daha Coin'e İhtiyacin Var!"
                     : $"You need {missingCoins} More Coin!";
             }

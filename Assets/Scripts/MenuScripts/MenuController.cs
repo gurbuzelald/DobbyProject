@@ -22,7 +22,7 @@ public class MenuController : AbstractPlayer<MenuController>
 
         if (continueButtonObject && levelData  && playerData)
         {
-            if (PlayerData.Languages.Turkish == playerData.currentLanguage)
+            if (PlayerData.Languages.Turkish == PlayerData.currentLanguage)
             {
                 continueButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm " + (LevelData.currentLevelId + 1).ToString();
             }
@@ -46,7 +46,7 @@ public class MenuController : AbstractPlayer<MenuController>
             }
             else if(continueButtonObject.transform.localScale.x > 0)
             {
-                if (playerData.currentLanguage == PlayerData.Languages.Turkish)
+                if (PlayerData.currentLanguage == PlayerData.Languages.Turkish)
                 {
                     playButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm 1";
                 }

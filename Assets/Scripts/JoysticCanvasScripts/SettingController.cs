@@ -49,8 +49,8 @@ public class SettingController : MonoBehaviour
 
         _sensivityX.value = PlayerPrefs.GetFloat("SensivityX");
         _sensivityY.value = PlayerPrefs.GetFloat("SensivityY");
-        playerData.sensivityX = _sensivityX.value;
-        playerData.sensivityY = _sensivityY.value;
+        PlayerData.sensivityX = _sensivityX.value;
+        PlayerData.sensivityY = _sensivityY.value;
 
         LevelData.currentLevelId = PlayerPrefs.GetInt("CurrentLevelID");
     }
@@ -118,11 +118,11 @@ public class SettingController : MonoBehaviour
     }
     void TransformSensivityValueToData()
     {
-        playerData.sensivityX = _sensivityX.value;
-        playerData.sensivityY = _sensivityY.value;
+        PlayerData.sensivityX = _sensivityX.value;
+        PlayerData.sensivityY = _sensivityY.value;
 
-        _sensivityXText.text = playerData.sensivityX.ToString();
-        _sensivityYText.text = playerData.sensivityY.ToString();
+        _sensivityXText.text = PlayerData.sensivityX.ToString();
+        _sensivityYText.text = PlayerData.sensivityY.ToString();
 
         PlayerPrefs.SetFloat("SensivityX", _sensivityX.value);
         PlayerPrefs.SetFloat("SensivityY", _sensivityY.value);

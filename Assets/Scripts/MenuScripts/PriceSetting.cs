@@ -99,11 +99,11 @@ public class PriceSetting : MonoBehaviour
                     if (playerData.characterStruct[j].name == characterName)
                     {
                         // Check lock state and set price text
-                        if (playerData.locked == playerData.characterStruct[j].lockState)
+                        if (PlayerData.locked == playerData.characterStruct[j].lockState)
                         {
                             characterPriceTexts[i].text = playerData.characterStruct[j].price.ToString() + " Coin";
                         }
-                        else if (playerData.locked != playerData.characterStruct[j].lockState)
+                        else if (PlayerData.locked != playerData.characterStruct[j].lockState)
                         {
                             characterPriceTexts[i].text = "";
                         }

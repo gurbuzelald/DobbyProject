@@ -141,7 +141,7 @@ public class LevelUpController : MonoBehaviour
 
     IEnumerator ShowTimeMessage()
     {
-        string timeMessage = playerData.currentLanguage == PlayerData.Languages.Turkish
+        string timeMessage = PlayerData.currentLanguage == PlayerData.Languages.Turkish
             ? $"{TimeController.initialTimeValue} Saniyen Var:"
             : $"You Have {TimeController.initialTimeValue} Seconds:";
 
@@ -151,7 +151,7 @@ public class LevelUpController : MonoBehaviour
 
     IEnumerator ShowEnemyKillRequirement()
     {
-        string enemyKillMessage = playerData.currentLanguage == PlayerData.Languages.Turkish
+        string enemyKillMessage = PlayerData.currentLanguage == PlayerData.Languages.Turkish
             ? $"Bölümü Geçmen İçin {levelData.levelUpRequirements[LevelData.currentLevelId].enemyKills} Düşman Öldürmen,"
             : $"You Need To Take {levelData.levelUpRequirements[LevelData.currentLevelId].enemyKills} Kills";
 
@@ -162,7 +162,7 @@ public class LevelUpController : MonoBehaviour
 
     IEnumerator ShowCoinCollectRequirement()
     {
-        string coinMessage = playerData.currentLanguage == PlayerData.Languages.Turkish
+        string coinMessage = PlayerData.currentLanguage == PlayerData.Languages.Turkish
             ? $"{levelData.levelUpRequirements[LevelData.currentLevelId].coinCollectAmount} Coin Toplaman ve"
             : $"Pick Up {levelData.levelUpRequirements[LevelData.currentLevelId].coinCollectAmount} Coins and";
 
@@ -173,7 +173,7 @@ public class LevelUpController : MonoBehaviour
 
     IEnumerator ShowKeyRequirement()
     {
-        string keyMessage = playerData.currentLanguage == PlayerData.Languages.Turkish
+        string keyMessage = PlayerData.currentLanguage == PlayerData.Languages.Turkish
             ? $"{levelData.levelUpRequirements[LevelData.currentLevelId].levelUpKeys} Adet Anahtar Bulman Gerekiyor!!!"
             : $"Pick Up {levelData.levelUpRequirements[LevelData.currentLevelId].levelUpKeys} Keys For Level Up!!!";
 
@@ -183,7 +183,7 @@ public class LevelUpController : MonoBehaviour
     }
     IEnumerator ShowBossRequirement()
     {
-        string keyMessage = playerData.currentLanguage == PlayerData.Languages.Turkish
+        string keyMessage = PlayerData.currentLanguage == PlayerData.Languages.Turkish
             ? $"Bölümü Geçmek İçin Bölümün Patron Düşmanını Öldürmen Gerekiyor!!!"
             : $"You Need to Kill This Level's Boss Enemy"; 
 
@@ -362,7 +362,7 @@ public class LevelUpController : MonoBehaviour
 
     void ShowRequirementMessage(string englishMessage, string turkishMessage)
     {
-        requirementMessage = playerData.currentLanguage == PlayerData.Languages.Turkish ? turkishMessage : englishMessage;
+        requirementMessage = PlayerData.currentLanguage == PlayerData.Languages.Turkish ? turkishMessage : englishMessage;
         if (PlayerManager.GetInstance)
         {
             StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
@@ -371,7 +371,7 @@ public class LevelUpController : MonoBehaviour
 
     void ShowAchievementMessage(string englishMessage, string turkishMessage)
     {
-        requirementMessage = playerData.currentLanguage == PlayerData.Languages.Turkish ? turkishMessage : englishMessage;
+        requirementMessage = PlayerData.currentLanguage == PlayerData.Languages.Turkish ? turkishMessage : englishMessage;
         if (PlayerManager.GetInstance)
         {
             StartCoroutine(PlayerManager.GetInstance.ShowRequirements(requirementMessage, 3));
@@ -407,7 +407,7 @@ public class LevelUpController : MonoBehaviour
         // Handle the case when the last level is passed
         if (levelData.levelStates[levelData.levelStates.Length - 1].isCompleteMap)
         {
-            playerData.isWinning = true;
+            PlayerData.isWinning = true;
             Invoke("DelayGoToWinScene", 5);
         }
     }

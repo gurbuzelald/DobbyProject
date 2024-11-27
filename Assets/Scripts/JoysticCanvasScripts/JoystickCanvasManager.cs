@@ -61,7 +61,7 @@ public class JoystickCanvasManager : MonoBehaviour
         {
             if (PlayerManager.GetInstance.bulletAmountText)
             {
-                if (PlayerManager.GetInstance.bulletAmountText.text == "0" && playerData.bulletPackAmount == 0)
+                if (PlayerManager.GetInstance.bulletAmountText.text == "0" && PlayerData.bulletPackAmount == 0)
                 {
                     if (fireButton)
                     {

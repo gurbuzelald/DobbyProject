@@ -42,7 +42,7 @@ public class PlayerAnimationController : AbstractPlayerAnimation<PlayerAnimation
     public void SwordAnimationCompleted()
     {
         //bulletManager.SwordFire();
-        playerData.isSwordAnimate = false;
+        PlayerData.isSwordAnimate = false;
         if (bulletManager)
         {
             if (bulletManager._currentSwordObject)

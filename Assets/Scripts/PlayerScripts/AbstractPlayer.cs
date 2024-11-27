@@ -188,12 +188,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         {
             if (GameObject.Find("MessageText"))
             {
-                _playerData.currentMessageObject = GameObject.Find("MessageText");
+                PlayerData.currentMessageObject = GameObject.Find("MessageText");
             }
             
-            if (_playerData.currentMessageObject)
+            if (PlayerData.currentMessageObject)
             {
-                _playerData.currentMessageText = _playerData.currentMessageObject.GetComponent<TextMeshProUGUI>();
+                PlayerData.currentMessageText = PlayerData.currentMessageObject.GetComponent<TextMeshProUGUI>();
             }
 
             if (_healthBarObject)
@@ -258,7 +258,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 {
                     if (bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>())
                     {
-                        bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = _playerData.bulletAmount.ToString();
+                        bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>().text = PlayerData.bulletAmount.ToString();
                     }
                     else
                     {
@@ -293,30 +293,30 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                 Debug.Log("_playerData.objects[3]");
             }
 
-            _playerData.bulletAmount = _bulletData.currentBulletPackAmount;
-            _playerData.isFireWalkAnimation = false;
+            PlayerData.bulletAmount = _bulletData.currentBulletPackAmount;
+            PlayerData.isFireWalkAnimation = false;
             PlayerData.isFire = false;
             LevelData.isLevelUp = false;
             LevelData.levelCanBeSkipped = false;
-            _playerData.clickShiftCount = 0;
-            _playerData.isDestroyed = false;
-            _playerData.jumpCount = 0;
-            _playerData.isLose = false;
-            _playerData.isTouchFinish = false;
-            _playerData.isPicking = false;
-            _playerData.isPickRotateCoin = false;
-            _playerData.isLookingUp = false;
-            _playerData.isWinning = false;
+            PlayerData.clickShiftCount = 0;
+            PlayerData.isDestroyed = false;
+            PlayerData.jumpCount = 0;
+            PlayerData.isLose = false;
+            PlayerData.isTouchFinish = false;
+            PlayerData.isPicking = false;
+            PlayerData.isPickRotateCoin = false;
+            PlayerData.isLookingUp = false;
+            PlayerData.isWinning = false;
             PlayerData.isRunning = false;
-            _playerData.isPlayable = true;
+            PlayerData.isPlayable = true;
             CharacterSpeeds(_playerData);
             CharacterJumpForce(_playerData);
-            _playerData.isDying = false;
-            _playerData.isFireWalkAnimation = false;
-            _playerData.isWalking = false;
-            _playerData.isBackWalking = false;
-            _playerData.isGround = true;
-            _playerData.isSwordAnimate = false;
+            PlayerData.isDying = false;
+            PlayerData.isFireWalkAnimation = false;
+            PlayerData.isWalking = false;
+            PlayerData.isBackWalking = false;
+            PlayerData.isGround = true;
+            PlayerData.isSwordAnimate = false;
         }
     }
 
@@ -369,59 +369,59 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     #region //Shoot
     public virtual void Fire(PlayerData _playerData)
     {
-        if (_playerData.isPlayable && PlayerManager.GetInstance.playerComponents._playerController.fire &&
-            !_playerData.isWinning && !_playerData.isDying)
+        if (PlayerData.isPlayable && PlayerController.GetFire() &&
+            !PlayerData.isWinning && !PlayerData.isDying)
         {
             //PlayerData
-            if (_playerData.bulletAmount <= 0 && _playerData.bulletPackAmount <= 0)
+            if (PlayerData.bulletAmount <= 0 && PlayerData.bulletPackAmount <= 0)
             {
                 PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
 
-                _playerData.isFireWalkAnimation = false;
+                PlayerData.isFireWalkAnimation = false;
 
                 PlayerData.isFire = false;
             }
-            else if (_playerData.bulletAmount <= 0 && _playerData.bulletPackAmount >= 0)
+            else if (PlayerData.bulletAmount <= 0 && PlayerData.bulletPackAmount >= 0)
             {
-                _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
+                PlayerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
 
-                _playerData.bulletPackAmount--;
+                PlayerData.bulletPackAmount--;
 
                 PlayerData.isFire = true;
             }
-            else if(_playerData.bulletPackAmount >= 0)
+            else if(PlayerData.bulletPackAmount >= 0)
             {
-                if (_playerData.isSideWalking && !_playerData.isWalking || _playerData.isBackWalking)
+                if (PlayerData.isSideWalking && !PlayerData.isWalking || PlayerData.isBackWalking)
                 {
                     PlayerData.isFire = true;
-                    _playerData.isFireAnimation = false;
-                    _playerData.isFireWalkAnimation = false;
+                    PlayerData.isFireAnimation = false;
+                    PlayerData.isFireWalkAnimation = false;
                 }
-                if (!_playerData.isWalking && !_playerData.isSideWalking && !_playerData.isBackWalking && !_playerData.isSwordAnimate)
+                if (!PlayerData.isWalking && !PlayerData.isSideWalking && !PlayerData.isBackWalking && !PlayerData.isSwordAnimate)
                 {
                     PlayerData.isFire = true;
-                    _playerData.isFireAnimation = true;
-                    _playerData.isFireWalkAnimation = false;
+                    PlayerData.isFireAnimation = true;
+                    PlayerData.isFireWalkAnimation = false;
                 }
-                if (_playerData.isWalking && !_playerData.isSideWalking && !_playerData.isBackWalking)
+                if (PlayerData.isWalking && !PlayerData.isSideWalking && !PlayerData.isBackWalking)
                 {
                     PlayerData.isFire = true;
-                    _playerData.isFireAnimation = false;
-                    _playerData.isFireWalkAnimation = true;
+                    PlayerData.isFireAnimation = false;
+                    PlayerData.isFireWalkAnimation = true;
                 }
-                if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f &&
-                    _playerData.bulletAmount > 0 && _playerData.isWalking)
-                {
-                    PlayerData.isFire = true;
-                }
-                else if (_playerData.bulletAmount > PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f && _playerData.isWalking)
+                if (PlayerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f &&
+                    PlayerData.bulletAmount > 0 && PlayerData.isWalking)
                 {
                     PlayerData.isFire = true;
                 }
-                if (_playerData.bulletAmount > 0 && BulletManager.isCreatedWeaponBullet)
+                else if (PlayerData.bulletAmount > PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f && PlayerData.isWalking)
                 {
-                    --_playerData.bulletAmount;
-                    PlayerManager.GetInstance.playerComponents._playerController.fire = false;
+                    PlayerData.isFire = true;
+                }
+                if (PlayerData.bulletAmount > 0 && BulletManager.isCreatedWeaponBullet)
+                {
+                    --PlayerData.bulletAmount;
+                    PlayerController.SetFire(false);
                     BulletManager.isCreatedWeaponBullet = false;
                 }
             }
@@ -429,28 +429,25 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         else
         {
             PlayerData.isFire = false;
-            _playerData.isFireAnimation = false;
-            _playerData.isFireWalkAnimation = false;
+            PlayerData.isFireAnimation = false;
+            PlayerData.isFireWalkAnimation = false;
         }
     }
     public virtual void Sword(PlayerData _playerData)
     {
         if (_playerData)
         {
-            if (_playerData.isPlayable)
+            if (PlayerData.isPlayable)
             {
-                if (PlayerManager.GetInstance.playerComponents._playerController)
+                if (PlayerController.GetSword() && !PlayerData.isSwordAnimate)
                 {
-                    if (PlayerManager.GetInstance.playerComponents._playerController.sword && !_playerData.isSwordAnimate)
-                    {
-                        //PlayerData
-                        _playerData.isSwordAnimate = true;
-                        _playerData.isSword = true;
-                    }
-                    else
-                    {
-                        _playerData.isSword = false;
-                    }
+                    //PlayerData
+                    PlayerData.isSwordAnimate = true;
+                    PlayerData.isSword = true;
+                }
+                else
+                {
+                    PlayerData.isSword = false;
                 }
             }
         }
@@ -480,25 +477,21 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void ChangeCamera()
     {
-        if (PlayerManager.GetInstance.playerComponents._playerController)
-        {
-            var playerController = PlayerManager.GetInstance.playerComponents._playerController;
-            var cameraSpawner = PlayerManager.GetInstance.cameraSpawner;
+        var cameraSpawner = PlayerManager.GetInstance.cameraSpawner;
 
-            if (playerController && cameraSpawner)
+        if (cameraSpawner)
+        {
+            if (PlayerManager.GetInstance.gameObject)
             {
-                if (PlayerManager.GetInstance.gameObject)
+                /*if (PlayerManager.GetInstance.GetZValue() == 0 && PlayerManager.GetInstance.GetXValue() == 0)
                 {
-                    /*if (PlayerManager.GetInstance.GetZValue() == 0 && PlayerManager.GetInstance.GetXValue() == 0)
-                    {
-                        ConvertToFarCamera(cameraSpawner);
-                    }
-                    else
-                    {
-                        ConvertToCloseCamera(cameraSpawner);
-                    }*/
-                    ConvertToCloseCamera(cameraSpawner);
+                    ConvertToFarCamera(cameraSpawner);
                 }
+                else
+                {
+                    ConvertToCloseCamera(cameraSpawner);
+                }*/
+                ConvertToCloseCamera(cameraSpawner);
             }
         }
     }
@@ -543,12 +536,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
             if ((cameraXAngle > 74 && cameraXAngle <= 80) || (cameraXAngle > 355 || cameraXAngle < 0))
             {
-                _playerData.isLookingUp = cameraXAngle < 0;
+                PlayerData.isLookingUp = cameraXAngle < 0;
                 _currentCameraTransform.eulerAngles = new Vector3(0f, eulerAngles.y, eulerAngles.z);
             }
             else
             {
-                _playerData.isLookingUp = cameraXAngle > 270 && cameraXAngle <= 360;
+                PlayerData.isLookingUp = cameraXAngle > 270 && cameraXAngle <= 360;
             }
         }
     }
@@ -566,7 +559,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                                   ref TextMeshProUGUI damageHealthText)
     {
         // Handle death scenario
-        if (healthBarSlider.value == 0 && !_playerData.isWinning && _playerData.isGround)
+        if (healthBarSlider.value == 0 && !PlayerData.isWinning && PlayerData.isGround)
         {
 
             GameObject particleObject = null;
@@ -584,13 +577,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
 
             // Mark player as destroyed and handle enemy-related effects
-            _playerData.isDestroyed = true;
+            PlayerData.isDestroyed = true;
 
             // Sync top canvas health bar and set player states
             topCanvasHealthBarSlider.value = healthBarSlider.value;
-            _playerData.isDying = true;
-            _playerData.isIdling = false;
-            _playerData.isPlayable = false;
+            PlayerData.isDying = true;
+            PlayerData.isIdling = false;
+            PlayerData.isPlayable = false;
 
             // Hide the player object
             _playerData.objects[3].transform.localScale = Vector3.zero;
@@ -623,7 +616,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         float healthValue = healthBarSlider.value;        
 
         // Handle non-death hit
-        if (!_playerData.isWinning && healthValue > 0)
+        if (!PlayerData.isWinning && healthValue > 0)
         {
             GameObject particleObject = null;
             GameObject particleObject1 = null;
@@ -669,7 +662,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                                ref TextMeshProUGUI bulletPackAmountText,
                                ref EnvironmentObjectPool environmentObjectPool)
     {
-        _playerData.isPicking = true; // Set player state once at the start
+        PlayerData.isPicking = true; // Set player state once at the start
 
 
 
@@ -732,41 +725,41 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         _coinObject.transform.localScale = Vector3.one;
 
-        if ((_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPackAmount) ||
-            (_playerData.bulletPackAmount == 0 && _playerData.bulletAmount == 0) ||
-             _playerData.bulletPackAmount < 2 ||
-             (_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPackAmount))
+        if ((PlayerData.bulletPackAmount == 2 && PlayerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPackAmount) ||
+            (PlayerData.bulletPackAmount == 0 && PlayerData.bulletAmount == 0) ||
+             PlayerData.bulletPackAmount < 2 ||
+             (PlayerData.bulletPackAmount == 2 && PlayerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPackAmount))
         {
             CreateBulletParticleEffect(environmentObjectPool, other, _playerData);            
         }
 
-        if (_playerData.bulletPackAmount == 0 && _playerData.bulletAmount == 0)
+        if (PlayerData.bulletPackAmount == 0 && PlayerData.bulletAmount == 0)
         {
             CreateBulletParticleEffect(environmentObjectPool, other, _playerData);
 
             other.gameObject.SetActive(false);
-            _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
+            PlayerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
             StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage));
         }
-        else if (_playerData.bulletPackAmount < 2)
+        else if (PlayerData.bulletPackAmount < 2)
         {
             CreateBulletParticleEffect(environmentObjectPool, other, _playerData);
 
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
-            ++_playerData.bulletPackAmount;
+            ++PlayerData.bulletPackAmount;
             StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage));
             other.gameObject.SetActive(false);
             bulletAmountCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
             bulletAmountCanvas.transform.GetChild(1).gameObject.transform.localScale = Vector3.one;
         }
-        else if (_playerData.bulletPackAmount == 2 && _playerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPackAmount)
+        else if (PlayerData.bulletPackAmount == 2 && PlayerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPackAmount)
         {
             CreateBulletParticleEffect(environmentObjectPool, other, _playerData);
 
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
             other.gameObject.SetActive(false);
-            _playerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
+            PlayerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
             StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage));
         }
         else
@@ -902,7 +895,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
                 _bulletData.currentBulletPackAmount = bulletAmount;
 
-                PlayerManager.GetInstance._playerData.bulletAmount = bulletAmount;
+                PlayerData.bulletAmount = bulletAmount;
 
                 BulletData.currentWeaponID = _currentWeaponID;
 
@@ -964,17 +957,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void SetBulletPackAndAmountTextSize(PlayerData _playerData, ref GameObject bulletAmountCanvas)
     {
-        if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f * 3)
+        if (PlayerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f * 3)
         {
             bulletAmountCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.75f, 1.75f, 1.75f);
             bulletAmountCanvas.transform.GetChild(1).transform.localScale = new Vector3(1.75f, 1.75f, 1.75f);
         }
-        else if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f)
+        else if (PlayerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f)
         {
             bulletAmountCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             bulletAmountCanvas.transform.GetChild(1).transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         }
-        else if (_playerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 3f)
+        else if (PlayerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 3f)
         {
             bulletAmountCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
             bulletAmountCanvas.transform.GetChild(1).transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
@@ -988,17 +981,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void GettingPoisonDamage(PlayerData _playerData, ref Slider _topCanvasHealthBarSlider, ref Slider _healthBarSlider)
     {
-        if (_playerData.isGround)
+        if (PlayerData.isGround)
         {
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
             _topCanvasHealthBarSlider.value = _healthBarSlider.value;
 
             //PlayerData
-            _playerData.isDestroyed = true;
-            _playerData.isDying = true;
-            _playerData.isIdling = false;
-            _playerData.isPlayable = false;
+            PlayerData.isDestroyed = true;
+            PlayerData.isDying = true;
+            PlayerData.isIdling = false;
+            PlayerData.isPlayable = false;
             _playerData.objects[3].transform.localScale = Vector3.zero;
         }
     }
@@ -1046,7 +1039,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                                     ref Slider _healthBarSlider, 
                                     ref Slider _topCanvasHealthBarSlider)
     {
-        if (_playerData.isGround)
+        if (PlayerData.isGround)
         {
             //SoundEffect
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Death);
@@ -1055,10 +1048,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             _topCanvasHealthBarSlider.value = _healthBarSlider.value;
 
             //PlayerData
-            _playerData.isDestroyed = true;
-            _playerData.isDying = true;
-            _playerData.isIdling = false;
-            _playerData.isPlayable = false;
+            PlayerData.isDestroyed = true;
+            PlayerData.isDying = true;
+            PlayerData.isIdling = false;
+            PlayerData.isPlayable = false;
             _playerData.objects[3].transform.localScale = Vector3.zero;
         }
     }
@@ -1166,38 +1159,38 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     public virtual void Run(PlayerData _playerData, Transform _particleTransform, float runTimeAmount, Rigidbody objectRigidbody,
         ObjectPool playerObjectPool, PlayerData playerData)
     {//FasterWalking
-        if (PlayerController.run && !_playerData.isJumping && !_playerData.isBackWalking)
+        if (PlayerController.GetRun() && !PlayerData.isJumping && !PlayerData.isBackWalking)
         {
             PlayerData.isRunning = true;
-            _playerData.clickShiftCount++;
+            PlayerData.clickShiftCount++;
             Invoke("DelayFalseRunning", runTimeAmount);
 
             CreateRunParticle(playerObjectPool, playerData);
         }
 
-        if (_playerData.clickShiftCount > 1)
+        if (PlayerData.clickShiftCount > 1)
         {
             PlayerData.isRunning = false;
         }
-        if (PlayerData.isRunning && !_playerData.isJumping && !_playerData.isBackWalking)
+        if (PlayerData.isRunning && !PlayerData.isJumping && !PlayerData.isBackWalking)
         {
-            if (PlayerManager.GetInstance.GetZValue() > 0f)
+            if (PlayerManager.GetXAndZValue().z > 0f)
             {
                 objectRigidbody.AddForce(transform.forward * Time.deltaTime * 15000);
             }
-            else if (PlayerManager.GetInstance.GetZValue() < 0f)
+            else if (PlayerManager.GetXAndZValue().z < 0f)
             {
                 objectRigidbody.AddForce(-transform.forward * Time.deltaTime * 15000);
             }
-            else if (PlayerManager.GetInstance.GetXValue() > 0f)
+            else if (PlayerManager.GetXAndZValue().x > 0f)
             {
                 objectRigidbody.AddForce(transform.right * Time.deltaTime * 15000);
             }
-            else if (PlayerManager.GetInstance.GetXValue() < 0f)
+            else if (PlayerManager.GetXAndZValue().x < 0f)
             {
                 objectRigidbody.AddForce(-transform.right * Time.deltaTime * 15000);
             }
-            else if(PlayerManager.GetInstance.GetZValue() == 0f && PlayerManager.GetInstance.GetXValue() == 0f)
+            else if(PlayerManager.GetXAndZValue().z == 0f && PlayerManager.GetXAndZValue().x == 0f)
             {
                 objectRigidbody.AddForce(transform.forward * Time.deltaTime * 15000);
             }            
@@ -1217,26 +1210,26 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void Walk(PlayerData _playerData, ref Transform playerTransform, ref Animator characterAnimator)
     {
-        float zValue = PlayerManager.GetInstance.GetZValue();
-        float xValue = PlayerManager.GetInstance.GetXValue();
+        float zValue = PlayerManager.GetXAndZValue().z;
+        float xValue = PlayerManager.GetXAndZValue().x;
 
         if (Mathf.Abs(xValue) >= .4f && Mathf.Abs(zValue) >= .4f)
         {
-            _playerData.isSideWalking = true;
-            _playerData.isWalking = true;
+            PlayerData.isSideWalking = true;
+            PlayerData.isWalking = true;
         }
         else if (Mathf.Abs(xValue) * (2.5f) > zValue)
         {
-            _playerData.isSideWalking = true;
-            _playerData.isWalking = false;
+            PlayerData.isSideWalking = true;
+            PlayerData.isWalking = false;
         }
         else if (Mathf.Abs(xValue) * (2.5f) < zValue)
         {
-            _playerData.isWalking = true;
-            _playerData.isSideWalking = false;
+            PlayerData.isWalking = true;
+            PlayerData.isSideWalking = false;
         }
 
-        if (_playerData.isSideWalking && _playerData.isWalking)
+        if (PlayerData.isSideWalking && PlayerData.isWalking)
         {
 
             Vector3 normal = new Vector3((PlayerData.currentCharacterSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue),
@@ -1245,11 +1238,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             playerTransform.Translate(normal.normalized*Time.deltaTime);
             
         }
-        else if (_playerData.isSideWalking || (Mathf.Abs(xValue) >= .5f && Mathf.Abs(zValue) >= .5f))
+        else if (PlayerData.isSideWalking || (Mathf.Abs(xValue) >= .5f && Mathf.Abs(zValue) >= .5f))
         {
             playerTransform.Translate((PlayerData.currentCharacterSpeed / 3) * Time.deltaTime * Mathf.Sign(xValue), 0f, 0f);
         }
-        else if (_playerData.isWalking)
+        else if (PlayerData.isWalking)
         {
             playerTransform.Translate(0f, 0f, PlayerData.currentCharacterSpeed * zValue * Time.deltaTime);
         }
@@ -1258,64 +1251,61 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         // Geri Yürüme Durumu
         if (zValue < 0f)
         {
-            _playerData.isBackWalking = true;
-            _playerData.isWalking = false;
-            _playerData.isSideWalking = false;
+            PlayerData.isBackWalking = true;
+            PlayerData.isWalking = false;
+            PlayerData.isSideWalking = false;
         }
         else
         {
-            _playerData.isBackWalking = false;
+            PlayerData.isBackWalking = false;
         }
 
-        if (_playerData.isBackWalking)
+        if (PlayerData.isBackWalking)
         {
             playerTransform.Translate(0f, 0f, (-PlayerData.currentCharacterSpeed * .4f) * Time.deltaTime);
         }
         // Durma Durumu
         if (zValue == 0f && xValue == 0f)
         {
-            _playerData.isBackWalking = false;
-            _playerData.isWalking = false;
-            _playerData.isSideWalking = false;
+            PlayerData.isBackWalking = false;
+            PlayerData.isWalking = false;
+            PlayerData.isSideWalking = false;
         }
     }
 
     public virtual void Jump(PlayerData _playerData, ref Rigidbody playerRigidbody)
     {
-        if (PlayerManager.GetInstance.playerComponents._playerController)
+        if (PlayerController.GetJump() && PlayerData.jumpCount == 0 && PlayerData.isGround &&
+                !PlayerData.isDying && PlayerData.isPlayable)
         {
-            if (PlayerManager.GetInstance.playerComponents._playerController.jump && _playerData.jumpCount == 0 && _playerData.isGround &&
-                !_playerData.isDying && _playerData.isPlayable)
-            {
 
-                //SoundEffect
-                PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
+            //SoundEffect
+            PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Jump);
 
-                //PlayerData
-                _playerData.isJumping = true;
+            //PlayerData
+            PlayerData.isJumping = true;
 
-                //AddForceForJump
-                playerRigidbody.AddForce(transform.up * PlayerData.currentJumpForce, ForceMode.Impulse);
+            //AddForceForJump
+            playerRigidbody.AddForce(transform.up * PlayerData.currentJumpForce, ForceMode.Impulse);
 
-                JumpDirectionZ(_playerData, ref playerRigidbody);
-                JumpDirectionX(_playerData, ref playerRigidbody);
-                _playerData.jumpCount++;
-            }
-            else
-            {
-                //PlayerData
-                _playerData.isJumping = false;
-            }
+            JumpDirectionZ(_playerData, ref playerRigidbody);
+            JumpDirectionX(_playerData, ref playerRigidbody);
+            PlayerData.jumpCount++;
+        }
+        else
+        {
+            //PlayerData
+            PlayerData.isJumping = false;
         }
     }
 
     void JumpDirectionZ(PlayerData _playerData, ref Rigidbody playerRigidbody)
     {
-        if (PlayerManager.GetInstance.GetZValue() < 0)
+        if (PlayerManager.GetXAndZValue().z < 0)
         {
             playerRigidbody.AddForce(transform.forward * -1 * PlayerData.currentJumpForce / 3, ForceMode.Impulse);
         }
-        else if (PlayerManager.GetInstance.GetZValue() > 0)
+        else if (PlayerManager.GetXAndZValue().z > 0)
         {
             playerRigidbody.AddForce(transform.forward * PlayerData.currentJumpForce / 3, ForceMode.Impulse);
         }
@@ -1323,12 +1313,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
     void JumpDirectionX(PlayerData _playerData, ref Rigidbody playerRigidbody)
     {
-        if (PlayerManager.GetInstance.GetXValue() < 0 && _playerData.isSideWalking)
+        if (PlayerManager.GetXAndZValue().x < 0 && PlayerData.isSideWalking)
         {
             playerRigidbody.AddForce(transform.right * -1 * PlayerData.currentJumpForce / 3, ForceMode.Impulse);
 
         }
-        else if (PlayerManager.GetInstance.GetXValue() > 0 && _playerData.isSideWalking)
+        else if (PlayerManager.GetXAndZValue().x > 0 && PlayerData.isSideWalking)
         {
             playerRigidbody.AddForce(transform.right * PlayerData.currentJumpForce / 3, ForceMode.Impulse);
         }
@@ -1336,12 +1326,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     }
     public IEnumerator DelayMessageText(PlayerData _playerData, string turkishMessage, string englishMessage)
     {
-        string message = _playerData.currentLanguage == PlayerData.Languages.Turkish ? turkishMessage : englishMessage;
-        _playerData.currentMessageText.text = message;
-        if (_playerData.currentMessageText.text != PlayerData.emptyMessage)
+        string message = PlayerData.currentLanguage == PlayerData.Languages.Turkish ? turkishMessage : englishMessage;
+        PlayerData.currentMessageText.text = message;
+        if (PlayerData.currentMessageText.text != PlayerData.emptyMessage)
         {
             yield return new WaitForSeconds(2f);
-            _playerData.currentMessageText.text = PlayerData.emptyMessage;
+            PlayerData.currentMessageText.text = PlayerData.emptyMessage;
         }
     }
     void DelayFalseRunning()
@@ -1362,44 +1352,48 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         if (Input.GetAxis("Mouse X")> 0)
         {
-            _touchX = _playerData.rotateSpeed * Time.deltaTime;
+            _touchX = PlayerData.rotateSpeed * Time.deltaTime;
         }
         else if(Input.GetAxis("Mouse X") < 0)
         {
-            _touchX = -_playerData.rotateSpeed * Time.deltaTime;
+            _touchX = -PlayerData.rotateSpeed * Time.deltaTime;
         }
         if (Input.GetAxis("Mouse Y") > 0)
         {
-            _touchY = _playerData.rotateSpeed * Time.deltaTime * 5f;
+            _touchY = PlayerData.rotateSpeed * Time.deltaTime * 5f;
         }
         else if (Input.GetAxis("Mouse Y") < 0)
         {
-            _touchY = -_playerData.rotateSpeed * Time.deltaTime * 5f;
+            _touchY = -PlayerData.rotateSpeed * Time.deltaTime * 5f;
         }
     }
 
 
-    public virtual void SensivityXSettings(float touchXValue, PlayerController _playerController, PlayerData _playerData, ref float _touchX)
+    public virtual void SensivityXSettings(float touchXValue, PlayerData _playerData, ref float _touchX)
     {//ControllerSmoothForXAxis
-        if ((_playerController.lookRotation.x >= -0.2f && _playerController.lookRotation.x < 0f) || (_playerController.lookRotation.x <= 0.2f && _playerController.lookRotation.x > 0f))
+        if ((PlayerController.GetLookRotation().x >= -0.2f && PlayerController.GetLookRotation().x < 0f) ||
+            (PlayerController.GetLookRotation().x <= 0.2f && PlayerController.GetLookRotation().x > 0f))
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 8f * _playerData.sensivityX * touchXValue;
+            _touchX = (PlayerController.GetLookRotation().x * 2f) / 8f * PlayerData.sensivityX * touchXValue;
         }
-        else if ((_playerController.lookRotation.x >= -0.4f && _playerController.lookRotation.x < -0.2f) || (_playerController.lookRotation.x <= 0.4f && _playerController.lookRotation.x > 0.2f))
+        else if ((PlayerController.GetLookRotation().x >= -0.4f && PlayerController.GetLookRotation().x < -0.2f) ||
+            (PlayerController.GetLookRotation().x <= 0.4f && PlayerController.GetLookRotation().x > 0.2f))
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 7f * _playerData.sensivityX * touchXValue;
+            _touchX = (PlayerController.GetLookRotation().x * 2f) / 7f * PlayerData.sensivityX * touchXValue;
         }
-        else if ((_playerController.lookRotation.x >= -0.6f && _playerController.lookRotation.x < -0.4f) || (_playerController.lookRotation.x <= 0.6f && _playerController.lookRotation.x > 0.4f))
+        else if ((PlayerController.GetLookRotation().x >= -0.6f && PlayerController.GetLookRotation().x < -0.4f) ||
+            (PlayerController.GetLookRotation().x <= 0.6f && PlayerController.GetLookRotation().x > 0.4f))
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 6f * _playerData.sensivityX * touchXValue;
+            _touchX = (PlayerController.GetLookRotation().x * 2f) / 6f * PlayerData.sensivityX * touchXValue;
         }
-        else if ((_playerController.lookRotation.x >= -0.8f && _playerController.lookRotation.x < -0.6f) || (_playerController.lookRotation.x <= 0.8f && _playerController.lookRotation.x > 0.6f))
+        else if ((PlayerController.GetLookRotation().x >= -0.8f && PlayerController.GetLookRotation().x < -0.6f) ||
+            (PlayerController.GetLookRotation().x <= 0.8f && PlayerController.GetLookRotation().x > 0.6f))
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 5f * _playerData.sensivityX * touchXValue;
+            _touchX = (PlayerController.GetLookRotation().x * 2f) / 5f * PlayerData.sensivityX * touchXValue;
         }
         else
         {
-            _touchX = (_playerController.lookRotation.x * 2f) / 4f * _playerData.sensivityX * touchXValue;
+            _touchX = (PlayerController.GetLookRotation().x * 2f) / 4f * PlayerData.sensivityX * touchXValue;
         }
     }
     #endregion

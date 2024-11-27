@@ -28,13 +28,12 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         public float _touchX;
         public float _touchY;
     }
-    private InputMovement inputMovement;
+    private static InputMovement inputMovement;
     public struct PlayerComponents
     {
         public Rigidbody playerRigidbody;
         public Slider healthBarSlider;
         public Animator characterAnimator;
-        public PlayerController _playerController;
         public Transform playerTransform;
         public ArrowRotationController _arrowRotationController;
     }
@@ -110,17 +109,14 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
     private TextMeshProUGUI messageText;
 
-    public float GetZValue()
+    public static Vector3 GetXAndZValue()
     {
-        return inputMovement._zValue;
+        return new Vector3(inputMovement._xValue, 0, inputMovement._zValue);
     }
-    public float GetXValue()
-    {
-        return inputMovement._xValue;
-    }
+
+
     void Start()
     {
-
         Interfaces();
 
         PlayerComponentsOnStart();
@@ -137,7 +133,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             _objectPool = GameObject.Find("ObjectPool").GetComponent<ObjectPool>();
         }
-        
+
         if (GameObject.Find("EnemyObjectPool"))
         {
             _enemyObjectPool = GameObject.Find("EnemyObjectPool").GetComponent<EnemyObjectPool>();
@@ -170,36 +166,33 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             _levelData.currentEnemyDetectionDistance = _levelData.levelStates[LevelData.currentLevelId].enemyDetectionDistance;
         }
 
-        if (_playerData)
+        if (GameObject.Find("DamageHealthText"))
         {
-            if (GameObject.Find("DamageHealthText"))
+            PlayerData.damageHealthText = GameObject.Find("DamageHealthText").GetComponent<TextMeshProUGUI>();
+        }
+
+        PlayerData.decreaseCounter = 0;
+
+        PlayerData.bulletPackAmount = 2;
+
+        if (bulletAmountCanvas)
+        {
+            if (bulletAmountCanvas.transform.childCount >= 2)
             {
-                _playerData.damageHealthText = GameObject.Find("DamageHealthText").GetComponent<TextMeshProUGUI>();
-            }
-
-            _playerData.decreaseCounter = 0;
-
-            _playerData.bulletPackAmount = 2;
-
-            if (bulletAmountCanvas)
-            {
-                if (bulletAmountCanvas.transform.childCount >= 2)
+                if (bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>())
                 {
-                    if (bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>())
-                    {
-                        bulletAmountText = bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>();
-                    }
-                    if (bulletAmountCanvas.transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>())
-                    {
-                        bulletPackAmountText = bulletAmountCanvas.transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>();
-                    }
-                }                
+                    bulletAmountText = bulletAmountCanvas.transform.GetChild(0).transform.GetComponent<TextMeshProUGUI>();
+                }
+                if (bulletAmountCanvas.transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>())
+                {
+                    bulletPackAmountText = bulletAmountCanvas.transform.GetChild(1).transform.GetComponent<TextMeshProUGUI>();
+                }
             }
+        }
 
-            if (_topCanvasHealthBarObject)
-            {
-                _topCanvasHealthBarSlider = _topCanvasHealthBarObject.GetComponent<Slider>();
-            }
+        if (_topCanvasHealthBarObject)
+        {
+            _topCanvasHealthBarSlider = _topCanvasHealthBarObject.GetComponent<Slider>();
         }
     }
 
@@ -221,10 +214,6 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             playerComponents.playerRigidbody = GetComponent<Rigidbody>();
 
             playerComponents.playerRigidbody.isKinematic = false;
-        }
-        if (FindObjectOfType<PlayerController>())
-        {
-            playerComponents._playerController = FindObjectOfType<PlayerController>();
         }
 
         if (transform.childCount >= 2)
@@ -271,11 +260,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             }
 
             playerInterfaces.iPlayerInitial.GetHandObjectsTransform(ref _coinObject, ref _cheeseObject);
-            if (_bulletData)
-            {
-                //playerInterfaces.iPlayerInitial.GetWeaponTransform(_bulletData, ref _gunTransform);
-                //playerInterfaces.iPlayerInitial.GetSwordTransform(_bulletData, ref _swordTransform);
-            }
+
             if (_playerData)
             {
                 playerInterfaces.iPlayerInitial.CreateStartPlayerStaff(_playerData,
@@ -321,7 +306,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             if (playerInterfaces.iPlayerShoot != null)
             {
-                if (!_playerData.isSwordAnimate && _playerData)
+                if (!PlayerData.isSwordAnimate && _playerData)
                 {
                     playerInterfaces.iPlayerShoot.Fire(_playerData);
                 }
@@ -334,7 +319,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             if (_playerData)
             {
-                if (GetZValue() == 0 && GetXValue() == 0)
+                if (GetXAndZValue().z == 0 && GetXAndZValue().x == 0)
                 {
                     if (playerInterfaces.iPlayerShoot != null)
                     {
@@ -346,10 +331,10 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
 
         // Common conditions to reduce redundancy
-        if (_playerData && bulletAmountCanvas && playerComponents._playerController)
+        if (_playerData && bulletAmountCanvas)
         {
             // Handle crosshair and firing related actions
-            if (_playerData.isPlayable && !_playerData.isWinning && playerComponents._playerController.fire)
+            if (PlayerData.isPlayable && !PlayerData.isWinning && PlayerController.GetFire())
             {
                 // Show crosshair with delay
                 if (playerInterfaces.iPlayerShoot != null)
@@ -388,11 +373,11 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             if (bulletAmountText)
             {
-                bulletAmountText.text = _playerData.bulletAmount.ToString();
+                bulletAmountText.text = PlayerData.bulletAmount.ToString();
             }
             if (bulletPackAmountText)
             {
-                bulletPackAmountText.text = "x" + _playerData.bulletPackAmount.ToString();
+                bulletPackAmountText.text = "x" + PlayerData.bulletPackAmount.ToString();
             }
         }
         
@@ -422,12 +407,12 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         IncreaseHealthWhenEnemyKilledAtUpdate(10);
 
         HandleDeathScenario(_playerData,
-                                          ref _healthBarObject,
-                                          ref _topCanvasHealthBarObject,
-                                          ref _particleTransform,
-                                          ref playerComponents.healthBarSlider,
-                                          ref _topCanvasHealthBarSlider,
-                                          ref _playerData.damageHealthText);
+                            ref _healthBarObject,
+                            ref _topCanvasHealthBarObject,
+                            ref _particleTransform,
+                            ref playerComponents.healthBarSlider,
+                            ref _topCanvasHealthBarSlider,
+                            ref PlayerData.damageHealthText);
     }
     
 
@@ -437,14 +422,14 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             if (playerInterfaces.iPlayerHealth != null)
             {
-                if (_playerData.getCurrentEnemyDead)
+                if (PlayerData.getCurrentEnemyDead)
                 {
                     if (playerComponents.healthBarSlider && _topCanvasHealthBarSlider && _healthBarObject)
                     {
                         playerInterfaces.iPlayerHealth.IncreaseHealth(increasedAmount, ref _healthBarObject,
                                                                       ref playerComponents.healthBarSlider,
                                                                       ref _topCanvasHealthBarSlider);
-                        _playerData.getCurrentEnemyDead = false;
+                        PlayerData.getCurrentEnemyDead = false;
                     }
                     
                 }
@@ -460,13 +445,13 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             if (playerComponents.playerRigidbody)
             {
-                if (transform.position.y <= 0.9301061f && !_playerData.isGround)
+                if (transform.position.y <= 0.9301061f && !PlayerData.isGround)
                 {
                     transform.position = new Vector3(transform.position.x,
                                                                  0.93010632f,
                                                                  transform.position.z);
                 }
-                else if (transform.position.y > 0.9301061f && _playerData.isGround)
+                else if (transform.position.y > 0.9301061f && PlayerData.isGround)
                 {
 
                     playerComponents.playerRigidbody.isKinematic = false;
@@ -491,12 +476,12 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         // Check if collided object is ground-related
         if (groundTags.Contains(collision.collider.tag))
         {
-            _playerData.isGround = true;
-            _playerData.jumpCount = 0;
+            PlayerData.isGround = true;
+            PlayerData.jumpCount = 0;
         }
         else
         {
-            _playerData.isGround = false;
+            PlayerData.isGround = false;
         }
 
         // Handle collision with enemies
@@ -561,14 +546,14 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     {
         if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()) || collision.collider.CompareTag(SceneController.Tags.Bridge.ToString()))
         {
-            _playerData.isGround = true;
+            PlayerData.isGround = true;
         }
     }
     void OnCollisionExit(Collision collision)
     {
         if (collision.collider.CompareTag(SceneController.Tags.Ground.ToString()))
         {
-            _playerData.isGround = false;
+            PlayerData.isGround = false;
         }
     }
 
@@ -599,7 +584,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         else
         {
             // Show requirement message based on the current language
-            string requirementMessage = PlayerData.Languages.Turkish == _playerData.currentLanguage
+            string requirementMessage = PlayerData.Languages.Turkish == PlayerData.currentLanguage
                 ? "Bölümü Geçmen İçin Bölüm Görevlerini Bitirmen Gerekiyor!!!"
                 : "You Need To Finish Current Level's Mission(s)!!!";
 
@@ -671,7 +656,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
             if (playerComponents.healthBarSlider.value > 0)
             {
                 playerInterfaces.iPlayerHealth.DecreaseHealth(ref _playerData, 30, ref _healthBarObject,
-                    ref playerComponents.healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+                    ref playerComponents.healthBarSlider, ref _topCanvasHealthBarSlider, ref PlayerData.damageHealthText);
 
                 playerInterfaces.iPlayerTrigger.PickUpCoin(_levelData, SceneController.Tags.BulletCoin.ToString(), other, _playerData, ref _coinObject,
                                           ref _cheeseObject, ref bulletAmountCanvas, ref bulletAmountText, ref bulletPackAmountText,
@@ -716,7 +701,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
                                           ref _particleTransform, 
                                           ref playerComponents.healthBarSlider,
                                           ref _topCanvasHealthBarSlider,
-                                          ref _playerData.damageHealthText);
+                                          ref PlayerData.damageHealthText);
 
             StartCoroutine(playerInterfaces.iPlayerTrigger.DamageArrowIsLookAtEnemy(other, _damageArrow));
 
@@ -788,43 +773,40 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     #region //Move and Rotation
     private void Movement(PlayerData _playerData)
     {
-        if (playerComponents._playerController)
+        if (_currentCameraTransform.transform)
         {
-            if (_currentCameraTransform.transform)
+            if (PlayerData.isPlayable && !PlayerData.isWinning)
             {
-                if (_playerData.isPlayable && !_playerData.isWinning)
-                {
-                    //Getting left stick values
-                    inputMovement._xValue = playerComponents._playerController.movement.x;
-                    inputMovement._zValue = playerComponents._playerController.movement.y;
+                //Getting left stick values
+                inputMovement._xValue = PlayerController.GetMovement().x;
+                inputMovement._zValue = PlayerController.GetMovement().y;
 
-                    //Moves
-                    if (playerInterfaces.iPlayerMovement != null && playerInterfaces.iPlayerShoot != null)
-                    {
-                        Moves(playerInterfaces.iPlayerMovement, playerInterfaces.iPlayerShoot);
-                    }
-                }
-                else if (_playerData.isWinning)
+                //Moves
+                if (playerInterfaces.iPlayerMovement != null && playerInterfaces.iPlayerShoot != null)
                 {
-                    //VirtualCameraEulerAngle for Salsa Dance
-                    _currentCameraTransform.transform.eulerAngles = new Vector3(_currentCameraTransform.transform.eulerAngles.x,
-                                                                                45f,
-                                                                                _currentCameraTransform.transform.eulerAngles.z);
+                    Moves(playerInterfaces.iPlayerMovement, playerInterfaces.iPlayerShoot);
                 }
-                else
-                {
-                    //PlayerData
-                    PlayerData.isFire = false;
-                }
-            }            
-        }        
+            }
+            else if (PlayerData.isWinning)
+            {
+                //VirtualCameraEulerAngle for Salsa Dance
+                _currentCameraTransform.transform.eulerAngles = new Vector3(_currentCameraTransform.transform.eulerAngles.x,
+                                                                            45f,
+                                                                            _currentCameraTransform.transform.eulerAngles.z);
+            }
+            else
+            {
+                //PlayerData
+                PlayerData.isFire = false;
+            }
+        }
     }
     private void Moves(IPlayerMovement iPlayerMovement, IPlayerShoot iPlayerShoot)
     {
         //Moves
         if (_playerData)
         {
-            if (!_playerData.isSwordAnimate && _particleTransform)
+            if (!PlayerData.isSwordAnimate && _particleTransform)
             {
                 if (playerComponents.playerTransform && playerComponents.characterAnimator && playerComponents.playerRigidbody)
                 {
@@ -840,29 +822,26 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     {
         if (playerInterfaces.iPlayerRotation != null && playerInterfaces.iPlayerCamera != null)
         {
-            if (_currentCameraTransform && playerComponents._playerController)
+            if (SceneController.rotateTouchOrMousePos == true)
             {
-                if (SceneController.rotateTouchOrMousePos == true)
-                {
-                    //Mouse Rotation Controller
-                    playerInterfaces.iPlayerRotation.GetMousePosition(_playerData, ref inputMovement._touchX, ref inputMovement._touchY);
-                }
-                else
-                {
-                    //Touch Rotation Controller
-                    playerInterfaces.iPlayerRotation.SensivityXSettings(3f, playerComponents._playerController, _playerData, ref inputMovement._touchX);
+                //Mouse Rotation Controller
+                playerInterfaces.iPlayerRotation.GetMousePosition(_playerData, ref inputMovement._touchX, ref inputMovement._touchY);
+            }
+            else
+            {
+                //Touch Rotation Controller
+                playerInterfaces.iPlayerRotation.SensivityXSettings(3f, _playerData, ref inputMovement._touchX);
 
-                    inputMovement._touchY = playerComponents._playerController.lookRotation.y * _playerData.sensivityY;
-                }
+                inputMovement._touchY = PlayerController.GetLookRotation().y * PlayerData.sensivityY;
+            }
 
-                playerInterfaces.iPlayerRotation.Rotate(ref inputMovement._touchX, ref inputMovement._touchX, ref playerComponents.playerTransform);
+            playerInterfaces.iPlayerRotation.Rotate(ref inputMovement._touchX, ref inputMovement._touchX, ref playerComponents.playerTransform);
 
-                //Rotating Just Camera On X Axis with TouchY
-                _currentCameraTransform.transform.Rotate(-inputMovement._touchY * Time.deltaTime * 10, 0f, 0f);
+            //Rotating Just Camera On X Axis with TouchY
+            _currentCameraTransform.transform.Rotate(-inputMovement._touchY * Time.deltaTime * 10, 0f, 0f);
 
 
-                playerInterfaces.iPlayerCamera.CheckCameraEulerX(_playerData, _currentCameraTransform);
-            }            
+            playerInterfaces.iPlayerCamera.CheckCameraEulerX(_playerData, _currentCameraTransform);
         }     
     }
     #endregion

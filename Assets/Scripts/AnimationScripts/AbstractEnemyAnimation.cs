@@ -7,7 +7,7 @@ public abstract class AbstractEnemyAnimation<T>:MonoBehaviour where T:MonoBehavi
     public virtual void AnimationState(EnemyData _enemyData, Animator _animator,
         PlayerData _playerData, int _animationCount, int enemyIndex, int enemyDataID)
     {
-        if (_playerData.isPlayable)
+        if (PlayerData.isPlayable)
         {
             if (_enemyData.enemyStats[enemyIndex].enemyDying[enemyDataID])
             {

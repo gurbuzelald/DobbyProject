@@ -125,10 +125,10 @@ public class EnemyAnimationController : AbstractEnemyAnimation<EnemyAnimationCon
 
             StartCoroutine(PlayerManager.GetInstance.DelaySetActiveFalseParticle(particleObject, 1f));
         }
-        _playerData.isDecreaseHealth = false;
+        PlayerData.isDecreaseHealth = false;
 
         _enemyManager.SetEnemyAttackDamage(ref _enemyManager.bulletData);
-        _playerData.decreaseCounter = 0;
+        PlayerData.decreaseCounter = 0;
     }
 
     public void EnemySetActiveFalse()

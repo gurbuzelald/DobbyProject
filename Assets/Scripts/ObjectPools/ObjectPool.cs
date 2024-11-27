@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +23,7 @@ public class ObjectPool : MonoBehaviour
     public PlayerData playerData;
 
 
-    void Start()
+    private void Start()
     {
         CreateAndEnqueueObject();
     }

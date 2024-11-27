@@ -158,7 +158,7 @@ public class BulletManager : AbstractBullet<BulletManager>
     {
         if (_playerData && bulletData)
         {
-            if (_playerData.isWinning && _currentWeaponObject)
+            if (PlayerData.isWinning && _currentWeaponObject)
             {
                 Destroy(_currentWeaponObject);
             }
@@ -198,7 +198,7 @@ public class BulletManager : AbstractBullet<BulletManager>
     {
         if (_playerData && bulletData)
         {
-            if (_playerData.isWinning && _currentSwordObject)
+            if (PlayerData.isWinning && _currentSwordObject)
             {
                 Destroy(_currentSwordObject);
             }
@@ -303,9 +303,9 @@ public class BulletManager : AbstractBullet<BulletManager>
     {
         if (_playerData && bulletData)
         {
-            if (PlayerData.isFire && !_playerData.isSwordAnimate && _playerData.isFireTime)
+            if (PlayerData.isFire && !PlayerData.isSwordAnimate && PlayerData.isFireTime)
             {
-                _playerData.isFireTime = false;
+                PlayerData.isFireTime = false;
 
                 StartCoroutine(Delay(bulletData.currentShootFrequency, _playerData.playerWeaponBulletObjectPoolCount));
             }
@@ -355,7 +355,7 @@ public class BulletManager : AbstractBullet<BulletManager>
         yield return new WaitForSeconds(delayValue);
 
         // Handle bullet availability and sound effect
-        if (_playerData.bulletAmount <= 0)
+        if (PlayerData.bulletAmount <= 0)
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.NonShoot);
             yield break;

@@ -24,7 +24,7 @@ public abstract class AbstractEnemy<T> : MonoBehaviour where T : MonoBehaviour
     public virtual void Movement(Transform targetObject, Transform initTransform, Transform currentTransform, float speed, PlayerData playerData, EnemyData enemyData)
     {
 
-        if (targetObject != null && playerData.isPlayable)
+        if (targetObject != null && PlayerData.isPlayable)
         {
             currentTransform.LookAt(targetObject.position);
             currentTransform.Translate(0f, 0f, speed * Time.deltaTime);

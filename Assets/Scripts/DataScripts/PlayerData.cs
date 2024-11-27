@@ -32,6 +32,12 @@ public class PlayerData : ScriptableObject
 
     public static float currentCharacterSpeed;
 
+
+    public static int GetCharacterID()
+    {
+        return currentCharacterID;
+    }
+
     [Serializable]
     public struct Pool
     {
@@ -81,17 +87,18 @@ public class PlayerData : ScriptableObject
 
 
     [Header("Current Language")]
-    public Languages currentLanguage;
+    public static Languages currentLanguage;
 
 
     [Header("Get Current Killing Enemy For Increase Health")]
-    public bool getCurrentEnemyDead;
-
+    public static bool getCurrentEnemyDead;
     
 
     [Header("Message Text")]
-    public TextMeshProUGUI currentMessageText;
-    public GameObject currentMessageObject;
+    public static TextMeshProUGUI currentMessageText;
+    public static GameObject currentMessageObject;
+
+
     public const string pickBulletObjectMessage = "Bullet Pack!!";
     public const string pickBulletObjectMessageTr = "Mermi Paketi!!";
     public const string pickHealthObjectMessage = "Healthy!!";
@@ -99,7 +106,7 @@ public class PlayerData : ScriptableObject
     public const string pickWeaponObjectMessage = "Picked a Weapon!!";
     public const string pickWeaponObjectMessageTr = "Silah Aldın!!";
     public const string alreadyHaveThisMessage = "You Already Have Enough This!!";
-    public const string alreadyHaveThisWeaponMessage = "You Already Have This Weapon!!";
+    public const string alreadyHaveThisWeaponMessage = "You Already Have That Weapon!!";
     public const string alreadyHaveThisWeaponMessageTr = "Zaten Bu Silaha Sahipsin!!";
     public const string alreadyHaveThisMessageTr = "Yeterince Mermin Var!!";
     public const string poisonMessage = "Poison!!!";
@@ -124,100 +131,67 @@ public class PlayerData : ScriptableObject
     public const string tazo = "Tazo(Clone)";
 
     [Header("Health State")]
-    public bool isDecreaseHealth;
-    public TextMeshProUGUI damageHealthText;
-    public int decreaseCounter;
+    public static bool isDecreaseHealth;
+    public static TextMeshProUGUI damageHealthText;
+    public static int decreaseCounter;
 
     [Header("Character Locking Modes")]
-    public string resetLocks = "locked";
-    public string locked = "locked";
-    public string unLocked = "";
+    public static string resetLocks = "locked";
+    public static string locked = "locked";
+    public static string unLocked = "";
 
     [Header("Prefab Game Objects For Player")]
     public GameObject[] objects;
 
     [Header("Sensivity")]
-    public float sensivityX = 250f;
-    public float sensivityY = 80f;
+    public static float sensivityX;
+    public static float sensivityY;
 
     [Header("Finish Check")]
-    public bool isTouchFinish;
-    public bool isLose;
+    public static bool isTouchFinish;
+    public static bool isLose;
 
     [Header("Speed")]
-    public float rotateSpeed;
+    public static float rotateSpeed;
 
 
-    public Dictionary<int, GameObject> characterInfos;
-    
+    public static Dictionary<int, GameObject> characterInfos;   
 
 
     [Header("Animation Bools")]
-    public bool isGround;
-    public bool isWalking;
-    public bool isSideWalking;
-    public bool isBackWalking;  
-    public bool isIdling;
-    public bool isDying;
-    public bool isWinning;
+    public static bool isGround;
+    public static bool isWalking;
+    public static bool isSideWalking;
+    public static bool isBackWalking;
+    public static bool isIdling;
+    public static bool isDying;
+    public static bool isWinning;
     public static bool isRunning;
-    public bool isPicking;
-    public bool isPickRotateCoin;
-    public bool isSwordAnimate;
-    public bool isSword;
+    public static bool isPicking;
+    public static bool isPickRotateCoin;
+    public static bool isSwordAnimate;
+    public static bool isSword;
 
     [Header("CameraRotation Info")]
-    public bool isLookingUp;
+    public static bool isLookingUp;
 
     [Header("Death Check")]
-    public bool isDestroyed;
+    public static bool isDestroyed;
 
     [Header("Playable Check")]
-    public bool isPlayable;
+    public static bool isPlayable;
 
     [Header("Input")]
     public static bool isFire;
-    public bool isFireWalkAnimation;
-    public bool isFireAnimation;
-    public bool isFireTime;
-    public bool isJumping;
-    public int jumpCount;
-    public int clickShiftCount;
-    public int bulletAmount;
-    public int bulletPackAmount;
+    public static bool isFireWalkAnimation;
+    public static bool isFireAnimation;
+    public static bool isFireTime;
+    public static bool isJumping;
+    public static int jumpCount;
+    public static int clickShiftCount;
+    public static int bulletAmount;
+    public static int bulletPackAmount;
 
-    [Header("Dance")]
-    public float danceTime = 5f;
-    public GameObject jolleenObject;
-
-    [Header("Particle")]
-    public ParticleSystem touchParticle;
-    public ParticleSystem birthParticle;
-    public ParticleSystem deathParticle;
-    public ParticleSystem burningParticle;
-    public ParticleSystem burningTouchParticle;
-    public ParticleSystem destroyRotateCoinParticle;
-    public ParticleSystem destroyHealthCoinParticle;
-    public ParticleSystem destroyBulletCoinParticle;
-    public ParticleSystem destroyMushroomCoinParticle;
-    [Header("Particle Count Control")]
-    public int particleCount;
-    
-
-
-    [Header("Destination Touch Control")]
-    public bool isTouchFirst;
-    public bool isTouchSecond;
-    public bool isTouchThird;
-
-    [Header("Bullet Explosions")]
-    public GameObject[] weaponBulletExplosionParticles;
-
-
-    public int GetCharacterID()
-    {
-        return currentCharacterID;
-    }
 
     
     public enum Languages

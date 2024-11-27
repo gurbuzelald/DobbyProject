@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 public class EnemyManager : AbstractEnemy<EnemyManager>
 {    
@@ -63,9 +64,9 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         objectCollider.enabled = true;
 
         //enemyData.enemyStats[GetEnemyIndex()].currentEnemyName = gameObject.transform.name;
-        if (GameObject.Find("Player(Clone)"))
+        if (GameObject.Find("ObjectPool"))
         {
-            playerObjectPool = GameObject.Find("Player(Clone)").GetComponent<PlayerManager>()._objectPool;
+            playerObjectPool = GameObject.Find("ObjectPool").GetComponent<ObjectPool>();
         }
 
         if (GameObject.Find("PlayerSFXPrefab(Clone)"))
@@ -220,7 +221,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         // Exit early if no damage is dealt
         if (bulletData.currentEnemyAttackDamage == 0 && !enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyChildID]) return;
 
-        if (_playerData.decreaseCounter == 0 && healthBarSlider.value > 0)
+        if (PlayerData.decreaseCounter == 0 && healthBarSlider.value > 0)
         {
             // Calculate damage multiplier for bosses
             int damageMultiplier = gameObject.transform.parent.name == "bossEnemyTransform" ? 2 : 1;
@@ -228,13 +229,13 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
 
             // Decrease health
             PlayerManager.GetInstance.DecreaseHealth(ref _playerData, appliedDamage,
-                ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref _playerData.damageHealthText);
+                ref _healthBarObject, ref healthBarSlider, ref _topCanvasHealthBarSlider, ref PlayerData.damageHealthText);
 
             // Play hit sound
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.GetEnemyHit);
 
             // Increment counter to prevent multiple decreases
-            _playerData.decreaseCounter++;
+            PlayerData.decreaseCounter++;
         }
     }
 
@@ -245,7 +246,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
         if (enemyData == null || bulletData == null || enemyBulletManager == null) return;
         if (!PlayerManager.GetInstance) return;
 
-        if (!playerData.isPlayable || enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyChildID] || SceneController.pauseGame)
+        if (!PlayerData.isPlayable || enemyData.enemyStats[GetEnemyIndex()].enemyDying[enemyChildID] || SceneController.pauseGame)
         {
             // Reset states when player is not playable or enemy is dying/paused
             ResetEnemyState();
@@ -275,7 +276,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             // Enemy attacks the player
             enemyData.enemyStats[GetEnemyIndex()].isAttacking[enemyChildID] = true;
             enemyData.enemyStats[GetEnemyIndex()].isWalking[enemyChildID] = false;
-            playerData.isDecreaseHealth = true;
+            PlayerData.isDecreaseHealth = true;
 
             EnemyAttack(ref playerData, ref PlayerManager.GetInstance._topCanvasHealthBarSlider,
                         ref PlayerManager.GetInstance.playerComponents.healthBarSlider, ref PlayerManager.GetInstance._healthBarObject,
@@ -342,14 +343,14 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
                     PlayerManager.GetInstance.DecreaseHealth(ref PlayerManager.GetInstance._playerData,
                     bulletData.currentEnemyHitDamage*2,
                     ref PlayerManager.GetInstance._healthBarObject, ref PlayerManager.GetInstance.playerComponents.healthBarSlider,
-                    ref PlayerManager.GetInstance._topCanvasHealthBarSlider, ref PlayerManager.GetInstance._playerData.damageHealthText);
+                    ref PlayerManager.GetInstance._topCanvasHealthBarSlider, ref PlayerData.damageHealthText);
                 }
                 else
                 {
                     PlayerManager.GetInstance.DecreaseHealth(ref PlayerManager.GetInstance._playerData,
                     bulletData.currentEnemyHitDamage,
                     ref PlayerManager.GetInstance._healthBarObject, ref PlayerManager.GetInstance.playerComponents.healthBarSlider,
-                    ref PlayerManager.GetInstance._topCanvasHealthBarSlider, ref PlayerManager.GetInstance._playerData.damageHealthText);
+                    ref PlayerManager.GetInstance._topCanvasHealthBarSlider, ref PlayerData.damageHealthText);
                 }
                 
             }
@@ -366,6 +367,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             }
         }        
     }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(SceneController.Tags.Bullet.ToString()))
@@ -547,8 +549,8 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             // Update player's bullet count for bullets only
             if (!isSword)
             {
-                int bulletDiff = PlayerManager.GetInstance._bulletData.currentBulletPackAmount - playerData.bulletAmount;
-                playerData.bulletAmount += Mathf.Min(5, bulletDiff);
+                int bulletDiff = PlayerManager.GetInstance._bulletData.currentBulletPackAmount - PlayerData.bulletAmount;
+                PlayerData.bulletAmount += Mathf.Min(5, bulletDiff);
             }
 
             // Update score

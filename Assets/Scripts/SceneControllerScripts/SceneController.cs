@@ -74,13 +74,13 @@ public class SceneController : MonoBehaviour
     {
         MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuClick);
 
-        if (_playerData.currentLanguage == PlayerData.Languages.Turkish)
+        if (PlayerData.currentLanguage == PlayerData.Languages.Turkish)
         {
-            _playerData.currentLanguage = PlayerData.Languages.English;
+            PlayerData.currentLanguage = PlayerData.Languages.English;
         }
         else
         {
-            _playerData.currentLanguage = PlayerData.Languages.Turkish;
+            PlayerData.currentLanguage = PlayerData.Languages.Turkish;
         }
         ChangeLanguage();
     }
@@ -108,7 +108,7 @@ public class SceneController : MonoBehaviour
 
     void ChangeMenuSceneLanguage()
     {
-        if (Scenes.Menu.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.Turkish)
+        if (Scenes.Menu.ToString() == CheckSceneName() && PlayerData.currentLanguage == PlayerData.Languages.Turkish)
         {
             foreach (var currentText in currentTexts)
             {
@@ -174,7 +174,7 @@ public class SceneController : MonoBehaviour
                 }
             }
         }
-        else if (Scenes.Menu.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.English)
+        else if (Scenes.Menu.ToString() == CheckSceneName() && PlayerData.currentLanguage == PlayerData.Languages.English)
         {
             foreach (var currentText in currentTexts)
             {
@@ -244,7 +244,7 @@ public class SceneController : MonoBehaviour
 
     void ChangeGameSceneLanguage()
     {
-        if (Scenes.Game.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.Turkish)
+        if (Scenes.Game.ToString() == CheckSceneName() && PlayerData.currentLanguage == PlayerData.Languages.Turkish)
         {
             foreach (var currentText in currentTexts)
             {
@@ -350,7 +350,7 @@ public class SceneController : MonoBehaviour
 
     void ChangeEndSceneLanguage()
     {
-        if (Scenes.End.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.Turkish)
+        if (Scenes.End.ToString() == CheckSceneName() && PlayerData.currentLanguage == PlayerData.Languages.Turkish)
         {
             foreach (var currentText in currentTexts)
             {
@@ -408,7 +408,7 @@ public class SceneController : MonoBehaviour
 
     void ChangeWinSceneLanguage()
     {
-        if (Scenes.Win.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.Turkish)
+        if (Scenes.Win.ToString() == CheckSceneName() && PlayerData.currentLanguage == PlayerData.Languages.Turkish)
         {            
             foreach (var currentText in currentTexts)
             {
@@ -451,7 +451,7 @@ public class SceneController : MonoBehaviour
 
     void ChangePickCharacterSceneLanguage()
     {
-        if (Scenes.PickCharacter.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.Turkish)
+        if (Scenes.PickCharacter.ToString() == CheckSceneName() && PlayerData.currentLanguage == PlayerData.Languages.Turkish)
         {
             foreach (var currentText in currentTexts)
             {
@@ -488,7 +488,7 @@ public class SceneController : MonoBehaviour
 
     void ChangePickWeaponSceneLanguage()
     {
-        if (Scenes.PickWeapon.ToString() == CheckSceneName() && _playerData.currentLanguage == PlayerData.Languages.Turkish)
+        if (Scenes.PickWeapon.ToString() == CheckSceneName() && PlayerData.currentLanguage == PlayerData.Languages.Turkish)
         {
             foreach (var currentText in currentTexts)
             {
@@ -550,7 +550,7 @@ public class SceneController : MonoBehaviour
         {
             for (int i = 1; i <= 10; i++)
             {
-                _playerData.characterStruct[i].lockState = _playerData.locked;
+                _playerData.characterStruct[i].lockState = PlayerData.locked;
             }
             PlayerData.currentCharacterID = _playerData.characterStruct[0].id;
         }
@@ -866,7 +866,7 @@ public class SceneController : MonoBehaviour
             {
                 levelButtons[i].SetActive(true);
 
-                if (PlayerData.Languages.Turkish == _playerData.currentLanguage)
+                if (PlayerData.Languages.Turkish == PlayerData.currentLanguage)
                 {
                     levelButtons[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm " + (i + 1).ToString();
                 }
@@ -945,7 +945,7 @@ public class SceneController : MonoBehaviour
             pausePanel.transform.localPosition = new Vector3(5000,
                                                              pausePanel.transform.localPosition.y,
                                                              pausePanel.transform.localPosition.z);
-            _playerData.isPlayable = true;
+            PlayerData.isPlayable = true;
         }
         else if (!pauseGame) {
 
@@ -958,7 +958,7 @@ public class SceneController : MonoBehaviour
             pausePanel.transform.localPosition = new Vector3(0,
                                                              pausePanel.transform.localPosition.y,
                                                              pausePanel.transform.localPosition.z);
-            _playerData.isPlayable = false;
+            PlayerData.isPlayable = false;
         }
     }
    

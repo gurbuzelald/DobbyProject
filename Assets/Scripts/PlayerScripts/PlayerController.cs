@@ -1,23 +1,85 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Input")]
     private GameInput gameInput;
+
     
-    public Vector2 movement;
-    public Vector2 lookRotation;
-    public static Vector2 fireDirection;
-    public bool fire;
-    public bool sword;
-    public bool extraSpeed;
-    public bool jump;
-    public static bool skateBoard;
-    public static bool run;
+    private static Vector2 movement;
+    public static Vector2 GetMovement()
+    {
+        return movement;
+    }
 
-    public Vector2 characterStick;
 
-    public Vector2 weaponStick; 
+    private static Vector2 lookRotation;
+    public static Vector2 GetLookRotation()
+    { 
+        return lookRotation;
+    }
+
+
+    private static Vector2 fireDirection;
+    public static Vector2 GetFireDirection()
+    {
+        return fireDirection;
+    }
+
+
+    private static bool fire;
+    public static bool GetFire()
+    {
+        return fire;
+    }
+    public static void SetFire(bool _fire)
+    {
+        fire = _fire;
+    }
+
+    private static bool sword;
+    public static bool GetSword()
+    {
+        return sword;
+    }
+
+    private static bool extraSpeed;
+    public static bool GetExtraSpeed()
+    {
+        return extraSpeed;
+    }
+
+
+    private static bool jump;
+    public static bool GetJump()
+    {
+        return jump;
+    }
+
+    private static bool skateBoard;
+    public static bool GetSkateBoard()
+    {
+        return skateBoard;
+    }
+
+    private static bool run;
+    public static bool GetRun()
+    {
+        return run;
+    }
+
+    private static Vector2 characterStick;
+    public static Vector2 GetCharacterStick()
+    {
+        return characterStick;
+    }
+
+    private static Vector2 weaponStick;
+    public static Vector2 GetWeaponStick()
+    {
+        return weaponStick;
+    }
 
     private void Awake() 
     {

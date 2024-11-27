@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class ScoreController : AbstractPlayer<ScoreController>
 {
@@ -10,6 +11,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
     [SerializeField] TextMeshProUGUI enemyKillValueText;
 
     public static int _scoreAmount;
+
     private bool _scored;
 
     [SerializeField] PlayerCoinData playerCoinData;
@@ -111,7 +113,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
             _scoreText.text = $"{_scoreAmount}/{levelData.levelUpRequirements[LevelData.currentLevelId].coinCollectAmount}";
         }
     }
-    public int SetScore(int scoreAmount)
+    public void SetScore(int scoreAmount)
     {
         _scored = true;
         _scoreAmount += scoreAmount;
@@ -131,8 +133,6 @@ public class ScoreController : AbstractPlayer<ScoreController>
             _scoreText.text = _scoreAmount + "/" +
                           levelData.levelUpRequirements[LevelData.currentLevelId].coinCollectAmount;
         }
-
-        return _scoreAmount;
     }
 
     public void SetScoreWithLevelUp()

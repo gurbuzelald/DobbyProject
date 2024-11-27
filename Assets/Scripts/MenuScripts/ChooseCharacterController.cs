@@ -56,7 +56,7 @@ public class ChooseCharacterController : MonoBehaviour
     {
         for (int i = 0; i < playerData.characterStruct.Length; i++)
         {
-            bool isLocked = playerData.characterStruct[i].lockState == playerData.locked;
+            bool isLocked = playerData.characterStruct[i].lockState == PlayerData.locked;
             holoCharacterObjects[i].SetActive(isLocked);
             normalCharacterObjects[i].SetActive(!isLocked);
         }
@@ -77,7 +77,7 @@ public class ChooseCharacterController : MonoBehaviour
         {
             if (PlayerPrefs.GetFloat(lockKeys[i]) == 1)
             {
-                playerData.characterStruct[i].lockState = playerData.unLocked;
+                playerData.characterStruct[i].lockState = PlayerData.unLocked;
             }
         }
 
@@ -106,12 +106,12 @@ public class ChooseCharacterController : MonoBehaviour
     {
         if (gameObject.transform.GetChild(1).gameObject.name == "CharacterPanel")
         {
-            playerData.characterInfos = new Dictionary<int, GameObject>();
+            PlayerData.characterInfos = new Dictionary<int, GameObject>();
 
             //Debug.Log(characterStaffs.Length);
             for (int i = 0; i < characterStaffs.Length; i++)
             {
-                playerData.characterInfos[i] = infoPanels[i];
+                PlayerData.characterInfos[i] = infoPanels[i];
             }
 
             SetCharacterStaffs();
@@ -136,9 +136,9 @@ public class ChooseCharacterController : MonoBehaviour
         { "KStaff", 10 }
     };
 
-        for (int i = 0; i < playerData.characterInfos.Count; i++)
+        for (int i = 0; i < PlayerData.characterInfos.Count; i++)
         {
-            var staff = playerData.characterInfos[i];
+            var staff = PlayerData.characterInfos[i];
             string staffName = staff.transform.parent.name;
 
             // Try to get the index from the dictionary
@@ -192,7 +192,7 @@ public class ChooseCharacterController : MonoBehaviour
     void SlideMenu()
     {
         // Calculate the change in position based on input
-        float deltaX = _playerController.characterStick.x * menuSlideSpeed * Time.deltaTime;
+        float deltaX = PlayerController.GetCharacterStick().x * menuSlideSpeed * Time.deltaTime;
 
         // Update the current position
         Vector3 currentPosition = _panelObject.transform.position;
@@ -210,12 +210,12 @@ public class ChooseCharacterController : MonoBehaviour
         if (buttonController.GetCharacterButtonState(characterID) && playerCoinData.avaliableCoin >= characterPrice &&
             PlayerData.currentCharacterID != characterID)
         {
-            if (characterLock == playerData.locked)
+            if (characterLock == PlayerData.locked)
             {
                 playerCoinData.avaliableCoin -= characterPrice;
                 PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                characterLock = playerData.unLocked;
+                characterLock = PlayerData.unLocked;
                 PlayerPrefs.SetFloat(lockKey, 1);
             }
 
@@ -227,7 +227,7 @@ public class ChooseCharacterController : MonoBehaviour
 
             SceneController.LoadMenuScene();
         }
-        else if (buttonController.GetCharacterButtonState(characterID) && characterLock == playerData.unLocked)
+        else if (buttonController.GetCharacterButtonState(characterID) && characterLock == PlayerData.unLocked)
         {
             PlayerData.currentCharacterID = characterID;
 
@@ -235,14 +235,14 @@ public class ChooseCharacterController : MonoBehaviour
 
             SceneController.LoadMenuScene();
         }
-        else if ((characterPrice - playerCoinData.avaliableCoin) > 0 && characterLock == playerData.locked)
+        else if ((characterPrice - playerCoinData.avaliableCoin) > 0 && characterLock == PlayerData.locked)
         {
             if (buttonController.GetCharacterButtonState(characterID))
             {
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
 
-            string errorMessage = playerData.currentLanguage == PlayerData.Languages.Turkish ?
+            string errorMessage = PlayerData.currentLanguage == PlayerData.Languages.Turkish ?
                 "Satin Almak İçİn " + (characterPrice - playerCoinData.avaliableCoin).ToString() + " Coin' e Daha İhtİyacin Var!" :
                 "You need " + (characterPrice - playerCoinData.avaliableCoin).ToString() + " More Coin!";
 

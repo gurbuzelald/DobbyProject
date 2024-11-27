@@ -42,8 +42,8 @@ public class TimeController : MonoBehaviour
         {
             if (timeValue - time <= 0)
             {
-                playerData.isPlayable = false;
-                playerData.isDying = true;
+                PlayerData.isPlayable = false;
+                PlayerData.isDying = true;
                 PlayerManager.GetInstance.DelayPlayerDestroy();
                 _warnTimeText.text = "";
             }
@@ -74,7 +74,7 @@ public class TimeController : MonoBehaviour
     {
         if (PlayerData.isFire && _weaponTime >= bulletData.currentShootFrequency)
         {
-            playerData.isFireTime = true;
+            PlayerData.isFireTime = true;
             _weaponTime = 0;
         }
 
