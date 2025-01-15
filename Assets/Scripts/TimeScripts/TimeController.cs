@@ -72,7 +72,7 @@ public class TimeController : MonoBehaviour
     }
     public void WeaponTimer(PlayerData playerData)
     {
-        if (PlayerData.isFire && _weaponTime >= bulletData.currentShootFrequency)
+        if (PlayerData.isFire && _weaponTime >= BulletData.currentShootFrequency)
         {
             PlayerData.isFireTime = true;
             _weaponTime = 0;

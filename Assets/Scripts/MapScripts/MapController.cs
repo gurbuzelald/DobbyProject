@@ -21,11 +21,11 @@ public class MapController : MonoBehaviour
 
         if (levelData)
         {
-            currentMap = Instantiate(levelData.levelStates[LevelData.currentLevelId].mapObject, gameObject.transform);
+            currentMap = Instantiate(levelData.levelStates[levelData.currentLevelId].mapObject, gameObject.transform);
         }
         if (levelData)
         {
-            RenderSettings.skybox = levelData.levelStates[LevelData.currentLevelId].levelSkybox;
+            RenderSettings.skybox = levelData.levelStates[levelData.currentLevelId].levelSkybox;
         }    
     }
     void Update()

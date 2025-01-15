@@ -92,7 +92,7 @@ public class LevelUpController : MonoBehaviour
     {
         if (coinSpawner)
         {
-            coinSpawner.SetCoinValue(LevelData.currentLevelId);
+            coinSpawner.SetCoinValue(levelData.currentLevelId);
         }
     }
 
@@ -152,8 +152,8 @@ public class LevelUpController : MonoBehaviour
     IEnumerator ShowEnemyKillRequirement()
     {
         string enemyKillMessage = PlayerData.currentLanguage == PlayerData.Languages.Turkish
-            ? $"Bölümü Geçmen İçin {levelData.levelUpRequirements[LevelData.currentLevelId].enemyKills} Düşman Öldürmen,"
-            : $"You Need To Take {levelData.levelUpRequirements[LevelData.currentLevelId].enemyKills} Kills";
+            ? $"Bölümü Geçmen İçin {levelData.levelUpRequirements[levelData.currentLevelId].enemyKills} Düşman Öldürmen,"
+            : $"You Need To Take {levelData.levelUpRequirements[levelData.currentLevelId].enemyKills} Kills";
 
         enemyKillLevelUpRequirementText.text = enemyKillMessage;
         yield return new WaitForSeconds(4f);
@@ -163,8 +163,8 @@ public class LevelUpController : MonoBehaviour
     IEnumerator ShowCoinCollectRequirement()
     {
         string coinMessage = PlayerData.currentLanguage == PlayerData.Languages.Turkish
-            ? $"{levelData.levelUpRequirements[LevelData.currentLevelId].coinCollectAmount} Coin Toplaman ve"
-            : $"Pick Up {levelData.levelUpRequirements[LevelData.currentLevelId].coinCollectAmount} Coins and";
+            ? $"{levelData.levelUpRequirements[levelData.currentLevelId].coinCollectAmount} Coin Toplaman ve"
+            : $"Pick Up {levelData.levelUpRequirements[levelData.currentLevelId].coinCollectAmount} Coins and";
 
         pickUpCoinLevelUpRequirementText.text = coinMessage;
         yield return new WaitForSeconds(4f);
@@ -174,8 +174,8 @@ public class LevelUpController : MonoBehaviour
     IEnumerator ShowKeyRequirement()
     {
         string keyMessage = PlayerData.currentLanguage == PlayerData.Languages.Turkish
-            ? $"{levelData.levelUpRequirements[LevelData.currentLevelId].levelUpKeys} Adet Anahtar Bulman Gerekiyor!!!"
-            : $"Pick Up {levelData.levelUpRequirements[LevelData.currentLevelId].levelUpKeys} Keys For Level Up!!!";
+            ? $"{levelData.levelUpRequirements[levelData.currentLevelId].levelUpKeys} Adet Anahtar Bulman Gerekiyor!!!"
+            : $"Pick Up {levelData.levelUpRequirements[levelData.currentLevelId].levelUpKeys} Keys For Level Up!!!";
 
         levelUpKeysRequirementText.text = keyMessage;
         yield return new WaitForSeconds(4f);
@@ -203,7 +203,7 @@ public class LevelUpController : MonoBehaviour
     void InitStatements()
     {
         // Check mission completion for current level requirements
-        var currentRequirements = levelData.levelUpRequirements[LevelData.currentLevelId];
+        var currentRequirements = levelData.levelUpRequirements[levelData.currentLevelId];
 
         scoreMissionCompletedImage.gameObject.SetActive(currentRequirements.coinCollectAmount < ScoreController._scoreAmount);
         enemyKillMissionCompletedImage.gameObject.SetActive(currentRequirements.enemyKills < MainEnemyData.enemyDeathCount);
@@ -226,7 +226,7 @@ public class LevelUpController : MonoBehaviour
         {
             currentRequirements.isBossEnemyDead = false;
         }
-        ArrowLevelRotation(LevelData.currentLevelId);
+        ArrowLevelRotation(levelData.currentLevelId);
     }
 
     void InitializeComponent<T>(ref T component, GameObject obj) where T : Component
@@ -242,7 +242,7 @@ public class LevelUpController : MonoBehaviour
     {
         CheckCompleteLevel();
 
-        levelData.levelUpRequirements[LevelData.currentLevelId].isBossEnemyDead = EnemySpawner.bossIsDead;
+        levelData.levelUpRequirements[levelData.currentLevelId].isBossEnemyDead = EnemySpawner.bossIsDead;
 
         CheckLevelUpRequirements();
     }
@@ -252,7 +252,7 @@ public class LevelUpController : MonoBehaviour
         if (levelData == null) return;
         if (levelData.levelUpRequirements == null) return;
 
-        var currentRequirements = levelData.levelUpRequirements[LevelData.currentLevelId];
+        var currentRequirements = levelData.levelUpRequirements[levelData.currentLevelId];
         bool canLevelUp = false;
 
         // Check if level-up requirements exist
@@ -386,21 +386,24 @@ public class LevelUpController : MonoBehaviour
             if (levelData.levelStates[i].isCompleteMap)
             {
                 // Set current level ID and corresponding gift box
-                ++LevelData.currentLevelId;
+                if (levelData.currentLevelId != LevelData.lastLevelID)
+                {
+                    ++levelData.currentLevelId;
 
-                PlayerPrefs.SetInt("CurrentLevelID", LevelData.currentLevelId);
+                    PlayerPrefs.SetInt("CurrentLevelID", levelData.currentLevelId);
 
-                bulletData.currentGiftBox = bulletData.weaponStruct[LevelData.currentLevelId].giftBox;
+                    BulletData.currentGiftBox = bulletData.weaponStruct[levelData.currentLevelId].giftBox;
 
-                // Call necessary methods for the level transition
-                CheckLevelUpRequirements();
-                coinSpawner.SetCoinValue(LevelData.currentLevelId);
-                _sceneController.LevelUpGame();
+                    // Call necessary methods for the level transition
+                    CheckLevelUpRequirements();
+                    coinSpawner.SetCoinValue(levelData.currentLevelId);
+                    _sceneController.LevelUpGame();
 
-                // Reset the completion flag
-                levelData.levelStates[i].isCompleteMap = false;
+                    // Reset the completion flag
+                    levelData.levelStates[i].isCompleteMap = false;
 
-                return; // Exit the loop once the level is processed
+                    return; // Exit the loop once the level is processed
+                }                
             }
         }
 

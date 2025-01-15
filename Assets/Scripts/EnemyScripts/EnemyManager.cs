@@ -549,7 +549,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
             // Update player's bullet count for bullets only
             if (!isSword)
             {
-                int bulletDiff = PlayerManager.GetInstance._bulletData.currentBulletPackAmount - PlayerData.bulletAmount;
+                int bulletDiff = BulletData.currentBulletPackAmount - PlayerData.bulletAmount;
                 PlayerData.bulletAmount += Mathf.Min(5, bulletDiff);
             }
 
@@ -636,7 +636,7 @@ public class EnemyManager : AbstractEnemy<EnemyManager>
     {
         if (levelData)
         {
-            levelData.currentBackToWalkingValue = levelData.levelStates[LevelData.currentLevelId].backToWalkingDelay;
+            levelData.currentBackToWalkingValue = levelData.levelStates[levelData.currentLevelId].backToWalkingDelay;
         }
     }
 

@@ -16,7 +16,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            LevelData.currentLevelId = 0;
+            levelData.currentLevelId = 0;
 
             PlayerPrefs.SetInt("CurrentLevelID", 0);
 
@@ -35,7 +35,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            LevelData.currentLevelId = 1;
+            levelData.currentLevelId = 1;
 
             PlayerPrefs.SetInt("CurrentLevelID", 1);
 
@@ -54,7 +54,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            LevelData.currentLevelId = 2;
+            levelData.currentLevelId = 2;
 
             PlayerPrefs.SetInt("CurrentLevelID", 2);
 
@@ -73,7 +73,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            LevelData.currentLevelId = 3;
+            levelData.currentLevelId = 3;
 
             PlayerPrefs.SetInt("CurrentLevelID", 3);
 
@@ -92,7 +92,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            LevelData.currentLevelId = 4;
+            levelData.currentLevelId = 4;
 
             PlayerPrefs.SetInt("CurrentLevelID", 4);
 
@@ -111,7 +111,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            LevelData.currentLevelId = 5;
+            levelData.currentLevelId = 5;
 
             PlayerPrefs.SetInt("CurrentLevelID", 5);
 
@@ -130,7 +130,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            LevelData.currentLevelId = 6;
+            levelData.currentLevelId = 6;
 
             PlayerPrefs.SetInt("CurrentLevelID", 6);
 
@@ -149,7 +149,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            LevelData.currentLevelId = 7;
+            levelData.currentLevelId = 7;
 
             PlayerPrefs.SetInt("CurrentLevelID", 7);
 
@@ -168,7 +168,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            LevelData.currentLevelId = 8;
+            levelData.currentLevelId = 8;
 
             PlayerPrefs.SetInt("CurrentLevelID", 8);
 
@@ -187,7 +187,7 @@ public class LevelUpButtonController : MonoBehaviour
         {
             sceneController.DecreaseWeaponUsageLimit();
 
-            LevelData.currentLevelId = 9;
+            levelData.currentLevelId = 9;
 
             PlayerPrefs.SetInt("CurrentLevelID", 9);
 

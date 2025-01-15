@@ -57,7 +57,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
         for (int i = 0; i < _bulletData.weaponStruct.Length; i++)
         {
             var weaponName = _bulletData.weaponStruct[i].weaponName;
-            if (_bulletData.currentWeaponName == weaponName)
+            if (BulletData.currentWeaponName == weaponName)
             {
                 var weaponTransform = GameObject.Find($"{weaponName}Transform");
                 if (weaponTransform)
@@ -292,8 +292,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             {
                 Debug.Log("_playerData.objects[3]");
             }
+            if (BulletData.currentBulletPackAmount == 0)
+            {
+                BulletData.currentBulletPackAmount = 21;
+            }
 
-            PlayerData.bulletAmount = _bulletData.currentBulletPackAmount;
+            PlayerData.bulletAmount = BulletData.currentBulletPackAmount;
+
             PlayerData.isFireWalkAnimation = false;
             PlayerData.isFire = false;
             LevelData.isLevelUp = false;
@@ -383,7 +388,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             }
             else if (PlayerData.bulletAmount <= 0 && PlayerData.bulletPackAmount >= 0)
             {
-                PlayerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
+                PlayerData.bulletAmount = BulletData.currentBulletPackAmount;
 
                 PlayerData.bulletPackAmount--;
 
@@ -409,12 +414,12 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
                     PlayerData.isFireAnimation = false;
                     PlayerData.isFireWalkAnimation = true;
                 }
-                if (PlayerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f &&
+                if (PlayerData.bulletAmount <= BulletData.currentBulletPackAmount / 2f &&
                     PlayerData.bulletAmount > 0 && PlayerData.isWalking)
                 {
                     PlayerData.isFire = true;
                 }
-                else if (PlayerData.bulletAmount > PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f && PlayerData.isWalking)
+                else if (PlayerData.bulletAmount > BulletData.currentBulletPackAmount / 2f && PlayerData.isWalking)
                 {
                     PlayerData.isFire = true;
                 }
@@ -725,10 +730,10 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     {
         _coinObject.transform.localScale = Vector3.one;
 
-        if ((PlayerData.bulletPackAmount == 2 && PlayerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPackAmount) ||
+        if ((PlayerData.bulletPackAmount == 2 && PlayerData.bulletAmount != BulletData.currentBulletPackAmount) ||
             (PlayerData.bulletPackAmount == 0 && PlayerData.bulletAmount == 0) ||
              PlayerData.bulletPackAmount < 2 ||
-             (PlayerData.bulletPackAmount == 2 && PlayerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPackAmount))
+             (PlayerData.bulletPackAmount == 2 && PlayerData.bulletAmount != BulletData.currentBulletPackAmount))
         {
             CreateBulletParticleEffect(environmentObjectPool, other, _playerData);            
         }
@@ -738,7 +743,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             CreateBulletParticleEffect(environmentObjectPool, other, _playerData);
 
             other.gameObject.SetActive(false);
-            PlayerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
+            PlayerData.bulletAmount = BulletData.currentBulletPackAmount;
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
             StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage));
         }
@@ -753,13 +758,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             bulletAmountCanvas.transform.GetChild(0).gameObject.transform.localScale = Vector3.one;
             bulletAmountCanvas.transform.GetChild(1).gameObject.transform.localScale = Vector3.one;
         }
-        else if (PlayerData.bulletPackAmount == 2 && PlayerData.bulletAmount != PlayerManager.GetInstance._bulletData.currentBulletPackAmount)
+        else if (PlayerData.bulletPackAmount == 2 && PlayerData.bulletAmount != BulletData.currentBulletPackAmount)
         {
             CreateBulletParticleEffect(environmentObjectPool, other, _playerData);
 
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.PickUpBulletCoin);
             other.gameObject.SetActive(false);
-            PlayerData.bulletAmount = PlayerManager.GetInstance._bulletData.currentBulletPackAmount;
+            PlayerData.bulletAmount = BulletData.currentBulletPackAmount;
             StartCoroutine(DelayMessageText(_playerData, PlayerData.pickBulletObjectMessageTr, PlayerData.pickBulletObjectMessage));
         }
         else
@@ -852,7 +857,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
             bulletData.weaponStruct[5].lockState == BulletData.locked && bulletData.weaponStruct[6].lockState == BulletData.locked &&
             bulletData.weaponStruct[7].lockState == BulletData.locked && bulletData.weaponStruct[0].lockState == BulletData.locked)
             {
-                bulletData.currentWeaponName = bulletData.weaponStruct[0].weaponName;
+                BulletData.currentWeaponName = bulletData.weaponStruct[0].weaponName;
                 PlayerPrefs.SetInt("CurrentWeaponID", 0);
             }
         }        
@@ -881,7 +886,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
         if (other.CompareTag(tagString))
         {
-            if (_bulletData.currentWeaponName != weaponName)
+            if (BulletData.currentWeaponName != weaponName)
             {
                 Destroy(other.gameObject);
 
@@ -889,11 +894,11 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
                 ObjectPool.creatablePlayerBullet = true;
 
-                weaponLock = _bulletData.unLocked;
+                weaponLock = BulletData.unLocked;
 
                 PlayerData.currentBulletExplosionIsChanged = true;
 
-                _bulletData.currentBulletPackAmount = bulletAmount;
+                BulletData.currentBulletPackAmount = bulletAmount;
 
                 PlayerData.bulletAmount = bulletAmount;
 
@@ -901,13 +906,13 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
                 PlayerPrefs.SetInt("CurrentWeaponID", BulletData.currentWeaponID);
 
-                _bulletData.currentWeaponName = _bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
+                BulletData.currentWeaponName = _bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
 
                 IncreaseUsageLimit(_bulletData, tag);
 
                 StartCoroutine(DelayMessageText(PlayerManager.GetInstance._playerData, tagString, tagString));
             }
-            else if (_bulletData.currentWeaponName == weaponName)
+            else if (BulletData.currentWeaponName == weaponName)
             {
                 other.gameObject.transform.GetChild(0).GetChild(0).transform.localScale = Vector3.one;
                 StartCoroutine(PlayerManager.GetInstance.DelayTransformOneGiftBoxWarnText(other));
@@ -941,7 +946,7 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
     // Helper function to handle setting lock state, usage limit, and PlayerPrefs.
     void SetWeaponLimit(BulletData _bulletData, int index)
     {
-        _bulletData.weaponStruct[index].lockState = _bulletData.unLocked;
+        _bulletData.weaponStruct[index].lockState = BulletData.unLocked;
         _bulletData.weaponStruct[index].usageLimit = 1;
         PlayerPrefs.SetInt($"{_bulletData.weaponStruct[index].weaponName}UsageCount", 1);
     }
@@ -957,17 +962,17 @@ public abstract class AbstractPlayer<T> : MonoBehaviour, IPlayerShoot, IPlayerCa
 
     public virtual void SetBulletPackAndAmountTextSize(PlayerData _playerData, ref GameObject bulletAmountCanvas)
     {
-        if (PlayerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f * 3)
+        if (PlayerData.bulletAmount <= BulletData.currentBulletPackAmount / 2f * 3)
         {
             bulletAmountCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.75f, 1.75f, 1.75f);
             bulletAmountCanvas.transform.GetChild(1).transform.localScale = new Vector3(1.75f, 1.75f, 1.75f);
         }
-        else if (PlayerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 2f)
+        else if (PlayerData.bulletAmount <= BulletData.currentBulletPackAmount / 2f)
         {
             bulletAmountCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
             bulletAmountCanvas.transform.GetChild(1).transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         }
-        else if (PlayerData.bulletAmount <= PlayerManager.GetInstance._bulletData.currentBulletPackAmount / 3f)
+        else if (PlayerData.bulletAmount <= BulletData.currentBulletPackAmount / 3f)
         {
             bulletAmountCanvas.transform.GetChild(0).transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
             bulletAmountCanvas.transform.GetChild(1).transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);

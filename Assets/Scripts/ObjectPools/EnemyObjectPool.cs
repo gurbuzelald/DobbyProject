@@ -57,7 +57,7 @@ public class EnemyObjectPool : MonoBehaviour
             case 0://Enemy Bullet
             case 2://EnemyPrefab
             case 3://Boss Enemy Prefab
-                prefabIndex = LevelData.currentLevelId;
+                prefabIndex = levelData.currentLevelId;
                 break;
             case 1: //Middle Particle
             case 4: //Chest Monster

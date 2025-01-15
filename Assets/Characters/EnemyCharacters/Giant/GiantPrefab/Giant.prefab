@@ -1326,27 +1326,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 5309719902727031672}
   mainEnemyData: {fileID: 11400000, guid: 58f9a36cbd42e42b9942c338e5974b3a, type: 2}
-  enemyListData:
-  - {fileID: 11400000, guid: deb9ca2ffe99d4d1185982a70af4ff44, type: 2}
-  - {fileID: 11400000, guid: b6eaea6ccfda8463fa0835fd96ea6a88, type: 2}
-  - {fileID: 11400000, guid: e18e85b28b5234906a262e54a8cca508, type: 2}
-  - {fileID: 11400000, guid: a2112caa7400b479f87e6fcecafa1e38, type: 2}
-  - {fileID: 11400000, guid: a320415282fab49e3958bed636e7fff2, type: 2}
-  - {fileID: 11400000, guid: 0a2fa360233bd41ddb43cd1179897f8f, type: 2}
-  - {fileID: 11400000, guid: 25a15cded51114ffd8da3e5792e9042b, type: 2}
-  - {fileID: 11400000, guid: 929b1c3acce99415cbb66ef39aae4d78, type: 2}
-  - {fileID: 11400000, guid: 3b8207a3d3f8e48e79066e09b759a8d1, type: 2}
-  - {fileID: 11400000, guid: 926962f4cff914434b1b035ad4c63f8a, type: 2}
-  - {fileID: 11400000, guid: a04008ca9ac044fdb99124e8667718ec, type: 2}
-  - {fileID: 11400000, guid: 8c7daf5b9924d4cbb98c99b528a76400, type: 2}
-  - {fileID: 11400000, guid: 4e7d9b295dfed4bcb938191062f3b903, type: 2}
-  - {fileID: 11400000, guid: c2a6aeded8ab942bbb3b05fff1f55cb1, type: 2}
-  - {fileID: 11400000, guid: 8a0cdc83a7bca47cca5f0e85a2ffbbda, type: 2}
-  - {fileID: 11400000, guid: 61aea4f956de8437ca54878ca54cf825, type: 2}
-  - {fileID: 11400000, guid: a98e479ee7be4488ab8b03ac6ee1c7fb, type: 2}
-  - {fileID: 11400000, guid: 68b7dd1e3d2f94a5a903c0d56e305866, type: 2}
-  - {fileID: 11400000, guid: 1199f138694f541abb10c8c281b838a7, type: 2}
-  - {fileID: 11400000, guid: b6d018add37f64ebbac3ca38e3e77502, type: 2}
   enemyData: {fileID: 11400000, guid: af4a244bb4607db45acc25a99953f997, type: 2}
   bulletData: {fileID: 11400000, guid: dde52ca73408d4d8084e4e1e6340bf1c, type: 2}
   playerData: {fileID: 11400000, guid: 531f8b663d00f754097509c28679f67d, type: 2}
@@ -2254,7 +2233,7 @@ Transform:
   m_GameObject: {fileID: 5787560914884900834}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 1.2, z: 0}
+  m_LocalPosition: {x: -0, y: 2.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2296,28 +2275,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbab17b44bf9a0458fac80563059cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runtimeAnimatorControllers:
-  - {fileID: 9100000, guid: e7b5a4591b54e4e68955c2f78bc8a682, type: 2}
-  - {fileID: 9100000, guid: efb295c3293b04f30aa9f1dae02b65fc, type: 2}
-  - {fileID: 9100000, guid: c5796d76fc17d44b0b1ecaef87b78727, type: 2}
-  - {fileID: 9100000, guid: 4e2a1b65041534d8f9f82709bc27d3d9, type: 2}
-  - {fileID: 9100000, guid: 301bd2a5e57b9400ca463e99cd68dec9, type: 2}
-  - {fileID: 9100000, guid: 7bb2048caf7ba41889d6c389c5354f62, type: 2}
-  - {fileID: 9100000, guid: 8b6791826306448629d24d06e4612350, type: 2}
-  - {fileID: 9100000, guid: d500650cb9326453f826c0dd201b8243, type: 2}
-  - {fileID: 9100000, guid: 4d871a9fe65fd4992aab59d17b7578bb, type: 2}
-  - {fileID: 9100000, guid: 308e42a3e4c3e4ce58ca381966ffc3aa, type: 2}
-  - {fileID: 9100000, guid: 49e924b7dd557409796a4b1077a01fc1, type: 2}
-  - {fileID: 9100000, guid: 9fdc056d9303e49e180806c5a6454092, type: 2}
-  - {fileID: 9100000, guid: ed442c995d94643889b01d6b2164a52a, type: 2}
-  - {fileID: 9100000, guid: bd76a2f1879e3427ab97b5242a60169b, type: 2}
-  - {fileID: 9100000, guid: 560d9e9af7ebe4ba3b99852346adfb5c, type: 2}
-  - {fileID: 9100000, guid: 4c84437a4b1a44cb4bc5b3e0132f976d, type: 2}
-  - {fileID: 9100000, guid: a5b3dc428fc264a1990c4768c1b7582a, type: 2}
-  - {fileID: 9100000, guid: 651298decd652446baed3e6f171405e6, type: 2}
-  - {fileID: 9100000, guid: 9760b81dc636340e6a3112ed287d12b2, type: 2}
-  - {fileID: 9100000, guid: f1e076eb00334459c82b574853e74a91, type: 2}
-  runAnimatorController: {fileID: 0}
   exampleRunAnimatorController: {fileID: 9100000, guid: e7b5a4591b54e4e68955c2f78bc8a682, type: 2}
 --- !u!1 &6043301696443495137
 GameObject:

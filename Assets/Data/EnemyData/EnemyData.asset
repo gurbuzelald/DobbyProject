@@ -119,7 +119,7 @@ MonoBehaviour:
     isGround: 01010101010101010000
     enemyDying: 00000000000000000000
     isWalking: 01010101010101010000
-    isFiring: 00000100000000000000
+    isFiring: 00000000000000000000
     isAttacking: 00000000000000000000
     isTouchable: 01010101010101010000
     isActivateMagnet: 00000000000000000000
@@ -156,7 +156,7 @@ MonoBehaviour:
     isGround: 0101010101010101010101010101010101010101
     enemyDying: 0000000000000000000000000000000000000000
     isWalking: 0101010101010101010101010101010101010101
-    isFiring: 0001000000010001010100000000000000000000
+    isFiring: 0000000000000000000000000000010000000000
     isAttacking: 0000000000000000000000000000000000000000
     isTouchable: 0101010101010101010101010101010101010101
     isActivateMagnet: 0000000000000000000000000000000000000000
@@ -186,47 +186,48 @@ MonoBehaviour:
     enemyDurability: 0
   - enemyName: ClothyBone
     currentEnemyID: 6
-    isGround: 01010101000000000000000000000000000000
-    enemyDying: 00000000000000000000000000000000000000
-    isWalking: 01010101000000000000000000000000000000
-    isFiring: 01000000000000000000000000000000000000
-    isAttacking: 00000000000000000000000000000000000000
-    isTouchable: 01010101000000000000000000000000000000
-    isActivateMagnet: 00000000000000000000000000000000000000
-    isSpeedZero: 00000000000000000000000000000000000000
+    isGround: 00
+    enemyDying: 00
+    isWalking: 00
+    isFiring: 00
+    isAttacking: 00
+    isTouchable: 00
+    isActivateMagnet: 00
+    isSpeedZero: 00
     bulletDamageValue:
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
-    - 0
     - 0
     enemySpeed: 0.4
     enemyDurability: 0
   - enemyName: Doctor
     currentEnemyID: 7
-    isGround: 01
-    enemyDying: 00
-    isWalking: 00
-    isFiring: 00
-    isAttacking: 00
-    isTouchable: 01
-    isActivateMagnet: 00
-    isSpeedZero: 00
+    isGround: 0100000100010100010000000000000000000000
+    enemyDying: 0000000000000000000000000000000000000000
+    isWalking: 0000000000000000000000000000000000000000
+    isFiring: 0000000000000000000000000000000000000000
+    isAttacking: 0000000000000000000000000000000000000000
+    isTouchable: 0101010101010101010101010101010101010101
+    isActivateMagnet: 0000000000000000000000000000000000000000
+    isSpeedZero: 0000000000000000000000000000000000000000
     bulletDamageValue:
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
+    - 0
     - 0
     enemySpeed: 0.8
     enemyDurability: 8
@@ -246,12 +247,12 @@ MonoBehaviour:
     enemyDurability: 10
   - enemyName: Giant
     currentEnemyID: 9
-    isGround: 01
+    isGround: 00
     enemyDying: 00
-    isWalking: 01
+    isWalking: 00
     isFiring: 00
     isAttacking: 00
-    isTouchable: 01
+    isTouchable: 00
     isActivateMagnet: 00
     isSpeedZero: 00
     bulletDamageValue:
@@ -369,7 +370,7 @@ MonoBehaviour:
     isGround: 01010101010101010000
     enemyDying: 00000000000000000000
     isWalking: 01010101010101010000
-    isFiring: 00010000000100000000
+    isFiring: 00000000000000000000
     isAttacking: 00000000000000000000
     isTouchable: 01010101010101010000
     isActivateMagnet: 00000000000000000000
@@ -401,10 +402,10 @@ MonoBehaviour:
     - {fileID: 1214174750890122878, guid: 9a331930d9f32401e9738eeba31e6288, type: 3}
     - {fileID: 1214174750890122878, guid: 05ba40ff6090a4856a48c93a11357ad7, type: 3}
     - {fileID: 1214174750890122878, guid: 05ba40ff6090a4856a48c93a11357ad7, type: 3}
-    poolSize: 10
+    poolSize: 1
   - objectPrefab:
     - {fileID: 971248542662641289, guid: 2f7ae11e5481b4410980b7b91fdc3dff, type: 3}
-    poolSize: 10
+    poolSize: 1
   - objectPrefab:
     - {fileID: 8997542787101788472, guid: 2c96927d27dce4526a1026ecc986afa5, type: 3}
     - {fileID: 4512837349738162073, guid: b404e40f48bc241888563ffb3a98a941, type: 3}
@@ -416,7 +417,7 @@ MonoBehaviour:
     - {fileID: 7296308412199317628, guid: 694f6143e023c41e9906f295461e270e, type: 3}
     - {fileID: 793185737370903748, guid: 1ed962c6fcb874bcb8b8f9ad0f714104, type: 3}
     - {fileID: 7010139405584911166, guid: ae057f8a4b8ff40a9ae126dd9bb6f4b5, type: 3}
-    poolSize: 20
+    poolSize: 1
   - objectPrefab:
     - {fileID: 4512837349738162073, guid: b404e40f48bc241888563ffb3a98a941, type: 3}
     - {fileID: 3681748830160087366, guid: 2d9ba2846170441429a1453420dda828, type: 3}
@@ -431,7 +432,7 @@ MonoBehaviour:
     poolSize: 1
   - objectPrefab:
     - {fileID: 3447772748114080158, guid: 4f82b468e9cb34ced898b37d205cb756, type: 3}
-    poolSize: 10
+    poolSize: 1
   - objectPrefab:
     - {fileID: 8850399812633511683, guid: 8e92a78b0e93e4bdeba0a8ff14b1ee45, type: 3}
-    poolSize: 10
+    poolSize: 1

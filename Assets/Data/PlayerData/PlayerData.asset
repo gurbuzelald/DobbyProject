@@ -18,7 +18,7 @@ MonoBehaviour:
     durability: 0
     price: 0
     jumpForce: 5
-    speed: 1.5
+    speed: 0.9
     id: 0
     lockState: 
     swordDamageValue: 100
@@ -27,25 +27,25 @@ MonoBehaviour:
     durability: 7
     price: 200
     jumpForce: 6
-    speed: 2.3
+    speed: 1.7
     id: 1
-    lockState: Locked
+    lockState: 
     swordDamageValue: 100
   - name: Glassy
     characterObject: {fileID: 6616105739425805472, guid: c01ca076994204b1cb94249a12ece71c, type: 3}
     durability: 9
     price: 1000
     jumpForce: 6
-    speed: 1.7
+    speed: 1.1
     id: 2
-    lockState: Locked
+    lockState: 
     swordDamageValue: 100
   - name: Lusth
     characterObject: {fileID: 1804162575734578991, guid: 68835b9515214a54097ef287fe3f1c49, type: 3}
     durability: 4000
     price: 4
     jumpForce: 7
-    speed: 2.5
+    speed: 1.9
     id: 3
     lockState: Locked
     swordDamageValue: 100
@@ -54,16 +54,16 @@ MonoBehaviour:
     durability: 10
     price: 2000
     jumpForce: 7
-    speed: 2.3
+    speed: 1.7
     id: 4
-    lockState: Locked
+    lockState: 
     swordDamageValue: 100
   - name: Michelle
     characterObject: {fileID: 8160791800857959451, guid: 0ac9ad04e193f4a1693d750745c9cf5c, type: 3}
     durability: 9
     price: 1000
     jumpForce: 8
-    speed: 2.4
+    speed: 1.8
     id: 5
     lockState: Locked
     swordDamageValue: 100
@@ -72,25 +72,25 @@ MonoBehaviour:
     durability: 11
     price: 4000
     jumpForce: 7
-    speed: 2.5
+    speed: 1.9
     id: 6
-    lockState: Locked
+    lockState: 
     swordDamageValue: 100
   - name: Aj
     characterObject: {fileID: 4229839607365370914, guid: db04c4e4b251642e596a18439cc381c3, type: 3}
     durability: 8
     price: 500
     jumpForce: 8
-    speed: 2
+    speed: 1.4
     id: 7
-    lockState: Locked
+    lockState: 
     swordDamageValue: 100
   - name: Boss
     characterObject: {fileID: 2089016085528094388, guid: 45b74fc28a8e7584cb93f6b6b213d8f7, type: 3}
     durability: 8
     price: 500
     jumpForce: 7
-    speed: 2.3
+    speed: 1.7
     id: 8
     lockState: Locked
     swordDamageValue: 100
@@ -99,7 +99,7 @@ MonoBehaviour:
     durability: 9
     price: 1000
     jumpForce: 8
-    speed: 2
+    speed: 1.4
     id: 9
     lockState: Locked
     swordDamageValue: 100
@@ -108,7 +108,7 @@ MonoBehaviour:
     durability: 10
     price: 2000
     jumpForce: 8
-    speed: 2
+    speed: 1.4
     id: 10
     lockState: Locked
     swordDamageValue: 100
@@ -124,7 +124,7 @@ MonoBehaviour:
     - {fileID: 1298455323346986048, guid: c6338ffb40c7f5c408750f2d2e7f31b3, type: 3}
     - {fileID: 4299486794394585338, guid: 48882e0557a3a8d4fadc8cd50ff511ca, type: 3}
     - {fileID: 8425098538945327761, guid: 3b0e63e296aac3241aad532e5a748ddf, type: 3}
-    poolSize: 20
+    poolSize: 10
   - objectPrefab:
     - {fileID: 4021812532560223838, guid: f455c1df106218543b067ce015818a19, type: 3}
     - {fileID: 4021812532560223838, guid: 91281b98bbc5449aa8b03117a64827b0, type: 3}
@@ -252,16 +252,6 @@ MonoBehaviour:
   chestMonsterEnemyPrefabObjectPoolID: 4
   tazoEnemyPrefabObjectPoolID: 5
   chestMonster2EnemyPrefabObjectPoolID: 6
-  currentLanguage: 0
-  getCurrentEnemyDead: 0
-  currentMessageText: {fileID: 0}
-  currentMessageObject: {fileID: 0}
-  isDecreaseHealth: 1
-  damageHealthText: {fileID: 0}
-  decreaseCounter: 0
-  resetLocks: Locked
-  locked: Locked
-  unLocked: 
   objects:
   - {fileID: 6582287944818323382, guid: 5d67c0fa01c514a469d241126046c4cb, type: 3}
   - {fileID: 4529110289692566654, guid: ece28a22070f44540a834a2a3abbfcfb, type: 3}
@@ -270,56 +260,3 @@ MonoBehaviour:
   - {fileID: 2613066168305214933, guid: 26cc8ebb945008b409049e7880d85d78, type: 3}
   - {fileID: 3102288607414887448, guid: 291ccd016fce448479fcd5813069629a, type: 3}
   - {fileID: 4849532061827766971, guid: 0475ff0f49311f1439d5dacc468f03fd, type: 3}
-  sensivityX: 1
-  sensivityY: 3
-  isTouchFinish: 0
-  isLose: 0
-  rotateSpeed: 6
-  isGround: 1
-  isWalking: 0
-  isSideWalking: 0
-  isBackWalking: 0
-  isIdling: 0
-  isDying: 0
-  isWinning: 0
-  isPicking: 0
-  isPickRotateCoin: 0
-  isSwordAnimate: 0
-  isSword: 0
-  isLookingUp: 0
-  isDestroyed: 0
-  isPlayable: 1
-  isFireWalkAnimation: 0
-  isFireAnimation: 0
-  isFireTime: 0
-  isJumping: 0
-  jumpCount: 0
-  clickShiftCount: 0
-  bulletAmount: 22
-  bulletPackAmount: 2
-  danceTime: 5
-  jolleenObject: {fileID: 6707242738512988545, guid: 3e0f7bc06eeceb540a17ad08e5923723, type: 3}
-  touchParticle: {fileID: 2098394851902305992, guid: 9bd5863dac0a07144a968a375408214b, type: 3}
-  birthParticle: {fileID: 1705621348223521887, guid: cd7d4ea18b432ef44b8f8ed281ea60c7, type: 3}
-  deathParticle: {fileID: 5597880929392322992, guid: c3d186f24e85b9549b8b845c134e0d97, type: 3}
-  burningParticle: {fileID: 2998880394958268818, guid: d1da0b7ce7a5e4e4a9ed42ef14329904, type: 3}
-  burningTouchParticle: {fileID: 2998880394958268818, guid: d1da0b7ce7a5e4e4a9ed42ef14329904, type: 3}
-  destroyRotateCoinParticle: {fileID: 7843557430029568611, guid: a53c763de9e987f48bc10c8ebe511e7a, type: 3}
-  destroyHealthCoinParticle: {fileID: 8288753135164088106, guid: 5d1b41e89aeadc54d8b8754f2510a377, type: 3}
-  destroyBulletCoinParticle: {fileID: 5528744555975214268, guid: f15554b031345d14590701f56225ee6b, type: 3}
-  destroyMushroomCoinParticle: {fileID: 5170391159290364789, guid: 9ad1b0280ab4ddb488e732d284326376, type: 3}
-  particleCount: 0
-  isTouchFirst: 0
-  isTouchSecond: 0
-  isTouchThird: 0
-  weaponBulletExplosionParticles:
-  - {fileID: 2689552222238927185, guid: 632812bd72b786d4c937d25598e0498d, type: 3}
-  - {fileID: 2689552222238927185, guid: 12a27057a7ea8472ea61224bc12b61d0, type: 3}
-  - {fileID: 2689552222238927185, guid: 0286d92a545234a6184211b5095a14ae, type: 3}
-  - {fileID: 2689552222238927185, guid: 57a28dad6beae4784a6047213e845170, type: 3}
-  - {fileID: 2689552222238927185, guid: bf2e4ed542e1147d6ab8f166c1a23794, type: 3}
-  - {fileID: 2689552222238927185, guid: a33290774f186463fad2470971c87822, type: 3}
-  - {fileID: 2689552222238927185, guid: 3d4521ca9e6a94bd2a9a4e107b87100f, type: 3}
-  - {fileID: 2689552222238927185, guid: af76e629c0e2d4f8a806761bf68740d5, type: 3}
-  - {fileID: 2689552222238927185, guid: 4f1a6f9db0bfb4f7cbe2e01a405e81fa, type: 3}
-  - {fileID: 2689552222238927185, guid: c378b71f5a7964c15aa142d686f6c740, type: 3}

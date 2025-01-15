@@ -2521,7 +2521,7 @@ Transform:
   m_GameObject: {fileID: 3868506204110540764}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2546,28 +2546,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cbab17b44bf9a0458fac80563059cbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runtimeAnimatorControllers:
-  - {fileID: 9100000, guid: 63ad8dba2b376405182966fda345be25, type: 2}
-  - {fileID: 9100000, guid: 67c2b6bbe78c541579f11e4490764c5e, type: 2}
-  - {fileID: 9100000, guid: e9839f04748b04e62b1aca565942d51d, type: 2}
-  - {fileID: 9100000, guid: a05634637d99b4452a18382b74269441, type: 2}
-  - {fileID: 9100000, guid: 8c4c4c261da254cb5b7f758bd162c419, type: 2}
-  - {fileID: 9100000, guid: 1ef1fb572395141ad84ac26ca3c3402d, type: 2}
-  - {fileID: 9100000, guid: 30a1b46f090f14022a6caa99cbccb6f4, type: 2}
-  - {fileID: 9100000, guid: 759c11eaafceb465ca8608f6da047a14, type: 2}
-  - {fileID: 9100000, guid: 294f1ee07478a44e699bc4cd10c375ea, type: 2}
-  - {fileID: 9100000, guid: e0ad8c9ad434848cc920c8c036e4a10f, type: 2}
-  - {fileID: 9100000, guid: d08205e1f526d4207ace51da1953a6e9, type: 2}
-  - {fileID: 9100000, guid: 1496802fee5cf4812bac368fa4162558, type: 2}
-  - {fileID: 9100000, guid: 6c44cc6a49c404932af7010002b65058, type: 2}
-  - {fileID: 9100000, guid: 5ed1e40512cfd4688b3a3567e6db3817, type: 2}
-  - {fileID: 9100000, guid: e05c5d46f617e4c0ea22dc510158d488, type: 2}
-  - {fileID: 9100000, guid: aebc588d6802f4aa699d80de40897b5d, type: 2}
-  - {fileID: 9100000, guid: 72b18948c7701469e8f11b61912ea3dd, type: 2}
-  - {fileID: 9100000, guid: 3093d25bdbe1b4bb4bd60470700a94d2, type: 2}
-  - {fileID: 9100000, guid: b53e29d0b35904705a6800c4263d0c4a, type: 2}
-  - {fileID: 9100000, guid: 4403a1323291b4e3a8405d87df2ef465, type: 2}
-  runAnimatorController: {fileID: 0}
   exampleRunAnimatorController: {fileID: 9100000, guid: 63ad8dba2b376405182966fda345be25, type: 2}
 --- !u!95 &8742299082417034830
 Animator:

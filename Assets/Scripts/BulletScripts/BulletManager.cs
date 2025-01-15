@@ -91,7 +91,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             // Find the weapon in the weaponStruct by matching the current weapon name
             for (int i = 0; i < bulletData.weaponStruct.Length; i++)
             {
-                if (bulletData.currentWeaponName == bulletData.weaponStruct[i].weaponName)
+                if (BulletData.currentWeaponName == bulletData.weaponStruct[i].weaponName)
                 {
                     // Instantiate the weapon object and update its properties
                     _currentWeaponObject = Instantiate(
@@ -101,8 +101,8 @@ public class BulletManager : AbstractBullet<BulletManager>
                         PlayerManager.GetInstance._gunTransform.transform
                     );
 
-                    bulletData.currentShootFrequency = bulletData.weaponStruct[i].shootFrequency;
-                    bulletData.currentBulletPackAmount = bulletData.weaponStruct[i].bulletPackAmount;
+                    BulletData.currentShootFrequency = bulletData.weaponStruct[i].shootFrequency;
+                    BulletData.currentBulletPackAmount = bulletData.weaponStruct[i].bulletPackAmount;
 
                     break; // Exit loop once the matching weapon is found
                 }
@@ -134,7 +134,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             for (int i = 0; i < bulletData.weaponStruct.Length; i++)
             {
                 var weaponName = bulletData.weaponStruct[i].weaponName;
-                if (bulletData.currentWeaponName == weaponName)
+                if (BulletData.currentWeaponName == weaponName)
                 {
                     var weaponTransform = GameObject.Find($"{weaponName}Transform");
                     if (weaponTransform)
@@ -178,9 +178,9 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentWeaponObject);
             }
-            
-            bulletData.currentWeaponName = weaponName;
-            bulletData.currentShootFrequency = shootFrequency;
+
+            BulletData.currentWeaponName = weaponName;
+            BulletData.currentShootFrequency = shootFrequency;
 
             BulletData.currentWeaponID = weaponID;
 
@@ -202,7 +202,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 Destroy(_currentSwordObject);
             }
-            HandleSwordChange(BulletData.lowSword, ref bulletData.isLowSword);
+            HandleSwordChange(BulletData.lowSword, ref BulletData.isLowSword);
         }
     }
 
@@ -243,13 +243,13 @@ public class BulletManager : AbstractBullet<BulletManager>
             // Loop through weaponStruct and match the currentWeaponName
             for (int i = 0; i < bulletData.weaponStruct.Length; i++)
             {
-                if (bulletData.currentWeaponName == bulletData.weaponStruct[i].weaponName)
+                if (BulletData.currentWeaponName == bulletData.weaponStruct[i].weaponName)
                 {
                     BulletData.currentWeaponID = bulletData.weaponStruct[i].id;
 
                     PlayerPrefs.SetInt("CurrentWeaponID", BulletData.currentWeaponID);
 
-                    bulletData.currentWeaponName = bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
+                    BulletData.currentWeaponName = bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
 
                     break; // Exit loop once the matching weapon is found
                 }
@@ -307,7 +307,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 PlayerData.isFireTime = false;
 
-                StartCoroutine(Delay(bulletData.currentShootFrequency, _playerData.playerWeaponBulletObjectPoolCount));
+                StartCoroutine(Delay(BulletData.currentShootFrequency, _playerData.playerWeaponBulletObjectPoolCount));
             }
         }
     }
@@ -322,7 +322,7 @@ public class BulletManager : AbstractBullet<BulletManager>
             {
                 if (BulletData.currentWeaponID == bulletData.weaponStruct[i].id)
                 {
-                    bulletData.currentWeaponName = bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
+                    BulletData.currentWeaponName = bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
                     PlayerSoundEffect.GetInstance.ShootSoundEffectStatement(bulletData.weaponStruct[i].weaponName);
                     return; // Exit once a match is found to avoid unnecessary iterations
                 }

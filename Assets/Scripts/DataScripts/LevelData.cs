@@ -69,7 +69,8 @@ public class LevelData : ScriptableObject
 
     public float currentEnemyDetectionDistance;
     public static int currentOwnedLevelUpKeys;
-    public static int currentLevelId;
+    public int currentLevelId;
+    public const int lastLevelID = 9;
     public static string currentLevelName;
     public string currentMirrorName;
     public float currentBackToWalkingValue;

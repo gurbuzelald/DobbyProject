@@ -57,7 +57,7 @@ public class AudioManager : AbstractPlayerSFX<AudioManager>
     {
         for (int i = 0; i < levelData.levels.Length; i++)
         {
-            if (LevelData.currentLevelId == levelData.levels[i].id)
+            if (levelData.currentLevelId == levelData.levels[i].id)
             {
                 audioData.currentGameMusic = audioData.levelsGameMusic[i];
                 return; // Exit once the matching level is found

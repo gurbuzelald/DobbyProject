@@ -59,7 +59,7 @@ public class EnemySpawner : MonoBehaviour
         MainEnemyData.enemyDeathCount = 0;
         enemyData.isActivateCreateEnemy = false;
 
-        currentLevelRectangle = levelData.levelStates[LevelData.currentLevelId].levelRectangle;
+        currentLevelRectangle = levelData.levelStates[levelData.currentLevelId].levelRectangle;
 
         SetTrueEnemy();
         SetTrueBoss();

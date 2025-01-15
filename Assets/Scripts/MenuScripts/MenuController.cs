@@ -24,11 +24,11 @@ public class MenuController : AbstractPlayer<MenuController>
         {
             if (PlayerData.Languages.Turkish == PlayerData.currentLanguage)
             {
-                continueButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm " + (LevelData.currentLevelId + 1).ToString();
+                continueButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Bölüm " + (levelData.currentLevelId + 1).ToString();
             }
             else
             {
-                continueButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level " + (LevelData.currentLevelId + 1).ToString();
+                continueButtonObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "Level " + (levelData.currentLevelId + 1).ToString();
             }
 
         }

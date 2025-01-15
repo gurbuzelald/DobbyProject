@@ -252,7 +252,7 @@ public class ChooseWeaponController : MonoBehaviour
 
         // Check if the player can unlock the weapon
         bool hasEnoughCoins = playerCoinData.avaliableCoin >= weaponPrice;
-        bool weaponNotInUse = bulletData.currentWeaponName != bulletData.weaponStruct[weaponID].weaponName;
+        bool weaponNotInUse = BulletData.currentWeaponName != bulletData.weaponStruct[weaponID].weaponName;
         bool weaponLocked = bulletData.weaponStruct[weaponID].lockState == BulletData.locked;
 
         if (ButtonController.weaponButtonBools[weaponID] && ButtonController.buttonTimeFlow > .2f)
@@ -266,7 +266,7 @@ public class ChooseWeaponController : MonoBehaviour
 
                     PlayerPrefs.SetInt("AvaliableCoin", playerCoinData.avaliableCoin);
 
-                    bulletData.weaponStruct[weaponID].lockState = bulletData.unLocked;
+                    bulletData.weaponStruct[weaponID].lockState = BulletData.unLocked;
                     bulletData.weaponStruct[weaponID].usageLimit = 3;
                     PlayerPrefs.SetInt($"{bulletData.weaponStruct[weaponID].weaponName}UsageCount", bulletData.weaponStruct[weaponID].usageLimit);
                     PlayerPrefs.SetFloat($"{bulletData.weaponStruct[weaponID].weaponName}Lock", 1);
@@ -281,7 +281,7 @@ public class ChooseWeaponController : MonoBehaviour
                 DisplayPriceError(weaponPrice - playerCoinData.avaliableCoin, weaponID);
                 MenuSoundEffect.GetInstance.MenuSoundEffectStatement(MenuSoundEffect.MenuSoundEffectTypes.MenuNotClick);
             }
-            else if (bulletData.weaponStruct[weaponID].lockState == bulletData.unLocked && bulletData.weaponStruct[weaponID].usageLimit > 0 && weaponNotInUse)
+            else if (bulletData.weaponStruct[weaponID].lockState == BulletData.unLocked && bulletData.weaponStruct[weaponID].usageLimit > 0 && weaponNotInUse)
             {
                 // Set unlocked weapon with remaining usage limit as the current weapon
                 SetCurrentWeapon(weaponID);
@@ -291,12 +291,12 @@ public class ChooseWeaponController : MonoBehaviour
 
     private void SetCurrentWeapon(int weaponID)
     {
-        bulletData.currentWeaponName = bulletData.weaponStruct[weaponID].weaponName;
+        BulletData.currentWeaponName = bulletData.weaponStruct[weaponID].weaponName;
         BulletData.currentWeaponID = bulletData.weaponStruct[weaponID].id;
 
         PlayerPrefs.SetInt("CurrentWeaponID", BulletData.currentWeaponID);
 
-        bulletData.currentBulletPackAmount = bulletData.weaponStruct[weaponID].bulletPackAmount;
+        BulletData.currentBulletPackAmount = bulletData.weaponStruct[weaponID].bulletPackAmount;
         ObjectPool.creatablePlayerBullet = true;
 
         SceneController.LoadMenuScene();

@@ -56,7 +56,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
             {
                 if (levelUpController && _scoreText)
                 {
-                    _scoreText.text = $"{_scoreAmount}/{levelData.levelUpRequirements[LevelData.currentLevelId].coinCollectAmount}";
+                    _scoreText.text = $"{_scoreAmount}/{levelData.levelUpRequirements[levelData.currentLevelId].coinCollectAmount}";
                 }
             }
         }
@@ -73,7 +73,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
         // Update enemy kill value text if both components exist
         if (enemyKillValueText && levelUpController)
         {
-            enemyKillValueText.text = $"{MainEnemyData.enemyDeathCount}/{levelData.levelUpRequirements[LevelData.currentLevelId].enemyKills}";
+            enemyKillValueText.text = $"{MainEnemyData.enemyDeathCount}/{levelData.levelUpRequirements[levelData.currentLevelId].enemyKills}";
         }
 
         // Save coin data to JSON
@@ -94,7 +94,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
             // Update score text if the text component and level controller exist
             if (_scoreText && levelUpController)
             {
-                _scoreText.text = $"0/{levelData.levelUpRequirements[LevelData.currentLevelId].coinCollectAmount}";
+                _scoreText.text = $"0/{levelData.levelUpRequirements[levelData.currentLevelId].coinCollectAmount}";
             }
 
             PlayerPrefs.SetInt("ScoreAmount", 0); // Reset score in PlayerPrefs
@@ -110,7 +110,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
         // Update score text if both components exist
         if (_scoreText && levelUpController)
         {
-            _scoreText.text = $"{_scoreAmount}/{levelData.levelUpRequirements[LevelData.currentLevelId].coinCollectAmount}";
+            _scoreText.text = $"{_scoreAmount}/{levelData.levelUpRequirements[levelData.currentLevelId].coinCollectAmount}";
         }
     }
     public void SetScore(int scoreAmount)
@@ -131,7 +131,7 @@ public class ScoreController : AbstractPlayer<ScoreController>
         if (levelUpController && _scoreText)
         {
             _scoreText.text = _scoreAmount + "/" +
-                          levelData.levelUpRequirements[LevelData.currentLevelId].coinCollectAmount;
+                          levelData.levelUpRequirements[levelData.currentLevelId].coinCollectAmount;
         }
     }
 

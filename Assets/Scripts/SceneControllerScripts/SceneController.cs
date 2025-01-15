@@ -42,7 +42,7 @@ public class SceneController : MonoBehaviour
         PlayerData.currentCharacterID = PlayerPrefs.GetInt("CurrentCharacterID");
         BulletData.currentWeaponID = PlayerPrefs.GetInt("CurrentWeaponID");
 
-        bulletData.currentWeaponName = bulletData?.weaponStruct[BulletData.currentWeaponID].weaponName;
+        BulletData.currentWeaponName = bulletData?.weaponStruct[BulletData.currentWeaponID].weaponName;
     }
 
     void Start()
@@ -557,7 +557,7 @@ public class SceneController : MonoBehaviour
 
         // Reset other game data
         PlayerPrefs.SetInt("AvaliableCoin", 0);
-        LevelData.currentLevelId = 0;
+        levelData.currentLevelId = 0;
         LevelData.highestLevel = 0;
         PlayerPrefs.SetInt("HighestLevel", 0);
 
@@ -567,9 +567,9 @@ public class SceneController : MonoBehaviour
         BulletData.currentWeaponID = 0;
         PlayerPrefs.SetInt("CurrentWeaponID", BulletData.currentWeaponID);
 
-        bulletData.currentWeaponName = bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
+        BulletData.currentWeaponName = bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
 
-        bulletData.currentWeaponName = "pistol";
+        BulletData.currentWeaponName = "pistol";
     }
 
 
@@ -603,7 +603,7 @@ public class SceneController : MonoBehaviour
         }
         if (currentWeaponText && bulletData)
         {
-            currentWeaponText.text = bulletData.currentWeaponName.ToString();
+            currentWeaponText.text = BulletData.currentWeaponName.ToString();
         }
     }
 
@@ -611,7 +611,7 @@ public class SceneController : MonoBehaviour
     {
         if (currentWeaponText && bulletData)
         {
-            currentWeaponText.text = bulletData.currentWeaponName.ToString();
+            currentWeaponText.text = BulletData.currentWeaponName.ToString();
         }
     }
 
@@ -690,8 +690,8 @@ public class SceneController : MonoBehaviour
     }
     public void PlayAgain()
     {
-        LevelData.currentLevelId = 0;
-        PlayerPrefs.SetInt("CurrentLevelID", LevelData.currentLevelId);
+        levelData.currentLevelId = 0;
+        PlayerPrefs.SetInt("CurrentLevelID", levelData.currentLevelId);
 
         playAgainForScore = true;
 
@@ -723,7 +723,7 @@ public class SceneController : MonoBehaviour
 
                         PlayerPrefs.SetInt("CurrentWeaponID", BulletData.currentWeaponID);
 
-                        bulletData.currentWeaponName = bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
+                        BulletData.currentWeaponName = bulletData.weaponStruct[BulletData.currentWeaponID].weaponName;
                     }
 
                     break; // Exit loop once the matching weapon is found
@@ -765,7 +765,7 @@ public class SceneController : MonoBehaviour
                 LevelData.highestLevel = 0;
                 PlayerPrefs.SetInt("ResetGame", 0);
             }
-            else if (LevelData.currentLevelId == 0)
+            else if (levelData.currentLevelId == 0)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") == 0)
                 {
@@ -773,7 +773,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", 0);
                 }                
             }
-            else if (LevelData.currentLevelId == 1)
+            else if (levelData.currentLevelId == 1)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 1)
                 {
@@ -781,7 +781,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelId == 2)
+            else if (levelData.currentLevelId == 2)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 2)
                 {
@@ -789,7 +789,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelId == 3)
+            else if (levelData.currentLevelId == 3)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 3)
                 {
@@ -797,7 +797,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelId == 4)
+            else if (levelData.currentLevelId == 4)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 4)
                 {
@@ -805,7 +805,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelId == 5)
+            else if (levelData.currentLevelId == 5)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 5)
                 {
@@ -813,7 +813,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelId == 6)
+            else if (levelData.currentLevelId == 6)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 6)
                 {
@@ -821,7 +821,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelId == 7)
+            else if (levelData.currentLevelId == 7)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 7)
                 {
@@ -829,7 +829,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelId == 8)
+            else if (levelData.currentLevelId == 8)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 8)
                 {
@@ -837,7 +837,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelId == 9)
+            else if (levelData.currentLevelId == 9)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 9)
                 {
@@ -845,7 +845,7 @@ public class SceneController : MonoBehaviour
                     PlayerPrefs.SetInt("HighestLevel", LevelData.highestLevel);
                 }
             }
-            else if (LevelData.currentLevelId == 10)
+            else if (levelData.currentLevelId == 10)
             {
                 if (PlayerPrefs.GetInt("HighestLevel") <= 10)
                 {

@@ -52,7 +52,7 @@ public class SettingController : MonoBehaviour
         PlayerData.sensivityX = _sensivityX.value;
         PlayerData.sensivityY = _sensivityY.value;
 
-        LevelData.currentLevelId = PlayerPrefs.GetInt("CurrentLevelID");
+        levelData.currentLevelId = PlayerPrefs.GetInt("CurrentLevelID");
     }
     private void OnEnable()
     {
@@ -70,7 +70,7 @@ public class SettingController : MonoBehaviour
             _soundSettingsPanel.localScale = Vector3.zero;
             _sensivitySettingsPanel.localScale = Vector3.zero;
 
-            if (0 != LevelData.currentLevelId)
+            if (0 != levelData.currentLevelId)
             {
                 _continueButton.GetComponent<RectTransform>().localScale = Vector3.one;
             }
@@ -160,7 +160,7 @@ public class SettingController : MonoBehaviour
             _levelsButtonRectTransform.localScale = Vector3.one;
             _languageButtonRectTransform.localScale = Vector3.one;
 
-            if (levelData.levels[0].id != LevelData.currentLevelId)
+            if (levelData.levels[0].id != levelData.currentLevelId)
             {
                 _continueButton.GetComponent<RectTransform>().localScale = Vector3.one;
             }

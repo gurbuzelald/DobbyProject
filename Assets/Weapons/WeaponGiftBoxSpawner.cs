@@ -12,7 +12,7 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
     {
         GiftBoxControllerAtStart();
         yield return new WaitForSeconds(1f);
-        CreateMapGiftBoxes(bulletData.currentGiftBox, LevelData.currentLevelId);
+        CreateMapGiftBoxes(BulletData.currentGiftBox, levelData.currentLevelId);
     }
     public void CreateMapGiftBoxes(GameObject weaponObject, int levelID)
     {
@@ -40,12 +40,12 @@ public class WeaponGiftBoxSpawner : MonoBehaviour
     }
     void GiftBoxControllerAtStart()
     {
-        int levelIndex = Array.FindIndex(levelData.levels, level => level.id == LevelData.currentLevelId);
+        int levelIndex = Array.FindIndex(levelData.levels, level => level.id == levelData.currentLevelId);
 
         // Ensure the index is valid and within the bounds of weaponStruct
         if (levelIndex >= 0 && levelIndex < bulletData.weaponStruct.Length)
         {
-            bulletData.currentGiftBox = bulletData.weaponStruct[levelIndex].giftBox;
+            BulletData.currentGiftBox = bulletData.weaponStruct[levelIndex].giftBox;
         }
         else
         {

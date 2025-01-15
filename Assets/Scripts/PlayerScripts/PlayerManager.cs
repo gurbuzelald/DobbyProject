@@ -163,7 +163,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
         if (_levelData)
         {
-            _levelData.currentEnemyDetectionDistance = _levelData.levelStates[LevelData.currentLevelId].enemyDetectionDistance;
+            _levelData.currentEnemyDetectionDistance = _levelData.levelStates[_levelData.currentLevelId].enemyDetectionDistance;
         }
 
         if (GameObject.Find("DamageHealthText"))
@@ -291,10 +291,10 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     {
         if (_levelData)
         {
-            if (_levelData.playerSpawns.GetChild(LevelData.currentLevelId))
+            if (_levelData.playerSpawns.GetChild(_levelData.currentLevelId))
             {
                 transform.position =
-                    _levelData.playerSpawns.GetChild(LevelData.currentLevelId).transform.position;
+                    _levelData.playerSpawns.GetChild(_levelData.currentLevelId).transform.position;
             }            
         }        
     }
@@ -569,7 +569,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
 
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.LevelUp);
 
-            _levelData.levelStates[LevelData.currentLevelId].isCompleteMap = true;
+            _levelData.levelStates[_levelData.currentLevelId].isCompleteMap = true;
             LevelData.isLevelUp = true;
             
 
@@ -613,7 +613,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
         {
             if (_levelData.levels[i].finishAreaName == other.tag)
             {
-                LevelData.currentLevelId = i + 1; // Assuming the level IDs start from 1
+                _levelData.currentLevelId = i + 1; // Assuming the level IDs start from 1
                 return; // Exit once the match is found
             }
         }
@@ -727,7 +727,7 @@ public class PlayerManager : AbstractPlayer<PlayerManager>
     void TriggerWeapon(Collider other)
     {
         string otherTag = other.tag.ToString();
-        if (otherTag == _bulletData.currentWeaponName)
+        if (otherTag == BulletData.currentWeaponName)
         {
             PlayerSoundEffect.GetInstance.SoundEffectStatement(PlayerSoundEffect.SoundEffectTypes.Poison);
             StartCoroutine(DelayMessageText(_playerData, PlayerData.alreadyHaveThisWeaponMessageTr, PlayerData.alreadyHaveThisWeaponMessage));

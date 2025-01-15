@@ -27,22 +27,20 @@ public class BulletData : ScriptableObject
     public WeaponStruct[] weaponStruct = new WeaponStruct[11];    
 
     [Header("Player")]
-    public string currentSwordName = lowSword;
-    public string currentWeaponName = "pistol";
-    public int currentBulletPackAmount;
+    public string currentSwordName;
+    public static string currentWeaponName;
+    public static int currentBulletPackAmount;
     public static int currentWeaponID;
 
     [Header("Bullet Transform")]
     public float weaponBulletDelay;
-    public float swordBulletDelay;
-    
-    public GameObject _swordingObject;
+    public float swordBulletDelay;    
 
     [Header("Weapon GiftBoxes")]
-    public GameObject currentGiftBox;
+    public static GameObject currentGiftBox;
 
     [Header("Weapon Shoot Frequency")]
-    public float currentShootFrequency;
+    public static float currentShootFrequency;
 
 
     [Header("Weapon Staff")]
@@ -52,12 +50,12 @@ public class BulletData : ScriptableObject
     //public string[] avaliableWeapons= new string[10];
 
     [Header("Weapon Locking Modes")]
-    public string resetLocks = "locked";
+    public static string resetLocks = "locked";
     public const string locked = "locked";
-    public string unLocked = "";
+    public static string unLocked = "";
 
 
-    public bool isFirable;
+    public static bool isFirable;
 
     [Header("Sword Types")]
     public GameObject lowSwordObject;
@@ -66,5 +64,5 @@ public class BulletData : ScriptableObject
     public static int currentSwordID = 0;
     public const string lowSword = "LowSword";
 
-    public bool isLowSword;
+    public static bool isLowSword;
 }

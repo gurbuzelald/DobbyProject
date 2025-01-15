@@ -21,33 +21,33 @@ public class CoinSpawner : MonoBehaviour
 
     void Awake()
     {
-        GameObject currentLevelRectangle = levelData.levelStates[LevelData.currentLevelId].levelRectangle;
+        GameObject currentLevelRectangle = levelData.levelStates[levelData.currentLevelId].levelRectangle;
 
         CreateMultipleObjects(currentLevelRectangle, new (GameObject, float)[]
         {
-        (levelData._rotaterCoinObject, 0.5f),
-        (levelData._rotaterBulletCoinObject, 0.25f),
-        (levelData._coinGroupObject, 0.2f),
-        (levelData._cheeseObject, 0.2f),
-        (levelData._mushroomObject, 0.1f),
-        (levelData._levelUpKeyObject, 0.1f),
-        (levelData._healtCoinObject, 0.2f)
+        (levelData._rotaterCoinObject, 0),
+        (levelData._rotaterBulletCoinObject, 0),
+        (levelData._coinGroupObject, 0),
+        (levelData._cheeseObject, 0),
+        (levelData._mushroomObject, 0),
+        (levelData._levelUpKeyObject, 0),
+        (levelData._healtCoinObject, 0)
         });
     }
 
     void CreateMultipleObjects(GameObject currentLevelRectangleObject, (GameObject coinObject, float maxValueDecreaser)[] objectDataArray)
     {
-        for (int i = 0; i < objectDataArray.Length; i++)
-        {
-            CreateObjects(currentLevelRectangleObject, objectDataArray[i].coinObject, objectDataArray[i].maxValueDecreaser);
-        }
-    }
-
-    void CreateObjects(GameObject currentLevelRectangleObject, GameObject coinObject, float maxValueDecreaser)
-    {
         // Instantiate level rectangle object once
         _coinObject = Instantiate(currentLevelRectangleObject, gameObject.transform);
 
+        for (int i = 0; i < objectDataArray.Length; i++)
+        {
+            CreateObjects(objectDataArray[i].coinObject, objectDataArray[i].maxValueDecreaser);
+        }
+    }
+
+    void CreateObjects(GameObject coinObject, float maxValueDecreaser)
+    {
         // Loop through children of the _coinObject transform
         for (int i = 0; i < _coinObject.transform.childCount; i++)
         {
